@@ -1,4 +1,5 @@
 # Spring Framework 기반 웹 프로젝트
+### 슬기로운 과외생활 (온라인 과외 매칭 플랫폼)
 
 ### 프로젝트 기간 2020.07.21 ~ 2020.09.21
 
@@ -6,15 +7,15 @@
 
 - 
 
-#### 구동영 ( )
+#### 구동영 (https://github.com/GuDongyeong)
 
 - 
 
-#### 김성은 ( )
+#### 김성은 (https://github.com/KimSeongeun97)
 
 - 
 
-#### 김수현 ( )
+#### 김수현 (https://github.com/tngus2280)
 
 - 
 
@@ -22,11 +23,11 @@
 
 - 코드 형상관리 및 유지보수
 
-#### 이서연 ( )
+#### 이서연 (https://github.com/2seoyeon)
 
 - 
 
-#### 이효진 ( )
+#### 이효진 (https://github.com/lhg0314)
 
 - 
 
