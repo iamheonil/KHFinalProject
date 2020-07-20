@@ -39,7 +39,7 @@
 
 <br>
 
-### 프로젝트명
+### 기능구현
 
  - 설명1
  - 설명2
@@ -57,7 +57,7 @@
  - Apache Tomcat 9.0.35
  - Front FrameWork - Bootstrap
  - Spring Framework / MyBatis / Maven / JSP / AJAX / Google / kakao / NAVER API 사용
- - 프로젝트 협업툴 - Github Desktop / SourceTree / ~~Jira(예정)~~ /
+ - 프로젝트 협업툴 - Github Desktop / SourceTree / Jira
 
 <br>
 
