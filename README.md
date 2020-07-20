@@ -49,7 +49,7 @@
 ### 개발환경
 
  - Mac OS / Windows7 / Windows 10
- - 이클립스 2019-06 (4.12.0)
+ - 이클립스 2019-12 (4.14.0)
  - JRE 1.8.0_231
  - JAVA - Spring Framework (5.2.7 Release)
  - MyBatis (3.5.5)
