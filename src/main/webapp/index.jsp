@@ -17,8 +17,7 @@
 		getContextPath()메서드를 활용해 ContextPath를
 		동적으로 지정
 	*/
-	location.href=
-	"<%= request.getContextPath()%>/main";
+	location.href = "<%= request.getContextPath()%>/main";
 	
 	
 </script>
