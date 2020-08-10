@@ -125,9 +125,17 @@
  - Oracle Database 11g
  - Apache Tomcat 9.0.35
  - Front FrameWork - Bootstrap
- - Spring Framework / MyBatis / Maven / JSP / AJAX / Google / kakao / NAVER API 사용
+ - Spring Framework 5.2.7
  - 프로젝트 협업툴 - Github Desktop / SourceTree / Jira
+ 
+<br>
 
+### 사용한 API 및 Dependency
+ - Dependency
+  - Spring Security / MyBatis / AspectJ / Logging / Inject / Servlet / JUnit Test / Mail Service / jackson-core / FileUpload / hamcrest / mockito
+ - API
+  - Google / Kakao / NAVER / AJAX
+ 
 <br>
 
 ### 릴리즈 정보
