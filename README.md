@@ -132,9 +132,10 @@
 
 ### 사용한 API 및 Dependency
  - Dependency
-  - Spring Security / MyBatis / AspectJ / Logging / Inject / Servlet / JUnit Test / Mail Service / jackson-core / FileUpload / hamcrest / mockito
+    - Spring Security / MyBatis / AspectJ / Logging / Inject / Servlet / JUnit Test / Mail Service / jackson-core / FileUpload / hamcrest / mockito
+
  - API
-  - Google / Kakao / NAVER / AJAX
+    - Google / Kakao / NAVER / AJAX
  
 <br>
 
