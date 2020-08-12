@@ -2,6 +2,11 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!-- 웰컴 페이지 설정 -->
+	<welcome-file-list>
+	  <welcome-file>main.jsp</welcome-file>
+	</welcome-file-list>
 
 	<!-- 스프링에서 웹 요청과 응답에 대한 인코딩 처리를 위한 필터  -->
 	<filter>
