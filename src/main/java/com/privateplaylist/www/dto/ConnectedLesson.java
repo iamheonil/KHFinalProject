@@ -8,6 +8,7 @@ public class ConnectedLesson {
 	private int userTo;
 	private int isConnected;
 	private int isEnd;
+
 	
 	
 	@Override

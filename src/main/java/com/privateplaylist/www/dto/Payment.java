@@ -8,7 +8,6 @@ public class Payment {
 	private String payDate;
     private int payMoney;
     
-    
 	@Override
 	public String toString() {
 		return "Payment [payNo=" + payNo + ", lessonNo=" + lessonNo + ", userNo=" + userNo + ", payDate=" + payDate
