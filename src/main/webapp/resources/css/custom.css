@@ -187,3 +187,21 @@
     /* background-color: #2196f3;
     border-color: #0d8aee; */
 }
+
+
+#gtco_header {
+	background: rgba(61,205,188,1);
+	background: -moz-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(61,205,188,1)), color-stop(100%, rgba(51,161,189,1)));
+	background: -webkit-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
+	background: -o-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
+	background: -ms-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
+	background: linear-gradient(to right, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1 );
+}
+
+.footerMenu>li{
+	display: inline;
+	margin-right: 20px;
+}
+

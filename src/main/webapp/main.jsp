@@ -95,24 +95,26 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li class="active"><a href="about.html">About</a></li>
-							<li class="has-dropdown"><a href="services.html">Services</a>
-								<ul class="dropdown">
+							<li class="active"><a href="about.html">로그인</a></li>
+							<li><a href="index.html">회원가입</a></li>
+							<li ><a href="services.html">과외찾기</a>
+								<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>
 									<li><a href="#">eCommerce</a></li>
 									<li><a href="#">Branding</a></li>
 									<li><a href="#">API</a></li>
-								</ul></li>
-							<li class="has-dropdown"><a href="#">Dropdown</a>
-								<ul class="dropdown">
+								</ul>-->
+								</li> 
+							<li ><a href="#">학생찾기</a>
+								<!-- <ul class="dropdown">
 									<li><a href="#">HTML5</a></li>
 									<li><a href="#">CSS3</a></li>
 									<li><a href="#">Sass</a></li>
 									<li><a href="#">jQuery</a></li>
-								</ul></li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a href="contact.html">Contact</a></li>
+								</ul> -->
+								</li>
+							<li><a href="portfolio.html">중고장터</a></li>
+							<li><a href="contact.html">마이페이지</a></li>
 						</ul>
 					</div>
 				</div>
@@ -120,7 +122,7 @@
 			</div>
 		</nav>
 
-		<header class="gtco-cover gtco-cover-xs gtco-inner"
+		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
 			role="banner">
 			<div class="gtco-container">
 				<div class="row">
@@ -168,181 +170,7 @@
 
 
 
-		<div class="gtco-services gtco-section">
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
-						<h2>Our Team</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-							tincidunt. Donec tincidunt volutpat erat.</p>
-					</div>
-				</div>
-				<div class="row">
 
-					<div class="col-md-12">
-						<div class="owl-carousel owl-carousel-carousel">
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_1.jpg"
-										alt="" class="img-responsive">
-									<h2>Jane Simpson</h2>
-									<p class="role">Founder</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_2.jpg"
-										alt="" class="img-responsive">
-									<h2>Richard Wilson</h2>
-									<p class="role">Developer</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_3.jpg"
-										alt="" class="img-responsive">
-									<h2>Craig Davidson</h2>
-									<p class="role">Designer</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_1.jpg"
-										alt="" class="img-responsive">
-									<h2>Jane Simpson</h2>
-									<p class="role">Founder</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_2.jpg"
-										alt="" class="img-responsive">
-									<h2>Richard Wilson</h2>
-									<p class="role">Developer</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_3.jpg"
-										alt="" class="img-responsive">
-									<h2>Craig Davidson</h2>
-									<p class="role">Designer</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_1.jpg"
-										alt="" class="img-responsive">
-									<h2>Jane Simpson</h2>
-									<p class="role">Founder</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_2.jpg"
-										alt="" class="img-responsive">
-									<h2>Richard Wilson</h2>
-									<p class="role">Developer</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="item">
-								<div class="gtco-staff">
-									<img
-										src="${pageContext.request.contextPath}/resources/images/staff_3.jpg"
-										alt="" class="img-responsive">
-									<h2>Craig Davidson</h2>
-									<p class="role">Designer</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-										tincidunt. Donec tincidunt volutpat erat.</p>
-									<ul class="fh5co-social">
-										<li><a href="#"><i class="icon-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
 		<!-- END .gtco-services -->
 
 
@@ -444,63 +272,31 @@
 
 		<footer id="gtco-footer" class="gtco-section" role="contentinfo">
 			<div class="gtco-container">
-				<div class="row row-pb-md">
-					<div class="col-md-8 col-md-offset-2 gtco-cta text-center">
-						<h3>We Love To Talk About Your Business</h3>
-						<p>
-							<a href="#" class="btn btn-white btn-outline">Contact Us</a>
-						</p>
-					</div>
-				</div>
+				
 				<div class="row row-pb-md">
 					<div class="col-md-4 gtco-widget gtco-footer-paragraph">
-						<h3>Cube</h3>
+						<h3>로고 넣을것</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 							Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
 					</div>
-					<div class="col-md-4 gtco-footer-link">
+					<div class="col-md-8 gtco-footer-links">
 						<div class="row">
-							<div class="col-md-6">
-								<ul class="gtco-list-link">
+							<div >
+								<ul class="gtco-list-link footerMenu">
 									<li><a href="#">Home</a></li>
-									<li><a href="#">Features</a></li>
-									<li><a href="#">Products</a></li>
-									<li><a href="#">Testimonial</a></li>
-									<li><a href="#">Contact</a></li>
+									<li><a href="#">개인정보 처리방침</a></li>
+									<li><a href="#">사이트 이용약관</a></li>
+									<li><a href="#">제작자 소개</a></li>
+									<li><a href="#">문의 사항</a></li>
 								</ul>
 							</div>
-							<div class="col-md-6">
-								<p>
-									<a href="tel://1234567890">+1 234 4565 2342</a> <br> <a
-										href="#">info@domain.com</a>
-								</p>
-							</div>
+							
 						</div>
 					</div>
-					<div class="col-md-4 gtco-footer-subscribe">
-						<form class="form-inline">
-							<div class="form-group">
-								<label class="sr-only" for="exampleInputEmail3">Email
-									address</label> <input type="email" class="form-control" id=""
-									placeholder="Email">
-							</div>
-							<button type="submit" class="btn btn-primary">Send</button>
-						</form>
-					</div>
+					
 				</div>
 			</div>
-			<div class="gtco-copyright">
-				<div class="gtco-container">
-					<div class="row">
-						<div class="col-md-6 text-left"></div>
-						<div class="col-md-6 text-right">
-							Shared by <i class="fa fa-love"></i><a
-								href="https://bootstrapthemes.co">BootstrapThemes</a>
-
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</footer>
 
 	</div>
