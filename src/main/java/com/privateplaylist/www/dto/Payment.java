@@ -2,12 +2,11 @@ package com.privateplaylist.www.dto;
 
 public class Payment {
 	
-	private int payNo; //결제 번호
-	private int lessonNo; //과외 번호
-	private int userNo; //회원번호(선생님)
-	private String payDate; //결제일
-    private int payMoney; //결제금액
-    
+	private int payNo;
+	private int lessonNo;
+	private int userNo;
+	private String payDate;
+    private int payMoney;
     
 	@Override
 	public String toString() {
