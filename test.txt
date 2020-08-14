@@ -7,4 +7,3 @@ test
 =======
 인주 데스크탑 test소스트라햤더
 >>>>>>> b24cc1a98922a4cd091cd0b42068ddeb565152f2
-erg rfdgadsrftfdsrtg
