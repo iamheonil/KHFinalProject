@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< Updated upstream
 Built-By: user2
 Build-Jdk: 1.8.0_242
+=======
+Built-By: heonil
+Build-Jdk: 1.8.0_231
+>>>>>>> Stashed changes
 Created-By: Maven Integration for Eclipse
 
