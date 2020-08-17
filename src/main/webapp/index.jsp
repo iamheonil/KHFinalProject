@@ -17,10 +17,10 @@
             <div>
                 <h1 style="text-align: center">화려한 조명이 나를 감싸네</h1>
 
-                <div id="main_img" style="width: 90%; display: flex; position: absolute;">
-                    <img src="https://a2.cdn.japantravel.com/photo/24685-133494/1440x960!/tokyo-sumidagawa-fireworks-festival-133494.jpg" />
+                <div id="main_img" style="width: 100%; margin:0 auto; position: relative;">
+                    <img src="https://t1.daumcdn.net/cfile/tistory/2207573D58CFDE2704" />
                 </div>
-                <div id="main_img_button" style="width: 450px; margin: 70% 0px 0px 44%; position: relative;">
+                <div id="main_img_button" style="width: 450px; margin: -3% 0px 0px 44%; position: relative;">
                     <button class="btn btn-primary">회원가입</button> <button class="btn btn-primary">로그인하기</button>
                 </div>
             </div>

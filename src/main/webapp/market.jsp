@@ -32,26 +32,59 @@
 	});
 </script>
 
-<body>
-	<div class="gtco-loader"></div>
+<style type="text/css">
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
+.banner h1,.banner h2{
+	font-family: 'NanumSquareRound', sans-serif !important;
+    font-weight: bolder !important;
+}
+.banner h1{
+margin-top:20px;
+}
+
+.banner{
+	margin-top:120px;
+}
+
+</style>
+
+<body>
+	
 	<!-- 김헌일 : 중고장터 프론트 초안작성중 0817 ~ ing -->
 
+	<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-0 text-left">
+						<div class="display-t">
+							<div class="display-tc">
+								<div class="row">
+									<div class="col-md-8 animate-box">
+										<link
+											href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+											rel="stylesheet">
+											
+										<div class="row padding-horizontal-md pull-left banner">
+											<div class="row margin-top-xs text title title-xxl text-bold text-white">
+												<p><h1>중고장터</h1></p>
+											</div>
+											<br>
+											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
+												<p><h2>자유롭게 물건들을 팔아보아요</h2></p>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- END #gtco-header -->
+	
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div id="main_wrap">
-		<div style="width:100%; float:left">
-		<h2 style="text-align: left;">중고장터</h2>
-		<h5>- 자유롭게 물건을 사고 파는 게시판입니다</h5>
-		<br>
-		<button class="btn btn-primary text-right" style="float: right;">글쓰기</button>
-		</div>
-	</div>
-
 	<table class="table table-hover" style="width: 80%; margin: 0 auto; text-align: center;">
 		<th style="text-align: center; width: 150px;">이미지</th>
 		<th style="text-align: center; width: 40px;">번호</th>
