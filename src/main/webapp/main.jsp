@@ -111,6 +111,7 @@ margin-top:20px;
 
 	<div id="page">
 	<!-- nav include  -->
+
 	
 	 
 	<%@ include file="WEB-INF/layout/main/header.jsp" %>
@@ -119,6 +120,7 @@ margin-top:20px;
 	<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>    --%>
 
 		
+
 
 		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
 			role="banner">
@@ -278,11 +280,13 @@ margin-top:20px;
 			</div>
 		</div>
 
+
 		<%-- <!-- footer include  -->
 		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>  --%>
 		
 		<%@ include file="WEB-INF/layout/main/footer.jsp" %>
 		
+
 
 	</div>
 
