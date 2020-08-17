@@ -2,4 +2,5 @@
 
 /target/
  *.properties
+*.MF
  # Create by 김헌일
