@@ -2,10 +2,10 @@ package com.privateplaylist.www.dto;
 
 public class WebshareFile {
 	
-	private int shareFileNo; //파일번호
-	private int shareNo; //자료실 글번호
-	private String shareFileOrg; //원본이름
-	private String shareFileRename; //변경된이름
+	private int shareFileNo; 
+	private int shareNo; 
+	private String shareFileOrg; 
+	private String shareFileRename; 
 	
 	
 	@Override
