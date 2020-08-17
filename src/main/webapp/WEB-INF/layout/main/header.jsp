@@ -276,7 +276,7 @@
 						</div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
-						<ul>
+						<ul style="margin-top: 20px;">
 							<li class="active"><a href="about.html">로그인</a></li>
 							<li><a href="index.html">회원가입</a></li>
 							<li ><a href="services.html">과외찾기</a>
