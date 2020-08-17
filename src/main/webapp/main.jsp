@@ -66,9 +66,11 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/custom.css">
+
 	
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/heonilcss.css">
+
 
 <!-- Modernizr JS -->
 <script
@@ -84,46 +86,9 @@
 	<div class="gtco-loader"></div>
 
 	<div id="page">
-
-		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
-
-				<div class="row">
-					<div class="col-sm-2 col-xs-12">
-						<div id="gtco-logo">
-							<a href="index.html"><img
-								src="${pageContext.request.contextPath}/resources/images/logo.png"
-								alt="Free HTML5 Website Template by FreeHTML5.co"></a>
-						</div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<li class="active"><a href="about.html">로그인</a></li>
-							<li><a href="index.html">회원가입</a></li>
-							<li ><a href="services.html">과외찾기</a>
-								<!-- <ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
-								</ul>-->
-								</li> 
-							<li ><a href="#">학생찾기</a>
-								<!-- <ul class="dropdown">
-									<li><a href="#">HTML5</a></li>
-									<li><a href="#">CSS3</a></li>
-									<li><a href="#">Sass</a></li>
-									<li><a href="#">jQuery</a></li>
-								</ul> -->
-								</li>
-							<li><a href="portfolio.html">중고장터</a></li>
-							<li><a href="contact.html">마이페이지</a></li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</nav>
+	<!-- nav include  -->
+<%-- 	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
+		<%@ include file="WEB-INF/layout/main/header.jsp" %>
 
 		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
 			role="banner">
@@ -272,35 +237,9 @@
 			</div>
 		</div>
 
-
-		<footer id="gtco-footer" class="gtco-section" role="contentinfo">
-			<div class="gtco-container">
-				
-				<div class="row row-pb-md">
-					<div class="col-md-4 gtco-widget gtco-footer-paragraph">
-						<h3>로고 넣을것</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
-					</div>
-					<div class="col-md-8 gtco-footer-links">
-						<div class="row">
-							<div >
-								<ul class="gtco-list-link footerMenu">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">개인정보 처리방침</a></li>
-									<li><a href="#">사이트 이용약관</a></li>
-									<li><a href="#">제작자 소개</a></li>
-									<li><a href="#">문의 사항</a></li>
-								</ul>
-							</div>
-							
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			
-		</footer>
+		<!-- footer include  -->
+<%-- 		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
+		<%@ include file="WEB-INF/layout/main/footer.jsp" %>
 
 	</div>
 
