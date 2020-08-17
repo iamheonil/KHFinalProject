@@ -20,6 +20,8 @@
 }
 .gtco-nav #gtco-logo {
   font-size: 20px;
+  width: 65px;
+  height: 70px;
   margin: 0;
   padding: 0;
   text-transform: uppercase;
@@ -190,9 +192,8 @@
 				<div class="row">
 					<div class="col-sm-2 col-xs-12">
 						<div id="gtco-logo">
-							<a href="index.html"><img
-								src="${pageContext.request.contextPath}/resources/images/logo.png"
-								alt="Free HTML5 Website Template by FreeHTML5.co"></a>
+							<a href="/">
+                <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="슬기로운 과외생활"></a>
 						</div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
