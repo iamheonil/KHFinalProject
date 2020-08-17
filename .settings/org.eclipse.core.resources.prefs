@@ -1,2 +1,8 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=e1c60bf25b94c613e5d1d708a3699bc8e33d4818
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/board/findtch.jsp=UTF-8
+encoding//src/main/webapp/index.jsp=UTF-8
+encoding//src/main/webapp/stuBodyTest.jsp=UTF-8
+encoding//src/main/webapp/teaBodyTest.jsp=UTF-8
