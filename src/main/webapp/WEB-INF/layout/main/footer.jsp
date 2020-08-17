@@ -179,9 +179,9 @@ text-align: center;
 				
 				<div class="row row-pb-md">
 					<div class="col-md-4 gtco-widget gtco-footer-paragraph">
-						<h3><img
-								src="${pageContext.request.contextPath}/resources/images/footer_logo.png"
-								alt="슬기로운 과외생활"></h3>
+
+						<h3>
+              <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" alt="슬기로운 과외생활"></h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 							Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
 					</div>
