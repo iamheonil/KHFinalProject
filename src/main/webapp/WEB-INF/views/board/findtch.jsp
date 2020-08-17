@@ -1,66 +1,10 @@
-<!DOCTYPE HTML>
-<!--
-	Cube by FreeHTML5.co
-	Twitter: http://twitter.com/gettemplateco
-	URL: http://freehtml5.co
--->
-<html>
-	<head>
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>슬기로운 의사생활::과외찾기</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
-	<meta name="author" content="colorlib.com">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!-- 구동영 20200817 : 프론트 작업 -->
+<!-- nav include  -->
+<jsp:include
+	page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:aurl" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700" rel="stylesheet">
-	
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
-	<!-- Themify Icons-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/themify-icons.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/magnific-popup.css">
-
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-	
-    
-    <!-- 필터 -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/main_filter.css" rel="stylesheet" />
-	
-	<!-- Modernizr JS -->
-	<script src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 <style type="text/css">
 
 .panel {
@@ -188,92 +132,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     vertical-align: middle;
     -webkit-transition: all .25s;
     transition: all .25s;
+    width: 90px;
+    height: 30px;
+}
+
+.teacher p{
+	font-size: 16px;
 }
 </style>
-  <script src="${pageContext.request.contextPath}/resources/js/extention/choices.js"></script>
-    <script>
-//       const customSelects = document.querySelectorAll("select");
-//       const deleteBtn = document.getElementById('delete')
-//       const choices = new Choices('select',
-//       {
-//         searchEnabled: false,
-//         itemSelectText: '',
-//         removeItemButton: true,
-//       });
-//       for (let i = 0; i < customSelects.length; i++)
-//       {
-//         customSelects[i].addEventListener('addItem', function(event)
-//         {
-//           if (event.detail.value)
-//           {
-//             let parent = this.parentNode.parentNode
-//             parent.classList.add('valid')
-//             parent.classList.remove('invalid')
-//           }
-//           else
-//           {
-//             let parent = this.parentNode.parentNode
-//             parent.classList.add('invalid')
-//             parent.classList.remove('valid')
-//           }
-//         }, false);
-//       }
-//       deleteBtn.addEventListener("click", function(e)
-//       {
-//         e.preventDefault()
-//         const deleteAll = document.querySelectorAll('.choices__button')
-//         for (let i = 0; i < deleteAll.length; i++)
-//         {
-//           deleteAll[i].click();
-//         }
-//       });
 
-    </script>
-
-</head>
 <body>
 		
 	<div id="page">
-
-		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
-
-				<div class="row">
-					<div class="col-sm-2 col-xs-12">
-						<div id="gtco-logo">
-							<a href="index.html"><img
-								src="${pageContext.request.contextPath}/resources/images/logo.png"
-								alt="Free HTML5 Website Template by FreeHTML5.co"></a>
-						</div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<li class="active"><a href="about.html">로그인</a></li>
-							<li><a href="index.html">회원가입</a></li>
-							<li ><a href="services.html">과외찾기</a>
-								<!-- <ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
-								</ul>-->
-								</li> 
-							<li ><a href="#">학생찾기</a>
-								<!-- <ul class="dropdown">
-									<li><a href="#">HTML5</a></li>
-									<li><a href="#">CSS3</a></li>
-									<li><a href="#">Sass</a></li>
-									<li><a href="#">jQuery</a></li>
-								</ul> -->
-								</li>
-							<li><a href="portfolio.html">중고장터</a></li>
-							<li><a href="contact.html">마이페이지</a></li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</nav>
 
 		<header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner" style="height: 600px;">
 			<div class="gtco-container">
@@ -283,9 +153,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 							<div class="display-tc">
 								<div class="row">
 									<div class="col-md-8 animate-box">
+									<br>
 										<h1 class="no-margin" style="margin-top: 100px;">과외 찾기</h1>
 										<br>
-										<div style="margin-left: 18%;">
+										<div style="margin-left: 22%;">
+
 										<div class="s010">
 									      <form>
 									        <div class="inner-form">
@@ -534,36 +406,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		<!-- END .gtco-services -->
 
 
-		<footer id="gtco-footer" class="gtco-section" role="contentinfo">
-			<div class="gtco-container">
-				
-				<div class="row row-pb-md">
-					<div class="col-md-4 gtco-widget gtco-footer-paragraph">
-						<h3>로고 넣을것</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
-					</div>
-					<div class="col-md-8 gtco-footer-links">
-						<div class="row">
-							<div >
-								<ul class="gtco-list-link footerMenu">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">개인정보 처리방침</a></li>
-									<li><a href="#">사이트 이용약관</a></li>
-									<li><a href="#">제작자 소개</a></li>
-									<li><a href="#">문의 사항</a></li>
-								</ul>
-							</div>
-							
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			
-	</footer>
+	<!-- footer include  -->
+	<jsp:include
+		page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
 
-	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
