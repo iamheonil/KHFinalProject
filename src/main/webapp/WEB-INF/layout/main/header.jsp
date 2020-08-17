@@ -67,9 +67,11 @@
 돋보기(검색기능) 관련 CSS // 구동영씨가 searchBar css 파일 업로드하면 
 아래의 main.css 는 삭제 혹은 주석처리할 것
 -->
+<!-- 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/main.css">
-
+ -->
+ 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/searchBar.css">	
 
