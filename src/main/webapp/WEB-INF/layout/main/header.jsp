@@ -56,7 +56,6 @@
 	href="${pageContext.request.contextPath}/resources/css/style.css">
 
 <!-- custom css  -->
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/custom.css">
 
@@ -67,15 +66,14 @@
 돋보기(검색기능) 관련 CSS // 구동영씨가 searchBar css 파일 업로드하면 
 아래의 main.css 는 삭제 혹은 주석처리할 것
 -->
-<!-- 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css">
- -->
- 
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/searchBar.css">	
 
-
+<!-- 필터 -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/main_filter.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <!-- Modernizr JS -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2.min.js"></script>
