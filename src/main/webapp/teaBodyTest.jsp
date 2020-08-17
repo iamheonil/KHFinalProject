@@ -3,6 +3,10 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
+<!-- 메인 헤더 -->   
+<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+
+<!-- 선생님 마이페이지 헤더 -->
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
 
@@ -12,7 +16,11 @@
 
 <h6>내용</h6>
 
+<!-- 선생님 마이페이지 푸터 -->
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+
+<!-- 메인 푸터 --> 
+<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
 
 
  

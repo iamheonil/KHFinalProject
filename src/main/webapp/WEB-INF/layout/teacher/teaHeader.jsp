@@ -20,7 +20,7 @@
 <style type="text/css">
 #main{
     width: 960px;
-    height: 100%;
+    height: 80%;
     float: right;
 /*    border: 1px solid green; */
 /*    padding-right: 100px; */
@@ -136,29 +136,23 @@ nav {
 }
 
 #sidenav{
-margin-top:100px;
+	margin-top:100px;
+	float : left;
+   width:210px;
+/*    background-color: #CCC;  */
+   height: 500px;
+   margin: 0px;
 }
 
 #profile{
     width:200px;
     background-color: #17B794; 
-    height: 150px;
+    height: 170px;
     border-radius: 10%;
     text-align: center;
     color: white;
     margin-bottom:10px;
 }
-
-
-#sidenav{
-   float : left;
-   width:210px;
-/*    background-color: #CCC;  */
-   height: 100%;
-/*    text-align: center; */
-   margin: 0px;
-}
-
 
 #wrapper{
    width: 1200px;
@@ -175,8 +169,8 @@ margin-top:100px;
 #teaprofileimg{
 /*    border: 1px solid red; */
    border-radius: 10%;
-   width: 90px;
-   height: 90px; 
+   width: 100px;
+   height: 100px; 
 }
 
 .anone{
@@ -197,11 +191,16 @@ margin-top:100px;
 
 <div id="wrapper"> <!-- 가운데 오게 하기  -->
 
+<br>
+<br>
+<br>
+
 <div id="sidenav">
 
 <div id="profile">
 
 <br>
+
 <img alt="선생님프로필사진" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg">
 
 <h4>userId 님</h4>
@@ -266,4 +265,4 @@ margin-top:100px;
 
 <div id="main"> 
 
-<a href="" id="anone"><h3 id="mypageid">Mypage</h3></a>
+<a href="" class="anone"><h3 id="mypageid">Teacher Mypage</h3></a>
