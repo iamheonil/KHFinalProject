@@ -14,6 +14,7 @@
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
+	<meta name="author" content="colorlib.com">
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -49,15 +50,10 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 	
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
     
     <!-- 필터 -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/main_filter.css" rel="stylesheet" />
-    <!-- 필터 resource -->
-	<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'>
-	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
-	<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	
 	<!-- Modernizr JS -->
 	<script src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2.min.js"></script>
@@ -169,7 +165,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	padding: 0 10px;
 	float: left;
 }
-
+.selectStyle{
+	width: 100%;
+	border-radius: 90px;
+	background-color: #eee;
+	border: none;
+	height: 40px !important;
+	padding: 0 10px;
+}
 
 #tchList{
 	widht: 900px;
@@ -187,135 +190,45 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     transition: all .25s;
 }
 </style>
-<!-- 필터 -->
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-</style>
-<style type="text/css">
-#filter{
-	width: 240px;
-	float: left;
-}
+  <script src="${pageContext.request.contextPath}/resources/js/extention/choices.js"></script>
+    <script>
+//       const customSelects = document.querySelectorAll("select");
+//       const deleteBtn = document.getElementById('delete')
+//       const choices = new Choices('select',
+//       {
+//         searchEnabled: false,
+//         itemSelectText: '',
+//         removeItemButton: true,
+//       });
+//       for (let i = 0; i < customSelects.length; i++)
+//       {
+//         customSelects[i].addEventListener('addItem', function(event)
+//         {
+//           if (event.detail.value)
+//           {
+//             let parent = this.parentNode.parentNode
+//             parent.classList.add('valid')
+//             parent.classList.remove('invalid')
+//           }
+//           else
+//           {
+//             let parent = this.parentNode.parentNode
+//             parent.classList.add('invalid')
+//             parent.classList.remove('valid')
+//           }
+//         }, false);
+//       }
+//       deleteBtn.addEventListener("click", function(e)
+//       {
+//         e.preventDefault()
+//         const deleteAll = document.querySelectorAll('.choices__button')
+//         for (let i = 0; i < deleteAll.length; i++)
+//         {
+//           deleteAll[i].click();
+//         }
+//       });
 
-#filter .mt-100 {
-    margin-top: 150px
-}
-
-#filter .filter-group {
-    border-bottom: 1px solid #e4e4e4
-}
-
-#filter .card {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.37rem
-}
-
-#filter .card-header {
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 0;
-    background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-}
-
-#filter .filter-group .card-header {
-    border-bottom: 0
-}
-
-#filter .icon-control {
-    margin-top: 6px;
-    float: right;
-    font-size: 80%
-}
-
-#filter .list-menu {
-    list-style: none;
-    margin: 0;
-    padding-left: 0
-}
-
-#filter .list-menu a {
-    color: #343a40
-}
-
-#filter a {
-    text-decoration: none !important;
-    background-color: transparent
-}
-
-#filter .checkbox-btn {
-    position: relative
-}
-
-#filter .checkbox-btn input {
-    position: absolute;
-    z-index: -1;
-    opacity: 0
-}
-
-#filter .checkbox-btn input:checked~.btn {
-    border-color: #3167eb;
-    background-color: #3167eb;
-    color: #fff
-}
-
-#filter .btn-light {
-    display: inline-block;
-    font-weight: 600;
-    color: #343a40;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #eee;
-    border: 1px solid #eee;
-    padding: 0.45rem 0.85rem;
-    font-size: 10px;
-    line-height: 1.5;
-    border-radius: 0.37rem
-}
-
-#filter .btn-light:hover {
-    background-color: #fff;
-    border-color: #989898
-}
-
-#filter .btn-medium {
-    font-size: 12px;
-    padding: 10px 22px;
-    display: inline-block;
-    margin-right: 20px;
-    letter-spacing: 2px;
-    border: 1px solid #157af6;
-    width: 100%
-}
-
-#filter .highlight-button:hover {
-    background-color: #157af6;
-    border: 2px solid #157af6;
-    color: #fff
-}
-
-#filter .custom-control {
-    position: relative;
-    display: block;
-    min-height: 1.5rem;
-    padding-left: 1.5rem
-}
-</style>
+    </script>
 
 </head>
 <body>
@@ -362,7 +275,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 			</div>
 		</nav>
 
-		<header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
+		<header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner" style="height: 600px;">
 			<div class="gtco-container">
 				<div class="row">
 					<div class="col-md-12 col-md-offset-0 text-left">
@@ -370,90 +283,126 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 							<div class="display-tc">
 								<div class="row">
 									<div class="col-md-8 animate-box">
-										<h1 class="no-margin">과외 찾기</h1>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia facilis, accusamus iusto animi.</p>
+										<h1 class="no-margin" style="margin-top: 100px;">과외 찾기</h1>
+										<br>
+										<div style="margin-left: 18%;">
+										<div class="s010">
+									      <form>
+									        <div class="inner-form">
+									          <div class="basic-search">
+									            <div class="input-field">
+									              <input id="search" type="text" placeholder="Type Keywords" />
+									              <div class="icon-wrap">
+									                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+									                </svg>
+									              </div>
+									            </div>
+									          </div>
+									          <div class="advance-search">
+<!-- 									            <span class="desc">ADVANCED SEARCH</span> -->
+									            <div class="row">
+									            <div class="input-field">
+									                <div class="input-select">
+									                  <select class="selectStyle" data-trigger="" name="choices-single-defaul">
+									                    <option placeholder="" value="">지역</option>
+									                    <option>서울</option>
+									                    <option>경기</option>
+									                    <option>강원</option>
+									                    <option>충남</option>
+									                    <option>충북</option>
+									                    <option>전남</option>
+									                    <option>전북</option>
+									                    <option>경남</option>
+									                    <option>경북</option>
+									                    <option>제주</option>
+									                  </select>
+									                </div>
+									              </div>
+									              <div class="input-field">
+									                <div class="input-select">
+									                  <select class="selectStyle" data-trigger="" name="choices-single-defaul">
+									                    <option placeholder="" value="">연령</option>
+									                    <option>초등</option>
+									                    <option>중등</option>
+									                    <option>고등</option>
+									                    <option>대학</option>
+									                    <option>성인</option>
+									                  </select>
+									                </div>
+									              </div>
+									              <div class="input-field">
+									                <div class="input-select">
+									                  <select class="selectStyle" data-trigger="" name="choices-single-defaul">
+									                    <option placeholder="" value="">과목</option>
+									                    <option>국어</option>
+									                    <option>영어</option>
+									                    <option>수학</option>
+									                    <option>사회</option>
+									                    <option>과학</option>
+									                    <option>논술</option>
+									                    <option>예체능</option>
+									                    <option>컴퓨터(IT)</option>
+									                    <option>제2외국어</option>
+									                    <option>대학 전공</option>
+									                    <option>자격증</option>
+									                    <option>기타</option>
+									                  </select>
+									                </div>
+									              </div>
+									            </div>
+									            <div class="row second">
+									              <div class="input-field">
+									                <div class="input-select">
+									                  <select class="selectStyle" data-trigger="" name="choices-single-defaul">
+									                    <option placeholder="" value="">성별</option>
+									                    <option>남</option>
+									                    <option>여</option>
+									                  </select>
+									                </div>
+									              </div>
+									              <div class="input-field">
+									                <div class="input-select">
+									                  <select class="selectStyle" data-trigger="" name="choices-single-defaul">
+									                    <option placeholder="" value="">가격</option>
+									                    <option>~10만원</option>
+									                    <option>10~20만원</option>
+									                    <option>20~30만원</option>
+									                    <option>30~40만원</option>
+									                    <option>40~50만원</option>
+									                    <option>50~60만원</option>
+									                    <option>60~70만원</option>
+									                    <option>70~80만원</option>
+									                    <option>80만원~</option>
+									                  </select>
+									                </div>
+									              </div>
+									              <div class="input-field">
+									                <div class="input-select">
+									                  <select class="selectStyle" data-trigger="" name="choices-single-defaul">
+									                    <option placeholder="" value="">Type</option>
+									                    <option>Subject b</option>
+									                    <option>Subject c</option>
+									                  </select>
+									                </div>
+									              </div>
+									            </div>
+									            <div class="row third">
+									              <div class="input-field">
+									                <div class="result-count">
+									                  <span>108 </span>results</div>
+									                <div class="group-btn">
+<!-- 									                  <button class="btn-delete" id="delete">RESET</button> -->
+									                  <button class="btn-search">SEARCH</button>
+									                </div>
+									              </div>
+									            </div>
+									          </div>
+									        </div>
+									      </form>
+									    </div>
+									   </div> 
 									</div>
-									 <div class="s010">
-      <form>
-        <div class="inner-form">
-
-          <div class="advance-search">
-            <span class="desc">ADVANCED SEARCH</span>
-            <div class="row">
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Accessories</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Color</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Size</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row second">
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Sale</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Time</option>
-                    <option>Last time</option>
-                    <option>Today</option>
-                    <option>This week</option>
-                    <option>This month</option>
-                    <option>This year</option>
-                  </select>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="input-select">
-                  <select data-trigger="" name="choices-single-defaul">
-                    <option placeholder="" value="">Type</option>
-                    <option>Subject b</option>
-                    <option>Subject c</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row third">
-              <div class="input-field">
-                <div class="result-count">
-                  <span>108 </span>results</div>
-                <div class="group-btn">
-                  <button class="btn-delete" id="delete">RESET</button>
-                  <button class="btn-search">SEARCH</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
 								</div>
 							</div>
 						</div>
@@ -463,97 +412,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		</header>
 		<!-- END #gtco-header -->
 
-	
 
 <div class="gtco-services gtco-section">
 <div class="gtco-container">
-<div class="container-fluid mt-100" id="filter">
-     <div class="row d-flex justify-content-center">
-        
-         <div>
-             <div class="card">
-             	 <article class="filter-group">
-                     <header class="card-header"> <a href="javascript:void(0)" data-toggle="collapse" data-target="#collapse_aside1" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                             <h6 class="title">위치</h6>
-                         </a> </header>
-                     <div class="filter-content collapse" id="collapse_aside1" style="">
-                         <div class="card-body">
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 서울 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 경기 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 강원 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 충남 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 충북 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 전남 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 전북 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 경남 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 경북 </span> </label>
-                         	<label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> 제주 </span> </label>
-                         </div>
-                     </div>
-                 </article>
-                 <article class="filter-group">
-                     <header class="card-header"> <a href="javascript:void(0)" data-toggle="collapse" data-target="#collapse_aside2" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                             <h6 class="title">Categories </h6>
-                         </a> </header>
-                     <div class="filter-content collapse" id="collapse_aside2" style="">
-                         <div class="card-body">
-                             <ul class="list-menu">
-                                 <li><a href="#" data-abc="true">Electronics </a></li>
-                                 <li><a href="#" data-abc="true">Watches </a></li>
-                                 <li><a href="#" data-abc="true">Laptops </a></li>
-                                 <li><a href="#" data-abc="true">Clothes </a></li>
-                                 <li><a href="#" data-abc="true">Accessories </a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </article>
-                 <article class="filter-group">
-                     <header class="card-header"> <a href="javascript:void(0)" data-toggle="collapse" data-target="#collapse_aside3" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                             <h6 class="title">Price </h6>
-                         </a> </header>
-                     <div class="filter-content collapse" id="collapse_aside3" style="">
-                         <div class="card-body"> <input type="range" class="custom-range" min="0" max="100" name="">
-                             <div class="form-row">
-                                 <div class="form-group col-md-6"> <label>Min</label> <input class="form-control" placeholder="$0" type="number"> </div>
-                                 <div class="form-group text-right col-md-6"> <label>Max</label> <input class="form-control" placeholder="$1,0000" type="number"> </div>
-                             </div> 
-                         </div>
-                     </div>
-                 </article>
-                 <article class="filter-group">
-                     <header class="card-header"> <a href="javascript:void(0)" data-toggle="collapse" data-target="#collapse_aside4" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                             <h6 class="title">Size </h6>
-                         </a> </header>
-                     <div class="filter-content collapse" id="collapse_aside4" style="">
-                         <div class="card-body"> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> XS </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> SM </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> LG </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> XXL </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> XXXL </span> </label> </div>
-                     </div>
-                 </article>
-                 <article class="filter-group">
-                     <header class="card-header"> <a href="javascript:void(0)" data-toggle="collapse" data-target="#collapse_aside5" data-abc="true" class="collapsed" aria-expanded="false"> <i class="icon-control fa fa-chevron-down"></i>
-                             <h6 class="title">Rating </h6>
-                         </a> </header>
-                     <div class="filter-content collapse" id="collapse_aside5" style="">
-                         <div class="card-body"> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
-                                 <div class="custom-control-label">Better </div>
-                             </label> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
-                                 <div class="custom-control-label">Best </div>
-                             </label> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
-                                 <div class="custom-control-label">Good</div>
-                             </label> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
-                                 <div class="custom-control-label">Not good</div>
-                             </label> </div>
-                     </div>
-                 </article>
-             </div>
-             <a href="#" class="highlight-button btn btn-medium button xs-margin-bottom-five" data-abc="true">Apply Now</a>
-         </div>
-     </div>
- </div>
 
-			<div class="container">
-			<div class="row bootstrap snippets bootdeys" id="tchList">
-		    
-		      <div class="teacher">
+<!-- 선생님 리스트 -->
+ <div class="container">
+	<div class="row bootstrap snippets bootdeys" id="tchList">
+		   
+		    <div class="teacher">
 		        <div class="panel widget">
 		        <div class="widget-header bg-purple">
 		          <img class="widget-bg img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Image">
@@ -669,67 +536,39 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 		<footer id="gtco-footer" class="gtco-section" role="contentinfo">
 			<div class="gtco-container">
-				<div class="row row-pb-md">
-					<div class="col-md-8 col-md-offset-2 gtco-cta text-center">
-						<h3>We Love To Talk About Your Business</h3>
-						<p><a href="#" class="btn btn-white btn-outline">Contact Us</a></p>
-					</div>
-				</div>
+				
 				<div class="row row-pb-md">
 					<div class="col-md-4 gtco-widget gtco-footer-paragraph">
-						<h3>Cube</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
+						<h3>로고 넣을것</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
 					</div>
-					<div class="col-md-4 gtco-footer-link">
+					<div class="col-md-8 gtco-footer-links">
 						<div class="row">
-							<div class="col-md-6">
-								<ul class="gtco-list-link">
+							<div >
+								<ul class="gtco-list-link footerMenu">
 									<li><a href="#">Home</a></li>
-									<li><a href="#">Features</a></li>
-									<li><a href="#">Products</a></li>
-									<li><a href="#">Testimonial</a></li>
-									<li><a href="#">Contact</a></li>
+									<li><a href="#">개인정보 처리방침</a></li>
+									<li><a href="#">사이트 이용약관</a></li>
+									<li><a href="#">제작자 소개</a></li>
+									<li><a href="#">문의 사항</a></li>
 								</ul>
 							</div>
-							<div class="col-md-6">
-								<p>
-									<a href="tel://1234567890">+1 234 4565 2342</a> <br>
-									<a href="#">info@domain.com</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 gtco-footer-subscribe">
-						<form class="form-inline">
-						  <div class="form-group">
-						    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-						    <input type="email" class="form-control" id="" placeholder="Email">
-						  </div>
-						  <button type="submit" class="btn btn-primary">Send</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="gtco-copyright">
-				<div class="gtco-container">
-					<div class="row">
-						<div class="col-md-6 text-left">
 							
 						</div>
-						<div class="col-md-6 text-right">
-							Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-
-						</div>
 					</div>
+					
 				</div>
 			</div>
-		</footer>
+			
+	</footer>
 
 	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
+
 	
 	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
@@ -752,4 +591,3 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 	</body>
 </html>
-

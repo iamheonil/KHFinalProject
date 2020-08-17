@@ -1,4 +1,14 @@
 
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers (opinionated).
+ */
+body {
+  margin: 0;
+}
+
 /**
  * Add the correct display in IE 9-.
  */
@@ -407,10 +417,6 @@ template {
   display: none;
 }
 
-html {
-  height: 100%;
-}
-
 fieldset {
   margin: 0;
   padding: 0;
@@ -793,25 +799,26 @@ legend {
   box-sizing: border-box;
 }
 
-.s010 {
-  display: -ms-flexbox;
-  display: flex;
+/* .s010 { */
+/*   min-height: 100vh; */
+/*   display: -ms-flexbox; */
+/*   display: flex; */
   -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  padding: 15px;
-  font-family: 'Lato', sans-serif;
-}
+/*       justify-content: center; */
+/*   -ms-flex-align: center; */
+/*       align-items: center; */
+/*   background: #d9eff5; */
+/*   padding: 15px; */
+/*   font-family: 'Lato', sans-serif; */
+/* } */
 
 .s010 form {
-  width: 100%;
-  max-width: 790px;
-  margin: 0;
+  width: 790px;
 }
 
 .s010 form .inner-form {
-  width: 100%;
+	width: 790px;
+  margin: 0 auto;
 }
 
 .s010 form .inner-form .input-field {
@@ -827,7 +834,7 @@ legend {
   font-size: 18px;
   height: 70px;
   color: #fff;
-  background: linear-gradient(to right, #2c6dd5 0%, #2c6dd5 28%, #ff4b5a 91%, #ff4b5a 100%);
+  background: linear-gradient(to right, #51D6A9 0%, #4CCFE0 28%, #43B8C7 75%, #3FA4C7 100%);
   font-family: 'Lato', sans-serif;
 }
 
@@ -858,7 +865,7 @@ legend {
   min-width: 100px;
   height: 40px;
   padding: 0 15px;
-  background: linear-gradient(to right, #2c6dd5 0%, #2c6dd5 28%, #ff4b5a 91%, #ff4b5a 100%);
+  background: linear-gradient(to right, #51D6A9 0%, #4CCFE0 28%, #43B8C7 75%, #3FA4C7 100%);
   white-space: nowrap;
   border-radius: 20px;
   font-size: 14px;
@@ -874,7 +881,7 @@ legend {
 
 .s010 form .inner-form .input-field .btn-search:before {
   border-radius: inherit;
-  background: linear-gradient(45deg, #ff4b5a 0%, #ff4b5a 28%, #2c6dd5 91%, #2c6dd5 100%);
+  background: linear-gradient(45deg, #51D6A9 0%, #4CCFE0 28%, #43B8C7 65%, #3FA4C7 100%);
   content: '';
   display: block;
   height: 100%;
