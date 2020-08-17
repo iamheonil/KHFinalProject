@@ -5,7 +5,6 @@
 <jsp:include
 	page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
 
-
 <style type="text/css">
 	
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -23,6 +22,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
    border: 0 solid transparent;
    border-radius: 0;
    margin-bottom: 30px;
+
 }
 .card-body {
     flex: 1 1 auto;
@@ -45,6 +45,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
  .note-has-grid .single-note-item .favourite-note {
      cursor: pointer
  }
+
  .note-has-grid .single-note-item .side-stick {
      position: absolute;
      width: 3px;
@@ -52,14 +53,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
      left: 0;
      background-color: #17B794;
  }
+
  .note-has-grid .single-note-item .category-dropdown.dropdown-toggle:after {
      display: none
  }
+
  .note-has-grid .single-note-item .category [class*=category-] {
      height: 15px;
      width: 15px;
      display: none
  }
+
  .note-has-grid .single-note-item .category [class*=category-]::after {
      content: "\f0d7";
      font: normal normal normal 14px/1 FontAwesome;
@@ -67,6 +71,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
      color: #fff;
      position: absolute
  }
+
  .note-has-grid .single-note-item.note-business .category .category-business {
      display: inline-block
  }
@@ -76,10 +81,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
  .note-has-grid .single-note-item.note-important .category .category-important {
      display: inline-block
  }
+
  .note-has-grid .single-note-item.all-category .more-options,
  .note-has-grid .single-note-item.all-category.note-favourite .more-options {
      display: block
  }
+
  .note-has-grid .single-note-item.all-category.note-business .more-options,
  .note-has-grid .single-note-item.all-category.note-favourite.note-business .more-options,
  .note-has-grid .single-note-item.all-category.note-favourite.note-important .more-options,
@@ -88,11 +95,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
  .note-has-grid .single-note-item.all-category.note-social .more-options {
      display: none
  }
+
  @media (max-width:767.98px) {
      .note-has-grid .single-note-item {
          max-width: 100%
      }
  }
+
  @media (max-width:991.98px) {
      .note-has-grid .single-note-item {
          max-width: 216px
@@ -103,11 +112,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	<!-- 후기게시판 -->
 <script type="text/javascript">
 	$(function() {
+
 	    $('#add-notes').on('click', function(event) {
 	        $('#addnotesmodal').modal('show');
 	        $('#btn-n-save').hide();
 	        $('#btn-n-add').show();
 	    })
+
 	    // Button add
 	    $("#btn-n-add").on('click', function(event) {
 	        event.preventDefault();
@@ -118,11 +129,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	      var yyyy = today.getFullYear();
 	      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 	      today = dd + ' ' + monthNames[mm]  + ' ' + yyyy;
+
 	        var $_noteTitle = document.getElementById('note-has-title').value;
 	        var $_noteDescription = document.getElementById('note-has-description').value;
 	        $html =     '<div class="col-md-4 single-note-item all-category"><div class="card card-body">' +
 	                                '<span class="side-stick"></span>' +
 	                                '<h5 class="note-title text-truncate w-75 mb-0" data-noteHeading="'+$_noteTitle+'">'+$_noteTitle+'</h5>' +
+
 	                                '<p class="note-date font-12 text-muted">'+today+'</p>' +
 	                                '<div class="note-content">' +
 	                                    '<p class="note-inner-content text-muted" data-noteContent="'+$_noteDescription+'">'+$_noteDescription+'</p>' +
@@ -135,6 +148,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	        $("#note-full-container").prepend($html);
 	        $('#addnotesmodal').modal('hide');
 	    });
+
 	    $('#addnotesmodal').on('hidden.bs.modal', function (event) {
 	        event.preventDefault();
 	        document.getElementById('note-has-title').value = '';
@@ -142,6 +156,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    })
 // 	    $('#btn-n-add').attr('disabled', 'disabled'); 
 	})
+
 	 $('#note-has-title').keyup(function() {
 	      var empty = false;
 	      $('#note-has-title').each(function() {
@@ -149,6 +164,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	                  empty = true;
 	          }
 	      });
+
 	      if (empty) {
 	          $('#btn-n-add').attr('disabled', 'disabled'); 
 	      } else {
@@ -183,6 +199,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 <body>
+
 	<div class="gtco-services gtco-section" style="background-color: #eee;">
 			<div class="gtco-container">
 				<div class="row">
@@ -366,6 +383,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
                     <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
                     <button class="btn btn-danger" data-dismiss="modal">Discard</button>
                     <button id="btn-n-add" class="btn btn-info">Add</button>
+
                 </div>
             </div>
         </div>
@@ -380,10 +398,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		</div>
 		<!-- END .gtco-services -->
 
+
 <!-- footer include  -->
 	<jsp:include
 		page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
-
 
 	</div>
 
@@ -412,3 +430,4 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 	</body>
 </html>
+

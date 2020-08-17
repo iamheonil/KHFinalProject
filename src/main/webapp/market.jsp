@@ -4,6 +4,10 @@
 <!-- nav include  -->
 <jsp:include
 	page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/HisearchBar.css">	
+		
 <script>
 	var btnDelete = document.getElementById('clear');
 	var inputFocus = document.getElementById('inputFocus');
@@ -40,6 +44,87 @@
 	<br>
 
 	<div id="main_wrap">
+		<div style="width:100%; float:left">
+		<h2 style="text-align: left;">중고장터</h2>
+		<h5>- 자유롭게 물건을 사고 파는 게시판입니다</h5>
+		<br>
+		<button class="btn btn-primary text-right" style="float: right;">글쓰기</button>
+		</div>
+	</div>
+
+	<table class="table table-hover" style="width: 80%; margin: 0 auto; text-align: center;">
+		<th style="text-align: center; width: 150px;">이미지</th>
+		<th style="text-align: center; width: 40px;">번호</th>
+		<th style="text-align: center; width: 290px;">제목</th>
+		<th style="text-align: center; width: 110px;">작성일</th>
+		<th style="text-align: center; width: 50px;">작성자</th>
+
+		<!-- 테스트 데이터 삽입-->
+
+		<tr>
+			<td><img src="https://estnn.com/wp-content/uploads/2020/04/playstation-5-ps5.png" alt="상품 상세 이미지"
+				style="width: 150px; height: 150px;" /></td>
+			<td>1</td>
+			<td>플레이스테이션 팝니다~!</td>
+			<td>2020.08.17</td>
+			<td>공자</td>
+		</tr>
+
+		<tr>
+			<td><img src="https://ccimg.hellomarket.com/images/2020/item/02/28/15/5958641_740264_1.jpg?size=s6" alt="상품 상세 이미지"
+				style="width: 150px; height: 150px;" /></td>
+			<td>2</td>
+			<td>스타벅스 아메리카노 2잔 기프트콘 판매합니다!</td>
+			<td>2020.08.17</td>
+			<td>맹자</td>
+		</tr>
+
+		<tr>
+			<td><img src="https://lh3.googleusercontent.com/proxy/3-urJrBM503b16KrYGFK6okVWWfLWUckDNXjt0xMaIPEwvo9uCiGPG4st_MY2TjBu8QvV6ebbsLkYC7mGEP00irVT1dzd1B6H2XUhcjGs__l8eg7cNFCAUk" alt="상품 상세 이미지"
+				style="width: 150px; height: 150px;" /></td>
+			<td>3</td>
+			<td>원효대사가 직접 마신 해골물 판매하려고 합니다</td>
+			<td>2020.08.17</td>
+			<td>원효</td>
+		</tr>
+		
+		<tr>
+			<td><img src="https://img.ridicdn.net/cover/3984000001/xxlarge" alt="상품 상세 이미지"
+				style="width: 150px; height: 150px;" /></td>
+			<td>4</td>
+			<td>진짜 뻥 안치고 한번 펴서 본 토비의 스프링 팝니다</td>
+			<td>2020.08.17</td>
+			<td>익명</td>
+		</tr>
+		
+		<tr>
+			<td><img src="https://theorydb.github.io/assets/img/review/2019-12-26-review-book-git-github-1.jpg" alt="상품 상세 이미지"
+				style="width: 150px; height: 150px;" /></td>
+			<td>5</td>
+			<td>퇴사한 기념으로 깃 & 깃허브 입문 도서 판매합니다</td>
+			<td>2020.08.18</td>
+			<td>헌일</td>
+		</tr>
+
+	</table>
+
+	<br>
+	<br>
+	
+	<!-- 페이징 삽입 위치 -->
+	
+	<div class="text-center" style="width: 80%; margin: 0 auto;">
+	
+		<ul class="pagination">
+		
+			<li><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+			<li><a href="">4</a></li>
+			<li><a href="">5</a></li>
+		
+		</ul>
+
 		<div class="s128">
 			<form>
 				<div class="inner-form">
@@ -52,56 +137,8 @@
 				</div>
 			</form>
 		</div>
-
-		<h2 style="text-align: left">중고장터</h2>
-		<h5>- 자유롭게 물건을 사고 파는 게시판입니다</h5>
-
+	
 	</div>
-
-	<table class="table" style="width: 80%; margin: 0 auto; text-align: center;">
-		<th style="text-align: center; width: 150px;">이미지</th>
-		<th style="text-align: center; width: 40px;">번호</th>
-		<th style="text-align: center; width: 290px;">제목</th>
-		<th style="text-align: center; width: 110px;">작성일</th>
-		<th style="text-align: center; width: 50px;">작성자</th>
-
-		<!-- 테스트 데이터 삽입-->
-
-		<tr>
-			<td><img src="#" alt="상품 상세 이미지"
-				style="width: 150px; height: 150px;" /></td>
-			<td>1</td>
-			<td>플레이스테이션 팝니다~!</td>
-			<td>2020.08.17</td>
-			<td>공자</td>
-		</tr>
-
-		<tr>
-			<td><img src="#" alt="상품 상세 이미지"
-				style="width: 150px; height: 150px;" /></td>
-			<td>2</td>
-			<td>스타벅스 아메리카노 2잔 기프트콘 판매합니다!</td>
-			<td>2020.08.17</td>
-			<td>맹자</td>
-		</tr>
-
-		<tr>
-			<td><img src="#" alt="상품 상세 이미지"
-				style="width: 150px; height: 150px;" /></td>
-			<td>3</td>
-			<td>원효대사가 직접 마신 해골물 판매하려고 합니다</td>
-			<td>2020.08.17</td>
-			<td>원효</td>
-		</tr>
-
-	</table>
-
-	<br>
-	<br>
-	
-	<!-- 페이징 삽입 위치 -->
-	
-	<div style="width: 80%; margin: 0 auto;"> >> Paging Here << </div>
 	
 	<br>
 	<br>

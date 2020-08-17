@@ -4,6 +4,7 @@
 <!-- nav include  -->
 <jsp:include
 	page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+
 <style type="text/css">
 
 .panel {
@@ -142,6 +143,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 <body>
 		
+	<div id="page">
+
 		<header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner" style="height: 600px;">
 			<div class="gtco-container">
 				<div class="row">
@@ -154,6 +157,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 										<h1 class="no-margin" style="margin-top: 100px;">과외 찾기</h1>
 										<br>
 										<div style="margin-left: 22%;">
+
 										<div class="s010">
 									      <form>
 									        <div class="inner-form">
@@ -401,9 +405,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		</div>
 		<!-- END .gtco-services -->
 
+
 	<!-- footer include  -->
 	<jsp:include
 		page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

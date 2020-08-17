@@ -4,3 +4,5 @@
  *.properties
 *.MF
  # Create by 김헌일
+target/m2e-wtp/web-resources/META-INF/maven/com.privateplaylist/www/pom.properties
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
