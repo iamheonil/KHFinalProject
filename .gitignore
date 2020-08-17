@@ -1,6 +1,6 @@
 /.metadata/
 
 /target/
- *.properties
+*.properties
 *.MF
  # Create by 김헌일
