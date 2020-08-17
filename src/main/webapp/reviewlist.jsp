@@ -55,11 +55,14 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<!-- Modernizr JS -->
 	<script src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2.min.js"></script>
+	
+	<link href="${pageContext.request.contextPath}/resources/css/searchBar.css" rel="stylesheet" />
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 
-	<!-- 후기게시판 -->
+
+	후기게시판 -->
 <style type="text/css">
 	
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -91,7 +94,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
  .note-has-grid .single-note-item .card {
      border-radius: 10px;
-     background-color: #F5FFFA;
  }
 
  .note-has-grid .single-note-item .favourite-note {
@@ -232,6 +234,36 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	      }
 	}); 
 </script>
+<!-- 검색바 -->
+    <script>
+      var btnDelete = document.getElementById('clear');
+      var inputFocus = document.getElementById('inputFocus');
+      //- btnDelete.on('click', function(e) {
+      //-   e.preventDefault();
+      //-   inputFocus.classList.add('isFocus')
+      //- })
+      //- inputFocus.addEventListener('click', function() {
+      //-   this.classList.add('isFocus')
+      //- })
+      btnDelete.addEventListener('click', function(e)
+      {
+        e.preventDefault();
+        inputFocus.value = ''
+      })
+      document.addEventListener('click', function(e)
+      {
+        if (document.getElementById('first').contains(e.target))
+        {
+          inputFocus.classList.add('isFocus')
+        }
+        else
+        {
+          // Clicked outside the box
+          inputFocus.classList.remove('isFocus')
+        }
+      });
+
+    </script>
 
 	</head>
 	<body>
@@ -279,7 +311,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		</nav>
 
 
-	<div class="gtco-services gtco-section">
+	<div class="gtco-services gtco-section" style="background-color: #eee;">
 			<div class="gtco-container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
@@ -287,6 +319,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus placerat enim et urna sagittis, rhoncus euismod erat tincidunt. Donec tincidunt volutpat erat.</p>
 					</div>
 				</div>
+		
+	<!-- 검색바 -->		
+	 <div class="s128">
+      <form>
+        <div class="inner-form">
+          <div class="row">
+            <div class="input-field first" id="first">
+              <input class="input" id="inputFocus" type="text" placeholder="선생님 이름으로 검색" />
+              <button class="clear" id="clear">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 
 			<div class="container">
 			<div class="row bootstrap snippets bootdeys">
