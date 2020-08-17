@@ -6,7 +6,6 @@
 
 
 <div class="clearfix"></div><!-- float clear box-->
-<hr>
 </div>
 
 </body>
