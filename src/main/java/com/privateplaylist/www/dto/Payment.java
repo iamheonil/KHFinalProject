@@ -2,12 +2,20 @@ package com.privateplaylist.www.dto;
 
 public class Payment {
 	
+<<<<<<< HEAD
 	private int payNo; 
 	private int lessonNo; 
 	private int userNo; 
 	private String payDate; 
     private int payMoney; 
     
+=======
+	private int payNo;
+	private int lessonNo;
+	private int userNo;
+	private String payDate;
+    private int payMoney;
+>>>>>>> 019ae24846550f919fadfd487d293d074c3a65f8
     
 	@Override
 	public String toString() {
