@@ -20,7 +20,7 @@
 <style type="text/css">
 #main{
     width: 960px;
-    height: 100%;
+    height: 80%;
     float: right;
 /*    border: 1px solid green; */
 /*    padding-right: 100px; */
@@ -52,7 +52,7 @@ nav {
 .menu-item {
   background: #fff;
   width: 200px; 
-  height:100%;
+/*   height:100%; */
 }
 
 /*Menu Header Styles*/
@@ -98,7 +98,7 @@ nav {
 }
 
 .menu-item:hover ul {
-  height: 90px;
+  height: 93px;
 }
 
 .menu-item ul a {
@@ -128,6 +128,7 @@ nav {
 .alpha p a {
    color: #aaa;
    font-style: italic;
+  
 }
 
 .alpha p a:hover {
@@ -135,29 +136,30 @@ nav {
 }
 
 #sidenav{
-margin-top:100px;
-}
-
-#stumyimg{
-    width:200px;
-    background-color: #17B794; 
-    height: 120px;
-    border-radius: 10%;
-    text-align: center;
-    line-height: 115px;
-    color: white;
-}
-
-
-#sidenav{
-   float : left;
+	margin-top:100px;
+	float : left;
    width:210px;
 /*    background-color: #CCC;  */
-   height: 100%;
-/*    text-align: center; */
+   height: 500px;
    margin: 0px;
 }
 
+#profile{
+    width:200px;
+    background-color: #17B794; 
+    height: 170px;
+    border-radius: 10%;
+    text-align: center;
+    color: white;
+    margin-bottom:10px;
+}
+
+#teaprofileimg{
+/*    border: 1px solid red; */
+   border-radius: 10%;
+   width: 100px;
+   height: 100px; 
+}
 
 #wrapper{
    width: 1200px;
@@ -189,16 +191,29 @@ margin-top:100px;
 
 <div id="wrapper"> <!-- 가운데 오게 하기  -->
 
+<br>
+<br>
+<br>
+
 <div id="sidenav">
 
-<h4 id="stumyimg">userId 님</h4>
+<div id="profile">
+
+<br>
+
+<img alt="학생" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg">
+
+<h4>userId 님</h4>
+
+</div>
 
       <nav>
           <div class="menu-item">
             <h4><a href="#">수강내역</a></h4>
             <ul>
-              <li><a href="#">수강중인 과외</a></li>
               <li><a href="#">찜한 과외</a></li>
+              <li><a href="#">수강중인 과외</a></li>
+              <li><a href="#">수강한 과외</a></li>
             </ul>
           </div>
             
@@ -207,6 +222,7 @@ margin-top:100px;
             <ul>
               <li><a href="#">질문게시판</a></li>
               <li><a href="#">후기게시판</a></li>
+              <li><a href="#">신고내역</a></li>
             </ul>
           </div>
             
@@ -240,4 +256,4 @@ margin-top:100px;
 
 <div id="main"> 
 
-<a href="" class="anone"><h3 id="mypageid">Mypage</h3></a>
+<a href="" class="anone"><h3 id="mypageid">Student Mypage</h3></a>
