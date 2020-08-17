@@ -20,11 +20,11 @@
                 <div id="main_img" style="width: 90%; display: flex; position: absolute;">
                     <img src="https://a2.cdn.japantravel.com/photo/24685-133494/1440x960!/tokyo-sumidagawa-fireworks-festival-133494.jpg" />
                 </div>
-                <div id="main_img_button" style="width: 220px; margin: 60% 0px 0px 44%; position: relative;">
-                    <button>회원가입</button> <button>로그인하기</button>
+                <div id="main_img_button" style="width: 450px; margin: 70% 0px 0px 44%; position: relative;">
+                    <button class="btn btn-primary">회원가입</button> <button class="btn btn-primary">로그인하기</button>
                 </div>
             </div>
-            <br><br><br><br>
+            <br><br><br><br><br><br><br>
             
 
             <h1 style="text-align: center">인기쓰앵님 TOP3</h1>
@@ -93,7 +93,7 @@
     <br><br><br><br><br><br>
 
     <h2 style="text-align: center">선생님을 찾습니다</h2>
-    <table style="width: 80%; margin: 0 auto;">
+    <table class="table text-left" style="width: 80%; margin: 0 auto;">
 
         <th style="width: 50px;">번호</th>
         <th style="width: 650px;">내용</th>
