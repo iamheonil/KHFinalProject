@@ -1,3 +1,5 @@
+<!-- 이인주 20200818 : 학생 마이페이지  header  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
