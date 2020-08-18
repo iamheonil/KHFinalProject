@@ -213,8 +213,7 @@ text-align: center;
 
 						<h3>
               <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" alt="슬기로운 과외생활"></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Phasellus placerat enim et urna sagittis, rhoncus euismod.</p>
+						<p>&copy; 슬기로운 과외생활</p>
 					</div>
 					<div class="col-md-8 gtco-footer-links">
 						<div class="row">
