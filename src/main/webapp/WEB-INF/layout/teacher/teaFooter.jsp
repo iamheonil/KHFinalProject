@@ -1,3 +1,5 @@
+<!-- 이인주 20200818 : 선생님 마이페이지  footer  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 

@@ -2,11 +2,11 @@ package com.privateplaylist.www.dto;
 
 public class Payment {
 	
-	private int payNo;
-	private int lessonNo;
-	private int userNo;
-	private String payDate;
-    private int payMoney;
+	private int payNo; 
+	private int lessonNo; 
+	private int userNo; 
+	private String payDate; 
+    private int payMoney; 
     
 	@Override
 	public String toString() {

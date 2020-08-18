@@ -2,12 +2,12 @@ package com.privateplaylist.www.dto;
 
 public class ConnectedLesson {
 	
-	private int connLessonNo;
-	private int lessonNo;
-	private int userFrom;
-	private int userTo;
-	private int isConnected;
-	private int isEnd;
+	private int connLessonNo; 
+	private int lessonNo; 
+	private int userFrom; 
+	private int userTo; 
+	private int isConnected; 
+	private int isEnd; 
 
 	
 	

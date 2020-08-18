@@ -1,95 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE HTML>
-<!--
-	Cube by FreeHTML5.co
-	Twitter: http://twitter.com/gettemplateco
-	URL: http://freehtml5.co
--->
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Cube &mdash; Free Website Template, Free HTML5 Template
-	by FreeHTML5.co</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description"
-	content="Free HTML5 Website Template by FreeHTML5.co" />
-<meta name="keywords"
-	content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-<meta name="author" content="FreeHTML5.co" />
-
-<!-- Facebook and Twitter integration -->
-<meta property="og:title" content="" />
-<meta property="og:image" content="" />
-<meta property="og:url" content="" />
-<meta property="og:site_name" content="" />
-<meta property="og:description" content="" />
-<meta name="twitter:title" content="" />
-<meta name="twitter:image" content="" />
-<meta name="twitter:url" content="" />
-<meta name="twitter:card" content="" />
-
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700"
-	rel="stylesheet">
-
-<!-- Animate.css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
-<!-- Themify Icons-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/themify-icons.css">
-<!-- Bootstrap  -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-
-<!-- Magnific Popup -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/magnific-popup.css">
-
-<!-- Owl Carousel  -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
-	
-
-<!-- Theme style  -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
-
-<!-- custom css  -->
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/custom.css">
-
-	
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/heonilcss.css">
+<%@ include file="WEB-INF/layout/main/header.jsp" %>
 
 
-<!-- Modernizr JS -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>    --%>
 
-</head>
+<style type="text/css">
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
+.banner h1,.banner h2{
+	font-family: 'NanumSquareRound', sans-serif !important;
+    font-weight: bolder !important;
+}
+.banner h1{
+margin-top:20px;
+}
+
+.banner{
+	margin-top:120px;
+}
+
+</style>
 <body>
 
 	<div class="gtco-loader"></div>
 
 	<div id="page">
 	<!-- nav include  -->
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
-		
-
 		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
 			role="banner">
 			<div class="gtco-container">
@@ -102,8 +39,19 @@
 										<link
 											href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 											rel="stylesheet">
-										<div class="container bootstrap snippets bootdey ">
-											<div class="lc-block col-md-4 col-md-offset-4 toggled pull-right"
+											
+										<div class="row padding-horizontal-md pull-left banner">
+											<div class="row margin-top-xs text title title-xxl text-bold text-white">
+												<p><h1>과외에 관한 모든것</h1></p>
+											</div>
+											<br>
+											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
+												<p><h2>슬기로운 과외생활에서 찾아보세요</h2></p>
+											</div>
+										
+										</div>	
+										<div class="container bootstrap snippets bootdey banner">
+											<div class="lc-block col-md-4  toggled pull-right"
 												id="l-login">
 												<div class="lcb-float">
 													<i class="fa fa-users"></i>
@@ -237,9 +185,13 @@
 			</div>
 		</div>
 
-		<!-- footer include  -->
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+
+		<%-- <!-- footer include  -->
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>  --%>
 		
+		<%@ include file="WEB-INF/layout/main/footer.jsp" %>
+		
+
 
 	</div>
 
