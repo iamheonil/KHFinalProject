@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="WEB-INF/layout/main/header.jsp" %>
+<%-- <%@ include file="WEB-INF/layout/main/header.jsp" %> --%>
+
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+
 <style type="text/css">
  .displaynone {display: none !important;}
 body.eMobilePopup{overflow:hidden;position:fixed;}
