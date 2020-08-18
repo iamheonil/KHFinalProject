@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE HTML>
 <!--
 	Cube by FreeHTML5.co
@@ -9,7 +10,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+
+
 <title>Cube &mdash; Free Website Template, Free HTML5 Template
 	by FreeHTML5.co</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,15 +83,44 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+
+
+
+<style type="text/css">
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
+.banner h1,.banner h2{
+	font-family: 'NanumSquareRound', sans-serif !important;
+    font-weight: bolder !important;
+}
+.banner h1{
+margin-top:20px;
+}
+
+.banner{
+	margin-top:120px;
+}
+
+</style>
 </head>
 <body>
+
+
 
 	<div class="gtco-loader"></div>
 
 	<div id="page">
 	<!-- nav include  -->
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+
+	
+	 
+	<%@ include file="WEB-INF/layout/main/header.jsp" %>
+	
+	 
+	<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>    --%>
+
 		
+
 
 		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
 			role="banner">
@@ -102,8 +134,19 @@
 										<link
 											href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 											rel="stylesheet">
-										<div class="container bootstrap snippets bootdey ">
-											<div class="lc-block col-md-4 col-md-offset-4 toggled pull-right"
+											
+										<div class="row padding-horizontal-md pull-left banner">
+											<div class="row margin-top-xs text title title-xxl text-bold text-white">
+												<p><h1>과외에 관한 모든것</h1></p>
+											</div>
+											<br>
+											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
+												<p><h2>슬기로운 과외생활에서 찾아보세요</h2></p>
+											</div>
+										
+										</div>	
+										<div class="container bootstrap snippets bootdey banner">
+											<div class="lc-block col-md-4  toggled pull-right"
 												id="l-login">
 												<div class="lcb-float">
 													<i class="fa fa-users"></i>
@@ -237,9 +280,13 @@
 			</div>
 		</div>
 
-		<!-- footer include  -->
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+
+		<%-- <!-- footer include  -->
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>  --%>
 		
+		<%@ include file="WEB-INF/layout/main/footer.jsp" %>
+		
+
 
 	</div>
 
