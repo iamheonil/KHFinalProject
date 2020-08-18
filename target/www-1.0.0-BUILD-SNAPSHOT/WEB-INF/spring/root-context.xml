@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+		<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 시스템에서 지속적으로 사용되는(어디서나 참조가 가능해야하는)
+		Bean들을 등록
+	 -->	
+	
+	<!-- 1. PropertyPlaceholderConfigurer 를 사용하여
+		db.properties파일에 등록한 값들을 설정파일에 불러온다.
+	 -->	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!-- classpath : src/main/java, src/main/resources  -->
+				<value>classpath:mybatis/db.properties</value>
+			</list>
+		</property>
+	</bean>	
+	
+	<!-- org.mybatis.spring.SqlSessionFactoryBean 의
+		setDataSource 메서드에 넣어주기 위한 dataSource 타입의 객체를 생성 -->
+	<bean id="dataSourceSpied" 
+	class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/> 
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+	</bean>
+	
+	<!-- 쿼리가 실행될 때 로그를 찍어주는 프록시 객체를 만들어주는 객체 -->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+				<constructor-arg ref="dataSourceSpied" />
+				<property name="logFormatter">
+				<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL:::" />
+			</bean>
+		</property> 
+	</bean>
+	
+	<!-- sqlSessionFactoryBean을 등록  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  		<property name="dataSource" ref="dataSource" />
+  		<property name="configLocation" 
+  		value="classpath:mybatis/config.xml"/>
+  		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />
+  	
+	</bean>	
+	<!-- SqlSessionTemplate 생성 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+  		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>	
+	
+	<!-- 메일링 처리를 위해 JavaMailSenderImpl 객체를 빈으로 등록 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com"/>
+		<property name="port" value="465"/>
+		<property name="username" value="azimemory@naver.com"/>
+		<property name="password" value="1256812gk!A"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>			
+				<prop key="mail.smtp.ssl.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 스프링에서 multipart 데이터 처리를
+		담당하는 클래스  -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 업로드 가능한 최대 크기 -->
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000"/>
+	</bean>
+	
+	
+		
+</beans>
