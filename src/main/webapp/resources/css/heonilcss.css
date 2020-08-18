@@ -5,6 +5,14 @@
     
 }
 
+.heoniltb tr  {
+	margin-top: 50px;
+}
+
+.heoniltb td  {
+	margin-top: 20px;
+}
+
 /*------- portfolio -------*/
 .project {
   margin: 15px 0;
