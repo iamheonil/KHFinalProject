@@ -17,40 +17,22 @@
                 <main>
                     <div id="content">
                     
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	<span>관리자 페이지 내용</span><br>
-                       	
+                       <div class="lc-block col-md-4" id="l-login">
+                          <div class="form-group">
+                             <input type="text" class="form-control" placeholder="Username">
+                          </div>
+                          <div class="form-group">
+                             <input type="password" class="form-control" placeholder="Password">
+                          </div>
+                          <div class="clearfix"></div>
+                          <a href=""
+                             class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">로그인</a>
+                       </div>
+                       
                     </div>
                     
-                <hr>
                 </main>
+               
                 
                 
 <!-- 관리자 페이지 footer --> 
