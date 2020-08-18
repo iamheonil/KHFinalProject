@@ -15,7 +15,8 @@ public class BlackListController {
 		
 		
 		
-		mav.setViewName("blackList");
+		
+		mav.setViewName("admin/blackList");
 		return mav;
 	}
 
