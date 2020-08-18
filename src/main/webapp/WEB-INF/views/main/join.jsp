@@ -5,7 +5,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <%-- <c:import url="/WEB-INF/layout/login/joinHeader.jsp"/> --%>
-<%@ include file="WEB-INF/layout/main/header.jsp" %>
+<%-- <%@ include file="WEB-INF/layout/main/header.jsp" %> --%>
+
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -245,6 +248,9 @@ $("#student").click(function(){
     </div>
 </div>    
 </div>
-<%@ include file="WEB-INF/layout/main/footer.jsp" %>
+<%-- <%@ include file="WEB-INF/layout/main/footer.jsp" %> --%>
+
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+
 </body>
 </html>

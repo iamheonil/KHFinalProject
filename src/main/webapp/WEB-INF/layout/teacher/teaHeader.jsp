@@ -1,3 +1,5 @@
+<!-- 이인주 20200818 : 선생님 마이페이지  header  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
 <style type="text/css">
 #main{
     width: 960px;
-    height: 80%;
+    height: 90%;
     float: right;
 /*    border: 1px solid green; */
 /*    padding-right: 100px; */
@@ -140,7 +142,7 @@ nav {
 	float : left;
    width:210px;
 /*    background-color: #CCC;  */
-   height: 500px;
+   height: 600px;
    margin: 0px;
 }
 
