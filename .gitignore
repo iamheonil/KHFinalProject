@@ -1,6 +1,20 @@
-/.metadata/
-
-/target/
- *.properties
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+# PDT-specific (PHP Development Tools)
+.buildpath
+# sbteclipse plugin
+.target
+*.xml
+*.properties
 *.MF
- # Create by 김헌일
+
+# Create by 김헌일, 
