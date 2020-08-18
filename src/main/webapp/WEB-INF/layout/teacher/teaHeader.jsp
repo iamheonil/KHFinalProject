@@ -20,7 +20,7 @@
 <style type="text/css">
 #main{
     width: 960px;
-    height: 80%;
+    height: 90%;
     float: right;
 /*    border: 1px solid green; */
 /*    padding-right: 100px; */
@@ -140,7 +140,7 @@ nav {
 	float : left;
    width:210px;
 /*    background-color: #CCC;  */
-   height: 500px;
+   height: 600px;
    margin: 0px;
 }
 
