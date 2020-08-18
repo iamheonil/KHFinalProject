@@ -58,12 +58,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
-.footer { 
-	text-align: center;
-    margin: 20px 0px 40px;
-    color: #999;
-    font-size: 14px;
-}
 
 body {
   margin: 0;
@@ -4050,6 +4044,23 @@ input[type=button].btn-block {
 /* 본문 */
 #content{
 	margin: 30px;
+	text-align: center;
+}
+
+/* footer */
+.footer { 
+	background: #f3f3f3cc;
+	text-align: center;
+    padding: 20px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* 관리자 로그인 */
+#l-login {
+    margin: 0 auto;
+    float: inherit;
+    width: 30%;
 }
 
 

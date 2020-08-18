@@ -16,7 +16,9 @@
 		</property>
 	</bean>	
 	
+
 	<!-- org.mybatis.spring.SqlSessionFactoryBean 의 setDataSource 메서드에 넣어주기 위한 dataSource 타입의 객체를 생성 -->
+
 	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${driver}"/> 
 		<property name="url" value="${url}"/>
@@ -38,8 +40,7 @@
 	<!-- sqlSessionFactoryBean을 등록  -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
   		<property name="dataSource" ref="dataSource" />
-  		<property name="configLocation" 
-  		value="classpath:mybatis/config.xml"/>
+  		<property name="configLocation" value="classpath:mybatis/config.xml"/>
   		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />
   	
 	</bean>	
