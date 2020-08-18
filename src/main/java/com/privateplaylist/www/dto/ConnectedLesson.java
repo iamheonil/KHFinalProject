@@ -2,22 +2,13 @@ package com.privateplaylist.www.dto;
 
 public class ConnectedLesson {
 	
-<<<<<<< HEAD
 	private int connLessonNo; 
 	private int lessonNo; 
 	private int userFrom; 
 	private int userTo; 
 	private int isConnected; 
 	private int isEnd; 
-=======
-	private int connLessonNo;
-	private int lessonNo;
-	private int userFrom;
-	private int userTo;
-	private int isConnected;
-	private int isEnd;
 
->>>>>>> 019ae24846550f919fadfd487d293d074c3a65f8
 	
 	
 	@Override

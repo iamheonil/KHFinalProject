@@ -1,20 +1,11 @@
 package com.privateplaylist.www.dto;
 
 public class WebshareFile {
-<<<<<<< HEAD
-	
-	private int shareFileNo; 
-	private int shareNo; 
-	private String shareFileOrg; 
-	private String shareFileRename; 
-	
-=======
 
 	private int shareFileNo;
 	private int shareNo;
 	private String shareFileOrg;
 	private String shareFileRename;
->>>>>>> 019ae24846550f919fadfd487d293d074c3a65f8
 	
 	@Override
 	public String toString() {
