@@ -2,71 +2,72 @@ package com.privateplaylist.www.dto;
 
 public class FindStudent {
 	
-	private int find_stu_no;
-	private String find_stu_title;
-	private String find_stu_content;
-	private String find_stu_date;
-	private int user_no;
-	private String find_stu_loc;
-	private String find_stu_subject;
-	private int find_stu_state;
-	
-	
+	private int findStuNo;
+	private String findStuTitle;
+	private String findStuContent;
+	private String findStuDate;
+	private int userNo;
+	private String findStuLoc;
+	private String findStuSubject;
+	private int findStuState;
 	
 	@Override
 	public String toString() {
-		return "FindStudent [find_stu_no=" + find_stu_no + ", find_stu_title=" + find_stu_title + ", find_stu_content="
-				+ find_stu_content + ", find_stu_date=" + find_stu_date + ", user_no=" + user_no + ", find_stu_loc="
-				+ find_stu_loc + ", find_stu_subject=" + find_stu_subject + ", find_stu_state=" + find_stu_state + "]";
+		return "FindStudent [findStuNo=" + findStuNo + ", findStuTitle=" + findStuTitle + ", findStuContent="
+				+ findStuContent + ", findStuDate=" + findStuDate + ", userNo=" + userNo + ", findStuLoc=" + findStuLoc
+				+ ", findStuSubject=" + findStuSubject + ", findStuState=" + findStuState + "]";
 	}
-	public int getFind_stu_no() {
-		return find_stu_no;
+	
+	public int getFindStuNo() {
+		return findStuNo;
 	}
-	public void setFind_stu_no(int find_stu_no) {
-		this.find_stu_no = find_stu_no;
+	public void setFindStuNo(int findStuNo) {
+		this.findStuNo = findStuNo;
 	}
-	public String getFind_stu_title() {
-		return find_stu_title;
+	public String getFindStuTitle() {
+		return findStuTitle;
 	}
-	public void setFind_stu_title(String find_stu_title) {
-		this.find_stu_title = find_stu_title;
+	public void setFindStuTitle(String findStuTitle) {
+		this.findStuTitle = findStuTitle;
 	}
-	public String getFind_stu_content() {
-		return find_stu_content;
+	public String getFindStuContent() {
+		return findStuContent;
 	}
-	public void setFind_stu_content(String find_stu_content) {
-		this.find_stu_content = find_stu_content;
+	public void setFindStuContent(String findStuContent) {
+		this.findStuContent = findStuContent;
 	}
-	public String getFind_stu_date() {
-		return find_stu_date;
+	public String getFindStuDate() {
+		return findStuDate;
 	}
-	public void setFind_stu_date(String find_stu_date) {
-		this.find_stu_date = find_stu_date;
+	public void setFindStuDate(String findStuDate) {
+		this.findStuDate = findStuDate;
 	}
-	public int getUser_no() {
-		return user_no;
+	public int getUserNo() {
+		return userNo;
 	}
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
-	public String getFind_stu_loc() {
-		return find_stu_loc;
+	public String getFindStuLoc() {
+		return findStuLoc;
 	}
-	public void setFind_stu_loc(String find_stu_loc) {
-		this.find_stu_loc = find_stu_loc;
+	public void setFindStuLoc(String findStuLoc) {
+		this.findStuLoc = findStuLoc;
 	}
-	public String getFind_stu_subject() {
-		return find_stu_subject;
+	public String getFindStuSubject() {
+		return findStuSubject;
 	}
-	public void setFind_stu_subject(String find_stu_subject) {
-		this.find_stu_subject = find_stu_subject;
+	public void setFindStuSubject(String findStuSubject) {
+		this.findStuSubject = findStuSubject;
 	}
-	public int getFind_stu_state() {
-		return find_stu_state;
+	public int getFindStuState() {
+		return findStuState;
 	}
-	public void setFind_stu_state(int find_stu_state) {
-		this.find_stu_state = find_stu_state;
+	public void setFindStuState(int findStuState) {
+		this.findStuState = findStuState;
 	}
+	
+	
 	
 	
 
