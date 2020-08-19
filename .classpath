@@ -35,6 +35,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/[LIB]/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LEE HYO JIN/Documents/카카오톡 받은 파일/Spring04_MVC_2/src/main/webapp/WEB-INF/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
