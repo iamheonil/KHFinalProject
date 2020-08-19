@@ -6,7 +6,7 @@
   
   <mapper namespace="Notice">
   
-  <select id="selectNoticeList">
+  <select id="selectNoticeList" resultType="NOTICE">
   	select * from notice
   	order by notice_no 
   </select>
