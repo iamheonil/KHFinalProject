@@ -5,7 +5,6 @@ tmp/
 *.bak
 *.swp
 *~.nib
-local.properties
 .settings/
 .loadpath
 .recommenders
@@ -13,5 +12,7 @@ local.properties
 .buildpath
 # sbteclipse plugin
 .target
+pom.properties
+*.MF
 
 # Create by 김헌일, 

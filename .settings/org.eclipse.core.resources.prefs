@@ -1,8 +1,9 @@
 =\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=e1c60bf25b94c613e5d1d708a3699bc8e33d4818
 eclipse.preferences.version=1
+<<<<<<< HEAD
+encoding//src/main/webapp/WEB-INF/views/student/stuBodyTest.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/teacher/teaBodyTest.jsp=UTF-8
+=======
 encoding//src/main/webapp/WEB-INF/views/board/findtch.jsp=UTF-8
+>>>>>>> ce4961f5e65c2276217765aa641f75471c2c4a5f
 encoding//src/main/webapp/index.jsp=UTF-8
-encoding//src/main/webapp/stuBodyTest.jsp=UTF-8
-encoding//src/main/webapp/teaBodyTest.jsp=UTF-8
