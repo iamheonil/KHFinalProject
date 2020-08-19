@@ -35,10 +35,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
+	
 	<classpathentry kind="lib" path="D:/workspace_final/KHFinalProject/src/main/webapp/WEB-INF/lib/ojdbc6.jar"/>
-=======
-	<classpathentry kind="lib" path="D:/workspace-final/KHFinalProject/src/main/webapp/WEB-INF/lib/ojdbc6.jar"/>
->>>>>>> 8c32d5528cc18e60663176c323079b6d1a38f2f0
+	
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
