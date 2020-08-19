@@ -13,7 +13,7 @@ local.properties
 .buildpath
 # sbteclipse plugin
 .target
-*.properties
+pom.properties
 *.MF
 
 # Create by 김헌일, 
