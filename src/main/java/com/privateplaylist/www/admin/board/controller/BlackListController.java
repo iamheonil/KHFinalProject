@@ -1,8 +1,5 @@
 package com.privateplaylist.www.admin.board.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,19 +19,10 @@ public class BlackListController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		List<Map<String, Object>> list = blackListService.selectAllBlackList();
-		mav.addObject("list", list);
-		mav.setViewName("admin/blackList");
-		return mav;
-	}
-	
-	@RequestMapping("/blacklist/turndown")
-	public ModelAndView turndown() {
 		
-		ModelAndView mav = new ModelAndView();
 		
-		List<Map<String, Object>> list = blackListService.selectAllBlackList();
-		mav.addObject("list", list);
+		
+		
 		mav.setViewName("admin/blackList");
 		return mav;
 	}
