@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMarket">
+
+	<resultMap type="map" id="marketList">
+		<result column="mk_title" property="mkTitle" />
+		<result column="mk_content" property="mkContent" />
+		<result column="mk_date" property="mkDate" />
+		<result column="mk_price" property="mkPrice" />
+		<result column="mk_state" property="mkState" />
+		<result column="mk_file_rename" property="mkFileRename" />
+
+	</resultMap>
+
+
+	<!-- 관리자 페이지 중고장터 리스트 가져옴 -->
+	<select id="selectMarketList" resultMap="marketList">
+		select
+		*
+		from(
+		select rownum rnum,n1.*
+		from(select
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,f.mk_file_rename
+		from market m
+		left join mk_thumb f
+		on f.mk_no=m.mk_no)n1
+		)where rnum between #{startNO} and #{endNo}
+	</select>
+	<!--페이징을 위한 중고장터 개시물의 갯수 가져옴 -->
+	<select id="selectMarketCnt" resultType="int">
+		select count(*) from
+		market
+	</select>
+
+
+</mapper>
