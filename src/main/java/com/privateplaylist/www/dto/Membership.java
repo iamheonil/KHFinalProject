@@ -11,15 +11,23 @@ public class Membership {
 	private int userPhone;
 	private String userEmail;
 	private int userActor;
+	private String userBirth;
 	private int isLeave;
+	
+	
 	
 	@Override
 	public String toString() {
 		return "Membership [userNo=" + userNo + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
 				+ ", userGender=" + userGender + ", userAddr=" + userAddr + ", userPhone=" + userPhone + ", userEmail="
-				+ userEmail + ", userActor=" + userActor + ", isLeave=" + isLeave + "]";
+				+ userEmail + ", userActor=" + userActor + ", userBirth=" + userBirth + ", isLeave=" + isLeave + "]";
 	}
-	
+	public String getUserBirth() {
+		return userBirth;
+	}
+	public void setUserBirth(String userBirth) {
+		this.userBirth = userBirth;
+	}
 	public int getUserNo() {
 		return userNo;
 	}
