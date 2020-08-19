@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: inju0521
-=======
-Built-By: LEE HYO JIN
->>>>>>> 9d8a49b4f4ab6c96f8768bcaa0853eee170001b9
 Build-Jdk: 1.8.0_242
 Created-By: Maven Integration for Eclipse
 
