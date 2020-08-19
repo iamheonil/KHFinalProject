@@ -35,6 +35,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/[LIB]/ojdbc6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
