@@ -4,7 +4,6 @@
                 
                 <footer>
                     <div class="footer">
-                    <hr>
                     	&copy; 슬기로운 과외생활 2020
                     </div>
                 </footer>
