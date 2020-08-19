@@ -7,9 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <%-- <c:import url="/WEB-INF/layout/login/joinHeader.jsp"/> --%>
-<%-- <%@ include file="WEB-INF/layout/main/header.jsp" %> --%>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -217,6 +217,12 @@ $("#student").click(function(){
 				<label><input type="radio" /> 여</label>
             </div>        	
         </div>
+        <div class="form-group row">
+			<label class="col-form-label col-4">생년월일</label>
+			<div class="col-8 float">
+				<p><input type="date"></p>
+            </div>        	
+        </div>
         
         <div style="margin-left:-15px;">
 	       <h4 class="glores-A-title">개인정보처리방침</h4>
@@ -250,9 +256,9 @@ $("#student").click(function(){
     </div>
 </div>    
 </div>
-<%-- <%@ include file="WEB-INF/layout/main/footer.jsp" %> --%>
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
 
 </body>
 </html>
