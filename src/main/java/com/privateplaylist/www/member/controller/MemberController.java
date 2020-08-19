@@ -41,7 +41,7 @@ public class MemberController {
 
         int res = memberService.insertMember(member);
 
-        if(res > 0) {
+        if(res < 0) {
             req.getRequestDispatcher("/member/login");
         } else {
             req.getRequestDispatcher("/member/join");
