@@ -50,11 +50,11 @@
                         
                             <div class="sb-sidenav-menu-heading">과외</div>
                             <a class="nav-link" href="#">
-                              	 과외 검토
+                              	 과외 조회
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                             <a class="nav-link" href="#">
-                               	 과외 게시/삭제
+                               	 과외 검토
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                             
