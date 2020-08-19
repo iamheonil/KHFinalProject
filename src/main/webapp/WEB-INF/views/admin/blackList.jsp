@@ -6,6 +6,9 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 <style type="text/css">
+#layoutSidenav_content{	
+	background-color: #f3f3f3cc;
+}
 .card {
     border: none;
     margin-bottom: 24px;
@@ -18,7 +21,6 @@
     width: 2.3rem;
 }
 </style>
-<div id="layoutSidenav_content">
             
 <div id="title">게시판 
 	<i class="fas fa-angle-right"></i>
@@ -185,8 +187,6 @@
 		    <!-- end row -->
 		</div>
       </div>
-      
-<hr>
 </main>
                 
                 
