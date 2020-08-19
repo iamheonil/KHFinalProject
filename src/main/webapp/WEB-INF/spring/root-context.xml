@@ -3,14 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-		<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 시스템에서 지속적으로 사용되는(어디서나 참조가 가능해야하는)
-		Bean들을 등록
-	 -->	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 시스템에서 지속적으로 사용되는(어디서나 참조가 가능해야하는)Bean들을 등록-->	
 	
-	<!-- 1. PropertyPlaceholderConfigurer 를 사용하여
-		db.properties파일에 등록한 값들을 설정파일에 불러온다.
-	 -->	
+	<!-- 1. PropertyPlaceholderConfigurer 를 사용하여 db.properties파일에 등록한 값들을 설정파일에 불러온다. -->	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
@@ -20,10 +16,10 @@
 		</property>
 	</bean>	
 	
-	<!-- org.mybatis.spring.SqlSessionFactoryBean 의
-		setDataSource 메서드에 넣어주기 위한 dataSource 타입의 객체를 생성 -->
-	<bean id="dataSourceSpied" 
-	class="org.apache.commons.dbcp.BasicDataSource">
+
+	<!-- org.mybatis.spring.SqlSessionFactoryBean 의 setDataSource 메서드에 넣어주기 위한 dataSource 타입의 객체를 생성 -->
+
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${driver}"/> 
 		<property name="url" value="${url}"/>
 		<property name="username" value="${username}"/>
@@ -44,8 +40,7 @@
 	<!-- sqlSessionFactoryBean을 등록  -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
   		<property name="dataSource" ref="dataSource" />
-  		<property name="configLocation" 
-  		value="classpath:mybatis/config.xml"/>
+  		<property name="configLocation" value="classpath:mybatis/config.xml"/>
   		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />
   	
 	</bean>	
