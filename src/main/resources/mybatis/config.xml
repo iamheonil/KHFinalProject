@@ -31,15 +31,19 @@
 		<typeAlias alias="WEBSHARE" type="com.privateplaylist.www.dto.Webshare"/>
 		<typeAlias alias="WEBSHAREFILE" type="com.privateplaylist.www.dto.WebshareFile"/>
 		<typeAlias alias="MARKET" type="com.privateplaylist.www.dto.Market"/>
-<!--		<typeAlias alias="MKCOMM" type="com.privateplaylist.www.dto.MkComm"/>-->
-<!--		<typeAlias alias="MKFILE" type="com.privateplaylist.www.dto.MkFile"/>-->
-<!--		<typeAlias alias="BLACKLIST" type="com.privateplaylist.www.dto.BlackList"/>-->
+		<typeAlias alias="MKCOMM" type="com.privateplaylist.www.dto.MkComm"/>
+		<typeAlias alias="MKFILE" type="com.privateplaylist.www.dto.MkFile"/>
+		<typeAlias alias="BLACKLIST" type="com.privateplaylist.www.dto.BlackList"/>
 	</typeAliases>
 
 	<!-- mapper 연결 -->
-<!--	<mappers>-->
-<!-- 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>-->
-<!--		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>-->
-<!--	</mappers>-->
+	<mappers>
+ 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
+
+ 		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
+
+		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
+
+	</mappers>
 
 </configuration>
