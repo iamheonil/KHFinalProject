@@ -19,4 +19,9 @@ public class NoticeDao {
 		return sqlSession.selectList("Notice.selectNoticeList");
 	}
 
+	//상세페이지 조회
+	public Notice selectNoticeone(int noticeNo) {
+		return sqlSession.selectOne("Notice.selectNoticeone",noticeNo);
+	}
+
 }
