@@ -13,7 +13,7 @@
     </insert>
 
     <select id="selectMember" resultType="MEMBER">
-      SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userid} AND IS_LEAVE = 0
+      SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userId} AND IS_LEAVE = 0
     </select>
   
   </mapper>
