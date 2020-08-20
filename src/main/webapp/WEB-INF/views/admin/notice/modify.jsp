@@ -98,6 +98,8 @@ $(document).ready(function(){
 		history.go(-1);
 	});
 	
+	$("#noticeContent").val('${noticeone.noticeContent }');
+	
 });
 </script>
 
@@ -109,18 +111,19 @@ $(document).ready(function(){
 
  <div id="content"> 
  
- 	<h4>공지사항 글쓰기</h4>
+ 	<h4>공지사항 수정</h4>
  
-	<form action="<%=request.getContextPath() %>/admin/notice/insert" method="post" id="noticeForm">
+	<form action="<%=request.getContextPath() %>/admin/notice/modify?noticeNo=${noticeone.noticeNo }" method="post" id="noticeForm">
 		<table id="noticeTable" class="table table-condensed text-center">
 			<tr>
 				<th>글제목</th>
-				<td><input style="width: 100%;" type="text" name="noticeTitle" required="required"/></td>
+				<td><input style="width: 100%;" type="text" name="noticeTitle" required="required" value="${noticeone.noticeTitle }"/></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">본문</th>
 				<td>
 				<textarea id="noticeContent" name="noticeContent" required="required" style="width: 90%; min-height: 500px;">
+				${noticeone.noticeContent }
 				</textarea>
 				</td>
 			</tr>
@@ -128,7 +131,7 @@ $(document).ready(function(){
 	</form>
 		
 	<div id="btnBox" style="text-align: center;">
-		<button type="button" class="btn btn-default" id="btnWrite">등록</button>
+		<button type="button" class="btn btn-default" id="btnWrite">수정</button>
 		<button type="button" class="btn btn-default" id="btnCancel">취소</button>
 	</div>
 </div> 
@@ -144,7 +147,8 @@ nhn.husky.EZCreator.createInIFrame({
 	, elPlaceHolder: "noticeContent"  //에디터가 적용될 <textarea>의 id
 	, sSkinURI : "/ss/resources/se2/SmartEditor2Skin.html" //에디터 스킨
 	, fCreator : "createSEditor2"
-	
+// 	, oEditors.getById["noticeContent"].setIR(${noticeone.noticeContent });
+
 })
 </script>
 

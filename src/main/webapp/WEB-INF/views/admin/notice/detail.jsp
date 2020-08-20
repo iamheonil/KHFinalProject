@@ -110,8 +110,8 @@
 	<!-- 목록 글쓰기 삭제 버튼 -->
 	<div id="divbtn">
 		<a href="${pageContext.request.contextPath}/admin/notice/list" class="anone"><button type="button" class="btn btn-default" id="listbtn">목록</button></a>
-		<a href="${pageContext.request.contextPath}/admin/notice/modify" class="anone"><button type="button" class="btn btn-default" id="writebtn">수정</button></a>
-		<a href="${pageContext.request.contextPath}/admin/notice/delete" class="anone"><button type="button" class="btn btn-default" id="deletebtn">삭제</button></a>
+		<a href="${pageContext.request.contextPath}/admin/notice/modifyJsp?noticeNo=${noticeone.noticeNo }" class="anone"><button type="button" class="btn btn-default" id="modifybtn">수정</button></a>
+		<a href="${pageContext.request.contextPath}/admin/notice/delete?noticeNo=${noticeone.noticeNo }" class="anone"><button type="button" class="btn btn-default" id="deletebtn">삭제</button></a>
 	</div> 
 	
 </div>  

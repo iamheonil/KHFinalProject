@@ -16,13 +16,16 @@ public class AdminMemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	//학생 전체 수 반환
 	public int selectStuCnt() {
 		return sqlSession.selectOne("Membership.selectStuCnt");
 	}
 
 	public List<Membership> selectStuList(Paging page) {
 		return sqlSession.selectList("Membership.selectStuList", page);
+	}
+
+	public Membership selectStuDetail(int userNo) {
+		return sqlSession.selectOne("Membership.selectStuDetail", userNo);
 	}
 
 }
