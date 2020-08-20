@@ -38,13 +38,20 @@
 
 	<!-- mapper 연결 -->
 	<mappers>
+<<<<<<< HEAD
 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 
+=======
+ 		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
+>>>>>>> 89a060d6795f5cfc80c65ebf9d3ee36500375a1b
  		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
-
 		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
+
 
 	</mappers>
 

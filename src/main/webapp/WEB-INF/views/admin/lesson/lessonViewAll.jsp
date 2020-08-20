@@ -83,6 +83,37 @@
             </c:if>
             
                 
+
+
+                    <div class="container-fluid">
+                        <h5 style="font-weight: bold;">과외 조회</h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                   				<th style="width: 10%">번호</th>
+												<th style="width: 50%">과외명</th>
+												<th style="width: 20%">작성자</th>
+												<th style="width: 20%">작성일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+						                    <c:forEach items="${lessonList }" var="lessonList" >
+												<tr>
+													<td>${lessonList.LESSON_NO}</td>
+													<td><a href="">${lessonList.LESSON_TITLE}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td>${lessonList.USER_ID}</td>
+													<td>${lessonList.LESSON_DATE}</td>
+												</tr>
+											</c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    
+>>>>>>> 89a060d6795f5cfc80c65ebf9d3ee36500375a1b
 	    </div>
 	</main>
        

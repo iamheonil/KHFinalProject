@@ -42,9 +42,13 @@
 		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 
+ 		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
-
 		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
+
 
 	</mappers>
 

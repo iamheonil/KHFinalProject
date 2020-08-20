@@ -7,29 +7,16 @@ public class Membership {
 	private String userPw;
 	private String userEmail;
 	private int userActor;
+
 	private String userName;
-	private int userPhone;
+	private String userPhone;
 	private String userAddr;
 	private String userGender;
 	private String userBirth;
 	private int isLeave;
 
-	@Override
-	public String toString() {
-		return "Membership{" +
-				"userNo=" + userNo +
-				", userId='" + userId + '\'' +
-				", userPw='" + userPw + '\'' +
-				", userEmail='" + userEmail + '\'' +
-				", userActor=" + userActor +
-				", userName='" + userName + '\'' +
-				", userPhone=" + userPhone +
-				", userAddr='" + userAddr + '\'' +
-				", userGender='" + userGender + '\'' +
-				", userBirth='" + userBirth + '\'' +
-				", isLeave=" + isLeave +
-				'}';
-	}
+
+
 
 	public int getUserNo() {
 		return userNo;
@@ -79,11 +66,11 @@ public class Membership {
 		this.userName = userName;
 	}
 
-	public int getUserPhone() {
+	public String getUserPhone() {
 		return userPhone;
 	}
 
-	public void setUserPhone(int userPhone) {
+	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
 
