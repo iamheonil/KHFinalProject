@@ -1,6 +1,6 @@
 package com.privateplaylist.www.dto;
 
-public class Matket {
+public class Market {
 	
 	private int mkNo;
 	private String mkTitle;

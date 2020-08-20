@@ -7,9 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <%-- <c:import url="/WEB-INF/layout/login/joinHeader.jsp"/> --%>
-<%-- <%@ include file="WEB-INF/layout/main/header.jsp" %> --%>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 $("#teacher").click(function(){
     $("#resume").html(
-    		'<label class="col-form-label col-4">이력서</label>'+
+    		'<label class="col-form-label col-4">증빙서류</label>'+
 			'<div class="col-8 float">'+
                ' <input type="file" name="resume" required="required">'+
             '</div>'		
@@ -146,7 +146,7 @@ $("#student").click(function(){
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post" class="form-horizontal">
+    <form action="/member/joinImpl" method="post" class="form-horizontal">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -155,13 +155,13 @@ $("#student").click(function(){
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userid" required="required">
+                <input type="text" class="form-control" name="userId" required="required">
             </div>        	
         </div>
 		<div class="form-group row">
 			<label class="col-form-label col-4">비밀번호</label>
 			<div class="col-8 float">
-                <input type="password" class="form-control" name="password" required="required">
+                <input type="password" class="form-control" name="userPw" required="required">
             </div>        	
         </div>
 		<div class="form-group row">
@@ -172,49 +172,54 @@ $("#student").click(function(){
         </div>
 		<div class="form-group row">
 			<label class="col-form-label col-4">Email</label>
-                <input class="btn-info btn-xs" type="button" value="인증">
+                <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" class="form-control" name="email" required="required">
+                <input type="email" class="form-control" name="userEmail" required="required" />
                 
             </div>
         </div>
 		<div class="form-group row">
 			<label class="col-form-label col-4">구분</label>
 			<div class="col-8 float">
-				<label><input type="radio" name="who" id="student" /> 학생&emsp;&emsp;</label>
-				<label><input type="radio" name="who" id="teacher" /> 선생님</label>
+				<label><input type="radio" name="userActor" id="2" value="2" /> 학생&emsp;&emsp;</label>
+				<label><input type="radio" name="userActor" id="1" value="1"/> 선생님</label>
             </div>        	
         </div>
         <div class="form-group row">
 			<label class="col-form-label col-4">이름</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="username" required="required">
+                <input type="text" class="form-control" name="userName" required="required">
             </div>        	
         </div>
         <div class="form-group row">
 			<label class="col-form-label col-4">전화번호</label>
 			<div class="col-8 float">
-                <input type="tel" class="form-control" name="tel" required="required">
+                <input type="tel" class="form-control" name="userPhone" required="required">
             </div>        	
         </div>
         <div class="form-group row">
 			<label class="col-form-label col-4">주소</label>
 			<!-- 주소 API 추가하기 -->
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="address" required="required">
+                <input type="text" class="form-control" name="userAddr" required="required">
             </div>        	
         </div>
+
         <div class="form-group row" id="resume" >
-<!-- 			<label class="col-form-label col-4">이력서</label> -->
-<!-- 			<div class="col-8 float"> -->
-<!--                 <input type="file" name="resume" required="required"> -->
-<!--             </div>        	 -->
         </div>
+
         <div class="form-group row">
 			<label class="col-form-label col-4">성별</label>
 			<div class="col-8 float">
-				<label><input type="radio" /> 남&emsp;&emsp;</label>
-				<label><input type="radio" /> 여</label>
+				<label><input type="radio" name="userGender" value="m"/> 남&emsp;&emsp;</label>
+				<label><input type="radio" name="userGender" value="w"/> 여</label>
+            </div>        	
+        </div>
+        <div class="form-group row">
+			<label class="col-form-label col-4">생년월일</label>
+			<div class="col-8 float">
+				<p><input type="date" name="userBirth" value="2000-01-01"
+                          min="1940-01-01" max="2020-12-31" /></p>
             </div>        	
         </div>
         
@@ -241,7 +246,6 @@ $("#student").click(function(){
 			</div>  
 		</div>		      
     </form>
-	<div class="text-center">Already have an account? <a href="#">Login here</a></div>
 </div>
 
 
@@ -250,9 +254,7 @@ $("#student").click(function(){
     </div>
 </div>    
 </div>
-<%-- <%@ include file="WEB-INF/layout/main/footer.jsp" %> --%>
-
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
-
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
 </body>
-</html>
+
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>

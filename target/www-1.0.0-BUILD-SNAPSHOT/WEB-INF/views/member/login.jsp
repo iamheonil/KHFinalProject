@@ -6,8 +6,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
 
 
 <style>
@@ -198,5 +198,5 @@
 
 </div>
 </body>
-
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>

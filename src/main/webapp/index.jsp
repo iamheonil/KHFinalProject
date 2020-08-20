@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- nav include  -->
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+<%-- <!-- nav include  -->
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 
 <body>
 
@@ -27,7 +28,7 @@
             <br><br><br><br><br><br><br>
             
 
-            <h1 style="text-align: center">인기쓰앵님 TOP3</h1>
+            <h1 style="text-align: center">인기쓰앵님 TOP3</h1> 
 
             <ul class="row portfolio list-unstyled mb-0 boxed-portfolio">
                 <!-- project -->
@@ -139,7 +140,9 @@
     <br><br><br><br>
 
    <!-- footer include  -->
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+		<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
+		
+		<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
 
     <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

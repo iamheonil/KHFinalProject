@@ -7,4 +7,39 @@
 
 <!-- 세부 설정 필요합니다옹 -->
 
+	<!-- DB컬럼명을 Java의 Camel 표기법으로 자동 매핑 -->
+	<settings>
+		<setting value="true" name="mapUnderscoreToCamelCase"/>
+	</settings>
+
+	<!-- 별칭 -->
+	<typeAliases>
+		<typeAlias alias="ADMIN" type="com.privateplaylist.www.dto.Admin"/>
+		<typeAlias alias="CONNECTEDLESSON" type="com.privateplaylist.www.dto.ConnectedLesson"/>
+		<typeAlias alias="FINDLESSON" type="com.privateplaylist.www.dto.FindLesson"/>
+		<typeAlias alias="FINDSTUDENT" type="com.privateplaylist.www.dto.FindStudent"/>
+		<typeAlias alias="MEMBERSHIP" type="com.privateplaylist.www.dto.Membership"/>
+		<typeAlias alias="MEMBER" type="com.privateplaylist.www.dto.Membership"/>
+		<typeAlias alias="NOTICE" type="com.privateplaylist.www.dto.Notice"/>
+		<typeAlias alias="PAYMENT" type="com.privateplaylist.www.dto.Payment"/>
+		<typeAlias alias="QUESTION" type="com.privateplaylist.www.dto.Question"/>
+		<typeAlias alias="QUESTIONCOMM" type="com.privateplaylist.www.dto.QuestionComm"/>
+		<typeAlias alias="QUESTIONFILE" type="com.privateplaylist.www.dto.QuestionFile"/>
+		<typeAlias alias="REVIEW" type="com.privateplaylist.www.dto.Review"/>
+		<typeAlias alias="SCHEDULE" type="com.privateplaylist.www.dto.Schedule"/>
+		<typeAlias alias="TEACHERFILE" type="com.privateplaylist.www.dto.TeacherFile"/>
+		<typeAlias alias="WEBSHARE" type="com.privateplaylist.www.dto.Webshare"/>
+		<typeAlias alias="WEBSHAREFILE" type="com.privateplaylist.www.dto.WebshareFile"/>
+		<typeAlias alias="MARKET" type="com.privateplaylist.www.dto.Market"/>
+		<typeAlias alias="MKCOMM" type="com.privateplaylist.www.dto.MkComm"/>
+		<typeAlias alias="MKFILE" type="com.privateplaylist.www.dto.MkFile"/>
+		<typeAlias alias="BLACKLIST" type="com.privateplaylist.www.dto.BlackList"/>
+	</typeAliases>
+
+	<!-- mapper 연결 -->
+	<mappers>
+ 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
+		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
+	</mappers>
+
 </configuration>
