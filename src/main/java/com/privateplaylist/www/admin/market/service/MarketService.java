@@ -45,7 +45,7 @@ public class MarketService {
 			
 			
 			
-			pMap.put("startNO",p.getStartNO());
+			pMap.put("startNO",p.getStartNo());
 			pMap.put("endNo",p.getEndNo());
 			pMap.put("search",search);
 
@@ -62,7 +62,7 @@ public class MarketService {
 			//한페이지에 10개씩 보여주는 페이징 처리할것
 			p=new Paging(tcnt,curPage,10);
 			
-			pMap.put("startNO",p.getStartNO());
+			pMap.put("startNO",p.getStartNo());
 			pMap.put("endNo",p.getEndNo());
 			pMap.put("search",search);
 			List<Map<String,Object>> mList=marketDao.getMarketListById(pMap);
@@ -80,7 +80,7 @@ public class MarketService {
 			
 			p=new Paging(tcnt,curPage,10);
 			
-			pMap.put("startNO",p.getStartNO());
+			pMap.put("startNO",p.getStartNo());
 			pMap.put("endNo",p.getEndNo());
 			pMap.put("search",search);
 			
