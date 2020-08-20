@@ -495,8 +495,12 @@ body {
 <script type="text/javascript">
 
 function delchk(num){
+	
+	var url="${pageContext.request.contextPath}/delete/market";
+	console.log(num)
+	
 	$.ajax({
-		url: "/delete/market",
+		url: url,
 
 	    data: { mkNo: num },  
 
@@ -534,23 +538,33 @@ function delchk(num){
 					<div class="col-lg-12 card-margin">
 						<div class="card search-form">
 							<div class="card-body p-0">
-								<form id="search-form">
+								<form id="search-form" action="${pageContext.request.contextPath}/admin/market" method="get">
 									<div class="row">
 										<div class="col-12">
 											<div class="row no-gutters">
 												<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-													<select class="form-control" id="exampleFormControlSelect1">
-														<option>Location</option>
-														<option>London</option>
-														<option>Boston</option>
-														<option>Mumbai</option>
-														<option>New York</option>
-														<option>Toronto</option>
-														<option>Paris</option>
+													<select class="form-control" id="exampleFormControlSelect1" name="option">
+														
+														<c:if test="${option eq '전체' or option eq null}">
+														<option selected="selected">전체</option>
+														<option>사용자id</option>
+														<option>title</option>
+														</c:if>
+														<c:if test="${option eq '사용자id' }">
+														<option>전체</option>
+														<option selected="selected">사용자id</option>
+														<option>title</option>
+														</c:if>
+														<c:if test="${option eq 'title' }">
+														<option>전체</option>
+														<option>사용자id</option>
+														<option selected="selected">title</option>
+														</c:if>
+														
 													</select>
 												</div>
 												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
-													<input type="text" placeholder="Search..."
+													<input type="text" placeholder="<c:if test="${search ne null }">${search }</c:if>"
 														class="form-control" id="search" name="search">
 												</div>
 												<div class="col-lg-1 col-md-3 col-sm-12 p-0">
@@ -599,14 +613,14 @@ function delchk(num){
 												<td class="text-center"><span
 													class="label label-default"> <c:if
 															test="${market.mkState eq 1}">
-												승인완료</span></td>
+												게시중</span></td>
 												</c:if>
 												<c:if test="${market.mkState eq 0}">
-												확인중</span>
+												게시안함</span>
 													</td>
 												</c:if>
 												<td>${market.mkPrice } 원</td>
-												<td style="width: 20%;"><a href="javascript:void(0);" onclick="delchk(${market.MK_NO});"
+												<td style="width: 20%;"><a href="javascript:void(0);" onclick="delchk(${market.mkNo});"
 													class="table-link danger"> <span class="fa-stack">
 															<i class="fa fa-square fa-stack-2x"></i> <i
 															class="fa fa-trash fa-stack-1x fa-inverse "></i>
@@ -623,12 +637,12 @@ function delchk(num){
 								<!-- 첫 페이지로 가기 -->
 								<c:if test="${paging.curPage ne 1 }">
 									<%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-									<li><a href="${pageContext.request.contextPath}/admin/market?curPage=1">&laquo;</a></li>
+									<li><a href="${pageContext.request.contextPath}/admin/market?curPage=1&option=${option}&search=${search}">&laquo;</a></li>
 								</c:if>
 
 								<!-- 이전 페이지로 가기 -->
 								<c:if test="${paging.curPage ne 1 }">
-									<li><a href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage - 1 }">&lt;</a>
+									<li><a href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage - 1 }&option=${option}&search=${search}">&lt;</a>
 								</c:if>
 
 								<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
@@ -636,12 +650,12 @@ function delchk(num){
 
 									<!-- 현재 페이지라면 강조(.active) -->
 									<c:if test="${paging.curPage eq i }">
-										<li class="active"><a href="${pageContext.request.contextPath}/admin/market?curPage=${i }">${i }</a></li>
+										<li class="active"><a href="${pageContext.request.contextPath}/admin/market?curPage=${i }&option=${option}&search=${search}">${i }</a></li>
 									</c:if>
 
 									<!-- 현재 페이지가 아니라면 평소 모습-->
 									<c:if test="${paging.curPage ne i }">
-										<li><a href="${pageContext.request.contextPath}/admin/market?curPage=${i }">${i }</a></li>
+										<li><a href="${pageContext.request.contextPath}/admin/market?curPage=${i }&option=${option}&search=${search}">${i }</a></li>
 									</c:if>
 
 								</c:forEach>
@@ -649,11 +663,11 @@ function delchk(num){
 								<!-- 다음 페이지로 가기 -->
 								<c:if test="${paging.curPage ne paging.totalPage}">
 									<li><a
-										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage + 1 }">&gt;</a>
+										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage + 1 }&option=${option}&search=${search}">&gt;</a>
 								</c:if>
 
 								<!-- 마지막 페이지로 가기 -->
-								<c:if test="${paging.curPage ne paging.totalPage }">
+								<c:if test="${paging.curPage ne paging.totalPage }&option=${option}&search=${search}">
 									<li><a
 										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.totalPage }">&raquo;</a></li>
 								</c:if>
