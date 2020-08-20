@@ -34,6 +34,7 @@
 		<typeAlias alias="MKCOMM" type="com.privateplaylist.www.dto.MkComm"/>
 		<typeAlias alias="MKFILE" type="com.privateplaylist.www.dto.MkFile"/>
 		<typeAlias alias="BLACKLIST" type="com.privateplaylist.www.dto.BlackList"/>
+		<typeAlias alias="PAGING" type="common.util.Paging"/>
 	</typeAliases>
 
 	<!-- mapper 연결 -->
