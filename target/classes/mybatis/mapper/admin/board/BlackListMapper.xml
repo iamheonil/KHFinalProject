@@ -6,14 +6,46 @@
   
   <mapper namespace="BlackListDao">
   
-  	<select id="selectAllBlackList" resultType="map">
-	  	SELECT * FROM blacklist b
-		INNER JOIN review r
-		ON(b.blacklist_post_no = r.review_no)
-		INNER JOIN membership m
-		ON(b.user_no = m.user_no)
-		WHERE b.blacklist_board = '후기'
-		ORDER BY blacklist_no DESC
+  	<select id="selectAllBlackList" parameterType="PAGING" resultType="map">
+  		SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+			  	SELECT * FROM blacklist b
+				INNER JOIN review r
+				ON(b.blacklist_post_no = r.review_no)
+				INNER JOIN membership m
+				ON(b.user_no = m.user_no)
+				WHERE b.blacklist_board = '후기'
+				ORDER BY blacklist_no DESC
+			) t
+			ORDER BY no ) x
+		WHERE no between #{startNo} AND #{endNo}
+  	</select>
+  	
+  	<select id="selectAllCntBlack" resultType="int">
+  		SELECT count(*) FROM blacklist
+  	</select>
+  	
+  	<update id="updateBlacklistTurndown" parameterType="int">
+  		UPDATE blacklist
+  		SET blacklist_state = 2
+  		WHERE blacklist_no = #{blacklistNo}
+  	</update>
+  	
+  	 <update id="updateBlacklistDelete" parameterType="int">
+  		UPDATE blacklist
+  		SET blacklist_state = 1
+  		WHERE blacklist_no = #{blacklistNo}
+  	</update>
+  	
+  	<select id="selectReviewByBN">
+  		SELECT review_no FROM blacklist
+  		WHERE blacklist_no = #{blacklistNo}
   	</select>
   
+  	<update id="deleteReview">
+  		UPDATE review
+  		SET review_state = 1
+  		WHERE review_no = #{reviewNo}
+  	</update>
   </mapper>
