@@ -160,7 +160,7 @@
 <br><br>
 
 <div class="login-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form action="/ss/member/loginImpl" method="post">
 		
 <!-- 			<img src="/examples/images/avatar.png" alt="Avatar"> -->
 			<div class="lcb-float">
