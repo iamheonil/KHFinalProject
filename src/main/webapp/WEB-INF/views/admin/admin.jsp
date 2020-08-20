@@ -9,10 +9,6 @@
 
             <div id="layoutSidenav_content">
             
-                <div id="title">과외 
-                	<i class="fas fa-angle-right"></i>
-                	<a href="#">과외 검토</a>
-               	</div>
                 
                 <main>
                     <div id="content">
