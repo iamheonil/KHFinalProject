@@ -8,4 +8,7 @@ public interface AdminMemberService {
 
 	public Map<String, Object> selectStuDetail(int userNo);
 
+	public Map<String, Object> selectQuestionList(int userNo);
+
+	public Map<String, Object> selectStuReviewList(int userNo);
 }
