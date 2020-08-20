@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: win
 Build-Jdk: 1.8.0_242
-=======
-Built-By: HEONIL
-Build-Jdk: 1.8.0_231
->>>>>>> 4cd2dd7cb9a9fe9e28f77ee3cb9efb8306d8f39c
 Created-By: Maven Integration for Eclipse
 
