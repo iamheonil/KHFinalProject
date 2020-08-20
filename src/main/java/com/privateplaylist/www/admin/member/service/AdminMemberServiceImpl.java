@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.privateplaylist.www.admin.member.dao.AdminMemberDao;
 import com.privateplaylist.www.dto.Membership;
+import com.privateplaylist.www.dto.Question;
 
 import common.util.Paging;
 
@@ -22,10 +23,8 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	public Map<String, Object> selectStuList(int cPage, int cntPerPage) {//���� ������ //�������� ������ �Խñ� ��
 		
 		Map<String, Object> commandMap 	= new HashMap<String, Object>();
-		 //����¡ ó���� ���� ��ü ����
 		 Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
-		 System.out.println("�� ���� : "+adminMemberDao.selectStuCnt());
-		 //���� �������� �ʿ��� �Խù� ���
+
 		 List<Membership> stulist = adminMemberDao.selectStuList(p);
 		 commandMap.put("stulist", stulist);
 		 commandMap.put("paging", p);
@@ -44,6 +43,35 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		
 		commandMap.put("member",member);
 		
+		return commandMap;
+	}
+
+
+	@Override
+	public Map<String, Object> selectQuestionList(int userNo) {
+		
+		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+//		Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
+	
+		List<Question> stuQuestion = adminMemberDao.selectStuQuestionList(userNo);
+		List<Question> stuReview = adminMemberDao.selectStuReviewList(userNo);
+		commandMap.put("stuQuestion", stuQuestion);
+		commandMap.put("stuReview", stuReview);
+//		System.out.println(stuQuestion);
+//		commandMap.put("paging", p);
+		return commandMap;
+	}
+	
+	@Override
+	public Map<String, Object> selectStuReviewList(int userNo) {
+		
+		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+//		Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
+		
+		List<Question> stuReview = adminMemberDao.selectStuReviewList(userNo);
+		commandMap.put("stuReview", stuReview);
+//		System.out.println(stuReview);
+//		commandMap.put("paging", p);
 		return commandMap;
 	}
 	

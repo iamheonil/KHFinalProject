@@ -4,17 +4,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="FindLesson">
-  
-  <select id="selectLessonAll" resultType="map">
-  	select l.lesson_no, l.lesson_title, m.user_id, l.lesson_date, l.lesson_state
-  	from find_lesson l, membership m
-  	where l.user_no = m.user_no
-  	select l.lesson_no, l.lesson_title, m.user_id, l.lesson_date
-  	from find_lesson l, membership m
-  	where l.user_no = m.user_no
-  	order by lesson_no desc
-  </select>
-  
-  
-  </mapper>
+<mapper namespace="FindLesson">
+	
+	<!-- 전체 과외 조회 -->
+	<select id="selectLessonAll" resultType="map">
+	
+		select l.lesson_no, l.lesson_title, m.user_id, l.lesson_date, l.lesson_chk, l.pay_state, l.lesson_state 
+		from find_lesson l, membership m
+		where l.user_no = m.user_no
+	
+	</select>
+
+	<!-- 검토할 과외 조회 -->
+	<select id="selectConfirmLesson" resultType="map">
+	
+		select l.lesson_no, l.lesson_title, m.user_id, l.lesson_date
+		from find_lesson l, membership m
+		where l.user_no = m.user_no and l.lesson_chk = 0
+	
+	</select>
+
+
+</mapper>
