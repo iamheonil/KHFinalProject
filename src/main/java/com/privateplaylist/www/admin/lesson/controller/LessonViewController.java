@@ -21,12 +21,12 @@ public class LessonViewController {
 	@RequestMapping("/view")
 	public String lessonView(Model model){
 		
-		System.out.println("view 접속 테스트");
+//		System.out.println("view 접속 테스트");
 		
 		//과외 전체 조회
 		List<Map<String, Object>> lessonList = lessonViewService.selectLessonAll();
 		
-		System.out.println(lessonList);
+//		System.out.println(lessonList);
 		
 		model.addAttribute("lessonList", lessonList);
 		
