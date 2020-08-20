@@ -11,7 +11,6 @@
 
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
 
-<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,17 +124,17 @@ $("#teacher").click(function(){
     )
 	
 	
-})
-$("#student").click(function(){
-    $("#resume").html("");
-})
+    })
+
+    $("#student").click(function(){
+        $("#resume").html("");
+    })
 
 });
 
-
+// $(document).on("keyup", ".phoneNumber", function() { $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
 
 </script>
-</head>
 <body>
      <div class="container">
     <div class="row">
@@ -194,7 +193,7 @@ $("#student").click(function(){
         <div class="form-group row">
 			<label class="col-form-label col-4">전화번호</label>
 			<div class="col-8 float">
-                <input type="tel" class="form-control" name="userPhone" required="required">
+                <input type="text" class="form-control" name="userPhone" required="required">
             </div>        	
         </div>
         <div class="form-group row">
