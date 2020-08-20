@@ -44,6 +44,14 @@
 
  		
 
+		
+
+ 		
+
+		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
+ 		
+
+
  		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
 
 		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
