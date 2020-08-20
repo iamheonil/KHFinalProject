@@ -40,12 +40,12 @@ body{
 	float: right;
 }
 .form-horizontal{
-	width: 450px;
+	width: 100%;
 	margin-left: 30px;
 /* 	border-bottom: 1px solid #d0d1d8; */
 }
 .signup-form {
-	width: 500px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 30px 0;
 }
@@ -189,7 +189,7 @@ function inputPhoneNumber(obj) {
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById('postCode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
                 // document.getElementById("jibunAddress").value = data.jibunAddress;
 
@@ -208,7 +208,7 @@ function inputPhoneNumber(obj) {
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/member/joinImpl" method="post" class="form-horizontal">
+    <form action="/ss/member/joinImpl" method="post" class="form-horizontal">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -264,12 +264,13 @@ function inputPhoneNumber(obj) {
 			<label class="col-form-label col-4">주소</label>
 			<!-- 주소 API 추가하기 -->
 			<div class="col-8 float">
-
-                <input type="text" id="postcode" placeholder="우편번호">
+                
                 <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="roadAddress" placeholder="도로명주소" size="35">
+                <input type="text" id="postCode" name="postCode" placeholder="우편번호" required="required">
+
+                <input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required">
 <%--                <input type="text" id="jibunAddress" placeholder="지번주소" size="35">--%>
-                <input type="text" id="detailAddress" placeholder="상세주소" size="35">
+                <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" size="35" required="required">
 
             </div>
         </div>
