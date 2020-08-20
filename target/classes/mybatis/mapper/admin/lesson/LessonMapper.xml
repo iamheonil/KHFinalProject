@@ -10,6 +10,10 @@
   	select l.lesson_no, l.lesson_title, m.user_id, l.lesson_date, l.lesson_state
   	from find_lesson l, membership m
   	where l.user_no = m.user_no
+  	select l.lesson_no, l.lesson_title, m.user_id, l.lesson_date
+  	from find_lesson l, membership m
+  	where l.user_no = m.user_no
+  	order by lesson_no desc
   </select>
   
   
