@@ -19,18 +19,33 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	private AdminMemberDao adminMemberDao;
 
 	@Override
-	public Map<String, Object> selectStuList(int cPage, int cntPerPage) {//ÇöÀç ÆäÀÌÁö //ÆäÀÌÁö´ç ³ëÃâÇÒ °Ô½Ã±Û ¼ö
+	public Map<String, Object> selectStuList(int cPage, int cntPerPage) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½
 		
 		Map<String, Object> commandMap 	= new HashMap<String, Object>();
-		 //ÆäÀÌÂ¡ Ã³¸®¸¦ À§ÇÑ °´Ã¼ »ı¼º
+		 //ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		 Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
-		 System.out.println("ÃÑ °³¼ö : "+adminMemberDao.selectStuCnt());
-		 //ÇöÀç ÆäÀÌÁö¿¡ ÇÊ¿äÇÑ °Ô½Ã¹° ¸ñ·Ï
+		 System.out.println("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+adminMemberDao.selectStuCnt());
+		 //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½
 		 List<Membership> stulist = adminMemberDao.selectStuList(p);
 		 commandMap.put("stulist", stulist);
 		 commandMap.put("paging", p);
 		return commandMap;
 		
 	}
+
+	
+	//íšŒì› ì •ë³´ ìƒì„¸ë³´ê¸° 
+	@Override
+	public Map<String, Object> selectStuDetail(int userNo) {
+		
+		Map<String,Object> commandMap = new HashMap<String, Object>();
+		
+		Membership member = adminMemberDao.selectStuDetail(userNo);
+		
+		commandMap.put("member",member);
+		
+		return commandMap;
+	}
+	
 
 }

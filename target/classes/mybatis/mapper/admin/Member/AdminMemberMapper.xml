@@ -17,6 +17,10 @@
 		WHERE user_actor = 2
 		ORDER BY user_no
 	</select>	
+	<select id="selectStuDetail" resultType="MEMBERSHIP">
+		SELECT * FROM Membership
+		WHERE user_no = #{userno}
+	</select>
 
 
 
