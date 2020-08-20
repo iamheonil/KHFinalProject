@@ -8,7 +8,12 @@
   
   <select id="selectNoticeList" resultType="NOTICE">
   	select * from notice
-  	order by notice_no 
+  	order by notice_no desc
+  </select>
+  
+  <select id="selectNoticeone" resultType="NOTICE" parameterType="int">
+  	select * from notice
+  	where notice_no = #{noticeNo}
   </select>
   
   
