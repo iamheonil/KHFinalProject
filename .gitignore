@@ -16,3 +16,4 @@ pom.properties
 *.MF
 
 # Create by 김헌일, 
+/target/
