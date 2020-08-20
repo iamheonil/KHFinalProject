@@ -7,7 +7,7 @@ public class Member {
     private String userEmail;
     private int userActor;
     private String userName;
-    private int userPhone;
+    private String userPhone;
     private String userAddr;
     private String userGender;
     private String userBirth;
@@ -78,11 +78,11 @@ public class Member {
         this.userName = userName;
     }
 
-    public int getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(int userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 

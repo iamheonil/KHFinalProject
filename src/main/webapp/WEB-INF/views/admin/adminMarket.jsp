@@ -14,6 +14,10 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>	
 
 
 
@@ -495,22 +499,39 @@ body {
 <script type="text/javascript">
 
 function delchk(num){
+	
+	var url="${pageContext.request.contextPath}/delete/market";
+	
+	
 	$.ajax({
-		url: "/delete/market",
+			type : "POST",
+			url: url,
+			data: { mkNo: num },  
+			success : function(result) {
+				
+				if (result == 1) {//친구를 찾았을때
+					
+					$("#checkMessage").html("게시물을 삭제했습니다");
+					$("#checkType").attr("class","modal-content panel-success");
+					$("#checkModal").modal();
+					
+					
 
-	    data: { mkNo: num },  
+				}else{//친구를 못찾았을때
+					$("#checkMessage").html("게시물 삭제에 실패했습니다");
+					$("#checkType").attr("class","modal-content panel-warning");
+					
+				}
+				$("#checkModal").modal();
+				
+			}
+		});
+	
+	
+}
 
-	    type: "POST",
-	    
-	    success:function(data){
-	    	if(data==1){//삭제를 했을때
-	    		location.reload();
-	    	}else{//삭제를 실패했을때
-	    		
-	    	}
-	    }
-		
-	})
+function reload(){
+	location.reload();
 }
 
 </script>
@@ -521,6 +542,79 @@ function delchk(num){
 	<div id="title">
 		과외 <i class="fas fa-angle-right"></i> <a href="#">중고장터 조회/삭제</a>
 	</div>
+
+	<%
+		String messageContent = null;
+	if (session.getAttribute("messageContent") != null) {
+		messageContent = (String) session.getAttribute("messageContent");
+	}
+	String messageType = null;
+	if (session.getAttribute("messageType") != null) {
+		messageType = (String) session.getAttribute("messageType");
+	}
+	if (messageContent != null) {
+	%>
+	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<div
+					class="modal-content <%if (messageType.equals("오류메시지"))
+	out.println("panel-warning");
+else
+	out.println("panel-success");%>">
+					<div class="modal-header panel heading">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times</span> <span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">
+							<%=messageType%>
+						</h4>
+					</div>
+					<div class="modal-body">
+						<%=messageContent%>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn primary close"
+							data-dimiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+			/* $("#messageModal").modal("show"); */
+		</script>
+	<%
+		session.removeAttribute("messageContent");
+	session.removeAttribute("messageType");
+	}
+	%>
+	
+	<div class="modal fade" id="checkModal" tabindex="-1" role="dialog"
+			aria-hidden="true">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div
+						class="modal-content panel-info" id="checkType">
+						<div class="modal-header panel heading">
+							<h4 class="modal-title">
+								확인 메시지
+							</h4>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times</span> <span class="sr-only">Close</span>
+							</button>
+						</div>
+						<div class="modal-body" id="checkMessage" style="text-align: center;">
+							
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn primary" data-dismiss="modal" onclick="reload();">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<main>
 		<div id="content">
@@ -534,23 +628,40 @@ function delchk(num){
 					<div class="col-lg-12 card-margin">
 						<div class="card search-form">
 							<div class="card-body p-0">
-								<form id="search-form">
+								<form id="search-form"
+									action="${pageContext.request.contextPath}/admin/market"
+									method="get">
 									<div class="row">
 										<div class="col-12">
 											<div class="row no-gutters">
 												<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-													<select class="form-control" id="exampleFormControlSelect1">
-														<option>Location</option>
-														<option>London</option>
-														<option>Boston</option>
-														<option>Mumbai</option>
-														<option>New York</option>
-														<option>Toronto</option>
-														<option>Paris</option>
+													<select class="form-control" id="exampleFormControlSelect1"
+														name="option">
+
+														<c:choose>
+															<c:when test="${option eq '사용자id' }">
+																<option>전체</option>
+																<option selected="selected">사용자id</option>
+																<option>title</option>
+															</c:when>
+															<c:when test="${option eq 'title' }">
+																<option>전체</option>
+																<option>사용자id</option>
+																<option selected="selected">title</option>
+															</c:when>
+															<c:otherwise>
+																<option selected="selected">전체</option>
+																<option>사용자id</option>
+																<option>title</option>
+															</c:otherwise>
+														</c:choose>
+
+
 													</select>
 												</div>
 												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
-													<input type="text" placeholder="Search..."
+													<input type="text"
+														placeholder="<c:if test="${search ne null }">${search }</c:if>"
 														class="form-control" id="search" name="search">
 												</div>
 												<div class="col-lg-1 col-md-3 col-sm-12 p-0">
@@ -585,34 +696,35 @@ function delchk(num){
 											<th class="text-center"><span>Status</span></th>
 											<th><span>price</span></th>
 											<th>&nbsp;</th>
-											
+
 										</tr>
 									</thead>
-									<tbody >
+									<tbody>
 										<c:forEach items="${marketList.mList}" var="market">
-										<a href="#"  class="user-link">
-											<tr>
-												<td><img
-													src="${pageContext.request.contextPath}/resources/upload/${market.mkFileRename}"
-													alt=""> ${market.mkTitle }</td>
-												<td>${market.mkDate }</td>
-												<td class="text-center"><span
-													class="label label-default"> <c:if
-															test="${market.mkState eq 1}">
-												승인완료</span></td>
-												</c:if>
-												<c:if test="${market.mkState eq 0}">
-												확인중</span>
-													</td>
-												</c:if>
-												<td>${market.mkPrice } 원</td>
-												<td style="width: 20%;"><a href="javascript:void(0);" onclick="delchk(${market.MK_NO});"
-													class="table-link danger"> <span class="fa-stack">
-															<i class="fa fa-square fa-stack-2x"></i> <i
-															class="fa fa-trash fa-stack-1x fa-inverse "></i>
-													</span>
-												</a></td>
-											</tr>
+											<a href="#" class="user-link">
+												<tr>
+													<td><img
+														src="${pageContext.request.contextPath}/resources/upload/${market.mkFileRename}"
+														alt=""> ${market.mkTitle }</td>
+													<td>${market.mkDate }</td>
+													<td class="text-center"><span
+														class="label label-default"> <c:if
+																test="${market.mkState eq 1}">
+												게시중</span></td>
+													</c:if>
+													<c:if test="${market.mkState eq 0}">
+												게시안함</span>
+														</td>
+													</c:if>
+													<td>${market.mkPrice }원</td>
+													<td style="width: 20%;"><a href="javascript:void(0);"
+														onclick="delchk(${market.mkNo});"
+														class="table-link danger"> <span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i> <i
+																class="fa fa-trash fa-stack-1x fa-inverse "></i>
+														</span>
+													</a></td>
+												</tr>
 											</a>
 										</c:forEach>
 
@@ -623,12 +735,14 @@ function delchk(num){
 								<!-- 첫 페이지로 가기 -->
 								<c:if test="${paging.curPage ne 1 }">
 									<%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-									<li><a href="${pageContext.request.contextPath}/admin/market?curPage=1">&laquo;</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/admin/market?curPage=1&option=${option}&search=${search}">&laquo;</a></li>
 								</c:if>
 
 								<!-- 이전 페이지로 가기 -->
 								<c:if test="${paging.curPage ne 1 }">
-									<li><a href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage - 1 }">&lt;</a>
+									<li><a
+										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage - 1 }&option=${option}&search=${search}">&lt;</a>
 								</c:if>
 
 								<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
@@ -636,12 +750,14 @@ function delchk(num){
 
 									<!-- 현재 페이지라면 강조(.active) -->
 									<c:if test="${paging.curPage eq i }">
-										<li class="active"><a href="${pageContext.request.contextPath}/admin/market?curPage=${i }">${i }</a></li>
+										<li class="active"><a
+											href="${pageContext.request.contextPath}/admin/market?curPage=${i }&option=${option}&search=${search}">${i }</a></li>
 									</c:if>
 
 									<!-- 현재 페이지가 아니라면 평소 모습-->
 									<c:if test="${paging.curPage ne i }">
-										<li><a href="${pageContext.request.contextPath}/admin/market?curPage=${i }">${i }</a></li>
+										<li><a
+											href="${pageContext.request.contextPath}/admin/market?curPage=${i }&option=${option}&search=${search}">${i }</a></li>
 									</c:if>
 
 								</c:forEach>
@@ -649,13 +765,13 @@ function delchk(num){
 								<!-- 다음 페이지로 가기 -->
 								<c:if test="${paging.curPage ne paging.totalPage}">
 									<li><a
-										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage + 1 }">&gt;</a>
+										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage + 1 }&option=${option}&search=${search}">&gt;</a>
 								</c:if>
 
 								<!-- 마지막 페이지로 가기 -->
 								<c:if test="${paging.curPage ne paging.totalPage }">
 									<li><a
-										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.totalPage }">&raquo;</a></li>
+										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.totalPage }&option=${option}&search=${search}">&raquo;</a></li>
 								</c:if>
 
 

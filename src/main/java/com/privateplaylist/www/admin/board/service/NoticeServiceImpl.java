@@ -20,4 +20,28 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeList;
 	}
 	
+	@Override
+	public Notice selectNoticeone(int noticeNo) {
+		Notice noticeone = noticeDao.selectNoticeone(noticeNo);
+		return noticeone;
+	}
+	
+	@Override
+	public int insertNotice(Notice notice) {
+		int res = noticeDao.insertNotice(notice);
+		return res;
+	}
+	
+	@Override
+	public int updateNotice(Notice notice) {
+		int res = noticeDao.updateNotice(notice);
+		return res;
+	}
+	
+	@Override
+	public int deleteNotice(int noticeNo) {
+		int res = noticeDao.deleteNotice(noticeNo);
+		return res;
+	}
+	
 }

@@ -13,7 +13,7 @@ public class Paging {
     private int startPage; // 화면에 보이는 시작 페이지 번호
     private int endPage; // 화면에 보이는 끝 페이지 번호
     
-    private int startNO; //화면에 보이는 페이지의 시작 게시글 번호 (rownum)
+    private int startNo; //화면에 보이는 페이지의 시작 게시글 번호 (rownum)
     private int endNo; // 화면에 보이는 페이지의 끝 게시글 번호(rownum)
     
     private String search; // 검색어
@@ -31,7 +31,7 @@ public class Paging {
    public String toString() {
       return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
             + totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-            + ", startNO=" + startNO + ", endNo=" + endNo + ", search=" + search + "]";
+            + ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + "]";
    }
 
    public String getSearch() {
@@ -106,7 +106,7 @@ public class Paging {
       if( endPage > totalPage ) endPage = totalPage;
       
       //화면에 보여질 게시글 시작번호와 끝번호
-      startNO  = (curPage -1 ) * listCount +1 ;
+      startNo  = (curPage -1 ) * listCount +1 ;
       endNo    = curPage * listCount;
           
     }
@@ -155,11 +155,11 @@ public class Paging {
    public void setEndPage(int endPage) {
       this.endPage = endPage;
    }
-   public int getStartNO() {
-      return startNO;
+   public int getStartNo() {
+      return startNo;
    }
-   public void setStartNO(int startNO) {
-      this.startNO = startNO;
+   public void setStartNo(int startNo) {
+      this.startNo = startNo;
    }
    public int getEndNo() {
       return endNo;

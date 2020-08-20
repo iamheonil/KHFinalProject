@@ -8,8 +8,29 @@
   
   <select id="selectNoticeList" resultType="NOTICE">
   	select * from notice
-  	order by notice_no 
+  	order by notice_no desc
   </select>
+  
+  <select id="selectNoticeone" resultType="NOTICE" parameterType="int">
+  	select * from notice
+  	where notice_no = #{noticeNo}
+  </select>
+  
+  <insert id="insertNotice" parameterType="NOTICE">
+	insert into notice(notice_no, notice_title,notice_content, notice_date)
+	values(NOTICE_SEQ.nextval,#{noticeTitle},#{noticeContent},sysdate)
+  </insert>
+  
+  <update id="updateNotice" parameterType="NOTICE">
+  	update notice
+	set notice_title = #{noticeTitle}, notice_content =#{noticeContent}, notice_date= sysdate
+	where notice_no = #{noticeNo}
+  </update>
+  
+  <delete id="deleteNotice">
+  	delete from notice
+	where notice_no = #{noticeNo}
+  </delete>
   
   
   </mapper>
