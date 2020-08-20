@@ -1,8 +1,13 @@
 package com.privateplaylist.www.admin.board.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Map;
 
-@Service
-public class BlackListService {
+public interface BlackListService {
+
+	/*
+	 * 전체 신고내역
+	 */
+	public List<Map<String, Object>> selectAllBlackList();
 
 }
