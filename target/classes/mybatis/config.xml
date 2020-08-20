@@ -38,6 +38,8 @@
 
 	<!-- mapper 연결 -->
 	<mappers>
+		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 
  		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
