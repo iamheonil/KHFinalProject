@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
 <!-- 관리자 페이지 header -->
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
@@ -406,6 +406,12 @@ body {
     border: 1px solid #e6e4e9;
     border-radius: 8px;
 }
+th{
+	text-align: center;
+}
+p{
+	margin: 16px 0 10px;
+}
 </style>
 
 
@@ -433,13 +439,11 @@ body {
 											<div class="row no-gutters">
 												<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 													<select class="form-control" id="exampleFormControlSelect1">
-														<option>Location</option>
-														<option>London</option>
-														<option>Boston</option>
-														<option>Mumbai</option>
-														<option>New York</option>
-														<option>Toronto</option>
-														<option>Paris</option>
+														<option>UserNo</option>
+														<option>ID</option>
+														<option>이름</option>
+														<option>연락처</option>
+														<option>Email</option>
 													</select>
 												</div>
 												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
@@ -473,200 +477,41 @@ body {
 								<table class="table user-list">
 									<thead>
 										<tr>
+											<th style="width: 20px;"><span>UserNo</span></th>
 											<th><span>User</span></th>
+											<th><span>이름</span></th>
 											<th><span>생년월일</span></th>
-											<th class="text-center"><span>Status</span></th>
+											<th class="text-center"><span>연락처</span></th>
 											<th><span>Email</span></th>
 											<th>&nbsp;</th>
 										</tr>
 									</thead>
 									<tbody>
-<%-- 										<c:forEach items="${list}" var="emp"> --%>
-<!-- 											<tr> -->
-<%-- 												<td>${emp.empno }</td> --%>
-<%-- 												<td><a href="/emp/detail?empno=${emp.empno}">${emp.ename }</a></td> --%>
-<%-- 												<td>${emp.job }</td> --%>
-<%-- 												<td>${emp.mgr }</td> --%>
-<!-- 												<td> -->
-<%-- 												<fmt:formatDate value="${emp.hiredate }" pattern="yyyyMMdd" /> --%>
-<!-- 												</td> -->
-<%-- 												<td>${emp.sal }</td> --%>
-<%-- 												<td>${emp.comm }</td> --%>
-<%-- 												<td>${emp.deptno }</td> --%>
-<!-- 											</tr> -->
-<%-- 											</c:forEach> --%>
-										<tr>
-											<td><img
+										<c:forEach items="${stuData.stulist}" var="user">
+											<tr>
+												<td>${user.userNo }</td>
+												<td><img
 												src="https://bootdey.com/img/Content/avatar/avatar1.png"
-												alt=""> <a href="#" class="user-link">Mila Kunis</a> <span
-												class="user-subhead">Admin</span></td>
-											<td>2013/08/08</td>
-											<td class="text-center"><span
-												class="label label-default">Inactive</span></td>
-											<td><a href="#">mila@kunis.com</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse "></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar2.png"
-												alt=""> <a href="#" class="user-link">George
-													Clooney</a> <span class="user-subhead">Member</span></td>
-											<td>2013/08/12</td>
-											<td class="text-center"><span
-												class="label label-success">Active</span></td>
-											<td><a href="#">marlon@brando.com</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar3.png"
-												alt=""> <a href="#" class="user-link">Ryan
-													Gossling</a> <span class="user-subhead">Registered</span></td>
-											<td>2013/03/03</td>
-											<td class="text-center"><span class="label label-danger">Banned</span>
-											</td>
-											<td><a href="#">jack@nicholson</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar4.png"
-												alt=""> <a href="#" class="user-link">Emma Watson</a>
-												<span class="user-subhead">Registered</span></td>
-											<td>2004/01/24</td>
-											<td class="text-center"><span
-												class="label label-warning">Pending</span></td>
-											<td><a href="#">humphrey@bogart.com</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar5.png"
-												alt=""> <a href="#" class="user-link">Robert
-													Downey Jr.</a> <span class="user-subhead">Admin</span></td>
-											<td>2013/12/31</td>
-											<td class="text-center"><span
-												class="label label-success">Active</span></td>
-											<td><a href="#">spencer@tracy</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar6.png"
-												alt=""> <a href="#" class="user-link">Mila Kunis</a> <span
-												class="user-subhead">Admin</span></td>
-											<td>2013/08/08</td>
-											<td class="text-center"><span
-												class="label label-default">Inactive</span></td>
-											<td><a href="#">mila@kunis.com</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar7.png"
-												alt=""> <a href="#" class="user-link">George
-													Clooney</a> <span class="user-subhead">Member</span></td>
-											<td>2013/08/12</td>
-											<td class="text-center"><span
-												class="label label-success">Active</span></td>
-											<td><a href="#">marlon@brando.com</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar1.png"
-												alt=""> <a href="#" class="user-link">Ryan
-													Gossling</a> <span class="user-subhead">Registered</span></td>
-											<td>2013/03/03</td>
-											<td class="text-center"><span class="label label-danger">Banned</span>
-											</td>
-											<td><a href="#">jack@nicholson</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar1.png"
-												alt=""> <a href="#" class="user-link">Emma Watson</a>
-												<span class="user-subhead">Registered</span></td>
-											<td>2004/01/24</td>
-											<td class="text-center"><span
-												class="label label-warning">Pending</span></td>
-											<td><a href="#">humphrey@bogart.com</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
-										<tr>
-											<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar6.png"
-												alt=""> <a href="#" class="user-link">Robert
-													Downey Jr.</a> <span class="user-subhead">Admin</span></td>
-											<td>2013/12/31</td>
-											<td class="text-center"><span
-												class="label label-success">Active</span></td>
-											<td><a href="#">spencer@tracy</a></td>
-											<td style="width: 20%;"><a href="#"
-												class="table-link danger"> <span class="fa-stack">
-														<i class="fa fa-square fa-stack-2x"></i> <i
-														class="fa fa-trash fa-stack-1x fa-inverse"></i>
-												</span>
-											</a></td>
-										</tr>
+<%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
+												alt=""> <p><a href="/admin/stuDetail?userNo=${user.userNo}">${user.userId }</a></p></td>
+												<td>${user.userName }</td>
+												<td>
+<%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>
+													${user.userBirth }
+												</td>
+												<td>${user.userPhone }</td>
+												<td>${user.userEmail }</td>
+											</tr>
+											</c:forEach>
 									</tbody>
 								</table>
+								
+					<c:import url="/WEB-INF/paging/testPaging.jsp"/>
+<!--       	<div class="btn_section" style="background-color:white"> -->
+<%--       	 <a href="<%= request.getContextPath() %>/board/boardform.do" style="font-size:1.1vw">공지 쓰기</a> --%>
+<!--    	  	</div> -->
+   	   </div><!-- // section pagination -->
 							</div>
-							<ul class="pagination pull-right">
-								<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-							</ul>
 						</div>
 					</div>
 				</div>
