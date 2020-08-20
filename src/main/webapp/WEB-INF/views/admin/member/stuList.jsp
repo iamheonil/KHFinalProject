@@ -412,6 +412,9 @@ th{
 p{
 	margin: 16px 0 10px;
 }
+.table-responsive{
+	
+}
 </style>
 
 
@@ -493,7 +496,7 @@ p{
 												<td><img
 												src="https://bootdey.com/img/Content/avatar/avatar1.png"
 <%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
-												alt=""> <p><a href="/admin/stuDetail?userNo=${user.userNo}">${user.userId }</a></p></td>
+												alt=""> <p><a href="<%= request.getContextPath() %>/admin/studetail?userNo=${user.userNo}">${user.userId }</a></p></td>
 												<td>${user.userName }</td>
 												<td>
 <%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>
