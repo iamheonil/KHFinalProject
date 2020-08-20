@@ -158,6 +158,19 @@ public class NoticeController {
 		}
 	}
 	
+	//공지사항 글 제목 && 내용 키워드 검색
+	@RequestMapping("/search")
+	public String noticeSearch(Model model,@RequestParam String keyword) {
+		System.out.println("/admin/notice/search");
+		System.out.println("keyword"+keyword);
+		
+		//글 검색하기
+//		int res = noticeService.deleteNotice(noticeNo);
+		
+		//검색 완료
+		return "redirect:list";
+	}
+	
 	
 }
 
