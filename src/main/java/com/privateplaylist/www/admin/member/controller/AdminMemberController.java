@@ -15,21 +15,15 @@ import com.privateplaylist.www.admin.member.service.AdminMemberService;
 public class AdminMemberController {
 	
 	@Autowired
-	AdminMemberService adminmMemberService;
+	AdminMemberService adminMemberService;
 
-//    @RequestMapping("/student")
-//    public String stuManage() {
-//        
-//    	
-//    	
-//        return "admin/stuManage";
-//    }
     @RequestMapping("/stuList")
     public ModelAndView stuList(@RequestParam(required=false, defaultValue="1") int cPage) {
         
     	ModelAndView mav = new ModelAndView();
 		int cntPerPage = 10;
-		Map<String, Object> commandMap = adminmMemberService.selectStuList(cPage, cntPerPage);
+		Map<String, Object> commandMap = adminMemberService.selectStuList(cPage, cntPerPage);
+		
 		
 		//paging��ü�� paging�̶�� Ű�� ��Ƽ� ������.
 		mav.addObject("paging", commandMap.get("paging"));
@@ -41,20 +35,28 @@ public class AdminMemberController {
 	
 	@RequestMapping("/studetail")
 	public ModelAndView noticeDetail(int userNo) {
-		System.out.println("/studetail");
+//		ModelAndView mav = new ModelAndView();
+//		Map<String,Object> commandMap = adminmMemberService.selectStuDetail(userNo);
+//		//해당 게시글이 존재하는 지 여부 판단
+//		//반환되는 Map은 null일 수 없다.
+//		//Map안의 notice객체가 null인지 여부로 판단.
+//		if(commandMap.get("member") != null) {
+//			mav.addObject("data", commandMap);
+//			mav.setViewName("admin/member/stuDetail");
+//		}else {
+//			mav.addObject("alertMsg", "탈퇴한 회원입니다.");
+////			mav.addObject("url", "board/boardList");
+////			mav.setViewName("common/result");
+//		}
+		
 		ModelAndView mav = new ModelAndView();
-		Map<String,Object> commandMap = adminmMemberService.selectStuDetail(userNo);
-		//해당 게시글이 존재하는 지 여부 판단
-		//반환되는 Map은 null일 수 없다.
-		//Map안의 notice객체가 null인지 여부로 판단.
-		if(commandMap.get("member") != null) {
-			mav.addObject("data", commandMap);
-			mav.setViewName("admin/member/stuDetail");
-		}else {
-			mav.addObject("alertMsg", "탈퇴한 회원입니다.");
-//			mav.addObject("url", "board/boardList");
-//			mav.setViewName("common/result");
-		}
+		Map<String, Object> commandMap = adminMemberService.selectQuestionList(userNo);
+//		Map<String, Object> commandMap2 = adminMemberService.selectStuReviewList(userNo);
+//		commandMap.putAll(commandMap2);
+		
+		System.out.println("컨트롤러 commandMap : "+ commandMap);
+		mav.addObject("stuData", commandMap);
+		mav.setViewName("admin/member/stuDetail");
 		
 		return mav;
 	}
