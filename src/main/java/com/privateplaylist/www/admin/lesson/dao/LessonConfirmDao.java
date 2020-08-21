@@ -20,6 +20,27 @@ public class LessonConfirmDao {
 		
 		return sqlSession.selectList("FindLesson.selectConfirmLesson");
 	}
+
+
+	//과외 상세 조회
+	public Map<String, Object> selectLessonDetail(int no) {
+		
+		return sqlSession.selectOne("FindLesson.selectLessonDetail", no);
+	}
+
+	
+	//과외 승인
+	public int updateLessonStateAdmit(int no) {
+		
+		return sqlSession.update("FindLesson.updateLessonStateAdmit", no);
+	}
+
+
+	//과외 반려
+	public int updateLessonStateDeny(int no) {
+		
+		return sqlSession.update("FindLesson.updateLessonStateDeny", no);
+	}
 	
 	
 
