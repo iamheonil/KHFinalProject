@@ -20,9 +20,18 @@ public class MemberDao {
 
     }
 
+    public int insertFile(Member member, Map<String, String> fileInfo) {
+
+        return session.insert("MEMBERSHIP.insertFile", fileInfo);
+    }
+
     public Member selectMember(Map<String, Object> memberMap) {
 
         return session.selectOne("MEMBER.selectMember", memberMap);
+    }
+
+    public int selectId(String userId) {
+        return session.selectOne("MEMBER.selectId", userId);
     }
 
 }
