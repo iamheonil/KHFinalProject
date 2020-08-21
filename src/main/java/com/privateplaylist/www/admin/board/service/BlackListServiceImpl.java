@@ -40,7 +40,7 @@ public class BlackListServiceImpl implements BlackListService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public Paging getPagingBlack(int curPage, String search) {
 		
 		int totalCount = blackListDao.selectCntAllBlack(search);
@@ -49,15 +49,7 @@ public class BlackListServiceImpl implements BlackListService {
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);
 		
-=======
-	public Paging getPagingBlack(int curPage) {
-		
-		int totalCount = blackListDao.selectCntAllBlack();
-		
-		// Paging 객체 생성
-		Paging paging = new Paging(totalCount, curPage);
-		System.out.println(paging);
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
+
 		return paging;
 	}
 
@@ -93,12 +85,10 @@ public class BlackListServiceImpl implements BlackListService {
 		
 	}
 
-<<<<<<< HEAD
+
 	@Override
 	public int selectReportCnt() {
 		return blackListDao.selectReportCnt();
 	}
 
-=======
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
 }
