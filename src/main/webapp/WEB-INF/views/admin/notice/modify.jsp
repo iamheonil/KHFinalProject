@@ -20,11 +20,11 @@
 }
 
 #btnWrite{
-	color: #17B794;
+/* 	color: #17B794; */
 }
 
 #btnCancel{
-	color: red;
+/* 	color: red; */
 }
 
  #divbtn{ 
@@ -58,7 +58,7 @@
 
 #noticeTable th {
 	text-align: center;
-	background: #17B794;
+	background: #ccc;
 }
 
 </style>
