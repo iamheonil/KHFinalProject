@@ -53,10 +53,10 @@ public class MarketController {
 		
 		
 		int res=marketService.deleteMarket(mkNo);
-		if(res>0) {//삭제처리에 실패했을때
-			return "0";
-		}else {//삭제에 성공했을때
+		if(res>0) {//삭제처리에성공
 			return "1";
+		}else {//삭제에 실패했을때
+			return "0";
 		}
 		
 	}

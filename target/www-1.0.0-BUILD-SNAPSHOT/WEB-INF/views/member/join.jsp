@@ -40,12 +40,12 @@ body{
 	float: right;
 }
 .form-horizontal{
-	width: 450px;
+	width: 100%;
 	margin-left: 30px;
 /* 	border-bottom: 1px solid #d0d1d8; */
 }
 .signup-form {
-	width: 500px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 30px 0;
 }
@@ -115,26 +115,151 @@ body{
 <script type="text/javascript">
 $(document).ready(function() {
 
-$("#teacher").click(function(){
+$("#1").click(function(){
     $("#resume").html(
     		'<label class="col-form-label col-4">증빙서류</label>'+
 			'<div class="col-8 float">'+
-               ' <input type="file" name="resume" required="required">'+
+               ' <input type="file" id="files" name="files" required="required" multiple>'+
             '</div>'		
     )
 	
 	
     })
 
-    $("#student").click(function(){
+    $("#2").click(function(){
         $("#resume").html("");
     })
 
 });
 
-// $(document).on("keyup", ".phoneNumber", function() { $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
+function inputPhoneNumber(obj) {
+
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+
+    if(number.length < 4) {
+        return number;
+    } else if(number.length < 7) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3);
+    } else if(number.length < 11) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 3);
+        phone += "-";
+        phone += number.substr(6);
+    } else {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 4);
+        phone += "-";
+        phone += number.substr(7);
+    }
+    obj.value = phone;
+}
+
+    <!-- 아이디 부분 -->
+
+var ajaxFlag = false;
+
+function validate() {
+    var pass = document.getElementById('userPw');
+    var regExpPw = /(?=.*\d)(?=.*[~`!@#$%\^&*()-+=])(?=.*[a-zA-Z]).{6,15}$/;
+
+    function chk(re, e, msg) {
+        if(re.test(e.value)) {
+            return true;
+        }else{
+            alert(msg);
+            e.value = "";
+            e.focus();
+            //기본 이벤트 취소
+            return false;
+        }
+    }
+
+    if(!ajaxFlag){
+        alert("아이디 중복검사를 해주세요");
+        return false;
+    }
+
+    // 비밀번호 검사
+    if(!chk(regExpPw, pass,'비밀번호는 숫자,영어,특수문자가 하나 이상 포함되어 있어야하며, 6글자 이상 15글자 이하여야 합니다')){
+        return false;
+    }
+
+    return true;
+}
+
+function xmlIdCheck(){
+    //querySelector :
+    //	css선택자로 원하는 html element 객체를 불러온다.
+    //  jquery의 $('')와 유사하다.
+    var id = document.querySelector('#userId').value;
+    var xhr = new XMLHttpRequest();
+    //통신을 위한 시작줄 작성
+    xhr.open('POST', '<%=request.getContextPath()%>/member/idcheck');
+    //http request header 설정
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    //http request body 설정
+    //xhr.send() : 전송할 데이터가 있다면 파라미터에 넣어서 보내주면 된다.
+    xhr.send('userId='+id);
+    //ajax 통신이 끝난 뒤 실행할 콜백함수 등록
+    xhr.addEventListener('load',function(){
+        //responseBody에 있는 값을 data에 넣어줌
+        var data = xhr.response;
+        if(data != ''){
+            ajaxFlag = false;
+            document.querySelector('#id-check-msg').textContent = data + '는 이미 존재하는 아이디 입니다';
+        } else {
+            document.querySelector("#id-check-msg").textContent = '사용 가능한 아이디 입니다.';
+            ajaxFlag = true;
+        }
+    })
+}
+
 
 </script>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function DaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("roadAddress").value = roadAddr;
+                // document.getElementById("jibunAddress").value = data.jibunAddress;
+
+            }
+        }).open();
+    }
+
+</script>
+
 <body>
      <div class="container">
     <div class="row">
@@ -145,7 +270,7 @@ $("#teacher").click(function(){
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/member/joinImpl" method="post" class="form-horizontal">
+    <form action="/ss/member/joinImpl" method="post" class="form-horizontal" enctype="multipart/form-data">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -154,9 +279,11 @@ $("#teacher").click(function(){
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userId" required="required">
-            </div>        	
+                <input type="text" id="userId" name="userId" required="required" size="25"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
+            </div>
+            <span id="id-check-msg" class="id-check-msg" style="font-size: 10px;"></span>
         </div>
+
 		<div class="form-group row">
 			<label class="col-form-label col-4">비밀번호</label>
 			<div class="col-8 float">
@@ -173,9 +300,10 @@ $("#teacher").click(function(){
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" class="form-control" name="userEmail" required="required" />
-                
+                <input type="email" name="userEmail" required="required" size="25" />
+                <br> <button type="button" id="emailBtn">이메일 발송</button> <button type="button" id="emailAuthBtn">이메일 인증</button>
             </div>
+            <input type="hidden" path="random" id="random" value="${random }" />
         </div>
 		<div class="form-group row">
 			<label class="col-form-label col-4">구분</label>
@@ -193,15 +321,23 @@ $("#teacher").click(function(){
         <div class="form-group row">
 			<label class="col-form-label col-4">전화번호</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userPhone" required="required">
+                <input type="text" class="form-control" onKeyup="inputPhoneNumber(this);" maxlength="13" name="userPhone" required="required">
             </div>        	
         </div>
+
         <div class="form-group row">
 			<label class="col-form-label col-4">주소</label>
 			<!-- 주소 API 추가하기 -->
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userAddr" required="required">
-            </div>        	
+                
+                <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
+                <input type="text" id="postCode" name="postCode" placeholder="우편번호" required="required">
+
+                <input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required">
+<%--                <input type="text" id="jibunAddress" placeholder="지번주소" size="35">--%>
+                <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" size="35" required="required">
+
+            </div>
         </div>
 
         <div class="form-group row" id="resume" >

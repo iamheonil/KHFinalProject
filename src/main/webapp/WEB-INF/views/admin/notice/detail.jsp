@@ -71,7 +71,7 @@
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="artid">
+	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="submit">Search</button>
 	      </span>
@@ -103,7 +103,7 @@
 		<th colspan="3">내용</th>
 	</tr>
 	<tr>
-		<td>${noticeone.noticeContent }</td>
+		<td colspan="3">${noticeone.noticeContent }</td>
 	</tr>
 	</table>
 	

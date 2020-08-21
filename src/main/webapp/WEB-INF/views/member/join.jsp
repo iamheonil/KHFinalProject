@@ -40,12 +40,12 @@ body{
 	float: right;
 }
 .form-horizontal{
-	width: 450px;
+	width: 100%;
 	margin-left: 30px;
 /* 	border-bottom: 1px solid #d0d1d8; */
 }
 .signup-form {
-	width: 500px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 30px 0;
 }
@@ -119,7 +119,7 @@ $("#1").click(function(){
     $("#resume").html(
     		'<label class="col-form-label col-4">증빙서류</label>'+
 			'<div class="col-8 float">'+
-               ' <input type="file" name="resume" required="required">'+
+               ' <input type="file" id="files" name="files" required="required" multiple>'+
             '</div>'		
     )
 	
@@ -159,6 +159,67 @@ function inputPhoneNumber(obj) {
     obj.value = phone;
 }
 
+    <!-- 아이디 부분 -->
+
+var ajaxFlag = false;
+
+function validate() {
+    var pass = document.getElementById('userPw');
+    var regExpPw = /(?=.*\d)(?=.*[~`!@#$%\^&*()-+=])(?=.*[a-zA-Z]).{6,15}$/;
+
+    function chk(re, e, msg) {
+        if(re.test(e.value)) {
+            return true;
+        }else{
+            alert(msg);
+            e.value = "";
+            e.focus();
+            //기본 이벤트 취소
+            return false;
+        }
+    }
+
+    if(!ajaxFlag){
+        alert("아이디 중복검사를 해주세요");
+        return false;
+    }
+
+    // 비밀번호 검사
+    if(!chk(regExpPw, pass,'비밀번호는 숫자,영어,특수문자가 하나 이상 포함되어 있어야하며, 6글자 이상 15글자 이하여야 합니다')){
+        return false;
+    }
+
+    return true;
+}
+
+function xmlIdCheck(){
+    //querySelector :
+    //	css선택자로 원하는 html element 객체를 불러온다.
+    //  jquery의 $('')와 유사하다.
+    var id = document.querySelector('#userId').value;
+    var xhr = new XMLHttpRequest();
+    //통신을 위한 시작줄 작성
+    xhr.open('POST', '<%=request.getContextPath()%>/member/idcheck');
+    //http request header 설정
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    //http request body 설정
+    //xhr.send() : 전송할 데이터가 있다면 파라미터에 넣어서 보내주면 된다.
+    xhr.send('userId='+id);
+    //ajax 통신이 끝난 뒤 실행할 콜백함수 등록
+    xhr.addEventListener('load',function(){
+        //responseBody에 있는 값을 data에 넣어줌
+        var data = xhr.response;
+        if(data != ''){
+            ajaxFlag = false;
+            document.querySelector('#id-check-msg').textContent = data + '는 이미 존재하는 아이디 입니다';
+        } else {
+            document.querySelector("#id-check-msg").textContent = '사용 가능한 아이디 입니다.';
+            ajaxFlag = true;
+        }
+    })
+}
+
+
 </script>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -189,13 +250,14 @@ function inputPhoneNumber(obj) {
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById('postCode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
                 // document.getElementById("jibunAddress").value = data.jibunAddress;
 
             }
         }).open();
     }
+
 </script>
 
 <body>
@@ -208,7 +270,7 @@ function inputPhoneNumber(obj) {
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/member/joinImpl" method="post" class="form-horizontal">
+    <form action="/ss/member/joinImpl" method="post" class="form-horizontal" enctype="multipart/form-data">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -217,9 +279,11 @@ function inputPhoneNumber(obj) {
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userId" required="required">
-            </div>        	
+                <input type="text" id="userId" name="userId" required="required" size="25"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
+            </div>
+            <span id="id-check-msg" class="id-check-msg" style="font-size: 10px;"></span>
         </div>
+
 		<div class="form-group row">
 			<label class="col-form-label col-4">비밀번호</label>
 			<div class="col-8 float">
@@ -236,9 +300,10 @@ function inputPhoneNumber(obj) {
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" class="form-control" name="userEmail" required="required" />
-                
+                <input type="email" name="userEmail" required="required" size="25" />
+                <br> <button type="button" id="emailBtn">이메일 발송</button> <button type="button" id="emailAuthBtn">이메일 인증</button>
             </div>
+            <input type="hidden" path="random" id="random" value="${random }" />
         </div>
 		<div class="form-group row">
 			<label class="col-form-label col-4">구분</label>
@@ -264,12 +329,13 @@ function inputPhoneNumber(obj) {
 			<label class="col-form-label col-4">주소</label>
 			<!-- 주소 API 추가하기 -->
 			<div class="col-8 float">
-
-                <input type="text" id="postcode" placeholder="우편번호">
+                
                 <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="roadAddress" placeholder="도로명주소" size="35">
+                <input type="text" id="postCode" name="postCode" placeholder="우편번호" required="required">
+
+                <input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required">
 <%--                <input type="text" id="jibunAddress" placeholder="지번주소" size="35">--%>
-                <input type="text" id="detailAddress" placeholder="상세주소" size="35">
+                <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" size="35" required="required">
 
             </div>
         </div>

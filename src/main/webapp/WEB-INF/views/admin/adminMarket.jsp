@@ -17,6 +17,12 @@
 
 
 
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+
+
 
 <style type="text/css">
 body {
@@ -32,13 +38,13 @@ body {
 
 .user-list tbody td .user-link {
 	display: block;
-	font-size: 1.25em;
+	font-size: 1.55em;
 	padding-top: 3px;
 	margin-left: 60px;
 }
 
 .user-list tbody td .user-subhead {
-	font-size: 0.875em;
+	font-size: 1.5em;
 	font-style: italic;
 }
 /* TABLES */
@@ -56,7 +62,9 @@ body {
 }
 
 .table tbody>tr>td {
-	font-size: 0.875em;
+	font-family: 'NanumSquareRound', sans-serif !important;
+	font-weight: bolder !important;
+	font-size: 1.25em;
 	background: #f5f5f5;
 	border-top: 10px solid #fff;
 	vertical-align: middle;
@@ -490,6 +498,16 @@ body {
 	border: 1px solid #e6e4e9;
 	border-radius: 8px;
 }
+
+
+
+
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(3.25rem + 2px);
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -497,28 +515,58 @@ body {
 function delchk(num){
 	
 	var url="${pageContext.request.contextPath}/delete/market";
-	console.log(num)
+	
 	
 	$.ajax({
-		url: url,
+			type : "POST",
+			url: url,
+			data: { mkNo: num },  
+			success : function(result) {
+				
+				if (result == 1) {//친구를 찾았을때
+					
+					$("#checkMessage").html("게시물을 삭제했습니다 <br><br><br>");
+					$("#checkType").attr("class","modal-content panel-success");
+					$("#checkModal").modal();
+					
+					
 
-	    data: { mkNo: num },  
+				}else{//친구를 못찾았을때
+					$("#checkMessage").html("게시물 삭제에 실패했습니다<br><br><br>");
+					$("#checkType").attr("class","modal-content panel-warning");
+					
+				}
+				$("#checkModal").modal();
+				
+			}
+		});
+	
+	
+}
 
-	    type: "POST",
-	    
-	    success:function(data){
-	    	if(data==1){//삭제를 했을때
-	    		
-	    		location.reload();
-	    	}else{//삭제를 실패했을때
-	    		
-	    	}
-	    }
-		
-	})
+function reload(){
+	location.reload();
 }
 
 </script>
+<script>
+document.ready(function(){
+	$('#sidenavAccordion > div > div > a')
+	 $('#sidenavAccordion > div > div > a').on('click',function(){
+		    $('#sidenavAccordion > div > div > a').removeClass('active');    // 모든 li에 'active'클래스 제거
+		    $(this).addClass('active')    // 자신에게 'active'클래스 적용
+		  });
+		
+
+
+	
+})
+
+</script>
+
+
+
+
 
 
 <div id="layoutSidenav_content">
@@ -527,14 +575,49 @@ function delchk(num){
 		과외 <i class="fas fa-angle-right"></i> <a href="#">중고장터 조회/삭제</a>
 	</div>
 
+	<!-- 로그인처리 확인 구현  나중에 추가 구현 -->
+	<%
+		String userId = null;
+		if (session.getAttribute("userID") != null) {//세션에서 아이디값 가져옴
+			userId = (String) session.getAttribute("userID");
+		}
+		
+	%>
+
+
+	<!-- 삭제되었는지 모달띄우기  -->
+
+	<div class="modal fade" id="checkModal" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<div class="modal-content panel-info" id="checkType">
+					<div class="modal-header panel heading">
+						<h4 class="modal-title">확인 메시지</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times</span> <span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body" id="checkMessage"
+						style="text-align: center;"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn primary" data-dismiss="modal"
+							onclick="reload();">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<main>
 		<div id="content">
 
 
 
 
-
+			<!-- 검색창  -->
 			<div class="container">
+
 				<div class="row">
 					<div class="col-lg-12 card-margin">
 						<div class="card search-form">
@@ -571,9 +654,9 @@ function delchk(num){
 													</select>
 												</div>
 												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
-													<input type="text"
-														placeholder="<c:if test="${search ne null }">${search }</c:if>"
-														class="form-control" id="search" name="search">
+													<input type="text" placeholder="검색어를 입력하세요"
+														class="form-control" id="search" name="search"
+														value="<c:if test="${search ne null }">${search }</c:if>">
 												</div>
 												<div class="col-lg-1 col-md-3 col-sm-12 p-0">
 													<button type="submit" class="btn btn-base">
@@ -595,6 +678,8 @@ function delchk(num){
 					</div>
 				</div>
 				<br> <br>
+
+				<!-- 게시물 리스트  -->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="main-box clearfix">
@@ -642,16 +727,19 @@ function delchk(num){
 									</tbody>
 								</table>
 							</div>
+
+							<!-- 페이징 처리  -->
+
 							<ul class="pagination pull-right">
 								<!-- 첫 페이지로 가기 -->
-								<c:if test="${paging.curPage ne 1 }">
+								<c:if test="${paging.curPage gt 1 }">
 									<%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
 									<li><a
 										href="${pageContext.request.contextPath}/admin/market?curPage=1&option=${option}&search=${search}">&laquo;</a></li>
 								</c:if>
 
 								<!-- 이전 페이지로 가기 -->
-								<c:if test="${paging.curPage ne 1 }">
+								<c:if test="${paging.curPage gt 1 }">
 									<li><a
 										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage - 1 }&option=${option}&search=${search}">&lt;</a>
 								</c:if>
@@ -674,14 +762,13 @@ function delchk(num){
 								</c:forEach>
 
 								<!-- 다음 페이지로 가기 -->
-								<c:if test="${paging.curPage ne paging.totalPage}">
+								<c:if test="${paging.curPage < paging.totalPage}">
 									<li><a
 										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.curPage + 1 }&option=${option}&search=${search}">&gt;</a>
 								</c:if>
 
 								<!-- 마지막 페이지로 가기 -->
-								<c:if
-									test="${paging.curPage ne paging.totalPage }">
+								<c:if test="${paging.curPage < paging.totalPage }">
 									<li><a
 										href="${pageContext.request.contextPath}/admin/market?curPage=${paging.totalPage }&option=${option}&search=${search}">&raquo;</a></li>
 								</c:if>

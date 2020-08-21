@@ -135,28 +135,33 @@ $(document).ready(function(){
  	
 	<!-- 공지사항 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
+	
+	<c:if test="${not empty keyword}">
 	<caption  class="captionstyle">공지사항</caption>  
+	<caption  class="captionstyle">검색어 >> ${keyword }</caption>  
+	</c:if>
 	
 	<!-- 테이블 th -->
 	<tr style="background: #17B794;" >
-	    <th style="width: 5%"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/></th>
+	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">제목</th>
 		<th style="width: 50%">내용</th>
 		<th style="width: 10%">날짜</th>
 	</tr>
 	
-	<!-- 공지사항이 없을 때  -->
-	<c:if  var="noticernone" test="${empty noticeList }">
+	<!-- 검색 결과가 없을 때  -->
+	<c:if  var="noticernone" test="${empty noticeSearchList }">
 	<tr>
-	<td colspan="8" style="color:  #17B794; font-weight: bold;">공지사항이  없습니다</td>
+	<td colspan="8" style="color:  #17B794; font-weight: bold;">검색 결과가  없습니다</td>
 	</tr>
+	</table>
 	</c:if>
 	
 	<!--공지사항이 있을 때 -->
-	<c:if  var="noticeok" test="${!empty noticeList }">
+	<c:if  var="noticeok" test="${!empty noticeSearchList }">
 	<!-- 값 출력 -->
-	<c:forEach items="${noticeList }" var="notice" >
+	<c:forEach items="${noticeSearchList }" var="notice" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${notice.noticeNo}" id="checkRow"/></td>
 		<td>${notice.noticeNo }</td>
@@ -175,7 +180,7 @@ $(document).ready(function(){
 	
 	<!-- 페이징 -->
 	<div class="pagingstyle">
-	<c:import url="/WEB-INF/paging/admin/notice/listPaging.jsp"></c:import>
+	<c:import url="/WEB-INF/paging/admin/notice/searchPaging.jsp"></c:import>
 	</div>
 	</c:if>
 	
