@@ -271,14 +271,14 @@
 				<div class="row">
 					<div class="col-sm-2 col-xs-12">
 						<div id="gtco-logo">
-							<a href="/">
+							<a href="/ss">
                 <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="슬기로운 과외생활"></a>
 						</div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul style="margin-top: 20px;">
-							<li class="active"><a href="/member/login">로그인</a></li>
-							<li><a href="/member/join">회원가입</a></li>
+							<li class="active"><a href="/ss/member/login">로그인</a></li>
+							<li><a href="/ss/member/join">회원가입</a></li>
 							<li ><a href="services.html">과외찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>
