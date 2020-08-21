@@ -28,12 +28,18 @@ public class BlackListController {
 		ModelAndView mav = new ModelAndView();
 		
 		// 페이징 처리위한 객체
-		Paging paging = blackListService.getPagingBlack(curPage);
+		Paging paging = blackListService.getPagingBlack(curPage, search);
 		
 		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging);
+		
+		int blackCnt = blackListService.selectReportCnt();
+		
+		mav.addObject("search", search);
+		mav.addObject("blackCnt", blackCnt);
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
-		mav.setViewName("admin/blackList");
+		mav.setViewName("admin/blackList/blackList");
+
 		return mav;
 	}
 	
@@ -44,8 +50,16 @@ public class BlackListController {
 	public ModelAndView turndown(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
-		
-		
+
+		if( req.getParameterValues("checkRow") == null ) {
+			
+			mav.addObject("msg", "1개 이상 선택해주십시오");
+			mav.addObject("url", req.getContextPath() + "/admin/blacklist");
+			mav.setViewName("admin/blackList/alertPage");
+			
+			return mav;
+		}
+
 		blackListService.turndown(req);
 		
 		mav.setViewName("redirect:/admin/blacklist");
@@ -56,6 +70,15 @@ public class BlackListController {
 	public ModelAndView deleteReview(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
+		if( req.getParameterValues("checkRow") == null ) {
+			
+			mav.addObject("msg", "1개 이상 선택해주십시오");
+			mav.addObject("url", req.getContextPath() + "/admin/blacklist");
+			mav.setViewName("admin/blackList/alertPage");
+			
+			return mav;
+		}
+
 		
 		blackListService.deleteReview(req);
 		
