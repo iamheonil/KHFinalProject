@@ -17,11 +17,7 @@ public interface BlackListService {
 	/*
 	 * 신고 내역 페이징
 	 */
-<<<<<<< HEAD
 	public Paging getPagingBlack(int curPage, String search);
-=======
-	public Paging getPagingBlack(int curPage);
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
 
 	/**
 	 * 신고 반려
@@ -34,14 +30,11 @@ public interface BlackListService {
 	 * @param req
 	 */
 	public void deleteReview(HttpServletRequest req);
-<<<<<<< HEAD
 
 	/**
 	 * 신고된 상태 개수
 	 * @return
 	 */
 	public int selectReportCnt();
-=======
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
 
 }
