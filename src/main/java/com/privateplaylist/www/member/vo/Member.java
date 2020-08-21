@@ -8,22 +8,26 @@ public class Member {
     private int userActor;
     private String userName;
     private String userPhone;
-    private String userAddr;
+    private String postCode;
+    private String roadAddress;
+    private String detailAddress;
     private String userGender;
     private String userBirth;
     private int isLeave;
 
     @Override
     public String toString() {
-        return "Membership{" +
+        return "Member{" +
                 "userNo=" + userNo +
                 ", userId='" + userId + '\'' +
                 ", userPw='" + userPw + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", userActor=" + userActor +
                 ", userName='" + userName + '\'' +
-                ", userPhone=" + userPhone +
-                ", userAddr='" + userAddr + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", roadAddress='" + roadAddress + '\'' +
+                ", detailAddress='" + detailAddress + '\'' +
                 ", userGender='" + userGender + '\'' +
                 ", userBirth='" + userBirth + '\'' +
                 ", isLeave=" + isLeave +
@@ -86,12 +90,28 @@ public class Member {
         this.userPhone = userPhone;
     }
 
-    public String getUserAddr() {
-        return userAddr;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setUserAddr(String userAddr) {
-        this.userAddr = userAddr;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getRoadAddress() {
+        return roadAddress;
+    }
+
+    public void setRoadAddress(String roadAddress) {
+        this.roadAddress = roadAddress;
+    }
+
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 
     public String getUserGender() {
@@ -117,5 +137,4 @@ public class Member {
     public void setIsLeave(int isLeave) {
         this.isLeave = isLeave;
     }
-
 }

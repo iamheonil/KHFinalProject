@@ -14,14 +14,31 @@ function checkAll(){
         $("input[name=checkRow]").prop("checked", false);
       }
 }
+
+// 반려하기 버튼 클릭
 function turndown(){
-	$("#tableForm").prop("action", "/admin/blacklist/turndown");
-	$("#tableForm").submit();
+	
+	console.log($("input[name=checkRow]"));
+	
+	$("#tableForm").attr("action", "<%=request.getContextPath() %>/admin/blacklist/turndown");
+// 	$("#tableForm").submit();
 }
-// function delete(){
+function deleteReview(){
+	$("#tableForm").attr("action", "<%=request.getContextPath() %>/admin/blacklist/deletereview");
+}
+
+// 체크박스 하나라도 체크 해제하면 전체 선택 박스 해제
+$(document).ready(function(){
 	
+	$("input[name=checkRow]").change(function(){
+		if( $(this).is(":checked") == false ){
+			if( $("#th_checkAll").is(':checked') ){
+				 $("#th_checkAll").prop("checked", false)
+			}
+		}		
+	})
 	
-// }
+});
 </script>
 <style type="text/css">
 #layoutSidenav_content{	
@@ -73,20 +90,20 @@ function turndown(){
 		            </div>
 		        </div>
 		        
-		        <div class="col-xl-3 col-md-6" id="returnBtn" onclick="turndown();">
+		        <div class="col-xl-3 col-md-6" id="turndownBtn" onclick="turndown();">
 		            <button class="card bg-pattern userbtn">
 		            	<div class="card-btn">
-		                    <span class="text-muted mb-0">반려하기</span>
-	                        <i class="fa fa-file text-success h4 ml-3"></i>
+		                    <span>반려하기 </span>
+	                        <i class="fa fa-file text-success"></i>
                      	</div>
 		            </button>
 		        </div>
 		        
-		        <div class="col-xl-3 col-md-6" id="deleteBtn" onclick="delete();">
+		        <div class="col-xl-3 col-md-6" id="deleteBtn" onclick="deleteReview();">
 		            <button class="card bg-pattern userbtn">
 		            	<div class="card-btn">
-		                    <span class="text-muted mb-0">삭제하기</span>
-	                        <i class="fas fa-trash-alt text-danger h4 ml-3"></i>
+		                    <span>삭제하기</span>
+	                        <i class="fas fa-trash-alt text-danger"></i>
 	                   </div>
 		            </button>
 		        </div>
@@ -116,7 +133,7 @@ function turndown(){
 		            <div class="card">
 		                <div class="card-body">
 		                    <div class="table-responsive project-list">
-		                    <form action="" method="post" id="tableForm">
+		                    <form method="post" id="tableForm">
 		                        <table class="table project-table table-centered table-nowrap">
 		                            <thead>
 		                                <tr>
@@ -132,14 +149,34 @@ function turndown(){
 		                            <tbody>
 		                            <c:forEach items="${list }" var="i">
 		                                <tr>
-		                                    <th scope="row"><input type="checkbox" name="checkRow" value="${i.BLACKLIST_NO }"/></th>
-		                                    <th scope="row">${i.BLACKLIST_NO }</th>
+		                                    <th scope="row">
+		                                    	<c:if test="${i.BLACKLIST_STATE == '신고됨' }" >
+				                                    <input type="checkbox" name="checkRow" value="${i.BLACKLIST_NO }"/>
+		                                   		</c:if>
+		                                    	<c:if test="${i.BLACKLIST_STATE == '반려됨' }" >
+				                                    <input type="checkbox" disabled="disabled"/>
+		                                   		</c:if>
+		                                    	<c:if test="${i.BLACKLIST_STATE == '삭제됨' }" >
+				                                    <input type="checkbox" disabled="disabled""/>
+		                                   		</c:if>
+		                                    
+		                                    
+		                                    </th>
+		                                    <th scope="row">${i.NO }</th>
 		                                    <td>${i.REVIEW_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_DATE }</td>
 		                                    <td>${i.USER_ID }</td>
 		                                    <td>
+		                                    	<c:if test="${i.BLACKLIST_STATE == '신고됨' }" >
+		                                        <span class="text-primary font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${i.BLACKLIST_STATE }</span>
+		                                   		</c:if>
+		                                    	<c:if test="${i.BLACKLIST_STATE == '반려됨' }" >
 		                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${i.BLACKLIST_STATE }</span>
+		                                   		</c:if>
+		                                    	<c:if test="${i.BLACKLIST_STATE == '삭제됨' }" >
+		                                        <span class="text-danger font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${i.BLACKLIST_STATE }</span>
+		                                   		</c:if>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>
@@ -150,19 +187,7 @@ function turndown(){
 		                    </div>
 		                    <!-- end project-list -->
 		
-		                    <div class="pt-3">
-		                        <ul class="pagination justify-content-end mb-0">
-		                            <li class="page-item disabled">
-		                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-		                            </li>
-		                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-		                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                            <li class="page-item">
-		                                <a class="page-link" href="#">Next</a>
-		                            </li>
-		                        </ul>
-		                    </div>
+					<c:import url="/WEB-INF/paging/admin/blacklist/blacklistPaging.jsp" />
 		                </div>
 		            </div>
 		        </div>

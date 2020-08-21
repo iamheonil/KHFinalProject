@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/member")
@@ -25,6 +27,13 @@ public class MemberController {
         return "/member/login";
     }
 
+    @RequestMapping(value = "/loginImpl", method = RequestMethod.POST)
+    public String loginImpl() {
+        System.out.println("Login Post Call");
+
+        return "/member/login";
+    }
+
     @RequestMapping(value = "/join", method = RequestMethod.GET)
     public String join() {
         System.out.println("Join Call");
@@ -34,7 +43,7 @@ public class MemberController {
 
 
     @RequestMapping(value = "/joinImpl", method = RequestMethod.POST)
-    public ModelAndView joinEmail(@ModelAttribute Member member, HttpServletRequest req) {
+    public ModelAndView joinEmail(@ModelAttribute Member member, HttpServletRequest req, HttpServletResponse resp) {
 
         String root = req.getContextPath();
         ModelAndView mav = new ModelAndView();
@@ -42,9 +51,17 @@ public class MemberController {
         int res = memberService.insertMember(member);
 
         if(res < 0) {
-            req.getRequestDispatcher("/member/login");
+            try {
+                resp.sendRedirect("/join");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
-            req.getRequestDispatcher("/member/join");
+            try {
+                resp.sendRedirect("/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return mav;
