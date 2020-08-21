@@ -16,7 +16,7 @@
    <!-- 첫 페이지로 가기 -->
    <c:if test="${paging.curPage ne 1 }">
 <%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-   <li><a href="${pageContext.request.contextPath}/admin/notice/list?curPage=1">&laquo;</a></li>
+   <li><a href="${pageContext.request.contextPath}/admin/notice/search?curPage=1&keyword=${keyword}">&laquo;</a></li>
    </c:if>
    
    
@@ -32,7 +32,7 @@
    
    <!-- 이전 페이지로 가기 -->
    <c:if test="${paging.curPage ne 1 }">
-   <li><a href="${pageContext.request.contextPath}/admin/notice/list?curPage=${paging.curPage - 1 }">&lt;</a>
+   <li><a href="${pageContext.request.contextPath}/admin/notice/search?curPage=${paging.curPage - 1 }&keyword=${keyword}">&lt;</a>
    </c:if>
    
    
@@ -40,12 +40,12 @@
    
    <!-- 현재 페이지라면 강조(.active) -->
    <c:if test="${paging.curPage eq i }">
-   <li class="active"><a href="${pageContext.request.contextPath}/admin/notice/list?curPage=${i }">${i }</a></li>
+   <li class="active"><a href="${pageContext.request.contextPath}/admin/notice/search?curPage=${i }&keyword=${keyword}">${i }</a></li>
    </c:if>
    
    <!-- 현재 페이지가 아니라면 평소 모습-->
    <c:if test="${paging.curPage ne i }">
-   <li><a href="${pageContext.request.contextPath}/admin/notice/list?curPage=${i }">${i }</a></li>
+   <li><a href="${pageContext.request.contextPath}/admin/notice/search?curPage=${i }&keyword=${keyword}">${i }</a></li>
    </c:if>
 
    </c:forEach>
@@ -53,7 +53,7 @@
 
    <!-- 다음 페이지로 가기 -->
    <c:if test="${paging.curPage ne paging.totalPage}">
-   <li><a href="${pageContext.request.contextPath}/admin/notice/list?curPage=${paging.curPage + 1 }">&gt;</a>
+   <li><a href="${pageContext.request.contextPath}/admin/notice/search?curPage=${paging.curPage + 1 }&keyword=${keyword}">&gt;</a>
    </c:if>
    
 
@@ -69,7 +69,7 @@
 
     <!-- 마지막 페이지로 가기 -->
    <c:if test="${paging.curPage ne paging.totalPage }">
-   <li><a href="${pageContext.request.contextPath}/admin/notice/list?curPage=${paging.totalPage }">&raquo;</a></li>
+   <li><a href="${pageContext.request.contextPath}/admin/notice/search?curPage=${paging.totalPage }&keyword=${keyword}">&raquo;</a></li>
    </c:if>
    
 </ul>

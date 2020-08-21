@@ -8,7 +8,9 @@
 
 package com.privateplaylist.www.admin.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.privateplaylist.www.admin.board.service.NoticeService;
 import com.privateplaylist.www.dto.Notice;
 
+import common.util.Paging;
+
 @Controller
 @RequestMapping("/admin/notice")
 public class NoticeController {
@@ -32,14 +36,20 @@ public class NoticeController {
 	
 	//공지사항 정보 전체 조회
 	@RequestMapping("/list")
-	public String  noticeList(Model model) {
+	public String  noticeList(Model model,HttpServletRequest req) {
 //		System.out.println("/admin/notice/list");
 		
+		//요청 파라미터를 전달하여 paging 객체 생성하기
+		Paging paging = noticeService.noticeListPaging(req);
+				
 		//공지사항 정보 전체 조회 list
-		List<Notice> noticeList = noticeService.selectNoticeList();
+		List<Notice> noticeList = noticeService.selectNoticeList(paging);
 		
 		//모델값 전달
 		model.addAttribute("noticeList", noticeList);
+		
+		//페이징 결과 전달
+		model.addAttribute("paging", paging);
 		
 //		System.out.println(noticeList);
 		
@@ -160,15 +170,42 @@ public class NoticeController {
 	
 	//공지사항 글 제목 && 내용 키워드 검색
 	@RequestMapping("/search")
-	public String noticeSearch(Model model,@RequestParam String keyword) {
-		System.out.println("/admin/notice/search");
-		System.out.println("keyword"+keyword);
+	public String noticeSearch(Model model,@RequestParam String keyword,HttpServletRequest req) {
+//		System.out.println("/admin/notice/search");
+//		System.out.println("keyword"+keyword);
 		
+		//root context
+		String root = req.getContextPath();
+		
+		//요청 파라미터를 전달하여 paging 객체 생성하기
+		Paging paging = noticeService.noticeSearchPaging(req,keyword);
+		
+		//키워드와 페이징을 넣어줄 map
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		
+		searchMap.put("keyword", keyword);
+		searchMap.put("paging", paging);
+				
 		//글 검색하기
-//		int res = noticeService.deleteNotice(noticeNo);
+		List<Notice> noticeSearchList = noticeService.selectSearchNotice(searchMap);
 		
+		if(keyword.equals("")) {
+			model.addAttribute("alertMsg", "검색어를 입력해주세요");
+			model.addAttribute("url", root+"/admin/notice/list");
+
+			return "/admin/notice/error";
+			
+		}
+		
+		//모델값 전달
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("noticeSearchList", noticeSearchList);
+		
+		//페이징 결과 전달
+		model.addAttribute("paging", paging);
+				
 		//검색 완료
-		return "redirect:list";
+		return "/admin/notice/search";
 	}
 	
 	
