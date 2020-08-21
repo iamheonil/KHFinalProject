@@ -98,7 +98,6 @@ $(document).ready(function(){
 		history.go(-1);
 	});
 	
-	$("#noticeContent").val('${noticeone.noticeContent }');
 	
 });
 </script>
@@ -117,7 +116,7 @@ $(document).ready(function(){
 		<table id="noticeTable" class="table table-condensed text-center">
 			<tr>
 				<th>글제목</th>
-				<td><input style="width: 100%;" type="text" name="noticeTitle" required="required" value="${noticeone.noticeTitle }"/></td>
+				<td><input style="width: 100%;" type="text" name="noticeTitle" required="required" value="${noticeone.noticeTitle }" autofocus="autofocus"/></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">본문</th>
