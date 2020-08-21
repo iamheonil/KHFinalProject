@@ -21,6 +21,7 @@ public class LessonConfirmServiceImpl implements LessonConfirmService {
 	public List<Map<String, Object>> selectConfirmLesson() {
 		
 		List<Map<String, Object>> confirmList = lessonConfirmDao.selectConfirmLesson();
+		
 		return confirmList;
 	}
 

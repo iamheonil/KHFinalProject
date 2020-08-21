@@ -7,24 +7,27 @@
 
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <!-- 관리자 페이지 header -->   
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 
 
+
 <script>
-	function lessonDetail(){  
+function lessonDetail(LESSON_NO){                   
+
+	var no = LESSON_NO; 
+		
+//  	console.log("클릭됨: "+ no); 
+ 	
+	var url = "/detailView?lessonno="+no;
+	var name = "";
+	var option = "width=1200, height=800, top=100, left=100";
 	
-	// 모달
-	// 	    var url = "/dog/detailView?dogno="+dogno;
-	// 	    var name = "";
-	// 	    var option = "width = 1200, height = 800, top = 100, left = 100 "
-	// 	    window.open(url, name, option);
-	
-		var no = $('#lessonNo').val();
-	
-		console.log("클릭됨: "+ no);
-	}
+	window.open(url, name, option);
+
+} 
 </script>
 
 
@@ -35,6 +38,31 @@
 	#dataTable_info { float: left; }
 	#dataTable a:hover  { text-decoration: none; color: black; }
 	#dataTable tr:hover   { background: #f3f3f3cc; }
+	table th,td { text-align: center; }
+	table a:hover { cursor: pointer; }
+	
+	.button2 { /* 승인버튼 */
+		background-color: #17B794; 
+		border: none;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 12px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.button5 { /* 반려버튼 */
+		background-color: #555555;
+	    border: none;
+	    color: white;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 12px;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
 
 </style>
 
@@ -68,23 +96,22 @@
 	                                <thead>
 	                                    <tr>
 	                           				<th style="width: 10%">번호</th>
-											<th style="width: 50%">과외명</th>
+											<th style="width: 45%">과외명</th>
 											<th style="width: 15%">작성자</th>
 											<th style="width: 15%">작성일</th>
-											<th style="width: 10%">검토</th>
+											<th style="width: 15%">검토</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
-					                	<c:forEach items="${confirmList }" var="confirmList" >
-					                		<input type="hidden" value="${confirmList.LESSON_NO}" id="lessonNo"/>
+					                	<c:forEach items="${confirmList }" var="confirm" >
 											<tr>
-												<td>${confirmList.LESSON_NO}</td>
-												<td onclick="lessonDetail()">${confirmList.LESSON_TITLE}</td> 
-												<td>${confirmList.USER_ID}</td>
-												<td>${confirmList.LESSON_DATE}</td>
+												<td>${confirm.LESSON_NO}</td>
+												<td onclick="lessonDetail(${confirm.LESSON_NO});"><a>${confirm.LESSON_TITLE}</a></td> 
+												<td>${confirm.USER_ID}</td>
+												<td>${confirm.LESSON_DATE}</td>
 												<td>
-													<input type="button" value="승인">
-													<input type="button" value="반려">
+													<button id="admit" name="admit" class="button button2">승인</button>
+													<button id="deny" name="deny" class="button button5">반려</button>
 												</td>
 											</tr>
 										</c:forEach>

@@ -22,9 +22,9 @@ public class LessonConfirmController {
 	@RequestMapping("/confirm")
 	public String lessonConfirm(Model model){
 		
-//		System.out.println("컨펌 연결 테스트");
+//		System.out.println("confirm 연결 테스트");
 		
-		//과외 전체 조회
+		//검토할 과외 조회
 		List<Map<String, Object>> confirmList = lessonConfirmService.selectConfirmLesson();
 		
 		System.out.println(confirmList);
@@ -33,6 +33,15 @@ public class LessonConfirmController {
 		
 		return "/admin/lesson/lessonConfirm";
 	}
+	
+	
+	@RequestMapping("/detailView")
+	public String lessonDetail(Model model) {
+		
+		
+		return null;
+	}
+	
 	
 	
 }

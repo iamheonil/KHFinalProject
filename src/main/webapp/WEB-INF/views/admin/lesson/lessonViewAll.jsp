@@ -62,7 +62,7 @@
 					                	<c:forEach items="${lessonList }" var="lessonList" >
 											<tr>
 												<td>${lessonList.LESSON_NO}</td>
-												<td><a href="">${lessonList.LESSON_TITLE}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+												<td><a href="">${lessonList.LESSON_TITLE}</a></td>
 												<td>${lessonList.USER_ID}</td>
 												<td>${lessonList.LESSON_DATE}</td>
 												<c:if test="${lessonList.LESSON_CHK eq 1}">
