@@ -1,5 +1,6 @@
 package com.privateplaylist.www.admin.member.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class AdminMemberController {
 		Map<String, Object> commandMap = adminMemberService.selectStuList(cPage, cntPerPage);
 		
 		
-		//paging��ü�� paging�̶�� Ű�� ��Ƽ� ������.
 		mav.addObject("paging", commandMap.get("paging"));
 		mav.addObject("stuData", commandMap);
 		mav.setViewName("admin/member/stuList");
@@ -50,16 +50,39 @@ public class AdminMemberController {
 //		}
 		
 		ModelAndView mav = new ModelAndView();
-		Map<String, Object> commandMap = adminMemberService.selectQuestionList(userNo);
-//		Map<String, Object> commandMap2 = adminMemberService.selectStuReviewList(userNo);
-//		commandMap.putAll(commandMap2);
+		Map<String, Object> commandMap = adminMemberService.selectAllList(userNo);
 		
-		System.out.println("컨트롤러 commandMap : "+ commandMap);
+//		System.out.println("컨트롤러 commandMap : "+ commandMap);
+//		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
 		mav.addObject("stuData", commandMap);
 		mav.setViewName("admin/member/stuDetail");
 		
+		// 평점 옵션
+		Map<Integer, String> ratingOptions = new HashMap<>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		mav.addObject("ratingOptions", ratingOptions);
+		
 		return mav;
 	}
+	
+//    @RequestMapping("/tchlist")
+//    public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int cPage) {
+//        
+//    	ModelAndView mav = new ModelAndView();
+//		int cntPerPage = 10;
+//		Map<String, Object> commandMap = adminMemberService.selectStuList(cPage, cntPerPage);
+//		
+//		
+//		mav.addObject("paging", commandMap.get("paging"));
+//		mav.addObject("stuData", commandMap);
+//		mav.setViewName("admin/member/tchList");
+//		return mav;
+//    }
 	
 
 
