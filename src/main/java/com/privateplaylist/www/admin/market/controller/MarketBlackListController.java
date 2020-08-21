@@ -1,4 +1,4 @@
-package com.privateplaylist.www.admin.board.controller;
+package com.privateplaylist.www.admin.market.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -17,18 +17,17 @@ import common.util.Paging;
 
 @Controller
 @RequestMapping("/admin")
-public class BlackListController {
+public class MarketBlackListController {
 	
 	@Autowired
 	private BlackListService blackListService;
 	
-	@RequestMapping("/blacklist")
+	@RequestMapping("/market/blacklist")
 	public ModelAndView blackList(@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		// 페이징 처리위한 객체
-<<<<<<< HEAD
 		Paging paging = blackListService.getPagingBlack(curPage, search);
 		
 		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging);
@@ -40,26 +39,17 @@ public class BlackListController {
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
 		mav.setViewName("admin/blackList/blackList");
-=======
-		Paging paging = blackListService.getPagingBlack(curPage);
-		
-		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging);
-		mav.addObject("list", list);
-		mav.addObject("paging", paging);
-		mav.setViewName("admin/blackList");
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
 		return mav;
 	}
 	
 	
 	
 	
-	@RequestMapping("/blacklist/turndown")
+	@RequestMapping("/market/blacklist/turndown")
 	public ModelAndView turndown(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
 		
-<<<<<<< HEAD
 		if( req.getParameterValues("checkRow") == null ) {
 			
 			mav.addObject("msg", "1개 이상 선택해주십시오");
@@ -68,20 +58,16 @@ public class BlackListController {
 			
 			return mav;
 		}
-=======
-		
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
 		blackListService.turndown(req);
 		
 		mav.setViewName("redirect:/admin/blacklist");
 		return mav;
 	}
 
-	@RequestMapping("/blacklist/deletereview")
+	@RequestMapping("/market/blacklist/deletereview")
 	public ModelAndView deleteReview(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
-<<<<<<< HEAD
 		if( req.getParameterValues("checkRow") == null ) {
 			
 			mav.addObject("msg", "1개 이상 선택해주십시오");
@@ -90,8 +76,6 @@ public class BlackListController {
 			
 			return mav;
 		}
-=======
->>>>>>> 0ba5af114f2dafa422c7da0e026308c87258d3b2
 		
 		blackListService.deleteReview(req);
 		
