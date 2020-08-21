@@ -103,7 +103,7 @@
 		<th colspan="3">내용</th>
 	</tr>
 	<tr>
-		<td>${noticeone.noticeContent }</td>
+		<td colspan="3">${noticeone.noticeContent }</td>
 	</tr>
 	</table>
 	
