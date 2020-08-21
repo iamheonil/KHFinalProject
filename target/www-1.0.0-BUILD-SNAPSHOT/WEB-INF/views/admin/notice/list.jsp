@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- 관리자 페이지 header -->   
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
@@ -51,6 +52,23 @@
 	text-decoration: none;
 	color: black;
 }
+
+.txt_line_content { 
+	width:600px; 
+	padding:0 5px; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	white-space:nowrap;  
+}
+
+.txt_line_title { 
+	width:200px; 
+	padding:0 5px; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	white-space:nowrap; 
+}
+
 </style>
 
 <script type="text/javascript">
@@ -64,6 +82,20 @@ function checkAll(){
 }
 </script> 
 
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	//삭제버튼 동작
+	$("#deletebtn").click(function(){
+		
+		//실제 <form>의 submit 수행
+		$("#checkboxlist").submit();
+		
+	});
+	
+});
+</script>
+
     <div id="title">게시판
     	<i class="fas fa-angle-right"></i>
     	<a href="<%=request.getContextPath()  %>/admin/notice/list">공지사항 </a>
@@ -73,12 +105,12 @@ function checkAll(){
  
  	<!-- 제목 검색 -->
 	<div id="serchbox" >
-	<form action="${pageContext.request.contextPath}/admin/artsales/search" method="post">
+	<form action="${pageContext.request.contextPath}/admin/notice/search" method="post">
 	
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="artid">
+	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="submit">Search</button>
 	      </span>
@@ -94,11 +126,13 @@ function checkAll(){
 	
 	<div id="divbtn">
 		<a href="${pageContext.request.contextPath}/admin/notice/write" class="anone"><button type="button" class="btn btn-default" id="writebtn">글쓰기</button></a>
-		<a href="${pageContext.request.contextPath}/admin/notice/delete" class="anone"><button type="button" class="btn btn-default" id="deletebtn">삭제</button></a>
+		<button type="button" class="btn btn-default" id="deletebtn">삭제</button>
 	</div> 
 	</div>
  
- 
+ 	<!-- 체크박스 리스트 전송 -->
+ 	<form action="${pageContext.request.contextPath}/admin/notice/chodeletecho" method="post" id="checkboxlist">
+ 	
 	<!-- 공지사항 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
 	<caption  class="captionstyle">공지사항</caption>  
@@ -124,15 +158,20 @@ function checkAll(){
 	<!-- 값 출력 -->
 	<c:forEach items="${noticeList }" var="notice" >
 	<tr>
-	    <td><input type="checkbox" name="checkRow" value="${notice.noticeNo}" /></td>
+	    <td><input type="checkbox" name="checkRow" value="${notice.noticeNo}" id="checkRow"/></td>
 		<td>${notice.noticeNo }</td>
-		<td><a href="${pageContext.request.contextPath}/admin/notice/detail?noticeNo=${notice.noticeNo}" class="anone">${notice.noticeTitle }</a></td>
-		<td>${notice.noticeContent }</td>
+		<td>
+			<div class="txt_line_title">
+				<a href="${pageContext.request.contextPath}/admin/notice/detail?noticeNo=${notice.noticeNo}" class="anone">${notice.noticeTitle }</a>
+			</div>
+		</td>
+		<td><div class="txt_line_content">${notice.noticeContent }</div></td>
 		<td>${notice.noticeDate }</td>
 <%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
 	</tr>
 	</c:forEach>
 	</table>
+	</form>
 	
 	<!-- 페이징 -->
 	<div class="pagingstyle">
