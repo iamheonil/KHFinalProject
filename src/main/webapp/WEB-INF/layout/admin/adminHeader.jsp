@@ -49,17 +49,17 @@
                         <div class="nav">
                         
                             <div class="sb-sidenav-menu-heading">과외</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/lesson/view">
                               	 과외 조회
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/lesson/confirm">
                                	 과외 검토
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                             
                             <div class="sb-sidenav-menu-heading">회원</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/stuList">
                               	 학생 관리
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
@@ -97,14 +97,11 @@
                             </a>
                             
                             <div class="sb-sidenav-menu-heading">중고장터</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/market">
                                	중고장터 조회/삭제
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
-                               	신고 내역 관리
-                               	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
-                            </a>
+                            
                             <a class="nav-link"></a> <!-- 사이드바 맨아래 공백 한칸 위해 추가함 -->
                         </div>
                     </div>
