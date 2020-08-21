@@ -23,8 +23,8 @@ public class BlackListDao {
 	}
 
 	// 모든 신고 내역 수
-	public int selectCntAllBlack() {
-		int totalCnt = sqlSession.selectOne(namespace + "selectAllCntBlack");
+	public int selectCntAllBlack(String search) {
+		int totalCnt = sqlSession.selectOne(namespace + "selectAllCntBlack", search);
 		return totalCnt;
 	}
 
@@ -56,6 +56,10 @@ public class BlackListDao {
 	 */
 	public void deleteReview(int reviewNo) {
 		sqlSession.update(namespace + "deleteReview", reviewNo);
+	}
+
+	public int selectReportCnt() {
+		return sqlSession.selectOne(namespace + "selectReportCnt");
 	}
 	
 }

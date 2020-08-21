@@ -1,4 +1,4 @@
-package com.privateplaylist.www.admin.board.controller;
+package com.privateplaylist.www.admin.market.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -17,12 +17,12 @@ import common.util.Paging;
 
 @Controller
 @RequestMapping("/admin")
-public class BlackListController {
+public class MarketBlackListController {
 	
 	@Autowired
 	private BlackListService blackListService;
 	
-	@RequestMapping("/blacklist")
+	@RequestMapping("/market/blacklist")
 	public ModelAndView blackList(@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -45,7 +45,7 @@ public class BlackListController {
 	
 	
 	
-	@RequestMapping("/blacklist/turndown")
+	@RequestMapping("/market/blacklist/turndown")
 	public ModelAndView turndown(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -64,7 +64,7 @@ public class BlackListController {
 		return mav;
 	}
 
-	@RequestMapping("/blacklist/deletereview")
+	@RequestMapping("/market/blacklist/deletereview")
 	public ModelAndView deleteReview(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
