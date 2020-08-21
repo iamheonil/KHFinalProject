@@ -65,23 +65,26 @@
 												<td><a href="">${lessonList.LESSON_TITLE}</a></td>
 												<td>${lessonList.USER_ID}</td>
 												<td>${lessonList.LESSON_DATE}</td>
-												<c:if test="${lessonList.LESSON_CHK eq 1}">
-													<td>Y</td>
-												</c:if>
 												<c:if test="${lessonList.LESSON_CHK eq 0}">
+													<td>미검토</td>
+												</c:if>
+												<c:if test="${lessonList.LESSON_CHK eq 1}">
+													<td>승인</td>
+												</c:if>
+												<c:if test="${lessonList.LESSON_CHK eq 2}">
+													<td>반려</td>
+												</c:if>
+												<c:if test="${lessonList.PAY_STATE eq 0}">
 													<td>N</td>
 												</c:if>
 												<c:if test="${lessonList.PAY_STATE eq 1}">
 													<td>Y</td>
 												</c:if>
-												<c:if test="${lessonList.PAY_STATE eq 0}">
+												<c:if test="${lessonList.LESSON_STATE eq 0}">
 													<td>N</td>
 												</c:if>
 												<c:if test="${lessonList.LESSON_STATE eq 1}">
 													<td>Y</td>
-												</c:if>
-												<c:if test="${lessonList.LESSON_STATE eq 0}">
-													<td>N</td>
 												</c:if>
 											</tr>
 										</c:forEach>

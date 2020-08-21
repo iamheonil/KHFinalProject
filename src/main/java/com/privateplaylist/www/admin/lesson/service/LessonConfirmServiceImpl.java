@@ -20,9 +20,30 @@ public class LessonConfirmServiceImpl implements LessonConfirmService {
 	@Override
 	public List<Map<String, Object>> selectConfirmLesson() {
 		
-		List<Map<String, Object>> confirmList = lessonConfirmDao.selectConfirmLesson();
+		return lessonConfirmDao.selectConfirmLesson();
+	}
+	
+
+	//과외 상세 조회
+	@Override
+	public Map<String, Object> selectLessonDetail(int no) {
 		
-		return confirmList;
+		return lessonConfirmDao.selectLessonDetail(no);
+	}
+
+
+	//과외 승인
+	@Override
+	public int updateLessonStateAdmit(int no) {
+
+		return lessonConfirmDao.updateLessonStateAdmit(no);
+	}
+
+
+	@Override
+	public int updateLessonStateDeny(int no) {
+		
+		return lessonConfirmDao.updateLessonStateDeny(no);
 	}
 
 }

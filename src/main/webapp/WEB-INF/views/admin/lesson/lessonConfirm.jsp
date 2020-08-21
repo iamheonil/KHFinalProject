@@ -6,7 +6,8 @@
     pageEncoding="UTF-8"%>
 
     
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+  
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <!-- 관리자 페이지 header -->   
@@ -14,22 +15,60 @@
 
 
 
-<script>
+<script type="text/javascript">
+
 function lessonDetail(LESSON_NO){                   
 
 	var no = LESSON_NO; 
 		
 //  	console.log("클릭됨: "+ no); 
  	
-	var url = "/detailView?lessonno="+no;
-	var name = "";
-	var option = "width=1200, height=800, top=100, left=100";
+	var url = "${pageContext.request.contextPath}/admin/lesson/confirm/detail?no="+no;
+	var name = "lessonDetail";
+	var option = "width=1000, height=600, top=100, left=100";
 	
 	window.open(url, name, option);
 
-} 
+}
+
+/* 승인버튼 클릭 */
+function admitClick(LESSON_NO){
+	
+	var no = LESSON_NO; 
+	
+	$(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/confirm/admit?no="+no);
+	
+}
+
+/* 반려버튼 클릭 */
+function denyClick(LESSON_NO){
+	
+	var no = LESSON_NO; 
+	
+	$(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/confirm/deny?no="+no);
+	
+}
+
+
 </script>
 
+
+
+<script type="text/javascript">
+
+// $(document).ready(function() {
+	
+// 	//승인버튼 클릭
+// 	$("#admit").click(function(LESSON_NO) {
+		
+// 		$(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/confirm/admit?no="+no);
+		
+// 	})
+
+
+// })
+
+</script>
 
 
 <style type="text/css">
@@ -110,8 +149,8 @@ function lessonDetail(LESSON_NO){
 												<td>${confirm.USER_ID}</td>
 												<td>${confirm.LESSON_DATE}</td>
 												<td>
-													<button id="admit" name="admit" class="button button2">승인</button>
-													<button id="deny" name="deny" class="button button5">반려</button>
+													<button onclick="admitClick(${confirm.LESSON_NO});" id="admit" name="admit" class="button button2">승인</button>
+													<button onclick="denyClick(${confirm.LESSON_NO});"id="deny" name="deny" class="button button5">반려</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -124,6 +163,25 @@ function lessonDetail(LESSON_NO){
                 </div>  
                 
             </c:if>
+            
+            
+<!-- 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 				<div class="modal-dialog"> -->
+<!-- 					<div class="modal-content"> -->
+<!-- 						<div class="modal-header"> -->
+<!-- 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+<!-- 							<h4 class="modal-title" id="myModalLabel">개인정보 처리방침</h4> -->
+<!-- 						</div> -->
+<!-- 							<div class="modal-body"> -->
+<%-- 							<c:import url="/WEB-INF/views/main/footer/privacypolicy.jsp"></c:import>  --%>
+<!-- 						</div> -->
+<!-- 							<div class="modal-footer"> -->
+<!-- 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+            
             
              
 	    </div>
