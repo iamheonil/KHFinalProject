@@ -15,6 +15,7 @@
 	
 	</select>
 
+
 	<!-- 검토할 과외 조회 -->
 	<select id="selectConfirmLesson" resultType="map">
 	
@@ -23,6 +24,43 @@
 		where l.user_no = m.user_no and l.lesson_chk = 0
 	
 	</select>
+	
+	
+	<!-- 과외 상세 조회 -->
+	<select id="selectLessonDetail" parameterType="int" resultType="map">
+		
+		select 
+			l.lesson_no, l.lesson_title, l.lesson_content, m.user_id, 
+			l.lesson_date,lesson_loc, lesson_subject, lesson_price, lesson_age
+		from 
+			find_lesson l, membership m
+		where 
+			l.user_no = m.user_no 
+			and l.lesson_chk = 0 
+			and l.lesson_no = #{no}
+		
+	</select>
+	
+	
+	<!-- 과외 승인 -->
+	<update id="updateLessonStateAdmit" parameterType="int" >
+	
+		update find_lesson 
+		set lesson_chk = 1
+		where lesson_no = #{no}
+	
+	</update>
+	
+	
+	<!-- 과외 반려 -->
+	<update id="updateLessonStateDeny" parameterType="int" >
+
+		update find_lesson 
+		set lesson_chk = 2
+		where lesson_no = #{no}
+	
+	</update>
+	
 
 
 </mapper>

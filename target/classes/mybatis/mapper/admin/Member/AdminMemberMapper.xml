@@ -6,8 +6,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Member">
+<!-- 	<resultMap type="REVIEW" id="review"> -->
+<!-- 		<id column="review_no" property="reviewNo" /> -->
+<!-- 		<result column="review_content" property="reviewContent" /> -->
+<!-- 		<result column="user_no" property="userNo" /> -->
+<!-- 		<result column="conn_lesson_no" property="connLessonNo" /> -->
+<!-- 		<result column="review_date" property="reviewDate" /> -->
+<!-- 		<result column="star_point" property="starPoint" /> -->
+<!-- 		<association javaType="MEMBERSHIP" property="member"> -->
+<!-- 			<id column="user_no" property="userNo"/> -->
+<!-- 		</association> -->
+<!-- 	</resultMap> -->
 
+<!-- 	<resultMap type="REVIEW" id="review"> -->
+		
+		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다. 
+			association => 1 : 1 관계 
+			collection => 1 : 다 관계 (한명의 유저가 작성한 글 목록)
+			일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용
+		-->
+<!-- 		<association javaType="MEMBERSHIP" property="member"/> -->
+<!-- 		<collection resultMap="MEMBERSHIP" property="member"/> -->
+<!-- 	</resultMap> -->
 
+	
 	<select id="selectStuCnt" resultType="int">
 		SELECT count(*) FROM Membership
 		WHERE user_actor = 2
@@ -25,11 +47,23 @@
 		SELECT * FROM question
 		WHERE user_no = #{userNo}
 	</select>
-	<select id="selectStuReviewList" resultType="REVIEW">
-		SELECT * FROM REVIEW
-		WHERE user_no = #{userNo}
+	<select id="selectStuReviewList" resultType="Map">
+<!-- 		select * from review r -->
+<!-- 		join membership m on m.user_no = r.user_no -->
+<!-- 		WHERE m.user_no = #{userNo} -->
+		select r.*,
+		    (select distinct m.user_id from review r, membership m where r.user_no = m.user_no and m.user_no = #{userNo}) stu_id
+		, cl.user_to, m.user_name
+		from review r, connected_lesson cl, membership m
+		where r.conn_lesson_no = cl.conn_lesson_no 
+		    and cl.user_to = m.user_no
+		    and r.user_no = #{userNo}
+		order by r.review_no
 	</select>
-
+	<select id="selectStuMarketList" resultType="MARKET">
+		SELECT * FROM Market
+		WHERE mk_writer = #{userNo}
+	</select>
 
 
 
