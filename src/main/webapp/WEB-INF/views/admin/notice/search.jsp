@@ -17,11 +17,11 @@
 }
 
 #writebtn{
-	color: #17B794;
+/* 	color: #17B794; */
 }
 
 #deletebtn{
-	color: red;
+/* 	color: red; */
 }
 
  #divbtn{ 
@@ -142,7 +142,7 @@ $(document).ready(function(){
 	</c:if>
 	
 	<!-- 테이블 th -->
-	<tr style="background: #17B794;" >
+	<tr>
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">제목</th>
@@ -153,7 +153,7 @@ $(document).ready(function(){
 	<!-- 검색 결과가 없을 때  -->
 	<c:if  var="noticernone" test="${empty noticeSearchList }">
 	<tr>
-	<td colspan="8" style="color:  #17B794; font-weight: bold;">검색 결과가  없습니다</td>
+	<td colspan="8" style="font-weight: bold;">검색 결과가  없습니다</td>
 	</tr>
 	</table>
 	</c:if>
