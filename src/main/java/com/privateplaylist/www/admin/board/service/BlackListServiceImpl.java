@@ -52,32 +52,21 @@ public class BlackListServiceImpl implements BlackListService {
 
 
 	@Override
-	public void turndown(HttpServletRequest req) {
-		String[] arr = req.getParameterValues("checkRow");
+	public void turndown(List<Integer> list) {
 		
-		for( String no : arr ) {
-			if( no!=null && !"".equals(no)) {
-				int blacklistNo = Integer.parseInt(no);
-				blackListDao.updateBlacklistTurndown(blacklistNo);
-			}
-			
+		for( int no : list ) {
+			blackListDao.updateBlacklistTurndown(no);
 		}
 		
 	}
 
 	@Override
-	public void deleteReview(HttpServletRequest req) {
+	public void deleteReview(List<Integer> list) {
 		
-		String[] arr = req.getParameterValues("checkRow");
-		
-		for( String no : arr ) {
-			if( no!=null && !"".equals(no)) {
-				int blacklistNo = Integer.parseInt(no);
-				blackListDao.updateBlacklistDelete(blacklistNo);
-				int reviewNo = blackListDao.selectReviewByBN(blacklistNo);
-				blackListDao.deleteReview(reviewNo);
-			}
-			
+		for( int no : list ) {
+			blackListDao.updateBlacklistDelete(no);
+			int reviewNo = blackListDao.selectReviewByBN(no);
+			blackListDao.deleteReview(reviewNo);
 		}
 		
 	}

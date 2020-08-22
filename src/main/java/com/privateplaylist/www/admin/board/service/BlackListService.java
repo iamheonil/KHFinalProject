@@ -21,15 +21,15 @@ public interface BlackListService {
 
 	/**
 	 * 신고 반려
-	 * @param req
+	 * @param list
 	 */
-	public void turndown(HttpServletRequest req);
+	public void turndown(List<Integer> list);
 
 	/**
 	 * 신고 게시글 삭제
-	 * @param req
+	 * @param list
 	 */
-	public void deleteReview(HttpServletRequest req);
+	public void deleteReview(List<Integer> list);
 
 	/**
 	 * 신고된 상태 개수

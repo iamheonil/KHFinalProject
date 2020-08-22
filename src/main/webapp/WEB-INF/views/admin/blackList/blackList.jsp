@@ -5,6 +5,11 @@
 <!-- 관리자 페이지 header -->   
 
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+
 <script type="text/javascript">
 /* 체크박스 전체선택, 전체해제 */
 function checkAll(){
@@ -15,17 +20,87 @@ function checkAll(){
       }
 }
 
-// 반려하기 버튼 클릭
 function turndown(){
+// 반려하기 버튼 클릭
 	
-// 	console.log($("input[name=checkRow]"));
+	// check값넣을 리스트
+	var list = []
 	
-	$("#tableForm").attr("action", "<%=request.getContextPath() %>/admin/blacklist/turndown");
-	$("#tableForm").submit();
+	$("input[name='checkRow']:checked").each(function(){
+		// 리스트에 값 넣어주기
+		list.push($(this).val())
+	})
+	
+	console.log(list)
+	// 제출할 url  지정
+	var url = "<%=request.getContextPath() %>/admin/blacklist/turndown";
+	
+	// 비동기 처리
+	$.ajax({
+		type : "POST",
+		url: url,
+		data: {list: list},
+		success : function(result) {
+			
+			if (result == 1) {
+				
+				$("#checkMessage").html("신고가 반려되었습니다<br><br><br>");
+				$("#checkType").attr("class","modal-content panel-success");
+				$("#checkModal").modal();
+				
+			}else{
+				$("#checkMessage").html("1개 이상 선택해주십시오<br><br><br>");
+				$("#checkType").attr("class","modal-content panel-warning");
+				
+			}
+			$("#checkModal").modal();
+			
+		}
+	
+	});
 }
 function deleteReview(){
-	$("#tableForm").attr("action", "<%=request.getContextPath() %>/admin/blacklist/deletereview");
-	$("#tableForm").submit();
+	// 삭제 버튼 클릭
+	
+	// check값넣을 리스트
+	var list = []
+	
+	$("input[name='checkRow']:checked").each(function(){
+		// 리스트에 값 넣어주기
+		list.push($(this).val())
+	})
+	
+	console.log(list)
+	// 제출할 url  지정
+	var url = "<%=request.getContextPath() %>/admin/blacklist/deletereview";
+	
+	// 비동기 처리
+	$.ajax({
+		type : "POST",
+		url: url,
+		data: {list: list},
+		success : function(result) {
+			
+			if (result == 1) {
+				
+				$("#checkMessage").html("신고된 게시글이 삭제되었습니다.<br><br><br>");
+				$("#checkType").attr("class","modal-content panel-success");
+				$("#checkModal").modal();
+				
+			}else{
+				$("#checkMessage").html("1개 이상 선택해주십시오<br><br><br>");
+				$("#checkType").attr("class","modal-content panel-warning");
+				
+			}
+			$("#checkModal").modal();
+			
+		}
+	
+	});
+}
+
+function reload(){
+	location.reload();
 }
 
 // 체크박스 하나라도 체크 해제하면 전체 선택 박스 해제
@@ -64,18 +139,16 @@ $(document).ready(function(){
 }
  #divbtn{ 
     padding: 10px; 
-    float: left;
 } 
 
 #searchForm{
-	float: right;
-}
-
-#searchForm input{
-	width: 300px;
+	width: 500px;
+	margin: 80px auto 50px;
 }
 #content{
 	height: 700px;
+	width: 1140px;
+	margin: 0 auto;
 }
 
 #returnBtn{
@@ -94,14 +167,25 @@ $(document).ready(function(){
 	font-size: 14px;
 }
 
-</style>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+.StateTurndown{
+	font-size: 10px;
+	border-radius: 2px;
+	color: white;
+	background-color: #aaa;
+	font-weight: bold; 
+	padding: 0 5px;
+}
+.StateReport{
+	font-size: 10px;
+	border-radius: 2px;
+	color: white;
+	background-color: #1E90FF;
+	font-weight: bold; 
+	padding: 0 5px;
+}
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+</style>
+
             
 <div id="title">후기 게시판 
 	<i class="fas fa-angle-right"></i>
@@ -109,39 +193,59 @@ $(document).ready(function(){
 </div>
 
 <main>
+	<!-- 삭제되었는지 모달띄우기  -->
+
+	<div class="modal fade" id="checkModal" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<div class="modal-content panel-info" id="checkType">
+					<div class="modal-header panel heading">
+						<h4 class="modal-title">확인 메시지</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times</span> <span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body" id="checkMessage"
+						style="text-align: center;"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn primary" data-dismiss="modal"
+							onclick="reload();">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     
     <div id="content">
-
-<!-- 		<div class="container"> -->
-	    <div class="row">
-               <h3 class="text-right">신청된 신고 >> <span>${blackCnt }</span></h3>
-	    </div>
-	    <!-- end row -->
-	            
-	        <div id="footerbtn">
-				<div id="divbtn">
-					<button onclick="turndown();" type="button" class="btn btn-default" id="returnBtn">반려</button>
-					<button onclick="deleteReview();" type="button" class="btn btn-default" id="deleteBtn">삭제</button>
-				</div> 
-				<div id="searchForm">
+   			 <div id="searchForm">
 	                <form action="/ss/admin/blacklist" method="get">
 	                       <div class="input-group mb-0">
-	                           <input type="text" value="${search }" name="search" class="form-control" placeholder="Search..." aria-describedby="project-search-addon" />
+	                           <input type="text" value="${search }" name="search" class="form-control" placeholder="신고글" aria-describedby="project-search-addon" />
 	                           <div class="input-group-append">
 	                               <button class="btn" type="submit" id="project-search-addon"><i class="fa fa-search search-icon font-12"></i></button>
 	                           </div>
 	                       </div>
 	                </form>
-                </div>
-			</div>
-			<div class="clearfix" ></div>
+             </div>
+                
+
 		    <div class="row">
 		        <div class="col-lg-12">
 		            <div class="card">
 		                <div class="card-body">
 		                    <div class="table-responsive project-list">
+		                    <div class="text-left">
+		                    <span style="font-weight: bold">신청된 신고 : ${blackCnt } 개</span>
+		                   	<div id="footerbtn">
+								<div id="divbtn">
+									<button onclick="turndown();" type="button" class="btn btn-success" id="returnBtn">반려</button>
+									<button onclick="deleteReview();" type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
+								</div> 
+		                    </div>
+							</div>
 		                    <form method="post" id="tableForm">
-		                        <table class="table project-table table-centered table-nowrap">
+		                        <table class="table project-table table-centered table-nowrap table-hover">
 		                            <thead>
 		                                <tr>
 		                                    <th  style="text-align: center" scope="col"><input type="checkbox" id="th_checkAll"  onclick="checkAll();" /></th>
@@ -176,13 +280,10 @@ $(document).ready(function(){
 		                                    <td>${i.USER_ID }</td>
 		                                    <td>
 		                                    	<c:if test="${i.BLACKLIST_STATE == '신고됨' }" >
-		                                        <span class="text-primary font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${i.BLACKLIST_STATE }</span>
+		                                        <span class="StateReport">${i.BLACKLIST_STATE }</span>
 		                                   		</c:if>
 		                                    	<c:if test="${i.BLACKLIST_STATE == '반려됨' }" >
-		                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${i.BLACKLIST_STATE }</span>
-		                                   		</c:if>
-		                                    	<c:if test="${i.BLACKLIST_STATE == '삭제됨' }" >
-		                                        <span class="text-danger font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${i.BLACKLIST_STATE }</span>
+		                                        <span class="StateTurndown">${i.BLACKLIST_STATE }</span>
 		                                   		</c:if>
 		                                    </td>
 		                                </tr>

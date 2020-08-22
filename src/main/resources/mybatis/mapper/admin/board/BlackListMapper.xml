@@ -57,6 +57,7 @@
   		SET review_state = 1
   		WHERE review_no = #{reviewNo}
   	</update>
+  	
   	<select id="selectReportCnt" resultType="int">
      	select count(*) from (SELECT * FROM blacklist b
         INNER JOIN review r
