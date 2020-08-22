@@ -569,7 +569,6 @@ document.ready(function(){
 
 
 
-<div id="layoutSidenav_content">
 
 	<div id="title">
 		과외 <i class="fas fa-angle-right"></i> <a href="#">중고장터 조회/삭제</a>

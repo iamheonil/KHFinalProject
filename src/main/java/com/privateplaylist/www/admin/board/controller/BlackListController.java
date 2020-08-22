@@ -49,7 +49,6 @@ public class BlackListController {
 	public ModelAndView turndown(HttpServletRequest req) {
 		
 		ModelAndView mav = new ModelAndView();
-		
 		if( req.getParameterValues("checkRow") == null ) {
 			
 			mav.addObject("msg", "1개 이상 선택해주십시오");
