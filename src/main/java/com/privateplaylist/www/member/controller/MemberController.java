@@ -1,87 +1,116 @@
 package com.privateplaylist.www.member.controller;
 
-import com.privateplaylist.www.member.service.MemberService;
-import com.privateplaylist.www.member.vo.Member;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.List;
-import java.util.Random;
+import com.privateplaylist.www.member.service.MemberService;
+import com.privateplaylist.www.member.vo.Member;
+
+import common.exception.MailException;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
-    @Autowired
-    public MemberService memberService;
+	@Autowired
+	public MemberService memberService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        System.out.println("Login Call");
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		System.out.println("Login Call");
 
-        return "/member/login";
-    }
+		return "/member/login";
+	}
 
-    @RequestMapping(value = "/loginImpl", method = RequestMethod.POST)
-    public String loginImpl() {
-        System.out.println("Login Post Call");
+	@RequestMapping(value = "/loginImpl", method = RequestMethod.POST)
+	public ModelAndView loginImpl(@RequestParam Map<String, Object> memberMap, HttpSession session, HttpServletRequest request) {
+		System.out.println("Login Post Call");
 
-        return "/member/login";
-    }
+		ModelAndView mav = new ModelAndView();
+		Member res = memberService.selectMember(memberMap);
+		
+		if (res != null) {
+			session.setAttribute("loginUser", res);
+			// 로그인 성공
+			mav.addObject("url", request.getContextPath() + "/main/index");
+			mav.setViewName("/main/index");
+			System.out.println("로그인 성공");
+		} else {
+			// 로그인 실패
+			mav.addObject("url", request.getContextPath() + "/member/login.do");
+			mav.setViewName("/member/login");
+			System.out.println("로그인 실패");
+		}
 
-    @RequestMapping(value = "/join", method = RequestMethod.GET)
-    public String join() {
-        System.out.println("Join Call");
+		return mav;
+	}
 
-        ModelAndView mav = new ModelAndView();
-        int ran = new Random().nextInt(900000) + 100000;
-        mav.addObject("random", ran);
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join() {
+		System.out.println("Join Call");
 
-        return "/member/join";
-    }
+		return "/member/join";
+	}
 
+	@RequestMapping(value = "/joinImpl", method = RequestMethod.POST)
+	public ModelAndView joinEmail(@RequestParam List<MultipartFile> files, @ModelAttribute Member member,
+			HttpServletRequest req) {
 
-    @RequestMapping(value = "/joinImpl", method = RequestMethod.POST)
-    public ModelAndView joinEmail(@RequestParam List<MultipartFile> files, @ModelAttribute Member member, HttpSession session) {
+		String root = req.getContextPath();
+		ModelAndView mav = new ModelAndView();
 
-        String root = session.getServletContext().getRealPath("/");
+		int res = memberService.insertMember(member);
 
-        ModelAndView mav = new ModelAndView();
+		if (res < 0) {
+			System.out.println("회원가입 실패");
+			mav.setViewName("/member/join");
+		} else {
+			System.out.println("회원가입 성공");
+			mav.setViewName("/member/login");
+		}
+		return mav;
+	}
 
-        int res = memberService.insertMember(member);
+	@RequestMapping("/joinemail")
+	public ModelAndView joinEmailCheck(Member member, HttpServletRequest request) throws MailException {
 
-        if(res < 0) {
-            System.out.println("회원가입 실패");
-            mav.setViewName("/member/join");
-        } else {
-            System.out.println("회원가입 성공");
-            mav.setViewName("/member/login");
-        }
+		ModelAndView mav = new ModelAndView();
+		String urlPath = request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
-        return mav;
-    }
+		memberService.mailSending(member, urlPath);
 
-    @RequestMapping("/idcheck")
-    @ResponseBody
-    public String idCheck(String userId) {
-        System.out.println(userId);
+		System.out.println("메일 발송 성공");
+		mav.setViewName("/member/login");
 
-        int res = memberService.selectId(userId);
+		return mav;
+	}
 
-        if(res > 0) {
-            return userId;
-        } else {
-            return "";
-        }
+	@RequestMapping("/idcheck")
+	@ResponseBody
+	public String idCheck(String userId) {
+		System.out.println(userId);
 
-    }
+		int res = memberService.selectId(userId);
 
+		if (res > 0) {
+			return userId;
+		} else {
+			return "";
+		}
+
+	}
 
 }
