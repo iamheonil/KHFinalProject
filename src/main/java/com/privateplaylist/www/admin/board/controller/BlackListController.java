@@ -24,14 +24,14 @@ public class BlackListController {
 	private BlackListService blackListService;
 	
 	@RequestMapping("/blacklist")
-	public ModelAndView blackList(@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
+	public ModelAndView blackList(@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		// 페이징 처리위한 객체
-		Paging paging = blackListService.getPagingBlack(curPage, search);
+		Paging paging = blackListService.getPagingBlack(curPage, category ,search);
 		
-		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging);
+		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging, category);
 		
 		int blackCnt = blackListService.selectReportCnt();
 		
@@ -43,9 +43,7 @@ public class BlackListController {
 		return mav;
 	}
 	
-	
-	
-	
+
 	@RequestMapping("/blacklist/turndown")
 	@ResponseBody
 	public String turndown(@RequestParam(value="list[]", required = false) List<Integer> list) {

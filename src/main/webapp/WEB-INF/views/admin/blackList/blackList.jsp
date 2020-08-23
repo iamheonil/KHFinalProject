@@ -221,7 +221,12 @@ $(document).ready(function(){
    			 <div id="searchForm">
 	                <form action="/ss/admin/blacklist" method="get">
 	                       <div class="input-group mb-0">
-	                           <input type="text" value="${search }" name="search" class="form-control" placeholder="신고글" aria-describedby="project-search-addon" />
+	                       		<select class="form-control"  name="category">
+	                       			<option value="전체">전체</option>
+	                       			<option value="후기">후기</option>
+	                       			<option value="장터">장터</option>
+	                       		</select>
+	                           <input type="text" value="${search }" name="search" class="form-control" placeholder="제목+내용" aria-describedby="project-search-addon" />
 	                           <div class="input-group-append">
 	                               <button class="btn" type="submit" id="project-search-addon"><i class="fa fa-search search-icon font-12"></i></button>
 	                           </div>
@@ -236,7 +241,7 @@ $(document).ready(function(){
 		                <div class="card-body">
 		                    <div class="table-responsive project-list">
 		                    <div class="text-left">
-		                    <span style="font-weight: bold">신청된 신고 : ${blackCnt } 개</span>
+		                    <span style="font-weight: bold">총 신고 수 : ${blackCnt } 개</span>
 		                   	<div id="footerbtn">
 								<div id="divbtn">
 									<button onclick="turndown();" type="button" class="btn btn-success" id="returnBtn">반려</button>
@@ -250,6 +255,7 @@ $(document).ready(function(){
 		                                <tr>
 		                                    <th  style="text-align: center" scope="col"><input type="checkbox" id="th_checkAll"  onclick="checkAll();" /></th>
 		                                    <th  style="text-align: center" scope="col">#</th>
+		                                    <th  style="text-align: center" scope="col">게시판</th>
 		                                    <th  style="text-align: center" scope="col">신고글</th>
 		                                    <th  style="text-align: center" scope="col">신고 사유</th>
 		                                    <th  style="text-align: center" scope="col">신고 날짜</th>
@@ -274,6 +280,7 @@ $(document).ready(function(){
 		                                    
 		                                    </th >
 		                                    <th style="text-align: center" scope="row">${i.NO }</th>
+		                                    <td>${i.BLACKLIST_BOARD }</td>
 		                                    <td>${i.REVIEW_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_DATE }</td>
