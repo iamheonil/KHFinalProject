@@ -22,7 +22,7 @@ public class MemberDao {
 
     public int insertFile(Member member, Map<String, String> fileInfo) {
 
-        return session.insert("MEMBERSHIP.insertFile", fileInfo);
+        return session.insert("MEMBER.insertFile", fileInfo);
     }
 
     public Member selectMember(Map<String, Object> memberMap) {
