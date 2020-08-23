@@ -46,10 +46,14 @@ var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, { 
  type: 'bar',
  data: { 
-	 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	 labels: ['1월', '2월', '3월', '4월', '5월', '6월','7월', '8월', '9월', '10월', '11월', '12월'],
  	 datasets: [{ 
- 		 label: '# of Votes',
- 		 data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
+ 		 label: ' # 수익금  ',
+ 		 
+ 		 data: [${profitMap.profit01 }, ${profitMap.profit02 }, ${profitMap.profit03 },
+ 			    ${profitMap.profit04 }, ${profitMap.profit05 }, ${profitMap.profit06 },
+ 			    ${profitMap.profit07 }, ${profitMap.profit08 }, ${profitMap.profit09 },
+ 			    ${profitMap.profit10 }, ${profitMap.profit11 }, ${profitMap.profit12 }],
 	 	 backgroundColor: [
 	 		 'rgba(255, 99, 132, 0.2)',
 	 		 'rgba(54, 162, 235, 0.2)',
