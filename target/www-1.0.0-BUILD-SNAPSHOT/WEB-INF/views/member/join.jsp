@@ -117,7 +117,7 @@ $(document).ready(function() {
 
 $("#1").click(function(){
     $("#resume").html(
-    		'<label class="col-form-label col-4">증빙서류</label>'+
+    		'<label class="col-form-label col-4">증빙서류</label>' +
 			'<div class="col-8 float">'+
                ' <input type="file" id="files" name="files" required="required" multiple>'+
             '</div>'		
@@ -130,6 +130,19 @@ $("#1").click(function(){
         $("#resume").html("");
     })
 
+    $("#sendMail").click(function() {
+    
+    	$("#mailCode").html(
+    			'<label class="col-form-label col-4">인증번호 입력</label>' +
+    			'<div class="col-8 float">'+
+                   ' <input type="text" id="code" name="code" required="required"> <button type="button" id="emailAuthBtn">이메일 인증</button>' +
+                '</div>'	
+    	)
+    
+    })
+    
+
+    
 });
 
 function inputPhoneNumber(obj) {
@@ -279,9 +292,12 @@ function xmlIdCheck(){
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" id="userId" name="userId" required="required" size="25"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
+                <input type="text" id="userId" name="userId" required="required" size="20"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
             </div>
-            <span id="id-check-msg" class="id-check-msg" style="font-size: 10px;"></span>
+        </div>
+        
+        <div class="form-group row" id="id-check-msg" style="font-size: 8px; text-align: center;" >
+        	<span id="id-check-msg" class="id-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
 
 		<div class="form-group row">
@@ -296,15 +312,22 @@ function xmlIdCheck(){
                 <input type="password" class="form-control" name="confirm_password" required="required">
             </div>        	
         </div>
+        
+        <div class="form-group row" id="id-check-msg" style="font-size: 8px; text-align: center;">
+        	<span id="pw-check-msg" class="pw-check-msg" style="font-size: 8px; text-align: center;"></span>
+        </div>
+        
 		<div class="form-group row">
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" name="userEmail" required="required" size="25" />
-                <br> <button type="button" id="emailBtn">이메일 발송</button> <button type="button" id="emailAuthBtn">이메일 인증</button>
+                <input type="email" name="userEmail" required="required" size="20" /> <button type="button" id="sendMail">이메일 발송</button>
             </div>
-            <input type="hidden" path="random" id="random" value="${random }" />
         </div>
+        
+        <div class="form-group row" id="mailCode" >
+        </div>
+        
 		<div class="form-group row">
 			<label class="col-form-label col-4">구분</label>
 			<div class="col-8 float">

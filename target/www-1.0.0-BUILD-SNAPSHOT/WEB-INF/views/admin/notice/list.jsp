@@ -17,11 +17,11 @@
 }
 
 #writebtn{
-	color: #17B794;
+/* 	color: #17B794; */
 }
 
 #deletebtn{
-	color: red;
+/* 	color: red; */
 }
 
  #divbtn{ 
@@ -138,8 +138,8 @@ $(document).ready(function(){
 	<caption  class="captionstyle">공지사항</caption>  
 	
 	<!-- 테이블 th -->
-	<tr style="background: #17B794;" >
-	    <th style="width: 5%"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/></th>
+	<tr>
+	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">제목</th>
 		<th style="width: 50%">내용</th>
@@ -151,6 +151,7 @@ $(document).ready(function(){
 	<tr>
 	<td colspan="8" style="color:  #17B794; font-weight: bold;">공지사항이  없습니다</td>
 	</tr>
+	</table>
 	</c:if>
 	
 	<!--공지사항이 있을 때 -->

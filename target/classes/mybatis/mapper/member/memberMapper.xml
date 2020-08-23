@@ -6,7 +6,6 @@
   
   <mapper namespace="MEMBER">
 
-
     <insert id="insertMember">
       INSERT INTO MEMBERSHIP (USER_NO, USER_ID, USER_PW, USER_NAME, POSTCODE, ROADADDRESS, DETAILADDRESS, USER_PHONE, USER_EMAIL, USER_GENDER, USER_BIRTH, USER_ACTOR, IS_LEAVE)
       VALUES (MEMBERSHIP_SEQ.nextval, #{userId}, #{userPw}, #{userName}, #{postCode}, #{roadAddress}, #{detailAddress}, #{userPhone}, #{userEmail}, #{userGender}, #{userBirth}, #{userActor}, 0)

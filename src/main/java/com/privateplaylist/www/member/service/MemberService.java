@@ -1,6 +1,9 @@
 package com.privateplaylist.www.member.service;
 
 import com.privateplaylist.www.member.vo.Member;
+
+import common.exception.MailException;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -19,5 +22,8 @@ public interface MemberService {
 
     // 아이디 중복 검사
     public int selectId(String userId);
+    
+    // 메일 전송
+    public void mailSending(Member member, String urlPath) throws MailException;
 
 }
