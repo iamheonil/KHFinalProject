@@ -6,6 +6,76 @@
   
   <mapper namespace="Profit">
   
+  <select id="selectprofit01" resultType="int">
+	select sum(pay_money) AS "01월"
+	from payment 
+	where pay_date between '20/01/01' and '20/01/31'
+  </select>
   
+  <select id="selectprofit02" resultType="int">
+	select sum(pay_money) AS "02월"
+	from payment 
+	where pay_date between '20/02/01' and '20/02/30'
+  </select>
+  
+  <select id="selectprofit03" resultType="int">
+	select sum(pay_money) AS "03월"
+	from payment 
+	where pay_date between '20/03/01' and '20/03/31'
+  </select>
+  
+  <select id="selectprofit04" resultType="int">
+	select sum(pay_money) AS "04월"
+	from payment 
+	where pay_date between '20/04/01' and '20/04/30'
+  </select>
+  
+  <select id="selectprofit05" resultType="int">
+	select sum(pay_money) AS "05월"
+	from payment 
+	where pay_date between '20/05/01' and '20/05/31'
+  </select>
+  
+  <select id="selectprofit06" resultType="int">
+	select sum(pay_money) AS "06월"
+	from payment 
+	where pay_date between '20/06/01' and '20/06/30'
+  </select>
+  
+  <select id="selectprofit07" resultType="int">
+	select sum(pay_money) AS "07월"
+	from payment 
+	where pay_date between '20/07/01' and '20/07/31'
+  </select>
+  
+  <select id="selectprofit08" resultType="int">
+	select sum(pay_money) AS "08월"
+	from payment 
+	where pay_date between '20/08/01' and '20/08/31'
+  </select>
+  
+  <select id="selectprofit09" resultType="int">
+	select sum(pay_money) AS "09월"
+	from payment 
+	where pay_date between '20/09/01' and '20/09/30'
+  </select>
+  
+  <select id="selectprofit10" resultType="int">
+	select sum(pay_money) AS "10월"
+	from payment 
+	where pay_date between '20/10/01' and '20/10/31'
+  </select>
+  
+  <select id="selectprofit11" resultType="int">
+	select sum(pay_money) AS "11월"
+	from payment 
+	where pay_date between '20/11/01' and '20/11/30'
+  </select>
+  
+  <select id="selectprofit12" resultType="int">
+	select sum(pay_money) AS "12월"
+	from payment 
+	where pay_date between '20/12/01' and '20/12/31'
+  </select>
   
   </mapper>
