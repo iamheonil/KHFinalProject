@@ -36,6 +36,7 @@ public class BlackListController {
 		int blackCnt = blackListService.selectReportCnt();
 		
 		mav.addObject("search", search);
+		mav.addObject("category", category);
 		mav.addObject("blackCnt", blackCnt);
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
@@ -53,8 +54,11 @@ public class BlackListController {
 		
 		if( rList == null && mList == null ) {
 			return "0";
+		}else if(rList != null ) {
+			blackListService.turndownReview(rList);
+		}else if(mList != null) {
+			blackListService.turndownMarket(mList);
 		}
-		blackListService.turndown(rList);
 		
 		return "1";
 	}
@@ -65,9 +69,11 @@ public class BlackListController {
 		
 		if( rList == null && mList == null ) {
 			return "0";
+		}else if(rList != null ) {
+			blackListService.deleteReview(rList);
+		}else if(mList != null) {
+			blackListService.deleteMarket(mList);
 		}
-		blackListService.deleteReview(rList);
-		
 		return "1";
 		
 	}
