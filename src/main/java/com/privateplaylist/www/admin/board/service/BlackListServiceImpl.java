@@ -62,7 +62,7 @@ public class BlackListServiceImpl implements BlackListService {
 
 
 	@Override
-	public void turndown(List<Integer> list) {
+	public void turndownReview(List<Integer> list) {
 		
 		for( int no : list ) {
 			blackListDao.updateBlacklistTurndown(no);
@@ -74,8 +74,8 @@ public class BlackListServiceImpl implements BlackListService {
 	public void deleteReview(List<Integer> list) {
 		
 		for( int no : list ) {
-			blackListDao.updateBlacklistDelete(no);
 			int reviewNo = blackListDao.selectReviewByBN(no);
+			blackListDao.updateBlackReivewDelete(reviewNo);
 			blackListDao.deleteReview(reviewNo);
 		}
 		
@@ -84,6 +84,25 @@ public class BlackListServiceImpl implements BlackListService {
 	@Override
 	public int selectReportCnt() {
 		return blackListDao.selectReportCnt();
+	}
+
+	@Override
+	public void turndownMarket(List<Integer> mList) {
+		
+		for( int no : mList ) {
+			blackListDao.updateBlacklistTurndown(no);
+		}
+		
+	}
+
+	@Override
+	public void deleteMarket(List<Integer> mList) {
+		
+		for( int no : mList ) {
+			int marketNo = blackListDao.selectMarketByBN(no);
+			blackListDao.updateBlackMarketDelete(marketNo);
+			blackListDao.deleteMarket(marketNo);
+		}		
 	}
 
 }

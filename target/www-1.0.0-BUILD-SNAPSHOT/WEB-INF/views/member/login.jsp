@@ -163,19 +163,19 @@
     <form action="/ss/member/loginImpl" method="post">
 		
 <!-- 			<img src="/examples/images/avatar.png" alt="Avatar"> -->
+<!-- 			
 			<div class="lcb-float">
 				<i class="fa fa-users fa-4x"></i>
 			</div>
+-->
 		<br>
         <h3 class="text-center">슬기로운 과외생활</h3>
         <br>
-        <label><input type="radio" name="who" value="student" /> 학생</label>&emsp;
-        <label><input type="radio" name="who" value="teacher" /> 선생님</label>
         <div class="form-group">
-        	<input type="text" class="form-control" name="username" placeholder="Userid" required="required">
+        	<input type="text" class="form-control" id="userId" name="userId" placeholder="아이디 입력" required="required">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control" id="userPw" name="userPw" placeholder="패스워드 입력" required="required">
         </div>        
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
@@ -192,7 +192,7 @@
 <!-- 			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a> -->
         </div>
     </form>
-    <p class="text-center small">로그인정보가 기억나지 않으세요? <a href="#">여기</a> 를 눌러주세요!</p>
+    <!-- <p class="text-center small">로그인정보가 기억나지 않으세요? <a href="#">여기</a> 를 눌러주세요!</p>  -->
 
     <br><br>
 

@@ -21,17 +21,15 @@
 		        <choose>
 		        	<when test="category == '후기'">
 		        		AND b.blacklist_board = '후기'
-				        AND r.review_content LIKE '%' || #{paging.search} || '%'
+					    AND r.review_content LIKE '%' || #{paging.search} || '%'
 		        	</when>
 		        	<when test="category == '장터'">
 		        		AND b.blacklist_board = '장터'
 				        AND k.mk_title LIKE '%' || #{paging.search} || '%'
-				        OR k.mk_content LIKE '%' || #{paging.search} || '%'
 		        	</when>
 		        	<otherwise>
 				        AND r.review_content LIKE '%' || #{paging.search} || '%'
 				        OR k.mk_title LIKE '%' || #{paging.search} || '%'
-				        OR k.mk_content LIKE '%' || #{paging.search} || '%'
 		        	</otherwise>
 		        </choose>
 				ORDER BY blacklist_no DESC
@@ -58,12 +56,10 @@
         	<when test="category == '장터'">
         		AND b.blacklist_board = '장터'
 		        AND k.mk_title LIKE '%' || #{search} || '%'
-		        OR k.mk_content LIKE '%' || #{search} || '%'
         	</when>
         	<otherwise>
 		        AND r.review_content LIKE '%' || #{search} || '%'
 		        OR k.mk_title LIKE '%' || #{search} || '%'
-		        OR k.mk_content LIKE '%' || #{search} || '%'
         	</otherwise>
         </choose>
         )
@@ -76,13 +72,26 @@
   		WHERE blacklist_no = #{blacklistNo}
   	</update>
   	
-  	 <update id="updateBlacklistDelete" parameterType="int">
+  	 <update id="updateBlackReivewDelete" parameterType="int">
   		UPDATE blacklist
   		SET blacklist_state = 1
-  		WHERE blacklist_no = #{blacklistNo}
+  		WHERE blacklist_board = '후기'
+  		AND blacklist_post_no = #{blacklistNo}
+  	</update>
+  	
+  	<update id="updateBlackMarketDelete" parameterType="int">
+  		UPDATE blacklist
+  		SET blacklist_state = 1
+  		WHERE blacklist_board = '장터'
+  		AND blacklist_post_no = #{marketNo}
   	</update>
   	
   	<select id="selectReviewByBN" resultType="int">
+  		SELECT blacklist_post_no FROM blacklist
+  		WHERE blacklist_no = #{blacklistNo}
+  	</select>
+
+  	<select id="selectMarketByBN" resultType="int">
   		SELECT blacklist_post_no FROM blacklist
   		WHERE blacklist_no = #{blacklistNo}
   	</select>
@@ -91,6 +100,11 @@
   		UPDATE review
   		SET review_state = 1
   		WHERE review_no = #{reviewNo}
+  	</update>
+  	
+  	<update id="deleteMarket">
+  		DELETE market
+  		WHERE mk_no = #{marketNo}
   	</update>
   	
   	<select id="selectReportCnt" resultType="int">
