@@ -29,16 +29,34 @@
 <!-- 		<collection resultMap="MEMBERSHIP" property="member"/> -->
 <!-- 	</resultMap> -->
 
+	<select id="selectStuList" parameterType="PAGING" resultType="MEMBERSHIP">
+		  	SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+			  	SELECT * FROM Membership
+				WHERE user_actor = 2
+				AND user_id LIKE '%' || #{search} || '%'
+				ORDER BY user_no
+			) t
+			ORDER BY no ) x
+		WHERE no between #{startNo} AND #{endNo}
+  	</select>
+  	
+  	<select id="selectStuCnt" resultType="int">
+		SELECT count(*) FROM (select * from Membership
+		WHERE user_actor = 2
+		AND user_id LIKE '%' || #{search} || '%')
+  	</select>
 	
-	<select id="selectStuCnt" resultType="int">
-		SELECT count(*) FROM Membership
-		WHERE user_actor = 2
-	</select>	
-	<select id="selectStuList" resultType="MEMBERSHIP">
-		SELECT * FROM Membership
-		WHERE user_actor = 2
-		ORDER BY user_no
-	</select>	
+<!-- 	<select id="selectStuCnt" resultType="int"> -->
+<!-- 		SELECT count(*) FROM Membership -->
+<!-- 		WHERE user_actor = 2 -->
+<!-- 	</select>	 -->
+<!-- 	<select id="selectStuList" resultType="MEMBERSHIP"> -->
+<!-- 		SELECT * FROM Membership -->
+<!-- 		WHERE user_actor = 2 -->
+<!-- 		ORDER BY user_no -->
+<!-- 	</select>	 -->
 	<select id="selectStuDetail" resultType="MEMBERSHIP">
 		SELECT * FROM Membership
 		WHERE user_no = #{userno}
@@ -63,6 +81,24 @@
 	<select id="selectStuMarketList" resultType="MARKET">
 		SELECT * FROM Market
 		WHERE mk_writer = #{userNo}
+	</select>
+	
+	<select id="selectTchCnt" resultType="int">
+		SELECT count(*) FROM (select * from Membership
+		WHERE user_actor = 1
+		AND user_id LIKE '%' || #{search} || '%')	
+	</select>
+	<select id="selectTchList" parameterType="PAGING" resultType="MEMBERSHIP">
+		  	SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+			  	SELECT * FROM Membership
+				WHERE user_actor = 1
+				AND user_id LIKE '%' || #{search} || '%'
+				ORDER BY user_no
+			) t
+			ORDER BY no ) x
+		WHERE no between #{startNo} AND #{endNo}
 	</select>
 
 
