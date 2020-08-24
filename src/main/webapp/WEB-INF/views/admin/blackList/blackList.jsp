@@ -24,22 +24,31 @@ function turndown(){
 // 반려하기 버튼 클릭
 	
 	// check값넣을 리스트
-	var list = []
+	// 후기
+	var rList = []
+	
+	// 장터
+	var mList = []
 	
 	$("input[name='checkRow']:checked").each(function(){
-		// 리스트에 값 넣어주기
-		list.push($(this).val())
+		
+		// 보드가 후기면 rList 에
+		if( $(this).parent().siblings(".board").text() == '후기'){
+			rList.push($(this).val());
+		}else if($(this).parent().siblings(".board").text() == '장터' ){
+			mList.push($(this).val());
+		}
 	})
 	
-	console.log(list)
 	// 제출할 url  지정
 	var url = "<%=request.getContextPath() %>/admin/blacklist/turndown";
+	var allData = { "rList" : rList, "mList" : mList };
 	
 	// 비동기 처리
 	$.ajax({
 		type : "POST",
 		url: url,
-		data: {list: list},
+		data: allData,
 		success : function(result) {
 			
 			if (result == 1) {
@@ -63,22 +72,31 @@ function deleteReview(){
 	// 삭제 버튼 클릭
 	
 	// check값넣을 리스트
-	var list = []
+	// 후기
+	var rList = []
+	
+	// 장터
+	var mList = []
 	
 	$("input[name='checkRow']:checked").each(function(){
-		// 리스트에 값 넣어주기
-		list.push($(this).val())
+		
+		// 보드가 후기면 rList 에
+		if( $(this).parent().siblings(".board").text() == '후기'){
+			rList.push($(this).val());
+		}else if($(this).parent().siblings(".board").text() == '장터' ){
+			mList.push($(this).val());
+		}
 	})
 	
-	console.log(list)
 	// 제출할 url  지정
 	var url = "<%=request.getContextPath() %>/admin/blacklist/deletereview";
+	var allData = { "rList" : rList, "mList" : mList };
 	
 	// 비동기 처리
 	$.ajax({
 		type : "POST",
 		url: url,
-		data: {list: list},
+		data: allData,
 		success : function(result) {
 			
 			if (result == 1) {
@@ -276,11 +294,9 @@ $(document).ready(function(){
 		                                    	<c:if test="${i.BLACKLIST_STATE == '삭제됨' }" >
 				                                    <input type="checkbox" disabled="disabled"/>
 		                                   		</c:if>
-		                                    
-		                                    
 		                                    </th >
 		                                    <th style="text-align: center" scope="row">${i.NO }</th>
-		                                    <td>${i.BLACKLIST_BOARD }</td>
+		                                    <td class="board">${i.BLACKLIST_BOARD }</td>
 		                                    <td>${i.REVIEW_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_DATE }</td>

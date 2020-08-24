@@ -46,25 +46,28 @@ public class BlackListController {
 
 	@RequestMapping("/blacklist/turndown")
 	@ResponseBody
-	public String turndown(@RequestParam(value="list[]", required = false) List<Integer> list) {
+	public String turndown(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
 		
-		System.out.println(list);
+		System.out.println(rList);
+		System.out.println(mList);
 		
-		if( list == null ) {
+		if( rList == null && mList == null ) {
 			return "0";
 		}
-		blackListService.turndown(list);
+		blackListService.turndown(rList);
 		
 		return "1";
 	}
 
 	@RequestMapping("/blacklist/deletereview")
 	@ResponseBody
-	public String deleteReview(@RequestParam(value="list[]", required = false) List<Integer> list) {
-		if( list == null ) {
+	public String deleteReview(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
+		
+		if( rList == null && mList == null ) {
 			return "0";
 		}
-		blackListService.deleteReview(list);
+		blackListService.deleteReview(rList);
+		
 		return "1";
 		
 	}
