@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.privateplaylist.www.admin.board.service.BlackListService;
@@ -23,14 +24,14 @@ public class BlackListController {
 	private BlackListService blackListService;
 	
 	@RequestMapping("/blacklist")
-	public ModelAndView blackList(@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
+	public ModelAndView blackList(@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		// 페이징 처리위한 객체
-		Paging paging = blackListService.getPagingBlack(curPage, search);
+		Paging paging = blackListService.getPagingBlack(curPage, category ,search);
 		
-		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging);
+		List<Map<String, Object>> list = blackListService.selectAllBlackList(paging, category);
 		
 		int blackCnt = blackListService.selectReportCnt();
 		
@@ -39,51 +40,36 @@ public class BlackListController {
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
 		mav.setViewName("admin/blackList/blackList");
-
 		return mav;
 	}
 	
-	
-	
-	
+
 	@RequestMapping("/blacklist/turndown")
-	public ModelAndView turndown(HttpServletRequest req) {
+	@ResponseBody
+	public String turndown(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
 		
-		ModelAndView mav = new ModelAndView();
-
-		if( req.getParameterValues("checkRow") == null ) {
-			
-			mav.addObject("msg", "1개 이상 선택해주십시오");
-			mav.addObject("url", req.getContextPath() + "/admin/blacklist");
-			mav.setViewName("admin/blackList/alertPage");
-			
-			return mav;
+		System.out.println(rList);
+		System.out.println(mList);
+		
+		if( rList == null && mList == null ) {
+			return "0";
 		}
-
-		blackListService.turndown(req);
+		blackListService.turndown(rList);
 		
-		mav.setViewName("redirect:/admin/blacklist");
-		return mav;
+		return "1";
 	}
 
 	@RequestMapping("/blacklist/deletereview")
-	public ModelAndView deleteReview(HttpServletRequest req) {
+	@ResponseBody
+	public String deleteReview(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
 		
-		ModelAndView mav = new ModelAndView();
-		if( req.getParameterValues("checkRow") == null ) {
-			
-			mav.addObject("msg", "1개 이상 선택해주십시오");
-			mav.addObject("url", req.getContextPath() + "/admin/blacklist");
-			mav.setViewName("admin/blackList/alertPage");
-			
-			return mav;
+		if( rList == null && mList == null ) {
+			return "0";
 		}
-
+		blackListService.deleteReview(rList);
 		
-		blackListService.deleteReview(req);
+		return "1";
 		
-		mav.setViewName("redirect:/admin/blacklist");
-		return mav;
 	}
 
 }
