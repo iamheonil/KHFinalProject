@@ -20,8 +20,8 @@ public class AdminMemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int selectStuCnt() {
-		return sqlSession.selectOne("Member.selectStuCnt");
+	public int selectStuCnt(String search) {
+		return sqlSession.selectOne("Member.selectStuCnt", search);
 	}
 
 	public List<Membership> selectStuList(Paging page) {
@@ -42,6 +42,14 @@ public class AdminMemberDao {
 
 	public List<Market> selectStuMarketList(int userNo) {
 		return sqlSession.selectList("Member.selectStuMarketList", userNo);
+	}
+
+	public int selectTchCnt(String search) {
+		return sqlSession.selectOne("Member.selectTchCnt", search);
+	}
+
+	public List<Membership> selectTchList(Paging paging) {
+		return sqlSession.selectList("Member.selectTchList", paging);
 	}
 	
 
