@@ -6,9 +6,10 @@
 
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 
-<link
+	<link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" />
+	
 
 <script type="text/javascript">
 /* 체크박스 전체선택, 전체해제 */
@@ -155,34 +156,20 @@ $(document).ready(function(){
     width: 245px;
     height: 102px;
 }
+
  #divbtn{ 
     padding: 10px; 
 } 
 
-#searchForm{
+#search-form{
 	width: 500px;
-	margin: 80px auto 50px;
+	margin: 80px auto 30px;
 }
+
 #content{
 	height: 700px;
 	width: 1140px;
 	margin: 0 auto;
-}
-
-#returnBtn{
-	padding: 5px 0;
-	width: 50px;
-	heigth: 30px;
-	text-align: center;
-	font-size: 14px;
-}
-
-#deleteBtn{
-	padding: 5px 0;
-	width: 50px;
-	heigth: 30px;
-	text-align: center;
-	font-size: 14px;
 }
 
 .StateTurndown{
@@ -201,7 +188,33 @@ $(document).ready(function(){
 	font-weight: bold; 
 	padding: 0 5px;
 }
+.StateDelete{
+	font-size: 10px;
+	border-radius: 2px;
+	color: white;
+	background-color: #B90000;
+	font-weight: bold; 
+	padding: 0 5px;
+}
 
+.button-green{
+	font-size: 15px;
+	border-radius: 2px;
+	color: white;
+	background-color: #339900;
+	font-weight: bold; 
+	padding: 0 5px;
+}
+
+.button-red{
+	font-size: 15px;
+	border-radius: 2px;
+	color: white;
+	background-color: #CC0000;
+	font-weight: bold; 
+	padding: 0 5px;
+	
+}
 </style>
 
             
@@ -236,21 +249,51 @@ $(document).ready(function(){
 	</div>
     
     <div id="content">
-   			 <div id="searchForm">
-	                <form action="/ss/admin/blacklist" method="get">
-	                       <div class="input-group mb-0">
-	                       		<select class="form-control"  name="category">
-	                       			<option value="전체">전체</option>
-	                       			<option value="후기">후기</option>
-	                       			<option value="장터">장터</option>
-	                       		</select>
-	                           <input type="text" value="${search }" name="search" class="form-control" placeholder="제목+내용" aria-describedby="project-search-addon" />
-	                           <div class="input-group-append">
-	                               <button class="btn" type="submit" id="project-search-addon"><i class="fa fa-search search-icon font-12"></i></button>
-	                           </div>
-	                       </div>
-	                </form>
-             </div>
+            <div class="row">
+				<form id="search-form"
+					action="${pageContext.request.contextPath}/admin/blacklist"
+					method="get">
+					<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+						<select class="form-control" name="category">
+							<c:choose>
+								<c:when test="${category eq '후기' }">
+									<option  value="전체">전체</option>
+									<option  value="후기" selected="selected">후기</option>
+									<option value="장터" >장터</option>
+								</c:when>
+								<c:when test="${category eq '장터' }">
+									<option value="전체">전체</option>
+									<option value="후기">후기</option>
+									<option value="장터" selected="selected">장터</option>
+								</c:when>
+								<c:otherwise>
+									<option value="전체" selected="selected">전체</option>
+									<option value="후기">후기</option>
+									<option value="장터">장터</option>
+								</c:otherwise>
+							</c:choose>
+
+						</select>
+					</div>
+					<div class="col-lg-8 col-md-6 col-sm-12 p-0">
+						<input type="text" placeholder="검색어를 입력하세요"
+							class="form-control" id="search" name="search"
+							value="<c:if test="${search ne null }">${search }</c:if>">
+					</div>
+					<div class="col-lg-1 col-md-3 col-sm-12 p-0">
+						<button type="submit" class="btn btn-base">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24"
+								height="24" viewBox="0 0 24 24" fill="none"
+								stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round"
+								class="feather feather-search">
+								<circle cx="11" cy="11" r="8"></circle>
+								<line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						</button>
+					</div>
+				</form>
+				</div>
+				<br> <br>
                 
 
 		    <div class="row">
@@ -259,11 +302,11 @@ $(document).ready(function(){
 		                <div class="card-body">
 		                    <div class="table-responsive project-list">
 		                    <div class="text-left">
-		                    <span style="font-weight: bold">총 신고 수 : ${blackCnt } 개</span>
+		                    <span style="font-weight: bold">처리 전 신고 수 : ${blackCnt } 개</span>
 		                   	<div id="footerbtn">
 								<div id="divbtn">
-									<button onclick="turndown();" type="button" class="btn btn-success" id="returnBtn">반려</button>
-									<button onclick="deleteReview();" type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
+									<button onclick="turndown();" type="button" class="btn button-green" id="returnBtn">반려</button>
+									<button onclick="deleteReview();" type="button" class="btn button-red" id="deleteBtn">삭제</button>
 								</div> 
 		                    </div>
 							</div>
@@ -297,7 +340,14 @@ $(document).ready(function(){
 		                                    </th >
 		                                    <th style="text-align: center" scope="row">${i.NO }</th>
 		                                    <td class="board">${i.BLACKLIST_BOARD }</td>
-		                                    <td>${i.REVIEW_CONTENT }</td>
+		                                    <td>
+		                                    	<c:if test="${i.BLACKLIST_BOARD == '후기' }" >
+		                                   		 	${i.REVIEW_CONTENT }
+		                                   		 </c:if>
+		                                    	<c:if test="${i.BLACKLIST_BOARD == '장터' }" >
+		                                   		 	${i.MK_TITLE }
+		                                   		 </c:if>
+		                                    </td>
 		                                    <td>${i.BLACKLIST_CONTENT }</td>
 		                                    <td>${i.BLACKLIST_DATE }</td>
 		                                    <td>${i.USER_ID }</td>
@@ -307,6 +357,9 @@ $(document).ready(function(){
 		                                   		</c:if>
 		                                    	<c:if test="${i.BLACKLIST_STATE == '반려됨' }" >
 		                                        <span class="StateTurndown">${i.BLACKLIST_STATE }</span>
+		                                   		</c:if>
+		                                    	<c:if test="${i.BLACKLIST_STATE == '삭제됨' }" >
+		                                        <span class="StateDelete">${i.BLACKLIST_STATE }</span>
 		                                   		</c:if>
 		                                    </td>
 		                                </tr>

@@ -221,7 +221,7 @@ nav {
           </div>
           
            <div class="menu-item">
-            <h4><a href="#">학생 정보 관리</a></h4>
+            <h4><a href="#">과외 연결 관리</a></h4>
           </div>
           
            <div class="menu-item">

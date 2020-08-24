@@ -23,7 +23,7 @@ public interface BlackListService {
 	 * 후기게시판 신고 반려
 	 * @param list
 	 */
-	public void turndown(List<Integer> list);
+	public void turndownReview(List<Integer> list);
 
 	/**
 	 * 후기게시판 신고 게시글 삭제
@@ -36,6 +36,14 @@ public interface BlackListService {
 	 * @return
 	 */
 	public int selectReportCnt();
+
+	/**
+	 * 
+	 * @param mList
+	 */
+	public void turndownMarket(List<Integer> mList);
+
+	public void deleteMarket(List<Integer> mList);
 
 
 }
