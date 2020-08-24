@@ -429,7 +429,7 @@ p{
 <div id="layoutSidenav_content">
 
 	<div id="title">
-		회원 <i class="fas fa-angle-right"></i> <a href="#">학생 관리</a>
+		회원 <i class="fas fa-angle-right"></i> <a href="#">선생님 관리</a>
 	</div>
 
 	<main>
@@ -455,6 +455,8 @@ p{
                     </div>
                 </div>
             </div>
+            
+
 
 
 			<div class="container">
@@ -516,7 +518,7 @@ p{
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${stuData.stulist}" var="user">
+										<c:forEach items="${tchData.tchlist}" var="user">
 											<tr>
 												<td>${user.userNo }</td>
 												<td><img
@@ -535,7 +537,9 @@ p{
 									</tbody>
 								</table>
 								
-					<c:import url="/WEB-INF/paging/testPaging.jsp"/>
+					<c:if test="${not empty stuData}" >
+						<c:import url="/WEB-INF/paging/admin/member/stulistPaging.jsp" />
+					</c:if>
 <!--       	<div class="btn_section" style="background-color:white"> -->
 <%--       	 <a href="<%= request.getContextPath() %>/board/boardform.do" style="font-size:1.1vw">공지 쓰기</a> --%>
 <!--    	  	</div> -->

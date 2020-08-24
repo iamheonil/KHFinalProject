@@ -537,7 +537,9 @@ p{
 									</tbody>
 								</table>
 								
-					<c:import url="/WEB-INF/paging/testPaging.jsp"/>
+					<c:if test="${not empty stuData}" >
+						<c:import url="/WEB-INF/paging/admin/member/stulistPaging.jsp" />
+					</c:if>
 <!--       	<div class="btn_section" style="background-color:white"> -->
 <%--       	 <a href="<%= request.getContextPath() %>/board/boardform.do" style="font-size:1.1vw">공지 쓰기</a> --%>
 <!--    	  	</div> -->
