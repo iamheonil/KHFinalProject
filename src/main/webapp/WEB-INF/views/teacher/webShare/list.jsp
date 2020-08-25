@@ -11,15 +11,17 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
 
-<a href="" class="anone"><h5>클릭한 큰 제목</h5></a>
+<a href="" class="anone"><h5>자료실</h5></a>
 <hr>
-<a href="" class="anone"><h6>클릭한 작은 제목</h6></a>
+<h6>과외 목록</h6>
 
-<h6>내용</h6>
+
+
+
+
 
 <!-- 선생님 마이페이지 푸터 -->
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
 
-<!-- 메인 푸터 --> 
-<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
 
