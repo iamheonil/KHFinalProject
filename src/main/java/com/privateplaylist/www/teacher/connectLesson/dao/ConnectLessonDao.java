@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import common.util.Paging;
+
 @Repository
 public class ConnectLessonDao {
 	
@@ -15,8 +17,12 @@ public class ConnectLessonDao {
 
 	private String namespace = "dao.ConnectLessonDao.";
 	
-	public List<Map<String, Object>> selectConnectStu() {
-		return sqlSession.selectList(namespace + "selectConnectStu");
+	public List<Map<String, Object>> selectConnectStu(Paging paging) {
+		return sqlSession.selectList(namespace + "selectConnectStu", paging);
+	}
+
+	public int selectCntAllStu(int userNo) {
+		return sqlSession.selectOne(namespace + "selectCntAllStu", userNo);
 	}
 
 }

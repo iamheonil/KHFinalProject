@@ -7,7 +7,23 @@
   <mapper namespace="dao.ConnectLessonDao">
   
   <select id="selectConnectStu">
-  	SELECT * FROM connected_lesson
+		SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * FROM connected_lesson c
+				INNER JOIN membership m
+				ON(c.user_from = m.user_no)
+				WHERE user_actor = 2
+				AND user_to = #{userNo}
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+  </select>
+  
+  <select id="selectCntAllStu" parameterType="int">
+  	SELECT count(*) FROM connected_lesson
+  	WHERE user_to = #{userNo}
+  	AND is_connected = 1
   </select>
   
   

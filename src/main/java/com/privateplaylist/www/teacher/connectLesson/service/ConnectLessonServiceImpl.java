@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.privateplaylist.www.teacher.connectLesson.dao.ConnectLessonDao;
 
+import common.util.Paging;
+
 @Service
 public class ConnectLessonServiceImpl implements ConnectLessonService {
 	
@@ -15,8 +17,18 @@ public class ConnectLessonServiceImpl implements ConnectLessonService {
 	private ConnectLessonDao connectLessonDao;
 
 	@Override
-	public List<Map<String, Object>> selectConnectStu() {
-		return connectLessonDao.selectConnectStu();
+	public List<Map<String, Object>> selectConnectStu(Paging paging) {
+		return connectLessonDao.selectConnectStu(paging);
+	}
+
+	@Override
+	public Paging getPagingCntLesson(int curPage, int userNo) {
+		
+		int totalCount = connectLessonDao.selectCntAllStu(userNo);
+		
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;
 	}
 
 }
