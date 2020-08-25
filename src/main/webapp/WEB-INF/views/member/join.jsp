@@ -305,7 +305,7 @@ function xmlEmailCheck() {
             </div>
         </div>
         
-        <div class="form-group row" id="id-check-msg" style="font-size: 8px; text-align: center;" >
+        <div class="form-group row" id="id-check" style="font-size: 8px; text-align: center;" >
         	<span id="id-check-msg" class="id-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
 
@@ -322,7 +322,7 @@ function xmlEmailCheck() {
             </div>        	
         </div>
         
-        <div class="form-group row" id="pw-check-msg" style="font-size: 8px; text-align: center;">
+        <div class="form-group row" id="pw-check" style="font-size: 8px; text-align: center;">
         	<span id="pw-check-msg" class="pw-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
         
