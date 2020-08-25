@@ -187,7 +187,10 @@ nav {
    text-align: center;
    font-style: italic;
    font-weight: bold;
-   color: #262626;
+   color: #565656;
+    width: 960px;
+    height: 90%;
+    float: right;
 }
 
 #teaprofileimg{
@@ -216,6 +219,12 @@ nav {
 <div id="wrapper"> <!-- 가운데 오게 하기  -->
 
 <br>
+<br>
+<br>
+<br>
+
+<a href="" class="anone"><h2 id="mypageid">Teacher Page</h2></a>
+
 <br>
 <br>
 
@@ -276,6 +285,5 @@ nav {
 
 
 
-<div id="main"> 
 
-<a href="" class="anone"><h3 id="mypageid">Teacher Page</h3></a>
+<div id="main"> 
