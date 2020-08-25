@@ -29,9 +29,9 @@
     background-clip: padding-box;
     background-color: #e5e5e5;
     text-align: center;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
-    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,.5);
+    box-shadow: 0 0 3px rgba(0,0,0,.5);
     border: 2px solid #fff;
 }
 .bg-palegreen {
@@ -99,9 +99,9 @@
 .tickets-container .tickets-list .ticket-item {
     position: relative;
 	background-color: #fff;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
-    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,.5);
+    box-shadow: 0 0 3px rgba(0,0,0,.5);
     -webkit-border-radius: 3px;
     -webkit-background-clip: padding-box;
     -moz-border-radius: 3px;
@@ -166,9 +166,9 @@
     position: relative;
     min-height: 35px;
     background: #fff;
-    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.3);
-    -moz-box-shadow: 0 0 4px rgba(0,0,0,.3);
-    box-shadow: 0 0 4px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 0 4px rgba(0,0,0,.5);
+    box-shadow: 0 0 4px rgba(0,0,0,.5);
     color: #555;
     padding-left: 12px;
     text-align: right;
@@ -200,7 +200,7 @@
 		                        <ul class="tickets-list">
 		                            <li class="ticket-item">
 		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
+		                                    <div class="ticket-user col-md-3 col-sm-12">
 		                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="user-avatar">
 		                                        <span class="user-name">Adam Johnson</span>
 		                                        <span class="user-at">at</span>
@@ -317,9 +317,8 @@
 		</div>
 
 
-
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
 
 
 
