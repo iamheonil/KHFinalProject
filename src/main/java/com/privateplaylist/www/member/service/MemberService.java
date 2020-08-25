@@ -2,8 +2,11 @@ package com.privateplaylist.www.member.service;
 
 import com.privateplaylist.www.member.vo.Member;
 
+import com.privateplaylist.www.member.vo.TeacherFile;
+import common.exception.FileException;
 import common.exception.MailException;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -15,7 +18,7 @@ public interface MemberService {
     public int insertMember(Member member);
 
     // 파일삽입
-    // public int insertTeacherFile(List<MultipartFile> files, String root);
+    public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, TeacherFile teacherFile, String root) throws FileException;
 
     // 멤버 정보 조회 메소드
     public Member selectMember(Map<String, Object> memberMap);
