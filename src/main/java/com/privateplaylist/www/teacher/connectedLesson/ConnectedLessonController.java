@@ -20,4 +20,16 @@ public class ConnectedLessonController {
 		return mav;
 	}
 
+	@RequestMapping("/signstu")
+	public ModelAndView signStudent() {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		
+		mav.setViewName("teacher/connectedLesson/signStudent");
+		
+		return mav;
+	}
+
 }
+//
