@@ -1,6 +1,6 @@
-<!-- 200820 김성은-->
-<!-- /admin/studetail -->
-<!-- 관리자 > 회원 > 학생 관리 > 학생 조회-->
+<!-- 200824 김성은-->
+<!-- /admin/tchdetail -->
+<!-- 관리자 > 회원 > 선생님 관리 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,7 +20,7 @@
 
 
 
-
+<!-- 하나의 페이징에 보여질 게시글 수 -->
 <script type="text/javascript">
 $(document).ready(function($){ 
 	$("#table1").DataTable({
@@ -75,7 +75,7 @@ $(document).ready(function(){
 <body>	
 	<div id="title">회원 
 		<i class="fas fa-angle-right"></i>
-		<a href="">학생 관리</a>
+		<a href="">선생님 관리</a>
 	</div>
 	
 	
@@ -83,7 +83,7 @@ $(document).ready(function(){
 	
 	
 	    <div id="content">
-	    <button type="button" class="btn btn-info" onclick="location.href='stuList'" style="margin-left: 88%">목록</button>
+	    <button type="button" class="btn btn-info" onclick="location.href='tchList'" style="margin-left: 88%">목록</button>
 
 
 	           	<div class="container-fluid">
@@ -100,7 +100,7 @@ $(document).ready(function(){
                                             </tr>
                                         </thead>
                                         <tbody>
-						                    <c:forEach items="${stuData.stuQuestion }" var="question" >
+						                    <c:forEach items="${tchData.tchQuestion }" var="question" >
 												<tr>
 													<td>${question.questionNo}</td>
 													<td><a href="">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
@@ -128,19 +128,17 @@ $(document).ready(function(){
 									            <th style="width: 15%">별점</th> <!-- 평점 -->
 									            <th style="width: 65%">내용</th>
 									            <th style="width: 10%">작성자ID</th>
-									            <th style="width: 10%">선생님</th>
 									        </tr>
 									    </thead>
 									    <tbody>
 									    	<c:set var="flag" value ="true"/>
-									        <c:forEach var="review" items="${ stuData.stuReview }" varStatus="status">
+									        <c:forEach var="review" items="${ tchData.tchReview }" varStatus="status">
 									            <c:if test="${flag eq 'true'}">
 									            <!-- 평점 기준 별표시 출력 -->
 									            <tr>
 									                <td><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.STAR_POINT }">★</c:forEach></td>
 									                <td>${ review.REVIEW_CONTENT}</td>
-									                <td>${review.STU_ID}</td>
-									                <td>${ review.USER_NAME}</td>
+									                <td>${review.USER_ID}</td>
 									            </tr>
 									            
 												</c:if>
@@ -170,7 +168,7 @@ $(document).ready(function(){
                                             </tr>
                                         </thead>
                                         <tbody>
-						                    <c:forEach items="${stuData.stuMarket }" var="market" >
+						                    <c:forEach items="${tchData.tchMarket }" var="market" >
 												<tr>
 													<td>${market.mkNo}</td>
 													<td><a href="">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
@@ -178,6 +176,9 @@ $(document).ready(function(){
 													<td>${market.mkDate}</td>
 													<c:if test="${market.mkState == 0}">
 														<td>판매중</td>
+													</c:if>
+													<c:if test="${market.mkState == 1}">
+														<td>판매완료</td>
 													</c:if>
 												</tr>
 											</c:forEach>
