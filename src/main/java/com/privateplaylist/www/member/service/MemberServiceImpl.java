@@ -33,14 +33,14 @@ public class MemberServiceImpl implements MemberService {
 	public int insertMember(Member member) {
 
 		String password = member.getUserPw();
-
-		password = passwordEncoder.encode(password);
-
-		member.setUserPw(password);
-
+		String secPw = "";
+		
+		// 암호화
+		secPw = passwordEncoder.encode(password);
+		
 		System.out.println("Join Method : " + member);
 
-		// int res = memberDao.insertMember(member);
+		member.setUserPw(secPw);
 
 		return memberDao.insertMember(member);
 	}
@@ -63,11 +63,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member selectMember(Map<String, Object> memberMap) {
+		
 		// 사용자가 입력한 비밀번호
 		String password = (String) memberMap.get("userPw");
+
 		// DB에 저장된 사용자 정보
 		Member member = memberDao.selectMember(memberMap);
-
+		
 		// 사용자가 입력한 비밀번호와 DB에 인코딩되어 저장된 비밀번호가 같은지 확인
 		if (passwordEncoder.matches(password, member.getUserPw())) {
 			return member;
@@ -83,10 +85,6 @@ public class MemberServiceImpl implements MemberService {
 
 	public void mailSending(Member member, String urlPath) throws MailException {
 
-		String password = member.getUserPw();
-
-		password = passwordEncoder.encode(password);
-
 		String setfrom = "snn7452@naver.com";
 		String tomail = member.getUserEmail();
 		String title = "슬기로운 과외생활 회원가입 인증메일 입니다.";
@@ -94,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 				+ " method='post' enctype='multipart/form-data'>"
 				+ "<script> function btnClick() { alert('회원가입이 완료되었습니다!'); } </script>" + "<h3>회원가입을 환영합니다.</h3>"
 				+ "정상적인 회원가입을 위해 아래의 링크를 클릭해주세요." + "<input type='hidden' value='" + member.getUserId()
-				+ "' id='userId' name='userId'>" + "<input type='hidden' value='" + password
+				+ "' id='userId' name='userId'>" + "<input type='hidden' value='" + member.getUserPw()
 				+ "' id='userPw' name='userPw'>" + "<input type='hidden' value='" + member.getUserEmail()
 				+ "' id='userEmail' name='userEmail'>" + "<input type='hidden' value='" + member.getUserActor()
 				+ "' id='userActor' name='userActor'>" + "<input type='hidden' value='" + member.getUserName()

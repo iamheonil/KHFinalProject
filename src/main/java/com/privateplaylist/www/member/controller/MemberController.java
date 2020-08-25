@@ -43,8 +43,8 @@ public class MemberController {
 		Member res = memberService.selectMember(memberMap);
 		
 		if (res != null) {
-			session.setAttribute("loginUser", res);
 			// 로그인 성공
+			session.setAttribute("loginUser", res);
 			mav.addObject("url", request.getContextPath() + "/main/index");
 			mav.setViewName("/main/index");
 			System.out.println("로그인 성공");

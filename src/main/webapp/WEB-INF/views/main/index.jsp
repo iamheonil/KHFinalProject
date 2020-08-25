@@ -3,7 +3,7 @@
 
 <%-- <!-- nav include  -->
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
-<%@ include file="/WEB-INF/layout/main/header.jsp" %>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 
 <body>
 
@@ -17,6 +17,10 @@
         <div id="main_wrap">
             <div>
                 <h1 style="text-align: center">화려한 조명이 나를 감싸네</h1>
+                
+                ${loginUser.userId }<br>
+                ${loginUser.userPw }<br>
+                ${loginUser.userName }<br>
 
                 <div id="main_img" style="width: 100%; margin:0 auto; position: relative;">
                     <img src="https://t1.daumcdn.net/cfile/tistory/2207573D58CFDE2704" />
