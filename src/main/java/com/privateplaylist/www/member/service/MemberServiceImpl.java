@@ -101,14 +101,11 @@ public class MemberServiceImpl implements MemberService {
 				+ "' id='postCode' name='postCode'>" + "<input type='hidden' value='" + member.getRoadAddress()
 				+ "' id='roadAddress' name='roadAddress'>" + "<input type='hidden' value='" + member.getDetailAddress()
 				+ "' id='detailAddress' name='detailAddress'>" + "<input type='hidden' value='" + member.getUserGender()
-				+ "' id='userGender' name='userGender'>" + "<input type='hidden' value='" + member.getUserBirth()
-				+ "' id='userBirth' name='userBirth'>"
+				+ "' id='userGender' name='userGender'>"
+				+ "<input type='hidden' value='" + member.getUserBirth() + "' id='userBirth' name='userBirth'>"
 				+ "<br><br> <button type='submit' onclick='btnClick();'>회원가입 완료하기</button></form>";
 
 		try {
-
-			// 에러발생을 위한 코드
-			// int errorNum = 10/0;
 
 			mailSender.send(new MimeMessagePreparator() {
 				public void prepare(MimeMessage mimeMessage) throws MessagingException {
