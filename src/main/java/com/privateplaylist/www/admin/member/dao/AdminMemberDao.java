@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.Membership;
 import com.privateplaylist.www.dto.Question;
-import com.privateplaylist.www.dto.Review;
 
 import common.util.Paging;
+
+
 
 @Repository
 public class AdminMemberDao {
@@ -32,15 +33,15 @@ public class AdminMemberDao {
 		return sqlSession.selectOne("Member.selectStuDetail", userNo);
 	}
 
-	public List<Question> selectStuQuestionList(int userNo) {
-		return sqlSession.selectList("Member.selectStuQuestionList", userNo);
+	public List<Question> selectQuestionList(int userNo) {
+		return sqlSession.selectList("Member.selectQuestionList", userNo);
 	}
 	
 	public List<Map<String, Object>> selectStuReviewList(int userNo) {
 		return sqlSession.selectList("Member.selectStuReviewList", userNo);
 	}
 
-	public List<Market> selectStuMarketList(int userNo) {
+	public List<Market> selectMarketList(int userNo) {
 		return sqlSession.selectList("Member.selectStuMarketList", userNo);
 	}
 
@@ -51,6 +52,11 @@ public class AdminMemberDao {
 	public List<Membership> selectTchList(Paging paging) {
 		return sqlSession.selectList("Member.selectTchList", paging);
 	}
+
+	public List<Map<String, Object>> selectTchReviewList(int userNo) {
+		return sqlSession.selectList("Member.selectTchReviewList", userNo);
+	}
+
 	
 
 }
