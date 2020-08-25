@@ -19,7 +19,7 @@
 		<typeAlias alias="FINDLESSON" type="com.privateplaylist.www.dto.FindLesson"/>
 		<typeAlias alias="FINDSTUDENT" type="com.privateplaylist.www.dto.FindStudent"/>
 		<typeAlias alias="MEMBERSHIP" type="com.privateplaylist.www.dto.Membership"/>
-		<typeAlias alias="MEMBER" type="com.privateplaylist.www.dto.Membership"/>
+		<typeAlias alias="MEMBER" type="com.privateplaylist.www.member.vo.Member"/>
 		<typeAlias alias="NOTICE" type="com.privateplaylist.www.dto.Notice"/>
 		<typeAlias alias="PAYMENT" type="com.privateplaylist.www.dto.Payment"/>
 		<typeAlias alias="QUESTION" type="com.privateplaylist.www.dto.Question"/>
@@ -40,11 +40,12 @@
 	<!-- mapper 연결 -->
 	<mappers>
  		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
- 		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/> 
+<!--		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/> -->
 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
 		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/ProfitMapper.xml"/>
 	</mappers>
 
 </configuration>

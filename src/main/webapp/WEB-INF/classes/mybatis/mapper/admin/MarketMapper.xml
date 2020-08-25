@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMarket">
+
+	<resultMap type="map" id="marketList">
+	
+		<result column="rnum" property="rnum" />
+		<result column="mk_no" property="mkNo" />
+		<result column="mk_title" property="mkTitle" />
+		<result column="mk_content" property="mkContent" />
+		<result column="mk_date" property="mkDate" />
+		<result column="mk_price" property="mkPrice" />
+		<result column="mk_state" property="mkState" />
+		<result column="mk_file_rename" property="mkFileRename" />
+
+	</resultMap>
+
+
+	<!-- 관리자 페이지 중고장터 리스트 가져옴 -->
+	<select id="selectMarketList" resultMap="marketList">
+		select
+		*
+		from(
+		select
+		rownum rnum,n1.*
+		from(select
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_file_rename
+		from market m
+		left join mk_thumb t
+		on m.mk_no=t.mk_no
+		left join
+		membership s
+		on m.mk_writer=s.user_no
+		where s.user_id like '%' ||  #{search} || '%' or  m.mk_title like '%' ||  #{search} || '%')n1
+		)where rnum
+		between #{startNO} and #{endNo}
+	</select>
+
+	<!-- 사용자 아이디로 검색한 관리자 페이지 중고장터 리스트 가져옴 -->
+	<select id="selectMarketListById" resultMap="marketList">
+		select
+		*
+		from(
+		select
+		rownum rnum,n1.*
+		from(select
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_file_rename
+		from market m
+		left join mk_thumb t
+		on m.mk_no=t.mk_no
+		left join
+		membership s
+		on m.mk_writer=s.user_no
+		where s.user_id like '%' ||  #{search} || '%')n1
+		)where rnum
+		between #{startNO} and #{endNo}
+	</select>
+
+	<!-- 사용자 아이디로 검색한 관리자 페이지 중고장터 리스트 가져옴 -->
+	<select id="selectMarketListByTitle" resultMap="marketList">
+		select
+		*
+		from(
+		select
+		rownum rnum,n1.*
+		from(select
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_file_rename
+		from market m
+		left join mk_thumb t
+		on m.mk_no=t.mk_no
+		left join
+		membership s
+		on m.mk_writer=s.user_no
+		where m.mk_title like '%' ||  #{search} || '%'
+		order by m.mk_no)n1
+		)where rnum
+		between #{startNO} and #{endNo}
+		
+	</select>
+
+
+	<!--페이징을 위한 중고장터 개시물의 갯수 가져옴 -->
+	<select id="selectMarketCntAll" resultType="int">
+		select count(*)
+		from market m
+		left join membership s
+		on m.mk_writer=s.user_no
+		where
+		s.user_id like '%' ||  #{userId} || '%' or m.mk_title like '%' ||  #{title} || '%'
+	</select>
+
+	<!--페이징을 위한 중고장터 개시물의 갯수 가져옴 -->
+	<select id="selectMarketCntByUserId" resultType="int">
+		select count(*)
+		from market m
+		left join membership s
+		on m.mk_writer=s.user_no
+		where
+		user_id like '%' ||  #{userId} || '%'
+	</select>
+
+	<!--페이징을 위한 중고장터 개시물의 갯수 가져옴 -->
+	<select id="selectMarketCntByTitle" resultType="int">
+		select count(*)
+		from
+		market
+		where mk_title like '%' ||  #{title} || '%'
+	</select>
+
+	<!-- 관리자가 중고장터 삭제하기위한 이벤트 -->
+	<delete id="deleteMarket">
+		delete from market where mk_no=#{mkNo}
+	</delete>
+
+	<!-- 관리자가 중고장터 파일을 삭제하기위한 이벤트 -->
+	<delete id="deleteMarketFile">
+		delete from mk_file where mk_no=#{mkNo}
+	</delete>
+
+	<!-- 관리자가 중고장터 썸네일을 삭제하기위한 이벤트 -->
+	<delete id="deleteMarketThumb">
+		delete from mk_thumb where mk_no=#{mkNo}
+	</delete>
+
+
+
+</mapper>

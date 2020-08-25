@@ -84,9 +84,9 @@ public class Paging {
        
        //기본값 설정
        if(curPage == 0 ) setCurPage(1); //첫페이지를 기본값으로 세팅
-       System.out.println(listCount);
+//       System.out.println(listCount);
        if(listCount == 0 ) setListCount(10); //화면에 보여질 게시글 수 기본값
-       System.out.println(pageCount);
+//       System.out.println(pageCount);
        if(pageCount == 0 ) setPageCount(10); //화면에 보여질 페이지수 기본 값
        
        //총 페이지 수 계산

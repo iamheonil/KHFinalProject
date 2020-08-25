@@ -20,11 +20,11 @@
 }
 
 #btnWrite{
-	color: #17B794;
+/* 	color: #17B794; */
 }
 
 #btnCancel{
-	color: red;
+/* 	color: red; */
 }
 
  #divbtn{ 
@@ -58,7 +58,7 @@
 
 #noticeTable th {
 	text-align: center;
-	background: #17B794;
+	background: #ccc;
 }
 
 </style>
@@ -88,8 +88,39 @@ $(document).ready(function(){
 		//스마트 에이터의 내용을 <textarea>에 적용하는 함수를 호출한다
 		submitContents($("#btnWrite"));
 		
-		//실제 <form>의 submit 수행
-		$("#noticeForm").submit();
+		//제목 작성했는지 검사
+		if(($("#noticeTitle").val()).trim() == ""){
+			alert("제목을 5자 이상 작성해주세요");
+			$("#noticeTitle").focus();
+			return false; 
+		}
+		
+		//textarea 값 
+		var value =  $("#noticeContent").val()
+  
+		//textarea value 모든 공백 제거
+		function texttrim(value){
+			value = value.replace(/\s+/, "");//왼쪽 공백제거
+			value = value.replace(/\s+$/g, "");//오른쪽 공백제거
+			value = value.replace(/\n/g, "");//행바꿈제거
+			value = value.replace(/\r/g, "");//엔터제거
+			return value;
+		}
+		
+		//textarea 의 공백 제거한 최소 길이 : 11
+		// 11 이하 : 공백
+		if( (texttrim(value).length) <= 11){
+				alert("본문을 5 글자 이상 작성해주세요");
+				$("#noticeContent").focus();
+				return false; 
+		}
+
+		//제목 내용 둘다 작성하면 insert 
+		if( $("#noticeTitle").val().trim() != "" && (texttrim(value).length) > 11 ) {
+			//alert("insert"+texttrim(value).length);
+			//실제 <form>의 submit 수행
+			$("#noticeForm").submit();
+		} 
 		
 	});
 	
@@ -115,7 +146,7 @@ $(document).ready(function(){
 		<table id="noticeTable" class="table table-condensed text-center">
 			<tr>
 				<th>글제목</th>
-				<td><input style="width: 100%;" type="text" name="noticeTitle" required="required"/></td>
+				<td><input style="width: 100%;" type="text" id="noticeTitle" name="noticeTitle" required="required" autofocus="autofocus"/></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">본문</th>
