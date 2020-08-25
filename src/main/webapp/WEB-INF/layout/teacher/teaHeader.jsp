@@ -250,8 +250,12 @@ nav {
             </ul>
           </div>
           
-           <div class="menu-item">
+           <div class="menu-item" id="two">
             <h4><a href="#">과외 연결 관리</a></h4>
+	            <ul>
+	              <li><a href="#">진행 중인 과외</a></li>
+	              <li><a href="#">학생 신청 과외</a></li>
+	            </ul>
           </div>
           
            <div class="menu-item">

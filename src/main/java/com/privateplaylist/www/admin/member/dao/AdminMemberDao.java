@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.Membership;
 import com.privateplaylist.www.dto.Question;
-import com.privateplaylist.www.dto.Review;
 
 import common.util.Paging;
+
+
 
 @Repository
 public class AdminMemberDao {
