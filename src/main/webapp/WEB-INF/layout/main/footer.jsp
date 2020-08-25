@@ -176,7 +176,7 @@ body {
     position: absolute;
     text-align: center;
     right: 16%;
-   	bottom: 23px;
+/*    	bottom: 23px; */
 }
 
 #footer_nav p {
