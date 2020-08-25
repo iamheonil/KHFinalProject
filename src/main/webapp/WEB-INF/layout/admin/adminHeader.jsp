@@ -57,6 +57,10 @@
                                	 과외 검토
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/lesson/findstudent">
+                               	 학생 찾기
+                               	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
+                            </a>
                             
                             <div class="sb-sidenav-menu-heading">회원</div>
                             <a class="nav-link" href="${pageContext.request.contextPath}/admin/stuList">

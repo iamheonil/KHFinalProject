@@ -58,6 +58,9 @@
 											<th style="width: 8%">게시</th>
 	                                    </tr>
 	                                </thead>
+	                                
+	                                  <!-- ** 추후 구현 : 제목 클릭 시 과외 상세 페이지로 연결 -->
+	                                
 	                                <tbody>
 					                	<c:forEach items="${lessonList }" var="lessonList" >
 											<tr>
