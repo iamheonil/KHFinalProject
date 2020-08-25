@@ -45,6 +45,8 @@ public class MemberController {
 		if (res != null) {
 			// 로그인 성공
 			session.setAttribute("loginUser", res);
+			Member loginUser = (Member) session.getAttribute("loginUser");
+			System.out.println("담은거 : " + loginUser);
 			mav.addObject("url", request.getContextPath() + "/main/index");
 			mav.setViewName("/main/index");
 			System.out.println("로그인 성공");
@@ -56,6 +58,13 @@ public class MemberController {
 		}
 
 		return mav;
+	}
+
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main() {
+		System.out.println("Going Main");
+
+		return "/main/index";
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
@@ -94,6 +103,16 @@ public class MemberController {
 
 		System.out.println("메일 발송 성공");
 		mav.setViewName("/member/login");
+
+		return mav;
+	}
+
+	@RequestMapping("/joinresult")
+	public ModelAndView joinResultTest(Member member, HttpServletRequest request) throws MailException {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/member/join_result");
 
 		return mav;
 	}
