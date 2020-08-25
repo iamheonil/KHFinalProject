@@ -103,13 +103,11 @@ body {
     text-align: center;
     padding-left: 42px;
     padding-right: 20px;
-/*     border-left: 1px solid; */
 }
 
 .footerMenu>li{
     display: flex;
     text-align: center;
-   
 }
 
 .footerMenu a {
@@ -137,8 +135,8 @@ body {
     max-width: 1140px;
     position: relative;
     margin: 0 auto;
-      padding-left: 15px;  
-     padding-right: 15px;  
+    padding-left: 15px;  
+    padding-right: 15px;  
 }
 
 .modal-dialog{
@@ -167,9 +165,9 @@ body {
 
 #footer_logo {
 
-	position: absolute;
-	float: left;
-	left: 18%;
+/* 	position: absolute; */
+/* 	float: left; */
+/* 	left: 18%; */
 }
 
 #footer_nav {
@@ -177,8 +175,7 @@ body {
 	display: flex;
     position: absolute;
     text-align: center;
-    right: 16%;
-    bottom: -23.5%;
+    right: 23%;
 }
 
 #footer_nav p {
@@ -257,13 +254,13 @@ body {
           <div class="footer">
           
           	
-	          	<div id="footer_logo">
+	          	<div id="footer_nav">
+	          	<div>
 			        <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" 
 		           				alt="슬기로운 과외생활" style="width: 120px; height: 120px;">
 					<p>&copy; 슬기로운 과외생활</p>
 	         	</div>
 	        	
-	          	<div id="footer_nav">
 					<ul class="gtco-list-link footerMenu" id="short">
 						<p>SUPPORT</p>
 						<li><a href="#">문의하기</a></li>
@@ -278,7 +275,7 @@ body {
 						<li><a href="#" data-toggle="modal" data-target="#myModal">개인정보 처리방침</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#myModal2">사이트 이용약관</a></li>
 					</ul>
-					<ul class="gtco-list-link footerMenu" id="long">
+					<ul class="gtco-list-link footerMenu">
 						<p>CONTACT</p>
 						<li>loc&nbsp; |&nbsp; 서울시 강남구 테헤란로 그랑프리빌딩 4F</li>
 						<li>tel&nbsp; |&nbsp; 070 1234 5678</li>
