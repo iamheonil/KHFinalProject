@@ -135,8 +135,8 @@ body {
     max-width: 1140px;
     position: relative;
     margin: 0 auto;
-      padding-left: 15px;  
-     padding-right: 15px;  
+    padding-left: 15px;  
+    padding-right: 15px;  
 }
 
 .modal-dialog{

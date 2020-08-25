@@ -3,7 +3,7 @@
 <!-- 2020.08.19 김헌일 수정 + 헤더 푸터 Import 작업-->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/layout/main/header.jsp" %>
@@ -13,7 +13,7 @@
 <style>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+                                                                                                                                                                                               <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </style>
 
 <style>
@@ -160,43 +160,28 @@
 <br><br>
 
 <div class="login-form">
-    <form action="/ss/member/loginImpl" method="post">
-		
-<!-- 			<img src="/examples/images/avatar.png" alt="Avatar"> -->
-<!-- 			
-			<div class="lcb-float">
-				<i class="fa fa-users fa-4x"></i>
-			</div>
--->
-		<br>
-        <h3 class="text-center">슬기로운 과외생활</h3>
+
+    <div id="content_wrap" style="color: white;">
+        <h1>"슬기로운 과외생활"</h1>
         <br>
-        <div class="form-group">
-        	<input type="text" class="form-control" id="userId" name="userId" placeholder="아이디 입력" required="required">
-        </div>
-		<div class="form-group">
-            <input type="password" class="form-control" id="userPw" name="userPw" placeholder="패스워드 입력" required="required">
-        </div>        
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
-        </div>
-		<div class="bottom-action clearfix" style="text-align: center;">
-<!--             <label class="float-left form-check-label"><input type="checkbox"> 아이디 저장</label> -->
-            <a href="findid.jsp" class="float-left">아이디 찾기</a> | <a href="findpw.jsp" class="float-right">비밀번호 찾기</a>
-        </div>
-        <div class="or-seperator"></div>
-        <div class="text-center social-btn" >
-			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> <b>Google</b> 로그인 </a>
-<!--             <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> -->
-<!--             <a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
-<!-- 			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a> -->
-        </div>
-    </form>
-    <!-- <p class="text-center small">로그인정보가 기억나지 않으세요? <a href="#">여기</a> 를 눌러주세요!</p>  -->
+        <p>회원가입을 축하드립니다!</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="/member/main" style="text-decoration: none">메인으로 가기</a>
+        <br>
+        <br>
+        <br>
 
-    <br><br>
+    </div>
 
-</div>
 </body>
 
 <!-- 선생님 마이페이지 푸터 -->
