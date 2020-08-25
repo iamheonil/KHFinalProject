@@ -135,8 +135,8 @@ body {
     max-width: 1140px;
     position: relative;
     margin: 0 auto;
-      padding-left: 15px;  
-     padding-right: 15px;  
+    padding-left: 15px;  
+    padding-right: 15px;  
 }
 
 .modal-dialog{
@@ -176,7 +176,7 @@ body {
     position: absolute;
     text-align: center;
     right: 16%;
-   	bottom: 23px;
+/*    	bottom: 23px; */
 }
 
 #footer_nav p {
