@@ -103,11 +103,13 @@ body {
     text-align: center;
     padding-left: 42px;
     padding-right: 20px;
+/*     border-left: 1px solid; */
 }
 
 .footerMenu>li{
     display: flex;
     text-align: center;
+   
 }
 
 .footerMenu a {
@@ -176,7 +178,7 @@ body {
     position: absolute;
     text-align: center;
     right: 16%;
-   	bottom: 23px;
+    bottom: -23.5%;
 }
 
 #footer_nav p {
@@ -276,7 +278,7 @@ body {
 						<li><a href="#" data-toggle="modal" data-target="#myModal">개인정보 처리방침</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#myModal2">사이트 이용약관</a></li>
 					</ul>
-					<ul class="gtco-list-link footerMenu">
+					<ul class="gtco-list-link footerMenu" id="long">
 						<p>CONTACT</p>
 						<li>loc&nbsp; |&nbsp; 서울시 강남구 테헤란로 그랑프리빌딩 4F</li>
 						<li>tel&nbsp; |&nbsp; 070 1234 5678</li>
