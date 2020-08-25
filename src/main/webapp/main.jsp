@@ -42,7 +42,7 @@ margin-top:20px;
 											
 										<div class="row padding-horizontal-md pull-left banner">
 											<div class="row margin-top-xs text title title-xxl text-bold text-white">
-												<p><h1>과외에 관한 모든것</h1></p>
+												<p><h1>과외에 대한 모든 것</h1></p>
 											</div>
 											<br>
 											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
