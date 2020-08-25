@@ -42,17 +42,6 @@ $(document).ready(function($){
 
 
 <script type="text/javascript">
-/* 체크박스 전체선택, 전체해제 */
-function checkAll(){
-      if( $("#th_checkAll").is(':checked') ){
-        $("input[name=checkRow]").prop("checked", true);
-      }else{
-        $("input[name=checkRow]").prop("checked", false);
-      }
-}
-</script> 
-
-<script type="text/javascript">
 $(document).ready(function(){
 	
 	//삭제버튼 동작
@@ -94,19 +83,8 @@ $(document).ready(function(){
 	
 	
 	    <div id="content">
-	    
+	    <button type="button" class="btn btn-info" onclick="location.href='stuList'" style="margin-left: 88%">목록</button>
 
-
-
-			<c:if test="${empty stuData.stuQuestion }">
-				<div>게시글이 없습니다</div>
-			</c:if>
-
-
-
-
-
-			<c:if test="${!empty stuData.stuQuestion }">
 
 	           	<div class="container-fluid">
                         <h5 style="font-weight: bold;">질문게시판</h5>
@@ -137,15 +115,9 @@ $(document).ready(function(){
                         </div>
                     
                 
-            </c:if>
 
 
 
-			<c:if test="${empty stuData.stuReview }">
-				<div>게시글이 없습니다</div>
-			</c:if>
-
-			<c:if test="${!empty stuData.stuReview }">
 	           	<div class="container-fluid">
                         <h5 style="font-weight: bold;">후기게시판</h5>
                             <div class="card-body">
@@ -180,16 +152,8 @@ $(document).ready(function(){
                             </div>
                         </div>
                     
-                
-            </c:if>
             
             <!-- 중고장터 -->
-            <c:if test="${empty stuData.stuMarket }">
-				<div>게시글이 없습니다</div>
-			</c:if>
-
-
-			<c:if test="${!empty stuData.stuMarket }">
 
 	           	<div class="container-fluid">
                         <h5 style="font-weight: bold;">중고장터</h5>
@@ -223,10 +187,6 @@ $(document).ready(function(){
                             </div>
                         </div>
                     
-                
-            </c:if>
-            
-            
             
 		</div>
 		

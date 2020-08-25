@@ -117,19 +117,40 @@ $(document).ready(function() {
 
 $("#1").click(function(){
     $("#resume").html(
-    		'<label class="col-form-label col-4">증빙서류</label>'+
+    		'<label class="col-form-label col-4">증빙서류</label>' +
 			'<div class="col-8 float">'+
                ' <input type="file" id="files" name="files" required="required" multiple>'+
             '</div>'		
     )
-	
-	
+
+    $("#formAction").attr("action", "/ss/member/jointeacher");
+
     })
 
     $("#2").click(function(){
         $("#resume").html("");
-    })
 
+        $("#formAction").attr("action", "/ss/member/joinemail");
+    })
+    
+    $(function(){
+        $('#userPw').keyup(function(){
+          $('#pw-check-msg').html('');
+        });
+
+        $('#userPw_check').keyup(function(){
+
+            if($('#userPw').val() != $('#userPw_check').val()){
+              $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
+              $('#pw-check-msg').attr('color', '#f82a2aa3');
+            } else{
+              $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
+              $('#pw-check-msg').attr('color', '#199894b3');
+            }
+
+        });
+    });
+    
 });
 
 function inputPhoneNumber(obj) {
@@ -159,7 +180,7 @@ function inputPhoneNumber(obj) {
     obj.value = phone;
 }
 
-    <!-- 아이디 부분 -->
+<!-- 아이디 부분 -->
 
 var ajaxFlag = false;
 
@@ -170,7 +191,7 @@ function validate() {
     function chk(re, e, msg) {
         if(re.test(e.value)) {
             return true;
-        }else{
+        } else {
             alert(msg);
             e.value = "";
             e.focus();
@@ -219,6 +240,11 @@ function xmlIdCheck(){
     })
 }
 
+function xmlEmailCheck() {
+	
+	
+	
+}
 
 </script>
 
@@ -270,7 +296,7 @@ function xmlIdCheck(){
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/ss/member/joinImpl" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form action="/ss/member/joinemail" id="joinAction" method="post" class="form-horizontal" enctype="multipart/form-data">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -279,32 +305,42 @@ function xmlIdCheck(){
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" id="userId" name="userId" required="required" size="25"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
+                <input type="text" id="userId" name="userId" required="required" size="20" autofocus="autofocus"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
             </div>
-            <span id="id-check-msg" class="id-check-msg" style="font-size: 10px;"></span>
+        </div>
+        
+        <div class="form-group row" id="id-check" style="font-size: 8px; text-align: center;" >
+        	<span id="id-check-msg" class="id-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
 
 		<div class="form-group row">
 			<label class="col-form-label col-4">비밀번호</label>
 			<div class="col-8 float">
-                <input type="password" class="form-control" name="userPw" required="required">
+                <input type="password" class="form-control" id="userPw" name="userPw" required="required">
             </div>        	
         </div>
 		<div class="form-group row">
 			<label class="col-form-label col-4">비밀번호 확인</label>
 			<div class="col-8 float">
-                <input type="password" class="form-control" name="confirm_password" required="required">
+                <input type="password" class="form-control" id="userPw_check" name="userPw_check" required="required">
             </div>        	
         </div>
+        
+        <div class="form-group row" id="pw-check" style="font-size: 8px; text-align: center;">
+        	<span id="pw-check-msg" class="pw-check-msg" style="font-size: 8px; text-align: center;"></span>
+        </div>
+        
 		<div class="form-group row">
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" name="userEmail" required="required" size="25" />
-                <br> <button type="button" id="emailBtn">이메일 발송</button> <button type="button" id="emailAuthBtn">이메일 인증</button>
+                <input type="email" class="form-control" name="userEmail" required="required" />
             </div>
-            <input type="hidden" path="random" id="random" value="${random }" />
         </div>
+        
+        <div class="form-group row" id="mailCode" >
+        </div>
+        
 		<div class="form-group row">
 			<label class="col-form-label col-4">구분</label>
 			<div class="col-8 float">
@@ -392,4 +428,7 @@ function xmlIdCheck(){
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
 </body>
 
-<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
+<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
+<!-- 선생님 마이페이지 푸터 -->
+<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>

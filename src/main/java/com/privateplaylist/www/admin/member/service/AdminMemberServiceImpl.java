@@ -21,23 +21,44 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	@Autowired
 	private AdminMemberDao adminMemberDao;
 
-	@Override
-	public Map<String, Object> selectStuList(int cPage, int cntPerPage) {
-		
-		Map<String, Object> commandMap 	= new HashMap<String, Object>();
-		 Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
+//	@Override
+//	public Map<String, Object> selectStuList(int cPage, int cntPerPage) {
+//		
+//		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+//		 Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
+//
+//		 List<Membership> stulist = adminMemberDao.selectStuList(p);
+//		 commandMap.put("stulist", stulist);
+//		 commandMap.put("paging", p);
+//		return commandMap;
+//		
+//	}
 
-		 List<Membership> stulist = adminMemberDao.selectStuList(p);
-		 commandMap.put("stulist", stulist);
-		 commandMap.put("paging", p);
-		return commandMap;
+
+	@Override
+	public Map<String, Object> selectStuList(Paging paging) {
+		Map<String, Object> commandMap 	= new HashMap<String, Object>();
 		
+		 List<Membership> stulist = adminMemberDao.selectStuList(paging);
+		 commandMap.put("stulist", stulist);
+		 commandMap.put("paging", paging);
+		return commandMap;
 	}
 	
-	
+	@Override
+	public Paging getPagingAdminStu(int curPage, String search) {
+		
+		int totalCount = adminMemberDao.selectStuCnt(search);
+		
+		// Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		paging.setSearch(search);
+		
 
-	
-	//회원 정보 상세보기 
+		return paging;
+	}
+
+
 	@Override
 	public Map<String, Object> selectStuDetail(int userNo) {
 		
@@ -52,33 +73,61 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 
 	@Override
-	public Map<String, Object> selectAllList(int userNo) {
+	public Map<String, Object> selectStuAllList(int userNo) {
 		
 		Map<String, Object> commandMap 	= new HashMap<String, Object>();
 //		Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
 	
-		List<Question> stuQuestion = adminMemberDao.selectStuQuestionList(userNo);
+		List<Question> stuQuestion = adminMemberDao.selectQuestionList(userNo);
 		List<Map<String, Object>> stuReview = adminMemberDao.selectStuReviewList(userNo);
-		List<Market> stuMarket = adminMemberDao.selectStuMarketList(userNo);
+		List<Market> stuMarket = adminMemberDao.selectMarketList(userNo);
 		commandMap.put("stuQuestion", stuQuestion);
 		commandMap.put("stuReview", stuReview);
 		commandMap.put("stuMarket", stuMarket);
 //		commandMap.put("paging", p);
 		return commandMap;
 	}
+
+	@Override
+	public Paging getPagingAdminTch(int curPage, String search) {
+		
+		int totalCount = adminMemberDao.selectTchCnt(search);
+		
+		// Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		paging.setSearch(search);
+		
+		return paging;
+	}
+
+
+	@Override
+	public Map<String, Object> selectTchList(Paging paging) {
+		
+		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+		
+		 List<Membership> tchlist = adminMemberDao.selectTchList(paging);
+		 commandMap.put("tchlist", tchlist);
+		 commandMap.put("paging", paging);
+		return commandMap;		
+	}
+
+
+	@Override
+	public Map<String, Object> selectTchAllList(int userNo) {
+		
+		Map<String, Object> commandMap 	= new HashMap<String, Object>();
 	
-//	@Override
-//	public Map<String, Object> selectStuReviewList(int userNo) {
-//		
-//		Map<String, Object> commandMap 	= new HashMap<String, Object>();
-////		Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
-//		
-//		List<Review> stuReview = adminMemberDao.selectStuReviewList(userNo);
-//		commandMap.put("stuReview", stuReview);
-////		System.out.println(stuReview);
-////		commandMap.put("paging", p);
-//		return commandMap;
-//	}
+		List<Question> tchQuestion = adminMemberDao.selectQuestionList(userNo);
+		List<Map<String, Object>> tchReview = adminMemberDao.selectTchReviewList(userNo);
+		List<Market> tchMarket = adminMemberDao.selectMarketList(userNo);
+		commandMap.put("tchQuestion", tchQuestion);
+		commandMap.put("tchReview", tchReview);
+		commandMap.put("tchMarket", tchMarket);
+		return commandMap;
+		
+	}
+	
 	
 
 }

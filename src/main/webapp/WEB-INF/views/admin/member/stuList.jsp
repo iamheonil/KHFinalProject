@@ -433,31 +433,7 @@ p{
 	</div>
 
 	<main>
-		<div id="content">
-
-			<div class="row">
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area mr-1"></i>
-                            Area Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar mr-1"></i>
-                            Bar Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-            </div>
-            
-
-
+		<div id="content" style="margin-bottom: 30%">
 
 			<div class="container">
 				<div class="row">
@@ -471,10 +447,10 @@ p{
 												<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 													<select class="form-control" id="exampleFormControlSelect1">
 														<option>UserNo</option>
-														<option>ID</option>
-														<option>이름</option>
-														<option>연락처</option>
-														<option>Email</option>
+<!-- 														<option>ID</option> -->
+<!-- 														<option>이름</option> -->
+<!-- 														<option>연락처</option> -->
+<!-- 														<option>Email</option> -->
 													</select>
 												</div>
 												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
@@ -537,7 +513,9 @@ p{
 									</tbody>
 								</table>
 								
-					<c:import url="/WEB-INF/paging/testPaging.jsp"/>
+					<c:if test="${not empty stuData}" >
+						<c:import url="/WEB-INF/paging/admin/member/stulistPaging.jsp" />
+					</c:if>
 <!--       	<div class="btn_section" style="background-color:white"> -->
 <%--       	 <a href="<%= request.getContextPath() %>/board/boardform.do" style="font-size:1.1vw">공지 쓰기</a> --%>
 <!--    	  	</div> -->
