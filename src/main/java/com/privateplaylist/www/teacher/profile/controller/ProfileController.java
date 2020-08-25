@@ -12,8 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.privateplaylist.www.dto.Membership;
 import com.privateplaylist.www.member.vo.Member;
@@ -28,35 +30,52 @@ public class ProfileController {
 	
 	//마이페이지 비밀번호 확인 jsp 
 	@RequestMapping("/chkpassword")
-	public String  chkpassword(HttpSession session) {
+	public String  chkpassword(Model model,HttpSession session) {
 //		System.out.println("/teacher/profile/chkpassword");
-		
-		//세션값 가지고 오기
-//		Member loginUser = (Member) session.getAttribute("loginUser");
-		
-//		System.out.println(loginUser);
-//		System.out.println(loginUser.getUserNo());
-		
 		return "/teacher/profile/chkpassword";
 	}	
 	
+	
+	//ajax
+	//한글 인코딩 확인
 	//비밀번호 확인 >> 되면 열람 jsp
+	@ResponseBody
 	@RequestMapping("/chkpasswordRes")
-	public String  chkpasswordRes(Model model, HttpServletRequest req, @RequestParam String userPw ,HttpSession session ) {
+	public String chkpasswordRes(Model model, HttpServletRequest req, @RequestParam String userPw ,HttpSession session ) {
 		System.out.println("/teacher/profile/chkpasswordRes");
 	
-		//root context
-		String root = req.getContextPath();
-		
 		//세션값 가지고 오기
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		System.out.println(loginUser);
+		if(loginUser == null) {
+			return "로그아웃 되었습니다. 다시 로그인 바랍니다.";
+		}
 		
-		//모델값 전달
-//		model.addAttribute("noticeList", noticeList);
+		//비밀번호 일치 여부 확인
+		int res = profileService.chkpassword(loginUser,userPw);
 		
-		return "/teacher/profile/chkpassword";
+		if(res > 1) {
+			//결과가 1보다 크면  ""
+			return "";
+		}else {
+			//결과가 1보다 작으면 "비밀번호가 일치하지 않습니다."
+			return "비밀번호가 일치하지 않습니다.";
+		}
+	
+	}	
+	
+	//마이페이지 열람
+	@RequestMapping("/select")
+	public String selectProfile(Model model, HttpServletRequest req,HttpSession session ) {
+		System.out.println("/teacher/profile/select");
+	
+		//세션값 가지고 오기
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		//세션의 아이디 값으로 select membership 해오기
+		
+
+		return "/teacher/profile/select";
 	}	
 	
 	

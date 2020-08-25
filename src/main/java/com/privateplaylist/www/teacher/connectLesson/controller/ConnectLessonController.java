@@ -19,35 +19,35 @@ import common.util.Paging;
 @RequestMapping("/teacher")
 public class ConnectLessonController {
 	
-	private ConnectLessonService connectLessonService;
+//	private ConnectLessonService connectLessonService;
+//	
+//	@RequestMapping("/connectlesson")
+//	public ModelAndView connectLession() {
+//
+//		ModelAndView mav = new ModelAndView();
+//		
+//		
+//		mav.setViewName("teacher/connectedLesson/connectedLesson");
+//		
+//		return mav;
+//	}
 	
-	@RequestMapping("/connectlesson")
-	public ModelAndView connectLession() {
-
-		ModelAndView mav = new ModelAndView();
-		
-		
-		mav.setViewName("teacher/connectedLesson/connectedLesson");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/signstu")
-	public ModelAndView signStudent(HttpSession session, @RequestParam(required = false, defaultValue = "1") int curPage) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-//		Membership m = (Membership) session.getAttribute("loginUser");
-		
-		int userNo = 6;
-		
-		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
-		
-		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging);
-		
-		mav.setViewName("teacher/connectedLesson/signStudent");
-		
-		return mav;
-	}
+//	@RequestMapping("/signstu")
+//	public ModelAndView signStudent(HttpSession session, @RequestParam(required = false, defaultValue = "1") int curPage) {
+//		
+//		ModelAndView mav = new ModelAndView();
+//		
+////		Membership m = (Membership) session.getAttribute("loginUser");
+//		
+//		int userNo = 6;
+//		
+//		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
+//		
+//		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging);
+//		
+//		mav.setViewName("teacher/connectedLesson/signStudent");
+//		
+//		return mav;
+//	}
 
 }

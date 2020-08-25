@@ -271,7 +271,7 @@ nav {
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">회원정보 수정</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/teacher/profile/chkpassword">회원정보 수정</a></h4>
           </div>
           
       </nav>
