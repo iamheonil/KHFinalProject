@@ -11,6 +11,11 @@
       VALUES (MEMBERSHIP_SEQ.nextval, #{userId}, #{userPw}, #{userName}, #{postCode}, #{roadAddress}, #{detailAddress}, #{userPhone}, #{userEmail}, #{userGender}, #{userBirth}, #{userActor}, 0)
     </insert>
 
+    <insert id="insertFile">
+        INSERT INTO TEACHERFILE(TCH_FILE_NO, USER_NO, TCH_FILE_ORG, TCH_FILE_RENAME, SAVE_PATH)
+        values(TEACHERFILE_SEQ.nextval, MEMBERSHIP_SEQ.CURRVAL, #{tch_file_Org}, #{tch_file_Rename}, #{save_Path})
+    </insert>
+
     <select id="selectMember" resultType="MEMBER">
       SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userId} AND IS_LEAVE = 0
     </select>
