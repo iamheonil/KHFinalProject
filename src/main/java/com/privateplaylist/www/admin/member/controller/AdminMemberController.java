@@ -1,5 +1,7 @@
 package com.privateplaylist.www.admin.member.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.privateplaylist.www.admin.member.service.AdminMemberService;
 
+import common.util.Paging;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminMemberController {
@@ -18,16 +22,20 @@ public class AdminMemberController {
 	AdminMemberService adminMemberService;
 
     @RequestMapping("/stuList")
-    public ModelAndView stuList(@RequestParam(required=false, defaultValue="1") int cPage) {
+    public ModelAndView stuList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
         
     	ModelAndView mav = new ModelAndView();
-		int cntPerPage = 10;
-		Map<String, Object> commandMap = adminMemberService.selectStuList(cPage, cntPerPage);
+    	
+    	Paging paging = adminMemberService.getPagingAdminStu(curPage, search);
+    	
+		Map<String, Object> commandMap = adminMemberService.selectStuList(paging);
 		
+//		int stuCnt = adminMemberService.selectStuCnt();
 		
-		//paging��ü�� paging�̶�� Ű�� ��Ƽ� ������.
-		mav.addObject("paging", commandMap.get("paging"));
+		mav.addObject("search", search);
+//		mav.addObject("blackCnt", stuCnt);
 		mav.addObject("stuData", commandMap);
+		mav.addObject("paging", paging);
 		mav.setViewName("admin/member/stuList");
 		return mav;
     	
@@ -50,16 +58,44 @@ public class AdminMemberController {
 //		}
 		
 		ModelAndView mav = new ModelAndView();
-		Map<String, Object> commandMap = adminMemberService.selectQuestionList(userNo);
-//		Map<String, Object> commandMap2 = adminMemberService.selectStuReviewList(userNo);
-//		commandMap.putAll(commandMap2);
+		Map<String, Object> commandMap = adminMemberService.selectAllList(userNo);
 		
-		System.out.println("컨트롤러 commandMap : "+ commandMap);
+//		System.out.println("컨트롤러 commandMap : "+ commandMap);
+//		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
 		mav.addObject("stuData", commandMap);
 		mav.setViewName("admin/member/stuDetail");
 		
+		// 평점 옵션
+		Map<Integer, String> ratingOptions = new HashMap<>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		mav.addObject("ratingOptions", ratingOptions);
+		
 		return mav;
 	}
+	
+    @RequestMapping("/tchList")
+    public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
+        
+    	ModelAndView mav = new ModelAndView();
+    	
+    	Paging paging = adminMemberService.getPagingAdminTch(curPage, search);
+    	
+		Map<String, Object> commandMap = adminMemberService.selectTchList(paging);
+		
+//		int stuCnt = adminMemberService.selectStuCnt();
+		
+		mav.addObject("search", search);
+//		mav.addObject("blackCnt", stuCnt);
+		mav.addObject("tchData", commandMap);
+		mav.addObject("paging", paging);
+		mav.setViewName("admin/member/tchList");
+		return mav;
+    }
 	
 
 

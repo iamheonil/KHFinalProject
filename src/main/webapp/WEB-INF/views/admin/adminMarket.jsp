@@ -15,8 +15,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-
-
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -569,7 +567,6 @@ document.ready(function(){
 
 
 
-<div id="layoutSidenav_content">
 
 	<div id="title">
 		과외 <i class="fas fa-angle-right"></i> <a href="#">중고장터 조회/삭제</a>

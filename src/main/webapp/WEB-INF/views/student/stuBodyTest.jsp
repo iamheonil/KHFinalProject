@@ -21,6 +21,7 @@
 
 <!-- 학생 마이페이지 푸터 -->
 <c:import url="/WEB-INF/layout/student/stuFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/student/stuFooter2.jsp"></c:import>
 
 <!-- 메인 푸터 --> 
-<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import> 
+<%-- <c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>  --%>

@@ -17,33 +17,33 @@ public class BlackListDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public List<Map<String, Object>> selectAllBlackList(Paging paging){
-		List<Map<String, Object>> list = sqlSession.selectList(namespace + "selectAllBlackList", paging);
+	public List<Map<String, Object>> selectAllBlackList(Map<String, Object> bMap){
+		List<Map<String, Object>> list = sqlSession.selectList(namespace + "selectAllBlackList", bMap);
 		return list;
 	}
-
-	// 모든 신고 내역 수
-	public int selectCntAllBlack(String search) {
-		int totalCnt = sqlSession.selectOne(namespace + "selectAllCntBlack", search);
-
+	
+	// 게시판 모든 신고 내역 수
+	public int selectCntAllBlack(Map<String, String> map) {
+		int totalCnt = sqlSession.selectOne(namespace + "selectAllCntBlack", map);
 		return totalCnt;
 	}
 
-	// 신고 반려
+
+	// 후기게시판 신고 반려
 	public void updateBlacklistTurndown(int blacklistNo) {
 		sqlSession.update(namespace + "updateBlacklistTurndown", blacklistNo);
 	}
 
 	/**
-	 * 신고 삭제
+	 * 후기게시판 신고 삭제
 	 * @param blacklistNo
 	 */
-	public void updateBlacklistDelete(int blacklistNo) {
-		sqlSession.update(namespace + "updateBlacklistDelete", blacklistNo);
+	public void updateBlackReivewDelete(int blacklistNo) {
+		sqlSession.update(namespace + "updateBlackReivewDelete", blacklistNo);
 	}
 
 	/**
-	 * 신고글 가져오기
+	 * 후기게시판 신고글 가져오기
 	 * @param blacklistNo
 	 * @return
 	 */
@@ -52,17 +52,31 @@ public class BlackListDao {
 	}
 
 	/**
-	 * 리뷰 삭제
+	 * 후기게시판 리뷰 삭제
 	 * @param reviewNo
 	 */
 	public void deleteReview(int reviewNo) {
 		sqlSession.update(namespace + "deleteReview", reviewNo);
 	}
-
-
+	
 	public int selectReportCnt() {
 		return sqlSession.selectOne(namespace + "selectReportCnt");
 	}
+
+	public int selectMarketByBN(int no) {
+		return sqlSession.selectOne(namespace + "selectMarketByBN", no);
+	}
+
+	public void deleteMarket(int marketNo) {
+		sqlSession.update(namespace + "deleteMarket", marketNo);
+	}
+
+	public void updateBlackMarketDelete(int marketNo) {
+		sqlSession.update(namespace + "updateBlackMarketDelete", marketNo);
+		
+	}
+
+
 
 	
 }

@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 
 
-
 <style type="text/css">
-
 
 body {
     font-family: "Raleway", Arial, sans-serif;
@@ -41,7 +39,7 @@ body {
 }
 #gtco-footer .gtco-footer-paragraph h3 {
   color: #fff;
-  margin-bottom: 10px;
+    margin-bottom: 10px;  
   margin-top: -100px;
 }
 #gtco-footer .gtco-footer-link {
@@ -85,14 +83,14 @@ body {
   border-radius: 4px;
   height: 54px !important;
   line-height: 1.5;
-  padding-top: 10px;
+  padding-top: 10px; 
   padding-bottom: 10px;
   padding-left: 10px !important;
   padding-right: 10px !important;
 }
 #gtco-footer .gtco-copyright {
   background: #1a1a1a;
-  padding: 30px 0;
+  padding: 30px 0; 
   float: left;
   width: 100%;
 }
@@ -100,16 +98,16 @@ body {
   margin-bottom: 0;
   
 }
+
 .footerMenu{
-margin-top: 30px;
-align-items: center;
-text-align: center;
+    text-align: center;
+    padding-left: 42px;
+    padding-right: 20px;
 }
 
 .footerMenu>li{
-	display: inline;
-	margin-right: 20px;
-	text-align: center;
+    display: flex;
+    text-align: center;
 }
 
 .footerMenu a {
@@ -119,17 +117,17 @@ text-align: center;
     transition: 0.5s;
 }
 
- p {
-    font-family: "Barlow", sans-serif !important;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #686c6d;
-    letter-spacing: 0.03rem;
-    margin-bottom: 10px;
-}
+ p {   
+   font-family: "Barlow", sans-serif !important;  
+   font-weight: 300;   
+   font-size: 13px;   
+   color: #686c6d;   
+   letter-spacing: 0.03rem;   
+   margin-bottom: 10px;   
+}   
 
 .row-pb-md {
-    padding-bottom: 4em !important;
+      padding-bottom: 4em !important;  
 }
 
 
@@ -137,8 +135,8 @@ text-align: center;
     max-width: 1140px;
     position: relative;
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
+      padding-left: 15px;  
+     padding-right: 15px;  
 }
 
 .modal-dialog{
@@ -151,17 +149,61 @@ text-align: center;
 }
 
 
-
-
-
 </style>
 
 
+<!-- footer -->
+<style type="text/css">
 
+.footer { 
+	margin-top: 20px;
+ 	background: #262626;
+	text-align: center;
+    padding: 25px 195px;
+	height: 185px;
+}
 
+#footer_logo {
 
-		
-	<!-- Button trigger modal -->
+	position: absolute;
+	float: left;
+	left: 18%;
+}
+
+#footer_nav {
+	
+	display: flex;
+    position: absolute;
+    text-align: center;
+    right: 16%;
+   	bottom: 23px;
+}
+
+#footer_nav p {
+
+	color: #ccc;
+    text-align: left;
+}
+
+#footer_nav a:hover {
+
+	text-decoration: none;
+	color: white;
+}
+
+#footer_nav li {
+	
+	font-size: 13px;
+	color: #17B794;;
+}
+
+#footer_nav #short {
+
+	border-right: 1px solid #333;
+}
+
+</style>
+
 
 
 <!-- Modal -->
@@ -204,33 +246,46 @@ text-align: center;
     </div>
   </div>
 </div>
-
-			<footer id="gtco-footer" class="gtco-section" role="contentinfo">
-			<div class="gtco-container">
-				
-				<div class="row row-pb-md">
-					<div class="col-md-4 gtco-widget gtco-footer-paragraph">
-
-						<h3>
-              <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" alt="슬기로운 과외생활"></h3>
-						<p>&copy; 슬기로운 과외생활</p>
-					</div>
-					<div class="col-md-8 gtco-footer-links">
-						<div class="row">
-							<div >
-								<ul class="gtco-list-link footerMenu">
-									<li><a href="#">Home</a></li>
-									<li><a href="#" data-toggle="modal" data-target="#myModal">개인정보 처리방침</a></li>
-									<li><a href="#" data-toggle="modal" data-target="#myModal2">사이트 이용약관</a></li>
-									<li><a href="#">제작자 소개</a></li>
-									<li><a href="#">문의 사항</a></li>
-								</ul>
-							</div>
-							
-						</div>
-					</div>
-					
+      
+     
+     
+      <div class="clearfix"></div>  
+	                
+      <footer>
+          <div class="footer">
+          
+          	
+	          	<div id="footer_logo">
+			        <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" 
+		           				alt="슬기로운 과외생활" style="width: 120px; height: 120px;">
+					<p>&copy; 슬기로운 과외생활</p>
+	         	</div>
+	        	
+	          	<div id="footer_nav">
+					<ul class="gtco-list-link footerMenu" id="short">
+						<p>SUPPORT</p>
+						<li><a href="#">문의하기</a></li>
+					</ul>
+					<ul class="gtco-list-link footerMenu" id="short">
+						<p>ABOUT US</p>
+						<li><a href="#">제작자 소개</a></li>
+						<li><a href="#">사이트 소개</a></li>
+					</ul>
+					<ul class="gtco-list-link footerMenu" id="short">
+						<p>POLICY</p>
+						<li><a href="#" data-toggle="modal" data-target="#myModal">개인정보 처리방침</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal2">사이트 이용약관</a></li>
+					</ul>
+					<ul class="gtco-list-link footerMenu">
+						<p>CONTACT</p>
+						<li>loc&nbsp; |&nbsp; 서울시 강남구 테헤란로 그랑프리빌딩 4F</li>
+						<li>tel&nbsp; |&nbsp; 070 1234 5678</li>
+						<li>e-mail&nbsp; |&nbsp; abc@kh.com</li>
+						<li>고객센터&nbsp; |&nbsp; 월-금 9:00-17:00</li>
+					</ul>
 				</div>
+				
 			</div>
 			
-		</footer>
+      </footer>
+                
