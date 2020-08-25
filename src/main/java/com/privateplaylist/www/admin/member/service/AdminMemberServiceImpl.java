@@ -33,7 +33,8 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 //		return commandMap;
 //		
 //	}
-	
+
+
 	@Override
 	public Map<String, Object> selectStuList(Paging paging) {
 		Map<String, Object> commandMap 	= new HashMap<String, Object>();
@@ -57,8 +58,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return paging;
 	}
 
-	
-	//회원 정보 상세보기 
+
 	@Override
 	public Map<String, Object> selectStuDetail(int userNo) {
 		
@@ -73,14 +73,14 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 
 	@Override
-	public Map<String, Object> selectAllList(int userNo) {
+	public Map<String, Object> selectStuAllList(int userNo) {
 		
 		Map<String, Object> commandMap 	= new HashMap<String, Object>();
 //		Paging p = new Paging(adminMemberDao.selectStuCnt(),cPage,cntPerPage);
 	
-		List<Question> stuQuestion = adminMemberDao.selectStuQuestionList(userNo);
+		List<Question> stuQuestion = adminMemberDao.selectQuestionList(userNo);
 		List<Map<String, Object>> stuReview = adminMemberDao.selectStuReviewList(userNo);
-		List<Market> stuMarket = adminMemberDao.selectStuMarketList(userNo);
+		List<Market> stuMarket = adminMemberDao.selectMarketList(userNo);
 		commandMap.put("stuQuestion", stuQuestion);
 		commandMap.put("stuReview", stuReview);
 		commandMap.put("stuMarket", stuMarket);
@@ -100,6 +100,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return paging;
 	}
 
+
 	@Override
 	public Map<String, Object> selectTchList(Paging paging) {
 		
@@ -109,6 +110,22 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		 commandMap.put("tchlist", tchlist);
 		 commandMap.put("paging", paging);
 		return commandMap;		
+	}
+
+
+	@Override
+	public Map<String, Object> selectTchAllList(int userNo) {
+		
+		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+	
+		List<Question> tchQuestion = adminMemberDao.selectQuestionList(userNo);
+		List<Map<String, Object>> tchReview = adminMemberDao.selectTchReviewList(userNo);
+		List<Market> tchMarket = adminMemberDao.selectMarketList(userNo);
+		commandMap.put("tchQuestion", tchQuestion);
+		commandMap.put("tchReview", tchReview);
+		commandMap.put("tchMarket", tchMarket);
+		return commandMap;
+		
 	}
 	
 	
