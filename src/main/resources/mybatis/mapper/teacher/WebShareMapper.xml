@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="WebShare">
+
+	<!-- 연결된 과외 조회 -->
+	<select id="selectConnectedLesson" parameterType="int" resultType="map">
+		
+		select cl.conn_lesson_no, cl.lesson_no, fl.lesson_title, m.user_id, fl.lesson_subject, fl.lesson_loc, fl.max_people
+		from connected_lesson cl, find_lesson fl, membership m
+		where cl.lesson_no = fl.lesson_no
+		    and m.user_no = cl.student
+		    and cl.teacher = #{teaNo}
+		    and cl.is_connected = 1
+		group by cl.conn_lesson_no, cl.lesson_no, fl.lesson_title, m.user_id, fl.lesson_subject, fl.lesson_loc, fl.max_people
+		order by cl.lesson_no
+
+	</select>
+  
+  
+</mapper>
