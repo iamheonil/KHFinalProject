@@ -42,17 +42,6 @@ $(document).ready(function($){
 
 
 <script type="text/javascript">
-/* 체크박스 전체선택, 전체해제 */
-function checkAll(){
-      if( $("#th_checkAll").is(':checked') ){
-        $("input[name=checkRow]").prop("checked", true);
-      }else{
-        $("input[name=checkRow]").prop("checked", false);
-      }
-}
-</script> 
-
-<script type="text/javascript">
 $(document).ready(function(){
 	
 	//삭제버튼 동작
@@ -93,8 +82,8 @@ $(document).ready(function(){
 	<main>
 	
 	
-	    <button type="button" class="btn btn-outline-info">목록</button>
 	    <div id="content">
+	    <button type="button" class="btn btn-info" onclick="location.href='stuList'" style="margin-left: 88%">목록</button>
 
 
 	           	<div class="container-fluid">

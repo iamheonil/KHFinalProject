@@ -1,9 +1,5 @@
-<!-- 20200819 이인주 -->
-<!-- notice list paging -->
-
-<!-- 페이징 복붙 예시  -->
-<!-- 1. 본인에게 맞는 url 작성 -->
-<!-- 2. url에 쿼리스트링이 들어가야하는 경우 맞게 작성 필요 -->
+<!-- 20200819 김성은 -->
+<!-- 관리자 학생 조회 paging -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

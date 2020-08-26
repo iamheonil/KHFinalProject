@@ -198,5 +198,10 @@
 
 </div>
 </body>
-<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
+
+<!-- 선생님 마이페이지 푸터 -->
+<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
+
+<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>

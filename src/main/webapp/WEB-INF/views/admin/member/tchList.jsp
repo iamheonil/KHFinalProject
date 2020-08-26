@@ -18,6 +18,9 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" />
 
 
 
@@ -433,31 +436,7 @@ p{
 	</div>
 
 	<main>
-		<div id="content">
-
-			<div class="row">
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area mr-1"></i>
-                            Area Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar mr-1"></i>
-                            Bar Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-            </div>
-            
-
-
+		<div id="content" style="margin-bottom: 30%">
 
 			<div class="container">
 				<div class="row">
@@ -471,10 +450,10 @@ p{
 												<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 													<select class="form-control" id="exampleFormControlSelect1">
 														<option>UserNo</option>
-														<option>ID</option>
-														<option>이름</option>
-														<option>연락처</option>
-														<option>Email</option>
+<!-- 														<option>ID</option> -->
+<!-- 														<option>이름</option> -->
+<!-- 														<option>연락처</option> -->
+<!-- 														<option>Email</option> -->
 													</select>
 												</div>
 												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
@@ -524,7 +503,7 @@ p{
 												<td><img
 												src="https://bootdey.com/img/Content/avatar/avatar1.png"
 <%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
-												alt=""> <p><a href="<%= request.getContextPath() %>/admin/studetail?userNo=${user.userNo}">${user.userId }</a></p></td>
+												alt=""> <p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.userNo}">${user.userId }</a></p></td>
 												<td>${user.userName }</td>
 												<td>
 <%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>
@@ -537,8 +516,8 @@ p{
 									</tbody>
 								</table>
 								
-					<c:if test="${not empty stuData}" >
-						<c:import url="/WEB-INF/paging/admin/member/stulistPaging.jsp" />
+					<c:if test="${not empty tchData}" >
+						<c:import url="/WEB-INF/paging/admin/member/tchlistPaging.jsp" />
 					</c:if>
 <!--       	<div class="btn_section" style="background-color:white"> -->
 <%--       	 <a href="<%= request.getContextPath() %>/board/boardform.do" style="font-size:1.1vw">공지 쓰기</a> --%>

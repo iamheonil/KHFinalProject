@@ -119,14 +119,18 @@ $("#1").click(function(){
     $("#resume").html(
     		'<label class="col-form-label col-4">증빙서류</label>' +
 			'<div class="col-8 float">'+
-               ' <input type="file" id="files" name="files" required="required" multiple>'+
+               ' <input type="file" id="joinFiles" name="joinFiles" required="required">' +
             '</div>'		
     )
-    
+
+    $("#joinAction").attr("action", "/ss/member/jointeacher");
+
     })
 
     $("#2").click(function(){
         $("#resume").html("");
+
+        $("#joinAction").attr("action", "/ss/member/joinemail");
     })
     
     $(function(){
@@ -292,7 +296,7 @@ function xmlEmailCheck() {
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/ss/member/joinemail" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form action="/ss/member/jointeacher" id="joinAction" name="joinAction" method="post" class="form-horizontal" enctype="multipart/form-data">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -424,4 +428,7 @@ function xmlEmailCheck() {
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
 </body>
 
-<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
+<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
+<!-- 선생님 마이페이지 푸터 -->
+<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>

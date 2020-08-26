@@ -1,7 +1,6 @@
 package com.privateplaylist.www.admin.member.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +40,7 @@ public class AdminMemberController {
     	
     }
 	
+    //학생 작성한 게시글 조회 - 제목 클릭시 일반사용자 페이지의 게시판으로 이동
 	@RequestMapping("/studetail")
 	public ModelAndView noticeDetail(int userNo) {
 //		ModelAndView mav = new ModelAndView();
@@ -58,7 +58,7 @@ public class AdminMemberController {
 //		}
 		
 		ModelAndView mav = new ModelAndView();
-		Map<String, Object> commandMap = adminMemberService.selectAllList(userNo);
+		Map<String, Object> commandMap = adminMemberService.selectStuAllList(userNo);
 		
 //		System.out.println("컨트롤러 commandMap : "+ commandMap);
 //		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
@@ -78,6 +78,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
+	//회원(선생님) 조회
     @RequestMapping("/tchList")
     public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
         
@@ -97,6 +98,30 @@ public class AdminMemberController {
 		return mav;
     }
 	
+    //선생님 작성 글 보기
+    @RequestMapping("/tchdetail")
+    public ModelAndView tchDetail(int userNo) {
+    	
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> commandMap = adminMemberService.selectTchAllList(userNo);
+		
+//		System.out.println("컨트롤러 commandMap : "+ commandMap);
+//		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
+		mav.addObject("tchData", commandMap);
+		mav.setViewName("admin/member/tchDetail");
+		
+		// 평점 옵션
+		Map<Integer, String> ratingOptions = new HashMap<>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		mav.addObject("ratingOptions", ratingOptions);
+		
+		return mav;
+    }
 
 
 }

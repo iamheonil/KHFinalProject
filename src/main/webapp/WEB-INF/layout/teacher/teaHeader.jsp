@@ -83,7 +83,24 @@ nav {
 }
 
 /*ul Styles*/
-.menu-item ul {
+.menu-item#three ul {
+  background: #fff;
+  font-size: 13px;
+  line-height: 30px;
+  height: 0px;
+  list-style-type: none;
+  overflow: hidden;
+  padding: 0px;
+  margin:0px;
+  
+  /*Animation*/
+  -webkit-transition: height 1s ease;
+     -moz-transition: height 1s ease;
+       -o-transition: height 1s ease;
+      -ms-transition: height 1s ease;
+          transition: height 1s ease;
+}
+.menu-item#two ul {
   background: #fff;
   font-size: 13px;
   line-height: 30px;
@@ -101,8 +118,11 @@ nav {
           transition: height 1s ease;
 }
 
-.menu-item:hover ul {
-  height: 93px;
+.menu-item#three:hover ul {
+   height: 93px; 
+}
+.menu-item#two:hover ul {
+   height: 62px; 
 }
 
 .menu-item ul a {
@@ -166,6 +186,8 @@ nav {
 #mypageid{
    text-align: center;
    font-style: italic;
+   font-weight: bold;
+   color: #262626;
 }
 
 #teaprofileimg{
@@ -210,53 +232,46 @@ nav {
 </div>
 
       <nav>
-          <div class="menu-item">
-            <h4><a href="#">과외내역</a></h4>
+          <div class="menu-item" id="three">
+            <h4><a href="#">과외</a></h4>
             <ul>
               <li><a href="#">과외 등록</a></li>
-              <li><a href="#">과외 리스트</a></li>
               <li><a href="#">과외 검토</a></li>
-              <li><a href="#">과외 결제 내역</a></li>
+              <li><a href="#">내 과외 목록</a></li>
             </ul>
           </div>
           
-           <div class="menu-item">
+           <div class="menu-item" id="two">
             <h4><a href="#">과외 연결 관리</a></h4>
-          </div>
-          
-           <div class="menu-item">
-            <h4><a href="#">스케줄</a></h4>
+	            <ul>
+	              <li><a href="#">진행 중인 과외</a></li>
+	              <li><a href="#">학생 신청 과외</a></li>
+	            </ul>
           </div>
           
            <div class="menu-item">
             <h4><a href="#">자료실</a></h4>
           </div>
             
-          <div class="menu-item">
+          <div class="menu-item" id="three">
             <h4><a href="#">게시판</a></h4>
             <ul>
-              <li><a href="#">질문게시판</a></li>
-              <li><a href="#">후기게시판</a></li>
-              <li><a href="#">신고내역</a></li>
+              <li><a href="#">질문 게시판</a></li>
+              <li><a href="#">후기 게시판</a></li>
+              <li><a href="#">신고 내역</a></li>
             </ul>
           </div>
       
-      <div class="menu-item">
+      <div class="menu-item" id="two">
             <h4><a href="#">중고장터</a></h4>
             <ul>
-              <li><a href="#">물건올리기</a></li>
-              <li><a href="#">글 수정/삭제</a></li>
-              <li><a href="#">신고내역</a></li>
+              <li><a href="#">활동 내역</a></li>
+              <li><a href="#">신고 내역</a></li>
             </ul>
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">개인정보수정</a></h4>
-            <ul>
-              <li><a href="#">개인정보 확인</a></li>
-              <li><a href="#">개인정보 수정</a></li>
-              <li><a href="#">회원탈퇴</a></li>
-            </ul>
+            <h4><a href="#">회원정보 수정</a></h4>
           </div>
           
       </nav>
@@ -267,4 +282,4 @@ nav {
 
 <div id="main"> 
 
-<a href="" class="anone"><h3 id="mypageid">Teacher Mypage</h3></a>
+<a href="" class="anone"><h3 id="mypageid">Teacher Page</h3></a>

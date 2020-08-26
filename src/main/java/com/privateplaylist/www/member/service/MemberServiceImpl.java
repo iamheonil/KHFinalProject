@@ -1,10 +1,14 @@
 package com.privateplaylist.www.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.privateplaylist.www.member.vo.TeacherFile;
+import common.exception.FileException;
+import common.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -16,6 +20,8 @@ import com.privateplaylist.www.member.dao.MemberDao;
 import com.privateplaylist.www.member.vo.Member;
 
 import common.exception.MailException;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -45,21 +51,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.insertMember(member);
 	}
 
-//    @Override
-//    public int insertTeacherFile(Member member, List<MultipartFile> files, String root) {
-//
-//        int result = memberDao.insertFile(member);
-//
-//        if(!(files.size() == 1 && files.get(0).getOriginalFilename().equals(""))) {
-//
-//            List<Map<String, String>> filedata = new FileUtil().fileUpload(files, root);
-//
-//            for (Map <String, String> f : filedata) {
-//                memberDao.insertFile(f);
-//            }
-//        }
-//        return result;
-//    }
+	@Override
+	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, TeacherFile teacherFile, String root) throws FileException {
+
+
+
+	}
 
 	@Override
 	public Member selectMember(Map<String, Object> memberMap) {
@@ -101,14 +98,11 @@ public class MemberServiceImpl implements MemberService {
 				+ "' id='postCode' name='postCode'>" + "<input type='hidden' value='" + member.getRoadAddress()
 				+ "' id='roadAddress' name='roadAddress'>" + "<input type='hidden' value='" + member.getDetailAddress()
 				+ "' id='detailAddress' name='detailAddress'>" + "<input type='hidden' value='" + member.getUserGender()
-				+ "' id='userGender' name='userGender'>" + "<input type='hidden' value='" + member.getUserBirth()
-				+ "' id='userBirth' name='userBirth'>"
+				+ "' id='userGender' name='userGender'>"
+				+ "<input type='hidden' value='" + member.getUserBirth() + "' id='userBirth' name='userBirth'>"
 				+ "<br><br> <button type='submit' onclick='btnClick();'>회원가입 완료하기</button></form>";
 
 		try {
-
-			// 에러발생을 위한 코드
-			// int errorNum = 10/0;
 
 			mailSender.send(new MimeMessagePreparator() {
 				public void prepare(MimeMessage mimeMessage) throws MessagingException {
