@@ -36,6 +36,7 @@ public class ReviewController {
 				//공지사항 정보 전체 조회 list
 				List<Review> reviewList = reviewService.selectReviewList(paging);
 				
+				System.out.println("list:"+reviewList);
 				//모델값 전달
 				model.addAttribute("reviewList", reviewList);
 				
@@ -47,6 +48,35 @@ public class ReviewController {
 		
 			}
 	
+			
+			//질문게시판 글 삭제하기 (선택 삭제)
+			@RequestMapping("/idxdelete")
+			public String  reviewIdxDelete(Model model,HttpServletRequest req) {
+				System.out.println("/admin/review/idxdelete");
+				
+				//root context
+				String root = req.getContextPath();
+				
+				String[] checkRowArr =  req.getParameterValues("checkRow");
+				
+				if(checkRowArr == null) {
+					model.addAttribute("alertMsg", "선택된 값이 없습니다 다시 선택해주세요");
+					model.addAttribute("url", root+"/admin/review/list");
+
+					return "/admin/review/error";
+					
+				}else {
+					//체크박스 선택시 삭제 실행
+					for (int i = 0; i < checkRowArr.length; i++) {
+//						System.out.println(checkRowArr[i]);
+						int reviewNo = Integer.parseInt(checkRowArr[i]);
+						int res = reviewService.deleteReview(reviewNo);
+					}
+					
+					//삭제 완료
+					return "redirect:list";
+				}
+			}
 	
 	
 	

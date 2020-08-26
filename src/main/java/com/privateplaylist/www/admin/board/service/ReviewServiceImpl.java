@@ -43,5 +43,14 @@ public class ReviewServiceImpl implements ReviewService{
 		//계산된 Paging 객체 반환
 		return paging;
 	}
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		
+		int res = reviewDao.deleteReview(reviewNo);
+		
+		
+		return res;
+	}
 	
 }

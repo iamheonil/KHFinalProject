@@ -14,23 +14,6 @@
 	font-size: large;
 }
 
-#writebtn{
-/* 	color: #17B794; */
-}
-
-#deletebtn{
-/* 	color: red; */
-}
-
- #divbtn{ 
-    padding: 10px; 
-} 
-
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 40%;
-}
-
 #footerbtn{
     position: absolute;
     right: 1.5%;
@@ -40,20 +23,31 @@
 #listbtn{
 	color: black;
 }
-
-#serchbox{
-	width: 500px;
-}
-
 .anone{
 	text-decoration: none;
 	color: black;
 }
-
 .anone:hover{
 	text-decoration: none;
 	color: black;
 }
+
+#detailTable{
+padding: 25px;
+}
+
+.commTable{
+width:260px;
+}
+.minusbtn{
+display: block;
+margin-left: 150px;
+}
+
+.commTable th tr td:hover{
+background: #ddd;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -77,15 +71,14 @@ $(document).ready(function(){
    	</div>
 
  
-	 <div class="clearfix"></div>
  
-	<!-- 공지사항 리스트 -->
-	<table class="table table-striped table-hover table-condensed textcenter" >
+	<!--  리스트 -->
+	<table class="table table-striped table-hover table-condensed textcenter" id="detailTable">
 	<caption  class="captionstyle">질문게시판</caption>  
 	
 	<!-- 테이블 th -->
 	<tr>
-		<th style="width: 10%">번호</th>
+		<th style="width: 10%; ">번호</th>
 		<th style="width: 50%">제목</th>
 		<th style="width: 20%">날짜</th>
 	</tr>
@@ -101,28 +94,30 @@ $(document).ready(function(){
 	<tr>
 		<td colspan="3">${questionone.questionContent }</td>
 	</tr>
+
+	
+	</table>
+	
+<!-- 댓글 테이블 -->	
+<table class="commTable" >
 	<tr>
-		<th colspan="3">댓글</th>
-	</tr>	
+		<th colspan="3" style="background: #ddd;" >댓글</th>
+	</tr>
 	<tr>
 		<c:forEach var="commList" items="${commList}" varStatus="status">
-                    <tr reply_type="<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>"><!-- 댓글의 commClass =0이면 부모댓글 -->
-                        <td width="820px">
+                    <tr  reply_type="<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>"><!-- 댓글의 commClass =0이면 부모댓글 -->
+                        <td width="230px">
                             <c:if test="${commList.commClass == '1'}"> → </c:if>${commList.commContent}<!--자식 댓글 : →붙임 -->
                         </td>
                        	
-                        <td align="center">
-<%--                             <c:if test="${commList.comm_Class != '1'}"> --%>
-<%--                                 <button name="reply_reply" parent_id = "${replyList.reply_id}" reply_id = "${replyList.reply_id}">댓글</button><!-- 첫 댓글에만 댓글이 추가 대댓글 불가 --> --%>
-<%--                             </c:if> --%>
-<%--                             <button name="reply_modify" parent_id = "${replyList.parent_id}" r_type = "<c:if test="${replyList.depth == '0'}">main</c:if><c:if test="${replyList.depth == '1'}">sub</c:if>" reply_id = "${replyList.reply_id}">수정</button> --%>
-                            <a href="${pageContext.request.contextPath}/admin/question/deleteComm?questionNo=${commList.questionNo }"><button name="reply_del" r_type = "<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>" comm_No = "${commList.commNo}">-</button></a>
+                        <td  >
+                            <a href="${pageContext.request.contextPath}/admin/question/deleteComm?questionNo=${commList.questionNo }"><button class="minusbtn" name="reply_del" r_type = "<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>" comm_No = "${commList.commNo}">-</button></a>
                         </td>
                     </tr>
                 </c:forEach>
 	</tr>
+</table>		
 	
-	</table>
 	
  
 	

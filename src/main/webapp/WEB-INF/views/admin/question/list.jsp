@@ -103,8 +103,8 @@ $(document).ready(function(){
 <!--  삭제 버튼 -->
 	<div id="footerbtn">
 	
-	<div id="divbtn">
-		<button type="button" class="btn btn-default" id="deletebtn">삭제</button>
+	<div id="divbtn" >
+		<button type="button" class="btn btn-default" id="deletebtn" >삭제</button>
 	</div> 
 	
 	</div>
