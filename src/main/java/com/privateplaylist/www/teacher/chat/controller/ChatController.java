@@ -192,6 +192,11 @@ public class ChatController {
 		
 		return "/teacher/chat/chatBox";
 	}
+	
+	@RequestMapping("/teacher/chatBox")
+	public String teacherChat() {
+		return "teacher/chat/teacherChat";
+	}
 
 	
 	
