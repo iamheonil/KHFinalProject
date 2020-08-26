@@ -6,25 +6,50 @@
   
   <mapper namespace="dao.ConnectLessonDao">
   
-  <select id="selectConnectStu">
+  <select id="selectConnectStu" parameterType="map" resultType="map">
 		SELECT * FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
 				SELECT * FROM connected_lesson c
 				INNER JOIN membership m
-				ON(c.user_from = m.user_no)
-				WHERE user_actor = 2
-				AND user_to = #{userNo}
+				ON(c.student = m.user_no)
+				INNER JOIN find_lesson f
+				ON(c.lesson_no = f.lesson_no)
+				WHERE teacher = #{userNo}
+				AND is_connected = 0
+				ORDER BY c.conn_lesson_no
 			) t
 			ORDER BY no ) x
 		WHERE no between #{paging.startNo} AND #{paging.endNo}
   </select>
   
-  <select id="selectCntAllStu" parameterType="int">
+  <select id="selectCntAllStu" parameterType="int" resultType="int">
   	SELECT count(*) FROM connected_lesson
-  	WHERE user_to = #{userNo}
-  	AND is_connected = 1
+  	WHERE teacher = #{userNo}
+  	AND is_connected = 0
   </select>
   
+  <update id="updateConnState" parameterType="int">
+  	UPDATE connected_lesson SET is_connected = 1
+  	WHERE conn_lesson_no = #{connNo}
+  </update>
+  
+  <delete id="rejectSignStu" parameterType="int">
+  	DELETE connected_lesson
+  	WHERE conn_lesson_no = #{connNo}
+  </delete>
+  
+  <select id="getMaxPeople" parameterType="int" resultType="map">
+	SELECT f.max_people, f.lesson_no FROM connected_lesson c
+	INNER JOIN find_lesson f
+	ON(c.lesson_no = f.lesson_no)
+	WHERE c.conn_lesson_no = #{connNo}
+  </select>
+  
+  <select id="getConnectedCnt" parameterType="int" resultType="int">
+	select count(*) from connected_lesson c
+	where lesson_no = #{lessonNo}
+	AND c.is_connected = 1
+  </select>
   
   </mapper>
