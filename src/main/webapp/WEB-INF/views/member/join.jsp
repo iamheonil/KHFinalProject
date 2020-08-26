@@ -130,7 +130,7 @@ $("#1").click(function(){
     $("#2").click(function(){
         $("#resume").html("");
 
-        $("#joinAction").attr("action", "/ss/member/joinemail");
+        $("#joinAction").attr("action", "/ss/member/joinImpl");
     })
     
     $(function(){
