@@ -296,7 +296,7 @@
 								</li>
 							<li><a href="portfolio.html">중고장터</a></li>
 							<li><a href="contact.html">마이페이지</a></li>
-							<li><a href="contact.html">로그아웃</a></li>
+							<li><a href="/ss/member/logout">로그아웃</a></li>
 						</ul>
 					</div>
 				</div>
