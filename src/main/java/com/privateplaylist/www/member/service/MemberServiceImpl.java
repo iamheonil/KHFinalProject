@@ -1,10 +1,14 @@
 package com.privateplaylist.www.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.privateplaylist.www.member.vo.TeacherFile;
+import common.exception.FileException;
+import common.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -16,6 +20,8 @@ import com.privateplaylist.www.member.dao.MemberDao;
 import com.privateplaylist.www.member.vo.Member;
 
 import common.exception.MailException;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -45,21 +51,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.insertMember(member);
 	}
 
-//    @Override
-//    public int insertTeacherFile(Member member, List<MultipartFile> files, String root) {
-//
-//        int result = memberDao.insertFile(member);
-//
-//        if(!(files.size() == 1 && files.get(0).getOriginalFilename().equals(""))) {
-//
-//            List<Map<String, String>> filedata = new FileUtil().fileUpload(files, root);
-//
-//            for (Map <String, String> f : filedata) {
-//                memberDao.insertFile(f);
-//            }
-//        }
-//        return result;
-//    }
+	@Override
+	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, TeacherFile teacherFile, String root) throws FileException {
+
+
+
+	}
 
 	@Override
 	public Member selectMember(Map<String, Object> memberMap) {
