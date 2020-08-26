@@ -6,7 +6,7 @@
   
   <mapper namespace="dao.ConnectLessonDao">
   
-  <select id="selectConnectStu">
+  <select id="selectConnectStu" resultType="map">
 		SELECT * FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
@@ -20,7 +20,7 @@
 		WHERE no between #{paging.startNo} AND #{paging.endNo}
   </select>
   
-  <select id="selectCntAllStu" parameterType="int">
+  <select id="selectCntAllStu" parameterType="int" resultType="int">
   	SELECT count(*) FROM connected_lesson
   	WHERE user_to = #{userNo}
   	AND is_connected = 1
