@@ -2,54 +2,54 @@ package com.privateplaylist.www.dto;
 
 public class Message {
 	
-	private int messageNo;
-	private String messageFrom;
-	private String messageTo;
-	private String messageContent;
-	private String messaegTime;
-	private int messageRead;
-	public int getMessageNo() {
-		return messageNo;
+	private int chatID;
+	private String fromID;
+	private String toID;
+	private String chatContent;
+	private String chatTime;
+	private int chatRead;
+	public int getChatID() {
+		return chatID;
 	}
-	public void setMessageNo(int messageNo) {
-		this.messageNo = messageNo;
+	public void setChatID(int chatID) {
+		this.chatID = chatID;
 	}
-	public String getMessageFrom() {
-		return messageFrom;
+	public String getFromID() {
+		return fromID;
 	}
-	public void setMessageFrom(String messageFrom) {
-		this.messageFrom = messageFrom;
+	public void setFromID(String fromID) {
+		this.fromID = fromID;
 	}
-	public String getMessageTo() {
-		return messageTo;
+	public String getToID() {
+		return toID;
 	}
-	public void setMessageTo(String messageTo) {
-		this.messageTo = messageTo;
+	public void setToID(String toID) {
+		this.toID = toID;
 	}
-	public String getMessageContent() {
-		return messageContent;
+	public String getChatContent() {
+		return chatContent;
 	}
-	public void setMessageContent(String messageContent) {
-		this.messageContent = messageContent;
+	public void setChatContent(String chatContent) {
+		this.chatContent = chatContent;
 	}
-	public String getMessaegTime() {
-		return messaegTime;
+	public String getChatTime() {
+		return chatTime;
 	}
-	public void setMessaegTime(String messaegTime) {
-		this.messaegTime = messaegTime;
+	public void setChatTime(String chatTime) {
+		this.chatTime = chatTime;
 	}
-	public int getMessageRead() {
-		return messageRead;
+	public int getChatRead() {
+		return chatRead;
 	}
-	public void setMessageRead(int messageRead) {
-		this.messageRead = messageRead;
+	public void setChatRead(int chatRead) {
+		this.chatRead = chatRead;
 	}
 	@Override
 	public String toString() {
-		return "Message [messageNo=" + messageNo + ", messageFrom=" + messageFrom + ", messageTo=" + messageTo
-				+ ", messageContent=" + messageContent + ", messaegTime=" + messaegTime + ", messageRead=" + messageRead
-				+ "]";
+		return "Message [chatID=" + chatID + ", fromID=" + fromID + ", toID=" + toID + ", chatContent=" + chatContent
+				+ ", chatTime=" + chatTime + ", chatRead=" + chatRead + "]";
 	}
+	
 	
 	
 	
