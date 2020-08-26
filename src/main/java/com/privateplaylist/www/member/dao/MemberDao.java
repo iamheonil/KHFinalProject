@@ -22,7 +22,7 @@ public class MemberDao {
 
     public int insertFile(Map<String, String> fileInfo) {
 
-        System.out.println("으악" + fileInfo);
+        // System.out.println("으악" + fileInfo + "??");
 
         return session.insert("MEMBER.insertFile", fileInfo);
     }

@@ -2,13 +2,13 @@ package com.privateplaylist.www.member.controller;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.privateplaylist.www.member.vo.TeacherFile;
+import com.privateplaylist.www.member.dao.MemberDao;
 import common.exception.FileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +33,9 @@ public class MemberController {
 
 	@Autowired
 	public MemberService memberService;
+
+	@Autowired
+	public MemberDao memberDao;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -81,8 +84,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/joinImpl", method = POST)
-	public ModelAndView joinEmail(@RequestParam List<MultipartFile> files, @ModelAttribute Member member,
-			HttpServletRequest req) {
+	public ModelAndView joinEmail(Map<String, String> fileInfo, @ModelAttribute Member member, HttpServletRequest req) {
 
 		String root = req.getContextPath();
 		ModelAndView mav = new ModelAndView();
@@ -95,36 +97,60 @@ public class MemberController {
 		} else {
 			System.out.println("회원가입 성공");
 			mav.setViewName("/member/login");
+			memberDao.insertFile(fileInfo);
 		}
 		return mav;
 	}
 
+	//uuid생성
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
 
 	// 파일 업로드
 	@RequestMapping(value = "/jointeacher", method = POST)
-	public ModelAndView fileUpload(@RequestParam("joinFiles") MultipartFile files, HttpSession session, Member member, TeacherFile teacherFile, HttpServletRequest request) throws FileException, MailException {
+	public ModelAndView fileUpload(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, HttpSession session, Member member, HttpServletRequest request) throws FileException, MailException {
 
 		ModelAndView mav = new ModelAndView();
 
 		String root = session.getServletContext().getRealPath("/resources/upload/");
 		String urlPath = request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
-		memberService.mailSending(member, urlPath);
+		// memberService.mailSending(member, urlPath);
 
 		System.out.println(member);
-		System.out.println("메일 발송 성공");
+		memberService.insertMember(member);
+		// System.out.println("메일 발송 성공");
 
-		System.out.println(files.getOriginalFilename());
-		System.out.println(files.getSize());
+//		System.out.println("파일 시퀀스 번호");
+//		System.out.println(member.getUserNo());
+//		System.out.println(member.getUserId());
+//		System.out.println(files.getOriginalFilename());
+//		System.out.println(getUuid());
+//		System.out.println(root + getUuid());
+
+		String userId = member.getUserId();
+		String tch_File_Org = files.getOriginalFilename();
+		String tch_File_OrgExt = files.getOriginalFilename().substring(files.getOriginalFilename().lastIndexOf("."));
+		String tch_File_Rename = getUuid() + tch_File_OrgExt;
+		String save_Path = root + tch_File_Rename;
 
 		try (
+
 				// 맥일 경우
-				// FileOutputStream fos = new FileOutputStream("/tmp/" +file.getOriginalFilename());
+				FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
 				// 윈도우일 경우
-				FileOutputStream fos = new FileOutputStream(root + files.getOriginalFilename());
+				// FileOutputStream fos = new FileOutputStream(root + files.getOriginalFilename());
 				// 파일 저장할 경로 + 파일명을 파라미터로 넣고 fileOutputStream 객체 생성하고
 				InputStream is = files.getInputStream();) {
 				// file로 부터 inputStream을 가져온다.
+
+			fileInfo.put("userId", userId);
+			fileInfo.put("tch_File_Org", tch_File_Org);
+			fileInfo.put("tch_File_Rename", tch_File_Rename);
+			fileInfo.put("save_Path", save_Path);
+
+			memberService.insertTeacherFile(fileInfo, root);
 
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
@@ -146,19 +172,19 @@ public class MemberController {
 	}
 
 
-	@RequestMapping("/joinemail")
-	public ModelAndView joinEmailCheck(Member member, HttpServletRequest request) throws MailException {
-
-		ModelAndView mav = new ModelAndView();
-		String urlPath = request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-
-		memberService.mailSending(member, urlPath);
-
-		System.out.println("메일 발송 성공");
-		mav.setViewName("/member/login");
-
-		return mav;
-	}
+//	@RequestMapping("/joinemail")
+//	public ModelAndView joinEmailCheck(Member member, HttpServletRequest request) throws MailException {
+//
+//		ModelAndView mav = new ModelAndView();
+//		String urlPath = request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+//
+//		memberService.mailSending(member, urlPath);
+//
+//		System.out.println("메일 발송 성공");
+//		mav.setViewName("/member/login");
+//
+//		return mav;
+//	}
 
 	@RequestMapping("/joinresult")
 	public ModelAndView joinResultTest(Member member, HttpServletRequest request) throws MailException {

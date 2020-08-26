@@ -4,6 +4,7 @@ public class TeacherFile {
 
     private String tch_file_No;
     private int user_No;
+    private String user_Id;
     private String tch_file_Org;
     private String tch_file_Rename;
     private String save_Path;
@@ -13,6 +14,7 @@ public class TeacherFile {
         return "TeacherFile{" +
                 "tch_file_No='" + tch_file_No + '\'' +
                 ", user_No=" + user_No +
+                ", user_Id='" + user_Id + '\'' +
                 ", tch_file_Org='" + tch_file_Org + '\'' +
                 ", tch_file_Rename='" + tch_file_Rename + '\'' +
                 ", save_Path='" + save_Path + '\'' +
@@ -33,6 +35,14 @@ public class TeacherFile {
 
     public void setUser_No(int user_No) {
         this.user_No = user_No;
+    }
+
+    public String getUser_Id() {
+        return user_Id;
+    }
+
+    public void setUser_Id(String user_Id) {
+        this.user_Id = user_Id;
     }
 
     public String getTch_file_Org() {
