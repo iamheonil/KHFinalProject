@@ -170,7 +170,7 @@ nav {
     width:200px;
     background-color: #17B794; 
     height: 170px;
-    border-radius: 10%;
+    border-radius: 6%;
     text-align: center;
     color: white;
     margin-bottom:10px;
@@ -187,12 +187,15 @@ nav {
    text-align: center;
    font-style: italic;
    font-weight: bold;
-   color: #262626;
+   color: #565656;
+    width: 960px;
+    height: 90%;
+    float: right;
 }
 
 #teaprofileimg{
 /*    border: 1px solid red; */
-   border-radius: 10%;
+   border-radius: 50%;
    width: 100px;
    height: 100px; 
 }
@@ -216,6 +219,12 @@ nav {
 <div id="wrapper"> <!-- 가운데 오게 하기  -->
 
 <br>
+<br>
+<br>
+<br>
+
+<a href="" class="anone"><h2 id="mypageid">Teacher Page</h2></a>
+
 <br>
 <br>
 
@@ -242,17 +251,13 @@ nav {
           </div>
           
            <div class="menu-item" id="two">
-            <h4><a href="#">과외 연결 관리</a></h4>
+            <h4><a href="#">과외 연결</a></h4>
 	            <ul>
-	              <li><a href="#">진행 중인 과외</a></li>
-	              <li><a href="#">학생 신청 과외</a></li>
+	              <li><a href="#">연결된 과외</a></li>
+	              <li><a href="#">학생 신청 내역</a></li>
 	            </ul>
           </div>
           
-           <div class="menu-item">
-            <h4><a href="#">자료실</a></h4>
-          </div>
-            
           <div class="menu-item" id="three">
             <h4><a href="#">게시판</a></h4>
             <ul>
@@ -260,6 +265,10 @@ nav {
               <li><a href="#">후기 게시판</a></li>
               <li><a href="#">신고 내역</a></li>
             </ul>
+          </div>
+
+          <div class="menu-item">
+            <h4><a href="#">1:1 문의</a></h4>
           </div>
       
       <div class="menu-item" id="two">
@@ -280,6 +289,5 @@ nav {
 
 
 
-<div id="main"> 
 
-<a href="" class="anone"><h3 id="mypageid">Teacher Page</h3></a>
+<div id="main"> 

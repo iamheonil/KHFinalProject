@@ -18,7 +18,7 @@ public interface MemberService {
     public int insertMember(Member member);
 
     // 파일삽입
-    public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, TeacherFile teacherFile, String root) throws FileException;
+    public void insertTeacherFile(Map<String, String> fileInfo, String root) throws FileException;
 
     // 멤버 정보 조회 메소드
     public Member selectMember(Map<String, Object> memberMap);
@@ -27,6 +27,6 @@ public interface MemberService {
     public int selectId(String userId);
     
     // 메일 전송
-    public void mailSending(Member member, String urlPath) throws MailException;
+//    public void mailSending(Member member, String urlPath) throws MailException;
 
 }

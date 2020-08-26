@@ -1,4 +1,4 @@
-<!-- 이인주 20200818 : 학생 마이페이지  header  -->
+<!-- 이인주 20200818 : 선생님 마이페이지  header  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>슬기로운 과외생활::학생 마이페이지</title>
+<title>슬기로운 과외생활::선생님 마이페이지</title>
 
 <!-- jQuery 2.2.4.min -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -22,7 +22,7 @@
 <style type="text/css">
 #main{
     width: 960px;
-    height: 80%;
+    height: 90%;
     float: right;
 /*    border: 1px solid green; */
 /*    padding-right: 100px; */
@@ -54,8 +54,9 @@ nav {
 .menu-item {
   background: #fff;
   width: 200px; 
-/*   height:100%; */
 }
+
+
 
 /*Menu Header Styles*/
 .menu-item h4 {
@@ -64,11 +65,11 @@ nav {
   color: #fff;
   font-size: 15px;
   font-weight: 500;
-  padding: 10px 0px;
   background: #17B794; 
-  margin:0px;
   height:50px;
   text-align: center;
+  margin:0px;
+  padding : 15px 0px; 
 
 }
 
@@ -82,7 +83,7 @@ nav {
 }
 
 /*ul Styles*/
-.menu-item ul {
+.menu-item#four ul {
   background: #fff;
   font-size: 13px;
   line-height: 30px;
@@ -91,6 +92,41 @@ nav {
   overflow: hidden;
   padding: 0px;
   margin:0px;
+  
+  /*Animation*/
+  -webkit-transition: height 1s ease;
+     -moz-transition: height 1s ease;
+       -o-transition: height 1s ease;
+      -ms-transition: height 1s ease;
+          transition: height 1s ease;
+}
+.menu-item#three ul {
+  background: #fff;
+  font-size: 13px;
+  line-height: 30px;
+  height: 0px;
+  list-style-type: none;
+  overflow: hidden;
+  padding: 0px;
+  margin:0px;
+  
+  /*Animation*/
+  -webkit-transition: height 1s ease;
+     -moz-transition: height 1s ease;
+       -o-transition: height 1s ease;
+      -ms-transition: height 1s ease;
+          transition: height 1s ease;
+}
+.menu-item#two ul {
+  background: #fff;
+  font-size: 13px;
+  line-height: 30px;
+  height: 0px;
+  list-style-type: none;
+  overflow: hidden;
+  padding: 0px;
+  margin:0px;
+  
   /*Animation*/
   -webkit-transition: height 1s ease;
      -moz-transition: height 1s ease;
@@ -99,8 +135,14 @@ nav {
           transition: height 1s ease;
 }
 
-.menu-item:hover ul {
-  height: 93px;
+.menu-item#four:hover ul {
+   height: 124px; 
+}
+.menu-item#three:hover ul {
+   height: 93px; 
+}
+.menu-item#two:hover ul {
+   height: 62px; 
 }
 
 .menu-item ul a {
@@ -120,7 +162,6 @@ nav {
   background: #eee;
 }
 
-
 /*First Item Styles*/
 .alpha p {
    padding: 8px 12px;
@@ -130,7 +171,6 @@ nav {
 .alpha p a {
    color: #aaa;
    font-style: italic;
-  
 }
 
 .alpha p a:hover {
@@ -142,7 +182,7 @@ nav {
 	float : left;
    width:210px;
 /*    background-color: #CCC;  */
-   height: 500px;
+   height: 600px;
    margin: 0px;
 }
 
@@ -150,17 +190,10 @@ nav {
     width:200px;
     background-color: #17B794; 
     height: 170px;
-    border-radius: 10%;
+    border-radius: 6%;
     text-align: center;
     color: white;
     margin-bottom:10px;
-}
-
-#teaprofileimg{
-/*    border: 1px solid red; */
-   border-radius: 10%;
-   width: 100px;
-   height: 100px; 
 }
 
 #wrapper{
@@ -173,6 +206,18 @@ nav {
 #mypageid{
    text-align: center;
    font-style: italic;
+   font-weight: bold;
+   color: #565656;
+    width: 960px;
+    height: 90%;
+    float: right;
+}
+
+#teaprofileimg{
+/*    border: 1px solid red; */
+   border-radius: 50%;
+   width: 100px;
+   height: 100px; 
 }
 
 .anone{
@@ -196,58 +241,51 @@ nav {
 <br>
 <br>
 <br>
+<br>
+
+<a href="" class="anone"><h2 id="mypageid">Student Page</h2></a>
+
+<br>
+<br>
 
 <div id="sidenav">
 
 <div id="profile">
-
-<br>
-
-<img alt="학생" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg">
 
 <h4>userId 님</h4>
 
 </div>
 
       <nav>
-          <div class="menu-item">
-            <h4><a href="#">수강내역</a></h4>
+          <div class="menu-item" id="four">
+            <h4><a href="#">과외</a></h4>
             <ul>
-              <li><a href="#">찜한 과외</a></li>
+           	  <li><a href="#">과외 신청 내역</a></li>
               <li><a href="#">수강중인 과외</a></li>
-              <li><a href="#">수강한 과외</a></li>
+              <li><a href="#">완료된 과외</a></li>
+              <li><a href="#">찜한 과외</a></li>
             </ul>
           </div>
-            
-          <div class="menu-item">
+
+          <div class="menu-item" id="three">
             <h4><a href="#">게시판</a></h4>
             <ul>
-              <li><a href="#">질문게시판</a></li>
-              <li><a href="#">후기게시판</a></li>
-              <li><a href="#">신고내역</a></li>
+              <li><a href="#">질문 게시판</a></li>
+              <li><a href="#">후기 게시판</a></li>
+              <li><a href="#">신고 내역</a></li>
             </ul>
           </div>
-            
-          <div class="menu-item">
-            <h4><a href="#">자료실</a></h4>
-          </div>
       
-      <div class="menu-item">
+      <div class="menu-item" id="two">
             <h4><a href="#">중고장터</a></h4>
             <ul>
-              <li><a href="#">물건올리기</a></li>
-              <li><a href="#">글 수정/삭제</a></li>
-              <li><a href="#">신고내역</a></li>
+              <li><a href="#">활동 내역</a></li>
+              <li><a href="#">신고 내역</a></li>
             </ul>
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">개인정보수정</a></h4>
-            <ul>
-              <li><a href="#">개인정보 확인</a></li>
-              <li><a href="#">개인정보 수정</a></li>
-              <li><a href="#">회원탈퇴</a></li>
-            </ul>
+            <h4><a href="#">회원정보 수정</a></h4>
           </div>
           
       </nav>
@@ -256,6 +294,5 @@ nav {
 
 
 
-<div id="main"> 
 
-<a href="" class="anone"><h3 id="mypageid">Student Mypage</h3></a>
+<div id="main"> 

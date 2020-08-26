@@ -1,6 +1,5 @@
 package com.privateplaylist.www.admin.board.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.privateplaylist.www.admin.board.dao.QuestionDao;
 import com.privateplaylist.www.admin.board.service.QuestionService;
-import com.privateplaylist.www.dto.Notice;
 import com.privateplaylist.www.dto.Question;
 import com.privateplaylist.www.dto.QuestionComm;
 

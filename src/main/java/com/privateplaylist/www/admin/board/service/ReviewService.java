@@ -14,5 +14,8 @@ public interface ReviewService {
 	public List<Review> selectReviewList(Paging paging);
 	// 리뷰게시판 페이징
 	public Paging reviewListPaging(HttpServletRequest req);
+	
+	//삭제
+	public int deleteReview(int reviewNo);
 
 }
