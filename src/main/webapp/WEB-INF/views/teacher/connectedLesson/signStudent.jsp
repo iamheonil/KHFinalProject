@@ -4,316 +4,318 @@
 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .listBox{
 	width: 100%;
 	text-align: center;
 }
-.tickets-container .tickets-list .ticket-item .ticket-state i {
-    font-size: 13px;
-    color: #fff;
-    line-height: 20px;
+
+.list_title{
+	text-align: left;
+	font-family: 'Segoe UI',Arial,sans-serif";
+	font-size: 12px;
+	margin: 20px 0;
 }
-.tickets-container .tickets-list .ticket-item .ticket-state {
-    position: absolute;
-    top: 13px;
-    right: -12px;
-    height: 24px;
-    width: 24px;
-    -webkit-border-radius: 50%;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 50%;
-    -moz-background-clip: padding;
-    border-radius: 50%;
-    background-clip: padding-box;
-    background-color: #e5e5e5;
-    text-align: center;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    box-shadow: 0 0 3px rgba(0,0,0,.5);
-    border: 2px solid #fff;
+/* USER LIST TABLE */
+.user-list tbody td > img {
+    position: relative;
+	max-width: 50px;
+	float: left;
+	margin-right: 15px;
 }
-.bg-palegreen {
-    background-color: #a0d468!important;
+.user-list tbody td .user-link {
+	display: block;
+	font-size: 1.25em;
+	padding-top: 3px;
+	margin-left: 60px;
 }
-.tickets-container .tickets-list .ticket-item .ticket-type .type {
-    color: #999;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-.tickets-container .tickets-list .ticket-item .ticket-type {
-    line-height: 30px;
-    height: 50px;
-    padding: 10px;
-}
-.tickets-container .tickets-list .ticket-item .ticket-time i {
-    color: #ccc;
-    width:50px;
+.user-list tbody td .user-subhead {
+	font-size: 0.875em;
+	font-style: italic;
 }
 
-.tickets-container .tickets-list .ticket-item .divider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 1px;
-    background-color: #eee;
-    display: inline-block;
+/* TABLES */
+.table {
+    border-collapse: separate;
 }
-.tickets-container .tickets-list .ticket-item .ticket-time {
-    line-height: 30px;
-    height: 50px;
-    padding: 10px;
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+	background-color: #eee;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user .user-company {
-    margin-left: 2px;
-    color: #999;
+.table thead > tr > th {
+	border-bottom: 1px solid #C2C2C2;
+	padding-bottom: 0;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user .user-at {
-    margin-left: 2px;
-    color: #ccc;
-    font-size: 13px;
+.table tbody > tr > td {
+	font-size: 0.875em;
+	background: #f5f5f5;
+	border-top: 10px solid #fff;
+	vertical-align: middle;
+	padding: 12px 8px;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user .user-name {
-    margin-left: 5px;
-    font-size: 13px;
+.table tbody > tr > td:first-child,
+.table thead > tr > th:first-child {
+	padding-left: 20px;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user .user-avatar {
-    width: 30px;
-    height: 30px;
-    -webkit-border-radius: 3px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 3px;
-    -moz-background-clip: padding;
-    border-radius: 3px;
-    background-clip: padding-box;
+.table thead > tr > th span {
+	border-bottom: 2px solid #C2C2C2;
+	display: inline-block;
+	padding: 0 5px;
+	padding-bottom: 5px;
+	font-weight: normal;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user {
-    height: 50px;
-    padding: 10px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+.table thead > tr > th > a span {
+	color: #344644;
 }
-.tickets-container .tickets-list .ticket-item {
-    position: relative;
-	background-color: #fff;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    box-shadow: 0 0 3px rgba(0,0,0,.5);
-    -webkit-border-radius: 3px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 3px;
-    -moz-background-clip: padding;
-    border-radius: 3px;
-    background-clip: padding-box;
-    margin-bottom: 8px;
-    padding: 0 15px;
-    vertical-align: top;
+.table thead > tr > th > a span:after {
+	content: "\f0dc";
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+	margin-left: 5px;
+	font-size: 0.75em;
 }
-.tickets-container .tickets-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 0;
+.table thead > tr > th > a.asc span:after {
+	content: "\f0dd";
 }
-.tickets-container {
-    position: relative;
-    padding: 25px 25px;
-/*     background-color: #f5f5f5; */
+.table thead > tr > th > a.desc span:after {
+	content: "\f0de";
 }
-.widget-main.no-padding {
-    padding: 0;
+.table thead > tr > th > a:hover span {
+	text-decoration: none;
+	color: #2bb6a3;
+	border-color: #2bb6a3;
 }
-.widget-main {
-    padding: 12px;
+.table.table-hover tbody > tr > td {
+	-webkit-transition: background-color 0.15s ease-in-out 0s;
+	transition: background-color 0.15s ease-in-out 0s;
 }
-.no-padding {
-    padding: 0!important;
+.table tbody tr td .call-type {
+	display: block;
+	font-size: 0.75em;
+	text-align: center;
 }
-.widget-body {
-/*     background-color: #fbfbfb; */
+.table tbody tr td .first-line {
+	line-height: 1.5;
+	font-weight: 400;
+	font-size: 1.125em;
+}
+.table tbody tr td .first-line span {
+	font-size: 0.875em;
+	color: #969696;
+	font-weight: 300;
+}
+.table tbody tr td .second-line {
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+.table a.table-link {
+	margin: 0 5px;
+	font-size: 1.125em;
 }
 
-.widget-header>.widget-caption {
-    line-height: 33px;
-    padding: 0;
-    margin: 0;
-    float: left;
-    text-align: left;
-    font-weight: 400!important;
-    font-size: 13px;
+
+.table a.table-link.success {
+	text-decoration: none;
+	color: #4bb7a4;
+}
+.table a.table-link.success:hover {
+	text-decoration: none;
+	color: #2aa493;
+}
+.table a.table-link.danger {
+	color: #fe635f;
+}
+.table a.table-link.danger:hover {
+	color: #dd504c;
 }
 
-.widget-header .widget-icon {
-    display: block;
-    width: 30px;
-    height: 32px;
-    position: relative;
-    float: left;
-    font-size: 111%;
-    line-height: 32px;
-    text-align: center;
-    margin-left: -10px;
+.table-products tbody > tr > td {
+	background: none;
+	border: none;
+	border-bottom: 1px solid #ebebeb;
+	-webkit-transition: background-color 0.15s ease-in-out 0s;
+	transition: background-color 0.15s ease-in-out 0s;
+	position: relative;
 }
-.themesecondary {
-    color: #17B794 !important;
+.table-products tbody > tr:hover > td {
+	text-decoration: none;
+	background-color: #f6f6f6;
 }
-.widget-header.bordered-bottom {
-    border-bottom: 3px solid #fff;
+.table-products .name {
+	display: block;
+	font-weight: 600;
+	padding-bottom: 7px;
 }
-.widget-header {
-    position: relative;
-    min-height: 35px;
-    background: #fff;
-    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 4px rgba(0,0,0,.5);
-    box-shadow: 0 0 4px rgba(0,0,0,.5);
-    color: #555;
-    padding-left: 12px;
-    text-align: right;
+.table-products .price {
+	display: block;
+	text-decoration: none;
+	width: 50%;
+	float: left;
+	font-size: 0.875em;
 }
-.bordered-themesecondary {
-    border-color: #17B794 !important;
+.table-products .price > i {
+	color: #8dc859;
 }
-.widget-box {
-    padding: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    margin: 3px 0 30px 0;
-}                   
-
+.table-products .warranty {
+	display: block;
+	text-decoration: none;
+	width: 50%;
+	float: left;
+	font-size: 0.875em;
+}
+.table-products .warranty > i {
+	color: #f1c40f;
+}
+.table tbody > tr.table-line-fb > td {
+	background-color: #9daccb;
+	color: #262525;
+}
+.table tbody > tr.table-line-twitter > td {
+	background-color: #9fccff;
+	color: #262525;
+}
+.table tbody > tr.table-line-plus > td {
+	background-color: #eea59c;
+	color: #262525;
+}
+.table-stats .status-social-icon {
+	font-size: 1.9em;
+	vertical-align: bottom;
+}
+.table-stats .table-line-fb .status-social-icon {
+	color: #556484;
+}
+.table-stats .table-line-twitter .status-social-icon {
+	color: #5885b8;
+}
+.table-stats .table-line-plus .status-social-icon {
+	color: #a75d54;
+}
 
 </style>
-	<div class="listBox">
+
+<script type="text/javascript">
+function connectStu(connNo){
+	var chk = confirm("학생을 승인하시겠습니까?");
 	
-    	<div class="row">
-			<div>
-				<h4 style="font-family: 'Segoe UI',Arial,sans-serif">과외 연결 관리 > 학생 신청 내역 </h4>
+	if(chk == true){
+		var url = "<%=request.getContextPath() %>/teacher/signstu";
+		
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {connNo : connNo},
+			success : function(result) {
+				if (result == 1) {
+					alert("승인되었습니다.");
+					location.reload();
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+}
+
+function rejectStu(connNo){
+	var chk = confirm("학생을 거절하시겠습니까?");
+	
+	if(chk == true){
+		var url = "<%=request.getContextPath() %>/teacher/rejectstu";
+		
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {connNo : connNo},
+			success : function(result) {
+				if (result == 1) {
+					alert("거절하였습니다.");
+					location.reload();
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+}
+
+
+</script>
+	<div class="listBox">
+			<div class="list_title">
+				과외 연결 > 학생 신청 내역
 			</div>
-			<hr>
-		    <div class="col-md-12">
-		            <div class="widget-body">
-		                <div class="widget-main no-padding">
-		                    <div class="tickets-container">
-		                        <ul class="tickets-list">
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-3 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="user-avatar">
-		                                        <span class="user-name">Adam Johnson</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Microsoft</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">1 Hours Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Issue</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-palegreen">
-		                                        <i class="fa fa-check"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="user-avatar">
-		                                        <span class="user-name">Divyia Phillips</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Dribbble</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">3 Hours Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Payment</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-palegreen">
-		                                        <i class="fa fa-check"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_3.jpg" class="user-avatar">
-		                                        <span class="user-name">Nicolai Larson</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Google</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">18 Hours Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Issue</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-darkorange">
-		                                        <i class="fa fa-times"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="user-avatar">
-		                                        <span class="user-name">Bill Jackson</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Mabna</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">2 days Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Payment</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-palegreen">
-		                                        <i class="fa fa-check"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="user-avatar">
-		                                        <span class="user-name">Eric Clapton</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Musicker</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">2 days Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Info</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-yellow">
-		                                        <i class="fa fa-info"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
+			
+			<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table user-list">
+					<thead>
+						<tr>
+							<th class="text-center" style="width: 15%;"><span>신청자</span></th>
+							<th class="text-center" style="width: 30%;"><span>과외명</span></th>
+							<th class="text-center" style="width: 15;"><span>과목</span></th>
+							<th class="text-center"><span>인원</span></th>
+							<th class="text-center" style="width: 10%;"><span>신청 날짜</span></th>
+							<th class="text-center"><span>승인</span></th>
+						</tr>
+					</thead>
+					<tbody>
+                       <c:forEach items="${list }" var="stu">
+						<tr>
+							<td>
+								<a href="#">${stu.USER_NAME }</a>
+							</td>
+							<td>
+								<a href="#">${stu.LESSON_TITLE }</a>
+							</td>
+							<td>
+								${stu.LESSON_SUBJECT }
+							</td>
+							<td>
+								<c:if test="${stu.MAX_PEOPLE eq 1 }">
+									<span class="label label-warning">개인</span>
+								</c:if>
+								<c:if test="${stu.MAX_PEOPLE gt 1 }">
+									<span class="label label-success">그룹</span>
+								</c:if>
+							</td>
+							<td>
+								${stu.LEG_DATE }
+							</td>
+							<td style="width: 20%;">
+								<a href="javascript:void(0)" onclick="connectStu(${stu.CONN_LESSON_NO});" class="table-link success">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-check fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a href="#" class="table-link danger" onclick="rejectStu(${stu.CONN_LESSON_NO});" >
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+			          </c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<c:if test="${not empty list }">
+			<c:import url="/WEB-INF/paging/teacher/connectLesson/signStuPaging.jsp"></c:import>
+			</c:if>
+		</div>
+	</div>
+</div>
 		</div>
 
 
