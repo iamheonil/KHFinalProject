@@ -76,6 +76,7 @@
 		<mapper resource="/mybatis/mapper/teacher/ProfileMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/QuestionMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/ReviewMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/WebShareMapper.xml"/>
 
 	</mappers>
 
