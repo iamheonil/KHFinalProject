@@ -24,4 +24,8 @@ public class ReviewDao {
 		return sqlSession.selectOne("Review.selectCntReviewAll");
 	}
 
+	public int deleteReview(int reviewNo) {
+		return sqlSession.delete("Review.deleteReview",reviewNo);
+	}
+
 }
