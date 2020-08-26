@@ -535,7 +535,6 @@ function delchk(num){
 					
 				}
 				$("#checkModal").modal();
-				
 			}
 		});
 	
