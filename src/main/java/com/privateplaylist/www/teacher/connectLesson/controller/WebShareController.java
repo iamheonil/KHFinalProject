@@ -28,7 +28,7 @@ public class WebShareController {
 		//연결된 과외 조회
 		List<Map<String, Object>> connectedLessonList = webShareService.selectConnectedLesson(teaNo);
 		
-		System.out.println(connectedLessonList);
+//		System.out.println(connectedLessonList);
 		
 		model.addAttribute("connectedLessonList", connectedLessonList);
 		

@@ -128,14 +128,14 @@ body{
 	                        
 	                            <thead>
 	                                <tr class="align-self-center">
-	                                    <th style="width: 5%">번호</th>
-	                                    <th style="width: 30%">과외명</th>
+	                                    <th style="width: 10%">과외번호</th>
+	                                    <th style="width: 25%">과외명</th>
 	                                    <th style="width: 10%">학생</th>
 	                                    <th style="width: 15%">과목</th>
 	                                    <th style="width: 10%">지역</th>
 	                                    <th style="width: 10%">구분</th>
 	                                    <th style="width: 10%">자료실</th>
-	                                    <th style="width: 10%">종료</th>
+	                                    <th style="width: 10%">과외종료</th>
 	                                </tr>
 	                            </thead>
 	                            
