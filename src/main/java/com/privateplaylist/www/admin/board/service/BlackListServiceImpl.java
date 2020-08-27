@@ -1,9 +1,8 @@
 package com.privateplaylist.www.admin.board.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,14 @@ public class BlackListServiceImpl implements BlackListService {
 	private BlackListDao blackListDao;
 	
 	@Override
-	public List<Map<String, Object>> selectAllBlackList(Paging paging) {
-		List<Map<String, Object>> list = blackListDao.selectAllBlackList(paging);
+	public List<Map<String, Object>> selectAllBlackList(Paging paging, String category) {
+		
+		Map<String, Object> bMap = new HashMap<>();
+		
+		bMap.put("category", category);
+		bMap.put("paging", paging);
+		
+		List<Map<String, Object>> list = blackListDao.selectAllBlackList(bMap);
 		
 		for( Map<String, Object> map : list) {
 			
@@ -40,46 +45,64 @@ public class BlackListServiceImpl implements BlackListService {
 	}
 
 	@Override
-	public Paging getPagingBlack(int curPage) {
+	public Paging getPagingBlack(int curPage, String category, String search) {
 		
-		int totalCount = blackListDao.selectCntAllBlack();
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("category", category);
+		map.put("search", search);
+		
+		int totalCount = blackListDao.selectCntAllBlack(map);
 		
 		// Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
-		System.out.println(paging);
+		paging.setSearch(search);
 		return paging;
 	}
 
 
 	@Override
-	public void turndown(HttpServletRequest req) {
-		String[] arr = req.getParameterValues("checkRow");
+	public void turndownReview(List<Integer> list) {
 		
-		for( String no : arr ) {
-			if( no!=null && !"".equals(no)) {
-				int blacklistNo = Integer.parseInt(no);
-				blackListDao.updateBlacklistTurndown(blacklistNo);
-			}
-			
+		for( int no : list ) {
+			blackListDao.updateBlacklistTurndown(no);
 		}
 		
 	}
 
 	@Override
-	public void deleteReview(HttpServletRequest req) {
+	public void deleteReview(List<Integer> list) {
 		
-		String[] arr = req.getParameterValues("checkRow");
-		
-		for( String no : arr ) {
-			if( no!=null && !"".equals(no)) {
-				int blacklistNo = Integer.parseInt(no);
-				blackListDao.updateBlacklistDelete(blacklistNo);
-				int reviewNo = blackListDao.selectReviewByBN(blacklistNo);
-				blackListDao.deleteReview(reviewNo);
-			}
-			
+		for( int no : list ) {
+			int reviewNo = blackListDao.selectReviewByBN(no);
+			blackListDao.updateBlackReivewDelete(reviewNo);
+			blackListDao.deleteReview(reviewNo);
 		}
 		
+	}
+
+	@Override
+	public int selectReportCnt() {
+		return blackListDao.selectReportCnt();
+	}
+
+	@Override
+	public void turndownMarket(List<Integer> mList) {
+		
+		for( int no : mList ) {
+			blackListDao.updateBlacklistTurndown(no);
+		}
+		
+	}
+
+	@Override
+	public void deleteMarket(List<Integer> mList) {
+		
+		for( int no : mList ) {
+			int marketNo = blackListDao.selectMarketByBN(no);
+			blackListDao.updateBlackMarketDelete(marketNo);
+			blackListDao.deleteMarket(marketNo);
+		}		
 	}
 
 }

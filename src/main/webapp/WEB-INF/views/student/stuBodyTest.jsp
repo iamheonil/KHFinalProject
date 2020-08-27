@@ -12,15 +12,29 @@
 <c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
 
 
-<a href="" class="anone"><h5>클릭한 큰 제목</h5></a>
-<hr>
-<a href="" class="anone"><h6>클릭한 작은 제목</h6></a>
+<style type="text/css">
+#title{
+
+	width: 100%;
+	font-weight: bold;
+}
+
+#title a {
+	color: #17B794; /* 청록색 */
+}
+</style>
+
+
+
+<div id="title">과외 연결
+	<i class="glyphicon glyphicon-menu-right"></i>
+	<a href="">연결된 과외</a>
+</div>
+
 
 <h6>내용</h6>
 
 
 <!-- 학생 마이페이지 푸터 -->
 <c:import url="/WEB-INF/layout/student/stuFooter.jsp"></c:import>
-
-<!-- 메인 푸터 --> 
-<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import> 
+<c:import url="/WEB-INF/layout/student/stuFooter2.jsp"></c:import>

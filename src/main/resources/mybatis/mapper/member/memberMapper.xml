@@ -6,11 +6,15 @@
   
   <mapper namespace="MEMBER">
 
-
     <insert id="insertMember">
       INSERT INTO MEMBERSHIP (USER_NO, USER_ID, USER_PW, USER_NAME, POSTCODE, ROADADDRESS, DETAILADDRESS, USER_PHONE, USER_EMAIL, USER_GENDER, USER_BIRTH, USER_ACTOR, IS_LEAVE)
       VALUES (MEMBERSHIP_SEQ.nextval, #{userId}, #{userPw}, #{userName}, #{postCode}, #{roadAddress}, #{detailAddress}, #{userPhone}, #{userEmail}, #{userGender}, #{userBirth}, #{userActor}, 0)
     </insert>
+
+  <insert id="insertFile">
+    INSERT INTO TEACHERFILE (TCH_FILE_NO, USER_NO, USER_ID, TCH_FILE_ORG, TCH_FILE_RENAME, SAVE_PATH)
+    VALUES (teacherfile_SEQ.nextval, (select user_no from membership where user_id=#{userId}), #{userId}, #{tch_File_Org}, #{tch_File_Rename}, #{save_Path})
+  </insert>
 
     <select id="selectMember" resultType="MEMBER">
       SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userId} AND IS_LEAVE = 0

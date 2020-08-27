@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="KHFinalProject:war exploded">
-    <output-path>$PROJECT_DIR$/target/www-1.0.0-BUILD-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/src/main/webapp</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>

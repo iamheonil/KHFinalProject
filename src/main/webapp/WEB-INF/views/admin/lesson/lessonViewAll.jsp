@@ -58,30 +58,36 @@
 											<th style="width: 8%">게시</th>
 	                                    </tr>
 	                                </thead>
+	                                
+	                                  <!-- ** 추후 구현 : 제목 클릭 시 과외 상세 페이지로 연결 -->
+	                                
 	                                <tbody>
 					                	<c:forEach items="${lessonList }" var="lessonList" >
 											<tr>
 												<td>${lessonList.LESSON_NO}</td>
-												<td><a href="">${lessonList.LESSON_TITLE}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+												<td><a href="">${lessonList.LESSON_TITLE}</a></td>
 												<td>${lessonList.USER_ID}</td>
 												<td>${lessonList.LESSON_DATE}</td>
-												<c:if test="${lessonList.LESSON_CHK eq 1}">
-													<td>Y</td>
-												</c:if>
 												<c:if test="${lessonList.LESSON_CHK eq 0}">
+													<td>미검토</td>
+												</c:if>
+												<c:if test="${lessonList.LESSON_CHK eq 1}">
+													<td>승인</td>
+												</c:if>
+												<c:if test="${lessonList.LESSON_CHK eq 2}">
+													<td>반려</td>
+												</c:if>
+												<c:if test="${lessonList.PAY_STATE eq 0}">
 													<td>N</td>
 												</c:if>
 												<c:if test="${lessonList.PAY_STATE eq 1}">
 													<td>Y</td>
 												</c:if>
-												<c:if test="${lessonList.PAY_STATE eq 0}">
+												<c:if test="${lessonList.LESSON_STATE eq 0}">
 													<td>N</td>
 												</c:if>
 												<c:if test="${lessonList.LESSON_STATE eq 1}">
 													<td>Y</td>
-												</c:if>
-												<c:if test="${lessonList.LESSON_STATE eq 0}">
-													<td>N</td>
 												</c:if>
 											</tr>
 										</c:forEach>

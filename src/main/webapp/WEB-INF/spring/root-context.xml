@@ -54,8 +54,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.naver.com"/>
 		<property name="port" value="465"/>
-		<property name="username" value="azimemory@naver.com"/>
-		<property name="password" value="1256812gk!A"/>
+		<property name="username" value="snn7452@naver.com"/>
+		<property name="password" value="heonil12!@"/>
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
@@ -66,10 +66,10 @@
 			</props>
 		</property>
 	</bean>
+	
 	<!-- 스프링에서 multipart 데이터 처리를
 		담당하는 클래스  -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 업로드 가능한 최대 크기 -->
 		<property name="maxUploadSize" value="100000000"/>
 		<property name="maxInMemorySize" value="100000000"/>
