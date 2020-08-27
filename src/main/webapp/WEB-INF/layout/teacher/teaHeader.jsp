@@ -1,5 +1,6 @@
 <!-- 이인주 20200818 : 선생님 마이페이지  header  -->
 
+<%@page import="com.privateplaylist.www.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -211,6 +212,80 @@ nav {
 }
 
 </style>
+<%
+ String userID=null;
+if(session.getAttribute("loginUser") !=null){
+	userID=((Member)session.getAttribute("loginUser")).getUserId();//사용자의 정보가져오기
+	
+}
+String toID=null;
+if(request.getAttribute("toID") !=null){
+	toID=(String)request.getAttribute("toID");//채팅하는 대상의 정보 가져오기
+}
+
+if(userID==null){
+	
+	String url=request.getContextPath()+"/member/login";
+	session.setAttribute("messageContent", "로그인이 되어있지 않습니다");
+	session.setAttribute("messageType", "오류메시지");
+	/* response.sendRedirect(url); */
+}
+%>
+
+<!-- 로그아웃이 되면 로그인 페이지로 이동시킴  -->
+
+<%
+	String messageContent = null;
+	if (session.getAttribute("messageContent") != null) {
+		messageContent = (String) session.getAttribute("messageContent");
+	}
+	String messageType = null;
+	if (session.getAttribute("messageType") != null) {
+		messageType = (String) session.getAttribute("messageType");
+	}
+	if (messageContent != null) {
+%>
+
+<script type="text/javascript">
+	/* $("#messageModal").modal("show"); */
+	alert("로그인이 되어있지 않습니다")
+	window.location.href = "${pageContext.request.contextPath}/member/login";
+</script>
+<%
+	session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+	}
+%>
+
+
+<script type="text/javascript">
+//안읽은 메시지 데이터 가져오기
+function getUnread(){
+	
+	var userID='<%=userID%>';
+	
+	$.ajax({
+		type:"POST",
+		url:"${pageContext.request.contextPath}/chat/unread",
+		data:{
+			userID:encodeURIComponent(userID)
+		},
+		success:function(data){
+			
+			$("#chkUnread").html(data);
+		}
+	});
+	
+}
+
+//3초마다 안읽은 데이터가 있는지 확인
+function getInfiniteBox(){
+	setInterval(function(){
+		getUnread();
+	},3000);
+}
+
+</script>
 </head>
 <body>
 
@@ -263,12 +338,12 @@ nav {
             <ul>
               <li><a href="#">질문 게시판</a></li>
               <li><a href="#">후기 게시판</a></li>
-              <li><a href="#">신고 내역</a></li>
+              <li><a href="${pageContext.request.contextPath}/teacher/blackList">신고 내역</a></li>
             </ul>
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">1:1 문의</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/teacher/chatBox">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
       
       <div class="menu-item" id="two">
@@ -288,6 +363,12 @@ nav {
 </div>
 
 
-
+<script type="text/javascript">
+ $(document).ready(function(){
+	
+	getUnread();
+	
+}) 
+</script>
 
 <div id="main"> 
