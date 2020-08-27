@@ -8,9 +8,6 @@
 <meta charset="UTF-8">
 <title>슬기로운 과외생활::선생님 마이페이지</title>
 
-<!-- jQuery 2.2.4.min -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 <!-- 부트스트랩 3.3.2 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -100,7 +97,7 @@ nav {
       -ms-transition: height 1s ease;
           transition: height 1s ease;
 }
-.menu-item#two ul {
+.menu-item.two ul {
   background: #fff;
   font-size: 13px;
   line-height: 30px;
@@ -121,7 +118,7 @@ nav {
 .menu-item#three:hover ul {
    height: 93px; 
 }
-.menu-item#two:hover ul {
+.menu-item.two:hover ul {
    height: 62px; 
 }
 
@@ -250,11 +247,11 @@ nav {
             </ul>
           </div>
           
-           <div class="menu-item" id="two">
+           <div class="menu-item two connectLesson">
             <h4><a href="#">과외 연결</a></h4>
 	            <ul>
 	              <li><a href="#">연결된 과외</a></li>
-	              <li><a href="#">학생 신청 내역</a></li>
+	              <li  id="signStu"><a href="${pageContext.request.contextPath }/teacher/signstu">학생 신청 내역</a></li>
 	            </ul>
           </div>
           
@@ -271,7 +268,7 @@ nav {
             <h4><a href="#">1:1 문의</a></h4>
           </div>
       
-      <div class="menu-item" id="two">
+      <div class="menu-item two" >
             <h4><a href="#">중고장터</a></h4>
             <ul>
               <li><a href="#">활동 내역</a></li>
