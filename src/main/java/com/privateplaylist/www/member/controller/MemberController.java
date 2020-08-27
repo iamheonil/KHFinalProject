@@ -197,6 +197,20 @@ public class MemberController {
 		}
 
 	}
+
+	@RequestMapping(value = "/findid", method = RequestMethod.GET)
+	public String findId() {
+		// System.out.println("findid Call");
+
+		return "/member/findid";
+	}
+
+	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
+	public String findPw() {
+		// System.out.println("findpw Call");
+
+		return "/member/findpw";
+	}
 	
 	@RequestMapping("/logout")
 	public ModelAndView logOut(HttpSession session) {
