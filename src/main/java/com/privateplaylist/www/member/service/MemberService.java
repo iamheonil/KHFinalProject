@@ -12,13 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 public interface MemberService {
 
     // 회원가입 메소드
     public int insertMember(Member member);
 
     // 파일삽입
-    public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, TeacherFile teacherFile, String root) throws FileException;
+    public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, String root) throws FileException;
 
     // 멤버 정보 조회 메소드
     public Member selectMember(Map<String, Object> memberMap);
@@ -27,6 +29,9 @@ public interface MemberService {
     public int selectId(String userId);
     
     // 메일 전송
-    public void mailSending(Member member, String urlPath) throws MailException;
+    public void mailSending(String email, int mailCode) throws MailException;
+    
+    // 로그아웃 메소드
+    public void logOut(HttpSession session);
 
 }

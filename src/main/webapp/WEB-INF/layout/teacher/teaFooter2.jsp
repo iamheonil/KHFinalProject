@@ -198,6 +198,8 @@ body {
 </style>
 
 
+   <div class="clearfix"></div>  
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -242,42 +244,42 @@ body {
       
      
      
-      <div class="clearfix"></div>  
+   
                    
       <footer>
           <div class="footer">
-             
-                <div id="footer_nav">
-                <div>
-                 <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" 
-                             alt="슬기로운 과외생활" style="width: 120px; height: 120px;">
-               <p>&copy; 슬기로운 과외생활</p>
-               </div>
-              
-               <ul class="gtco-list-link footerMenu" id="short">
-                  <p>SUPPORT</p>
-                  <li><a href="#">문의하기</a></li>
-               </ul>
-               <ul class="gtco-list-link footerMenu" id="short">
-                  <p>ABOUT US</p>
-                  <li><a href="#">제작자 소개</a></li>
-                  <li><a href="#">사이트 소개</a></li>
-               </ul>
-               <ul class="gtco-list-link footerMenu" id="short">
-                  <p>POLICY</p>
-                  <li><a href="#" data-toggle="modal" data-target="#myModal">개인정보 처리방침</a></li>
-                  <li><a href="#" data-toggle="modal" data-target="#myModal2">사이트 이용약관</a></li>
-               </ul>
-               <ul class="gtco-list-link footerMenu">
-                  <p>CONTACT</p>
-                  <li>loc&nbsp; |&nbsp; 서울시 강남구 테헤란로 그랑프리빌딩 4F</li>
-                  <li>tel&nbsp; |&nbsp; 070 1234 5678</li>
-                  <li>e-mail&nbsp; |&nbsp; abc@kh.com</li>
-                  <li>고객센터&nbsp; |&nbsp; 월-금 9:00-17:00</li>
-               </ul>
-            </div>
-            
-         </div>
+          
+	          	<div id="footer_nav">
+	          	<div>
+			        <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" 
+		           				alt="슬기로운 과외생활" style="width: 120px; height: 120px;">
+					<p>&copy; 슬기로운 과외생활</p>
+	         	</div>
+	        	
+					<ul class="gtco-list-link footerMenu" id="short">
+						<p>SUPPORT</p>
+						<li><a href="#">문의하기</a></li>
+					</ul>
+					<ul class="gtco-list-link footerMenu" id="short">
+						<p>ABOUT US</p>
+						<li><a href="#">제작자 소개</a></li>
+						<li><a href="#">사이트 소개</a></li>
+					</ul>
+					<ul class="gtco-list-link footerMenu" id="short">
+						<p>POLICY</p>
+						<li><a href="#" data-toggle="modal" data-target="#myModal">개인정보 처리방침</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal2">사이트 이용약관</a></li>
+					</ul>
+					<ul class="gtco-list-link footerMenu">
+						<p>CONTACT</p>
+						<li>loc&nbsp; |&nbsp; 서울시 강남구 테헤란로 그랑프리빌딩 4F</li>
+						<li>tel&nbsp; |&nbsp; 070 1234 5678</li>
+						<li>e-mail&nbsp; |&nbsp; abc@kh.com</li>
+						<li>고객센터&nbsp; |&nbsp; 월-금 9:00-17:00</li>
+					</ul>
+				</div>
+				
+			</div>
          
       </footer>
                 

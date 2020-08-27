@@ -3988,9 +3988,9 @@ input[type=button].btn-block {
   font-size: 12px;
 }
 
-.nav-link:hover, .nav-link:focus a {
+.nav-link:hover, .nav-link:focus {
   text-decoration: none;
-
+  color: #17B794;  
 }
 
 .navbar {
