@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="findLesson">
+
+	<insert id="insertLesson" >
+		insert into FIND_LESSON(LESSON_NO, LESSON_TITLE, LESSON_CONTENT ,LESSON_DATE ,USER_NO ,LESSON_LOC ,LESSON_SUBJECT ,LESSON_PRICE ,LESSON_AGE, MAX_PEOPLE ,LESSON_STATE ,LESSON_CHK, PAY_STATE)
+		values(find_lesson_SEQ.nextval, #{findLesson.lessonTitle}, #{findLesson.lessonContent}, sysdate, #{login.userNo}, #{findLesson.lessonLoc}, #{findLesson.lessonSubject}, #{findLesson.lessonPrice}, #{findLesson.lessonAge}, #{findLesson.maxPeople}, 0, 0, 0)
+	</insert>
+
+
+	<select id="getLessonListCnt" resultType="int">
+		select count(*) from FIND_LESSON
+		WHERE user_no = #{userNo}
+	</select>
+	
+	<select id="selectLessonList" resultType="map">
+		select * from (
+			select rownum no, t.*	
+				FROM(
+				SELECT * FROM FIND_LESSON
+				WHERE user_no = #{loginUser.userNo}
+				AND pay_state = 1
+				ORDER BY lesson_no desc
+				)t
+			order by no)x
+		where no between #{paging.startNo} and #{paging.endNo}
+	</select>
+	<delete id="deleteLesson">
+		DELETE find_lesson
+		where lesson_no = #{lessonNo}
+	</delete>
+	
+	<update id="endLesson">
+		update find_lesson
+		set lesson_state = 0
+		where lesson_no = #{lessonNo}
+	</update>
+
+</mapper>
+
