@@ -81,6 +81,9 @@
 
 		<mapper resource="/mybatis/mapper/teacher/WebShareMapper.xml"/>
 
+		<mapper resource="/mybatis/mapper/teacher/TeacherBlacklist.xml"/>
+
+
 
 	</mappers>
 
