@@ -84,7 +84,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/joinImpl", method = POST)
-	public ModelAndView joinEmail(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, @ModelAttribute Member member, HttpServletRequest req) {
+	public ModelAndView joinEmail(@RequestParam(required = false,value = "joinFiles") MultipartFile files, Map<String, String> fileInfo, @ModelAttribute Member member, HttpServletRequest req) {
 
 		String root = req.getContextPath();
 		ModelAndView mav = new ModelAndView();
