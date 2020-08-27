@@ -467,5 +467,5 @@ function inputEmailChk(){
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
 </body>
 
-<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
-<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
+<!-- 푸터 -->
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
