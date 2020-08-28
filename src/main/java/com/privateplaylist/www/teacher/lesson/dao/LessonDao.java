@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.privateplaylist.www.dto.FindLesson;
+
 import common.util.Paging;
 
 @Repository
@@ -15,8 +17,15 @@ public class LessonDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int insertLesson(Map<String, Object> map) {
-		return sqlSession.insert("findLesson.insertLesson", map);
+	public int insertLesson(FindLesson findLesson) {
+		System.out.println("dao - findLesson : " + findLesson);
+		return sqlSession.insert("findLesson.insertLesson", findLesson);
+	}
+	
+	//파일 테이블에 파일정보 추가
+	public int insertFile(Map<String,String> fileInfo) {
+		System.out.println(fileInfo);
+		return sqlSession.insert("findLesson.insertFile",fileInfo);
 	}
 
 	public int getLessonListCnt(int userNo) {

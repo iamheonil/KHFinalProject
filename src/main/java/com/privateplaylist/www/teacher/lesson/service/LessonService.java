@@ -6,12 +6,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.dto.FindLesson;
 import com.privateplaylist.www.dto.Membership;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.lesson.dao.LessonDao;
 
+import common.exception.FileException;
+import common.util.FileUtil;
 import common.util.Paging;
 
 @Service
@@ -23,14 +26,25 @@ public class LessonService {
 	/*
 	 * 과외 등록 폼 작성한거 DB에 저장
 	 */
-	public int insertLesson(FindLesson findLesson, Member loginUser) {
+	public int insertLesson(FindLesson findLesson, List<MultipartFile> files, String root) throws FileException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("login", loginUser);
-		map.put("findLesson", findLesson);
+		int result = lessonDao.insertLesson(findLesson);
 		
-		int result = lessonDao.insertLesson(map);
+		if(!(files.size() == 1
+				&& files.get(0).getOriginalFilename().equals(""))) {
+				
+				//파일업로드를 위해 FileUtil.fileUpload() 호출
+				List<Map<String,String>> filedata 
+					= new FileUtil().fileUpload(files, root);
+				
+				for(Map<String,String> f : filedata) {
+					f.put("lessonNo",  Integer.toString(findLesson.getLessonNo()));
+					f.put("userNo",  Integer.toString(findLesson.getUserNo()));
+					lessonDao.insertFile(f);
+				}
+			}
 		
 		return result;
 	}

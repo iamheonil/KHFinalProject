@@ -6,15 +6,22 @@
   
 <mapper namespace="findLesson">
 
-	<insert id="insertLesson" >
+	<insert id="insertLesson">
 		insert into FIND_LESSON(LESSON_NO, LESSON_TITLE, LESSON_CONTENT ,LESSON_DATE ,USER_NO ,LESSON_LOC ,LESSON_SUBJECT ,LESSON_PRICE ,LESSON_AGE, MAX_PEOPLE ,LESSON_STATE ,LESSON_CHK, PAY_STATE)
-		values(find_lesson_SEQ.nextval, #{findLesson.lessonTitle}, #{findLesson.lessonContent}, sysdate, #{login.userNo}, #{findLesson.lessonLoc}, #{findLesson.lessonSubject}, #{findLesson.lessonPrice}, #{findLesson.lessonAge}, #{findLesson.maxPeople}, 0, 0, 0)
+		values(find_lesson_SEQ.nextval, #{lessonTitle}, #{lessonContent}, sysdate, #{userNo}, #{lessonLoc}, #{lessonSubject}, #{lessonPrice}, #{lessonAge}, #{maxPeople}, 0, 0, 0)
+	</insert>
+	
+	<insert id="insertFile">
+		insert into findLesson_file (TCH_FILE_NO, lesson_no, USER_NO, TCH_FILE_ORG, TCH_FILE_RENAME, SAVE_PATH)
+		values (findLesson_file_SEQ.nextval, find_lesson_SEQ.currval, #{userNo}, #{originFileName}, #{renameFileName}, #{savePath})
 	</insert>
 
 
 	<select id="getLessonListCnt" resultType="int">
-		select count(*) from FIND_LESSON
-		WHERE user_no = #{userNo}
+		select count(*) from (
+		select * from FIND_LESSON
+<!-- 		WHERE user_no = #{userNo} -->
+		)
 	</select>
 	
 	<select id="selectLessonList" resultType="map">
@@ -39,6 +46,7 @@
 		set lesson_state = 0
 		where lesson_no = #{lessonNo}
 	</update>
+	
 
 </mapper>
 

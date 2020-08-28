@@ -185,7 +185,7 @@ function addlocation(){
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <form name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post">
+    <form name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data">
         <div class="panel panel-default">
           <div class="panel-body text-center">
            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
@@ -239,8 +239,8 @@ function addlocation(){
           <div class="form-group">
             <label class="col-sm-2 control-label">이력서</label>
             <div class="col-sm-10">
-<!--               <textarea rows="3" class="form-control"></textarea> -->
-              <input type="file" disabled="disabled">
+<!--               <textarea rows="3" class="form-control" ></textarea> -->
+              <input type="file" name="files" required="required">
             </div>
           </div>
         </div>

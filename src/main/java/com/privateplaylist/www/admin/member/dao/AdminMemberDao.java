@@ -56,6 +56,7 @@ public class AdminMemberDao {
 	public List<Map<String, Object>> selectTchReviewList(int userNo) {
 		return sqlSession.selectList("Member.selectTchReviewList", userNo);
 	}
+	
 
 	
 

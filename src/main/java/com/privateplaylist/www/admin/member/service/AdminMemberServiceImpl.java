@@ -47,6 +47,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return stulist;
 	}
 	
+	
 	@Override
 	public Paging getPagingAdminStu(int curPage, String category, String search) {
 		

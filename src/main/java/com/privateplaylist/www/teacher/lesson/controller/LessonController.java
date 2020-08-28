@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.privateplaylist.www.dto.FindLesson;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.lesson.service.LessonService;
 
+import common.exception.FileException;
 import common.util.Paging;
 
 @Controller
@@ -48,26 +50,32 @@ public class LessonController {
 	
 	
 	@RequestMapping("/insertlesson")
-	public ModelAndView insertLesson(HttpSession session, FindLesson findLesson, String lessonLocDetail, String dong) {
+	public ModelAndView insertLesson(
+			//여러개의 MultipartFile을 담기 위한 List 생성
+			@RequestParam List<MultipartFile> files
+			, HttpSession session, FindLesson findLesson, String lessonLocDetail, String dong) throws FileException {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		findLesson.setLessonLoc(findLesson.getLessonLoc()+","+lessonLocDetail +","+dong);
+		String root = session.getServletContext().getRealPath("/");
 		
-		System.out.println(findLesson);
+		findLesson.setLessonLoc(findLesson.getLessonLoc()+","+lessonLocDetail +","+dong);
 
 		//세션값 가지고 오기
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		findLesson.setUserNo(loginUser.getUserNo());
 		
-		int res = lessonService.insertLesson(findLesson, loginUser);
+		System.out.println(findLesson);
 		
-		if(res >0) {
-			mav.addObject("msg", "작성 완료되었습니다. 관리자 승인은 최대 24시간 이내에 처리 완료됩니다.");
-		}else {
-			mav.addObject("msg", "작성 실패했습니다.");
-		}
+		int res = lessonService.insertLesson(findLesson, files, root);
 		
-		mav.setViewName("teacher/lesson/caution");
+//		if(res >0) {
+//			mav.addObject("msg", "작성 완료되었습니다. 관리자 승인은 최대 24시간 이내에 처리 완료됩니다.");
+//		}else {
+//			mav.addObject("msg", "작성 실패했습니다.");
+//		}
+		
+		mav.setViewName("redirect:caution");
 		
 		return mav;
 	}
@@ -79,9 +87,9 @@ public class LessonController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		Paging paging = lessonService.getPagingAdminStu(curPage, loginUser.getUserNo());
-//		System.out.println(paging);
+		System.out.println("컨트롤러 - paging : "+paging);
 		List<Map<String, Object>> list = lessonService.selectLessonList(paging, loginUser);
-//		System.out.println(list);
+		System.out.println("컨트롤러 - list : "+list);
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		mav.setViewName("teacher/lesson/mylessonList");
