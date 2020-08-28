@@ -45,7 +45,7 @@ public class ConnectLessonDao {
 		return no;
 	}
 
-	public FindLesson selectLessonByNo(int lessonNo) {
+	public Map<String, Object> selectLessonByNo(int lessonNo) {
 		return sqlSession.selectOne(namespace + "selectLessonByNo", lessonNo);
 	}
 
