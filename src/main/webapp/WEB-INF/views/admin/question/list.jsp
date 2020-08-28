@@ -100,6 +100,29 @@ $(document).ready(function(){
    	</div>
 
 
+
+<!-- 제목 검색 -->
+	<div id="serchbox" >
+	<form action="${pageContext.request.contextPath}/admin/question/search" method="post">
+	
+	<div class="row">
+	  <div class="col-lg-6">
+	    <div class="input-group">
+	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="submit">Search</button>
+	      
+	      </span>
+	    </div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+
+	</form>
+	</div>
+
+
+
+
 <!--  삭제 버튼 -->
 	<div id="footerbtn">
 	

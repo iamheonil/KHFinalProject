@@ -53,6 +53,16 @@ public class QuestionDao {
 	public List<QuestionComm> getReplyList(int questionNo) {
 		return sqlSession.selectList("Question.selectQuestionComm",questionNo);
 	}
+
+	//검색
+	public List<Question> selectSearchQuestion(Map<String, Object> searchMap) {
+		return sqlSession.selectList("Question.selectSearchQuestion",searchMap);
+	}
+
+	
+	public int selectCntQuestionSearchAll(String keyword) {
+		return sqlSession.selectOne("Question.selectCntQuestionSearchAll",keyword);
+	}
 	
 	
 }
