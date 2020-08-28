@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+<<<<<<< HEAD
 #lessonModal{
 	padding: 0;
 }
@@ -59,6 +60,9 @@
 	margin: 0 auto;
 	text-align: left;
 }
+=======
+
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 .menu-item.connectLesson ul {
    height: 62px; 
 }
@@ -106,6 +110,7 @@
 }
 
 /* TABLES */
+<<<<<<< HEAD
 .listBox .table {
     border-collapse: separate;
 }
@@ -118,27 +123,56 @@
 	padding-bottom: 0;
 }
 .listBox .table tbody > tr > td {
+=======
+.table {
+    border-collapse: separate;
+}
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+	background-color: #eee;
+}
+.table thead > tr > th {
+	border-bottom: 1px solid #C2C2C2;
+	padding-bottom: 0;
+}
+.table tbody > tr > td {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	font-size: 0.875em;
 	background: #f5f5f5;
 	border-top: 10px solid #fff;
 	vertical-align: middle;
 	padding: 12px 8px;
 }
+<<<<<<< HEAD
 .listBox .table tbody > tr > td:first-child,
 .listBox .table thead > tr > th:first-child {
 	padding-left: 20px;
 }
 .listBox .table thead > tr > th span {
+=======
+.table tbody > tr > td:first-child,
+.table thead > tr > th:first-child {
+	padding-left: 20px;
+}
+.table thead > tr > th span {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	border-bottom: 2px solid #C2C2C2;
 	display: inline-block;
 	padding: 0 5px;
 	padding-bottom: 5px;
 	font-weight: normal;
 }
+<<<<<<< HEAD
 .listBox .table thead > tr > th > a span {
 	color: #344644;
 }
 .listBox .table thead > tr > th > a span:after {
+=======
+.table thead > tr > th > a span {
+	color: #344644;
+}
+.table thead > tr > th > a span:after {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	content: "\f0dc";
 	font-family: FontAwesome;
 	font-style: normal;
@@ -147,6 +181,7 @@
 	margin-left: 5px;
 	font-size: 0.75em;
 }
+<<<<<<< HEAD
 .listBox .table thead > tr > th > a.asc span:after {
 	content: "\f0dd";
 }
@@ -154,39 +189,73 @@
 	content: "\f0de";
 }
 .listBox .table thead > tr > th > a:hover span {
+=======
+.table thead > tr > th > a.asc span:after {
+	content: "\f0dd";
+}
+.table thead > tr > th > a.desc span:after {
+	content: "\f0de";
+}
+.table thead > tr > th > a:hover span {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	text-decoration: none;
 	color: #2bb6a3;
 	border-color: #2bb6a3;
 }
+<<<<<<< HEAD
 .listBox .table.table-hover tbody > tr > td {
 	-webkit-transition: background-color 0.15s ease-in-out 0s;
 	transition: background-color 0.15s ease-in-out 0s;
 }
 .listBox .table tbody tr td .call-type {
+=======
+.table.table-hover tbody > tr > td {
+	-webkit-transition: background-color 0.15s ease-in-out 0s;
+	transition: background-color 0.15s ease-in-out 0s;
+}
+.table tbody tr td .call-type {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	display: block;
 	font-size: 0.75em;
 	text-align: center;
 }
+<<<<<<< HEAD
 .listBox .table tbody tr td .first-line {
+=======
+.table tbody tr td .first-line {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	line-height: 1.5;
 	font-weight: 400;
 	font-size: 1.125em;
 }
+<<<<<<< HEAD
 .listBox .table tbody tr td .first-line span {
+=======
+.table tbody tr td .first-line span {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	font-size: 0.875em;
 	color: #969696;
 	font-weight: 300;
 }
+<<<<<<< HEAD
 .listBox .table tbody tr td .second-line {
 	font-size: 0.875em;
 	line-height: 1.2;
 }
 .listBox .table a.table-link {
+=======
+.table tbody tr td .second-line {
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+.table a.table-link {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	margin: 0 5px;
 	font-size: 1.125em;
 }
 
 
+<<<<<<< HEAD
 .listBox .table a.table-link.success {
 	text-decoration: none;
 	color: #888;
@@ -203,6 +272,24 @@
 }
 
 .listBox .table-products tbody > tr > td {
+=======
+.table a.table-link.success {
+	text-decoration: none;
+	color: #4bb7a4;
+}
+.table a.table-link.success:hover {
+	text-decoration: none;
+	color: #2aa493;
+}
+.table a.table-link.danger {
+	color: #fe635f;
+}
+.table a.table-link.danger:hover {
+	color: #dd504c;
+}
+
+.table-products tbody > tr > td {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	background: none;
 	border: none;
 	border-bottom: 1px solid #ebebeb;
@@ -210,32 +297,52 @@
 	transition: background-color 0.15s ease-in-out 0s;
 	position: relative;
 }
+<<<<<<< HEAD
 .listBox .table-products tbody > tr:hover > td {
 	text-decoration: none;
 	background-color: #f6f6f6;
 }
 .listBox .table-products .name {
+=======
+.table-products tbody > tr:hover > td {
+	text-decoration: none;
+	background-color: #f6f6f6;
+}
+.table-products .name {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	display: block;
 	font-weight: 600;
 	padding-bottom: 7px;
 }
+<<<<<<< HEAD
 .listBox .table-products .price {
+=======
+.table-products .price {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	display: block;
 	text-decoration: none;
 	width: 50%;
 	float: left;
 	font-size: 0.875em;
 }
+<<<<<<< HEAD
 .listBox .table-products .price > i {
 	color: #8dc859;
 }
 .listBox .table-products .warranty {
+=======
+.table-products .price > i {
+	color: #8dc859;
+}
+.table-products .warranty {
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 	display: block;
 	text-decoration: none;
 	width: 50%;
 	float: left;
 	font-size: 0.875em;
 }
+<<<<<<< HEAD
 .listBox .table-products .warranty > i {
 	color: #f1c40f;
 }
@@ -807,4 +914,33 @@ color:#fff;
 .media-list {
     padding-left: 0;
     list-style: none;
+=======
+.table-products .warranty > i {
+	color: #f1c40f;
+}
+.table tbody > tr.table-line-fb > td {
+	background-color: #9daccb;
+	color: #262525;
+}
+.table tbody > tr.table-line-twitter > td {
+	background-color: #9fccff;
+	color: #262525;
+}
+.table tbody > tr.table-line-plus > td {
+	background-color: #eea59c;
+	color: #262525;
+}
+.table-stats .status-social-icon {
+	font-size: 1.9em;
+	vertical-align: bottom;
+}
+.table-stats .table-line-fb .status-social-icon {
+	color: #556484;
+}
+.table-stats .table-line-twitter .status-social-icon {
+	color: #5885b8;
+}
+.table-stats .table-line-plus .status-social-icon {
+	color: #a75d54;
+>>>>>>> dca5f7bbbf153afaf72a9c0bf617d95719bf2ddd
 }

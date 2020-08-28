@@ -31,6 +31,7 @@ public class ChatController {
 	ChatDao chatdao;
 	
 	
+	//채팅방으로 이동
 	@RequestMapping("/chat/chatRoom")
 	public String getChatRoom(HttpSession session) {
 		Member mem=(Member) session.getAttribute("loginUser");
@@ -38,6 +39,7 @@ public class ChatController {
 		return "teacher/chat/chatRoom";
 	}
 	
+	//채팅창 내용을 db에 저장
 	@ResponseBody
 	@RequestMapping("chat/submit")
 	public int chatinsert(Message chat,Model model) throws UnsupportedEncodingException {
@@ -55,6 +57,8 @@ public class ChatController {
 		}
 	}
 	
+	
+	//채팅창을 가져오는 채팅내용을 가져오는 메소드
 	@ResponseBody
 	@RequestMapping(value ="chat/list", produces = "application/text; charset=utf8")
 
@@ -79,7 +83,7 @@ public class ChatController {
 		}
 		
 	}
-	
+	//최근 채팅 내용 10개를 가져옴
 	public String getTen(String fromID,String toID) {
 		StringBuffer result=new StringBuffer("");
 		result.append("{\"result\":[");
@@ -104,6 +108,7 @@ public class ChatController {
 		
 	}
 	
+	//id에 따른 채팅내용을 검색
 	public String getId(String fromID,String toID,String chatID) {
 		String result="";
 		result="{\"result\":[";
@@ -128,6 +133,7 @@ public class ChatController {
 		
 	}
 	
+	//안읽은 채팅 내용을 가져옴
 	@RequestMapping("chat/unread")
 	@ResponseBody
 	public String chatUnread(@RequestParam String userID) throws UnsupportedEncodingException {
@@ -140,6 +146,7 @@ public class ChatController {
 		
 		
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "get/box" , produces = "application/text; charset=utf8")
@@ -154,6 +161,7 @@ public class ChatController {
 		
 	}
 	
+	//채팅박스를 가져옴
 	public String getBox(String userID) {
 		String result="";
 		result="{\"result\":[";
