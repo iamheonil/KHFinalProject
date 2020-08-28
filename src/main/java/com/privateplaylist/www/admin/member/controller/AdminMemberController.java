@@ -1,6 +1,7 @@
 package com.privateplaylist.www.admin.member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class AdminMemberController {
 	AdminMemberService adminMemberService;
 
     @RequestMapping("/stuList")
-    public ModelAndView stuList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
+    public ModelAndView stuList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
         
     	ModelAndView mav = new ModelAndView();
     	
-    	Paging paging = adminMemberService.getPagingAdminStu(curPage, search);
+    	Paging paging = adminMemberService.getPagingAdminStu(curPage, category ,search);
     	
-		Map<String, Object> commandMap = adminMemberService.selectStuList(paging);
+    	List<Map<String, Object>> commandMap = adminMemberService.selectStuList(paging, category);
 		
 //		int stuCnt = adminMemberService.selectStuCnt();
 		
@@ -80,13 +81,13 @@ public class AdminMemberController {
 	
 	//회원(선생님) 조회
     @RequestMapping("/tchList")
-    public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="") String search) {
+    public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
         
     	ModelAndView mav = new ModelAndView();
     	
-    	Paging paging = adminMemberService.getPagingAdminTch(curPage, search);
+    	Paging paging = adminMemberService.getPagingAdminTch(curPage, category ,search);
     	
-		Map<String, Object> commandMap = adminMemberService.selectTchList(paging);
+    	List<Map<String, Object>> commandMap = adminMemberService.selectTchList(paging, category);
 		
 //		int stuCnt = adminMemberService.selectStuCnt();
 		

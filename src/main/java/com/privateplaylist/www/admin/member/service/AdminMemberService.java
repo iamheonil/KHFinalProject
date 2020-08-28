@@ -11,6 +11,7 @@ public interface AdminMemberService {
 	 */
 	public List<Map<String, Object>> selectStuList(Paging paging, String category);
 
+	
 	/*
 	 * 학생 목록 페이징
 	 */
