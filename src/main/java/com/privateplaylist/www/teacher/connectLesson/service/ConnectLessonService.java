@@ -59,7 +59,7 @@ public interface ConnectLessonService {
 	 * @param lessonNo
 	 * @return
 	 */
-	public FindLesson selectLessonByNo(int lessonNo);
+	public Map<String, Object> selectLessonByNo(int lessonNo);
 
 	/**
 	 * 학생 정보

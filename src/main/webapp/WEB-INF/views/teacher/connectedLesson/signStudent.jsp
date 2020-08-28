@@ -6,66 +6,9 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
-
 <style type="text/css">
-#StudentModal{
-	padding: 0;
-}
 
-.modal-dialog{
-	overflow-y:initail !important;
-   width: 500px;
-}
-
-.modal-body{
-   overflow-y:auto; 
-   background: #f5f5f5;
-}
-.user-row {
-    margin-bottom: 14px;
-}
-
-.user-row:last-child {
-    margin-bottom: 0;
-}
-
-.dropdown-user {
-    margin: 13px 0;
-    padding: 5px;
-    height: 100%;
-}
-
-.dropdown-user:hover {
-    cursor: pointer;
-}
-
-.table-user-information > tbody > tr {
-    border-top: 1px solid rgb(221, 221, 221);
-}
-
-.table-user-information > tbody > tr:first-child {
-    border-top: 0;
-}
-
-
-.table-user-information > tbody > tr > td {
-    border-top: 0;
-}
-.toppad
-{margin-top:20px;
-}
-
-.panel-body{
-	text-align: center;
-}
-
-#stuInfoTabel{
-	width: 60%;
-	margin: 0 auto;
-	text-align: left;
-}
 </style>
-
 <script type="text/javascript">
 function connectStu(connNo){
 	var chk = confirm("학생을 승인하시겠습니까?");
@@ -127,6 +70,16 @@ function lessonModal(lessonNo){
 		success : function(result) {
 			var res = result;
 			console.log(res);
+			
+			$("#lessonTitle").text(result.LESSON_TITLE);
+			$("#lessonContent").text(result.LESSON_CONTENT);
+			$("#lessonSub").text(result.LESSON_SUBJECT);
+			$("#lessonTch").text(result.USER_NAME);
+			$("#lessonLoc").text(result.LESSON_LOC);
+			$("#lessonPrice").text(result.LESSON_PRICE + " 원");
+			$("#lessonAge").text(result.LESSON_AGE);
+			$("#lessonPeople").text(result.MAX_PEOPLE + " 명");
+			
 		},
 		error : function(){
 			alert("ajax 실패")
@@ -179,7 +132,64 @@ function StudentModal(studentNo){
         <h6 class="modal-title" id="lessonModalLabel">과외 정보</h6>
       </div>
       <div class="modal-body">
-      
+      	<section class="ng-scope ng-fadeInLeftShort" style="">
+		<!-- uiView:  -->
+		<div class="ng-fadeInLeftShort ng-scope" style="">
+		<div class="container-overlap bg-blue-500 ng-scope">
+		  <div class="media m0 pv">
+		    <div class="media-body media-middle">
+		      <h4 class="media-heading text-white" id="lessonTitle"></h4>
+		    </div>
+		  </div>
+		</div>
+		<div class="container-fluid ng-scope">
+		  <div class="row">
+		    <!-- Left column-->
+		    <div class="col-md-7 col-lg-12">
+		      <form class="card ng-pristine ng-valid">
+		        <h5 class="card-heading pb0">
+		            과외 내용
+		        </h5>
+		        <div class="card-body">
+		          <p id="lessonContent" class="ng-scope ng-binding editable"></p>
+		        </div>
+		        <h5 class="card-heading pb0">상세 정보</h5>
+		        <div class="card-body">
+		          <table class="table table-striped">
+		            <tbody>
+		              <tr>
+		                <td style="width: 30%;">과목</td>
+		                <td class="ng-binding" id="lessonSub"></td>
+		              </tr>
+		              <tr>
+		                <td>선생님</td>
+		                <td><span class="ng-scope ng-binding editable" id="lessonTch"></span></td>
+		              </tr>
+		              <tr>
+		                <td>위치</td>
+		                <td><span class="ng-scope ng-binding editable" id="lessonLoc"></span></td>
+		              </tr>
+		              <tr>
+		                <td>가격</td>
+		                <td><span class="ng-scope ng-binding editable" id="lessonPrice"></span></td>
+		              </tr>
+		              <tr>
+		                <td>연령</td>
+		                <td><span class="ng-scope ng-binding editable" id="lessonAge"></span></td>
+		              </tr>
+		              <tr>
+		                <td>인원</td>
+		                <td><span class="ng-scope editable" id="lessonPeople"></span></td>
+		              </tr>
+		            </tbody>
+		          </table>
+		        </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+		</div>
+		</section>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
@@ -189,6 +199,7 @@ function StudentModal(studentNo){
   </div>
 </div>
 
+<!-- 학생 모달 -->
 <div class="modal fade" id="StudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document"  style="z-index: inherit;">
     <div class="modal-content">
