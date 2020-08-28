@@ -33,7 +33,7 @@ public class ConnectLessonController {
 		
 //		Membership m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 10;
+		int userNo = 7;
 		
 		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
 		
@@ -84,11 +84,11 @@ public class ConnectLessonController {
 
 	@RequestMapping(value = "/lessoninfo", method = RequestMethod.POST)
 	@ResponseBody
-	public FindLesson lessonInfo(@RequestParam int lessonNo) {
+	public Map<String, Object> lessonInfo(@RequestParam int lessonNo) {
 		
-		FindLesson findLesson = connectLessonService.selectLessonByNo(lessonNo);
+		Map<String, Object> info = connectLessonService.selectLessonByNo(lessonNo);
 		
-		return findLesson;
+		return info;
 	}
 
 	@RequestMapping(value = "/studentinfo", method = RequestMethod.POST)

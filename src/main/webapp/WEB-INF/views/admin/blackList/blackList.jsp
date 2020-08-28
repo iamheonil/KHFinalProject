@@ -137,7 +137,11 @@ $(document).ready(function(){
 });
 </script>
 <style type="text/css">
+main{
+	height: 1000px;
+}
 .card {
+	height: 100%;
     border: none;
     margin-bottom: 24px;
     -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
@@ -371,9 +375,9 @@ $(document).ready(function(){
 		                        </form>
 		                    </div>
 		                    <!-- end project-list -->
-					<c:if test="${not empty list}" >
-						<c:import url="/WEB-INF/paging/admin/blacklist/blacklistPaging.jsp" />
-					</c:if>
+							<c:if test="${not empty list}" >
+								<c:import url="/WEB-INF/paging/admin/blacklist/blacklistPaging.jsp" />
+							</c:if>
 		                </div>
 		            </div>
 		        </div>
@@ -382,7 +386,6 @@ $(document).ready(function(){
 		</div>
 <!--       </div> -->
 </main>
-                
                 
 <!-- 관리자 페이지 footer --> 
 <c:import url="/WEB-INF/layout/admin/adminFooter.jsp"></c:import>
