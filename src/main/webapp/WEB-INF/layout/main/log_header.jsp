@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -277,7 +279,20 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul style="margin-top: 20px;">
-							<li class="active" style="font-size: 13px; color: #3ac1bc;">안녕하세요! ${loginUser.userName }님!</li>
+							<li class="active" style="font-size: 13px; color: #3ac1bc;">
+							
+							<c:choose>
+								<c:when test="${loginUser.userName != null}">
+									안녕하세요! ${loginUser.userName }님!
+								</c:when>
+								
+								<c:otherwise>
+									안녕하세요! ${loginUser.name }님!
+								</c:otherwise>
+								
+							</c:choose>
+							
+							</li>
 							<li ><a href="services.html">과외찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>

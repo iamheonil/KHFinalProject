@@ -61,7 +61,7 @@ public class ConnectLessonServiceImpl implements ConnectLessonService {
 	}
 
 	@Override
-	public FindLesson selectLessonByNo(int lessonNo) {
+	public Map<String, Object> selectLessonByNo(int lessonNo) {
 		return connectLessonDao.selectLessonByNo(lessonNo);
 	}
 

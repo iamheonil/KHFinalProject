@@ -58,8 +58,10 @@
 	AND c.is_end = 0
   </select>
 
-  <select id="selectLessonByNo" parameterType="int" resultType="FINDLESSON">
-	select * from find_lesson
+  <select id="selectLessonByNo" parameterType="int" resultType="map">
+	select f.lesson_no, f.lesson_title, f.lesson_content, f.lesson_loc, f.lesson_age, f.lesson_price, f.lesson_subject, f.max_people, m.user_name, m.user_id from find_lesson f
+	INNER JOIN membership m
+	ON(f.user_no = m.user_no)
 	where lesson_no = #{lessonNo}
   </select>
 
