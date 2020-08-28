@@ -18,9 +18,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" />
 
 
 
@@ -443,38 +440,57 @@ p{
 					<div class="col-lg-12 card-margin">
 						<div class="card search-form">
 							<div class="card-body p-0">
-								<form id="search-form">
-									<div class="row">
-										<div class="col-12">
-											<div class="row no-gutters">
-												<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-													<select class="form-control" id="exampleFormControlSelect1">
-														<option>UserNo</option>
-<!-- 														<option>ID</option> -->
-<!-- 														<option>이름</option> -->
-<!-- 														<option>연락처</option> -->
-<!-- 														<option>Email</option> -->
-													</select>
-												</div>
-												<div class="col-lg-8 col-md-6 col-sm-12 p-0">
-													<input type="text" placeholder="Search..."
-														class="form-control" id="search" name="search">
-												</div>
-												<div class="col-lg-1 col-md-3 col-sm-12 p-0">
-													<button type="submit" class="btn btn-base">
-														<svg xmlns="http://www.w3.org/2000/svg" width="24"
-															height="24" viewBox="0 0 24 24" fill="none"
-															stroke="currentColor" stroke-width="2"
-															stroke-linecap="round" stroke-linejoin="round"
-															class="feather feather-search">
-															<circle cx="11" cy="11" r="8"></circle>
-															<line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
+								<form id="search-form"
+								action="${pageContext.request.contextPath}/admin/tchList"
+								method="get">
+								<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+									<select class="form-control" name="category">
+										<c:choose>
+											<c:when test="${category eq 'UserNo' }">
+												<option  value="전체">전체</option>
+												<option  value="UserNo" selected="selected">UserNo</option>
+												<option  value="아이디">아이디</option>
+												<option value="이름" >이름</option>
+											</c:when>
+											<c:when test="${category eq '아이디' }">
+												<option  value="전체">전체</option>
+												<option value="UserNo" >UserNo</option>
+												<option  value="아이디" selected="selected">아이디</option>
+												<option value="이름" >이름</option>
+											</c:when>
+											<c:when test="${category eq '이름' }">
+												<option value="전체">전체</option>
+												<option value="UserNo" >UserNo</option>
+												<option value="아이디">아이디</option>
+												<option value="이름" selected="selected">이름</option>
+											</c:when>
+											<c:otherwise>
+												<option value="전체" selected="selected">전체</option>
+												<option value="UserNo" >UserNo</option>
+												<option value="아이디">아이디</option>
+												<option value="이름">이름</option>
+											</c:otherwise>
+										</c:choose>
+			
+									</select>
+								</div>
+								<div class="col-lg-8 col-md-6 col-sm-12 p-0">
+									<input type="text" placeholder="검색어를 입력하세요"
+										class="form-control" id="search" name="search"
+										value="<c:if test="${search ne null }">${search }</c:if>">
+								</div>
+								<div class="col-lg-1 col-md-3 col-sm-12 p-0">
+									<button type="submit" class="btn btn-base">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24"
+											height="24" viewBox="0 0 24 24" fill="none"
+											stroke="currentColor" stroke-width="2"
+											stroke-linecap="round" stroke-linejoin="round"
+											class="feather feather-search">
+											<circle cx="11" cy="11" r="8"></circle>
+											<line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+									</button>
+								</div>
+							</form>
 							</div>
 						</div>
 					</div>
@@ -497,20 +513,20 @@ p{
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${tchData.tchlist}" var="user">
+										<c:forEach items="${tchData}" var="user">
 											<tr>
-												<td>${user.userNo }</td>
+												<td>${user.USER_NO }</td>
 												<td><img
 												src="https://bootdey.com/img/Content/avatar/avatar1.png"
 <%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
-												alt=""> <p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.userNo}">${user.userId }</a></p></td>
-												<td>${user.userName }</td>
+												alt=""> <p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
+												<td>${user.USER_NAME }</td>
 												<td>
 <%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>
-													${user.userBirth }
+													${user.USER_BIRTH }
 												</td>
-												<td>${user.userPhone }</td>
-												<td>${user.userEmail }</td>
+												<td>${user.USER_PHONE }</td>
+												<td>${user.USER_EMAIL }</td>
 											</tr>
 											</c:forEach>
 									</tbody>
