@@ -113,6 +113,9 @@ body{
 
 </style>
 
+<!-- 이메일 인증 HttpRequest.js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+
 <script type="text/javascript">
 
 //정규식 시작
@@ -264,9 +267,77 @@ function xmlIdCheck(){
 
 function emailChk(){
 	
-	window.open("<c:url value='/resources/upload/emailCheckForm.jsp' />", "echkForm","width=700, height=400, resizable=no, scrollbars=no")
+	$("#sendMail").html(
+    		'<label class="col-form-label col-4">인증번호</label>' +
+			'<div class="col-8 float">'+
+               ' <input type="text" id="inputCode" name="inputCode" required="required" size="18">' +
+               ' <input type="button" value="인증하기" onclick="emailCheck()"> ' +
+            '</div>'		
+    )}
 
-}
+/* 	// 회원가입창의 이메일 입력란의 값을 가져온다.
+	function pValue() {
+		userEmail = opener.document.getElementById("userEmail").value;
+		console.log(userEmail)
+	} */
+
+	
+	code = Math.floor(Math.random() * 1000000) + 100000;
+	userEmail = document.getElementById("userEmail").value;
+	console.log("code: " + code)
+	
+	// 이메일 인증번호 체크
+	function emailSend() {
+				
+		userEmail = document.getElementById("userEmail").value;
+		var param = "email=" + userEmail + "&code_check=" + code;
+		console.log(param)
+		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
+		alert("이메일을 전송했습니다!")
+	}
+	
+
+	function ajaxFromServer() {
+		if (httpRequest.readyState == 4) {//DONE,응답완료
+			if (httpRequest.status == 200) {//OK
+				var resultText = httpRequest.responseText;
+				if (resultText == 0) {
+					alert("이메일 전송 실패");
+				} else if (resultText == 1) { //이메일 전송 완료
+					alert("이메일 전송완료")
+				}
+
+			} else {
+				console.log("AJAX요청/응답 에러")
+			}
+		}
+	}
+
+	function emailCheck() {
+		var usercode = document.getElementById("inputCode").value;
+		console.log(usercode)
+		if (usercode == code) {
+			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
+		} else {
+			document.getElementById("email-check-msg").innerHTML = "이메일 인증 실패";
+		}
+	
+	}
+
+/* 	// 사용하기 클릭 시 부모창으로 값 전달 
+	function sendCheckValue() {
+		// 중복체크 결과인 idCheck 값을 전달한다.
+		opener.document.getElementById("emailAuth").value = "emailCheck";
+		// 회원가입 화면의 ID입력란에 값을 전달
+		opener.document.getElementById("userEmail").value = userEmail
+
+		if (opener != null) {
+			opener.chkForm = null;
+			self.close();
+		}
+	} */
+
+// }
 
 function inputEmailChk(){
 	
@@ -366,11 +437,11 @@ function inputEmailChk(){
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" id="userEmail" name="userEmail" required="required" size="23" onkeydown="inputEmailChk()"/> <input type="button" onclick="emailChk()" value="인증하기">
+                <input type="email" id="userEmail" name="userEmail" required="required" size="18" onkeydown="inputEmailChk()"/> <input type="button" onclick="javascript:emailChk(); emailSend();" value="인증번호전송">
                 <input type="hidden" id="emailAuth" name="emailAuth" value="emailUncheck">
             </div>
         </div>
-        
+        <div class="form-group row" id="sendMail"></div>
         <div class="form-group row" id="email-check" style="font-size: 8px; text-align: center;" >
         	<span id="email-check-msg" class="email-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>

@@ -84,7 +84,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/joinImpl", method = POST)
-	public ModelAndView joinEmail(@RequestParam(required = false,value = "joinFiles") MultipartFile files, Map<String, String> fileInfo, @ModelAttribute Member member, HttpServletRequest req) {
+	public ModelAndView joinEmail(@ModelAttribute Member member, HttpServletRequest req) {
 
 		String root = req.getContextPath();
 		ModelAndView mav = new ModelAndView();
@@ -93,12 +93,10 @@ public class MemberController {
 
 		if (res < 0) {
 			System.out.println("회원가입 실패");
-			mav.setViewName("/member/join");
+			mav.setViewName("redirect:join");
 		} else {
 			System.out.println("회원가입 성공");
-			mav.setViewName("/member/login");
-			System.out.println(fileInfo);
-			memberDao.insertFile(files, fileInfo);
+			mav.setViewName("redirect:main");
 		}
 		return mav;
 	}
@@ -110,7 +108,7 @@ public class MemberController {
 
 	// 파일 업로드
 	@RequestMapping(value = "/jointeacher", method = POST)
-	public ModelAndView fileUpload(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, HttpSession session, Member member, HttpServletRequest request) throws FileException, MailException {
+	public ModelAndView fileUpload(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, HttpSession session, @ModelAttribute Member member, HttpServletRequest request) throws FileException, MailException {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -124,13 +122,17 @@ public class MemberController {
 		String tch_File_Rename = getUuid() + tch_File_OrgExt;
 		String save_Path = root + tch_File_Rename;
 
+		System.out.println("파일 저장 경로 : " + root);
+		System.out.println("파일 리 네임 : " + tch_File_Rename);
+		
 		try (
+				
 				// 맥일 경우
 				// FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
 				// 윈도우일 경우
 				FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
-				// 파일 저장할 경로 + 파일명을 파라미터로 넣고 fileOutputStream 객체 생성하고
 				InputStream is = files.getInputStream();) {
+				// 파일 저장할 경로 + 파일명을 파라미터로 넣고 fileOutputStream 객체 생성하고
 				// file로 부터 inputStream을 가져온다.
 
 			fileInfo.put("userId", userId);
@@ -138,12 +140,13 @@ public class MemberController {
 			fileInfo.put("tch_File_Rename", tch_File_Rename);
 			fileInfo.put("save_Path", save_Path);
 
-			memberService.insertTeacherFile(files, fileInfo, root);
 
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
 			// 파일을 읽을 크기 만큼의 buffer를 생성하고
 			// ( 보통 1024, 2048, 4096, 8192 와 같이 배수 형식으로 버퍼의 크기를 잡는 것이 일반적이다.)
+
+			memberService.insertTeacherFile(files, fileInfo, root);
 
 			while ((readCount = is.read(buffer)) != -1) {
 				//  파일에서 가져온 fileInputStream을 설정한 크기 (1024byte) 만큼 읽고
