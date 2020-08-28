@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.privateplaylist.www.dto.FindLesson;
+import com.privateplaylist.www.dto.Membership;
 import com.privateplaylist.www.teacher.connectLesson.dao.ConnectLessonDao;
 
 import common.util.Paging;
@@ -56,6 +58,16 @@ public class ConnectLessonServiceImpl implements ConnectLessonService {
 	@Override
 	public int getConnectedCnt(int lessonNo) {
 		return connectLessonDao.getConnectedCnt(lessonNo);
+	}
+
+	@Override
+	public FindLesson selectLessonByNo(int lessonNo) {
+		return connectLessonDao.selectLessonByNo(lessonNo);
+	}
+
+	@Override
+	public Membership selectStudentByNo(int studentNo) {
+		return connectLessonDao.selectStudentByNo(studentNo);
 	}
 
 }

@@ -3,6 +3,9 @@ package com.privateplaylist.www.teacher.connectLesson.service;
 import java.util.List;
 import java.util.Map;
 
+import com.privateplaylist.www.dto.FindLesson;
+import com.privateplaylist.www.dto.Membership;
+
 import common.util.Paging;
 
 public interface ConnectLessonService {
@@ -50,6 +53,20 @@ public interface ConnectLessonService {
 	 * @return
 	 */
 	public int getConnectedCnt(int lessonNo);
+
+	/**
+	 * 과외 정보
+	 * @param lessonNo
+	 * @return
+	 */
+	public FindLesson selectLessonByNo(int lessonNo);
+
+	/**
+	 * 학생 정보
+	 * @param studentNo
+	 * @return
+	 */
+	public Membership selectStudentByNo(int studentNo);
 	
 	
 
