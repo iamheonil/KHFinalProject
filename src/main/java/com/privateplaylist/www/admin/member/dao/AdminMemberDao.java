@@ -18,6 +18,7 @@ import common.util.Paging;
 @Repository
 public class AdminMemberDao {
 	
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
