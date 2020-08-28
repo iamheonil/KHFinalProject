@@ -33,7 +33,7 @@ public class ConnectLessonController {
 		
 //		Membership m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = 7;
 		
 		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
 		
