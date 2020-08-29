@@ -3,13 +3,15 @@ package com.privateplaylist.www.dto;
 public class TeacherFile {
 	private int tchFileNo;
 	private int userNo;
+	private String userId;
 	private String tchFileOrg;
-	private String tchFilerename;
+	private String tchFileRename;
+	private String savePath;
 	
 	@Override
 	public String toString() {
-		return "TeacherFile [tchFileNo=" + tchFileNo + ", userNo=" + userNo + ", tchFileOrg=" + tchFileOrg
-				+ ", tchFilerename=" + tchFilerename + "]";
+		return "TeacherFile [tchFileNo=" + tchFileNo + ", userNo=" + userNo + ", userId=" + userId + ", tchFileOrg="
+				+ tchFileOrg + ", tchFileRename=" + tchFileRename + ", savePath=" + savePath + "]";
 	}
 	
 	public int getTchFileNo() {
@@ -24,17 +26,34 @@ public class TeacherFile {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getTchFileOrg() {
 		return tchFileOrg;
 	}
 	public void setTchFileOrg(String tchFileOrg) {
 		this.tchFileOrg = tchFileOrg;
 	}
-	public String getTchFilerename() {
-		return tchFilerename;
+	public String getTchFileRename() {
+		return tchFileRename;
 	}
-	public void setTchFilerename(String tchFilerename) {
-		this.tchFilerename = tchFilerename;
+	public void setTchFileRename(String tchFileRename) {
+		this.tchFileRename = tchFileRename;
 	}
+	public String getSavePath() {
+		return savePath;
+	}
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
+	}
+	
+	
+	
+	
+	
 	
 }

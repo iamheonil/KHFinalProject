@@ -6,8 +6,60 @@
   
   <mapper namespace="Profile">
   
+  <update id="updateProfile" parameterType="MEMBER">
+   update membership 
+   
+   <trim prefix="set" prefixOverrides=",">
+   <if test='userPw != null and !userPw.equals("")'>
+   , user_pw = #{userPw}
+   </if>
+   <if test='userName != null and !userName.equals("")'>
+   , user_name = #{userName}
+   </if>
+   <if test="postCode != null">
+   , postcode = #{postCode}
+   </if>
+   <if test='roadAddress != null and !roadAddress.equals("")'>
+   , roadaddress =  #{roadAddress}
+   </if>
+   <if test='detailAddress != null and !detailAddress.equals("")'>
+   , detailaddress = #{detailAddress}
+   </if>
+   <if test="userPhone != null">
+   , user_phone = #{userPhone}
+   </if>
+  <if test='userGender != null and !userGender.equals("")'>
+   , user_gender =  #{userGender}
+   </if>
+   <if test='userBirth != null and !userBirth.equals("")'>
+   , user_birth = #{userBirth}
+   </if>
+   </trim>
  
+  where user_no = #{userNo}
+  </update>
+ 
+ 
+	 <insert id="insertFile" parameterType="TEACHERFILE">
+	 insert into teacherFile(tch_file_no, user_no, user_id, tch_file_org, tch_file_rename, save_path)
+	 values (teacherFile_seq.nextval, #{userNo}, #{userId}, #{tchFileOrg}, #{tchFileRename}, #{savePath})
+ 	</insert>
   
+  <select id="selectonenew" parameterType="MEMBER" resultType="MEMBER">
+	  select * from membership
+	  where user_no = #{userNo}
+  </select>
   
+  <select id="selectFile" parameterType="MEMBER" resultType="TEACHERFILE">
+  	select * from teacherFile
+  	where user_no = #{userNo}
+  	and tch_file_rename like '%' || 'profile' || '%'
+  </select>
+  
+  <delete id="deleteFile" parameterType="int">
+  	delete teacherfile
+	where user_No = #{userNo}
+	and tch_file_rename like '%' || 'profile' || '%'
+	</delete>
   
   </mapper>

@@ -49,7 +49,7 @@
 function XMLPWCheck(){
 	
 	var userPw = document.querySelector('#userPw').value;
-	
+
 	//ajax 통신 객체 생성
 	var xhr = new XMLHttpRequest();
 	
@@ -57,7 +57,7 @@ function XMLPWCheck(){
 	xhr.open('POST','<%=request.getContextPath()%>/teacher/profile/chkpasswordRes');
 	
 	//Http Request header 설정
-	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=utf-8')
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
 	
 	//http request body 설정
 	//xhr.send() : 전송할 데이터가 있다면 파라미터에 넣어서 보내주면 된다
@@ -65,22 +65,20 @@ function XMLPWCheck(){
 	
 	//ajax 통신이 끝난 뒤 실행할 콜백 함수 등록
 	xhr.addEventListener('load',function(){
-		
+	
 		//결과 받아오기
 		var data = xhr.response;
 		
 		//결과가 1보다 크면  
 		if(data == ''){
-			alert(data);
+// 			alert(data);
 			location.href="${pageContext.request.contextPath}/teacher/profile/select";
 			
 		//결과가 1보다 작으면 "비밀번호가 일치하지 않습니다."	
 		}else if(data != ''){
-			alert(data);
+// 			alert(data);
 			document.querySelector('#ajaxresult').textContent = data;
 			
-		}else if(userPw == ""){
-			alert("비밀번호를 입력해주세요");
 		}
 	});
 }
@@ -98,7 +96,7 @@ function XMLPWCheck(){
 			
 				  <div class="form-group">
 				    <label for="exampleInputName2">PASSWORD</label>
-				    <input type="text" class="form-control" id="userPw" name ="userPw" placeholder="비밀번호를 입력해주세요" required="required">
+				    <input type="password" class="form-control" id="userPw" name ="userPw" placeholder="비밀번호를 입력해주세요" required="required">
 				  </div>
 				  
 				 <button type="button" class="btn btn-default" id="btn" onclick="XMLPWCheck()">확인</button>
