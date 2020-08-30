@@ -36,25 +36,32 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 
 	@Override
-	public Map<String, Object> selectStuList(Paging paging) {
-		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+	public List<Map<String, Object>> selectStuList(Paging paging, String category) {
+		Map<String, Object> bMap 	= new HashMap<>();
 		
-		 List<Membership> stulist = adminMemberDao.selectStuList(paging);
-		 commandMap.put("stulist", stulist);
-		 commandMap.put("paging", paging);
-		return commandMap;
+		bMap.put("category", category);
+		bMap.put("paging", paging);
+		
+		List<Map<String, Object>> stulist = adminMemberDao.selectStuList(bMap);
+		
+		return stulist;
 	}
 	
+	
 	@Override
-	public Paging getPagingAdminStu(int curPage, String search) {
+	public Paging getPagingAdminStu(int curPage, String category, String search) {
 		
-		int totalCount = adminMemberDao.selectStuCnt(search);
+		Map<String, String> map = new HashMap<>();
 		
+		map.put("category", category);
+		map.put("search", search);
+		System.out.println("service - map: " +map);
+		int totalCount = adminMemberDao.selectStuCnt(map);
+		System.out.println("service - totalCount: " +totalCount);
 		// Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);
 		
-
 		return paging;
 	}
 
@@ -89,9 +96,14 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	}
 
 	@Override
-	public Paging getPagingAdminTch(int curPage, String search) {
+	public Paging getPagingAdminTch(int curPage, String category, String search) {
 		
-		int totalCount = adminMemberDao.selectTchCnt(search);
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("category", category);
+		map.put("search", search);
+		
+		int totalCount = adminMemberDao.selectTchCnt(map);
 		
 		// Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
@@ -99,20 +111,20 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		
 		return paging;
 	}
-
-
+	
 	@Override
-	public Map<String, Object> selectTchList(Paging paging) {
+	public List<Map<String, Object>> selectTchList(Paging paging, String category) {
 		
-		Map<String, Object> commandMap 	= new HashMap<String, Object>();
+		Map<String, Object> bMap 	= new HashMap<>();
 		
-		 List<Membership> tchlist = adminMemberDao.selectTchList(paging);
-		 commandMap.put("tchlist", tchlist);
-		 commandMap.put("paging", paging);
-		return commandMap;		
+		bMap.put("category", category);
+		bMap.put("paging", paging);
+		
+		List<Map<String, Object>> tchlist = adminMemberDao.selectTchList(bMap);
+		
+		return tchlist;	
 	}
-
-
+	
 	@Override
 	public Map<String, Object> selectTchAllList(int userNo) {
 		

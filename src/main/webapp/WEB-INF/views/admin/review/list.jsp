@@ -100,19 +100,41 @@ $(document).ready(function(){
     	<a href="<%=request.getContextPath()  %>/admin/review/list">후기게시판 </a>
    	</div>
 
+<!-- 제목 검색 -->
+	<div id="serchbox" >
+	<form action="${pageContext.request.contextPath}/admin/review/search" method="post">
+	
+	<div class="row">
+	  <div class="col-lg-6">
+	    <div class="input-group">
+	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="submit">Search</button>
+	      
+	      </span>
+	    </div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
 
-<!-- 글쓰기 삭제 버튼 -->
+	</form>
+	</div>
+
+
+
+
+
+
+	
+	<!-- 체크박스 리스트 전송 -->
+ 	<form action="${pageContext.request.contextPath}/admin/review/idxdelete" method="post" id="checkboxlist">
+
+	<!-- 글쓰기 삭제 버튼 -->
 	<div id="footerbtn">
 	
 	<div id="divbtn">
 		<button type="button" class="btn btn-default" id="deletebtn">삭제</button>
 	</div> 
 	</div>
-	
-	<!-- 체크박스 리스트 전송 -->
- 	<form action="${pageContext.request.contextPath}/admin/review/idxdelete" method="post" id="checkboxlist">
-
-
 	<!-- 질문게시판 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
 	<caption  class="captionstyle">후기게시판</caption>  
@@ -148,9 +170,9 @@ $(document).ready(function(){
 	</table>
 	</form>
 	<!-- 페이징 -->
-<!-- 	<div class="pagingstyle"> -->
-<%-- 	<c:import url="/WEB-INF/paging/admin/review/reviewlistPaging.jsp"></c:import> --%>
-<!-- 	</div> -->
+	<div class="pagingstyle">
+	<c:import url="/WEB-INF/paging/admin/review/reviewlistPaging.jsp"></c:import>
+	</div>
 
 
 
