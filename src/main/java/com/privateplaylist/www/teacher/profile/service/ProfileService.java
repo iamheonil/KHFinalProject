@@ -19,4 +19,10 @@ public interface ProfileService {
 	//사진 가지고 오기
 	public TeacherFile selectFile(Member loginUser);
 
+	//연결된 과외 개수 
+	public int countIsEnd(int userNo);
+
+	//회원 탈퇴
+	public int deleteProfile(int userNo);
+
 }

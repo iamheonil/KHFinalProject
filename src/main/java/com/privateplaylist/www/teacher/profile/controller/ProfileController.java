@@ -128,5 +128,51 @@ public class ProfileController {
 	}
 	
 	//탈퇴
+	@RequestMapping("/delete")
+	public String profileDelete(HttpServletRequest req,HttpSession session,@RequestParam int userNo, Model model) {
+		
+		System.out.println("/teacher/profile/delete");
+		System.out.println("userNo"+userNo);
+		
+		//root context
+		String root = req.getContextPath();
+		
+		//연결된 과외가 있으면 탈퇴 불가
+		//connected_lesson is_end  0 이면 불가 / 1 가능  
+		
+		//연결된 과외 개수
+		int resCount = profileService.countIsEnd(userNo);
+		
+		//연결된 과외가 있으면 
+		if(resCount > 0) {
+			
+			model.addAttribute("alertMsg", "진행 중인 과외가 있습니다. 과외가 모두 종료된 후 탈퇴 가능합니다.");
+			model.addAttribute("url", root+"/teacher/profile/chkpassword");
+
+			return "/admin/notice/error";
+			
+		}else {
+			
+			//연결된 과외가 없으면 회원 탈퇴 
+			//update is_leave > 1
+			int resDelete = profileService.deleteProfile(userNo);
+			
+			//탈퇴 성공
+			if(resDelete > 0) {
+				model.addAttribute("alertMsg", "회원탈퇴를 성공했습니다.");
+				model.addAttribute("url", root+"/");
+
+				return "/admin/notice/error";
+			}else {
+				model.addAttribute("alertMsg", "회원탈퇴를 실패하였습니다. 다시 시도해주시기 바랍니다.");
+				model.addAttribute("url", root+"/teacher/profile/chkpasswordRes");
+
+				return "/admin/notice/error";
+			}
+			
+		}
+			
+	}
+	
 	
 }
