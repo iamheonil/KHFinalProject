@@ -23,6 +23,16 @@ import common.util.Paging;
 @RequestMapping("/teacher")
 public class ConnectLessonController {
 	
+	@RequestMapping("/connectlesson")
+	public ModelAndView connectLession() {
+
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("teacher/connectedLesson/connectedLesson");
+		
+		return mav;
+	}
+
 	@Autowired
 	private ConnectLessonService connectLessonService;
 	
