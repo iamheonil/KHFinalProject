@@ -81,15 +81,16 @@ public class ProfileServiceImpl implements ProfileService{
 			result1 = profileDao.updateProfile(member);
 		}
 	
-		if(!file.equals("[]")) {
-			
-			//기존 파일이 있으면 삭제 
-			if(teacherFile != null) {
-				int delres = profileDao.deleteFile(userNo);
-			}
+		//새로운 파일이 있음
+		if(file != null) {
 			
 			//파일 insert
 			if(file.getSize() != 1 && !file.getOriginalFilename().equals("")) {
+				
+				//기존 파일이 있으면 삭제 
+				if(teacherFile != null) {
+					int delres = profileDao.deleteFile(userNo);
+				}
 				
 				//파일 업로드를 위해 FileUtil.fileUpload() 호출
 				Map<String, Object> filedata = new FileUtilProfile().fileUpload(file,root);
