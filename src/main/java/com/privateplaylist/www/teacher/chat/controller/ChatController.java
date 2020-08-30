@@ -31,6 +31,7 @@ public class ChatController {
 	ChatDao chatdao;
 	
 	
+	//채팅방으로 이동
 	@RequestMapping("/chat/chatRoom")
 	public String getChatRoom(HttpSession session) {
 		Member mem=(Member) session.getAttribute("loginUser");
