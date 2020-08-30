@@ -84,7 +84,7 @@ public class ProfileServiceImpl implements ProfileService{
 		if(!file.equals("[]")) {
 			
 			//기존 파일이 있으면 삭제 
-			if(!teacherFile.equals("[]")) {
+			if(teacherFile != null) {
 				int delres = profileDao.deleteFile(userNo);
 			}
 			
@@ -127,6 +127,16 @@ public class ProfileServiceImpl implements ProfileService{
 	@Override
 	public TeacherFile selectFile(Member loginUser) {
 		return profileDao.selectFile(loginUser);
+	}
+	
+	@Override
+	public int countIsEnd(int userNo) {
+		return profileDao.countIsEnd(userNo);
+	}
+	
+	@Override
+	public int deleteProfile(int userNo) {
+		return profileDao.deleteProfile(userNo);
 	}
 
 }
