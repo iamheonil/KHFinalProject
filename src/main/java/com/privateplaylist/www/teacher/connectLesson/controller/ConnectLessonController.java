@@ -30,16 +30,14 @@ public class ConnectLessonController {
 	public ModelAndView signStudent(HttpSession session, @RequestParam(required = false, defaultValue = "1") int curPage) {
 		
 		ModelAndView mav = new ModelAndView();
-		Member mem = new Member();
-		mem.setUserNo(6);
 		
-		session.setAttribute("loginUser", mem);
-		Member m = (Member) session.getAttribute("loginUser");
+//		Member m = (Member) session.getAttribute("loginUser");
 		
+		int userNo = 6;
 		
-		Paging paging = connectLessonService.getPagingCntLesson(curPage, m.getUserNo());
+		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
 		
-		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, m.getUserNo());
+		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, userNo);
 		
 //		System.out.println(list);
 		
@@ -71,6 +69,10 @@ public class ConnectLessonController {
 		// 인원 수 차지 않았으면 승인 가능
 		int res = connectLessonService.updateConnState(connNo);
 		//	인원수를 다 채웠을 경우 해당 과외 게시글 내리기
+		if( maxPeople == signCnt+1 ) {
+			connectLessonService.downLessonBoard(lessonNo);
+		}
+		
 		
 		return res;
 		
