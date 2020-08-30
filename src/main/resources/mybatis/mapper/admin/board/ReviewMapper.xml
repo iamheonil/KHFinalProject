@@ -29,4 +29,31 @@
 		where review_no = #{reviewNo}
     </delete>
 
+
+	<select id="selectSearchReview" resultType="REVIEW" parameterType="map">
+
+	select * from (
+		select rownum rnum, c.* from(
+			select * from review
+			where  review_content like  '%' || #{keyword} || '%'
+			order by review_no desc
+		) c
+	) review 
+	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	
+  </select>
+  
+  <select id="selectCntReviewSearchAll" resultType="int" parameterType="String">
+  	select count(*) from review
+  	where review_content like  '%' || #{keyword} || '%'
+  </select>
+
+
+
+
+
+
+
+
+
 </mapper>

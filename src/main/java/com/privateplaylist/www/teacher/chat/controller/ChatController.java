@@ -83,6 +83,7 @@ public class ChatController {
 		}
 		
 	}
+	
 	//최근 채팅 내용 10개를 가져옴
 	public String getTen(String fromID,String toID) {
 		StringBuffer result=new StringBuffer("");

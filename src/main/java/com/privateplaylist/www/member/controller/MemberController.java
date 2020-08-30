@@ -47,6 +47,8 @@ public class MemberController {
 	@RequestMapping(value = "/loginImpl", method = POST)
 	public ModelAndView loginImpl(@RequestParam Map<String, Object> memberMap, HttpSession session, HttpServletRequest request) {
 		System.out.println("Login Post Call");
+		
+		System.out.println(memberMap);
 
 		ModelAndView mav = new ModelAndView();
 		Member res = memberService.selectMember(memberMap);

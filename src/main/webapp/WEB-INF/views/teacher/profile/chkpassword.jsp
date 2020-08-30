@@ -41,8 +41,50 @@
 	text-align: center;
 	font-size: 15px;
 }
-
 </style>
+
+
+<!-- ajax -->
+<script type="text/javascript">
+function XMLPWCheck(){
+	
+	var userPw = document.querySelector('#userPw').value;
+
+	//ajax 통신 객체 생성
+	var xhr = new XMLHttpRequest();
+	
+	//통신을 위한 시작줄 작성
+	xhr.open('POST','<%=request.getContextPath()%>/teacher/profile/chkpasswordRes');
+	
+	//Http Request header 설정
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+	
+	//http request body 설정
+	//xhr.send() : 전송할 데이터가 있다면 파라미터에 넣어서 보내주면 된다
+	xhr.send('userPw='+userPw);
+	
+	//ajax 통신이 끝난 뒤 실행할 콜백 함수 등록
+	xhr.addEventListener('load',function(){
+	
+		//결과 받아오기
+		var data = xhr.response;
+		
+		//결과가 1보다 크면  
+		if(data == ''){
+// 			alert(data);
+			location.href="${pageContext.request.contextPath}/teacher/profile/select";
+			
+		//결과가 1보다 작으면 "비밀번호가 일치하지 않습니다."	
+		}else if(data != ''){
+// 			alert(data);
+			document.querySelector('#ajaxresult').textContent = data;
+			
+		}
+	});
+}
+
+
+</script>
 
 <div id="main">
 	<span id="boardtitle">회원정보 수정</span>
@@ -52,14 +94,14 @@
 		<span id="ctitle">&nbsp;개인정보 보안을 위한 2차 인증 절차&nbsp; </span><br><br><hr><br>
 			<div id="class_upload_notice_content">
 			
-				<form class="form-inline" action="${pageContext.request.contextPath}/teacher/profile/chkpassword" method="post">
 				  <div class="form-group">
 				    <label for="exampleInputName2">PASSWORD</label>
-				    <input type="text" class="form-control" id="userPw" name ="userPw" placeholder="비밀번호를 입력해주세요">
+				    <input type="password" class="form-control" id="userPw" name ="userPw" placeholder="비밀번호를 입력해주세요" required="required">
 				  </div>
 				  
-				 <button type="submit" class="btn btn-default" id="btn">확인</button>
-				</form>
+				 <button type="button" class="btn btn-default" id="btn" onclick="XMLPWCheck()">확인</button>
+				 
+				 <div id="ajaxresult"></div>
 				
 			</div>
 	</div>

@@ -51,26 +51,23 @@ margin-top:20px;
 										
 										</div>	
 										<div class="container bootstrap snippets bootdey banner">
-											<div class="lc-block col-md-4  toggled pull-right"
-												id="l-login">
+											<div class="lc-block col-md-4  toggled pull-right" id="l-login">
 												<div class="lcb-float">
 													<i class="fa fa-users"></i>
 												</div>
 												<div class="form-group">
-													<input type="text" class="form-control"
-														placeholder="Username">
+													<form action="/ss/member/loginImpl" method="post">
+														<div class="form-group">
+															<input type="text" class="form-control" id="userId" name="userId" placeholder="아이디">
+															<input type="password" class="form-control" id="userPw" name="userPw" placeholder="비밀번호">
+														</div>
+															<div class="clearfix"></div>
+														<button class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">로그인</button>
+													</form>
 												</div>
-												<div class="form-group">
-													<input type="password" class="form-control"
-														placeholder="Password">
-												</div>
-												<div class="clearfix"></div>
-												<a href=""
-													class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">로그인</a>
 												<ul class="login-navigation">
 													<li data-block="#l-register" class="bg-green">Register</li>
-													<li data-block="#l-forget-password" class="bg-orange">Forgot
-														Password?</li>
+													<li data-block="#l-forget-password" class="bg-orange">Forgot Password?</li>
 												</ul>
 											</div>
 										</div>

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.privateplaylist.www.dto.FindLesson;
 import com.privateplaylist.www.dto.Membership;
+import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.connectLesson.service.ConnectLessonService;
 
 import common.util.Paging;
@@ -30,14 +30,16 @@ public class ConnectLessonController {
 	public ModelAndView signStudent(HttpSession session, @RequestParam(required = false, defaultValue = "1") int curPage) {
 		
 		ModelAndView mav = new ModelAndView();
+		Member mem = new Member();
+		mem.setUserNo(6);
 		
-//		Membership m = (Member) session.getAttribute("loginUser");
+		session.setAttribute("loginUser", mem);
+		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 7;
 		
-		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
+		Paging paging = connectLessonService.getPagingCntLesson(curPage, m.getUserNo());
 		
-		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, userNo);
+		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, m.getUserNo());
 		
 //		System.out.println(list);
 		

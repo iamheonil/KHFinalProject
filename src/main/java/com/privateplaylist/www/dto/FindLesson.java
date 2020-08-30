@@ -11,15 +11,26 @@ public class FindLesson {
 	private String lessonSubject; //과외과목
 	private int lessonPrice; //가격
 	private String lessonAge; // 대상연령 15~17이므로 String
+	private int maxPeople; 
 	private int lessonState; //과외 상태 0이면 과외x 1이면 과외중
 	private int lessonChk; //검토상태 0이면 검토x 1이면 검토완료
 	private int payState; // 결제상태 0이면 미결제 1이면 결제완료 > 과외등록
+	
+	
+	
 	@Override
 	public String toString() {
 		return "FindLesson [lessonNo=" + lessonNo + ", lessonTitle=" + lessonTitle + ", lessonContent=" + lessonContent
 				+ ", lessonDate=" + lessonDate + ", userNo=" + userNo + ", lessonLoc=" + lessonLoc + ", lessonSubject="
-				+ lessonSubject + ", lessonPrice=" + lessonPrice + ", lessonAge=" + lessonAge + ", lessonState="
-				+ lessonState + ", lessonChk=" + lessonChk + ", payState=" + payState + "]";
+				+ lessonSubject + ", lessonPrice=" + lessonPrice + ", lessonAge=" + lessonAge + ", maxPeople="
+				+ maxPeople + ", lessonState=" + lessonState + ", lessonChk=" + lessonChk + ", payState=" + payState
+				+ "]";
+	}
+	public int getMaxPeople() {
+		return maxPeople;
+	}
+	public void setMaxPeople(int maxPeople) {
+		this.maxPeople = maxPeople;
 	}
 	public int getLessonNo() {
 		return lessonNo;
