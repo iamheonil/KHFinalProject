@@ -82,7 +82,7 @@
 		<mapper resource="/mybatis/mapper/teacher/WebShareMapper.xml"/>
 		<mapper resource="/mybatis/mapper/teacher/TeacherBlacklist.xml"/>
 		<mapper resource="/mybatis/mapper/teacher/LessonMapper.xml"/>
-
+		<mapper resource="/mybatis/mapper/teacher/TeacherReviewMapper.xml"/>
 	</mappers>
 
 </configuration>
