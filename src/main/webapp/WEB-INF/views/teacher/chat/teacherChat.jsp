@@ -4,11 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
 
- 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import> 
+
+
+
+
+
+
+	
 
 <style>
+
 .container {
     max-width: 900px;
     margin: auto;
@@ -34,6 +41,7 @@ if(userID==null){
 	String url=request.getContextPath()+"/member/login";
 	session.setAttribute("messageContent", "로그인이 되어있지 않습니다");
 	session.setAttribute("messageType", "오류메시지");
+	response.sendRedirect(url);
 	/* response.sendRedirect(url); */
 }
 %>
@@ -213,7 +221,12 @@ else
 
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+
 <c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
+
+
+
+	
 
 
 
