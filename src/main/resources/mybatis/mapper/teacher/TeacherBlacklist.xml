@@ -3,10 +3,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="BlackListDao">
-  
-  	<select id="selectAllBlackList" parameterType="map" resultType="map">
+
+<mapper namespace="TeacherBlacklist">
+
+	<select id="selectAllBlackList" parameterType="map" resultType="map">
   		SELECT * FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
@@ -17,21 +17,11 @@
 				ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
 				INNER JOIN membership m
 				ON(b.user_no = m.user_no)
-				WHERE b.blacklist_state != 1
-		        <choose>
-		        	<when test="category == '후기'">
-		        		AND b.blacklist_board = '후기'
-					    AND r.review_content LIKE '%' || #{paging.search} || '%'
-		        	</when>
-		        	<when test="category == '장터'">
-		        		AND b.blacklist_board = '장터'
-				        AND k.mk_title LIKE '%' || #{paging.search} || '%'
-		        	</when>
-		        	<otherwise>
-				        AND r.review_content LIKE '%' || #{paging.search} || '%'
-				        OR k.mk_title LIKE '%' || #{paging.search} || '%'
-		        	</otherwise>
-		        </choose>
+				WHERE 
+		        
+				       
+				       b.user_no=#{paging.search}
+		        	
 				ORDER BY blacklist_no DESC
 			) t
 			ORDER BY no ) x
@@ -46,22 +36,11 @@
 		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
 		INNER JOIN membership m
 		ON(b.user_no = m.user_no)
-		WHERE b.blacklist_state != 1
+		WHERE 
         
-        <choose>
-        	<when test="category == '후기'">
-        		AND b.blacklist_board = '후기'
-		        AND r.review_content LIKE '%' || #{search} || '%'
-        	</when>
-        	<when test="category == '장터'">
-        		AND b.blacklist_board = '장터'
-		        AND k.mk_title LIKE '%' || #{search} || '%'
-        	</when>
-        	<otherwise>
-		        AND r.review_content LIKE '%' || #{search} || '%'
-		        OR k.mk_title LIKE '%' || #{search} || '%'
-        	</otherwise>
-        </choose>
+       
+		           b.user_no=#{search}
+        	
         )
         
   	</select>
@@ -117,5 +96,5 @@
 		ON(b.user_no = m.user_no)
 		WHERE b.blacklist_state = 0)
   	</select>
-  	
-  </mapper>
+
+</mapper>

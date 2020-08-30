@@ -4,317 +4,312 @@
 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
+
 <style type="text/css">
-.listBox{
-	width: 100%;
-	text-align: center;
-}
-.tickets-container .tickets-list .ticket-item .ticket-state i {
-    font-size: 13px;
-    color: #fff;
-    line-height: 20px;
-}
-.tickets-container .tickets-list .ticket-item .ticket-state {
-    position: absolute;
-    top: 13px;
-    right: -12px;
-    height: 24px;
-    width: 24px;
-    -webkit-border-radius: 50%;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 50%;
-    -moz-background-clip: padding;
-    border-radius: 50%;
-    background-clip: padding-box;
-    background-color: #e5e5e5;
-    text-align: center;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    box-shadow: 0 0 3px rgba(0,0,0,.5);
-    border: 2px solid #fff;
-}
-.bg-palegreen {
-    background-color: #a0d468!important;
-}
-.tickets-container .tickets-list .ticket-item .ticket-type .type {
-    color: #999;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-.tickets-container .tickets-list .ticket-item .ticket-type {
-    line-height: 30px;
-    height: 50px;
-    padding: 10px;
-}
-.tickets-container .tickets-list .ticket-item .ticket-time i {
-    color: #ccc;
-    width:50px;
+#StudentModal{
+	padding: 0;
 }
 
-.tickets-container .tickets-list .ticket-item .divider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 1px;
-    background-color: #eee;
-    display: inline-block;
+.modal-dialog{
+	overflow-y:initail !important;
+   width: 500px;
 }
-.tickets-container .tickets-list .ticket-item .ticket-time {
-    line-height: 30px;
-    height: 50px;
-    padding: 10px;
+
+.modal-body{
+   overflow-y:auto; 
+   background: #f5f5f5;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user .user-company {
-    margin-left: 2px;
-    color: #999;
+.user-row {
+    margin-bottom: 14px;
 }
-.tickets-container .tickets-list .ticket-item .ticket-user .user-at {
-    margin-left: 2px;
-    color: #ccc;
-    font-size: 13px;
-}
-.tickets-container .tickets-list .ticket-item .ticket-user .user-name {
-    margin-left: 5px;
-    font-size: 13px;
-}
-.tickets-container .tickets-list .ticket-item .ticket-user .user-avatar {
-    width: 30px;
-    height: 30px;
-    -webkit-border-radius: 3px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 3px;
-    -moz-background-clip: padding;
-    border-radius: 3px;
-    background-clip: padding-box;
-}
-.tickets-container .tickets-list .ticket-item .ticket-user {
-    height: 50px;
-    padding: 10px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-.tickets-container .tickets-list .ticket-item {
-    position: relative;
-	background-color: #fff;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 3px rgba(0,0,0,.5);
-    box-shadow: 0 0 3px rgba(0,0,0,.5);
-    -webkit-border-radius: 3px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 3px;
-    -moz-background-clip: padding;
-    border-radius: 3px;
-    background-clip: padding-box;
-    margin-bottom: 8px;
-    padding: 0 15px;
-    vertical-align: top;
-}
-.tickets-container .tickets-list {
-    list-style: none;
-    padding: 0;
+
+.user-row:last-child {
     margin-bottom: 0;
 }
-.tickets-container {
-    position: relative;
-    padding: 25px 25px;
-/*     background-color: #f5f5f5; */
-}
-.widget-main.no-padding {
-    padding: 0;
-}
-.widget-main {
-    padding: 12px;
-}
-.no-padding {
-    padding: 0!important;
-}
-.widget-body {
-/*     background-color: #fbfbfb; */
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
 }
 
-.widget-header>.widget-caption {
-    line-height: 33px;
-    padding: 0;
-    margin: 0;
-    float: left;
-    text-align: left;
-    font-weight: 400!important;
-    font-size: 13px;
+.dropdown-user:hover {
+    cursor: pointer;
 }
 
-.widget-header .widget-icon {
-    display: block;
-    width: 30px;
-    height: 32px;
-    position: relative;
-    float: left;
-    font-size: 111%;
-    line-height: 32px;
-    text-align: center;
-    margin-left: -10px;
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
 }
-.themesecondary {
-    color: #17B794 !important;
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
 }
-.widget-header.bordered-bottom {
-    border-bottom: 3px solid #fff;
-}
-.widget-header {
-    position: relative;
-    min-height: 35px;
-    background: #fff;
-    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 4px rgba(0,0,0,.5);
-    box-shadow: 0 0 4px rgba(0,0,0,.5);
-    color: #555;
-    padding-left: 12px;
-    text-align: right;
-}
-.bordered-themesecondary {
-    border-color: #17B794 !important;
-}
-.widget-box {
-    padding: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    margin: 3px 0 30px 0;
-}                   
 
 
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+.panel-body{
+	text-align: center;
+}
+
+#stuInfoTabel{
+	width: 60%;
+	margin: 0 auto;
+	text-align: left;
+}
 </style>
-	<div class="listBox">
+
+<script type="text/javascript">
+function connectStu(connNo){
+	var chk = confirm("학생을 승인하시겠습니까?");
 	
-    	<div class="row">
-			<div>
-				<h4 style="font-family: 'Segoe UI',Arial,sans-serif">과외 연결 관리 > 학생 신청 내역 </h4>
+	if(chk == true){
+		var url = "<%=request.getContextPath() %>/teacher/signstu";
+		
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {connNo : connNo},
+			success : function(result) {
+				if (result == 1) {
+					alert("승인되었습니다.");
+					location.reload();
+				}else if( result == 2){
+					alert("인원이 초과되었습니다.");
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+}
+
+function rejectStu(connNo){
+	var chk = confirm("학생을 거절하시겠습니까?");
+	
+	if(chk == true){
+		var url = "<%=request.getContextPath() %>/teacher/rejectstu";
+		
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {connNo : connNo},
+			success : function(result) {
+				if (result == 1) {
+					alert("거절하였습니다.");
+					location.reload();
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+}
+
+function lessonModal(lessonNo){
+	var url = "<%=request.getContextPath() %>/teacher/lessoninfo";
+	
+	$.ajax({
+		type : "POST",
+		url: url,
+		data: {lessonNo : lessonNo},
+		success : function(result) {
+			var res = result;
+			console.log(res);
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+		
+	})
+	
+	$("#lessonModal").modal();
+	
+}
+
+function StudentModal(studentNo){
+	var url = "<%=request.getContextPath() %>/teacher/studentinfo";
+	
+	$.ajax({
+		type : "POST",
+		url: url,
+		data: {studentNo : studentNo},
+		success : function(result) {
+			$("#stuInfoTabel #userName").text(result.userName);
+			$("#stuInfoTabel #userId").text(result.userId);
+			
+			if( result.userGender == 'm' ){
+				$("#stuInfoTabel #userGender").text('남');
+			}else if( result.userGender == 'w'){
+				$("#stuInfoTabel #userGender").text('여');
+			}
+			
+			$("#stuInfoTabel #userBirth").text(result.userBirth);
+			$("#stuInfoTabel #userEmail").text(result.userEmail);
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+		
+	})
+	
+	$("#StudentModal").modal();
+	
+}
+
+
+</script>
+
+<div class="modal fade" id="lessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document"  style="z-index: inherit;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h6 class="modal-title" id="lessonModalLabel">과외 정보</h6>
+      </div>
+      <div class="modal-body">
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="StudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document"  style="z-index: inherit;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h6 class="modal-title" id="studentModalLabel">학생 정보</h6>
+      </div>
+      <div class="modal-body">
+            <div class="panel-body">
+            
+              <div class="row">
+                  <table id="stuInfoTabel" class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td colspan="2" style="text-align: center;"><img alt="선생님프로필사진" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg"></td>
+                      </tr>
+                      <tr>
+                        <td style="width: 50%; font-weight: bold;">이름</td>
+                        <td style="width: 50%;" id="userName"></td>
+                      </tr>
+                      <tr>
+                        <td style="font-weight: bold;">아이디</td>
+                        <td id="userId"></td>
+                      </tr>
+                      <tr>
+                        <td style="font-weight: bold;">생년월일</td>
+                        <td id="userBirth"></td>
+                      </tr>
+                      <tr>
+                        <td style="font-weight: bold;">성별</td>
+                        <td id="userGender"></td>
+                      </tr>
+                        <tr>
+                        <td style="font-weight: bold;">이메일</td>
+                        <td id="userEmail"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+	<div class="listBox">
+			<div id="title">과외 연결
+				<i class="glyphicon glyphicon-menu-right"></i>
+				<a href="">학생 신청 내역</a>
 			</div>
-			<hr>
-		    <div class="col-md-12">
-		            <div class="widget-body">
-		                <div class="widget-main no-padding">
-		                    <div class="tickets-container">
-		                        <ul class="tickets-list">
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-3 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="user-avatar">
-		                                        <span class="user-name">Adam Johnson</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Microsoft</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">1 Hours Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Issue</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-palegreen">
-		                                        <i class="fa fa-check"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="user-avatar">
-		                                        <span class="user-name">Divyia Phillips</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Dribbble</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">3 Hours Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Payment</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-palegreen">
-		                                        <i class="fa fa-check"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_3.jpg" class="user-avatar">
-		                                        <span class="user-name">Nicolai Larson</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Google</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">18 Hours Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Issue</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-darkorange">
-		                                        <i class="fa fa-times"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="user-avatar">
-		                                        <span class="user-name">Bill Jackson</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Mabna</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">2 days Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Payment</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-palegreen">
-		                                        <i class="fa fa-check"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                            <li class="ticket-item">
-		                                <div class="row">
-		                                    <div class="ticket-user col-md-6 col-sm-12">
-		                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="user-avatar">
-		                                        <span class="user-name">Eric Clapton</span>
-		                                        <span class="user-at">at</span>
-		                                        <span class="user-company">Musicker</span>
-		                                    </div>
-		                                    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-		                                        <div class="divider hidden-md hidden-sm hidden-xs"></div>
-		                                        <i class="fa fa-clock-o"></i>
-		                                        <span class="time">2 days Ago</span>
-		                                    </div>
-		                                    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-		                                        <span class="divider hidden-xs"></span>
-		                                        <span class="type">Info</span>
-		                                    </div>
-		                                    <div class="ticket-state bg-yellow">
-		                                        <i class="fa fa-info"></i>
-		                                    </div>
-		                                </div>
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
+			
+			<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table user-list">
+					<thead>
+						<tr>
+							<th class="text-center" style="width: 15%;"><span>신청자</span></th>
+							<th class="text-center" style="width: 30%;"><span>과외명</span></th>
+							<th class="text-center" style="width: 15;"><span>과목</span></th>
+							<th class="text-center"><span>인원</span></th>
+							<th class="text-center" style="width: 10%;"><span>신청 날짜</span></th>
+							<th class="text-center"><span>승인</span></th>
+						</tr>
+					</thead>
+					<tbody>
+                       <c:forEach items="${list }" var="stu">
+						<tr>
+							<td>
+								<a href="#" title="학생 정보 보기" onclick="StudentModal(${stu.USER_NO });">${stu.USER_NAME }</a>
+							</td>
+							<td>
+								<a href="#" title="과외 정보 보기" onclick="lessonModal(${stu.LESSON_NO });">${stu.LESSON_TITLE }</a>
+							</td>
+							<td>
+								${stu.LESSON_SUBJECT }
+							</td>
+							<td>
+								<c:if test="${stu.MAX_PEOPLE eq 1 }">
+									<span class="label label-warning">개인</span>
+								</c:if>
+								<c:if test="${stu.MAX_PEOPLE gt 1 }">
+									<span class="label label-success">${stu.CNT }/${stu.MAX_PEOPLE }</span>
+								</c:if>
+							</td>
+							<td>
+								${stu.LEG_DATE }
+							</td>
+							<td style="width: 20%;">
+								<a href="javascript:void(0);" onclick="connectStu(${stu.CONN_LESSON_NO});" class="table-link success">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-check fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a href="#" class="table-link danger" onclick="rejectStu(${stu.CONN_LESSON_NO});" >
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+			          </c:forEach>
+					</tbody>
+				</table>
+			</div>
+			
+			<c:if test="${not empty list }">
+			<c:import url="/WEB-INF/paging/teacher/connectLesson/signStuPaging.jsp"></c:import>
+			</c:if>
 		</div>
+	</div>
+</div>
+</div>
 
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>

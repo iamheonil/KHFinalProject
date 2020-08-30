@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import common.exception.FileException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.member.dao.MemberDao;
 import com.privateplaylist.www.member.vo.Member;
@@ -40,17 +44,15 @@ public class MemberServiceImpl implements MemberService {
 		// 암호화
 		secPw = passwordEncoder.encode(password);
 		
-		System.out.println("Join Method : " + member);
-
 		member.setUserPw(secPw);
 
 		return memberDao.insertMember(member);
 	}
 
 	@Override
-	public void insertTeacherFile(Map<String, String> fileInfo, String root) throws FileException {
+	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, String root) throws FileException {
 
-		memberDao.insertFile(fileInfo);
+		memberDao.insertFile(files, fileInfo);
 
 	}
 
@@ -77,8 +79,47 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectId(userId);
 	}
 
-//	public void mailSending(Member member, String urlPath) throws MailException {
-//
+	public void mailSending(String email, int code_check) throws MailException {
+		
+		String setfrom = "snn7452@naver.com";
+		String tomail = email;
+		String title = "슬기로운 과외생활 회원가입 인증메일 입니다.";
+		String htmlBody = 
+				"<h2>회원가입을 위해 인증번호를 입력해주세요!</h2>"
+				+ "인증번호는 " + code_check + "입니다.";
+
+		try {
+
+			mailSender.send(new MimeMessagePreparator() {
+				public void prepare(MimeMessage mimeMessage) throws MessagingException {
+					MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					// 보내는 이
+					message.setFrom(setfrom);
+					// 받는 이
+					message.setTo(tomail);
+					// 메일 제목
+					message.setSubject(title);
+					// 메일 내용
+					// 두번째 boolean값은 html 여부 (true : html , false : text)
+					message.setText(htmlBody, true);
+				};
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MailException("M_ERROR_01");
+
+		}
+	}
+
+	@Override
+	public void logOut(HttpSession session) {
+
+		memberDao.logOut(session);
+		
+	}
+
+}
+
 //		String setfrom = "snn7452@naver.com";
 //		String tomail = member.getUserEmail();
 //		String title = "슬기로운 과외생활 회원가입 인증메일 입니다.";
@@ -98,28 +139,3 @@ public class MemberServiceImpl implements MemberService {
 //				+ "' id='userGender' name='userGender'>"
 //				+ "<input type='hidden' value='" + member.getUserBirth() + "' id='userBirth' name='userBirth'>"
 //				+ "<br><br> <button type='submit' onclick='btnClick();'>회원가입 완료하기</button></form>";
-//
-//		try {
-//
-//			mailSender.send(new MimeMessagePreparator() {
-//				public void prepare(MimeMessage mimeMessage) throws MessagingException {
-//					MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-//					// 보내는 이
-//					message.setFrom(setfrom);
-//					// 받는 이
-//					message.setTo(tomail);
-//					// 메일 제목
-//					message.setSubject(title);
-//					// 메일 내용
-//					// 두번째 boolean값은 html 여부 (true : html , false : text)
-//					message.setText(htmlBody, true);
-//				};
-//			});
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw new MailException("M_ERROR_01");
-//
-//		}
-//	}
-
-}

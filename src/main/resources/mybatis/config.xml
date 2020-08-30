@@ -65,7 +65,9 @@
 		<mapper resource="/mybatis/mapper/member/MessageMapper.xml"/>
 
  		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
+
 		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/>
+
 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/lesson/FindStudentMapper.xml"/>
@@ -76,6 +78,11 @@
 		<mapper resource="/mybatis/mapper/teacher/ProfileMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/QuestionMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/ReviewMapper.xml"/>
+
+		<mapper resource="/mybatis/mapper/teacher/WebShareMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/TeacherBlacklist.xml"/>
+
+
 
 	</mappers>
 

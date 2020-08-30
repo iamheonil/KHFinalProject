@@ -182,7 +182,7 @@
         </div>
 		<div class="bottom-action clearfix" style="text-align: center;">
 <!--             <label class="float-left form-check-label"><input type="checkbox"> 아이디 저장</label> -->
-            <a href="findid.jsp" class="float-left">아이디 찾기</a> | <a href="findpw.jsp" class="float-right">비밀번호 찾기</a>
+            <a href="/ss/member/findid" class="float-left">아이디 찾기</a> | <a href="/ss/member/findpw" class="float-right">비밀번호 찾기</a>
         </div>
         <div class="or-seperator"></div>
         <div class="text-center social-btn" >
@@ -199,9 +199,8 @@
 </div>
 </body>
 
-<!-- 선생님 마이페이지 푸터 -->
-<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
+<!-- 푸터 -->
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
 
 <%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>

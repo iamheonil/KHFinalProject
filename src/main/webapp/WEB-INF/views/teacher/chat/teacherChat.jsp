@@ -35,6 +35,7 @@ if(userID==null){
 	session.setAttribute("messageContent", "로그인이 되어있지 않습니다");
 	session.setAttribute("messageType", "오류메시지");
 	response.sendRedirect(url);
+	/* response.sendRedirect(url); */
 }
 %>
 
@@ -42,6 +43,26 @@ if(userID==null){
 
 
 <script type="text/javascript">
+
+//안읽은 데이터 가져오기
+function getUnread(){
+	
+	var userID='<%=userID%>';
+	
+	$.ajax({
+		type:"POST",
+		url:"${pageContext.request.contextPath}/chat/unread",
+		data:{
+			userID:encodeURIComponent(userID)
+		},
+		success:function(data){
+			
+			$("#chkUnread").html(data);
+		}
+	});
+	
+}
+
 function getChatBox(){
 	var userID='<%=userID%>'
 	$.ajax({
@@ -96,6 +117,7 @@ function addBox(lastID,toID,chatContent,chatTime,unread){
 function getInfiniteBox(){
 	setInterval(function(){
 		getChatBox();
+		/* getUnread(); */
 	},3000);
 }
 </script>
@@ -184,6 +206,7 @@ else
 <script type="text/javascript">
  $(document).ready(function(){
 	getChatBox();
+	/* getUnread(); */
 	getInfiniteBox();
 }) 
 </script>
