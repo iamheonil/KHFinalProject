@@ -1,3 +1,5 @@
+<!-- 이서연 200827 -->
+<!-- 선생님페이지 > 과외 연결 > 연결된 과외 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,7 +14,7 @@
 
 
 
-
+<!-- 현위지 메뉴 -->
 <style type="text/css">
 
 #title{
@@ -21,11 +23,12 @@
 	font-weight: bold;
 }
 
-#title a {
+#title a:last-child {
 	color: #17B794; /* 청록색 */
 }
 
 </style>
+
 
 
 <style type="text/css">
@@ -41,7 +44,7 @@ body{
     margin-bottom: 30px;
 }
 .table th {
-    font-weight: 500;
+    font-weight: bold;
     color: #262626;
     text-align: center;
 }
@@ -56,6 +59,13 @@ body{
     color: #262626;
     text-align: center;
 }
+
+.table td:hover a {
+
+	text-decoration: none;
+	color: #262626;
+}
+
 .thumb-sm {
     height: 32px;
     width: 32px;
@@ -75,6 +85,7 @@ body{
 
 </style>
 
+
 <style type="text/css">
 
 #xicon {
@@ -90,14 +101,14 @@ body{
 }
 
 .button2 { /* 자료실버튼 */
-	background-color: #17B794; 
-	border: none;
-	color: white;
+	background-color: #ececec;
+    border: 1px solid #777777;
+	color: black;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
-	padding: 2px;
+	padding: 3px;
 	border-radius: 3px;
 	cursor: pointer;
 }
@@ -105,15 +116,27 @@ body{
 </style>
 
 
+<script type="text/javascript">
+
+<!-- 자료실 버튼 눌렀을 때 -->
+function webshareClick(CONN_LESSON_NO){
+	
+	var no = CONN_LESSON_NO;
+	
+	$(location).attr("href", "${pageContext.request.contextPath}/teacher/webshare?no="+no);
+}
+
+
+</script>
+
+
+
+
 
 <div id="title">과외 연결
 	<i class="glyphicon glyphicon-menu-right"></i>
 	<a href="">연결된 과외</a>
 </div>
-<!-- <div id="title"> -->
-<!-- 	<i class="glyphicon glyphicon-menu-right"></i> -->
-<!-- 	<a href="">자료실</a> -->
-<!-- </div> -->
 
 	<br>
 
@@ -129,10 +152,10 @@ body{
 	                            <thead>
 	                                <tr class="align-self-center">
 	                                    <th style="width: 10%">과외번호</th>
-	                                    <th style="width: 25%">과외명</th>
+	                                    <th style="width: 20%">과외명</th>
 	                                    <th style="width: 10%">학생</th>
 	                                    <th style="width: 15%">과목</th>
-	                                    <th style="width: 10%">지역</th>
+	                                    <th style="width: 15%">지역</th>
 	                                    <th style="width: 10%">구분</th>
 	                                    <th style="width: 10%">자료실</th>
 	                                    <th style="width: 10%">과외종료</th>
@@ -143,8 +166,8 @@ body{
 	                               	<c:forEach items="${connectedLessonList }" var="lesson" >
 										<tr>
 											<td>${lesson.LESSON_NO}</td>
-											<td><a href="">${lesson.LESSON_TITLE}</a></td>
-											<td>${lesson.USER_ID}</td>
+											<td><a href="/*과외 상세 페이지로 이동*/"  title="과외 상세 보기">${lesson.LESSON_TITLE}</a></td>
+											<td><a href="/*학생프로필 모달창*/" title="학생 프로필 보기">${lesson.USER_ID}</a></td>
 											<td>${lesson.LESSON_SUBJECT}</td>
 											<td>${lesson.LESSON_LOC}</td>
 											<c:if test="${lesson.MAX_PEOPLE eq 1 }">

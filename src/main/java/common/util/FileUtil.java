@@ -70,7 +70,7 @@ public class FileUtil {
 		File fileData = new File(savePath);
 		
 		try {
-			int res = 10 / 0;
+//			int res = 10 / 0;
 			mf.transferTo(fileData);
 		} catch (IllegalStateException | IOException e)  {
 			e.printStackTrace();
