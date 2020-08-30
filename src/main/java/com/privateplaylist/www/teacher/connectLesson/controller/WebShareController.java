@@ -66,7 +66,7 @@ public class WebShareController {
 		//연결된 과외 번호의 자료실 조회
 		List<Map<String, Object>> webShareList = webShareService.selectWebShareList(no, paging);
 		
-		System.out.println(webShareList);
+//		System.out.println(webShareList);
 		
 		
 		//자료실 리스트
