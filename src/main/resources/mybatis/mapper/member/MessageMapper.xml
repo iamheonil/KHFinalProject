@@ -11,7 +11,7 @@
 		((fromID=#{fromID} AND toID=#{toID})
 		OR (fromID=#{toID} AND toID=#{fromID})) AND chatID >
 		#{chatID})
-		ORDER BY chatID
+		ORDER BY chatID 
 	</select>
 
 	<!-- 최근 10개의 대화내용 불러오기  -->
@@ -21,7 +21,7 @@
 		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID})) AND chatID >
 		(SELECT MAX(chatID)-10 from Message where (fromID=#{fromID} AND
 		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID}))
-		ORDER BY chatID
+		ORDER BY chatID 
 	</select>
 	
 	<!-- 채팅창에 입력한것 insert하기  -->
