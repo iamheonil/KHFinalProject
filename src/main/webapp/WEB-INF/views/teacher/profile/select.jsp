@@ -10,7 +10,7 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
 <!-- 모달 추가 -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" /> -->
 
 <style type="text/css">
 #main {
@@ -23,7 +23,7 @@
 	border: 1px solid #ccc;
 	border-radius: 20px;
 	padding-top : 10px;
-	height: 1625px;
+	height: 1500px;
 }
 #boardtitle {
     font-size: 16px;
@@ -125,9 +125,24 @@ $(document).ready(function() {
     
     /* 모달 > 탈퇴  */
     $('#deletebtn').click(function(){
-    	alert("탈퇴");
+//     	alert("탈퇴");
     	location.href="<%= request.getContextPath() %>/teacher/profile/delete?userNo=${loginUser.userNo }";
     });
+    
+    /* 체크 박스 value 값 따라 변경 */
+//     $("#w").prop("checked", false);
+//     $("#m").prop("checked", false);
+    
+    var chkval = ${loginUser.userGender  };
+    if(chkval == m ){
+    	$("#w").prop("checked", false);
+    	$("#m").prop("checked", true);
+
+    }else if(chkval == w ){
+    	$("#w").prop("checked", true);
+    	$("#m").prop("checked", false);
+	}
+   
     
 });
 
@@ -217,7 +232,15 @@ function loadImg(value){
       <div class="boardersize">
          <label class="col-form-label col-4">프로필 사진</label>
        	 <div>
+       	 
+       	 <c:if test="${not empty teacherFile.tchFileRename }">
        	 <img class="imgsize" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${teacherFile.tchFileRename }">
+       	 </c:if>
+       	 
+       	 <c:if test="${empty  teacherFile.tchFileRename }">
+       	 <h4>사진이 없습니다. 프로필 사진을 등록해주세요.</h4>
+       	 </c:if>
+       	 
        	 </div>
      </div>
       
@@ -287,8 +310,8 @@ function loadImg(value){
 		<div class="boardersize">
 			<label class="col-form-label col-4">성별</label>
 			<div class="col-8 float">
-				<label><input type="radio" id="m" name="userGender" value="m" checked="${loginUser.userGender } == m"/> 남&emsp;&emsp;</label>
-				<label><input type="radio" id="w" name="userGender" value="w" checked="${loginUser.userGender } == w"/> 여</label>
+				<label><input type="radio" id="m" name="userGender" value="m" checked="checked"/> 남&emsp;&emsp;</label>
+				<label><input type="radio" id="w" name="userGender" value="w" checked="checked"/> 여</label>
             </div>     
         </div>
         
