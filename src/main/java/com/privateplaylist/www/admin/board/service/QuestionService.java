@@ -30,5 +30,11 @@ public interface QuestionService {
 	//댓글삭제
 	public int deleteQuestionComm(int questionNo);
 	
+	//페이징 객체
+	public Paging questionSearchPaging(HttpServletRequest req, String keyword);
+	
+	//검색
+	public List<Question> selectSearchQuestion(Map<String, Object> searchMap);
+	
 
 }

@@ -2,50 +2,70 @@ package com.privateplaylist.www.member.vo;
 
 public class TeacherFile {
 
-    private String TCH_FILE_NO;
-    private int USER_NO;
-    private String TCH_FILE_ORG;
-    private String TCH_FILE_RENAME;
+    private String tch_file_No;
+    private int user_No;
+    private String user_Id;
+    private String tch_file_Org;
+    private String tch_file_Rename;
+    private String save_Path;
 
     @Override
     public String toString() {
         return "TeacherFile{" +
-                "TCH_FILE_NO='" + TCH_FILE_NO + '\'' +
-                ", USER_NO=" + USER_NO +
-                ", TCH_FILE_ORG='" + TCH_FILE_ORG + '\'' +
-                ", TCH_FILE_RENAME='" + TCH_FILE_RENAME + '\'' +
+                "tch_file_No='" + tch_file_No + '\'' +
+                ", user_No=" + user_No +
+                ", user_Id='" + user_Id + '\'' +
+                ", tch_file_Org='" + tch_file_Org + '\'' +
+                ", tch_file_Rename='" + tch_file_Rename + '\'' +
+                ", save_Path='" + save_Path + '\'' +
                 '}';
     }
 
-    public String getTCH_FILE_NO() {
-        return TCH_FILE_NO;
+    public String getTch_file_No() {
+        return tch_file_No;
     }
 
-    public void setTCH_FILE_NO(String TCH_FILE_NO) {
-        this.TCH_FILE_NO = TCH_FILE_NO;
+    public void setTch_file_No(String tch_file_No) {
+        this.tch_file_No = tch_file_No;
     }
 
-    public int getUSER_NO() {
-        return USER_NO;
+    public int getUser_No() {
+        return user_No;
     }
 
-    public void setUSER_NO(int USER_NO) {
-        this.USER_NO = USER_NO;
+    public void setUser_No(int user_No) {
+        this.user_No = user_No;
     }
 
-    public String getTCH_FILE_ORG() {
-        return TCH_FILE_ORG;
+    public String getUser_Id() {
+        return user_Id;
     }
 
-    public void setTCH_FILE_ORG(String TCH_FILE_ORG) {
-        this.TCH_FILE_ORG = TCH_FILE_ORG;
+    public void setUser_Id(String user_Id) {
+        this.user_Id = user_Id;
     }
 
-    public String getTCH_FILE_RENAME() {
-        return TCH_FILE_RENAME;
+    public String getTch_file_Org() {
+        return tch_file_Org;
     }
 
-    public void setTCH_FILE_RENAME(String TCH_FILE_RENAME) {
-        this.TCH_FILE_RENAME = TCH_FILE_RENAME;
+    public void setTch_file_Org(String tch_file_Org) {
+        this.tch_file_Org = tch_file_Org;
+    }
+
+    public String getTch_file_Rename() {
+        return tch_file_Rename;
+    }
+
+    public void setTch_file_Rename(String tch_file_Rename) {
+        this.tch_file_Rename = tch_file_Rename;
+    }
+
+    public String getSave_Path() {
+        return save_Path;
+    }
+
+    public void setSave_Path(String save_Path) {
+        this.save_Path = save_Path;
     }
 }

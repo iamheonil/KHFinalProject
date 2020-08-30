@@ -1,7 +1,11 @@
 package com.privateplaylist.www.member.controller;
 
-import java.util.List;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.privateplaylist.www.member.dao.MemberDao;
 import com.privateplaylist.www.member.service.MemberService;
 import com.privateplaylist.www.member.vo.Member;
 
+import common.exception.FileException;
 import common.exception.MailException;
 
 @Controller
@@ -28,6 +34,9 @@ public class MemberController {
 	@Autowired
 	public MemberService memberService;
 
+	@Autowired
+	public MemberDao memberDao;
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		System.out.println("Login Call");
@@ -35,9 +44,11 @@ public class MemberController {
 		return "/member/login";
 	}
 
-	@RequestMapping(value = "/loginImpl", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginImpl", method = POST)
 	public ModelAndView loginImpl(@RequestParam Map<String, Object> memberMap, HttpSession session, HttpServletRequest request) {
 		System.out.println("Login Post Call");
+		
+		System.out.println(memberMap);
 
 		ModelAndView mav = new ModelAndView();
 		Member res = memberService.selectMember(memberMap);
@@ -48,7 +59,7 @@ public class MemberController {
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			System.out.println("담은거 : " + loginUser);
 			mav.addObject("url", request.getContextPath() + "/main/index");
-			mav.setViewName("/main/index");
+			mav.setViewName("redirect:main");
 			System.out.println("로그인 성공");
 		} else {
 			// 로그인 실패
@@ -74,9 +85,8 @@ public class MemberController {
 		return "/member/join";
 	}
 
-	@RequestMapping(value = "/joinImpl", method = RequestMethod.POST)
-	public ModelAndView joinEmail(@RequestParam List<MultipartFile> files, @ModelAttribute Member member,
-			HttpServletRequest req) {
+	@RequestMapping(value = "/joinImpl", method = POST)
+	public ModelAndView joinEmail(@ModelAttribute Member member, HttpServletRequest req) {
 
 		String root = req.getContextPath();
 		ModelAndView mav = new ModelAndView();
@@ -85,24 +95,85 @@ public class MemberController {
 
 		if (res < 0) {
 			System.out.println("회원가입 실패");
-			mav.setViewName("/member/join");
+			mav.setViewName("redirect:join");
 		} else {
 			System.out.println("회원가입 성공");
-			mav.setViewName("/member/login");
+			mav.setViewName("redirect:main");
 		}
 		return mav;
 	}
 
-	@RequestMapping("/joinemail")
-	public ModelAndView joinEmailCheck(Member member, HttpServletRequest request) throws MailException {
+	//uuid생성
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
+	// 파일 업로드
+	@RequestMapping(value = "/jointeacher", method = POST)
+	public ModelAndView fileUpload(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, HttpSession session, @ModelAttribute Member member, HttpServletRequest request) throws FileException, MailException {
 
 		ModelAndView mav = new ModelAndView();
-		String urlPath = request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
-		memberService.mailSending(member, urlPath);
+		String root = session.getServletContext().getRealPath("/resources/upload/");
+
+		memberService.insertMember(member);
+
+		String userId = member.getUserId();
+		String tch_File_Org = files.getOriginalFilename();
+		String tch_File_OrgExt = files.getOriginalFilename().substring(files.getOriginalFilename().lastIndexOf("."));
+		String tch_File_Rename = getUuid() + tch_File_OrgExt;
+		String save_Path = root + tch_File_Rename;
+
+		System.out.println("파일 저장 경로 : " + root);
+		System.out.println("파일 리 네임 : " + tch_File_Rename);
+		
+		try (
+				
+				// 맥일 경우
+				// FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
+				// 윈도우일 경우
+				FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
+				InputStream is = files.getInputStream();) {
+				// 파일 저장할 경로 + 파일명을 파라미터로 넣고 fileOutputStream 객체 생성하고
+				// file로 부터 inputStream을 가져온다.
+
+			fileInfo.put("userId", userId);
+			fileInfo.put("tch_File_Org", tch_File_Org);
+			fileInfo.put("tch_File_Rename", tch_File_Rename);
+			fileInfo.put("save_Path", save_Path);
+
+
+			int readCount = 0;
+			byte[] buffer = new byte[1024];
+			// 파일을 읽을 크기 만큼의 buffer를 생성하고
+			// ( 보통 1024, 2048, 4096, 8192 와 같이 배수 형식으로 버퍼의 크기를 잡는 것이 일반적이다.)
+
+			memberService.insertTeacherFile(files, fileInfo, root);
+
+			while ((readCount = is.read(buffer)) != -1) {
+				//  파일에서 가져온 fileInputStream을 설정한 크기 (1024byte) 만큼 읽고
+
+				fos.write(buffer, 0, readCount);
+				// 위에서 생성한 fileOutputStream 객체에 출력하기를 반복한다
+			}
+		} catch (Exception ex) {
+			throw new RuntimeException("file Save Error");
+		} 
+
+		mav.setViewName("/member/login");
+		return mav;
+	}
+
+
+	@RequestMapping("/send")
+	public ModelAndView joinEmailCheck(String email, int code_check) throws MailException {
+
+		ModelAndView mav = new ModelAndView();
+
+		memberService.mailSending(email, code_check);
 
 		System.out.println("메일 발송 성공");
-		mav.setViewName("/member/login");
+		
 
 		return mav;
 	}
@@ -131,5 +202,31 @@ public class MemberController {
 		}
 
 	}
+
+	@RequestMapping(value = "/findid", method = RequestMethod.GET)
+	public String findId() {
+		// System.out.println("findid Call");
+
+		return "/member/findid";
+	}
+
+	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
+	public String findPw() {
+		// System.out.println("findpw Call");
+
+		return "/member/findpw";
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logOut(HttpSession session) {
+		
+		memberService.logOut(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/login");
+		
+		return mav;
+		
+	}
+	
 
 }

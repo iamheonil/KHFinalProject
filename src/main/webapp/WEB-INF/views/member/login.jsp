@@ -182,13 +182,13 @@
         </div>
 		<div class="bottom-action clearfix" style="text-align: center;">
 <!--             <label class="float-left form-check-label"><input type="checkbox"> 아이디 저장</label> -->
-            <a href="findid.jsp" class="float-left">아이디 찾기</a> | <a href="findpw.jsp" class="float-right">비밀번호 찾기</a>
+            <a href="/ss/member/findid" class="float-left">아이디 찾기</a> | <a href="/ss/member/findpw" class="float-right">비밀번호 찾기</a>
         </div>
         <div class="or-seperator"></div>
         <div class="text-center social-btn" >
-			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> <b>Google</b> 로그인 </a>
-<!--             <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> -->
-<!--             <a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
+			<a href="/ss/naver/login"><img src="${pageContext.request.contextPath}/resources/images/naver_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
+<!--            <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> -->
+<!--            <a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
 <!-- 			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a> -->
         </div>
     </form>
@@ -199,9 +199,8 @@
 </div>
 </body>
 
-<!-- 선생님 마이페이지 푸터 -->
-<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
+<!-- 푸터 -->
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
 
 <%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>

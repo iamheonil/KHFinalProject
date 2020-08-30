@@ -163,19 +163,13 @@ body {
 	height: 185px;
 }
 
-#footer_logo {
-
-	position: absolute;
-	float: left;
-	left: 18%;
-}
 
 #footer_nav {
 	
 	display: flex;
     position: absolute;
     text-align: center;
-    right: 16%;
+    right: 23%;
 /*    	bottom: 23px; */
 }
 
@@ -251,17 +245,16 @@ body {
      
       <div class="clearfix"></div>  
 	                
-      <footer>
+   <footer>
           <div class="footer">
           
-          	
-	          	<div id="footer_logo">
+	          	<div id="footer_nav">
+	          	<div>
 			        <img src="${pageContext.request.contextPath}/resources/images/footer_logo.png" 
 		           				alt="슬기로운 과외생활" style="width: 120px; height: 120px;">
 					<p>&copy; 슬기로운 과외생활</p>
 	         	</div>
 	        	
-	          	<div id="footer_nav">
 					<ul class="gtco-list-link footerMenu" id="short">
 						<p>SUPPORT</p>
 						<li><a href="#">문의하기</a></li>
@@ -286,6 +279,5 @@ body {
 				</div>
 				
 			</div>
-			
+         
       </footer>
-                

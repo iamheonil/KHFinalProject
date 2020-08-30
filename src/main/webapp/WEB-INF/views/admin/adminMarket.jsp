@@ -535,7 +535,6 @@ function delchk(num){
 					
 				}
 				$("#checkModal").modal();
-				
 			}
 		});
 	
@@ -561,9 +560,6 @@ document.ready(function(){
 })
 
 </script>
-
-
-
 
 
 

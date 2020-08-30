@@ -112,27 +112,70 @@ body{
 }
 
 </style>
+
+<!-- 이메일 인증 HttpRequest.js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+
 <script type="text/javascript">
+
+//정규식 시작
+
+//모든 공백 체크 정규식
+	var empJ = /\s/g;
+	//아이디 정규식
+	var idJ = /^[a-z0-9]{4,12}$/;
+	// 비밀번호 정규식
+	var pwJ = /^[A-Za-z0-9]{4,12}$/; 
+	// 이름 정규식
+	var nameJ = /^[가-힣]{2,6}$/;
+	// 이메일 검사 정규식
+	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+	// 이름에 특수문자 들어가지 않도록 설정
+	$("#userName").blur(function() {
+		if (nameJ.test($(this).val())) {
+				console.log(nameJ.test($(this).val()));
+				$("#name_check").text('');
+		} else {
+			$('#name-check-msg').text('이름을 확인해주세요');
+			$('#name-check-msg').css('color', 'red');
+		}
+	});
+	
+	// 휴대전화
+	$('#user_phone').blur(function(){
+		if(phoneJ.test($(this).val())){
+			console.log(nameJ.test($(this).val()));
+			$("#phone_check").text('');
+		} else {
+			$('#phone_check').text('휴대폰번호를 확인해주세요 :)');
+			$('#phone_check').css('color', 'red');
+		}
+	});
+
+//정규식 끝
+
 $(document).ready(function() {
 
 $("#1").click(function(){
     $("#resume").html(
     		'<label class="col-form-label col-4">증빙서류</label>' +
 			'<div class="col-8 float">'+
-               ' <input type="file" id="files" name="files" required="required" multiple>'+
+               ' <input type="file" id="joinFiles" name="joinFiles" required="required">' +
             '</div>'		
     )
 
-    $("#formAction").attr("action", "/ss/member/jointeacher");
+    $("#joinAction").attr("action", "/ss/member/jointeacher");
 
     })
 
     $("#2").click(function(){
         $("#resume").html("");
 
-        $("#formAction").attr("action", "/ss/member/joinemail");
+        $("#joinAction").attr("action", "/ss/member/joinImpl");
     })
     
+// 비밀번호 일치여부
     $(function(){
         $('#userPw').keyup(function(){
           $('#pw-check-msg').html('');
@@ -142,13 +185,24 @@ $("#1").click(function(){
 
             if($('#userPw').val() != $('#userPw_check').val()){
               $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
-              $('#pw-check-msg').attr('color', '#f82a2aa3');
-            } else{
+              $('#pw-check-msg').css('color', '#f82a2aa3');
+            } else {
               $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
-              $('#pw-check-msg').attr('color', '#199894b3');
+              $('#pw-check-msg').css('color', '#199894b3');
             }
 
         });
+        
+        $('#userPw_check').blur(function(){
+        	if($('#userPw').val() != $('#userPw_check').val()){
+                $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
+                $('#pw-check-msg').css('color', '#f82a2aa3');
+                $('#userPw_check').val('');
+              } else {
+                $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
+                $('#pw-check-msg').css('color', '#199894b3');
+              }
+          });
     });
     
 });
@@ -178,41 +232,9 @@ function inputPhoneNumber(obj) {
         phone += number.substr(7);
     }
     obj.value = phone;
-}
+	}
 
-<!-- 아이디 부분 -->
-
-var ajaxFlag = false;
-
-function validate() {
-    var pass = document.getElementById('userPw');
-    var regExpPw = /(?=.*\d)(?=.*[~`!@#$%\^&*()-+=])(?=.*[a-zA-Z]).{6,15}$/;
-
-    function chk(re, e, msg) {
-        if(re.test(e.value)) {
-            return true;
-        } else {
-            alert(msg);
-            e.value = "";
-            e.focus();
-            //기본 이벤트 취소
-            return false;
-        }
-    }
-
-    if(!ajaxFlag){
-        alert("아이디 중복검사를 해주세요");
-        return false;
-    }
-
-    // 비밀번호 검사
-    if(!chk(regExpPw, pass,'비밀번호는 숫자,영어,특수문자가 하나 이상 포함되어 있어야하며, 6글자 이상 15글자 이하여야 합니다')){
-        return false;
-    }
-
-    return true;
-}
-
+// 아이디 AJAX 처리
 function xmlIdCheck(){
     //querySelector :
     //	css선택자로 원하는 html element 객체를 불러온다.
@@ -239,15 +261,95 @@ function xmlIdCheck(){
         }
     })
 }
+// 아이디 AJAX 처리 끝
 
-function xmlEmailCheck() {
+// 이메일 인증
+
+function emailChk(){
 	
+	$("#sendMail").html(
+    		'<label class="col-form-label col-4">인증번호</label>' +
+			'<div class="col-8 float">'+
+               ' <input type="text" id="inputCode" name="inputCode" required="required" size="18">' +
+               ' <input type="button" value="인증하기" onclick="emailCheck()"> ' +
+            '</div>'		
+    )}
+
+/* 	// 회원가입창의 이메일 입력란의 값을 가져온다.
+	function pValue() {
+		userEmail = opener.document.getElementById("userEmail").value;
+		console.log(userEmail)
+	} */
+
 	
+	code = Math.floor(Math.random() * 1000000) + 100000;
+	userEmail = document.getElementById("userEmail").value;
+	console.log("code: " + code)
+	
+	// 이메일 인증번호 체크
+	function emailSend() {
+				
+		userEmail = document.getElementById("userEmail").value;
+		var param = "email=" + userEmail + "&code_check=" + code;
+		console.log(param)
+		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
+		alert("이메일을 전송했습니다!")
+	}
+	
+
+	function ajaxFromServer() {
+		if (httpRequest.readyState == 4) {//DONE,응답완료
+			if (httpRequest.status == 200) {//OK
+				var resultText = httpRequest.responseText;
+				if (resultText == 0) {
+					alert("이메일 전송 실패");
+				} else if (resultText == 1) { //이메일 전송 완료
+					alert("이메일 전송완료")
+				}
+
+			} else {
+				console.log("AJAX요청/응답 에러")
+			}
+		}
+	}
+
+	function emailCheck() {
+		var usercode = document.getElementById("inputCode").value;
+		console.log(usercode)
+		if (usercode == code) {
+			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
+		} else {
+			document.getElementById("email-check-msg").innerHTML = "이메일 인증 실패";
+		}
+	
+	}
+
+/* 	// 사용하기 클릭 시 부모창으로 값 전달 
+	function sendCheckValue() {
+		// 중복체크 결과인 idCheck 값을 전달한다.
+		opener.document.getElementById("emailAuth").value = "emailCheck";
+		// 회원가입 화면의 ID입력란에 값을 전달
+		opener.document.getElementById("userEmail").value = userEmail
+
+		if (opener != null) {
+			opener.chkForm = null;
+			self.close();
+		}
+	} */
+
+// }
+
+function inputEmailChk(){
+	
+	document.getElementById("emailAuth").value="EmailUncheck";
 	
 }
 
+// 이메일 인증 종료
+
 </script>
 
+<!-- 카카오 지도 API -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -285,6 +387,7 @@ function xmlEmailCheck() {
     }
 
 </script>
+<!-- 카카오 지도 API 마무리 -->
 
 <body>
      <div class="container">
@@ -296,7 +399,7 @@ function xmlEmailCheck() {
 <!--     <h2>회원가입</h2> -->
 <!--     <img src="join_img.png"> -->
 <div class="signup-form">
-    <form action="/ss/member/joinemail" id="joinAction" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form action="/ss/member/jointeacher" id="joinAction" name="joinAction" method="post" class="form-horizontal" enctype="multipart/form-data">
       	<div class="row">
         	<div class="col-8 offset-4 join">
 				<h2>회원가입</h2>
@@ -334,13 +437,15 @@ function xmlEmailCheck() {
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" class="form-control" name="userEmail" required="required" />
+                <input type="email" id="userEmail" name="userEmail" required="required" size="18" onkeydown="inputEmailChk()"/> <input type="button" onclick="javascript:emailChk(); emailSend();" value="인증번호전송">
+                <input type="hidden" id="emailAuth" name="emailAuth" value="emailUncheck">
             </div>
         </div>
-        
-        <div class="form-group row" id="mailCode" >
+        <div class="form-group row" id="sendMail"></div>
+        <div class="form-group row" id="email-check" style="font-size: 8px; text-align: center;" >
+        	<span id="email-check-msg" class="email-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
-        
+                
 		<div class="form-group row">
 			<label class="col-form-label col-4">구분</label>
 			<div class="col-8 float">
@@ -348,30 +453,35 @@ function xmlEmailCheck() {
 				<label><input type="radio" name="userActor" id="1" value="1"/> 선생님</label>
             </div>        	
         </div>
+        
         <div class="form-group row">
 			<label class="col-form-label col-4">이름</label>
 			<div class="col-8 float">
                 <input type="text" class="form-control" name="userName" required="required">
             </div>        	
         </div>
+        
+        <div class="form-group row" id="name-check" style="font-size: 8px; text-align: center;" >
+        	<span id="name-check-msg" class="name-check-msg" style="font-size: 8px; text-align: center;"></span>
+        </div>
+        
         <div class="form-group row">
-			<label class="col-form-label col-4">전화번호</label>
+			<label class="col-form-label col-4">휴대폰번호</label>
 			<div class="col-8 float">
                 <input type="text" class="form-control" onKeyup="inputPhoneNumber(this);" maxlength="13" name="userPhone" required="required">
             </div>        	
         </div>
-
+        
         <div class="form-group row">
 			<label class="col-form-label col-4">주소</label>
 			<!-- 주소 API 추가하기 -->
 			<div class="col-8 float">
                 
                 <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="postCode" name="postCode" placeholder="우편번호" required="required">
 
-                <input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required">
-<%--                <input type="text" id="jibunAddress" placeholder="지번주소" size="35">--%>
-                <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" size="35" required="required">
+                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="우편번호" required="required" size="25">
+                <input type="text" class="form-control" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required">
+                <input type="text" class="form-control" id="detailAddress" name="detailAddress" placeholder="상세주소" size="35" required="required">
 
             </div>
         </div>
@@ -428,7 +538,5 @@ function xmlEmailCheck() {
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
 </body>
 
-<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
-<!-- 선생님 마이페이지 푸터 -->
-<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
+<!-- 푸터 -->
+<%@ include file="/WEB-INF/layout/main/footer.jsp" %>
