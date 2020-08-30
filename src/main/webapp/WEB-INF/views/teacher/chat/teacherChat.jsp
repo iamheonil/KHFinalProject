@@ -4,11 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
 
- 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import> 
+
+
+
+
+
+
+	
 
 <style>
+
 .container {
     max-width: 900px;
     margin: auto;
@@ -214,7 +221,12 @@ else
 
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+
 <c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
+
+
+
+	
 
 
 

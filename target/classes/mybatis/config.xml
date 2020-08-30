@@ -56,6 +56,8 @@
 			type="com.privateplaylist.www.dto.MkFile" />
 		<typeAlias alias="BLACKLIST"
 			type="com.privateplaylist.www.dto.BlackList" />
+		<typeAlias alias="FINDLESSONFILE"
+         type="com.privateplaylist.www.dto.FindLessonFile" />	
 		<typeAlias alias="PAGING" type="common.util.Paging" />
 	</typeAliases>
 
@@ -78,13 +80,10 @@
 		<mapper resource="/mybatis/mapper/teacher/ProfileMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/QuestionMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/ReviewMapper.xml"/>
-
+		<mapper resource="/mybatis/mapper/teacher/TeacherQuestionMapper.xml"/>
 		<mapper resource="/mybatis/mapper/teacher/WebShareMapper.xml"/>
 		<mapper resource="/mybatis/mapper/teacher/TeacherBlacklist.xml"/>
-
-
-		<mapper resource="/mybatis/mapper/teacher/TeacherBlacklist.xml"/>
-
+		<mapper resource="/mybatis/mapper/teacher/LessonMapper.xml"/>
 
 
 	</mappers>
