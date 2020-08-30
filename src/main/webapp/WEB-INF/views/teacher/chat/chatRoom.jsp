@@ -148,7 +148,17 @@ function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메�
 				'</div>'+
 				'</li>'
 				
+<<<<<<< HEAD
+<<<<<<< HEAD
 				);
+=======
+				).stop()
+	            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
+>>>>>>> c279803ebd1b051151fa4a3cae3d8768239d46c0
+=======
+				).stop()
+	            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
+>>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
 		
 	}else{
 	
@@ -169,12 +179,42 @@ function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메�
 			'</div>'+
 			'</li>'
 			
+<<<<<<< HEAD
+<<<<<<< HEAD
 			);
+=======
+			).stop()
+            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
+>>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
 	}
 	
+$('#chatListBox').scrollTop(700);
+
+
+
 var Div=document.getElementById("chatListBox");
+<<<<<<< HEAD
 console.dir(Div)
 Div.scrollTop=Div.scrollHeight;
+=======
+			).stop()
+            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
+	}
+	
+$('#chatListBox').scrollTop(700);
+
+
+
+var Div=document.getElementById("chatListBox");
+
+Div.scrollTop=700;
+console.log(Div.scrollTop)
+>>>>>>> c279803ebd1b051151fa4a3cae3d8768239d46c0
+=======
+
+Div.scrollTop=700;
+console.log(Div.scrollTop)
+>>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
 }
 
 function getInfinateChat(){//채팅리스트를 가져오는 함수를 계속 하여 채팅방을 계속 업데이트한다
@@ -255,7 +295,15 @@ else
 
 				<!--Widget body-->
 				<div id="demo-chat-body" class="collapse in">
+<<<<<<< HEAD
+<<<<<<< HEAD
 					<div class="nano has-scrollbar" id="chatListBox" style="height: 380px">
+=======
+					<div class="nano " id="chatListBox" style="height: 700px;">
+>>>>>>> c279803ebd1b051151fa4a3cae3d8768239d46c0
+=======
+					<div class="nano " id="chatListBox" style="height: 700px;">
+>>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
 						<div class="nano-content pad-all" tabindex="0"
 							style="right: -17px;">
 							<ul class="list-unstyled media-block" id="chatList">

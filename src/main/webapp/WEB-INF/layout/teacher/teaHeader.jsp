@@ -1,23 +1,37 @@
 <!-- 이인주 20200818 : 선생님 마이페이지  header  -->
 
+<%@page import="com.privateplaylist.www.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />	
+        <title>슬기로운 과외생활::관리자페이지</title>
+        <link href="${pageContext.request.contextPath}/resources/css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 <title>슬기로운 과외생활::선생님 마이페이지</title>
 
-<!-- jQuery 2.2.4.min -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<!-- jQuery 2.2.4.min 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	
+	부트스트랩 3.3.2
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+	w3schools css 라이브러리
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<!-- 부트스트랩 3.3.2 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" />
 
-<!-- w3schools css 라이브러리 -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         
 <style type="text/css">
 #main{
@@ -100,7 +114,7 @@ nav {
       -ms-transition: height 1s ease;
           transition: height 1s ease;
 }
-.menu-item#two ul {
+.menu-item.two ul {
   background: #fff;
   font-size: 13px;
   line-height: 30px;
@@ -121,7 +135,7 @@ nav {
 .menu-item#three:hover ul {
    height: 93px; 
 }
-.menu-item#two:hover ul {
+.menu-item.two:hover ul {
    height: 62px; 
 }
 
@@ -211,7 +225,81 @@ nav {
 }
 
 </style>
-</head>
+<%
+ String userID=null;
+if(session.getAttribute("loginUser") !=null){
+	userID=((Member)session.getAttribute("loginUser")).getUserId();//사용자의 정보가져오기
+	
+}
+String toID=null;
+if(request.getAttribute("toID") !=null){
+	toID=(String)request.getAttribute("toID");//채팅하는 대상의 정보 가져오기
+}
+
+if(userID==null){
+	
+	String url=request.getContextPath()+"/member/login";
+	session.setAttribute("messageContent", "로그인이 되어있지 않습니다");
+	session.setAttribute("messageType", "오류메시지");
+	/* response.sendRedirect(url); */
+}
+%>
+
+<!-- 로그아웃이 되면 로그인 페이지로 이동시킴  -->
+
+<%
+	String messageContent = null;
+	if (session.getAttribute("messageContent") != null) {
+		messageContent = (String) session.getAttribute("messageContent");
+	}
+	String messageType = null;
+	if (session.getAttribute("messageType") != null) {
+		messageType = (String) session.getAttribute("messageType");
+	}
+	if (messageContent != null) {
+%>
+
+<script type="text/javascript">
+	/* $("#messageModal").modal("show"); */
+	alert("로그인이 되어있지 않습니다")
+	window.location.href = "${pageContext.request.contextPath}/member/login";
+</script>
+<%
+	session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+	}
+%>
+
+
+<script type="text/javascript">
+//안읽은 메시지 데이터 가져오기
+function getUnread(){
+	
+	var userID='<%=userID%>';
+	
+	$.ajax({
+		type:"POST",
+		url:"${pageContext.request.contextPath}/chat/unread",
+		data:{
+			userID:encodeURIComponent(userID)
+		},
+		success:function(data){
+			
+			$("#chkUnread").html(data);
+		}
+	});
+	
+}
+
+//3초마다 안읽은 데이터가 있는지 확인
+function getInfiniteBox(){
+	setInterval(function(){
+		getUnread();
+	},3000);
+}
+
+</script>
+
 <body>
 
 <br>
@@ -250,11 +338,11 @@ nav {
             </ul>
           </div>
           
-           <div class="menu-item" id="two">
+           <div class="menu-item two connectLesson">
             <h4><a href="#">과외 연결</a></h4>
 	            <ul>
 	              <li><a href="#">연결된 과외</a></li>
-	              <li><a href="#">학생 신청 내역</a></li>
+	              <li  id="signStu"><a href="${pageContext.request.contextPath }/teacher/signstu">학생 신청 내역</a></li>
 	            </ul>
           </div>
           
@@ -263,15 +351,15 @@ nav {
             <ul>
               <li><a href="#">질문 게시판</a></li>
               <li><a href="#">후기 게시판</a></li>
-              <li><a href="#">신고 내역</a></li>
+              <li><a href="${pageContext.request.contextPath}/teacher/blackList">신고 내역</a></li>
             </ul>
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">1:1 문의</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/teacher/chatBox">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
       
-      <div class="menu-item" id="two">
+      <div class="menu-item two" >
             <h4><a href="#">중고장터</a></h4>
             <ul>
               <li><a href="#">활동 내역</a></li>
@@ -280,7 +368,7 @@ nav {
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">회원정보 수정</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/teacher/profile/chkpassword">회원정보 수정</a></h4>
           </div>
           
       </nav>
@@ -288,6 +376,12 @@ nav {
 </div>
 
 
-
+<script type="text/javascript">
+ $(document).ready(function(){
+	
+	getUnread();
+	
+}) 
+</script>
 
 <div id="main"> 

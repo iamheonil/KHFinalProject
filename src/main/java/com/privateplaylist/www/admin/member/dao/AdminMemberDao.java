@@ -18,15 +18,16 @@ import common.util.Paging;
 @Repository
 public class AdminMemberDao {
 	
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int selectStuCnt(String search) {
-		return sqlSession.selectOne("Member.selectStuCnt", search);
+	public int selectStuCnt(Map<String, String> map) {
+		return sqlSession.selectOne("Member.selectStuCnt", map);
 	}
 
-	public List<Membership> selectStuList(Paging page) {
-		return sqlSession.selectList("Member.selectStuList", page);
+	public List<Map<String, Object>> selectStuList(Map<String, Object> bMap) {
+		return sqlSession.selectList("Member.selectStuList", bMap);
 	}
 
 	public Membership selectStuDetail(int userNo) {
@@ -45,17 +46,18 @@ public class AdminMemberDao {
 		return sqlSession.selectList("Member.selectStuMarketList", userNo);
 	}
 
-	public int selectTchCnt(String search) {
-		return sqlSession.selectOne("Member.selectTchCnt", search);
+	public int selectTchCnt(Map<String, String> map) {
+		return sqlSession.selectOne("Member.selectTchCnt", map);
 	}
 
-	public List<Membership> selectTchList(Paging paging) {
-		return sqlSession.selectList("Member.selectTchList", paging);
+	public List<Map<String, Object>> selectTchList(Map<String, Object> bMap) {
+		return sqlSession.selectList("Member.selectTchList", bMap);
 	}
 
 	public List<Map<String, Object>> selectTchReviewList(int userNo) {
 		return sqlSession.selectList("Member.selectTchReviewList", userNo);
 	}
+	
 
 	
 

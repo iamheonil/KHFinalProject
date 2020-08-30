@@ -34,7 +34,7 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- 로그아웃 -->
             <div class="navbar-nav">
-				<a href="#">관리자 로그아웃</a>
+				<a href="/ss/admin/logout">관리자 로그아웃</a>
             </div>
             
         </nav>
@@ -87,11 +87,11 @@
                                	공지사항
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/question/list">
                               	 질문 게시판
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/review/list">
                                	후기 게시판
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>

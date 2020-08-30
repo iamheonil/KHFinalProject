@@ -7,6 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.privateplaylist.www.dto.FindLesson;
+import com.privateplaylist.www.dto.Membership;
+
 import common.util.Paging;
 
 @Repository
@@ -40,6 +43,14 @@ public class ConnectLessonDao {
 	public int getConnectedCnt(int lessonNo) {
 		int no = sqlSession.selectOne(namespace + "getConnectedCnt", lessonNo);
 		return no;
+	}
+
+	public Map<String, Object> selectLessonByNo(int lessonNo) {
+		return sqlSession.selectOne(namespace + "selectLessonByNo", lessonNo);
+	}
+
+	public Membership selectStudentByNo(int studentNo) {
+		return sqlSession.selectOne(namespace + "selectStudentByNo", studentNo);
 	}
 
 }

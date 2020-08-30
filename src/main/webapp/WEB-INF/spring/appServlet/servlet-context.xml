@@ -29,4 +29,8 @@
 	
 	<context:component-scan base-package="com.privateplaylist.www, com.privateplaylist.www.member" />
 	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.privateplaylist.www.member.vo.NaverLogin" />
+
+	
 </beans:beans>

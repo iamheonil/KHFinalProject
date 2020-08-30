@@ -7,23 +7,58 @@
 
 <mapper namespace="Member">
 
-	<select id="selectStuList" parameterType="PAGING" resultType="MEMBERSHIP">
+	<select id="selectStuList" resultType="map">
 		  	SELECT * FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
 			  	SELECT * FROM Membership
-				WHERE user_actor = 2
-				AND user_id LIKE '%' || #{search} || '%'
+				WHERE 1=1
+<!-- 				AND user_id LIKE '%' || #{paging.search} || '%' -->
+				<choose>
+		        	<when test="category == 'UserNo'">
+					     AND user_no LIKE '%' || #{paging.search} || '%'
+		        	</when>
+		        	<when test="category == '아이디'">
+					     AND user_id LIKE '%' || #{paging.search} || '%'
+		        	</when>
+		        	<when test="category == '이름'">
+				         AND user_name LIKE '%' || #{paging.search} || '%'
+		        	</when>
+		        	<otherwise>
+					    AND user_no LIKE '%' || #{paging.search} || '%'
+				        OR user_id LIKE '%' || #{paging.search} || '%'
+		        		OR user_name LIKE '%' || #{paging.search} || '%'
+		        	</otherwise>
+		        </choose>
 				ORDER BY user_no
 			) t
+			where user_actor = 2
 			ORDER BY no ) x
-		WHERE no between #{startNo} AND #{endNo}
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
   	</select>
   	
   	<select id="selectStuCnt" resultType="int">
 		SELECT count(*) FROM (select * from Membership
-		WHERE user_actor = 2
-		AND user_id LIKE '%' || #{search} || '%')
+		WHERE 1=1
+<!-- 		AND user_id LIKE '%' || #{search} || '%' -->
+		<choose>
+			<when test="category == 'UserNo'">
+				AND user_no LIKE '%' || #{search} || '%'
+        	</when>
+        	<when test="category == '아이디'">
+		        AND user_id LIKE '%' || #{search} || '%'
+        	</when>
+        	<when test="category == '이름'">
+		        AND user_name LIKE '%' || #{search} || '%'
+        	</when>
+        	<otherwise>
+        		AND user_no LIKE '%' || #{search} || '%'
+		        OR user_id LIKE '%' || #{search} || '%'
+		        OR user_name LIKE '%' || #{search} || '%'
+        	</otherwise>
+        </choose>
+		)
+        where user_actor = 2
   	</select>
 	
 	<select id="selectStuDetail" resultType="MEMBERSHIP">
@@ -38,10 +73,10 @@
 	<select id="selectStuReviewList" resultType="Map">
 		select r.*,
 		    (select distinct m.user_id from review r, membership m where r.user_no = m.user_no and m.user_no = #{userNo}) stu_id
-		, cl.user_to, m.user_name
+		, cl.teacher, m.user_name
 		from review r, connected_lesson cl, membership m
 		where r.conn_lesson_no = cl.conn_lesson_no 
-		    and cl.user_to = m.user_no
+		    and cl.teacher = m.user_no
 		    and r.user_no = #{userNo}
 		order by r.review_no
 	</select>
@@ -52,43 +87,79 @@
 	
 	<select id="selectTchCnt" resultType="int">
 		SELECT count(*) FROM (select * from Membership
-		WHERE user_actor = 1
-		AND user_id LIKE '%' || #{search} || '%')	
+				WHERE 1=1
+		<choose>
+			<when test="category == 'UserNo'">
+				AND user_no LIKE '%' || #{search} || '%'
+        	</when>
+        	<when test="category == '아이디'">
+		        AND user_id LIKE '%' || #{search} || '%'
+        	</when>
+        	<when test="category == '이름'">
+		        AND user_name LIKE '%' || #{search} || '%'
+        	</when>
+        	<otherwise>
+		        AND user_id LIKE '%' || #{search} || '%'
+		        OR user_name LIKE '%' || #{search} || '%'
+        	</otherwise>
+        </choose>
+		)
+        where user_actor = 1
 	</select>
-	<select id="selectTchList" parameterType="PAGING" resultType="MEMBERSHIP">
+	
+	
+	<select id="selectTchList" resultType="map">
 	  	SELECT * FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
 			  	SELECT * FROM Membership
-				WHERE user_actor = 1
-				AND user_id LIKE '%' || #{search} || '%'
+				WHERE 1=1
+<!-- 				AND user_id LIKE '%' || #{paging.search} || '%' -->
+				<choose>
+					<when test="category == 'UserNo'">
+						AND user_no LIKE '%' || #{paging.search} || '%'
+		        	</when>
+		        	<when test="category == '아이디'">
+					     AND user_id LIKE '%' || #{paging.search} || '%'
+		        	</when>
+		        	<when test="category == '이름'">
+				         AND user_name LIKE '%' || #{paging.search} || '%'
+		        	</when>
+		        	<otherwise>
+				        AND user_id LIKE '%' || #{paging.search} || '%'
+		        		OR user_name LIKE '%' || #{paging.search} || '%'
+		        	</otherwise>
+		        </choose>
 				ORDER BY user_no
 			) t
+			where user_actor = 1
 			ORDER BY no ) x
-		WHERE no between #{startNo} AND #{endNo}
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
 	</select>
+	
+	
 <!-- 	<select id="selectTchReviewList" resultType="Map"> -->
 <!-- 		select r.*, a.user_id stu_id,  -->
-<!-- 		    (select distinct m.user_id from review r, membership m where cl.user_to = m.user_no and cl.user_to=#{userNo}) tch_id -->
-<!-- 		, cl.user_to, m.user_name -->
+<!-- 		    (select distinct m.user_id from review r, membership m where cl.teacher = m.user_no and cl.teacher=#{userNo}) tch_id -->
+<!-- 		, cl.teacher, m.user_name -->
 <!-- 		from review r, connected_lesson cl, membership m, (select distinct m.user_id from review r, membership m -->
 <!-- 		    where m.user_no = r.user_no) a -->
 <!-- 		where r.conn_lesson_no = cl.conn_lesson_no  -->
-<!-- 		    and cl.user_to = m.user_no -->
-<!-- 		    and cl.user_to = #{userNo} -->
+<!-- 		    and cl.teacher = m.user_no -->
+<!-- 		    and cl.teacher = #{userNo} -->
 <!-- 		order by r.review_no -->
 <!-- 	</select> -->
 	
 	<!-- 내(선생님) 후기글 작성한 학생 id조회 -->
 	<select id="selectTchReviewList" resultType="Map">
-<!-- 		select r.*, m.user_id, c.user_to from review r -->
+<!-- 		select r.*, m.user_id, c.teacher from review r -->
 <!-- 		join membership m on m.user_no = r.user_no -->
 <!-- 		join connected_lesson c on c.conn_lesson_no = r.conn_lesson_no -->
-<!-- 		where c.user_to = #{userNo} -->
-		select r.*, m.user_id, c.user_to from review r
+<!-- 		where c.teacher = #{userNo} -->
+		select r.*, m.user_id, c.teacher from review r
 		join membership m on m.user_no = r.user_no
 		join connected_lesson c on c.conn_lesson_no = r.conn_lesson_no
-		where c.user_to = #{userNo}
+		where c.teacher = #{userNo}
 		AND r.review_state = 0
 	</select>
 
