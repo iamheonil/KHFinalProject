@@ -66,6 +66,7 @@ public class MemberServiceImpl implements MemberService {
 		// DB에 저장된 사용자 정보
 		Member member = memberDao.selectMember(memberMap);
 		
+		
 		// 사용자가 입력한 비밀번호와 DB에 인코딩되어 저장된 비밀번호가 같은지 확인
 		if (passwordEncoder.matches(password, member.getUserPw())) {
 			return member;
