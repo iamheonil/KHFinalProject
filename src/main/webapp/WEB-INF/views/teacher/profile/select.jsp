@@ -9,6 +9,9 @@
 <!-- 선생님 마이페이지 헤더 -->
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
+<!-- 모달 추가 -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+
 <style type="text/css">
 #main {
 	display: inline-block;
@@ -20,7 +23,7 @@
 	border: 1px solid #ccc;
 	border-radius: 20px;
 	padding-top : 10px;
-	height: 1530px;
+	height: 1625px;
 }
 #boardtitle {
     font-size: 16px;
@@ -58,6 +61,7 @@
 	width: 200px;
 	height: 200px;
 }
+
 </style>
 
 <!-- 도로명 주소 -->
@@ -117,6 +121,12 @@ $(document).ready(function() {
           $('#pw-check-msg').attr('color', '#199894b3');
         }
 
+    });
+    
+    /* 모달 > 탈퇴  */
+    $('#deletebtn').click(function(){
+    	alert("탈퇴");
+    	location.href="<%= request.getContextPath() %>/teacher/profile/delete?userNo=${loginUser.userNo }";
     });
     
 });
@@ -189,6 +199,7 @@ function loadImg(value){
 	}
 	
 }
+
 </script>
 
 
@@ -200,9 +211,9 @@ function loadImg(value){
 <div id="profileborder">
 
     <form action="<%= request.getContextPath() %>/teacher/profile/update" method="post" class="form-horizontal" enctype="multipart/form-data">
-      
-      	<div class="boardersize pointfont"><h5>개인 정보</h5></div>
-      
+      	<br>
+      	<div class="boardersize pointfont" style="font-weight: bold;"><h5>개인 정보 수정 & 탈퇴</h5></div>
+        <br>
       <div class="boardersize">
          <label class="col-form-label col-4">프로필 사진</label>
        	 <div>
@@ -290,6 +301,7 @@ function loadImg(value){
        
      <div class="boardersize">
          <label class="col-form-label col-4">프로필 사진 변경</label>
+         
        	 <div class="col-8 float">
          	<input type="file" id="file" name="file" onchange="loadImg(this);" /> 
     	 </div>
@@ -312,34 +324,35 @@ function loadImg(value){
     <div class="deleteprofile">
     <small>회원정보를 삭제하시겠어요?</small>
     <!-- Button trigger modal -->
-	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">회원탈퇴</button>
+	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalProfile">회원탈퇴</button>
     </div>
     
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModalProfile" tabindex="-1" role="dialog" aria-labelledby="myModalProfileLabel" aria-hidden="true">
 	  <div class="modal-dialog">
-	    <div class="modal-content">
+	    <div class="modal-content" style="top:110px; width: 600px;">
 	    
 	      <div class="modal-header">
-	        <h4 class="modal-title" id="myModalLabel">회원 탈퇴 안내</h4>
+	        <h4 class="modal-title" id="myModalProfileLabel">회원 탈퇴 안내</h4>
 	      </div>
 	      
 	      <div class="modal-body">
-	        1. 회원탈퇴시 모든 거래내역은 확인할 수 없습니다.<br>
-	        2. 연결된 과외가 있는 경우 회원탈퇴를 할 수 없습니다.<br>
+	        1. 연결된 과외가 있는 경우 회원탈퇴를 할 수 없습니다.<br>
+	        2. 회원탈퇴시 모든 거래내역은 확인할 수 없습니다.<br>
 	        3. 회원탈퇴시 결제 이미 결제된 과외 글에 대해서 환불할 수 없습니다<br>
-	        4. 학생의 정보를 다시 볼 수 없습니다<br>
+	        4. 학생의 정보를 다시 열람 할 수 없습니다<br>
 	        5. 위의 사항을 모두 동의합니다<br>
 	      </div>
 	      
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	        <a href="<%= request.getContextPath() %>/teacher/profile/delete"><button type="button" class="btn btn-default">탈퇴하기</button></a>
+	        <button type="button" class="btn btn-default" id="deletebtn">탈퇴</button>
 	      </div>
 	      
 	    </div>
 	  </div>
 	</div>
+ 
 	    
 </div>
 </div>
