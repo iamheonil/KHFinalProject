@@ -304,7 +304,6 @@ function getInfiniteBox(){
 }
 
 </script>
-
 <body>
 
 <br>

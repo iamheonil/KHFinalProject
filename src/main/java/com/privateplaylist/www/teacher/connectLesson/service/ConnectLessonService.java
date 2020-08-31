@@ -67,6 +67,12 @@ public interface ConnectLessonService {
 	 * @return
 	 */
 	public Membership selectStudentByNo(int studentNo);
+
+	/**
+	 * 인원수가 다 찼으면 과외 게시글 내리기
+	 * @param lessonNo
+	 */
+	public void downLessonBoard(int lessonNo);
 	
 	
 

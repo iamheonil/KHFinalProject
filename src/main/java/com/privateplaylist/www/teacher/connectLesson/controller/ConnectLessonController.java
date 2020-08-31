@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.privateplaylist.www.dto.FindLesson;
 import com.privateplaylist.www.dto.Membership;
+import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.connectLesson.service.ConnectLessonService;
 
 import common.util.Paging;
@@ -23,16 +23,6 @@ import common.util.Paging;
 @RequestMapping("/teacher")
 public class ConnectLessonController {
 	
-	@RequestMapping("/connectlesson")
-	public ModelAndView connectLession() {
-
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("teacher/connectedLesson/connectedLesson");
-		
-		return mav;
-	}
-
 	@Autowired
 	private ConnectLessonService connectLessonService;
 	
@@ -41,9 +31,9 @@ public class ConnectLessonController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-//		Membership m = (Member) session.getAttribute("loginUser");
+//		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 7;
+		int userNo = 6;
 		
 		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
 		
@@ -79,6 +69,10 @@ public class ConnectLessonController {
 		// 인원 수 차지 않았으면 승인 가능
 		int res = connectLessonService.updateConnState(connNo);
 		//	인원수를 다 채웠을 경우 해당 과외 게시글 내리기
+		if( maxPeople == signCnt+1 ) {
+			connectLessonService.downLessonBoard(lessonNo);
+		}
+		
 		
 		return res;
 		
