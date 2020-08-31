@@ -39,10 +39,10 @@
   	WHERE conn_lesson_no = #{connNo}
   </update>
   
-  <delete id="rejectSignStu" parameterType="int">
-  	DELETE connected_lesson
+  <update id="rejectSignStu" parameterType="int">
+  	UPDATE connected_lesson SET is_connected = 2
   	WHERE conn_lesson_no = #{connNo}
-  </delete>
+  </update>
   
   <select id="getMaxPeople" parameterType="int" resultType="map">
 	SELECT f.max_people, f.lesson_no FROM connected_lesson c

@@ -33,7 +33,7 @@ public class ConnectLessonDao {
 	}
 
 	public int rejectSignStu(int connNo) {
-		return sqlSession.delete(namespace + "rejectSignStu", connNo);
+		return sqlSession.update(namespace + "rejectSignStu", connNo);
 	}
 
 	public Map<String, Integer> getMaxPeople(int connNo) {
