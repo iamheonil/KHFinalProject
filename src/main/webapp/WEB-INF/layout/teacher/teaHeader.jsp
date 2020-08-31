@@ -339,23 +339,19 @@ function getInfiniteBox(){
 	            </ul>
           </div>
           
-           <div class="menu-item two connectLesson">
-            <h4><a href="#">게시판</a></h4>
-            <ul>
-              <li><a href="${pageContext.request.contextPath }/teacher/question/list">질문 게시판</a></li>
-              <li><a href="${pageContext.request.contextPath }/teacher/review/list">후기 게시판</a></li>
-            </ul>
-          </div>
-
           <div class="menu-item">
             <h4><a href="${pageContext.request.contextPath }/teacher/chatBox">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
           
-          <div class="menu-item">
-            <h4><a href="#">중고장터</a></h4>
+           <div class="menu-item" id="three">
+            <h4><a href="#">게시판</a></h4>
+            <ul>
+              <li><a href="${pageContext.request.contextPath }/teacher/question/list">질문 게시판</a></li>
+              <li><a href="${pageContext.request.contextPath }/teacher/review/list">후기 게시판</a></li>
+              <li><a href="">중고장터</a></li>
+            </ul>
           </div>
-          
-          
+
            <div class="menu-item">
             <h4><a href="${pageContext.request.contextPath }/teacher/blackList">신고 내역</a></h4>
           </div>
