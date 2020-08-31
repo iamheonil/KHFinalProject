@@ -148,7 +148,7 @@ function emailChk(){
 				
 		userEmail = document.getElementById('userEmail').value;
 		var param = "email=" + userEmail + "&code_check=" + code;
-		console.log(param)
+		// console.log(param)
 		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
 		alert("이메일을 전송했습니다!")
 	}
@@ -176,7 +176,10 @@ function emailChk(){
 		if (usercode == code) {
 			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
 		} else {
-			document.getElementById("email-check-msg").innerHTML = "이메일 인증 실패";
+			document.querySelector('#userEmail').focus();
+			document.querySelector("#userEmail").value = "";
+			document.querySelector("#email-check-msg").innerHTML = "이메일 인증 실패";
+			document.querySelector('#email-check-msg').style.color = 'red';
 		}
 	
 	}
@@ -217,13 +220,13 @@ $(document).ready(function() {
 	});
 	
 	$("#userPw").blur(function() {
-		if (idJ.test($(this).val())) {
-				// console.log(idJ.test($(this).val()));
+		if (pwJ.test($(this).val())) {
+				// console.log(pwJ.test($(this).val()));
 				console.log('Password Check');
 		} else {
 			$("#userPw").val('');
 			$("#userPw").focus();
-			$('#pw-check-msg').text('소문자, 대문자, 특수문자, 숫자, 6글자 이상이어야 합니다');
+			$('#pw-check-msg').text('대소문자, 숫자와 특수문자를 하나 이상 넣어 7~14자 사이로 작성해야 합니다');
 			$('#pw-check-msg').css('color', 'red');
 		}
 	});
@@ -231,7 +234,7 @@ $(document).ready(function() {
 	// 이메일 전송 전 정규식
 	$("#userEmail").blur(function() {
 		if (mailJ.test($(this).val())) {
-				// console.log(nameJ.test($(this).val()));
+				// console.log(emailJ.test($(this).val()));
 				$('#email-check-msg').text('이메일 인증을 진행해주세요!');
 				$('#email-check-msg').css('color', '#199894b3');
 				$('#emailBtn').attr('disabled', false);
