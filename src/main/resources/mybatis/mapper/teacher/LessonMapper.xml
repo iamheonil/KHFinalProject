@@ -53,8 +53,8 @@
 			order by no)x
 		where no between #{paging.startNo} and #{paging.endNo}
 	</select>
-	<delete id="deleteLesson" parameterType="int">
-		DELETE find_lesson
+	<delete id="deleteLesson">
+		DELETE from find_lesson
 		where lesson_no = #{lessonNo}
 	</delete>
 	

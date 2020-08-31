@@ -90,7 +90,8 @@ public class LessonController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/lessonlist", method = RequestMethod.GET)
+//	@RequestMapping(value = "/lessonlist", method = RequestMethod.GET)
+	@RequestMapping("/lessonlist")
 	public ModelAndView lessonList(@RequestParam(required=false, defaultValue="1") int curPage, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		//세션값 가지고 오기
@@ -105,22 +106,22 @@ public class LessonController {
 	}
 	
 //	@RequestMapping("/deletelesson")
-//	public ModelAndView deleteLesson(int lessonNo) {
-//		
+//	public ModelAndView deleteLesson(@RequestParam int lessonNo) {
 //		ModelAndView mav = new ModelAndView();
+//		System.out.println("컨트롤러 deletelesson");
+//		System.out.println("lessonNo : " + lessonNo);
+//		lessonService.deleteLesson(lessonNo);
 //		
-//		int res = lessonService.deleteLesson(lessonNo);
-//		mav.setViewName("redirect:lessonlist");
+//		System.out.println("deleteLesson컨트롤러 실행됨");
+//		mav.setViewName("redirect: lessonlist");
+//		
 //		return mav;
 //	}
 
 	@RequestMapping(value = "/deletelesson", method = RequestMethod.POST)
 	@ResponseBody
 	public int deleteLesson(@RequestParam int lessonNo) {
-		System.out.println("deletelesson 컨트롤러 실행");
-		System.out.println(lessonNo);
 		int res = lessonService.deleteLesson(lessonNo);
-		System.out.println(res);
 		if(res>0) {//삭제처리에성공
 			return 1;
 		}else {//삭제에 실패했을때
@@ -128,22 +129,6 @@ public class LessonController {
 		}
 			
 	}
-	
-	
-//	//중고장터 삭제 ajax
-//	@PostMapping("/deletelesson")
-//	@ResponseBody
-//	public String deleteLesson(@RequestParam int lessonNo) {
-//		
-//		
-//		int res=lessonService.deleteLesson(lessonNo);
-//		if(res>0) {//삭제처리에성공
-//			return "1";
-//		}else {//삭제에 실패했을때
-//			return "0";
-//		}
-//		
-//	}
 	
 	
 	@RequestMapping("/endlesson")
