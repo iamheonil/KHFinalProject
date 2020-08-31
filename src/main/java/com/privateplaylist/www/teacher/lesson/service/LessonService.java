@@ -77,9 +77,7 @@ public class LessonService {
 	}
 
 	public int deleteLesson(int lessonNo) {
-		int res = lessonDao.deleteLesson(lessonNo);
-		System.out.println("service - dao결과 :"+res);
-		return res;
+		return lessonDao.deleteLesson(lessonNo);
 	}
 
 	public void endlesson(int lessonNo) {
