@@ -20,6 +20,7 @@
 	<resources mapping="/resources/css/**" location="/resources/css/" />
 	<resources mapping="/resources/js/**" location="/resources/js/" />
 	<resources mapping="/resources/images/**" location="/resources/images/" />
+	<resources mapping="/upload/**" location="file:///C:/workspace-final/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PrivatePlayList/resources/upload/"/>
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

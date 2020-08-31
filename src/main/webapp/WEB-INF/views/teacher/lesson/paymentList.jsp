@@ -1,18 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
-<!-- jQuery 2.2.4.min -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<style type="text/css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">	
+<style type="text/css">
+#StudentModal{
+	padding: 0;
+}
+
+.modal-dialog{
+	overflow-y:initail !important;
+   width: 500px;
+}
+
+.modal-body{
+   overflow-y:auto; 
+   background: #f5f5f5;
+}
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+.panel-body{
+	text-align: center;
+}
+
+#stuInfoTabel{
+	width: 60%;
+	margin: 0 auto;
+	text-align: left;
+}
+</style>
 <script type="text/javascript">
 function connectStu(connNo){
 	var chk = confirm("학생을 승인하시겠습니까?");
@@ -39,6 +92,7 @@ function connectStu(connNo){
 	}
 	
 }
+
 function rejectStu(connNo){
 	var chk = confirm("학생을 거절하시겠습니까?");
 	
@@ -62,6 +116,7 @@ function rejectStu(connNo){
 	}
 	
 }
+
 function lessonModal(lessonNo){
 	var url = "<%=request.getContextPath() %>/teacher/lessoninfo";
 	
@@ -92,6 +147,7 @@ function lessonModal(lessonNo){
 	$("#lessonModal").modal();
 	
 }
+
 function StudentModal(studentNo){
 	var url = "<%=request.getContextPath() %>/teacher/studentinfo";
 	
@@ -121,6 +177,7 @@ function StudentModal(studentNo){
 	$("#StudentModal").modal();
 	
 }
+
 </script>
 
 <div class="modal fade" id="lessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
@@ -198,6 +255,7 @@ function StudentModal(studentNo){
   </div>
 </div>
 
+<!-- 학생 모달 -->
 <div class="modal fade" id="StudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document"  style="z-index: inherit;">
     <div class="modal-content">
@@ -249,9 +307,9 @@ function StudentModal(studentNo){
       
 
 	<div class="listBox">
-			<div id="title">과외 연결
+			<div id="title">과외
 				<i class="glyphicon glyphicon-menu-right"></i>
-				<a href="">학생 신청 내역</a>
+				<a href="">과외 검토 & 결제</a>
 			</div>
 			
 			<div class="row">
@@ -261,50 +319,59 @@ function StudentModal(studentNo){
 				<table class="table user-list">
 					<thead>
 						<tr>
-							<th class="text-center" style="width: 15%;"><span>신청자</span></th>
+							<th class="text-center" style="width: 15%;"><span>번호</span></th>
 							<th class="text-center" style="width: 30%;"><span>과외명</span></th>
-							<th class="text-center" style="width: 15;"><span>과목</span></th>
+							<th class="text-center" style="width: 12;"><span>과목</span></th>
 							<th class="text-center"><span>인원</span></th>
-							<th class="text-center" style="width: 10%;"><span>신청 날짜</span></th>
-							<th class="text-center"><span>승인</span></th>
+							<th class="text-center" style="width: 13%;"><span>작성일</span></th>
+							<th class="text-center"><span>관리자검토</span></th>
+							<th class="text-center"><span>결제상태</span></th>
 						</tr>
 					</thead>
 					<tbody>
-                       <c:forEach items="${list }" var="stu">
+                       <c:forEach items="${list }" var="pay">
 						<tr>
+							<td>${pay.LESSON_NO }</td>
 							<td>
-								<a href="#" title="학생 정보 보기" onclick="StudentModal(${stu.USER_NO });">${stu.USER_NAME }</a>
+								<a href="#" title="과외 정보 보기" onclick="lessonModal(${pay.LESSON_NO });">${pay.LESSON_TITLE }</a>
 							</td>
 							<td>
-								<a href="#" title="과외 정보 보기" onclick="lessonModal(${stu.LESSON_NO });">${stu.LESSON_TITLE }</a>
+								${pay.LESSON_SUBJECT }
 							</td>
 							<td>
-								${stu.LESSON_SUBJECT }
-							</td>
-							<td>
-								<c:if test="${stu.MAX_PEOPLE eq 1 }">
-									<span class="label label-warning">개인</span>
+								<c:if test="${pay.MAX_PEOPLE eq 1 }">
+									<!-- <span class="label label-warning">개인</span> -->
+									<span>개인</span>
 								</c:if>
-								<c:if test="${stu.MAX_PEOPLE gt 1 }">
-									<span class="label label-success">${stu.CNT }/${stu.MAX_PEOPLE }</span>
+								<c:if test="${pay.MAX_PEOPLE gt 1 }">
+									<!-- <span class="label label-success">그룹</span> -->
+									<span>그룹</span>
 								</c:if>
 							</td>
 							<td>
-								${stu.LEG_DATE }
+								${pay.LESSON_DATE }
+<%-- 								<fmt:formatDate value="${date.to}" pattern="yy/MM/dd" /> --%>
 							</td>
-							<td style="width: 20%;">
-								<a href="javascript:void(0);" onclick="connectStu(${stu.CONN_LESSON_NO});" class="table-link success">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-check fa-stack-1x fa-inverse"></i>
-									</span>
-								</a>
-								<a href="#" class="table-link danger" onclick="rejectStu(${stu.CONN_LESSON_NO});" >
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-									</span>
-								</a>
+							<td>
+								<c:if test="${pay.LESSON_CHK eq 0 }">
+<!-- 									<span class="label label-warning">검토중</span> -->
+									<span>검토중</span>
+								</c:if>
+								<c:if test="${pay.LESSON_CHK eq 1 }">
+<!-- 									<span class="label label-success">검토완료</span> -->
+									<span>검토완료</span>
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${pay.LESSON_CHK eq 0 }">
+									<span> - </span>
+								</c:if>
+								<c:if test="${pay.LESSON_CHK eq 1 }">
+									<a href="${pageContext.request.contextPath}/teacher/paycheck?lessonNo=${pay.LESSON_NO}"><span class="label label-success" >결제하기</span></a>
+								</c:if>
+<%-- 								<c:if test="${pay.PAY_STATE eq 1 }"> --%>
+<!-- 									<span class="label label-success">결제완료</span> -->
+<%-- 								</c:if> --%>
 							</td>
 						</tr>
 			          </c:forEach>
@@ -313,7 +380,7 @@ function StudentModal(studentNo){
 			</div>
 			
 			<c:if test="${not empty list }">
-			<c:import url="/WEB-INF/paging/teacher/connectLesson/signStuPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/teacher/lesson/paymentlistPaging.jsp"></c:import>
 			</c:if>
 		</div>
 	</div>
@@ -323,3 +390,6 @@ function StudentModal(studentNo){
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
+
+
+
