@@ -13,22 +13,28 @@
 
 
 <style type="text/css">
-#title{
-
-	width: 100%;
-	font-weight: bold;
+#main {
+	display: inline-block;
+	float: right;
+	width: 960px;
+	padding: 0 20px;
 }
 
-#title a {
-	color: #17B794; /* 청록색 */
+#boardtitle {
+    font-size: 16px;
+    font-weight: bold;
 }
 </style>
 
+<div id="main">
+	<span id="boardtitle">제목</span>
+	<hr>
+	
+	
+	
+	
+	
 
-
-<div id="title">과외 연결
-	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">연결된 과외</a>
 </div>
 
 
