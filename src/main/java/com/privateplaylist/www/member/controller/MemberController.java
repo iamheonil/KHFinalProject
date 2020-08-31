@@ -101,7 +101,7 @@ public class MemberController {
 			mav.setViewName("redirect:join");
 		} else {
 			System.out.println("회원가입 성공");
-			mav.setViewName("redirect:main");
+			mav.setViewName("redirect:login");
 		}
 		return mav;
 	}
