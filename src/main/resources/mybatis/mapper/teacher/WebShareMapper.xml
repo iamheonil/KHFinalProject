@@ -9,13 +9,14 @@
 	<!-- 연결된 과외 조회 -->
 	<select id="selectConnectedLesson" parameterType="int" resultType="map">
 		
-		select cl.conn_lesson_no, cl.lesson_no, fl.lesson_title, m.user_id, fl.lesson_subject, fl.lesson_loc, fl.max_people
+		select cl.conn_lesson_no, cl.lesson_no, fl.lesson_title, m.user_id, fl.lesson_subject, fl.lesson_loc, fl.max_people, cl.student
 		from connected_lesson cl, find_lesson fl, membership m
 		where cl.lesson_no = fl.lesson_no
 		    and m.user_no = cl.student
 		    and cl.teacher = #{teaNo}
 		    and cl.is_connected = 1
-		group by cl.conn_lesson_no, cl.lesson_no, fl.lesson_title, m.user_id, fl.lesson_subject, fl.lesson_loc, fl.max_people
+		    and cl.is_end = 0
+		group by cl.conn_lesson_no, cl.lesson_no, fl.lesson_title, m.user_id, fl.lesson_subject, fl.lesson_loc, fl.max_people, cl.student
 		order by cl.lesson_no
 
 	</select>

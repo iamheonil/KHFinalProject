@@ -75,4 +75,10 @@ public class ConnectLessonServiceImpl implements ConnectLessonService {
 		connectLessonDao.downLessonBoard(lessonNo);
 	}
 
+	@Override
+	public int connLessonEnd(int connLessonNo) {
+		int res = connectLessonDao.connLessonEnd(connLessonNo);
+		return res;
+	}
+
 }
