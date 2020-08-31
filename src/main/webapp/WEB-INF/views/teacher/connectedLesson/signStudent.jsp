@@ -6,6 +6,67 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
+
+
+<style type="text/css">
+#StudentModal{
+	padding: 0;
+}
+
+.modal-dialog{
+	overflow-y:initail !important;
+   width: 500px;
+}
+
+.modal-body{
+   overflow-y:auto; 
+   background: #f5f5f5;
+}
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+.panel-body{
+	text-align: center;
+}
+
+
+#stuInfoTabel{
+	width: 60%;
+	margin: 0 auto;
+	text-align: left;
+}
+</style>
 <!-- jQuery 2.2.4.min -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -74,6 +135,7 @@ function lessonModal(lessonNo){
 		success : function(result) {
 			var res = result;
 			console.log(res);
+
 			
 			$("#lessonTitle").text(result.LESSON_TITLE);
 			$("#lessonContent").text(result.LESSON_CONTENT);
@@ -84,6 +146,7 @@ function lessonModal(lessonNo){
 			$("#lessonAge").text(result.LESSON_AGE);
 			$("#lessonPeople").text(result.MAX_PEOPLE + " 명");
 			
+
 		},
 		error : function(){
 			alert("ajax 실패")
@@ -136,6 +199,7 @@ function StudentModal(studentNo){
         <h6 class="modal-title" id="lessonModalLabel">과외 정보</h6>
       </div>
       <div class="modal-body">
+
       	<section class="ng-scope ng-fadeInLeftShort" style="">
 		<!-- uiView:  -->
 		<div class="ng-fadeInLeftShort ng-scope" style="">
@@ -194,6 +258,7 @@ function StudentModal(studentNo){
 		</div>
 		</div>
 		</section>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
@@ -202,6 +267,9 @@ function StudentModal(studentNo){
     </div>
   </div>
 </div>
+
+
+<!-- 학생 모달 -->
 
 <div class="modal fade" id="StudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document"  style="z-index: inherit;">

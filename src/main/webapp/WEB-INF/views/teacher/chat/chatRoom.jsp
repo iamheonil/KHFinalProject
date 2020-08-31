@@ -29,7 +29,6 @@ String toID=null;
 if(request.getAttribute("toID") !=null){
 	toID=(String)request.getAttribute("toID");//채팅하는 대상의 정보 가져오기
 }
-
 if(userID==null){
 	
 	String url=request.getContextPath()+"/member/login";
@@ -40,17 +39,14 @@ if(userID==null){
 %>
 
 <script type="text/javascript">
-
 function searchParam(key) {//파라미터 값을 가져오는 함수
 	  return new URLSearchParams(location.search).get(key);
 	};
-
 function autoCloseAlert(selector,delay){//메세지가 전달된 후의 결과메시지를 띄우는 함수
 	var alert=$(selector).alert();
 	alert.show();
 	window.setTimeout(function() {alert.hide()},delay)
 }
-
 function submitFunction(){//메시지를 전달받아 db에넣고 결과값출력후 채팅창을 비움
 var userID='<%=userID%>'
 var toID=searchParam('toID')
@@ -82,7 +78,6 @@ $.ajax({
 	
 }
 var lastID=0;//처음에는 0으로 설정해주어 채팅방의 모든 리스트를 가져온다
-
 function chatListFunction(type){//채팅리스트를 ajax로 가져와서 파싱하는 함수
 	
 	var userID='<%=userID%>'
@@ -148,17 +143,8 @@ function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메�
 				'</div>'+
 				'</li>'
 				
-<<<<<<< HEAD
-<<<<<<< HEAD
 				);
-=======
-				).stop()
-	            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
->>>>>>> c279803ebd1b051151fa4a3cae3d8768239d46c0
-=======
-				).stop()
-	            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
->>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
+		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 		
 	}else{
 	
@@ -179,52 +165,20 @@ function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메�
 			'</div>'+
 			'</li>'
 			
-<<<<<<< HEAD
-<<<<<<< HEAD
 			);
-=======
-			).stop()
-            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
->>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
+	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 	}
 	
-$('#chatListBox').scrollTop(700);
-
-
-
 var Div=document.getElementById("chatListBox");
-<<<<<<< HEAD
 console.dir(Div)
 Div.scrollTop=Div.scrollHeight;
-=======
-			).stop()
-            .animate({ scrollTop: $('#chatList')[0].scrollHeight }, 1000);
-	}
-	
-$('#chatListBox').scrollTop(700);
-
-
-
-var Div=document.getElementById("chatListBox");
-
-Div.scrollTop=700;
-console.log(Div.scrollTop)
->>>>>>> c279803ebd1b051151fa4a3cae3d8768239d46c0
-=======
-
-Div.scrollTop=700;
-console.log(Div.scrollTop)
->>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
 }
-
 function getInfinateChat(){//채팅리스트를 가져오는 함수를 계속 하여 채팅방을 계속 업데이트한다
 	setInterval(function(){
 		
 		chatListFunction(lastID);
 	},1500)
 }
-
-
 </script>
 </head>
 <body>
@@ -295,19 +249,11 @@ else
 
 				<!--Widget body-->
 				<div id="demo-chat-body" class="collapse in">
-<<<<<<< HEAD
-<<<<<<< HEAD
-					<div class="nano has-scrollbar" id="chatListBox" style="height: 380px">
-=======
-					<div class="nano " id="chatListBox" style="height: 700px;">
->>>>>>> c279803ebd1b051151fa4a3cae3d8768239d46c0
-=======
-					<div class="nano " id="chatListBox" style="height: 700px;">
->>>>>>> c9add5d17de16734154a5b5cadab07aaa1b79513
+					<div class="nano has-scrollbar"  style="height: 380px">
 						<div class="nano-content pad-all" tabindex="0"
-							style="right: -17px;">
+							style="right: -17px;" id="chatListBox">
 							<ul class="list-unstyled media-block" id="chatList">
-								
+
 
 
 							</ul>
@@ -350,7 +296,6 @@ else
 	</div>
 
 	<script type="text/javascript">
-
 $(document).ready(function(){
 	chatListFunction('ten');
 	getInfinateChat();
@@ -358,4 +303,4 @@ $(document).ready(function(){
 </script>
 
 </body>
-</html>
+</html> 
