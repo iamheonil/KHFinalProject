@@ -119,6 +119,69 @@ body{
 <script type="text/javascript">
 
 
+//이메일 인증
+
+function emailChk(){
+
+	var userEmail = document.getElementById('userEmail').value;
+	// console.log(userEmail);
+	code = Math.floor(Math.random() * 1000000) + 100000;
+	
+	$("#sendMail").html(
+    		'<label class="col-form-label col-4">인증번호</label>' +
+			'<div class="col-8 float">'+
+               ' <input type="text" id="inputCode" name="inputCode" required="required" size="18">' +
+               ' <input type="button" value="인증하기" onclick="emailCheck()"> ' +
+            '</div>'		
+    )}
+
+/* 	// 회원가입창의 이메일 입력란의 값을 가져온다.
+	function pValue() {
+		userEmail = opener.document.getElementById("userEmail").value;
+		console.log(userEmail)
+	} */
+	
+	// console.log("code: " + code)
+	
+	// 이메일 인증번호 체크
+	function emailSend() {
+				
+		userEmail = document.getElementById('userEmail').value;
+		var param = "email=" + userEmail + "&code_check=" + code;
+		console.log(param)
+		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
+		alert("이메일을 전송했습니다!")
+	}
+	
+
+	function ajaxFromServer() {
+		if (httpRequest.readyState == 4) {//DONE,응답완료
+			if (httpRequest.status == 200) {//OK
+				var resultText = httpRequest.responseText;
+				if (resultText == 0) {
+					alert("이메일 전송 실패");
+				} else if (resultText == 1) { //이메일 전송 완료
+					alert("이메일 전송완료")
+				}
+
+			} else {
+				console.log("AJAX요청/응답 에러")
+			}
+		}
+	}
+
+	function emailCheck() {
+		var usercode = document.getElementById("inputCode").value;
+		console.log(usercode)
+		if (usercode == code) {
+			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
+		} else {
+			document.getElementById("email-check-msg").innerHTML = "이메일 인증 실패";
+		}
+	
+	}
+
+
 $(document).ready(function() {
 
 //정규식 시작
@@ -128,7 +191,7 @@ $(document).ready(function() {
 	//아이디 정규식
 	var idJ = /^[a-z0-9]{4,12}$/;
 	// 비밀번호 정규식
-	var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+	var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,14}$/;
 	// 이름 정규식
 	var nameJ = /^[가-힣]{2,6}$/;
 	// 이메일 검사 정규식
@@ -319,67 +382,6 @@ function xmlIdCheck(){
     })
 }
 // 아이디 AJAX 처리 끝
-
-// 이메일 인증
-
-function emailChk(){
-	
-	$("#sendMail").html(
-    		'<label class="col-form-label col-4">인증번호</label>' +
-			'<div class="col-8 float">'+
-               ' <input type="text" id="inputCode" name="inputCode" required="required" size="18">' +
-               ' <input type="button" value="인증하기" onclick="emailCheck()"> ' +
-            '</div>'		
-    )}
-
-/* 	// 회원가입창의 이메일 입력란의 값을 가져온다.
-	function pValue() {
-		userEmail = opener.document.getElementById("userEmail").value;
-		console.log(userEmail)
-	} */
-
-	
-	code = Math.floor(Math.random() * 1000000) + 100000;
-	// userEmail = document.getElementById("userEmail").value;
-	// console.log("code: " + code)
-	
-	// 이메일 인증번호 체크
-	function emailSend() {
-				
-		// userEmail = document.getElementById("userEmail").value;
-		var param = "email=" + userEmail + "&code_check=" + code;
-		console.log(param)
-		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
-		alert("이메일을 전송했습니다!")
-	}
-	
-
-	function ajaxFromServer() {
-		if (httpRequest.readyState == 4) {//DONE,응답완료
-			if (httpRequest.status == 200) {//OK
-				var resultText = httpRequest.responseText;
-				if (resultText == 0) {
-					alert("이메일 전송 실패");
-				} else if (resultText == 1) { //이메일 전송 완료
-					alert("이메일 전송완료")
-				}
-
-			} else {
-				console.log("AJAX요청/응답 에러")
-			}
-		}
-	}
-
-	function emailCheck() {
-		var usercode = document.getElementById("inputCode").value;
-		console.log(usercode)
-		if (usercode == code) {
-			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
-		} else {
-			document.getElementById("email-check-msg").innerHTML = "이메일 인증 실패";
-		}
-	
-	}
 
 /* 	// 사용하기 클릭 시 부모창으로 값 전달 
 	function sendCheckValue() {
