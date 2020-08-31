@@ -70,4 +70,9 @@
 	where user_no = #{studentNo}
   </select>
   
+  <update id="downLessonBoard" parameterType="int">
+  	update find_lesson SET lesson_state = 0
+  	WHERE lesson_no = #{lessonNo}
+  </update>
+  
   </mapper>
