@@ -38,6 +38,16 @@ public class ProfileDao {
 		return sqlSession.delete("Profile.deleteFile",userNo);
 	}
 
+	//연결되 과외 개수 
+	public int countIsEnd(int userNo) {
+		return sqlSession.selectOne("Profile.countIsEnd",userNo);
+	}
+
+	//회원 탈퇴
+	public int deleteProfile(int userNo) {
+		return sqlSession.update("Profile.deleteProfile",userNo);
+	}
+
 
 
 	
