@@ -31,15 +31,15 @@ public class ConnectLessonController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-//		Member m = (Member) session.getAttribute("loginUser");
+		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = m.getUserNo();
 		
 		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
 		
 		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, userNo);
 		
-//		System.out.println(list);
+		System.out.println(list);
 		
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
@@ -102,6 +102,15 @@ public class ConnectLessonController {
 		Membership membership = connectLessonService.selectStudentByNo(studentNo);
 		
 		return membership;
+	}
+
+	@RequestMapping(value = "/lessonend", method = RequestMethod.POST)
+	@ResponseBody
+	public int lessonEnd(@RequestParam int connLessonNo) {
+		
+		int res = connectLessonService.connLessonEnd(connLessonNo);
+		
+		return res;
 	}
 
 }

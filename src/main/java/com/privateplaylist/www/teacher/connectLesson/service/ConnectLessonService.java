@@ -73,6 +73,13 @@ public interface ConnectLessonService {
 	 * @param lessonNo
 	 */
 	public void downLessonBoard(int lessonNo);
+
+	/**
+	 * 학생과 연결 끊기
+	 * @param connLessonNo
+	 * @return
+	 */
+	public int connLessonEnd(int connLessonNo);
 	
 	
 
