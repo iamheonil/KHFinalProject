@@ -5,9 +5,9 @@
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
-
+<style type="text/css">
+</style>
 <script type="text/javascript">
 function connectStu(connNo){
 	var chk = confirm("학생을 승인하시겠습니까?");
@@ -67,7 +67,6 @@ function lessonModal(lessonNo){
 		success : function(result) {
 			var res = result;
 			console.log(res);
-
 			
 			$("#lessonTitle").text(result.LESSON_TITLE);
 			$("#lessonContent").text(result.LESSON_CONTENT);
@@ -78,7 +77,6 @@ function lessonModal(lessonNo){
 			$("#lessonAge").text(result.LESSON_AGE);
 			$("#lessonPeople").text(result.MAX_PEOPLE + " 명");
 			
-
 		},
 		error : function(){
 			alert("ajax 실패")
@@ -128,7 +126,6 @@ function StudentModal(studentNo){
         <h6 class="modal-title" id="lessonModalLabel">과외 정보</h6>
       </div>
       <div class="modal-body">
-
       	<section class="ng-scope ng-fadeInLeftShort" style="">
 		<!-- uiView:  -->
 		<div class="ng-fadeInLeftShort ng-scope" style="">
@@ -187,7 +184,6 @@ function StudentModal(studentNo){
 		</div>
 		</div>
 		</section>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
@@ -197,9 +193,7 @@ function StudentModal(studentNo){
   </div>
 </div>
 
-
 <!-- 학생 모달 -->
-
 <div class="modal fade" id="StudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document"  style="z-index: inherit;">
     <div class="modal-content">
@@ -325,3 +319,4 @@ function StudentModal(studentNo){
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
+
