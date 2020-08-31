@@ -49,7 +49,7 @@ public class LessonService {
 		return result;
 	}
 
-	public Paging getPagingAdminStu(int curPage, int userNo) {
+	public Paging getPagingTchLesson(int curPage, int userNo) {
 		
 		int totalCount = lessonDao.getLessonListCnt(userNo);
 		
@@ -68,6 +68,7 @@ public class LessonService {
 		
 		List<Map<String, Object>> list = lessonDao.selectLessonList(map);
 		
+		
 //		for( Map<String, Object> map : list) {
 //			map.put("", map)
 //		}
@@ -77,6 +78,7 @@ public class LessonService {
 
 	public int deleteLesson(int lessonNo) {
 		int res = lessonDao.deleteLesson(lessonNo);
+		System.out.println("service - dao결과 :"+res);
 		return res;
 	}
 
@@ -84,6 +86,56 @@ public class LessonService {
 		
 		lessonDao.endLesson(lessonNo);
 		
+	}
+
+	public Map<String, Object> selectLessonByNo(int lessonNo) {
+		return lessonDao.selectLessonByNo(lessonNo);
+	}
+
+	public Map<String, String> selectTchFile(int userNo) {
+		
+		Map<String,String> file = lessonDao.selectTeacherFile(userNo);
+		
+		return file;
+	}
+
+	public Paging getPagingPay(int curPage, int userNo) {
+		int totalCount = lessonDao.getPayListCnt(userNo);
+		
+		// Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+
+		return paging;
+	}
+
+	public List<Map<String, Object>> selectPayList(Paging paging, Member loginUser) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("paging", paging);
+		map.put("loginUser", loginUser);
+		
+		List<Map<String, Object>> list = lessonDao.selectPayList(map);
+		
+//		for( Map<String, Object> map : list) {
+//			map.put("", map)
+//		}
+		
+		return list;
+	}
+
+
+	public void insertPayment(int lessonNo, Member loginUser) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("lesson", lessonNo);
+		map.put("user", loginUser.getUserNo());
+		
+		lessonDao.insertPayment(map);
+	}
+
+	public void updatePayState(int lessonNo) {
+		lessonDao.updatePayState(lessonNo);
 	}
 
 

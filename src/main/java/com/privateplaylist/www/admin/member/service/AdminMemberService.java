@@ -20,6 +20,7 @@ public interface AdminMemberService {
 	 * 회원 정보 상세보기
 	 */
 	public Map<String, Object> selectStuDetail(int userNo);
+	
 	/*
 	 * 학생이 작성한 모든 글 보기
 	 * 

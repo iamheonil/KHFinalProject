@@ -1,5 +1,9 @@
 package com.privateplaylist.www.teacher.lesson.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,7 +49,10 @@ public class LessonController {
 		ModelAndView mav = new ModelAndView();
 		//세션값 가지고 오기
 		Member loginUser = (Member) session.getAttribute("loginUser");
-
+		
+		Map<String, String> file = lessonService.selectTchFile(loginUser.getUserNo());
+		
+		mav.addObject("file", file);
 		mav.addObject("userInfo", loginUser);
 		mav.setViewName("teacher/lesson/writeLesson");
 		return mav;
@@ -80,31 +90,60 @@ public class LessonController {
 		return mav;
 	}
 	
-	@RequestMapping("/lessonlist")
+	@RequestMapping(value = "/lessonlist", method = RequestMethod.GET)
 	public ModelAndView lessonList(@RequestParam(required=false, defaultValue="1") int curPage, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		//세션값 가지고 오기
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		Paging paging = lessonService.getPagingAdminStu(curPage, loginUser.getUserNo());
-		System.out.println("컨트롤러 - paging : "+paging);
+		Paging paging = lessonService.getPagingTchLesson(curPage, loginUser.getUserNo());
 		List<Map<String, Object>> list = lessonService.selectLessonList(paging, loginUser);
-		System.out.println("컨트롤러 - list : "+list);
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		mav.setViewName("teacher/lesson/mylessonList");
 		return mav;
 	}
 	
-	@RequestMapping("/deletelesson")
-	public ModelAndView deleteLesson(int lessonNo) {
-		
-		ModelAndView mav = new ModelAndView();
-		
+//	@RequestMapping("/deletelesson")
+//	public ModelAndView deleteLesson(int lessonNo) {
+//		
+//		ModelAndView mav = new ModelAndView();
+//		
+//		int res = lessonService.deleteLesson(lessonNo);
+//		mav.setViewName("redirect:lessonlist");
+//		return mav;
+//	}
+
+	@RequestMapping(value = "/deletelesson", method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteLesson(@RequestParam int lessonNo) {
+		System.out.println("deletelesson 컨트롤러 실행");
+		System.out.println(lessonNo);
 		int res = lessonService.deleteLesson(lessonNo);
-		mav.setViewName("redirect:lessonlist");
-		return mav;
+		System.out.println(res);
+		if(res>0) {//삭제처리에성공
+			return 1;
+		}else {//삭제에 실패했을때
+			return 0;
+		}
+			
 	}
+	
+	
+//	//중고장터 삭제 ajax
+//	@PostMapping("/deletelesson")
+//	@ResponseBody
+//	public String deleteLesson(@RequestParam int lessonNo) {
+//		
+//		
+//		int res=lessonService.deleteLesson(lessonNo);
+//		if(res>0) {//삭제처리에성공
+//			return "1";
+//		}else {//삭제에 실패했을때
+//			return "0";
+//		}
+//		
+//	}
 	
 	
 	@RequestMapping("/endlesson")
@@ -118,6 +157,91 @@ public class LessonController {
 	}
 	
 	
+	@RequestMapping(value = "/mylessoninfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> lessonInfo(@RequestParam int lessonNo) {
+		
+		Map<String, Object> info = lessonService.selectLessonByNo(lessonNo);
+		
+		return info;
+	}
 	
+	
+	//결제할 목록
+	@RequestMapping("/paymentlist")
+	public ModelAndView paymentList(@RequestParam(required=false, defaultValue="1") int curPage, HttpSession session){
+		
+		ModelAndView mav = new ModelAndView();
+		//세션값 가지고 오기
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		Paging paging = lessonService.getPagingPay(curPage, loginUser.getUserNo());
+		List<Map<String, Object>> list = lessonService.selectPayList(paging, loginUser);
+		
+//		for (Map<String, Object> map : list) {
+//
+//			try {
+//				System.out.println(map);
+//				
+//				String date = map.get("LESSON_DATE").toString();
+//				String[] dateArr = date.split("-");
+//				String dateString = "";
+//				
+//				for (int i = 0; i < dateArr.length; i++) {
+//					dateString += dateArr[i];
+//				}
+//				System.out.println(dateString);
+//				
+//				SimpleDateFormat fm = new SimpleDateFormat("yyyy/MM/dd");
+//				Date to = fm.parse(dateString);
+//				
+//				map.put("date", to);
+//				
+//			} catch (ParseException e) {
+//				e.printStackTrace();
+//			}
+//		}
+		
+		mav.addObject("paging", paging);
+		mav.addObject("list", list);
+		mav.setViewName("teacher/lesson/paymentList");
+		return mav;
+	}
+	
+	
+	@RequestMapping("/paycheck")
+	public ModelAndView payCheck(HttpSession session, int lessonNo) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//세션값 가지고 오기
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		int userNo = loginUser.getUserNo();
+		
+		Map<String, Object> info = lessonService.selectLessonByNo(lessonNo);
+		
+		mav.addObject("lesson", info);
+		mav.addObject("user", loginUser);
+		mav.setViewName("teacher/lesson/payCheck");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/paycomplete")
+	public ModelAndView payComplete(HttpSession session, int lessonNo) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+	   
+	   //classbooking에 넣기
+	   lessonService.insertPayment(lessonNo, loginUser);
+
+	   lessonService.updatePayState(lessonNo);
+		
+		mav.setViewName("teacher/lesson/paymentList");
+		return mav;
+	}
 
 }
