@@ -217,8 +217,8 @@ $(document).ready(function() {
 	});
 	
 	$("#userPw").blur(function() {
-		if (idJ.test($(this).val())) {
-				// console.log(idJ.test($(this).val()));
+		if (pwJ.test($(this).val())) {
+				// console.log(pwJ.test($(this).val()));
 				console.log('Password Check');
 		} else {
 			$("#userPw").val('');
@@ -231,7 +231,7 @@ $(document).ready(function() {
 	// 이메일 전송 전 정규식
 	$("#userEmail").blur(function() {
 		if (mailJ.test($(this).val())) {
-				// console.log(nameJ.test($(this).val()));
+				// console.log(emailJ.test($(this).val()));
 				$('#email-check-msg').text('이메일 인증을 진행해주세요!');
 				$('#email-check-msg').css('color', '#199894b3');
 				$('#emailBtn').attr('disabled', false);
