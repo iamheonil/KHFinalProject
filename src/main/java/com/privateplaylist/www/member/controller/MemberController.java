@@ -2,8 +2,11 @@ package com.privateplaylist.www.member.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.UUID;
 
@@ -122,43 +125,26 @@ public class MemberController {
 		String tch_File_Org = files.getOriginalFilename();
 		String tch_File_OrgExt = files.getOriginalFilename().substring(files.getOriginalFilename().lastIndexOf("."));
 		String tch_File_Rename = getUuid() + tch_File_OrgExt;
-		String save_Path = root + tch_File_Rename;
+		String save_Path = root;
 
 		System.out.println("파일 저장 경로 : " + root);
 		System.out.println("파일 리 네임 : " + tch_File_Rename);
 		
-		try (
-				
-				// 맥일 경우
-				// FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
-				// 윈도우일 경우
-				FileOutputStream fos = new FileOutputStream(root + tch_File_Rename);
-				InputStream is = files.getInputStream();) {
-				// 파일 저장할 경로 + 파일명을 파라미터로 넣고 fileOutputStream 객체 생성하고
-				// file로 부터 inputStream을 가져온다.
-
-			fileInfo.put("userId", userId);
-			fileInfo.put("tch_File_Org", tch_File_Org);
-			fileInfo.put("tch_File_Rename", tch_File_Rename);
-			fileInfo.put("save_Path", save_Path);
-
-
-			int readCount = 0;
-			byte[] buffer = new byte[1024];
-			// 파일을 읽을 크기 만큼의 buffer를 생성하고
-			// ( 보통 1024, 2048, 4096, 8192 와 같이 배수 형식으로 버퍼의 크기를 잡는 것이 일반적이다.)
-
-			memberService.insertTeacherFile(files, fileInfo, root);
-
-			while ((readCount = is.read(buffer)) != -1) {
-				//  파일에서 가져온 fileInputStream을 설정한 크기 (1024byte) 만큼 읽고
-
-				fos.write(buffer, 0, readCount);
-				// 위에서 생성한 fileOutputStream 객체에 출력하기를 반복한다
-			}
-		} catch (Exception ex) {
-			throw new RuntimeException("file Save Error");
-		} 
+		fileInfo.put("userId", userId);
+		fileInfo.put("tch_File_Org", tch_File_Org);
+		fileInfo.put("tch_File_Rename", tch_File_Rename);
+		fileInfo.put("save_Path", save_Path);
+		
+		File upFile = new File(save_Path, tch_File_Rename);
+		
+		try {
+			files.transferTo(upFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 
 		mav.setViewName("/member/login");
 		return mav;
