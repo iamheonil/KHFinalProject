@@ -158,7 +158,7 @@ $(document).ready(function(){
 	</table>
 	
 	<!-- 값 출력 -->
-	<c:forEach items="${questionList }" var="question" >
+	<c:forEach items="${questionSearchList }" var="question" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${question.questionNo}" id="checkRow"/></td>
 		<td>${question.questionNo }</td>
