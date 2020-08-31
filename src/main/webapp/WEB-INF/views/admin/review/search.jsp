@@ -154,11 +154,10 @@ $(document).ready(function(){
 	<tr>
 	<td colspan="8" style="font-weight: bold;">검색 결과가  없습니다</td>
 	</tr>
-	</table>
 	</c:if>
 	
 	<!-- 값 출력 -->
-	<c:forEach items="${reviewList }" var="review" >
+	<c:forEach items="${reviewSearchList }" var="review" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${review.reviewNo}" id="checkRow"/></td>
 		<td>${review.reviewNo }</td>

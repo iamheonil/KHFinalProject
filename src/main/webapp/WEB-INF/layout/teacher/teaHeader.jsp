@@ -31,9 +31,11 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" />
+
 	
 <!-- jQuery 2.2.4.min -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 
         
 <style type="text/css">
@@ -371,7 +373,7 @@ function getInfiniteBox(){
           </div>
 
           <div class="menu-item">
-            <h4><a href="#">회원정보 수정</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/teacher/profile/chkpassword">회원정보 수정</a></h4>
           </div>
           
       </nav>

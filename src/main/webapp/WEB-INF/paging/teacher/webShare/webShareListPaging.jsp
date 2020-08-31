@@ -1,5 +1,5 @@
-<!-- 20200819 이서연 -->
-<!-- /admin/lesson/view -->
+<!-- 200831 이서연 -->
+<!-- webshare list paging -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,7 +12,7 @@
    <!-- 첫 페이지로 가기 -->
    <c:if test="${paging.curPage ne 1 }">
 <%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-   <li><a href="${pageContext.request.contextPath}/admin/lesson/view?curPage=1&&search=${param.search }">&laquo;</a></li>
+   <li><a href="${pageContext.request.contextPath}/teacher/webshare?no=${cno}&curPage=1">&laquo;</a></li>
    </c:if>
    
    
@@ -28,7 +28,7 @@
    
    <!-- 이전 페이지로 가기 -->
    <c:if test="${paging.curPage ne 1 }">
-   <li><a href="${pageContext.request.contextPath}/admin/lesson/view?curPage=${paging.curPage - 1 }&search=${param.search }">&lt;</a>
+   <li><a href="${pageContext.request.contextPath}/teacher/webshare?no=${cno}&curPage=${paging.curPage - 1 }">&lt;</a>
    </c:if>
    
    
@@ -36,12 +36,12 @@
    
    <!-- 현재 페이지라면 강조(.active) -->
    <c:if test="${paging.curPage eq i }">
-   <li class="active"><a href="${pageContext.request.contextPath}/admin/lesson/view?curPage=${i }&search=${param.search }">${i }</a></li>
+   <li class="active"><a href="${pageContext.request.contextPath}/teacher/webshare?no=${cno}&curPage=${i }">${i }</a></li>
    </c:if>
    
    <!-- 현재 페이지가 아니라면 평소 모습-->
    <c:if test="${paging.curPage ne i }">
-   <li><a href="${pageContext.request.contextPath}/admin/lesson/view?curPage=${i }&search=${param.search }">${i }</a></li>
+   <li><a href="${pageContext.request.contextPath}/teacher/webshare?no=${cno}&curPage=${i }">${i }</a></li>
    </c:if>
 
    </c:forEach>
@@ -49,7 +49,7 @@
 
    <!-- 다음 페이지로 가기 -->
    <c:if test="${paging.curPage ne paging.totalPage}">
-   <li><a href="${pageContext.request.contextPath}/admin/lesson/view?curPage=${paging.curPage + 1 }&search=${param.search }">&gt;</a>
+   <li><a href="${pageContext.request.contextPath}/teacher/webshare?no=${cno}&curPage=${paging.curPage + 1 }">&gt;</a>
    </c:if>
    
 
@@ -65,7 +65,7 @@
 
     <!-- 마지막 페이지로 가기 -->
    <c:if test="${paging.curPage ne paging.totalPage }">
-   <li><a href="${pageContext.request.contextPath}/admin/lesson/view?curPage=${paging.totalPage }&search=${param.search }">&raquo;</a></li>
+   <li><a href="${pageContext.request.contextPath}/teacher/webshare?no=${cno}&curPage=${paging.totalPage }">&raquo;</a></li>
    </c:if>
    
 </ul>

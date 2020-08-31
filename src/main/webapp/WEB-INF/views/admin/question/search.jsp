@@ -155,7 +155,6 @@ $(document).ready(function(){
 	<td colspan="8" style="font-weight: bold;">검색 결과가  없습니다</td>
 	</tr>
 	</c:if>
-	</table>
 	
 	<!-- 값 출력 -->
 	<c:forEach items="${questionSearchList }" var="question" >

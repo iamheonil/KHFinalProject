@@ -40,39 +40,43 @@ public class MemberServiceImpl implements MemberService {
 
 		String password = member.getUserPw();
 		String secPw = "";
-		
+
 		// 암호화
 		secPw = passwordEncoder.encode(password);
-		
+
 		member.setUserPw(secPw);
 
 		return memberDao.insertMember(member);
 	}
 
 	@Override
-	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, String root) throws FileException {
+	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo,
+			String root) throws FileException {
 
 		memberDao.insertFile(files, fileInfo);
 
 	}
 
-
 	@Override
 	public Member selectMember(Map<String, Object> memberMap) {
-		
+
 		// 사용자가 입력한 비밀번호
 		String password = (String) memberMap.get("userPw");
 
 		// DB에 저장된 사용자 정보
 		Member member = memberDao.selectMember(memberMap);
-		
-		
-		// 사용자가 입력한 비밀번호와 DB에 인코딩되어 저장된 비밀번호가 같은지 확인
-		if (passwordEncoder.matches(password, member.getUserPw())) {
-			return member;
-		} else {
-			return null;
+
+
+		if (member != null) {
+			// 사용자가 입력한 비밀번호와 DB에 인코딩되어 저장된 비밀번호가 같은지 확인
+			if (passwordEncoder.matches(password, member.getUserPw())) {
+				System.out.println("비밀번호 확인");
+			} else {
+				return null;
+			}
+
 		}
+		return member;
 	}
 
 	@Override
@@ -81,13 +85,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	public void mailSending(String email, int code_check) throws MailException {
-		
+
 		String setfrom = "snn7452@naver.com";
 		String tomail = email;
 		String title = "슬기로운 과외생활 회원가입 인증메일 입니다.";
-		String htmlBody = 
-				"<h2>회원가입을 위해 인증번호를 입력해주세요!</h2>"
-				+ "인증번호는 " + code_check + "입니다.";
+		String htmlBody = "<h2>회원가입을 위해 인증번호를 입력해주세요!</h2>" + "인증번호는 " + code_check + "입니다.";
 
 		try {
 
@@ -116,7 +118,7 @@ public class MemberServiceImpl implements MemberService {
 	public void logOut(HttpSession session) {
 
 		memberDao.logOut(session);
-		
+
 	}
 
 }

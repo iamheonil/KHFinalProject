@@ -53,24 +53,6 @@ function denyClick(LESSON_NO){
 </script>
 
 
-
-<script type="text/javascript">
-
-// $(document).ready(function() {
-	
-// 	//승인버튼 클릭
-// 	$("#admit").click(function(LESSON_NO) {
-		
-// 		$(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/confirm/admit?no="+no);
-		
-// 	})
-
-
-// })
-
-</script>
-
-
 <style type="text/css">
 
 	#dataTable_length { float: left; }
@@ -164,26 +146,6 @@ function denyClick(LESSON_NO){
                 
             </c:if>
             
-            
-<!-- 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<!-- 				<div class="modal-dialog"> -->
-<!-- 					<div class="modal-content"> -->
-<!-- 						<div class="modal-header"> -->
-<!-- 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-<!-- 							<h4 class="modal-title" id="myModalLabel">개인정보 처리방침</h4> -->
-<!-- 						</div> -->
-<!-- 							<div class="modal-body"> -->
-<%-- 							<c:import url="/WEB-INF/views/main/footer/privacypolicy.jsp"></c:import>  --%>
-<!-- 						</div> -->
-<!-- 							<div class="modal-footer"> -->
-<!-- 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-            
-            
-             
 	    </div>
 	</main>
        
