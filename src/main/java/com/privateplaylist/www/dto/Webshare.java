@@ -1,12 +1,14 @@
 package com.privateplaylist.www.dto;
 
+import java.util.Date;
+
 public class Webshare {
 
 	private int shareNo;
 	private int connLessonNo;
 	private String shareTitle;
 	private String shareContent;
-	private String shareDate;
+	private Date shareDate;
 	
 	
 	@Override
@@ -56,12 +58,12 @@ public class Webshare {
 	}
 
 
-	public String getShareDate() {
+	public Date getShareDate() {
 		return shareDate;
 	}
 
 
-	public void setShareDate(String shareDate) {
+	public void setShareDate(Date shareDate) {
 		this.shareDate = shareDate;
 	}
 	

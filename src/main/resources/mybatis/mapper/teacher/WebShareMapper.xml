@@ -19,6 +19,107 @@
 		order by cl.lesson_no
 
 	</select>
+	
+	
+	<!-- 연결된 과외 번호의 자료실 조회 -->
+	<select id="selectWebShareList" parameterType="map" resultType="map">
+	
+<!-- 		select w.share_no, w.share_title, w.share_date, m.user_id, w.conn_lesson_no -->
+<!-- 		from webshare w, connected_lesson cl, membership m, webshare_file f -->
+<!-- 		where w.conn_lesson_no = cl.conn_lesson_no -->
+<!-- 		    and cl.teacher = m.user_no -->
+<!-- 		    and w.conn_lesson_no = #{map.no} -->
+<!--         group by w.share_no, w.share_title, w.share_date, m.user_id, w.conn_lesson_no -->
+<!-- 		order by w.share_no desc -->
+		
+		select * from (
+			select rownum rnum, c.* from(
+				select w.share_no, w.share_title, w.share_date, m.user_id, w.conn_lesson_no
+				from webshare w, connected_lesson cl, membership m, webshare_file f
+				where w.conn_lesson_no = cl.conn_lesson_no
+				    and cl.teacher = m.user_no
+				    and w.conn_lesson_no = #{no}
+		        group by w.share_no, w.share_title, w.share_date, m.user_id, w.conn_lesson_no
+				order by w.share_no desc
+				) c
+			) webshare 
+		where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	
+	</select>
+	
+	
+	<!-- 자료실 게시글 수 조회 - 페이징 -->
+	<select id="selectCntWebShare" parameterType="int" resultType="int">
+	
+		select count(*)
+		from webshare
+		where conn_lesson_no = #{no}
+	
+	</select>
+  
+  
+  	<!-- 연결된 과외 번호의 자료실 첨부파일 여부 조회 -->
+  	<!-- 도전 실패 -->
+  	<select id="checkWebShareFile" parameterType="int" resultType="int">
+  		
+  		select count(*) 
+  		from webshare_file f, webshare w 
+  		where f.share_no = w.share_no and w.share_no = #{sno};
+  	
+  	</select>
+  
+  
+  
+  	<!-- 자료실 목록에서 체크된 글 지우기 -->
+  	<delete id="deleteWebShare" parameterType="int">
+  	
+  		delete from webshare 
+  		where share_no = #{shareNo}
+  	
+  	</delete>
+  	
+  	
+  	
+  	<!-- 자료실 글 등록 -->
+  	<insert id="insertWebShare">
+  	
+		insert into webshare (share_no, conn_lesson_no, share_title, share_content, share_date)
+		values (webshare_SEQ.nextval, #{connLessonNo}, #{shareTitle}, #{shareContent}, sysdate)
+  	
+  	</insert>
+  	
+  	
+  	
+  	<!-- 자료실 파일 등록 -->
+  	<insert id="insertWebShareFile">
+  	
+  		insert into webshare_file (share_file_no, share_no, share_file_org, share_file_rename)
+		values (webshare_file_SEQ.nextval, webshare_SEQ.currval, #{originFileName}, #{renameFileName})
+  	
+  	</insert>
+  	
+  	
+  	<!-- 자료실 글 상세보기 -->
+  	<select id="selectWebShareDetail" parameterType="int" resultType="WEBSHARE">
+  	
+		select * 
+		from webshare
+		where share_no = #{no}
+  	
+  	</select>
+  	
+  	
+  	<!-- 자료실 글에 달린 파일 정보 -->
+  	<select id="selectWebShareFile" parameterType="int" resultType="WEBSHAREFILE">
+  	
+		select * 
+		from webshare_file
+		where share_no = #{no}
+  	
+  	</select>
+  	
+  	
+  	
   
   
 </mapper>
