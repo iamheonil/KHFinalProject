@@ -331,44 +331,46 @@ function getInfiniteBox(){
           <div class="menu-item" id="three">
             <h4><a href="#">과외</a></h4>
             <ul>
-              <li><a href="#">과외 등록</a></li>
-              <li><a href="#">과외 검토</a></li>
-              <li><a href="#">내 과외 목록</a></li>
+              <li><a href="${pageContext.request.contextPath }/teacher/caution">과외 등록</a></li>
+              <li><a href="${pageContext.request.contextPath }/teacher/paymentlist">과외 검토</a></li>
+              <li><a href="${pageContext.request.contextPath }/teacher/lessonlist">내 과외 목록</a></li>
             </ul>
           </div>
           
            <div class="menu-item two connectLesson">
             <h4><a href="#">과외 연결</a></h4>
 	            <ul>
-	              <li><a href="#">연결된 과외</a></li>
+	              <li><a href="${pageContext.request.contextPath }/teacher/connectedlesson">연결된 과외</a></li>
 	              <li  id="signStu"><a href="${pageContext.request.contextPath }/teacher/signstu">학생 신청 내역</a></li>
 	            </ul>
           </div>
           
-          <div class="menu-item" id="three">
+           <div class="menu-item two connectLesson">
             <h4><a href="#">게시판</a></h4>
             <ul>
-              <li><a href="#">질문 게시판</a></li>
-              <li><a href="#">후기 게시판</a></li>
-              <li><a href="${pageContext.request.contextPath}/teacher/blackList">신고 내역</a></li>
+              <li><a href="${pageContext.request.contextPath }/teacher/question/list">질문 게시판</a></li>
+              <li><a href="${pageContext.request.contextPath }/teacher/review/list">후기 게시판</a></li>
             </ul>
           </div>
 
           <div class="menu-item">
-            <h4><a href="${pageContext.request.contextPath}/teacher/chatBox">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
+            <h4><a href="${pageContext.request.contextPath }/teacher/chatBox">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
-      
-      <div class="menu-item two" >
+          
+          <div class="menu-item">
             <h4><a href="#">중고장터</a></h4>
-            <ul>
-              <li><a href="#">활동 내역</a></li>
-              <li><a href="#">신고 내역</a></li>
-            </ul>
+          </div>
+          
+          
+           <div class="menu-item">
+            <h4><a href="${pageContext.request.contextPath }/teacher/blackList">신고 내역</a></h4>
           </div>
 
           <div class="menu-item">
             <h4><a href="${pageContext.request.contextPath}/teacher/profile/chkpassword">회원정보 수정</a></h4>
           </div>
+          
+          
           
       </nav>
       
