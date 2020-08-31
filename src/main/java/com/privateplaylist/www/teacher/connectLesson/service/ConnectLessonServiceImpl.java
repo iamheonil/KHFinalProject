@@ -70,4 +70,9 @@ public class ConnectLessonServiceImpl implements ConnectLessonService {
 		return connectLessonDao.selectStudentByNo(studentNo);
 	}
 
+	@Override
+	public void downLessonBoard(int lessonNo) {
+		connectLessonDao.downLessonBoard(lessonNo);
+	}
+
 }

@@ -5,7 +5,7 @@
 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
-
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <script type="text/javascript"> 
 function alert(){
 	var message = '${msg}'; 
@@ -188,7 +188,7 @@ function addlocation(){
     <form name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data">
         <div class="panel panel-default">
           <div class="panel-body text-center">
-           <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
+           <img src="<spring:url value='/upload/${TCH_FILE_RENAME }'/>" class="img-circle profile-avatar" alt="User avatar"/>
           </div>
         </div>
         

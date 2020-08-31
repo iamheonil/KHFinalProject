@@ -53,4 +53,8 @@ public class ConnectLessonDao {
 		return sqlSession.selectOne(namespace + "selectStudentByNo", studentNo);
 	}
 
+	public void downLessonBoard(int lessonNo) {
+		sqlSession.selectOne(namespace + "downLessonBoard", lessonNo);
+	}
+
 }
