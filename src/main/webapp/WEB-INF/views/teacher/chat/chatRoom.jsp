@@ -39,6 +39,8 @@ if(userID==null){
 %>
 
 <script type="text/javascript">
+
+
 function searchParam(key) {//파라미터 값을 가져오는 함수
 	  return new URLSearchParams(location.search).get(key);
 	};
@@ -271,7 +273,7 @@ else
 								<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="Enter message..."></textarea>
 							</div>
 							<div class="col-xs-3">
-								<button type="button" class="btn btn-primary btn-block" style="margin-top: 20px;"  onclick="submitFunction();">Send</button>
+								<button type="button" class="btn btn-primary btn-block" style="margin-top: 20px;" id="submit"  onclick="submitFunction();">Send</button>
 							</div>
 						</div>
 					</div>
@@ -299,6 +301,14 @@ else
 $(document).ready(function(){
 	chatListFunction('ten');
 	getInfinateChat();
+	
+	$('#chatContent').on('keydown', function(event) {
+        if (event.keyCode == 13)
+            
+                
+                $('#submit').click();
+	})
+            
 })
 </script>
 
