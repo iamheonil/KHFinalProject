@@ -78,7 +78,7 @@
 	                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                            
-                            <div class="sb-sidenav-menu-heading">게시판</div>
+                            <div class="sb-sidenav-menu-heading">커뮤니티</div>
                             <a class="nav-link" href="${pageContext.request.contextPath}/admin/question/list">
                               	 질문 게시판
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>

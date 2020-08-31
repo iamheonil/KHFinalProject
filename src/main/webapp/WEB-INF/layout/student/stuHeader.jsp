@@ -367,7 +367,7 @@ function getInfiniteBox(){
           </div>
           
           <div class="menu-item" id="three">
-            <h4><a href="#">게시판</a></h4>
+            <h4><a href="#">커뮤니티</a></h4>
 	            <ul id="conLesson">
 	             <li><a href="#">질문 게시판</a></li>
 	             <li><a href="#">후기 게시판</a></li>
