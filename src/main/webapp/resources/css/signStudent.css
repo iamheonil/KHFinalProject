@@ -59,7 +59,7 @@
 	margin: 0 auto;
 	text-align: left;
 }
-.menu-item.connectLesson ul {
+.menu-item.connectLesson #conLesson {
    height: 62px; 
 }
 #signStu{

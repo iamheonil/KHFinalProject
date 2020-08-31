@@ -333,7 +333,7 @@ function getInfiniteBox(){
           
            <div class="menu-item two connectLesson">
             <h4><a href="#">과외 연결</a></h4>
-	            <ul>
+	            <ul id="conLesson">
 	              <li><a href="${pageContext.request.contextPath }/teacher/connectedlesson">연결된 과외</a></li>
 	              <li  id="signStu"><a href="${pageContext.request.contextPath }/teacher/signstu">학생 신청 내역</a></li>
 	            </ul>
