@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <!-- 관리자 페이지 header -->   
-<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
+<c:import url="/WEB-INF/layout/admin/adminbeforeHeader.jsp"></c:import>
 
 
             <div id="layoutSidenav_content">
@@ -25,6 +25,7 @@
                     
                 </main>
                 
+          <div style="margin-bottom: 310px;"></div>
                 
 <!-- 관리자 페이지 footer --> 
 <c:import url="/WEB-INF/layout/admin/adminFooter.jsp"></c:import>
