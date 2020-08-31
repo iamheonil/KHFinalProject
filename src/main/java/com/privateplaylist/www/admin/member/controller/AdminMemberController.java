@@ -34,6 +34,7 @@ public class AdminMemberController {
 		
 		mav.addObject("search", search);
 //		mav.addObject("blackCnt", stuCnt);
+		mav.addObject("category", category);
 		mav.addObject("stuData", commandMap);
 		mav.addObject("paging", paging);
 		mav.setViewName("admin/member/stuList");

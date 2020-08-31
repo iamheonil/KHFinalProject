@@ -27,6 +27,11 @@
 
 <!-- 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" /> -->
 
+	
+<!-- jQuery 2.2.4.min -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
         
 <style type="text/css">
 #main{

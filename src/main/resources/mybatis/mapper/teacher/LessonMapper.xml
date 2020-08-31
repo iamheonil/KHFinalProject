@@ -6,6 +6,22 @@
   
 <mapper namespace="findLesson">
 
+	<!-- 게시글 별 파일정보 반환 -->
+	<resultMap type="map" id="fileData">
+		<result column="tch_file_no" property="tchFileNo"/>
+		<result column="user_no" property="userNo"/>
+		<result column="user_id" property="userId"/>
+		<result column="tch_file_org" property="tchFileOrg"/>
+		<result column="tch_file_rename" property="tchFileRename"/>
+		<result column="SAVE_PATH" property="savePath"/>
+	</resultMap>
+	<select id="selectTeacherFile" resultMap="fileData">
+		select
+		*
+		from teacherfile
+		where user_no = #{userNo}
+	</select>
+
 	<insert id="insertLesson">
 		insert into FIND_LESSON(LESSON_NO, LESSON_TITLE, LESSON_CONTENT ,LESSON_DATE ,USER_NO ,LESSON_LOC ,LESSON_SUBJECT ,LESSON_PRICE ,LESSON_AGE, MAX_PEOPLE ,LESSON_STATE ,LESSON_CHK, PAY_STATE)
 		values(find_lesson_SEQ.nextval, #{lessonTitle}, #{lessonContent}, sysdate, #{userNo}, #{lessonLoc}, #{lessonSubject}, #{lessonPrice}, #{lessonAge}, #{maxPeople}, 0, 0, 0)
@@ -20,7 +36,8 @@
 	<select id="getLessonListCnt" resultType="int">
 		select count(*) from (
 		select * from FIND_LESSON
-<!-- 		WHERE user_no = #{userNo} -->
+		WHERE user_no = #{userNo}
+		and pay_state = 1
 		)
 	</select>
 	
@@ -36,7 +53,7 @@
 			order by no)x
 		where no between #{paging.startNo} and #{paging.endNo}
 	</select>
-	<delete id="deleteLesson">
+	<delete id="deleteLesson" parameterType="int">
 		DELETE find_lesson
 		where lesson_no = #{lessonNo}
 	</delete>
@@ -45,6 +62,47 @@
 		update find_lesson
 		set lesson_state = 0
 		where lesson_no = #{lessonNo}
+	</update>
+	
+	<select id="selectLessonByNo" resultType="map">
+		select f.lesson_no, f.lesson_title, f.lesson_content, f.lesson_date, f.lesson_loc, f.lesson_age, f.lesson_price, f.lesson_subject, f.max_people, m.user_name, m.user_id from find_lesson f
+		INNER JOIN membership m
+		ON(f.user_no = m.user_no)
+		where lesson_no = #{lessonNo}
+	</select>
+	
+	<!-- 결제하기 전,  -->
+	<select id="getPayListCnt" resultType="int">
+		select count(*) from (
+		select * from FIND_LESSON
+		WHERE user_no = #{userNo}
+		and pay_state = 0
+		and lesson_state = 0
+		)
+	</select>
+	
+	<select id="selectPayList" resultType="map">
+		select * from (
+			select rownum no, t.*	
+				FROM(
+				SELECT * FROM FIND_LESSON
+				WHERE user_no = #{loginUser.userNo}
+				AND pay_state = 0
+				AND lesson_state = 0
+				ORDER BY lesson_no desc
+				)t
+			order by no)x
+		where no between #{paging.startNo} and #{paging.endNo}
+	</select>
+	<insert id="insertPayment">
+		insert into payment
+		values(payment_SEQ.nextval, #{lesson }, #{user}, sysdate, '1000')
+	</insert>
+	
+	<update id="updatePayState">
+		UPDATE find_lesson
+		set pay_state = 1, lesson_state = 1
+		WHERE lesson_no = #{lessonNo}
 	</update>
 	
 
