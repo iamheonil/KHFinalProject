@@ -40,7 +40,7 @@ public class ReviewController {
 				//공지사항 정보 전체 조회 list
 				List<Review> reviewList = reviewService.selectReviewList(paging);
 				
-				System.out.println("list:"+reviewList);
+				
 				//모델값 전달
 				model.addAttribute("reviewList", reviewList);
 				
