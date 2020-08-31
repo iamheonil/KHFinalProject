@@ -6,66 +6,13 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
-<style type="text/css">
+<!-- jQuery 2.2.4.min -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
-<style type="text/css">
-#StudentModal{
-	padding: 0;
-}
-
-.modal-dialog{
-	overflow-y:initail !important;
-   width: 500px;
-}
-
-.modal-body{
-   overflow-y:auto; 
-   background: #f5f5f5;
-}
-.user-row {
-    margin-bottom: 14px;
-}
-
-.user-row:last-child {
-    margin-bottom: 0;
-}
-
-.dropdown-user {
-    margin: 13px 0;
-    padding: 5px;
-    height: 100%;
-}
-
-.dropdown-user:hover {
-    cursor: pointer;
-}
-
-.table-user-information > tbody > tr {
-    border-top: 1px solid rgb(221, 221, 221);
-}
-
-.table-user-information > tbody > tr:first-child {
-    border-top: 0;
-}
-
-
-.table-user-information > tbody > tr > td {
-    border-top: 0;
-}
-.toppad
-{margin-top:20px;
-}
-
-.panel-body{
-	text-align: center;
-}
-
-#stuInfoTabel{
-	width: 60%;
-	margin: 0 auto;
-	text-align: left;
-}
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">	
 <script type="text/javascript">
 function connectStu(connNo){
 	var chk = confirm("학생을 승인하시겠습니까?");
@@ -92,7 +39,6 @@ function connectStu(connNo){
 	}
 	
 }
-
 function rejectStu(connNo){
 	var chk = confirm("학생을 거절하시겠습니까?");
 	
@@ -116,7 +62,6 @@ function rejectStu(connNo){
 	}
 	
 }
-
 function lessonModal(lessonNo){
 	var url = "<%=request.getContextPath() %>/teacher/lessoninfo";
 	
@@ -147,7 +92,6 @@ function lessonModal(lessonNo){
 	$("#lessonModal").modal();
 	
 }
-
 function StudentModal(studentNo){
 	var url = "<%=request.getContextPath() %>/teacher/studentinfo";
 	
@@ -177,8 +121,6 @@ function StudentModal(studentNo){
 	$("#StudentModal").modal();
 	
 }
-
-
 </script>
 
 <div class="modal fade" id="lessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
@@ -256,7 +198,6 @@ function StudentModal(studentNo){
   </div>
 </div>
 
-<!-- 학생 모달 -->
 <div class="modal fade" id="StudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document"  style="z-index: inherit;">
     <div class="modal-content">
@@ -382,6 +323,3 @@ function StudentModal(studentNo){
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
-
-
-
