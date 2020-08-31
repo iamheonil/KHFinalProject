@@ -74,5 +74,10 @@
   	update find_lesson SET lesson_state = 0
   	WHERE lesson_no = #{lessonNo}
   </update>
+
+  <update id="connLessonEnd" parameterType="int">
+  	update connected_lesson SET is_end = 1
+  	WHERE conn_lesson_no = #{connLessonNo}
+  </update>
   
   </mapper>
