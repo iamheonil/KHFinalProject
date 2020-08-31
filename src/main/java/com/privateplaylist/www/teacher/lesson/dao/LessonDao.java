@@ -34,6 +34,7 @@ public class LessonDao {
 
 
 	public List<Map<String, Object>> selectLessonList(Map<String, Object> map) {
+		System.out.println(map);
 		return sqlSession.selectList("findLesson.selectLessonList", map);
 	}
 
@@ -43,6 +44,30 @@ public class LessonDao {
 
 	public void endLesson(int lessonNo) {
 		sqlSession.update("findLesson.endLesson", lessonNo);
+	}
+
+	public Map<String, Object> selectLessonByNo(int lessonNo) {
+		return sqlSession.selectOne("findLesson.selectLessonByNo", lessonNo);
+	}
+
+	public Map<String, String> selectTeacherFile(int userNo) {
+		return sqlSession.selectOne("findLesson.selectTeacherFile", userNo);
+	}
+
+	public int getPayListCnt(int userNo) {
+		return sqlSession.selectOne("findLesson.getPayListCnt", userNo);
+	}
+
+	public List<Map<String, Object>> selectPayList(Map<String, Object> map) {
+		return sqlSession.selectList("findLesson.selectPayList", map);
+	}
+
+	public void insertPayment(Map<String, Object> param) {
+		sqlSession.insert("findLesson.insertPayment", param);
+	}
+
+	public void updatePayState(int lessonNo) {
+		sqlSession.update("findLesson.updatePayState", lessonNo);
 	}
 	
 	
