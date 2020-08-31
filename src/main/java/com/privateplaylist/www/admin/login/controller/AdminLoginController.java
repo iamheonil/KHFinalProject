@@ -51,12 +51,10 @@ public class AdminLoginController {
 			session.setAttribute("loginAdmin", res);
 			Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 			System.out.println("담은거 : " + loginAdmin);
-			mav.addObject("url", request.getContextPath() + "/main/index");
-			mav.setViewName("redirect:lesson/confirm");
+			mav.setViewName("redirect:lesson/view");
 			System.out.println("로그인 성공");
 		} else {
 			// 로그인 실패
-			mav.addObject("url", request.getContextPath() + "/member/login.do");
 			mav.setViewName("redirect:login");
 			System.out.println("로그인 실패");
 		}
