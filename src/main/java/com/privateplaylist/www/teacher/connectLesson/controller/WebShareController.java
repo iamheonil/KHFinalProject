@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.dto.Webshare;
+import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.connectLesson.service.WebShareService;
 
 import common.util.Paging;
@@ -34,11 +36,18 @@ public class WebShareController {
 	
 	//연결된 과외 목록
 	@RequestMapping("/connectedlesson")
-	public String lessonList(Model model) {
+	public String lessonList(Model model, HttpSession session) {
 		
 //		System.out.println("lessonList 접속 테스트");
 		
-		int teaNo = 9;
+//		int teaNo = 9;
+		
+		Member sessionMember = (Member) session.getAttribute("loginUser");
+		
+		int teaNo = sessionMember.getUserNo();
+		
+//		System.out.println(teaNo);
+		
 		
 		//연결된 과외 조회
 		List<Map<String, Object>> connectedLessonList = webShareService.selectConnectedLesson(teaNo);
