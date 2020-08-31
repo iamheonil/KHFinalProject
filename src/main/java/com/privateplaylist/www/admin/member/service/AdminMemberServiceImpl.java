@@ -47,7 +47,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return stulist;
 	}
 	
-	
+	 
 	@Override
 	public Paging getPagingAdminStu(int curPage, String category, String search) {
 		
@@ -95,6 +95,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return commandMap;
 	}
 
+	
 	@Override
 	public Paging getPagingAdminTch(int curPage, String category, String search) {
 		

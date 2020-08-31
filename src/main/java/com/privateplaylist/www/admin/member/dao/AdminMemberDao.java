@@ -13,8 +13,6 @@ import com.privateplaylist.www.dto.Question;
 
 import common.util.Paging;
 
-
-
 @Repository
 public class AdminMemberDao {
 	
@@ -24,7 +22,7 @@ public class AdminMemberDao {
 
 	public int selectStuCnt(Map<String, String> map) {
 		return sqlSession.selectOne("Member.selectStuCnt", map);
-	}
+	} 
 
 	public List<Map<String, Object>> selectStuList(Map<String, Object> bMap) {
 		return sqlSession.selectList("Member.selectStuList", bMap);
