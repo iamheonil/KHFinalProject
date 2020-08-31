@@ -148,7 +148,7 @@ function emailChk(){
 				
 		userEmail = document.getElementById('userEmail').value;
 		var param = "email=" + userEmail + "&code_check=" + code;
-		console.log(param)
+		// console.log(param)
 		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
 		alert("이메일을 전송했습니다!")
 	}
@@ -176,7 +176,10 @@ function emailChk(){
 		if (usercode == code) {
 			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
 		} else {
-			document.getElementById("email-check-msg").innerHTML = "이메일 인증 실패";
+			document.querySelector('#userEmail').focus();
+			document.querySelector("#userEmail").value = "";
+			document.querySelector("#email-check-msg").innerHTML = "이메일 인증 실패";
+			document.querySelector('#email-check-msg').style.color = 'red';
 		}
 	
 	}
