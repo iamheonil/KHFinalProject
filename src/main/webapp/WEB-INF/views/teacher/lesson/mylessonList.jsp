@@ -4,13 +4,11 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<!-- 메인 헤더 -->   
+
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
-
-<!-- 선생님 마이페이지 헤더 -->
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
-
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
 
 
 <style type="text/css">
@@ -127,7 +125,7 @@ function deletelesson(lessonNo){
 			data: {lessonNo : lessonNo},
 			success : function(result) {
 				if (result == 1) {
-					alert("삭제되었습니다..");
+					alert("해당 게시물이 삭제되었습니다.");
 					location.reload();
 				}
 			},
@@ -145,6 +143,7 @@ function deletelesson(lessonNo){
 	
 // 	//확인 선택
 // 	if(answer == true){
+// 		console.log(url);
 // 		location = url;
 // 		alert('해당 게시물이 삭제되었습니다.');
 // 	}
@@ -299,7 +298,7 @@ function lessonModal(lessonNo){
 	                                    <th style="width: 8%">구분</th>
 	                                    <th style="width: 13%">작성일</th>
 	                                    <th style="width: 8%">모집마감</th>
-	                                    <th style="width: 5%">삭제</th>
+	                                    <th style="width: 10%">삭제</th>
 	                                </tr>
 	                            </thead>
 	                            
