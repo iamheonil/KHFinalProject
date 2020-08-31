@@ -223,7 +223,7 @@ $(document).ready(function() {
 		} else {
 			$("#userPw").val('');
 			$("#userPw").focus();
-			$('#pw-check-msg').text('소문자, 대문자, 특수문자, 숫자, 6글자 이상이어야 합니다');
+			$('#pw-check-msg').text('소문자, 대문자, 숫자와 특수문자를 하나 이상 넣어 7~14자 사이어야 합니다');
 			$('#pw-check-msg').css('color', 'red');
 		}
 	});
