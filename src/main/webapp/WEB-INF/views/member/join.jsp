@@ -118,6 +118,9 @@ body{
 
 <script type="text/javascript">
 
+
+$(document).ready(function() {
+
 //정규식 시작
 
 //모든 공백 체크 정규식
@@ -125,38 +128,90 @@ body{
 	//아이디 정규식
 	var idJ = /^[a-z0-9]{4,12}$/;
 	// 비밀번호 정규식
-	var pwJ = /^[A-Za-z0-9]{4,12}$/; 
+	var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 	// 이름 정규식
 	var nameJ = /^[가-힣]{2,6}$/;
 	// 이메일 검사 정규식
-	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	var mailJ = /^[-_.+a-zA-Z0-9]+[@].+[.][[a-zA-Z0-9]+|[a-zA-Z0-9]+[.][a-zA-Z0-9]+]$/;
+	// 휴대폰 번호 정규식
+	var phoneJ = /^\d{3}-\d{3,4}-\d{4}$/;
 
+	// 아이디 정규식
+	$("#userId").blur(function() {
+		if (idJ.test($(this).val())) {
+				// console.log(idJ.test($(this).val()));
+				$("#id-check-msg").text('');
+				$('#id-check-msg').css('color', '#199894b3');
+				$('#idBtn').attr('disabled', false);
+				$('#idBtn').focus();
+		} else {
+			$("#userId").val('');
+			$("#userId").focus();
+			$('#id-check-msg').text('영문과 숫자, 4~12자 사이여야 합니다');
+			$('#id-check-msg').css('color', 'red');
+			$('#idBtn').attr('disabled', true);
+		}
+	});
+	
+	$("#userPw").blur(function() {
+		if (idJ.test($(this).val())) {
+				// console.log(idJ.test($(this).val()));
+				console.log('Password Check');
+		} else {
+			$("#userPw").val('');
+			$("#userPw").focus();
+			$('#pw-check-msg').text('소문자, 대문자, 특수문자, 숫자, 6글자 이상이어야 합니다');
+			$('#pw-check-msg').css('color', 'red');
+		}
+	});
+	
+	// 이메일 전송 전 정규식
+	$("#userEmail").blur(function() {
+		if (mailJ.test($(this).val())) {
+				// console.log(nameJ.test($(this).val()));
+				$('#email-check-msg').text('이메일 인증을 진행해주세요!');
+				$('#email-check-msg').css('color', '#199894b3');
+				$('#emailBtn').attr('disabled', false);
+		} else {
+			$("#userEmail").val('');
+			$('#email-check-msg').text('올바른 이메일 양식이 아닙니다.');
+			$('#email-check-msg').css('color', 'red');
+			$('#emailBtn').attr('disabled', true);
+			$('#userEmail').focus();
+		}
+	});
+	
 	// 이름에 특수문자 들어가지 않도록 설정
 	$("#userName").blur(function() {
 		if (nameJ.test($(this).val())) {
-				console.log(nameJ.test($(this).val()));
-				$("#name_check").text('');
+				// console.log(nameJ.test($(this).val()));
+				$('#name-check-msg').text('가입을 진행해주세요!');
+				$('#name-check-msg').css('color', '#199894b3');
 		} else {
-			$('#name-check-msg').text('이름을 확인해주세요');
+			$("#userName").val('');
+			$("#userName").focus();
+			$('#name-check-msg').text('이름을 확인해주세요, 영문과 숫자는 불가능하며 2글자 이상이어야 합니다.');
 			$('#name-check-msg').css('color', 'red');
 		}
 	});
 	
 	// 휴대전화
-	$('#user_phone').blur(function(){
+	$('#userPhone').blur(function(){
 		if(phoneJ.test($(this).val())){
-			console.log(nameJ.test($(this).val()));
-			$("#phone_check").text('');
+			// console.log(phoneJ.test($(this).val()));
+			$("#phone-check-msg").text('확인 감사합니다! :)');
+			$('#phone-check-msg').css('color', '#199894b3');
 		} else {
-			$('#phone_check').text('휴대폰번호를 확인해주세요 :)');
-			$('#phone_check').css('color', 'red');
+			$("#userPhone").val('');
+			$("#userPhone").focus();
+			$('#phone-check-msg').text('휴대폰번호를 확인해주세요 :)');
+			$('#phone-check-msg').css('color', 'red');
 		}
 	});
 
-//정규식 끝
+// 정규식 끝
 
-$(document).ready(function() {
-
+// 증빙서류
 $("#1").click(function(){
     $("#resume").html(
     		'<label class="col-form-label col-4">증빙서류</label>' +
@@ -177,7 +232,7 @@ $("#1").click(function(){
     
 // 비밀번호 일치여부
     $(function(){
-        $('#userPw').keyup(function(){
+       /*  $('#userPw').keyup(function(){
           $('#pw-check-msg').html('');
         });
 
@@ -191,7 +246,7 @@ $("#1").click(function(){
               $('#pw-check-msg').css('color', '#199894b3');
             }
 
-        });
+        }); */
         
         $('#userPw_check').blur(function(){
         	if($('#userPw').val() != $('#userPw_check').val()){
@@ -255,6 +310,8 @@ function xmlIdCheck(){
         if(data != ''){
             ajaxFlag = false;
             document.querySelector('#id-check-msg').textContent = data + '는 이미 존재하는 아이디 입니다';
+            document.querySelector('#id-check-msg').style.color = 'red';
+            document.querySelector('#userId').value = '';
         } else {
             document.querySelector("#id-check-msg").textContent = '사용 가능한 아이디 입니다.';
             ajaxFlag = true;
@@ -283,13 +340,13 @@ function emailChk(){
 
 	
 	code = Math.floor(Math.random() * 1000000) + 100000;
-	userEmail = document.getElementById("userEmail").value;
-	console.log("code: " + code)
+	// userEmail = document.getElementById("userEmail").value;
+	// console.log("code: " + code)
 	
 	// 이메일 인증번호 체크
 	function emailSend() {
 				
-		userEmail = document.getElementById("userEmail").value;
+		// userEmail = document.getElementById("userEmail").value;
 		var param = "email=" + userEmail + "&code_check=" + code;
 		console.log(param)
 		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
@@ -343,6 +400,16 @@ function inputEmailChk(){
 	
 	document.getElementById("emailAuth").value="EmailUncheck";
 	
+}
+
+function finalChecked() {
+	
+	if($('input:checkbox[id="finalcheck"]').is(":checked")) {
+		$('#finalSub').attr('disabled', false);
+	} else {
+		$('#finalSub').attr('disabled', true);
+	}
+
 }
 
 // 이메일 인증 종료
@@ -408,7 +475,7 @@ function inputEmailChk(){
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" id="userId" name="userId" required="required" size="20" autofocus="autofocus"> <button type="button" onclick="xmlIdCheck()">중복확인</button>
+                <input type="text" id="userId" name="userId" required="required" size="20" autofocus="autofocus"> <button type="button" id="idBtn" name="idBtn" onclick="xmlIdCheck()" disabled>중복확인</button>
             </div>
         </div>
         
@@ -422,6 +489,11 @@ function inputEmailChk(){
                 <input type="password" class="form-control" id="userPw" name="userPw" required="required">
             </div>        	
         </div>
+        
+        <div class="form-group row" id="check_br" style="font-size: 8px; text-align: center;" >
+        	<span style="font-size: 8px; text-align: center;"></span>
+        </div>
+        
 		<div class="form-group row">
 			<label class="col-form-label col-4">비밀번호 확인</label>
 			<div class="col-8 float">
@@ -437,7 +509,7 @@ function inputEmailChk(){
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" id="userEmail" name="userEmail" required="required" size="18" onkeydown="inputEmailChk()"/> <input type="button" onclick="javascript:emailChk(); emailSend();" value="인증번호전송">
+                <input type="email" id="userEmail" name="userEmail" required="required" size="18" onkeydown="inputEmailChk()"/> <input type="button" id="emailBtn" name="emailBtn" onclick="javascript:emailChk(); emailSend();" value="인증번호전송" disabled>
                 <input type="hidden" id="emailAuth" name="emailAuth" value="emailUncheck">
             </div>
         </div>
@@ -457,7 +529,7 @@ function inputEmailChk(){
         <div class="form-group row">
 			<label class="col-form-label col-4">이름</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userName" required="required">
+                <input type="text" class="form-control" id="userName" name="userName" required="required">
             </div>        	
         </div>
         
@@ -468,8 +540,12 @@ function inputEmailChk(){
         <div class="form-group row">
 			<label class="col-form-label col-4">휴대폰번호</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" onKeyup="inputPhoneNumber(this);" maxlength="13" name="userPhone" required="required">
+                <input type="text" class="form-control" onKeyup="inputPhoneNumber(this);" maxlength="13" id="userPhone" name="userPhone" required="required">
             </div>        	
+        </div>
+        
+        <div class="form-group row" id="phone-check" style="font-size: 8px; text-align: center;" >
+        	<span id="phone-check-msg" class="phone-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
         
         <div class="form-group row">
@@ -479,8 +555,8 @@ function inputEmailChk(){
                 
                 <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
 
-                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="우편번호" required="required" size="25">
-                <input type="text" class="form-control" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required">
+                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="우편번호" required="required" size="25" readonly>
+                <input type="text" class="form-control" id="roadAddress" name="roadAddress" placeholder="도로명주소" size="35" required="required" readonly>
                 <input type="text" class="form-control" id="detailAddress" name="detailAddress" placeholder="상세주소" size="35" required="required">
 
             </div>
@@ -521,9 +597,9 @@ function inputEmailChk(){
         </div>
         
 		<div class="form-group row">
-				<p><label class="form-check-label"><input type="checkbox" required="required"> 위 이용약관에 동의합니다.</label></p>
+				<p><label class="form-check-label"><input type="checkbox" id="finalcheck" onclick="finalChecked()" name="finalcheck" required="required"> 위 이용약관에 동의합니다.</label></p>
 			<div class="col-8 offset-4">
-				<button type="submit" class="btn btn-primary btn-lg">회원가입</button>
+				<button type="submit" class="btn btn-primary btn-lg" id="finalSub" name="finalSub" disabled>회원가입</button>
 			</div>  
 		</div>		      
     </form>
