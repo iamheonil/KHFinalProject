@@ -23,7 +23,7 @@
 	border: 1px solid #ccc;
 	border-radius: 20px;
 	padding-top : 10px;
-	height: 1500px;
+	height: auto;
 }
 #boardtitle {
     font-size: 16px;
