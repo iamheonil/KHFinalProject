@@ -119,6 +119,35 @@
   	</select>
   	
   	
+  	<!-- 자료실 검색 후 총 게시글 조회 - 페이징 -->
+  	<select id="selectCntWebShareSearch" parameterType="map" resultType="int">
+  	
+  		select count(*)
+		from webshare
+		where conn_lesson_no = #{no}
+			and share_title like '%' || #{keyword} || '%'
+  	
+  	</select>
+  	
+  	
+  	<!-- 자료실 검색 - 검색된 글들만 출력 -->
+  	<select id="selectSearchWebShare" parameterType="map" resultType="map">
+  	
+  		select * from (
+			select rownum rnum, c.* from(
+				select w.share_no, w.share_title, w.share_date, m.user_id, w.conn_lesson_no
+				from webshare w, connected_lesson cl, membership m, webshare_file f
+				where w.conn_lesson_no = cl.conn_lesson_no
+				    and cl.teacher = m.user_no
+				    and w.conn_lesson_no = #{cno}
+				    and share_title like '%' || #{keyword} || '%'
+		        group by w.share_no, w.share_title, w.share_date, m.user_id, w.conn_lesson_no
+				order by w.share_no desc
+				) c
+			) webshare 
+		where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+  	
+  	</select>
   	
   
   

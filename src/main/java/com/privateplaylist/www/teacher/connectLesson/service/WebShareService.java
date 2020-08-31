@@ -41,5 +41,13 @@ public interface WebShareService {
 	public Map<String, Object> selectWebShareDetail(int no);
 
 
+	//자료실 검색 - 페이징
+	public Paging webShareSearchPaging(HttpServletRequest req, String keyword, int no);
+
+	
+	//자료실 검색 - 검색된 글들만 출력
+	public List<Map<String, Object>> selectSearchWebShare(Map<String, Object> searchMap);
+
+
 
 }
