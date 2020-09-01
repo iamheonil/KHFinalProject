@@ -6,11 +6,8 @@
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 
-<!-- 선생님 마이페이지 헤더 -->
-<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
-
-<!-- 모달 추가 -->
-<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" /> -->
+<!-- 학생 마이페이지 헤더 -->
+<c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
 
 <!-- jQuery 2.2.4.min -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -63,10 +60,6 @@
 #fileView{
 	width: 200px;
 	height: 200px;
-}
-
-#fileImg{
-	visibility: hidden;
 }
 
 </style>
@@ -258,7 +251,7 @@ $(document).ready(function() {
     /* 모달 > 탈퇴  */
     $('#deletebtn').click(function(){
 //     	alert("탈퇴");
-    	location.href="<%= request.getContextPath() %>/teacher/profile/delete?userNo=${loginUser.userNo }";
+    	location.href="<%= request.getContextPath() %>/student/profile/delete?userNo=${loginUser.userNo }";
     });
     
     
@@ -312,50 +305,6 @@ function inputPhoneNumber(obj) {
     obj.value = phone;
 }
 
-/* 비밀번호 정규식 검사 */
-// var ajaxFlag = false;
-
-// function validate() {
-//     var pass = document.getElementById('userPw');
-//     var regExpPw = /(?=.*\d)(?=.*[~`!@#$%\^&*()-+=])(?=.*[a-zA-Z]).{6,15}$/;
-
-//     function chk(re, e, msg) {
-//         if(re.test(e.value)) {
-//             return true;
-//         } else {
-//             alert(msg);
-//             e.value = "";
-//             e.focus();
-//             //기본 이벤트 취소
-//             return false;
-//         }
-//     }
-
-//     // 비밀번호 검사
-//     if(!chk(regExpPw, pass,'비밀번호는 숫자,영어,특수문자가 하나 이상 포함되어 있어야하며, 6글자 이상 15글자 이하여야 합니다')){
-//         return false;
-//     }
-//     return true;
-// }
-
-/* 첨부파일 이미지 미리보기 */
-function loadImg(value){
-	
-	$("#fileImg").css('visibility', 'visible');
-	
-	if(value.files && value.files[0]){
-		/* 파일리더 객체 생성 */
-		var reader = new FileReader();
-		
-		/* 리더 시작 시 함수 구현 */
-		reader.onload = function(e){
-			$("#fileImg").attr('src', e.target.result);
-		}
-		reader.readAsDataURL(value.files[0]);
-	}
-	
-}
-
 </script>
 
 
@@ -366,24 +315,10 @@ function loadImg(value){
 
 <div id="profileborder">
 
-    <form action="<%= request.getContextPath() %>/teacher/profile/update" method="post" class="form-horizontal" enctype="multipart/form-data" id="teaprofile">
+    <form action="<%= request.getContextPath() %>/student/profile/update" method="post" class="form-horizontal" id="teaprofile">
       	<br>
       	<div class="boardersize pointfont" style="font-weight: bold;"><h5>개인 정보 수정 & 탈퇴</h5></div>
         <br>
-      <div class="boardersize">
-         <label class="col-form-label col-4">프로필 사진</label>
-       	 <div>
-       	 
-       	 <c:if test="${not empty teacherFile.tchFileRename }">
-       	 <img class="imgsize" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${teacherFile.tchFileRename }">
-       	 </c:if>
-       	 
-       	 <c:if test="${empty  teacherFile.tchFileRename }">
-       	 <h4>사진이 없습니다. 프로필 사진을 등록해주세요.</h4>
-       	 </c:if>
-       	 
-       	 </div>
-     </div>
       
       	<div class="boardersize">
 			<label class="col-form-label col-4">아이디</label>
@@ -476,21 +411,6 @@ function loadImg(value){
             </div>        	
        </div>
        
-     <div class="boardersize">
-         <label class="col-form-label col-4">프로필 사진 변경</label>
-         
-       	 <div class="col-8 float">
-         	<input type="file" id="file" name="file" onchange="loadImg(this);" /> 
-    	 </div>
-    	 
-    	 <small style="color: tomato;">사진은 1장만 선택 가능하며, 기존 프로필은 자동으로 삭제됩니다</small><br>
-    	 
-    	 <small>이미지 미리보기</small>
-      	  <div id="fileView">
-      	  	<img alt="" src="" id="fileImg" class="imgsize" >
-      	  </div>
-     </div>
-        
        <div class="boardersize"> 
 			<button type="submit" class="btn btn-default" id="btn" >수정</button>
 	   </div>
@@ -514,8 +434,8 @@ function loadImg(value){
 	        <p>
 	        	1. 연결된 과외가 있는 경우 회원탈퇴를 할 수 없습니다.<br>
 		        2. 회원탈퇴시 모든 거래내역은 확인할 수 없습니다.<br>
-		        3. 회원탈퇴시 결제 이미 결제된 과외 글에 대해서 환불할 수 없습니다<br>
-		        4. 학생의 정보를 다시 열람 할 수 없습니다<br>
+		        3. 회원탈퇴시 결제 이미 결제된 과외에 대해서 환불할 수 없습니다<br>
+		        4. 선생님의 정보를 다시 열람 할 수 없습니다<br>
 		        5. 위의 사항을 모두 동의합니다<br>
 	        </p>
 	       <hr>
