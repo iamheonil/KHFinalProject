@@ -18,4 +18,43 @@
   		select count(*) from question
     </select>  
   
+  <!-- 게시물 삭제 -->
+	<delete id="deleteQuestion">
+	  	delete from question
+		where question_no = #{questionNo}
+    </delete>
+  	<!-- 게시물파일삭제-->
+	<delete id="deleteQuestionFile">
+		delete from question_file where question_no=#{questionNo}
+	</delete>
+
+	<!-- 게시물 댓글삭제 -->
+	<delete id="deleteQuestionComm">
+		delete from question_comm where comm_No=#{comm_No}
+	</delete>
+  
+  
+	<select id="selectSearchQuestion" resultType="QUESTION" parameterType="map">
+
+	select * from (
+		select rownum rnum, c.* from(
+			select * from question
+			where question_title like '%' || #{keyword} || '%'
+			or question_content like  '%' || #{keyword} || '%'
+			order by question_no desc
+		) c
+	) question 
+	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	
+  </select>
+  
+  <select id="selectCntQuestionSearchAll" resultType="int" parameterType="String">
+  	select count(*) from question
+  	where question_title like '%' || #{keyword} || '%'
+  	or question_content like  '%' || #{keyword} || '%'
+  </select>  
+  
+  
+  
+  
   </mapper>

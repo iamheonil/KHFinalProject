@@ -114,10 +114,20 @@ public class ProfileController {
 			//디비에서 값 가지고오기
 			Member newmember =  profileService.selectonenew(loginUser);
 			
+//			System.out.println("newmember"+newmember);
+			
+			newmember.setUserGender(member.getUserGender());
+			
+			String gender = member.getUserGender();
+			
+//			System.out.println(gender);
+			
 //			System.out.println(newmember);
 			
 			//세션값 변경
 			session.setAttribute("loginUser", newmember);
+			
+//			System.out.println(loginUser);
 			
 			return "teacher/profile/chkpassword";
 			

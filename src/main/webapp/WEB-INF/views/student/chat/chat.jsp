@@ -201,7 +201,7 @@ else
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <div class="">
-<h3 class=" text-center">Messaging</h3>
+
 <div class="messaging">
   <div class="inbox_msg">
     <div class="inbox_people">

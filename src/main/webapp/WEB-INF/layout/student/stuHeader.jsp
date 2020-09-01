@@ -351,28 +351,34 @@ function getInfiniteBox(){
             <h4><a href="#">과외</a></h4>
             <ul>
               <li><a href="#">찜하기</a></li>
-              <li><a href="#">과외 신청 내역</a></li>
-              <li><a href="#">수강 중인 과외</a></li>
-              <li><a href="#">수강 완료한 과외</a></li>
+              <li><a href="#">신청 내역</a></li>
+              <li><a href="#">수강 중 > 자료실 </a></li>
+              <li><a href="#">수강 완료 > 후기 작성</a></li>
             </ul>
           </div>
           
            <div class="menu-item two connectLesson">
-            <h4><a href="#">게시판</a></h4>
+            <h4><a href="#">학생  찾기</a></h4>
 	            <ul id="conLesson">
-	             <li><a href="#">질문 게시판</a></li>
-	             <li><a href="#">후기 게시판</a></li>
+	              <li><a href="#">학생 찾기 등록</a></li>
+	              <li><a href="#">학생 찾기 목록</a></li>
 	            </ul>
           </div>
-
+          
           <div class="menu-item">
             <h4><a href="#">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
           
-          <div class="menu-item">
-            <h4><a href="#">중고장터</a></h4>
+          <div class="menu-item" id="three">
+            <h4><a href="#">커뮤니티</a></h4>
+	            <ul id="conLesson">
+	             <li><a href="#">질문 게시판</a></li>
+	             <li><a href="#">후기 게시판</a></li>
+	             <li><a href="#">중고장터</a></li>
+	             
+	            </ul>
           </div>
-          
+
            <div class="menu-item">
             <h4><a href="#">신고 내역</a></h4>
           </div>

@@ -2,6 +2,7 @@ package com.privateplaylist.www.teacher.connectLesson.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.dto.Webshare;
+import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.connectLesson.service.WebShareService;
 
 import common.util.Paging;
@@ -34,11 +36,18 @@ public class WebShareController {
 	
 	//연결된 과외 목록
 	@RequestMapping("/connectedlesson")
-	public String lessonList(Model model) {
+	public String lessonList(Model model, HttpSession session) {
 		
 //		System.out.println("lessonList 접속 테스트");
 		
-		int teaNo = 9;
+//		int teaNo = 9;
+		
+		Member sessionMember = (Member) session.getAttribute("loginUser");
+		
+		int teaNo = sessionMember.getUserNo();
+		
+//		System.out.println(teaNo);
+		
 		
 		//연결된 과외 조회
 		List<Map<String, Object>> connectedLessonList = webShareService.selectConnectedLesson(teaNo);
@@ -46,6 +55,7 @@ public class WebShareController {
 //		System.out.println(connectedLessonList);
 		
 		model.addAttribute("connectedLessonList", connectedLessonList);
+		model.addAttribute("teano", teaNo);
 		
 		return "/teacher/connectedLesson/lessonList";
 	} 
@@ -211,7 +221,64 @@ public class WebShareController {
 		
 		int res = webShareService.deleteWebShare(sno);
 		
-		return "redirect:/teacher/webshare?no="+cno; //여기서 필요한건 conn_lesson_no
+		return "redirect:/teacher/webshare?no="+cno; 
+	}
+	
+	
+	//자료실 제목 검색
+	@RequestMapping("/webshare/search")
+	public String webshareSearch(Model model, HttpServletRequest req, @RequestParam int no, @RequestParam String keyword) {
+		
+		
+//		System.out.println("검색 왔나?");
+//		
+//		System.out.println("conn_lesson_no: "+no);
+//		System.out.println("keyword: " +keyword);
+		
+		String root = req.getContextPath();
+		
+		
+		//검색어가 없을 때
+		if(keyword.equals("")) {
+			
+			model.addAttribute("alertMsg", "검색어를 입력해주세요");
+			model.addAttribute("url", root+"/teacher/webshare?no="+no);
+			
+			return "/admin/notice/error";
+		}
+		
+		//요청 파라미터를 전달하여 paging 객체 생성하기
+		Paging paging = webShareService.webShareSearchPaging(req, keyword, no);
+		
+		//키워드, 페이징, conn_lesson_no 넣어줄 map
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		
+		searchMap.put("keyword", keyword);
+		searchMap.put("paging", paging);
+		searchMap.put("cno", no);
+		
+		//글 검색하기
+		List<Map<String, Object>> webShareSearchList = webShareService.selectSearchWebShare(searchMap);
+		
+		
+		//모델값 전달
+		model.addAttribute("keyword", keyword);
+		
+		//자료실 검색 결과 글목록
+		model.addAttribute("webShareSearchList", webShareSearchList);
+		
+		//페이징 결과 전달
+		model.addAttribute("paging", paging);
+		
+		//conn_lesson_no
+		model.addAttribute("no", no);
+				
+		
+//		System.out.println("검색완료");
+		
+		
+		//검색 완료
+		return  "/teacher/webShare/webShareSearch"; 
 	}
 	
 	

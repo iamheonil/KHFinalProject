@@ -179,7 +179,7 @@ function getInfinateChat(){//채팅리스트를 가져오는 함수를 계속 �
 	setInterval(function(){
 		
 		chatListFunction(lastID);
-	},1500)
+	},500)
 }
 </script>
 </head>
@@ -251,7 +251,7 @@ else
 
 				<!--Widget body-->
 				<div id="demo-chat-body" class="collapse in">
-					<div class="nano has-scrollbar"  style="height: 380px">
+					<div class="nano has-scrollbar"  style="height: 480px">
 						<div class="nano-content pad-all" tabindex="0"
 							style="right: -17px;" id="chatListBox">
 							<ul class="list-unstyled media-block" id="chatList">

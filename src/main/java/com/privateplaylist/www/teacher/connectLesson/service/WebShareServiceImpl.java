@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.privateplaylist.www.dto.Notice;
 import com.privateplaylist.www.dto.Webshare;
 import com.privateplaylist.www.teacher.connectLesson.dao.WebShareDao;
 
@@ -134,6 +135,38 @@ public class WebShareServiceImpl implements WebShareService {
 		
 		return webShareDetail;
 		
+	}
+
+	//자료실 검색 - 페이징
+	@Override
+	public Paging webShareSearchPaging(HttpServletRequest req, String keyword, int no) {
+		
+		//전달 파라미터  curPage를 파싱한다
+		String param = req.getParameter("curPage");
+		
+		int curPage = 0 ;
+		
+		if(param != null && !"".equals(param)) {
+			
+			curPage = Integer.parseInt(param);
+		}
+		
+		//검색 후 총 게시글 수를 조회한다
+		int totalCount = webShareDao.selectCntWebShareSearch(keyword, no);
+		
+		//paging객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		
+		//계산된 Paging 객체 반환
+		return paging;
+	}
+
+	
+	//자료실 검색 - 검색된 글들만 출력
+	@Override
+	public List<Map<String, Object>> selectSearchWebShare(Map<String, Object> searchMap) {
+		
+		return webShareDao.selectSearchWebShare(searchMap);
 	}
 
 	

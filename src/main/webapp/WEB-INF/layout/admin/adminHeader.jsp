@@ -67,12 +67,8 @@
                               	 학생 관리
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/tchList">
                                	선생님 관리
-                               	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
-                            </a>
-                            <a class="nav-link" href="#">
-                               	선생님 회원가입 관리
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                             
@@ -82,11 +78,7 @@
 	                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                            
-                            <div class="sb-sidenav-menu-heading">게시판</div>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/list">
-                               	공지사항
-                               	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
-                            </a>
+                            <div class="sb-sidenav-menu-heading">커뮤니티</div>
                             <a class="nav-link" href="${pageContext.request.contextPath}/admin/question/list">
                               	 질문 게시판
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
@@ -95,14 +87,20 @@
                                	후기 게시판
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/blacklist">
-                               	신고 내역 관리
+                            
+                             <a class="nav-link" href="${pageContext.request.contextPath}/admin/market">
+                               	중고장터
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                             
-                            <div class="sb-sidenav-menu-heading">중고장터</div>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/market">
-                               	중고장터 조회/삭제
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/list">
+                               	공지사항
+                               	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
+                            </a>
+                            
+                            <div class="sb-sidenav-menu-heading">신고 내역</div>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/blacklist">
+                               	신고 내역 관리
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
                             
