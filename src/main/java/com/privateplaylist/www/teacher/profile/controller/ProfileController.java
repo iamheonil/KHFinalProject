@@ -141,8 +141,8 @@ public class ProfileController {
 	@RequestMapping("/delete")
 	public String profileDelete(HttpServletRequest req,HttpSession session,@RequestParam int userNo, Model model) {
 		
-		System.out.println("/teacher/profile/delete");
-		System.out.println("userNo"+userNo);
+//		System.out.println("/teacher/profile/delete");
+//		System.out.println("userNo"+userNo);
 		
 		//root context
 		String root = req.getContextPath();
@@ -175,7 +175,7 @@ public class ProfileController {
 				return "/admin/notice/error";
 			}else {
 				model.addAttribute("alertMsg", "회원탈퇴를 실패하였습니다. 다시 시도해주시기 바랍니다.");
-				model.addAttribute("url", root+"/teacher/profile/chkpasswordRes");
+				model.addAttribute("url", root+"/teacher/profile/chkpassword");
 
 				return "/admin/notice/error";
 			}
