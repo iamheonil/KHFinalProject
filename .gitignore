@@ -17,3 +17,4 @@ pom.properties
 
 # Create by 김헌일, 
 /target/
+src/main/webapp/resources/upload/

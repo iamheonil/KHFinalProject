@@ -39,6 +39,8 @@ if(userID==null){
 %>
 
 <script type="text/javascript">
+
+
 function searchParam(key) {//파라미터 값을 가져오는 함수
 	  return new URLSearchParams(location.search).get(key);
 	};
@@ -177,7 +179,7 @@ function getInfinateChat(){//채팅리스트를 가져오는 함수를 계속 �
 	setInterval(function(){
 		
 		chatListFunction(lastID);
-	},1500)
+	},500)
 }
 </script>
 </head>
@@ -249,7 +251,7 @@ else
 
 				<!--Widget body-->
 				<div id="demo-chat-body" class="collapse in">
-					<div class="nano has-scrollbar"  style="height: 380px">
+					<div class="nano has-scrollbar"  style="height: 480px">
 						<div class="nano-content pad-all" tabindex="0"
 							style="right: -17px;" id="chatListBox">
 							<ul class="list-unstyled media-block" id="chatList">
@@ -271,7 +273,7 @@ else
 								<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="Enter message..."></textarea>
 							</div>
 							<div class="col-xs-3">
-								<button type="button" class="btn btn-primary btn-block" style="margin-top: 20px;"  onclick="submitFunction();">Send</button>
+								<button type="button" class="btn btn-primary btn-block" style="margin-top: 20px;" id="submit"  onclick="submitFunction();">Send</button>
 							</div>
 						</div>
 					</div>
@@ -299,6 +301,14 @@ else
 $(document).ready(function(){
 	chatListFunction('ten');
 	getInfinateChat();
+	
+	$('#chatContent').on('keydown', function(event) {
+        if (event.keyCode == 13)
+            
+                
+                $('#submit').click();
+	})
+            
 })
 </script>
 
