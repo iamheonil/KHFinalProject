@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.privateplaylist.www.dto.Question;
+import com.privateplaylist.www.dto.QuestionComm;
 import com.privateplaylist.www.teacher.board.service.TeacherQuestionService;
 
 import common.util.Paging;
@@ -150,4 +151,40 @@ public class TeacherQuestionController {
 				return "/teacher/question/search";
 			}
 	
+			
+			//질문게시판 세부정보 보기
+			@RequestMapping(value="/detail")
+			public String  questionDetail(Model model,@RequestParam int questionNo ) {
+				System.out.println("/admin/question/detail");
+//				System.out.println("questionNo"+questionNo);
+				
+				//질문게시판 정보 조회 one
+				Question questionone = teacherQuestionService.selectQuestionone(questionNo);
+				List<QuestionComm> commList = teacherQuestionService.getReplyList(questionNo);
+				
+				
+				
+				//모델값 전달
+				model.addAttribute("questionone", questionone);
+				model.addAttribute("commList",commList);
+				
+				for (QuestionComm questionComm : commList) {
+					System.out.println("questuonComm"+questionComm);
+				}
+				return "/teacher/board/question/detail";
+			}	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 }

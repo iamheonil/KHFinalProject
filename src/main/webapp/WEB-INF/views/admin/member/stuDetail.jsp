@@ -79,11 +79,110 @@ $(document).ready(function(){
 	</div>
 	
 	
+	
+<div class="container">
+    <button type="button" class="btn btn-info" onclick="location.href='stuList'" style="margin-left: 88%">목록</button>
+    <div class="main-body">
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">회원 개인 정보</li>
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                  	<img src="${pageContext.request.contextPath}/resources/images/profile.png">
+<!--                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
+                    <div class="mt-3">
+                      <h4>${studentinfo.USER_NAME }</h4>
+                      <br><br><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">아이디</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${studentinfo.USER_ID }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">생년월일</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${studentinfo.USER_BIRTH }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${studentinfo.USER_EMAIL }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">전화번호</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${studentinfo.USER_PHONE }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">성별</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <c:if test="${studentinfo.USER_GENDER eq 'm'}">
+                    	남
+                    </c:if>
+                    <c:if test="${studentinfo.USER_GENDER eq 'w'}">
+                    	여
+                    </c:if>
+                      
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${studentinfo.ROADADDRESS }
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+                
+            </div>
+          </div>
+        </div>
+    </div>	
+	
+	
 	<main>
 	
 	
 	    <div id="content">
-	    <button type="button" class="btn btn-info" onclick="location.href='stuList'" style="margin-left: 88%">목록</button>
+	    
 
 
 	           	<div class="container-fluid">

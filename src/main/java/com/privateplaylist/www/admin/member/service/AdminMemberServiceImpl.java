@@ -140,6 +140,13 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return commandMap;
 		
 	}
+
+
+	@Override
+	public Map<String, Object> selectUserByNo(int userNo) {
+		
+		return adminMemberDao.selectUserByNo(userNo);
+	}
 	
 	
 

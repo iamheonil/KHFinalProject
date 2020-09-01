@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.privateplaylist.www.dto.Question;
+import com.privateplaylist.www.dto.QuestionComm;
 
 import common.util.Paging;
 
@@ -45,6 +46,15 @@ public class TeacherQuestionDao {
 
 	public List<Question> selectSearchQuestion(Map<String, Object> searchMap) {
 		return sqlSession.selectList("TeacherQuestion.selectSearchQuestion",searchMap);
+	}
+	
+	//상세조회
+	public Question selectQuestionone(int questionNo) {
+		return sqlSession.selectOne("TeacherQuestion.selectQuestionone",questionNo);
+	}
+
+	public List<QuestionComm> getReplyList(int questionNo) {
+		return sqlSession.selectList("TeacherQuestion.selectQuestionComm",questionNo);
 	}
 
 }

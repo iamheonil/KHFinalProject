@@ -1,5 +1,6 @@
 package com.privateplaylist.www.teacher.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.privateplaylist.www.dto.Question;
+import com.privateplaylist.www.dto.QuestionComm;
 import com.privateplaylist.www.teacher.board.dao.TeacherQuestionDao;
 
 import common.util.Paging;
@@ -82,6 +84,55 @@ public class TeacherQuestionServiceImpl implements TeacherQuestionService{
 	public List<Question> selectSearchQuestion(Map<String, Object> searchMap) {
 		List<Question> qustionList = teacherQuestionDao.selectSearchQuestion(searchMap);
 		return qustionList;
+	}
+
+	@Override
+	public Question selectQuestionone(int questionNo) {
+		Question questionone = teacherQuestionDao.selectQuestionone(questionNo);
+		
+		return questionone;
+	}
+
+	@Override
+	public List<QuestionComm> getReplyList(int questionNo) {
+		List<QuestionComm> questionReplyList = teacherQuestionDao.getReplyList(questionNo);
+		 
+        //msyql 에서 계층적 쿼리가 어려우니 여기서 그냥 해결하자
+        
+        System.out.println("service"+questionReplyList);
+        //부모
+        List<QuestionComm> questionReplyListParent = new ArrayList<QuestionComm>();
+        //자식
+        List<QuestionComm> questionReplyListChild = new ArrayList<QuestionComm>();
+        //통합
+        List<QuestionComm> newQuestionReplyList = new ArrayList<QuestionComm>();
+ 
+        //1.부모와 자식 분리
+        for(QuestionComm questionReply: questionReplyList){
+            if(questionReply.getCommClass()==0){
+                questionReplyListParent.add(questionReply);
+            }else if(questionReply.getCommClass()==1){
+                questionReplyListChild.add(questionReply);
+            }
+        }
+ 
+        //2.부모를 돌린다.
+        for(QuestionComm questionReplyParent: questionReplyListParent){
+            //2-1. 부모는 무조건 넣는다.
+            newQuestionReplyList.add(questionReplyParent);
+            //3.자식을 돌린다.
+            for(QuestionComm questionReplyChild: questionReplyListChild){
+                //3-1. 부모의 자식인 것들만 넣는다.
+                if(questionReplyParent.getCommNo()==(questionReplyChild.getParentCommNo() )){
+                    newQuestionReplyList.add(questionReplyChild);
+                }
+ 
+            }
+ 
+        }
+ 
+        //정리한 list return
+        return newQuestionReplyList;
 	}
 
 }

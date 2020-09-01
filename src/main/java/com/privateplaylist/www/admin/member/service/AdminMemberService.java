@@ -36,6 +36,13 @@ public interface AdminMemberService {
 	 * 회원(선생님)이 작성한 모든 게시글 조회
 	 */
 	public Map<String, Object> selectTchAllList(int userNo);
+
+	/*
+	 * user정보 조회하기
+	 */
+	public Map<String, Object> selectUserByNo(int userNo);
+
+
 	
 	
 

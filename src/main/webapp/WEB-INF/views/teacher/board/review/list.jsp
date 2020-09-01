@@ -93,7 +93,7 @@
 	
 		<!-- 페이징 -->
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/teacher/webShare/webShareListPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/teacher/board/teacherlistPaging.jsp"></c:import>
 		</div>
 	
 	

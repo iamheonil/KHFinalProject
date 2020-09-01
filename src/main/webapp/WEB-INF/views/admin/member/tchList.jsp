@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 
 <!-- 관리자 페이지 header -->
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
@@ -426,6 +427,10 @@ p{
 </style>
 
 
+
+
+
+
 <div id="layoutSidenav_content">
 
 	<div id="title">
@@ -516,10 +521,20 @@ p{
 										<c:forEach items="${tchData}" var="user">
 											<tr>
 												<td>${user.USER_NO }</td>
-												<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar1.png"
-<%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
-												alt=""> <p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
+												<td>
+<!-- 												<img -->
+<!-- 												src="https://bootdey.com/img/Content/avatar/avatar1.png" -->
+<%-- <%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
+<!-- 												alt=""> -->
+												<c:if test="${not empty user.TCH_FILE_RENAME }">
+		<img class="imgsize" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${user.TCH_FILE_RENAME }">
+												</c:if>
+												<c:if test="${empty user.TCH_FILE_RENAME }">
+												<img src="https://bootdey.com/img/Content/avatar/avatar1.png"/>
+												</c:if>
+												
+												<p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
+<%-- 												<p><a href="#" title="학생 정보 보기" onclick="teacherModal(${user.USER_NO });">${user.USER_ID }</a></p></td> --%>
 												<td>${user.USER_NAME }</td>
 												<td>
 <%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>

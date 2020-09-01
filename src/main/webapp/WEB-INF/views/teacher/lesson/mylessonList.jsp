@@ -193,7 +193,7 @@ function lessonModal(lessonNo){
 }
 
 </script>
-
+<!-- 모달창 -->
 <div class="modal fade" id="lessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document"  style="z-index: inherit;">
     <div class="modal-content">
