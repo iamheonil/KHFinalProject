@@ -188,7 +188,8 @@ function addlocation(){
     <form name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data">
         <div class="panel panel-default">
           <div class="panel-body text-center">
-           <img src="<spring:url value='/upload/${TCH_FILE_RENAME }'/>" class="img-circle profile-avatar" alt="User avatar"/>
+<%--            <img src="<spring:url value='/upload/${TCH_FILE_RENAME }'/>" class="img-circle profile-avatar" alt="User avatar"/> --%>
+<img class="img-circle profile-avatar" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${file.tchFileRename }">
           </div>
         </div>
         
