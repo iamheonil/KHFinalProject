@@ -33,7 +33,7 @@
 		delete from question_comm where comm_No=#{comm_No}
 	</delete>
   
-  
+  	<!-- 검색 -->
 	<select id="selectSearchQuestion" resultType="QUESTION" parameterType="map">
 
 	select * from (
@@ -56,5 +56,18 @@
   
   
   
+  
+  <!-- 상세 페이지 출력 -->
+	<select id="selectQuestionone" resultType="QUESTION" parameterType="int">
+  	select * from question
+  	where question_no = #{questionNo}
+  </select>
+  
+  
+  <!-- 댓글,대댓글 출력 -->
+  <select id="selectQuestionComm" resultType="QUESTIONCOMM" parameterType="int">
+  	select * from question_comm
+  	where question_no = #{questionNo}
+  </select>
   
   </mapper>

@@ -6,6 +6,34 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
 
+<script type="text/javascript">
+/* 체크박스 전체선택, 전체해제 */
+function checkAll(){
+      if( $("#th_checkAll").is(':checked') ){
+        $("input[name=checkRow]").prop("checked", true);
+      }else{
+        $("input[name=checkRow]").prop("checked", false);
+      }
+}
+</script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	//삭제버튼 동작
+	$("#deletebtn").click(function(){
+		
+		//실제 <form>의 submit 수행
+		$("#checkboxlist").submit();
+		
+	});
+	
+});
+
+</script> 
+
+
+
+
 <div id="title">게시판
 	<i class="glyphicon glyphicon-menu-right"></i>
 	<a href="${pageContext.request.contextPath}/teacher/question/list">질문 게시판</a>
@@ -38,7 +66,7 @@
 	<input type="hidden" value="${cno}"id="no" />
  
  	<!-- 체크박스 리스트 전송 -->
- 	<form action="${pageContext.request.contextPath}/teacher/question/delete" method="post" id="checkboxlist">
+ 	<form action="${pageContext.request.contextPath}/teacher/question/idxdelete" method="post" id="checkboxlist">
  	
  	
 		<!-- 질문게시판 리스트 -->
@@ -52,10 +80,8 @@
 			<th style="width: 45%">내용</th>
 			<th style="width: 15%">작성일</th>
 		</tr>
-		
 		<!-- 게시글이 없을 때  -->
 		<c:if test="${empty questionList }" >
-		
 			<input type="hidden" value="${cno}"id="no" />
 			
 			<tr>
@@ -63,7 +89,6 @@
 			</tr>
 		
 		</c:if>
-		
 		<!--게시글이 있을 때 -->
 		<c:if test="${!empty questionList }" >
 		
@@ -77,7 +102,7 @@
 			    <td><input type="checkbox" name="checkRow" value="${questionList.questionNo}" id="checkRow"/></td>
 				<td>${questionList.questionNo}</td>
 				<td>
-					<a href="#">${questionList.questionTitle }
+					<a href="${pageContext.request.contextPath}/teacher/question/detail?questionNo=${questionList.questionNo}">${questionList.questionTitle }
 					</a>
 				</td>
 				<td>${questionList.questionContent }</td>
@@ -92,7 +117,7 @@
 	
 		<!-- 페이징 -->
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/teacher/webShare/webShareListPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/teacher/board/teacherlistPaging.jsp"></c:import>
 		</div>
 	
 	
@@ -101,6 +126,7 @@
 	<!-- 글작성/삭제 버튼 -->
 	<div id="footerbtn">
 		<div id="divbtn">
+		<!-- 수정부분은 유저페이지로 이동시켜야함 -->
 			<button type="button" class="button button2" id="updatebtn">수정</button>
 			<button type="button" class="button button3" id="deletebtn">삭제</button>
 		</div> 
