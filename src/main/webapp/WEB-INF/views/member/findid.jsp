@@ -30,27 +30,72 @@ body.eMobilePopup{overflow:hidden;position:fixed;}
  }
 </style>
 
+<script type="text/javascript">
+
+//아이디 AJAX 처리
+function findId(){
+    //querySelector :
+    //	css선택자로 원하는 html element 객체를 불러온다.
+    //  jquery의 $('')와 유사하다.
+    var userId = document.querySelector('#userName').value;
+    var userActor = document.querySelector('#userActor').value;
+    var userEmail = document.querySelector('#userEmail').value;
+    
+    var xhr = new XMLHttpRequest();
+    //통신을 위한 시작줄 작성
+    xhr.open('POST', '<%=request.getContextPath()%>/member/findAjaxid');
+    //http request header 설정
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    //http request body 설정
+    //xhr.send() : 전송할 데이터가 있다면 파라미터에 넣어서 보내주면 된다.
+    xhr.send('userName='+userName);
+    xhr.send('userActor='+userActor);
+    xhr.send('userEmail='+userEmail);
+    
+    //ajax 통신이 끝난 뒤 실행할 콜백함수 등록
+    xhr.addEventListener('load',function(){
+        //responseBody에 있는 값을 data에 넣어줌
+        var data = xhr.response;
+        if(data != ''){
+            ajaxFlag = false;
+            document.querySelector('#id-msg').textContent = '회원님의 아이디는 ' + data + ' 입니다';
+            document.querySelector('#id-msg').style.color = 'black';
+        } else {
+            document.querySelector("#id-msg").textContent = '일치하는 정보가 없습니다';
+            ajaxFlag = true;
+        }
+    })
+}
+
+</script>
+
 <br><br><br>
 
 <body id="find_body">
-<div class="xans-element- xans-member xans-member-findid"><!--
-        $returnURL = /member/id/find_id_result.html
-     -->
-<div class="findId">
-        <h3>아이디 찾기</h3>
-        <fieldset>
-<legend>아이디 찾기</legend>
-            <p class="member"><strong>회원유형</strong> <select id="searchType" name="searchType" >
-<option value="student" selected="selected">학생</option>
-<option value="teacher">선생님</option>
-</select></p>
-            <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="name" name="name" class="lostInput" type="text"></p>
-            <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="email" name="email" class="lostInput" type="text"></p>
-            <p class="ec-base-button ">
-                <span class="btn_black_big"><a href="#none" onclick="">확인</a></span>
-            </p>
-        </fieldset>
-</div>
+<div class="xans-element- xans-member xans-member-findid">
+	<div class="findId">
+		<form action="/ss/member/findid" method="POST">
+	        <h3>아이디 찾기</h3>
+	     	   <fieldset>
+					<legend>아이디 찾기</legend>
+			            <p class="member">
+				            <strong>회원유형</strong>
+			    	    	<select id="userActor" name="userActor" >
+								<option id="userActor" name="userActor" value="2" selected="selected">학생</option>
+								<option id="userActor" name="userActor" value="1">선생님</option>
+							</select>
+						</p>
+				        <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="userName" name="userName" class="lostInput" type="text"></p>
+				        <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="userEmail" name="userEmail" class="lostInput" type="text"></p>
+				        <p class="ec-base-button ">
+			    		<input type="button" onclick="findId()" value="아이디찾기">
+			    		
+			    		<span id="id-msg" class="id-msg" style="font-size: 12px; text-align: center;"></span>
+       					
+				</p>
+	        </fieldset>
+	    </form>
+	</div>
 </div>
 
 
