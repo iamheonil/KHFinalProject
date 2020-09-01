@@ -12,6 +12,9 @@
 <!-- 모달 추가 -->
 <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" /> -->
 
+<!-- jQuery 2.2.4.min -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <style type="text/css">
 #main {
 	display: inline-block;
@@ -64,6 +67,56 @@
 
 </style>
 
+<!-- 모달 -->
+<style>
+        #modal {
+          display: none;
+          position:relative;
+          width:100%;
+          height:100%;
+          z-index:1;
+        }
+        
+        #modal button {
+      	  float: right;
+        }
+        
+        #modal .modal_content {
+          width:500px;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          border:2px solid #666;
+          top : -700px;
+          left : 100px;
+          position: absolute;
+          border-radius: 10px;
+        }
+        
+        #modal .modal_layer {
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }   
+</style> 
+
+<!-- 모달 -->
+<script>
+$(document).ready(function() {
+    document.getElementById("modal_opne_btn").onclick = function() {
+        document.getElementById("modal").style.display="block";
+    }
+   
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }   
+});    
+</script>
+
 <!-- 도로명 주소 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -106,21 +159,96 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-	/* 비밀번호 일치 확인 */
-    $('#userPw').keyup(function(){
-      $('#pw-check-msg').html('');
-    });
+//정규식
+	
+	//모든 공백 체크 정규식
+	var empJ = /\s/g;
+	// 비밀번호 정규식
+	var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+	// 이름 정규식
+	var nameJ = /^[가-힣]{2,6}$/;
+	// 휴대폰 번호 정규식
+	var phoneJ = /^\d{3}-\d{3,4}-\d{4}$/;
+	
 
-    $('#userPw_check').keyup(function(){
+	//비밀번호 정규식
+	$("#userPw").keyup(function() {
+		if (pwJ.test($(this).val())) {
+				// console.log(idJ.test($(this).val()));
+				console.log('Password Check');
+				$('#pw-check-msg').text('가입을 진행해주세요!');
+				$('#pw-check-msg').css('color', '#199894b3');
+		} else {
+// 			$("#userPw").val('');
+			$("#userPw").focus();
+			$('#pw-check-msg').text('소문자, 대문자, 특수문자, 숫자, 6글자 이상이어야 합니다');
+			$('#pw-check-msg').css('color', 'red');
+		}
+	});
+	
+	// 이름에 특수문자 들어가지 않도록 설정
+	$("#userName").keyup(function() {
+		if (nameJ.test($(this).val())) {
+// 				console.log(nameJ.test($(this).val()));
+				console.log('userName Check');
+				
+				$('#name-check-msg').text('가입을 진행해주세요!');
+				$('#name-check-msg').css('color', '#199894b3');
+		} else {
+// 			$("#userName").val('');
+			$("#userName").focus();
+			$('#name-check-msg').text('이름을 확인해주세요, 영문과 숫자는 불가능하며 2글자 이상이어야 합니다.');
+			$('#name-check-msg').css('color', 'red');
+		}
+	});
+	
+	// 휴대전화
+	$('#userPhone').keyup(function(){
+		if(phoneJ.test($(this).val())){
+			// console.log(phoneJ.test($(this).val()));
+			console.log('userPhone Check');
+			
+			$("#phone-check-msg").text('확인 감사합니다! :)');
+			$('#phone-check-msg').css('color', '#199894b3');
+		} else {
+// 			$("#userPhone").val('');
+			$("#userPhone").focus();
+			$('#phone-check-msg').text('휴대폰번호를 확인해주세요 :)');
+			$('#phone-check-msg').css('color', 'red');
+		}
+	});
 
-        if($('#userPw').val() != $('#userPw_check').val()){
-          $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
-          $('#pw-check-msg').attr('color', '#f82a2aa3');
-        } else{
-          $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
-          $('#pw-check-msg').attr('color', '#199894b3');
-        }
+// 정규식 끝
+	
 
+	// 비밀번호 일치여부
+    $(function(){
+       /*  $('#userPw').keyup(function(){
+          $('#pw-check-msg').html('');
+        });
+
+        $('#userPw_check').keyup(function(){
+
+            if($('#userPw').val() != $('#userPw_check').val()){
+              $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
+              $('#pw-check-msg').css('color', '#f82a2aa3');
+            } else {
+              $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
+              $('#pw-check-msg').css('color', '#199894b3');
+            }
+
+        }); */
+        
+        $('#userPw_check').keyup(function(){
+        	if($('#userPw').val() != $('#userPw_check').val()){
+                $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
+                $('#pw-check-msg').css('color', '#f82a2aa3');
+//                 $('#userPw_check').val('');
+              } else {
+                $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
+                $('#pw-check-msg').css('color', '#199894b3');
+              }
+          });
     });
     
     /* 모달 > 탈퇴  */
@@ -129,22 +257,28 @@ $(document).ready(function() {
     	location.href="<%= request.getContextPath() %>/teacher/profile/delete?userNo=${loginUser.userNo }";
     });
     
-    /* 체크 박스 value 값 따라 변경 */
-//     $("#w").prop("checked", false);
-//     $("#m").prop("checked", false);
     
-    var chkval = ${loginUser.userGender  };
-    if(chkval == m ){
-    	$("#w").prop("checked", false);
-    	$("#m").prop("checked", true);
-
-    }else if(chkval == w ){
-    	$("#w").prop("checked", true);
-    	$("#m").prop("checked", false);
+    /* 체크 박스 value 값 따라 변경 */
+	 var chkval = '${loginUser.userGender  }';
+	 
+	 var m = 'm';
+	 var w = 'w';
+	 
+	 console.log(chkval);
+	
+	 if(chkval == m ){
+	 	$("#w").prop("checked", false);
+	 	$("#m").prop("checked", true);
+	
+	 }else if(chkval == w ){
+	 	$("#w").prop("checked", true);
+	 	$("#m").prop("checked", false);
 	}
-   
+    
     
 });
+
+/* ************************************** */
 
 /* 핸드폰 번호 */
 function inputPhoneNumber(obj) {
@@ -175,30 +309,30 @@ function inputPhoneNumber(obj) {
 }
 
 /* 비밀번호 정규식 검사 */
-var ajaxFlag = false;
+// var ajaxFlag = false;
 
-function validate() {
-    var pass = document.getElementById('userPw');
-    var regExpPw = /(?=.*\d)(?=.*[~`!@#$%\^&*()-+=])(?=.*[a-zA-Z]).{6,15}$/;
+// function validate() {
+//     var pass = document.getElementById('userPw');
+//     var regExpPw = /(?=.*\d)(?=.*[~`!@#$%\^&*()-+=])(?=.*[a-zA-Z]).{6,15}$/;
 
-    function chk(re, e, msg) {
-        if(re.test(e.value)) {
-            return true;
-        } else {
-            alert(msg);
-            e.value = "";
-            e.focus();
-            //기본 이벤트 취소
-            return false;
-        }
-    }
+//     function chk(re, e, msg) {
+//         if(re.test(e.value)) {
+//             return true;
+//         } else {
+//             alert(msg);
+//             e.value = "";
+//             e.focus();
+//             //기본 이벤트 취소
+//             return false;
+//         }
+//     }
 
-    // 비밀번호 검사
-    if(!chk(regExpPw, pass,'비밀번호는 숫자,영어,특수문자가 하나 이상 포함되어 있어야하며, 6글자 이상 15글자 이하여야 합니다')){
-        return false;
-    }
-    return true;
-}
+//     // 비밀번호 검사
+//     if(!chk(regExpPw, pass,'비밀번호는 숫자,영어,특수문자가 하나 이상 포함되어 있어야하며, 6글자 이상 15글자 이하여야 합니다')){
+//         return false;
+//     }
+//     return true;
+// }
 
 /* 첨부파일 이미지 미리보기 */
 function loadImg(value){
@@ -225,7 +359,7 @@ function loadImg(value){
 
 <div id="profileborder">
 
-    <form action="<%= request.getContextPath() %>/teacher/profile/update" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form action="<%= request.getContextPath() %>/teacher/profile/update" method="post" class="form-horizontal" enctype="multipart/form-data" id="teaprofile">
       	<br>
       	<div class="boardersize pointfont" style="font-weight: bold;"><h5>개인 정보 수정 & 탈퇴</h5></div>
         <br>
@@ -254,8 +388,12 @@ function loadImg(value){
 		<div class="boardersize">
 			<label class="col-form-label col-4">비밀번호</label>
 			<div class="col-8 float">
-                <input type="password" class="form-control" id="userPw" name="userPw" size="20" autofocus="autofocus">
-            </div>        	
+                <input type="password" class="form-control" id="userPw" name="userPw" size="20">
+            </div> 
+            
+            <div class="form-group row" id="check_br" style="font-size: 8px; text-align: center;" >
+        		<span style="font-size: 8px; text-align: center; " size="20"></span>
+        	</div>       	
         </div>
         
         <div class="boardersize">
@@ -281,15 +419,24 @@ function loadImg(value){
         <div class="boardersize">
 			<label class="col-form-label col-4">이름</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" name="userName" size="20" value="${loginUser.userName }">
-            </div>      
+                <input type="text" class="form-control" id="userName" name="userName" size="20" value="${loginUser.userName }">
+            </div>  
+            
+            <div class="form-group row" id="name-check" style="font-size: 8px; text-align: center;" >
+        		<span id="name-check-msg" class="name-check-msg" style="font-size: 8px; text-align: center;"></span>
+        	</div>    
         </div>
+        
         
         <div class="boardersize">     	
 			<label class="col-form-label col-4">전화번호</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" onKeyup="inputPhoneNumber(this);" maxlength="13" name="userPhone" size="20" value="${loginUser.userPhone }" >
-            </div>  
+                <input type="text" class="form-control" onKeyup="inputPhoneNumber(this);" maxlength="13" id="userPhone" name="userPhone" size="20" value="${loginUser.userPhone }" >
+            </div> 
+            
+            <div class="form-group row" id="phone-check" style="font-size: 8px; text-align: center;" >
+        		<span id="phone-check-msg" class="phone-check-msg" style="font-size: 8px; text-align: center;"></span>
+  	     	</div> 
         </div>      	
 
 		<div class="boardersize">
@@ -310,8 +457,8 @@ function loadImg(value){
 		<div class="boardersize">
 			<label class="col-form-label col-4">성별</label>
 			<div class="col-8 float">
-				<label><input type="radio" id="m" name="userGender" value="m" checked="checked"/> 남&emsp;&emsp;</label>
-				<label><input type="radio" id="w" name="userGender" value="w" checked="checked"/> 여</label>
+				<label><input type="radio" id="m" name="userGender" value="m" /> 남&emsp;&emsp;</label>
+				<label><input type="radio" id="w" name="userGender" value="w" /> 여</label>
             </div>     
         </div>
         
@@ -347,36 +494,31 @@ function loadImg(value){
     <div class="deleteprofile">
     <small>회원정보를 삭제하시겠어요?</small>
     <!-- Button trigger modal -->
-	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalProfile">회원탈퇴</button>
+<!-- 	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModalProfile">회원탈퇴</button> -->
+	    <button type="button" id="modal_opne_btn" class="btn btn-default btn-xs" >회원 탈퇴</button>
     </div>
     
-	<!-- Modal -->
-	<div class="modal fade" id="myModalProfile" tabindex="-1" role="dialog" aria-labelledby="myModalProfileLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content" style="top:110px; width: 600px;">
-	    
-	      <div class="modal-header">
-	        <h4 class="modal-title" id="myModalProfileLabel">회원 탈퇴 안내</h4>
-	      </div>
-	      
-	      <div class="modal-body">
-	        1. 연결된 과외가 있는 경우 회원탈퇴를 할 수 없습니다.<br>
-	        2. 회원탈퇴시 모든 거래내역은 확인할 수 없습니다.<br>
-	        3. 회원탈퇴시 결제 이미 결제된 과외 글에 대해서 환불할 수 없습니다<br>
-	        4. 학생의 정보를 다시 열람 할 수 없습니다<br>
-	        5. 위의 사항을 모두 동의합니다<br>
-	      </div>
-	      
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-default" id="deletebtn">탈퇴</button>
-	      </div>
-	      
+	<!-- modal -->
+	<div id="modal">
+	   
+	    <div class="modal_content">
+	        <h4>회원 탈퇴 안내</h4>
+	       <hr>
+	        <p>
+	        	1. 연결된 과외가 있는 경우 회원탈퇴를 할 수 없습니다.<br>
+		        2. 회원탈퇴시 모든 거래내역은 확인할 수 없습니다.<br>
+		        3. 회원탈퇴시 결제 이미 결제된 과외 글에 대해서 환불할 수 없습니다<br>
+		        4. 학생의 정보를 다시 열람 할 수 없습니다<br>
+		        5. 위의 사항을 모두 동의합니다<br>
+	        </p>
+	       <hr>
+	        <button type="button" class="btn btn-default btn-xs" id="deletebtn">탈퇴</button>
+	        <button type="button" id="modal_close_btn" class="btn btn-default btn-xs" data-dismiss="modal">취소</button>
 	    </div>
-	  </div>
+	   
+	    <div class="modal_layer"></div>
 	</div>
- 
-	    
+		
 </div>
 </div>
 
