@@ -190,17 +190,50 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
-	public String findId() {
+	public String getFindId() {
 		// System.out.println("findid Call");
 
 		return "/member/findid";
 	}
 
+//	@RequestMapping(value = "/findAjaxid", method = RequestMethod.POST)
+//	public ModelAndView findId(@RequestParam Map<String, Object> memberMap) {
+//		System.out.println(memberMap);
+//		
+//		ModelAndView mav = new ModelAndView();
+//		
+//		memberService.findId(memberMap);
+//		
+//		return mav;
+//	}
+	
+	@RequestMapping(value = "/findAjaxid", method = RequestMethod.POST)
+	public Member findId(@RequestParam Map<String, Object> memberMap) {
+		System.out.println(memberMap);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		
+		
+		return memberService.findId(memberMap);
+	}
+
 	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
-	public String findPw() {
+	public String getFindPw() {
 		// System.out.println("findpw Call");
 
 		return "/member/findpw";
+	}
+
+	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
+	public ModelAndView FindPw(@RequestParam Map<String, Object> memberMap) {
+		// System.out.println("");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		memberService.findPw(memberMap);
+		
+		return mav;
 	}
 	
 	@RequestMapping("/logout")

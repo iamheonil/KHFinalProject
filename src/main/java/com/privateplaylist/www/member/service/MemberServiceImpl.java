@@ -121,6 +121,33 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public Member findId(Map<String, Object> memberMap) {
+
+		// 입력한 회원유형
+		// String userActor = (String) memberMap.get("userActor");
+		// 입력한 이름
+		// String userName = (String) memberMap.get("userName");
+		// 입력한 이메일
+		// String userEmail = (String) memberMap.get("userEmail");
+		
+		Member member = memberDao.findId(memberMap); 
+		
+		System.out.println("아아디는 " + member.getUserId());
+		
+		return member;
+	}
+
+	@Override
+	public Member findPw(Map<String, Object> memberMap) {
+		Member member = memberDao.findPw(memberMap); 
+		
+		System.out.println("비밀번호는 " + member.getUserPw());
+		
+		return member;
+	}
+
+	
 }
 
 //		String setfrom = "snn7452@naver.com";
