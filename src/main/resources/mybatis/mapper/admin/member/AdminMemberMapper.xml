@@ -109,35 +109,38 @@
 	
 	
 	<select id="selectTchList" resultType="map">
-	  	SELECT * FROM (
-	  		SELECT rownum no, t.*
-	  		FROM (
-			  	SELECT * FROM Membership
-				WHERE 1=1
-<!-- 				AND user_id LIKE '%' || #{paging.search} || '%' -->
-				<choose>
-					<when test="category == 'UserNo'">
-						AND user_no LIKE '%' || #{paging.search} || '%'
-		        	</when>
-		        	<when test="category == '아이디'">
-					     AND user_id LIKE '%' || #{paging.search} || '%'
-		        	</when>
-		        	<when test="category == '이름'">
-				         AND user_name LIKE '%' || #{paging.search} || '%'
-		        	</when>
-		        	<otherwise>
-				        AND user_id LIKE '%' || #{paging.search} || '%'
-		        		OR user_name LIKE '%' || #{paging.search} || '%'
-		        	</otherwise>
-		        </choose>
-				ORDER BY user_no
+		SELECT * FROM (
+			SELECT rownum no, t.*
+			           FROM (
+			select m.*, a.tch_file_no, a.tch_file_rename, a.save_path
+			from membership m, (select f.tch_file_no, f.user_no fuser_no, f.tch_file_rename, f.save_path from teacherfile f
+			where tch_file_rename like 'profile%') a
+			where m.user_no = a.fuser_no(+)
+<!-- 			and m.user_actor = 1 -->
+			
+			<choose>
+               <when test="category == 'UserNo'">
+                  AND user_no LIKE '%' || #{paging.search} || '%'
+                 </when>
+                 <when test="category == '아이디'">
+                    AND user_id LIKE '%' || #{paging.search} || '%'
+                 </when>
+                 <when test="category == '이름'">
+                     AND user_name LIKE '%' || #{paging.search} || '%'
+                 </when>
+                 <otherwise>
+                    AND user_id LIKE '%' || #{paging.search} || '%'
+<!--                     OR user_name LIKE '%' || #{paging.search} || '%' -->
+                 </otherwise>
+              </choose>
+			
+			
+			order by m.user_no
 			) t
-			where user_actor = 1
-			ORDER BY no ) x
-		WHERE no between #{paging.startNo} AND #{paging.endNo}
-	</select>
-	
-	
+         where user_actor = 1
+         ORDER BY no ) x
+      WHERE no between #{paging.startNo} AND #{paging.endNo}
+   </select>
 <!-- 	<select id="selectTchReviewList" resultType="Map"> -->
 <!-- 		select r.*, a.user_id stu_id,  -->
 <!-- 		    (select distinct m.user_id from review r, membership m where cl.teacher = m.user_no and cl.teacher=#{userNo}) tch_id -->
@@ -161,6 +164,14 @@
 		join connected_lesson c on c.conn_lesson_no = r.conn_lesson_no
 		where c.teacher = #{userNo}
 		AND r.review_state = 0
+	</select>
+	
+	<select id="selectUserByNo" resultType="Map" >
+		select m.*, a.tch_file_no, a.tch_file_rename, a.save_path
+		    from membership m, (select f.tch_file_no, f.user_no fuser_no, f.tch_file_rename, f.save_path from teacherfile f
+		    where tch_file_rename like 'profile%') a
+		    where m.user_no = a.fuser_no(+)
+		    and m.user_no = #{userNo}
 	</select>
 
 </mapper>

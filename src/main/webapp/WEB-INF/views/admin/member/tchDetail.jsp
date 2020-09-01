@@ -71,19 +71,181 @@ $(document).ready(function(){
 	#table3_info { float: left; }
 	#table3 a:hover  { text-decoration: none; color: black; }
 	#table3 td:nth-child(2):hover { background: #f3f3f3cc; }
+body{
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
+/*     background-color: #e2e8f0;     */
+}
+.main-body {
+    padding: 15px;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+.h-100 {
+    height: 100%!important;
+}
+.shadow-none {
+    box-shadow: none!important;
+}
+
 </style>
+
+
 <body>	
+
+
+
 	<div id="title">회원 
 		<i class="fas fa-angle-right"></i>
 		<a href="">선생님 관리</a>
 	</div>
 	
 	
+<div class="container">
+    <button type="button" class="btn btn-info" onclick="location.href='tchList'" style="margin-left: 88%">목록</button>
+    <div class="main-body">
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">회원 개인 정보</li>
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+    
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                  <c:if test="${empty teacherinfo.SAVE_PATH }">
+                  	<img src="${pageContext.request.contextPath}/resources/images/profile.png">
+                  </c:if>
+                  <c:if test="${not empty teacherinfo.SAVE_PATH }">
+                    <img class="rounded-circle" width="150" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${teacherinfo.TCH_FILE_RENAME }">
+                  </c:if>
+<!--                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
+                    <div class="mt-3">
+                      <h4>${teacherinfo.USER_NAME }</h4>
+                      <br><br><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">아이디</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${teacherinfo.USER_ID }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">생년월일</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${teacherinfo.USER_BIRTH }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${teacherinfo.USER_EMAIL }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">전화번호</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${teacherinfo.USER_PHONE }
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">성별</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <c:if test="${teacherinfo.USER_GENDER eq 'm'}">
+                    	남
+                    </c:if>
+                    <c:if test="${teacherinfo.USER_GENDER eq 'w'}">
+                    	여
+                    </c:if>
+                      
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      ${teacherinfo.ROADADDRESS }
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+                
+            </div>
+          </div>
+        </div>
+    </div>
+	
 	<main>
 	
 	
 	    <div id="content">
-	    <button type="button" class="btn btn-info" onclick="location.href='tchList'" style="margin-left: 88%">목록</button>
+	    
 
 
 	           	<div class="container-fluid">
