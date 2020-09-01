@@ -176,7 +176,7 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="input-group">
-						<input type="hidden" value="${cno}" id="no" name="no"/>
+						<input type="hidden" value="${no}" id="no" name="no"/>
 						<input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
 						<span class="input-group-btn">
 							<button class="button button1" type="submit">검색</button>
@@ -188,7 +188,7 @@ $(document).ready(function(){
 	</div>
 	
 	
-	<input type="hidden" value="${cno}" id="no" name="no"/>
+	<input type="hidden" value="${no}" id="no" name="no"/>
  
  	<!-- 체크박스 리스트 전송 -->
  	<form action="${pageContext.request.contextPath}/teacher/webshare/delete" method="post" id="checkboxlist">
@@ -207,23 +207,23 @@ $(document).ready(function(){
 		</tr>
 		
 		<!-- 게시글이 없을 때  -->
-		<c:if test="${empty webShareList }" >
+		<c:if test="${empty webShareSearchList }" >
 		
-			<input type="hidden" value="${cno}" id="no" />
+			<input type="hidden" value="${no}" id="no" name="no" />
 			
 			<tr>
-				<td colspan="8" style="color: #17B794; font-weight: bold;">게시글이  없습니다</td>
+				<td colspan="8" style="color: #17B794; font-weight: bold;">검색 결과가  없습니다</td>
 			</tr>
 		</table>
 		
 		</c:if>
 		
 		<!--게시글이 있을 때 -->
-		<c:if test="${!empty webShareList }" >
+		<c:if test="${!empty webShareSearchList }" >
 		
 		
 			<!-- 값 출력 -->
-			<c:forEach items="${webShareList }" var="wlist">
+			<c:forEach items="${webShareSearchList }" var="wlist">
 			
 		 		<input type="hidden" value="${wlist.CONN_LESSON_NO}" name="no" id="no" />
 		 		
@@ -246,7 +246,7 @@ $(document).ready(function(){
 	
 		<!-- 페이징 -->
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/teacher/webShare/webShareListPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/teacher/webShare/webShareSearchListPaging.jsp"></c:import>
 		</div>
 	
 	</c:if>
