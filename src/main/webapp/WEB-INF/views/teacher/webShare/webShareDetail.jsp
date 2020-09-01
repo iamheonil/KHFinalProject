@@ -130,7 +130,10 @@
 			<th id="info">글번호</th>
 	        <td id="info2">${webShareDetail.webshare.shareNo }</td>
 	        <th id="info">작성일</th>
-	        <td id="info2"><fmt:formatDate value="${webShareDetail.webshare.shareDate }" pattern="yyyy-MM-dd"/></td>
+	        <td id="info2">
+	        <fmt:parseDate value="${webShareDetail.webshare.shareDate }" var="parseShareDate" pattern="yy/MM/dd"/>
+	        <fmt:formatDate value="${parseShareDate }" pattern="yyyy-MM-dd"/>
+	        </td>
 	    </tr>
 		
 	    <tr>

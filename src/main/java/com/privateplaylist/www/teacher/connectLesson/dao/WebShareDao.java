@@ -88,6 +88,25 @@ public class WebShareDao {
 	}
 
 
+	//자료실 검색 후 게시글 수 조회 - 페이징
+	public int selectCntWebShareSearch(String keyword, int no) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("no", no);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("WebShare.selectCntWebShareSearch", map);
+	}
+
+
+	//자료실 검색 - 검색된 글들만 출력
+	public List<Map<String, Object>> selectSearchWebShare(Map<String, Object> searchMap) {
+		
+		return sqlSession.selectList("WebShare.selectSearchWebShare", searchMap);
+	}
+
+
 	
 
 }

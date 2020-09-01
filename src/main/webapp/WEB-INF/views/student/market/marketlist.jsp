@@ -26,13 +26,15 @@
 
 
 
-<div id="title">과외 연결
+<div id="title">커뮤니티
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">연결된 과외</a>
+	<a href="">중고장터</a>
 </div>
 
 
 <h6>내용</h6>
+
+
 
 
 <!-- 학생 마이페이지 푸터 -->

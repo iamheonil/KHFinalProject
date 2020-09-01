@@ -8,9 +8,13 @@ public class Webshare {
 	private int connLessonNo;
 	private String shareTitle;
 	private String shareContent;
-	private Date shareDate;
+	private String shareDate;
 	
 	
+	
+	
+
+
 	@Override
 	public String toString() {
 		return "Webshare [shareNo=" + shareNo + ", connLessonNo=" + connLessonNo + ", shareTitle=" + shareTitle
@@ -58,14 +62,17 @@ public class Webshare {
 	}
 
 
-	public Date getShareDate() {
+	public String getShareDate() {
 		return shareDate;
 	}
 
 
-	public void setShareDate(Date shareDate) {
+	public void setShareDate(String shareDate) {
 		this.shareDate = shareDate;
 	}
+
+
+	
 	
 	
 	
