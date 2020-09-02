@@ -358,7 +358,7 @@ function getInfiniteBox(){
           </div>
           
            <div class="menu-item">
-            <h4><a href="#">학생 찾기</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/student/findStu/list">학생 찾기</a></h4>
           </div>
           
           <div class="menu-item">
