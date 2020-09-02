@@ -30,27 +30,69 @@ body.eMobilePopup{overflow:hidden;position:fixed;}
  }
 </style>
 
+<script type="text/javascript">
+
+//아이디 AJAX 처리
+function findId(){
+    //querySelector :
+    //   css선택자로 원하는 html element 객체를 불러온다.
+    //  jquery의 $('')와 유사하다.
+    
+    var userName = document.querySelector('#userName').value;
+    var userActor = document.querySelector('#userActor').value;
+    var userEmail = document.querySelector('#userEmail').value;
+
+	$.ajax({
+   type:"POST",
+   url:"/ss/member/findidAjax",
+   data:{
+	   userName:userName,
+       userActor:userActor,
+   	   userEmail:userEmail   
+	},
+	success:function(data){
+	if(data != ''){
+            document.querySelector('#id-msg').textContent = '회원님의 아이디는 ' + data + ' 입니다';
+            document.querySelector('#id-msg').style.color = 'white';
+        } else {
+            document.querySelector("#id-msg").textContent = '일치하는 정보가 없습니다';
+            document.querySelector('#id-msg').style.color = 'white';
+        }
+}
+})
+    
+ 
+}
+
+</script>
+
 <br><br><br>
 
 <body id="find_body">
-<div class="xans-element- xans-member xans-member-findid"><!--
-        $returnURL = /member/id/find_id_result.html
-     -->
-<div class="findId">
-        <h3>아이디 찾기</h3>
-        <fieldset>
-<legend>아이디 찾기</legend>
-            <p class="member"><strong>회원유형</strong> <select id="searchType" name="searchType" >
-<option value="student" selected="selected">학생</option>
-<option value="teacher">선생님</option>
-</select></p>
-            <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="name" name="name" class="lostInput" type="text"></p>
-            <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="email" name="email" class="lostInput" type="text"></p>
-            <p class="ec-base-button ">
-                <span class="btn_black_big"><a href="#none" onclick="">확인</a></span>
-            </p>
-        </fieldset>
-</div>
+<div class="xans-element- xans-member xans-member-findid">
+	<div class="findId">
+		<form action="/ss/member/findidAjax" method="POST">
+	        <h3>아이디 찾기</h3>
+	     	   <fieldset>
+					<legend>아이디 찾기</legend>
+			            <p class="member">
+				            <strong>회원유형</strong>
+			    	    	<select id="userActor" name="userActor" >
+								<option id="userActor" name="userActor" value="2" selected="selected">학생</option>
+								<option id="userActor" name="userActor" value="1">선생님</option>
+							</select>
+						</p>
+				        <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="userName" name="userName" class="lostInput" type="text"></p>
+				        <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="userEmail" name="userEmail" class="lostInput" type="text"></p>
+				        <p class="ec-base-button ">
+			    		<input type="button" onclick="findId()" value="아이디찾기">
+			    		<br>
+			    		<span id="id-msg" class="id-msg" style="font-size: 14px; text-align: center;"></span>
+       					
+				</p>
+	        </fieldset>
+	    </form>
+	</div>
 </div>
 
 

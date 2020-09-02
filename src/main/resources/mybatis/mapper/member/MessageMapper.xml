@@ -18,9 +18,11 @@
 	<select id="getChatListByRecent"
 		resultType="MASSAGE">
 		SELECT * FROM Message WHERE ((fromID=#{fromID} AND
-		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID})) AND chatID >
+		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID})) 
+		<!-- AND chatID  -->
+		<!-- >
 		(SELECT MAX(chatID)-10 from Message where (fromID=#{fromID} AND
-		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID}))
+		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID})) -->
 		ORDER BY chatID 
 	</select>
 	

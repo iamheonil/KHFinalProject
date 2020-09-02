@@ -65,6 +65,10 @@
 	height: 200px;
 }
 
+#fileImg{
+	visibility: hidden;
+}
+
 </style>
 
 <!-- 모달 -->
@@ -336,6 +340,9 @@ function inputPhoneNumber(obj) {
 
 /* 첨부파일 이미지 미리보기 */
 function loadImg(value){
+	
+	$("#fileImg").css('visibility', 'visible');
+	
 	if(value.files && value.files[0]){
 		/* 파일리더 객체 생성 */
 		var reader = new FileReader();
@@ -480,7 +487,7 @@ function loadImg(value){
     	 
     	 <small>이미지 미리보기</small>
       	  <div id="fileView">
-      	  	<img alt="" src="" id="fileImg" class="imgsize">
+      	  	<img alt="" src="" id="fileImg" class="imgsize" >
       	  </div>
      </div>
         

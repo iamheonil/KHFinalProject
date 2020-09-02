@@ -33,5 +33,14 @@ public interface MemberService {
     
     // 로그아웃 메소드
     public void logOut(HttpSession session);
+    
+    // 회원 아이디 찾기
+    public Member findId(Map<String, Object> memberMap);
+    
+    // 회원 비밀번호 찾기
+    public Member findPw(Map<String, Object> memberMap);
+    
+    // 패스워드 찾기 기능
+    public int modifyPw(Member member);
 
 }

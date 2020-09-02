@@ -39,7 +39,7 @@ public class ConnectLessonController {
 		
 		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, userNo);
 		
-		System.out.println(list);
+//		System.out.println(list);
 		
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);

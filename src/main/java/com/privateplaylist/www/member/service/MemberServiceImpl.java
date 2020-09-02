@@ -66,7 +66,6 @@ public class MemberServiceImpl implements MemberService {
 		// DB에 저장된 사용자 정보
 		Member member = memberDao.selectMember(memberMap);
 
-
 		if (member != null) {
 			// 사용자가 입력한 비밀번호와 DB에 인코딩되어 저장된 비밀번호가 같은지 확인
 			if (passwordEncoder.matches(password, member.getUserPw())) {
@@ -88,8 +87,8 @@ public class MemberServiceImpl implements MemberService {
 
 		String setfrom = "snn7452@naver.com";
 		String tomail = email;
-		String title = "슬기로운 과외생활 회원가입 인증메일 입니다.";
-		String htmlBody = "<h2>회원가입을 위해 인증번호를 입력해주세요!</h2>" + "인증번호는 " + code_check + "입니다.";
+		String title = "슬기로운 과외생활 인증메일 입니다.";
+		String htmlBody = "<h2>원활한 절차 진행을 위해 인증번호를 입력해주세요!</h2>" + " 인증번호는 " + code_check + " 입니다!";
 
 		try {
 
@@ -119,6 +118,60 @@ public class MemberServiceImpl implements MemberService {
 
 		memberDao.logOut(session);
 
+	}
+
+	@Override
+	public Member findId(Map<String, Object> memberMap) {
+
+		// 입력한 회원유형
+		// String userActor = (String) memberMap.get("userActor");
+		// 입력한 이름
+		// String userName = (String) memberMap.get("userName");
+		// 입력한 이메일
+		// String userEmail = (String) memberMap.get("userEmail");
+
+		Member member = memberDao.findId(memberMap);
+
+		return member;
+	}
+
+	@Override
+	public Member findPw(Map<String, Object> memberMap) {
+		Member member = memberDao.findPw(memberMap);
+
+		// System.out.println("비밀번호는 " + member.getUserPw());
+
+		return member;
+	}
+
+	@Override
+	public int modifyPw(Member member) {
+		
+		String password = member.getUserPw();
+		System.out.println(password + " 검증");
+		
+		int res = 0;
+
+		if (password.equals("")) {
+			// 개인정보 update
+			res = memberDao.modifyPw(member);
+		} else {
+			// 암호화할 password
+			String secPw = "";
+
+			// 비밀번호 암호화
+			secPw = passwordEncoder.encode(password);
+
+			// 비밀번호 set
+			member.setUserPw(secPw);
+
+			// 개인정보 update
+			res = memberDao.modifyPw(member);
+			
+			System.out.println(secPw + " 검증");
+		}
+
+		return res;
 	}
 
 }

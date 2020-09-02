@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="dao.MarketStuDao">
+  
+  <select id="selectCntAllMK" parameterType="int" resultType="int">
+ 	SELECT COUNT(*) FROM market
+	WHERE mk_writer=#{userNo}
+	AND mk_state != 2
+  </select>
+  
+  <select id="selectCntAllMKComm" parameterType="int" resultType="int">
+ 	SELECT COUNT(*) FROM mk_comm
+	WHERE mk_user_no=#{userNo}
+  </select>
+  
+  <select id="selectMarketStu" parameterType="map" resultType="map">
+  	SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * from MARKET m
+				LEFT JOIN MK_THUMB f
+				ON(m.mk_no = f.mk_no)
+				WHERE m.mk_writer=#{userNo}
+				AND m.mk_state != 2
+				ORDER BY m.mk_no DESC
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+  </select>
+  
+  <select id="selectMarketCommStu" parameterType="map" resultType="map">
+  	SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * FROM mk_comm
+				WHERE mk_user_no = #{userNo}
+				ORDER BY mk_comm_no DESC
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+  </select>
+  
+  
+  
+  </mapper>

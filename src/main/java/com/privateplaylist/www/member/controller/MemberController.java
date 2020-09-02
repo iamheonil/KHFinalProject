@@ -190,17 +190,87 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
-	public String findId() {
+	public String getFindId() {
 		// System.out.println("findid Call");
 
 		return "/member/findid";
 	}
 
+	@RequestMapping(value = "/findidAjax", method = RequestMethod.POST)
+	@ResponseBody
+	public String findId(@RequestParam Map<String, Object> memberMap) {
+		// System.out.println(memberMap);
+		
+		Member member = memberService.findId(memberMap);
+		String result = "";
+
+		if(member != null) {
+			String res = member.getUserId();
+		
+			if (res.equals(null)) {
+				return "null";
+			} else {
+				result = member.getUserId();
+			}
+		}
+		return result;
+	}
+	
+//	@RequestMapping(value = "/findAjaxid", method = RequestMethod.POST)
+//	public Member findId(@RequestParam Map<String, Object> memberMap) {
+//		System.out.println(memberMap);
+//		
+//		ModelAndView mav = new ModelAndView();
+//		
+//		
+//		
+//		return memberService.findId(memberMap);
+//	}
+
 	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
-	public String findPw() {
+	public String getFindPw() {
 		// System.out.println("findpw Call");
 
 		return "/member/findpw";
+	}
+
+	@RequestMapping(value = "/findpwAjax", method = RequestMethod.POST)
+	@ResponseBody
+	public String FindPw(@RequestParam Map<String, Object> memberMap) {
+		
+		Member member = memberService.findPw(memberMap);
+		String result = "";
+
+		if(member != null) {
+			String res = member.getUserPw();
+		
+			if (res.equals(null)) {
+				return "null";
+			} else {
+				result = member.getUserPw();
+			}
+		}
+		return result;
+	}
+	
+	@RequestMapping("/pwModify")
+	public ModelAndView modifyPw(Member member) {
+		
+		// System.out.println(member + "잘 바다따");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		int res = memberDao.modifyPw(member);
+		
+		if (res < 0) {
+			System.out.println("비밀번호 수정 실패");
+			mav.setViewName("redirect:findpw");
+		} else {
+			System.out.println("비밀번호 수정 성공");
+			mav.setViewName("redirect:login");
+		}
+		
+		return mav;
 	}
 	
 	@RequestMapping("/logout")
