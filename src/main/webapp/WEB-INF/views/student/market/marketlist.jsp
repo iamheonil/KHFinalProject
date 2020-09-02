@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
@@ -13,8 +14,15 @@
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <style type="text/css">
-#title{
+.menu-item#three ul {
+   height: 93px; 
+}
 
+#studentMK{
+  background: #eee;
+}
+
+#title{
 	width: 100%;
 	font-weight: bold;
 }
@@ -28,10 +36,21 @@
 	margin: 0 auto;
 }
 
-
-#marketTable{
+#marketBoard{
 	width: 90%;
 	margin: 0 auto;
+}
+
+#marketComm{
+	width: 90%;
+	margin: 0 auto;
+}
+.marketTable{
+	height: 360px;
+}
+
+.marketCommTable{
+	height: 260px;
 }
 
 .main-box.no-header {
@@ -65,6 +84,12 @@
     display: block;
     font-size: 1.25em;
     margin-left: 60px;
+    margin-top: 12.5px;
+    widht: 350px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	 display: block;
 }
 
 a {
@@ -95,23 +120,67 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 4px 8px;
 }
+
+.commContent{
+	width: 500px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	 display: inline-block;
+}
 </style>
+<script type="text/javascript">
+function marketPaging(curPage){
+	
+	var url = "<%=request.getContextPath() %>/student/marketpage";
+	// 비동기 처리
+	$.ajax({
+		type : "POST",
+		url: url,
+		data: {curPage : curPage},
+		success : function(result) {
+// 			console.log(result);
+			$("#marketBoard").html(result);
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+	});
+	
+}
 
-
-
+function marketCommPaging(curPage){
+	
+	var url = "<%=request.getContextPath() %>/student/marketcommpage";
+	// 비동기 처리
+	$.ajax({
+		type : "POST",
+		url: url,
+		data: {curPage : curPage},
+		success : function(result) {
+// 			console.log(result);
+			$("#marketComm").html(result);
+			$("#marketCommTable").focus();
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+	});
+	
+}
+</script>
 
 <div id="title">커뮤니티
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">중고장터</a>
+	<a href="javascript:void(0);">중고장터</a>
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">내가 작성한 글</a>
+	<a href="javascript:void(0);">내가 작성한 글</a>
 </div>
 
 <div id="marketContent">
-
-<div id="marketTable">
+<div id="marketBoard">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 marketTable">
             <div class="main-box no-header clearfix">
                 <div class="main-box-body clearfix">
                     <div class="table-responsive">
@@ -119,19 +188,25 @@ a {
                             <thead>
                                 <tr>
                                 <th class="text-center" style="width: 5%;"><span>No</span></th>
-                                <th class="text-center" style="width: 60%;"><span>글제목</span></th>
-                                <th class="text-center"><span>판매 상태</span></th>
-                                <th class="text-center"><span>작성일</span></th>
+                                <th class="text-center" style="width: 55%;"><span>글제목</span></th>
+                                <th class="text-center"  style="width: 15%;"><span>가격</span></th>
+                                <th class="text-center"  style="width: 10%;"><span>판매 상태</span></th>
+                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
                                 <th style="width: 5%;">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach items="${list }" var="m">
+                            	<c:forEach items="${list1 }" var="m">
                                 <tr>
-                                    <td>${m.NO }</td>
+                                    <td class="text-center"><span>${m.NO }</span></td>
                                     <td>
                                         <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
                                         <a href="#" class="user-link">${m.MK_TITLE }</a>
+                                    </td>
+                                    <td  class="text-center">
+                                        <span>
+                                        <fmt:formatNumber type="currency" currencyCode="KRW" value="${m.MK_PRICE }"/>
+                                        </span>
                                     </td>
                                     <td class="text-center">
                                     <c:if test="${m.MK_STATE eq 0 }">
@@ -142,7 +217,10 @@ a {
                                     </c:if>
                                     </td>
                                     <td  class="text-center">
-                                        <span>${m.MK_DATE }</span>
+                                        <span>
+                               		    <fmt:parseDate value="${m.MK_DATE }" pattern="yyyyMMdd" var="date"/>
+                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
+                                   		</span>
                                     </td>
                                     <td>
                                         <a href="#" class="table-link danger">
@@ -156,27 +234,78 @@ a {
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <div style="text-align: center;">
-<%--                         	<c:if test="${not empty list}" > --%>
-								<c:import url="/WEB-INF/paging/student/market/marketPaging.jsp" />
-<%-- 							</c:if> --%>
-						</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+	</div>
+        <div style="text-align: center;">
+<%--    <c:if test="${not empty list}" > --%>
+		<c:import url="/WEB-INF/paging/student/market/marketPaging.jsp" />
+<%-- 	</c:if> --%>
+		</div>
 </div>
 
 <hr>
 
 <div id="title">커뮤니티
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">중고장터</a>
+	<a href="javascript:void(0);">중고장터</a>
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">내가 작성한 댓글</a>
+	<a href="javascript:void(0);">내가 작성한 댓글</a>
 </div>
 
+<div id="marketComm">
+    <div class="row">
+        <div class="col-lg-12 marketCommTable">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th class="text-center" style="width: 5%;"><span>No</span></th>
+                                <th class="text-center"><span>댓글 내용</span></th>
+                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
+                                <th style="width: 5%;">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<c:forEach items="${list2 }" var="m">
+                                <tr>
+                                    <td class="text-center"><span>${m.NO }</span></td>
+                                    <td>
+                                        <a href="#" class="commContent">${m.MK_COMM_CONTENT }</a>
+                                    </td>
+                                    <td  class="text-center">
+                                        <span>
+                                        <fmt:parseDate value="${m.MK_COMM_DATE }" pattern="yyyyMMdd" var="date"/>
+                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+        <div style="text-align: center;">
+<%--    <c:if test="${not empty list}" > --%>
+		<c:import url="/WEB-INF/paging/student/market/marketCommPaging.jsp" />
+<%-- 	</c:if> --%>
+		</div>
+</div>
                 
 
 

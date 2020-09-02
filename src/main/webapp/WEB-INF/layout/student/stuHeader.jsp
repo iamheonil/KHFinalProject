@@ -370,7 +370,7 @@ function getInfiniteBox(){
 	            <ul>
 	             <li><a href="#">질문 게시판</a></li>
 	             <li><a href="#">후기 게시판</a></li>
-	             <li><a href="#">중고장터</a></li>
+	             <li id="studentMK"><a href="${pageContext.request.contextPath}/student/market">중고장터</a></li>
 	            </ul>
           </div>
 

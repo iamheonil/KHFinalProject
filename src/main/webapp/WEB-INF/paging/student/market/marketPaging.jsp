@@ -29,28 +29,34 @@
 		<%--    </c:if> --%>
    
 	    <!-- 이전 페이지로 가기 -->
-	   <c:if test="${paging.curPage ne 1 }">
-	   <li><a href="${pageContext.request.contextPath }/student/market?curPage=${paging.curPage - 1 }">&lt;</a>
+	   <c:if test="${paging1.curPage ne 1 }">
+	   <li><a href="javascript:void(0);" onclick="marketPaging(${paging1.curPage - 1 });">&lt;</a></li>
+	   </c:if>
+	   <c:if test="${paging1.curPage eq 1 }">
+	   <li><a href="javascript:void(0);">&lt;</a></li>
 	   </c:if>
 	   
-   		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="i">
+   		<c:forEach begin="${paging1.startPage }" end="${paging1.endPage }" var="i">
    
 	   <!-- 현재 페이지라면 강조(.active) -->
-	   <c:if test="${paging.curPage eq i }">
-	   <li class="active"><a href="${pageContext.request.contextPath }/student/market?curPage=${i }">${i }</a></li>
+	   <c:if test="${paging1.curPage eq i }">
+	   <li class="active"><a href="javascript:void(0);" onclick="marketPaging(${i });">${i }</a></li>
 	   </c:if>
 	   
 	   <!-- 현재 페이지가 아니라면 평소 모습-->
-	   <c:if test="${paging.curPage ne i }">
-	   <li><a href="${pageContext.request.contextPath }/student/market?curPage=${i }">${i }</a></li>
+	   <c:if test="${paging1.curPage ne i }">
+	   <li><a href="javascript:void(0);" onclick="marketPaging(${i });">${i }</a></li>
 	   </c:if>
 
    		</c:forEach>
    		
           <!-- 다음 페이지로 가기 -->
-	  <c:if test="${paging.curPage ne paging.totalPage}">
-	  <li><a href="${pageContext.request.contextPath }/student/market?curPage=${paging.curPage + 1 }">&gt;</a>
+	  <c:if test="${paging1.curPage ne paging1.totalPage}">
+	  <li><a href="javascript:void(0);" onclick="marketPaging(${paging.curPage + 1 });">&gt;</a>
 	  </c:if>
+	   <c:if test="${paging1.curPage eq paging1.totalPage }">
+	   <li><a href="javascript:void(0);">&gt;</a></li>
+	   </c:if>
    
        <!-- 다음 페이징 리스트로 가기 --> 
 	<%--    <c:if test="${paging.endPage ne paging.totalPage }"> --%>
