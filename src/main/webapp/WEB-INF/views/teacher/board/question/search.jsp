@@ -38,7 +38,7 @@ $(document).ready(function(){
 	<i class="glyphicon glyphicon-menu-right"></i>
 	<a href="${pageContext.request.contextPath}/teacher/question/list">질문 게시판</a>
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href=""></a>
+	<a href="${pageContext.request.contextPath}/teacher/question/search">검색</a>
 </div>
 
 
@@ -82,7 +82,7 @@ $(document).ready(function(){
 			<th style="width: 15%">작성일</th>
 		</tr>
 		<!-- 게시글이 없을 때  -->
-		<c:if test="${empty questionList }" >
+		<c:if test="${empty questionSearchList }" >
 			<input type="hidden" value="${cno}"id="no" />
 			
 			<tr>
@@ -91,23 +91,23 @@ $(document).ready(function(){
 		
 		</c:if>
 		<!--게시글이 있을 때 -->
-		<c:if test="${!empty questionList }" >
+		<c:if test="${!empty questionSearchList }" >
 		
 		
 			<!-- 값 출력 -->
-			<c:forEach items="${questionList }" var="questionList">
+			<c:forEach items="${questionSearchList }" var="questionSearchList">
 			
-		 		<input type="hidden" value="${questionList.questionNo}" name="no" id="no" />
+		 		<input type="hidden" value="${questionSearchList.questionNo}" name="no" id="no" />
 		 		
 			<tr>
-			    <td><input type="checkbox" name="checkRow" value="${questionList.questionNo}" id="checkRow"/></td>
-				<td>${questionList.questionNo}</td>
+			    <td><input type="checkbox" name="checkRow" value="${questionSearchList.questionNo}" id="checkRow"/></td>
+				<td>${questionSearchList.questionNo}</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/teacher/question/detail?questionNo=${questionList.questionNo}">${questionList.questionTitle }
+					<a href="${pageContext.request.contextPath}/teacher/question/detail?questionNo=${questionSearchList.questionNo}">${questionSearchList.questionTitle }
 					</a>
 				</td>
-				<td>${questionList.questionContent }</td>
-				<td>${questionList.questionDate }</td>
+				<td>${questionSearchList.questionContent }</td>
+				<td>${questionSearchList.questionDate }</td>
 			</tr>
 			</c:forEach>
 	</c:if>
@@ -128,6 +128,7 @@ $(document).ready(function(){
 	<div id="footerbtn">
 		<div id="divbtn">
 		<!-- 수정부분은 유저페이지로 이동시켜야함 -->
+			<button type="button" class="button button2" id="updatebtn">수정</button>
 			<button type="button" class="button button3" id="deletebtn">삭제</button>
 		</div> 
 	</div>
