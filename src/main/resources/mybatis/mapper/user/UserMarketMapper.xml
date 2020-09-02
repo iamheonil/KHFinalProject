@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="dao.UserMarketDao">
+  
+  <select id="getMarketInfo" parameterType="int" resultType="MARKET">
+ 	SELECT * FROM market
+	WHERE mk_no = #{mkno}
+  </select>
+  </mapper>

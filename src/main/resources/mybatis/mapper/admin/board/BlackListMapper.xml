@@ -17,7 +17,7 @@
 				ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
 				INNER JOIN membership m
 				ON(b.user_no = m.user_no)
-				WHERE b.blacklist_state != 1
+				WHERE 1= 1
 		        <choose>
 		        	<when test="category == '후기'">
 		        		AND b.blacklist_board = '후기'
@@ -46,7 +46,7 @@
 		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
 		INNER JOIN membership m
 		ON(b.user_no = m.user_no)
-		WHERE b.blacklist_state != 1
+		WHERE 1= 1
         
         <choose>
         	<when test="category == '후기'">
@@ -103,7 +103,7 @@
   	</update>
   	
   	<update id="deleteMarket">
-  		DELETE market
+  		UPDATE market SET MK_STATE = 2
   		WHERE mk_no = #{marketNo}
   	</update>
   	

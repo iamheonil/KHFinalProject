@@ -9,6 +9,12 @@
   <select id="selectCntAllMK" parameterType="int" resultType="int">
  	SELECT COUNT(*) FROM market
 	WHERE mk_writer=#{userNo}
+	AND mk_state != 2
+  </select>
+  
+  <select id="selectCntAllMKComm" parameterType="int" resultType="int">
+ 	SELECT COUNT(*) FROM mk_comm
+	WHERE mk_user_no=#{userNo}
   </select>
   
   <select id="selectMarketStu" parameterType="map" resultType="map">
@@ -19,10 +25,25 @@
 				LEFT JOIN MK_THUMB f
 				ON(m.mk_no = f.mk_no)
 				WHERE m.mk_writer=#{userNo}
-				ORDER BY m.mk_no
+				AND m.mk_state != 2
+				ORDER BY m.mk_no DESC
 			) t
 			ORDER BY no ) x
 		WHERE no between #{paging.startNo} AND #{paging.endNo}
   </select>
+  
+  <select id="selectMarketCommStu" parameterType="map" resultType="map">
+  	SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * FROM mk_comm
+				WHERE mk_user_no = #{userNo}
+				ORDER BY mk_comm_no DESC
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+  </select>
+  
+  
   
   </mapper>

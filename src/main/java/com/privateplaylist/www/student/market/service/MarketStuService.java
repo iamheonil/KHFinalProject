@@ -23,4 +23,20 @@ public interface MarketStuService {
 	 */
 	public List<Map<String, Object>> selectMarketStu(Paging paging, int userNo);
 
+	/**
+	 *  내가 쓴 댓글 paging
+	 * @param curPage2
+	 * @param userNo
+	 * @return
+	 */
+	public Paging getPagingMarketCommStu(int curPage2, int userNo);
+
+	/**
+	 * 내가 쓴 댓글 가져오기
+	 * @param paging2
+	 * @param userNo
+	 * @return
+	 */
+	public List<Map<String, Object>> selectMarketCommStu(Paging paging2, int userNo);
+
 }
