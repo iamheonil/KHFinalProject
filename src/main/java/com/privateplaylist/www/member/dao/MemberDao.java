@@ -46,4 +46,16 @@ public class MemberDao {
     	session.invalidate();
     }
     
+    public Member findId(Map<String, Object> memberMap) {
+		
+    	return session.selectOne("MEMBER.findId", memberMap);
+    	
+    }
+    
+    public Member findPw(Map<String, Object> memberMap) {
+    	
+    	return session.selectOne("MEMBER.findPw", memberMap);
+    
+    }
+    
 }

@@ -24,4 +24,15 @@
       SELECT COUNT(*) FROM MEMBERSHIP WHERE USER_ID = #{userId}
     </select>
   
+  	<select id="findId" resultType="MEMBER">
+  		SELECT * FROM MEMBERSHIP
+  		WHERE USER_ACTOR = #{userActor} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+  	</select>
+  	
+  	<select id="findPw" resultType="MEMBER">
+  		SELECT * FROM MEMBERSHIP
+  		WHERE USER_ACTOR = #{userActor} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+  		<!-- WHERE USER_ACTOR = #{userActor} AND USER_ID = #{userId} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName} -->
+  	</select>
+  	
   </mapper>
