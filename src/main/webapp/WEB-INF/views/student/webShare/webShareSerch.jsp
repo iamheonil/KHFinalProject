@@ -10,8 +10,8 @@
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 
-<!-- 선생님 마이페이지 헤더 -->
-<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
+<!-- 학생 마이페이지 헤더 -->
+<c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
 
 
 
@@ -113,6 +113,13 @@ td a:hover{
 	width: 65px;
 }
 
+#selectCombo {
+	float: left;
+	width: 270px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
 </style>
 
 
@@ -154,20 +161,49 @@ $(document).ready(function(){
 	
 	
 });
+
+function changelesson(lessonNo){
+	console.log(lessonNo)
+	var url="${pageContext.request.contextPath}/student/webshare?no="+lessonNo
+	location.href=url;
+}
 </script>
 
 
 
-<div id="title">과외 연결
-	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="${pageContext.request.contextPath}/teacher/connectedlesson">연결된 과외</a>
-	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">자료실</a>
+<div id="title">
+	과외 <i class="glyphicon glyphicon-menu-right"></i> <a href="${pageContext.request.contextPath}/student/connectedlesson">수강 중인 과외</a>
+	<i class="glyphicon glyphicon-menu-right"></i> <a href="">자료실</a>
 </div>
 
 
 
  <div id="content"> 
+ 
+ 	<div id="selectCombo">
+
+		<!-- 자료실 이동  -->
+		<div class="row">
+			<div class="">
+				<select class="form-control" id="lessonList"
+					onchange="changelesson(this.value);">
+					<c:forEach items="${connectedLessonList }" var="lesson">
+						<c:choose>
+							<c:when test="${lesson.CONN_LESSON_NO  eq no}">
+								<option selected="selected" value="${lesson.CONN_LESSON_NO}">${lesson.LESSON_TITLE}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${lesson.CONN_LESSON_NO}">${lesson.LESSON_TITLE}</option>
+							</c:otherwise>
+						</c:choose>
+
+					</c:forEach>
+
+				</select>
+			</div>
+		</div>
+
+	</div>
  
  
 	<!-- 제목 검색 -->
@@ -199,7 +235,7 @@ $(document).ready(function(){
 
 		
 		<tr>
-		    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
+		    
 			<th style="width: 10%">글번호</th>
 			<th style="width: 45%">제목</th>
 			<th style="width: 20%">작성자</th>
@@ -228,10 +264,10 @@ $(document).ready(function(){
 		 		<input type="hidden" value="${wlist.CONN_LESSON_NO}" name="no" id="no" />
 		 		
 			<tr>
-			    <td><input type="checkbox" name="checkRow" value="${wlist.SHARE_NO}" id="checkRow"/></td>
+			   
 				<td>${wlist.SHARE_NO }</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/teacher/webshare/detail?no=${wlist.SHARE_NO}">
+					<a href="${pageContext.request.contextPath}/student/webshare/detail?no=${wlist.SHARE_NO}">
 						${wlist.SHARE_TITLE }
 					</a>
 				</td>
@@ -249,20 +285,14 @@ $(document).ready(function(){
 	
 		<!-- 페이징 -->
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/teacher/webShare/webShareSearchListPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/student/webShare/webShareSearchListPaging.jsp"></c:import>
 		</div>
 	
 	</c:if>
 	
 	
 	
-	<!-- 글작성/삭제 버튼 -->
-	<div id="footerbtn">
-		<div id="divbtn">
-			<button type="button" class="button button2" id="writebtn">작성</button>
-			<button type="button" class="button button3" id="deletebtn">삭제</button>
-		</div> 
-	</div>
+
 	
  
 	
@@ -272,7 +302,7 @@ $(document).ready(function(){
 
 
 
+<!-- 학생 마이페이지 푸터 -->
+<c:import url="/WEB-INF/layout/student/stuFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/student/stuFooter2.jsp"></c:import>
 
-<!-- 선생님 마이페이지 푸터 -->
-<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
