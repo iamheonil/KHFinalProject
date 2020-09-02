@@ -113,6 +113,13 @@ td a:hover{
 	width: 65px;
 }
 
+#selectCombo {
+	float: left;
+	width: 270px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
 </style>
 
 
@@ -154,18 +161,49 @@ $(document).ready(function(){
 	
 	
 });
+
+function changelesson(lessonNo){
+	console.log(lessonNo)
+	var url="${pageContext.request.contextPath}/student/webshare?no="+lessonNo
+	location.href=url;
+}
 </script>
 
 
 
-<div id="title">과외 
-	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">자료실</a>
+<div id="title">
+	과외 <i class="glyphicon glyphicon-menu-right"></i> <a href="${pageContext.request.contextPath}/student/connectedlesson">수강 중인 과외</a>
+	<i class="glyphicon glyphicon-menu-right"></i> <a href="">자료실</a>
 </div>
 
 
 
  <div id="content"> 
+ 
+ 	<div id="selectCombo">
+
+		<!-- 자료실 이동  -->
+		<div class="row">
+			<div class="">
+				<select class="form-control" id="lessonList"
+					onchange="changelesson(this.value);">
+					<c:forEach items="${connectedLessonList }" var="lesson">
+						<c:choose>
+							<c:when test="${lesson.CONN_LESSON_NO  eq no}">
+								<option selected="selected" value="${lesson.CONN_LESSON_NO}">${lesson.LESSON_TITLE}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${lesson.CONN_LESSON_NO}">${lesson.LESSON_TITLE}</option>
+							</c:otherwise>
+						</c:choose>
+
+					</c:forEach>
+
+				</select>
+			</div>
+		</div>
+
+	</div>
  
  
 	<!-- 제목 검색 -->
@@ -197,7 +235,7 @@ $(document).ready(function(){
 
 		
 		<tr>
-		    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
+		    
 			<th style="width: 10%">글번호</th>
 			<th style="width: 45%">제목</th>
 			<th style="width: 20%">작성자</th>
@@ -226,7 +264,7 @@ $(document).ready(function(){
 		 		<input type="hidden" value="${wlist.CONN_LESSON_NO}" name="no" id="no" />
 		 		
 			<tr>
-			    <td><input type="checkbox" name="checkRow" value="${wlist.SHARE_NO}" id="checkRow"/></td>
+			   
 				<td>${wlist.SHARE_NO }</td>
 				<td>
 					<a href="${pageContext.request.contextPath}/student/webshare/detail?no=${wlist.SHARE_NO}">

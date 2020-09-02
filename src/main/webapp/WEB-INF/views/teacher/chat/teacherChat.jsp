@@ -109,7 +109,7 @@ function getChatBox(){
 
 function addBox(lastID,toID,chatContent,chatTime,unread){
 	$("#boxList").append(
-			'<div class="chat_list" onclick="location.href= \'${pageContext.request.contextPath}/chat/chatRoom?toID=' +encodeURIComponent(toID)+ '\' ">' +
+			'<div class="chat_list" onclick="window.open( \'${pageContext.request.contextPath}/chat/chatRoom?toID=' +encodeURIComponent(toID)+ '\' ,\'chatRoom\' ,\' width=700,height=1000\' )">' +
 			'<div class="chat_people">'+		
 			'<div class="chat_img"> <img src="${pageContext.request.contextPath}/resources/images/icon.png" alt="sunil"> </div>'+		
 			'<div class="chat_ib">'+		

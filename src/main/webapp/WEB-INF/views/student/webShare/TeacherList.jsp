@@ -833,7 +833,8 @@ function lessonModal(lessonNo){
 
 <div id="title">과외 
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">자료실</a>
+	<a href="">
+수강 중인 과외</a>
 </div>
 
 	<br>
