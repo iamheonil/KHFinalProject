@@ -298,6 +298,29 @@ else
 	</div>
 
 	<script type="text/javascript">
+	
+	$(document).ready(function() {
+	   
+	    	$('#submit').attr('disabled', true);
+	    
+	    $('#chatContent').on('keyup',function() {
+	    	
+	    	$('#submit').attr('disabled', true);
+	        var textarea_value = $("#chatContent").val();
+	        var text_value = $('#chatContent').val();
+	        
+	        if(textarea_value != '' && text_value != ''  && text_value != null  && text_value != null) {
+	        	console.log(textarea_value);
+	            $('#submit').attr('disabled', false);
+	            text_value='';
+	            textarea_value='';
+	        } else {
+	            $('#submit').attr('disabled', true);
+	        }
+	    });
+	});
+	
+	
 $(document).ready(function(){
 	chatListFunction('ten');
 	getInfinateChat();
