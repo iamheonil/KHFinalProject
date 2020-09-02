@@ -9,7 +9,7 @@
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <tr>
+                                <tr  class="tableHeader">
                                 <th class="text-center" style="width: 5%;"><span>No</span></th>
                                 <th class="text-center" style="width: 55%;"><span>글제목</span></th>
                                 <th class="text-center"  style="width: 15%;"><span>가격</span></th>

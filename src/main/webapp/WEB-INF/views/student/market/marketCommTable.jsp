@@ -9,7 +9,7 @@
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <tr>
+                                <tr  class="tableHeader">
                                 <th class="text-center" style="width: 5%;"><span>No</span></th>
                                 <th class="text-center"><span>댓글 내용</span></th>
                                 <th class="text-center"><span>작성일</span></th>

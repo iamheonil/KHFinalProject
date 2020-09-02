@@ -46,11 +46,11 @@
 	margin: 0 auto;
 }
 .marketTable{
-	height: 360px;
+/* 	height: 360px; */
 }
 
 .marketCommTable{
-	height: 260px;
+/* 	height: 260px; */
 }
 
 .main-box.no-header {
@@ -128,6 +128,10 @@ a {
   	white-space: nowrap;
   	 display: inline-block;
 }
+
+.tableHeader{
+	background: #eee;
+}
 </style>
 <script type="text/javascript">
 function marketPaging(curPage){
@@ -186,7 +190,7 @@ function marketCommPaging(curPage){
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <tr>
+                                <tr class="tableHeader">
                                 <th class="text-center" style="width: 5%;"><span>No</span></th>
                                 <th class="text-center" style="width: 55%;"><span>글제목</span></th>
                                 <th class="text-center"  style="width: 15%;"><span>가격</span></th>
@@ -200,8 +204,8 @@ function marketCommPaging(curPage){
                                 <tr>
                                     <td class="text-center"><span>${m.NO }</span></td>
                                     <td>
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                                        <a href="#" class="user-link">${m.MK_TITLE }</a>
+                                        <img src="<%= request.getContextPath() %>/resources/upload/${m.MK_FILE_RENAME }" alt="메인 사진">
+                                        <a href="<%= request.getContextPath() %>/board/market/detail?mkno=${m.MK_NO }" class="user-link">${m.MK_TITLE }</a>
                                     </td>
                                     <td  class="text-center">
                                         <span>
@@ -245,7 +249,7 @@ function marketCommPaging(curPage){
 <%-- 	</c:if> --%>
 		</div>
 </div>
-
+<br>
 <hr>
 
 <div id="title">커뮤니티
@@ -263,11 +267,11 @@ function marketCommPaging(curPage){
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <tr>
-                                <th class="text-center" style="width: 5%;"><span>No</span></th>
-                                <th class="text-center"><span>댓글 내용</span></th>
-                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
-                                <th style="width: 5%;">&nbsp;</th>
+                                <tr class="tableHeader">
+	                                <th class="text-center" style="width: 5%;"><span>No</span></th>
+	                                <th class="text-center"><span>댓글 내용</span></th>
+	                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
+	                                <th style="width: 5%;">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>

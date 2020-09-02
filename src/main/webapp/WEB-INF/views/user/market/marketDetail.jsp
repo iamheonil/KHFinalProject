@@ -60,41 +60,8 @@ margin-top:20px;
 		<!-- END #gtco-header -->
 	
 	<br>
-
-	<br>
-	<br>
+${market }
 	
-	<!-- 페이징 삽입 위치 -->
-	
-	<div class="text-center" style="width: 80%; margin: 0 auto;">
-	
-		<ul class="pagination">
-		
-			<li><a href="">1</a></li>
-			<li><a href="">2</a></li>
-			<li><a href="">3</a></li>
-			<li><a href="">4</a></li>
-			<li><a href="">5</a></li>
-		
-		</ul>
-
-		<div class="s128">
-			<form>
-				<div class="inner-form">
-					<div class="row">
-						<div class="input-field second" id="first">
-							<input class="input" id="inputFocus" type="text"
-								placeholder="검색어를 입력해주세요" />
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	
-	</div>
-	
-	<br>
-	<br>
 
 	<!-- footer include  -->
 	<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>

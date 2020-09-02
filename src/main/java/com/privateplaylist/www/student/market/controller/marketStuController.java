@@ -32,7 +32,7 @@ public class marketStuController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = 1;
 		Paging paging1 = marketStuService.getPagingMarketStu(curPage1, userNo);
 		Paging paging2 = marketStuService.getPagingMarketCommStu(curPage2, userNo);
 		
