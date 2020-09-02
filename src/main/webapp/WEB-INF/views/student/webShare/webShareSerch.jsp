@@ -10,8 +10,8 @@
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 
-<!-- 선생님 마이페이지 헤더 -->
-<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
+<!-- 학생 마이페이지 헤더 -->
+<c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
 
 
 
@@ -158,9 +158,7 @@ $(document).ready(function(){
 
 
 
-<div id="title">과외 연결
-	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="${pageContext.request.contextPath}/teacher/connectedlesson">연결된 과외</a>
+<div id="title">과외 
 	<i class="glyphicon glyphicon-menu-right"></i>
 	<a href="">자료실</a>
 </div>
@@ -231,7 +229,7 @@ $(document).ready(function(){
 			    <td><input type="checkbox" name="checkRow" value="${wlist.SHARE_NO}" id="checkRow"/></td>
 				<td>${wlist.SHARE_NO }</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/teacher/webshare/detail?no=${wlist.SHARE_NO}">
+					<a href="${pageContext.request.contextPath}/student/webshare/detail?no=${wlist.SHARE_NO}">
 						${wlist.SHARE_TITLE }
 					</a>
 				</td>
@@ -249,20 +247,14 @@ $(document).ready(function(){
 	
 		<!-- 페이징 -->
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/teacher/webShare/webShareSearchListPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/student/webShare/webShareSearchListPaging.jsp"></c:import>
 		</div>
 	
 	</c:if>
 	
 	
 	
-	<!-- 글작성/삭제 버튼 -->
-	<div id="footerbtn">
-		<div id="divbtn">
-			<button type="button" class="button button2" id="writebtn">작성</button>
-			<button type="button" class="button button3" id="deletebtn">삭제</button>
-		</div> 
-	</div>
+
 	
  
 	
@@ -272,7 +264,7 @@ $(document).ready(function(){
 
 
 
+<!-- 학생 마이페이지 푸터 -->
+<c:import url="/WEB-INF/layout/student/stuFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/student/stuFooter2.jsp"></c:import>
 
-<!-- 선생님 마이페이지 푸터 -->
-<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>
