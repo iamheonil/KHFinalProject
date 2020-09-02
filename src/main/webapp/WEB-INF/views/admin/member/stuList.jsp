@@ -519,10 +519,7 @@ p{
 										<c:forEach items="${stuData}" var="user">
 											<tr>
 												<td>${user.USER_NO }</td>
-												<td><img
-												src="https://bootdey.com/img/Content/avatar/avatar1.png"
-<%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
-												alt=""> <p><a href="<%= request.getContextPath() %>/admin/studetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
+												<td><p><a href="<%= request.getContextPath() %>/admin/studetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
 												<td>${user.USER_NAME }</td>
 												<td>
 <%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>

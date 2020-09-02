@@ -30,26 +30,36 @@ body.eMobilePopup{overflow:hidden;position:fixed;}
  }
 </style>
 
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
 <br><br><br>
+
 <body id="find_body">
-<div class="xans-element- xans-member xans-member-findid"><!--
-        $returnURL = /member/id/find_id_result.html
-     -->
-<div class="findId">
-        <h3>비밀번호 찾기</h3>
-        <fieldset>
-<legend>아이디 찾기</legend>
-            <p class="member"><strong>회원유형</strong> <select id="searchType" name="searchType" >
-<option value="student" selected="selected">학생</option>
-<option value="teacher">선생님</option>
-</select></p>
-            <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="name" name="name" class="lostInput" type="text"></p>
-            <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="email" name="email" class="lostInput" type="text"></p>
-            <p class="ec-base-button ">
-                <span class="btn_black_big"><a href="#none" onclick="">확인</a></span>
-            </p>
-        </fieldset>
-</div>
+<div class="xans-element- xans-member xans-member-findid">
+	<div class="findId">
+		<form action="/ss/member/findpw" method="POST">
+	        <h3>비밀번호 찾기</h3>
+	     	   <fieldset>
+					<legend>비밀번호 찾기</legend>
+			            <p class="member">
+				            <strong>회원유형</strong>
+			    	    	<select id="userActor" name="userActor" >
+								<option id="userActor" name="userActor" value="2" selected="selected">학생</option>
+								<option id="userActor" name="userActor" value="1">선생님</option>
+							</select>
+						</p>
+				        <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="userName" name="userName" class="lostInput" type="text"></p>
+				        <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="userEmail" name="userEmail" class="lostInput" type="text"></p>
+				        <p class="ec-base-button ">
+			    		<button>확인</button>
+					</p>
+	        </fieldset>
+	    </form>
+	</div>
 </div>
 
 
