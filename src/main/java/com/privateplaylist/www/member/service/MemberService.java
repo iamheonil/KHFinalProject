@@ -39,5 +39,8 @@ public interface MemberService {
     
     // 회원 비밀번호 찾기
     public Member findPw(Map<String, Object> memberMap);
+    
+    // 패스워드 찾기 기능
+    public int modifyPw(Member member);
 
 }
