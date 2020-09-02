@@ -25,7 +25,34 @@ public class marketStuController {
 	private MarketStuService marketStuService;
 
 	@RequestMapping(value = "/market", method = RequestMethod.GET)
-	public ModelAndView signStudent(HttpSession session, @RequestParam(required = false, defaultValue = "1") int curPage) {
+	public ModelAndView marketBoard(HttpSession session, @RequestParam(required = false, defaultValue = "1") int curPage1
+								,@RequestParam(required = false, defaultValue = "1") int curPage2) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		int userNo = 1;
+		Paging paging1 = marketStuService.getPagingMarketStu(curPage1, userNo);
+		Paging paging2 = marketStuService.getPagingMarketCommStu(curPage2, userNo);
+		
+		List<Map<String, Object>> list1 = marketStuService.selectMarketStu(paging1, userNo);
+		List<Map<String, Object>> list2 = marketStuService.selectMarketCommStu(paging2, userNo);
+		
+		mav.addObject("paging1", paging1);
+		mav.addObject("list1", list1);
+		
+		mav.addObject("paging2", paging2);
+		mav.addObject("list2", list2);
+		mav.setViewName("student/market/marketlist");
+			
+//		System.out.println(list);
+		
+		return mav;
+	}
+
+	@RequestMapping(value = "/marketpage", method = RequestMethod.POST)
+	public ModelAndView marketPaging(HttpSession session, @RequestParam int curPage) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -33,17 +60,37 @@ public class marketStuController {
 		
 		int userNo = 6;
 		
-		Paging paging = marketStuService.getPagingMarketStu(curPage, userNo);
+		Paging paging1 = marketStuService.getPagingMarketStu(curPage, userNo);
+		List<Map<String, Object>> list1 = marketStuService.selectMarketStu(paging1, userNo);
+		mav.addObject("paging1", paging1);
+		mav.addObject("list1", list1);
+		mav.setViewName("student/market/marketTable");
 		
-		List<Map<String, Object>> list = marketStuService.selectMarketStu(paging, userNo);
-		
-		System.out.println(list);
-		
-		mav.addObject("paging", paging);
-		mav.addObject("list", list);
-		mav.setViewName("teacher/connectedLesson/signStudent");
-		mav.setViewName("student/market/marketlist");
+//		System.out.println(list);
 		
 		return mav;
 	}
+
+	@RequestMapping(value = "/marketcommpage", method = RequestMethod.POST)
+	public ModelAndView marketCommPaging(HttpSession session, @RequestParam int curPage) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		int userNo = 6;
+		
+		Paging paging2 = marketStuService.getPagingMarketCommStu(curPage, userNo);
+		List<Map<String, Object>> list2 = marketStuService.selectMarketCommStu(paging2, userNo);
+		mav.addObject("paging2", paging2);
+		mav.addObject("list2", list2);
+		mav.setViewName("student/market/marketCommTable");
+		
+//		System.out.println(list2);
+		
+		return mav;
+	}
+	
+	
+	
 }

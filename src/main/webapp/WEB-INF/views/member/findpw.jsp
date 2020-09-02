@@ -30,10 +30,103 @@ body.eMobilePopup{overflow:hidden;position:fixed;}
  }
 </style>
 
-<script type="text/javascript">
-<!--
+<!-- 이메일 인증 HttpRequest.js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 
-//-->
+<script type="text/javascript">
+
+//이메일 인증번호 체크
+
+function ajaxFromServer() {
+	if (httpRequest.readyState == 4) {//DONE,응답완료
+		if (httpRequest.status == 200) {//OK
+			var resultText = httpRequest.responseText;
+			if (resultText == 0) {
+				alert("이메일 전송 실패");
+			} else if (resultText == 1) { //이메일 전송 완료
+				alert("이메일 전송완료")
+			}
+		} else {
+			console.log("AJAX요청/응답 에러")
+		}
+	}
+}
+
+function emailCheck() {
+	var usercode = document.getElementById("inputCode").value;
+	console.log(usercode)
+	if (usercode == code) {
+		document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
+		document.querySelector('#email-check-msg').style.color = 'black';
+		document.querySelector('#userPw').style.display = 'block';
+		document.querySelector('#userPwBtn').style.display = 'block';
+	} else {
+		document.querySelector('#userEmail').focus();
+		document.querySelector("#userEmail").value = "";
+		document.querySelector("#email-check-msg").innerHTML = "이메일 인증 실패";
+		document.querySelector('#email-check-msg').style.color = 'red';
+		document.querySelector('#userPw').style.display = 'none';
+		document.querySelector('#userPwBtn').style.display = 'none';
+	}
+
+}
+
+
+// 비밀번호 AJAX 처리
+function findPw(){
+    //querySelector :
+    //   css선택자로 원하는 html element 객체를 불러온다.
+    //  jquery의 $('')와 유사하다.
+    
+    var userEmail = document.getElementById('userEmail').value;
+	// console.log(userEmail);
+	code = Math.floor(Math.random() * 1000000) + 100000;
+	  
+    var userName = document.querySelector('#userName').value;
+    var userId = document.querySelector('#userId').value;
+    var userActor = document.querySelector('#userActor').value;
+    var userEmail = document.querySelector('#userEmail').value;
+
+	$.ajax({
+   type:"POST",
+   url:"/ss/member/findpwAjax",
+   data:{
+	   userName:userName,
+	   userId:userId,
+       userActor:userActor,
+   	   userEmail:userEmail   
+	},
+	success:function(data){
+	if(data != ''){
+            document.querySelector('#pw-msg').textContent = '이메일로 전송된 인증번호를 입력해주세요.';
+            document.querySelector('#pw-msg').style.color = 'white';
+
+        	$("#sendMail").html(
+            		'<label class="col-form-label col-4">인증번호</label>' +
+        			'<div class="col-8 float">'+
+                       ' <input type="text" id="inputCode" name="inputCode" required="required" size="18">' +
+                       ' <input type="button" value="인증하기" onclick="emailCheck()"> ' +
+                    '</div>'		
+            )
+            
+            emailSend();
+        } else {
+            document.querySelector("#pw-msg").textContent = '일치하는 정보가 없습니다';
+            document.querySelector('#pw-msg').style.color = 'white';
+        }
+	}
+})
+ 
+ function emailSend() {
+    			
+            	userEmail = document.getElementById('userEmail').value;
+            	var param = "email=" + userEmail + "&code_check=" + code;
+            	// console.log(param)
+            	sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
+            	alert("이메일을 전송했습니다!")
+            }
+ 
+}
 </script>
 
 <br><br><br>
@@ -41,24 +134,33 @@ body.eMobilePopup{overflow:hidden;position:fixed;}
 <body id="find_body">
 <div class="xans-element- xans-member xans-member-findid">
 	<div class="findId">
-		<form action="/ss/member/findpw" method="POST">
 	        <h3>비밀번호 찾기</h3>
 	     	   <fieldset>
 					<legend>비밀번호 찾기</legend>
-			            <p class="member">
+					  <form action="/ss/member/pwModify" method="POST">
 				            <strong>회원유형</strong>
 			    	    	<select id="userActor" name="userActor" >
 								<option id="userActor" name="userActor" value="2" selected="selected">학생</option>
 								<option id="userActor" name="userActor" value="1">선생님</option>
 							</select>
-						</p>
+				        <p id="id_view" class="id" ><strong id="id_lable">아이디</strong> <input id="userId" name="userId" class="lostInput" type="text"></p>
 				        <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="userName" name="userName" class="lostInput" type="text"></p>
 				        <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="userEmail" name="userEmail" class="lostInput" type="text"></p>
-				        <p class="ec-base-button ">
-			    		<button>확인</button>
-					</p>
+				        <p class="ec-base-button "> </p>
+			    		<input type="button" onclick="findPw();" value="비밀번호찾기">
+			    		<br><br>
+			    		<span id="pw-msg" class="pw-msg" style="font-size: 14px; text-align: center;"></span>
+			    		
+	    				<input type="password" id="userPw" name="userPw" style="font-size: 13px; text-align: center; display:none;"> 
+	    				<input type="submit" id="userPwBtn" name="userPwBtn" style="display:none;" value="비밀번호 변경하기">
+				 	</form>
 	        </fieldset>
-	    </form>
+		    		<div class="form-group row" id="sendMail" style="text-align: center;"></div>
+		    		
+		<div class="form-group row" id="email-check" style="font-size: 8px; text-align: center;" >
+        	<span id="email-check-msg" class="email-check-msg" style="font-size: 8px; text-align: center;"></span>
+        </div>
+                
 	</div>
 </div>
 

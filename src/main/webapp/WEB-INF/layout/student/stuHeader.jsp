@@ -352,7 +352,7 @@ function getInfiniteBox(){
             <ul>
               <li><a href="#">찜한 과외</a></li>
               <li><a href="#">과외 신청 내역</a></li>
-              <li><a href="#">수강 중인 과외 </a></li>
+              <li><a href="${pageContext.request.contextPath}/student/connectedlesson">수강 중인 과외 </a></li>
               <li><a href="#">수강 완료 과외</a></li>
             </ul>
           </div>
@@ -362,7 +362,7 @@ function getInfiniteBox(){
           </div>
           
           <div class="menu-item">
-            <h4><a href="#">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
+            <h4><a href="${pageContext.request.contextPath}/student/chat">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
           
           <div class="menu-item" id="three">
@@ -370,12 +370,12 @@ function getInfiniteBox(){
 	            <ul>
 	             <li><a href="#">질문 게시판</a></li>
 	             <li><a href="#">후기 게시판</a></li>
-	             <li><a href="#">중고장터</a></li>
+	             <li id="studentMK"><a href="${pageContext.request.contextPath}/student/market">중고장터</a></li>
 	            </ul>
           </div>
 
            <div class="menu-item">
-            <h4><a href="#">신고 내역</a></h4>
+            <h4><a href="${pageContext.request.contextPath }/student/blacklist">신고 내역</a></h4>
           </div>
 
           <div class="menu-item">

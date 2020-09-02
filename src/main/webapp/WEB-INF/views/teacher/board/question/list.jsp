@@ -52,6 +52,7 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="input-group">
+<%-- 					<input type="hidden" value="${no}" id="no" name="no"/> --%>
 						<input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
 						<span class="input-group-btn">
 							<button class="button button1" type="submit">검색</button>
@@ -127,7 +128,6 @@ $(document).ready(function(){
 	<div id="footerbtn">
 		<div id="divbtn">
 		<!-- 수정부분은 유저페이지로 이동시켜야함 -->
-			<button type="button" class="button button2" id="updatebtn">수정</button>
 			<button type="button" class="button button3" id="deletebtn">삭제</button>
 		</div> 
 	</div>
@@ -136,20 +136,6 @@ $(document).ready(function(){
 	
 	
 </div><!--end content -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>

@@ -31,8 +31,11 @@
   	
   	<select id="findPw" resultType="MEMBER">
   		SELECT * FROM MEMBERSHIP
-  		WHERE USER_ACTOR = #{userActor} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
-  		<!-- WHERE USER_ACTOR = #{userActor} AND USER_ID = #{userId} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName} -->
+  		WHERE USER_ACTOR = #{userActor} AND USER_ID = #{userId} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
   	</select>
+  	
+  	<update id="modifyPw" parameterType="MEMBER">
+  		UPDATE MEMBERSHIP SET USER_PW = #{userPw} WHERE USER_ID = #{userId}
+  	</update>
   	
   </mapper>

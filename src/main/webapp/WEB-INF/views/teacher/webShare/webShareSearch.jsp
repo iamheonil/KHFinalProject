@@ -236,7 +236,10 @@ $(document).ready(function(){
 					</a>
 				</td>
 				<td>${wlist.USER_ID }</td>
-				<td><fmt:formatDate value="${wlist.SHARE_DATE }" pattern="yyyy-MM-dd"/></td>
+				
+				<td>
+				<fmt:parseDate value="${wlist.SHARE_DATE }" var="parseShareDate" pattern="yy/MM/dd"/>
+				<fmt:formatDate value="${parseShareDate }" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			</c:forEach>
 		</table>

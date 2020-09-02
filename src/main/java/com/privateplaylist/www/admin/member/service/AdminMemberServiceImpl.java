@@ -55,9 +55,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		
 		map.put("category", category);
 		map.put("search", search);
-		System.out.println("service - map: " +map);
 		int totalCount = adminMemberDao.selectStuCnt(map);
-		System.out.println("service - totalCount: " +totalCount);
 		// Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);

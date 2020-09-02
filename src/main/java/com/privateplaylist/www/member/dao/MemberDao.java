@@ -58,4 +58,8 @@ public class MemberDao {
     
     }
     
+    public int modifyPw(Member member) {
+    	return session.update("MEMBER.modifyPw", member);
+    }
+    
 }

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!-- nav include  -->
-<jsp:include
-	page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>
+<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/HisearchBar.css">	
@@ -177,8 +176,7 @@ margin-top:20px;
 	<br>
 
 	<!-- footer include  -->
-	<jsp:include
-		page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>
+	<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
