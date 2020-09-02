@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="FindStu">
+  
+  <select id="findStuList" parameterType="map" resultType="FINDSTUDENT">
+<!--   	select * from find_student -->
+<!-- 	where user_no = #{userNo } -->
+	
+	select * from (
+		select rownum rnum, c.* from(
+			select * from find_student
+			where user_no = #{userNo }
+			order by find_stu_no desc
+		) c
+	) findStu 
+	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	
+  </select>
+  
+  <select id="selectCntFindStuAll" parameterType="int" resultType="int">
+  	select count(*) from find_student
+    where user_no = #{userNo }
+  </select>
+  
+  <select id="findStuSearch" parameterType="map" resultType="FINDSTUDENT">
+  select * from (
+		select rownum rnum, c.* from(
+	    	select * from find_student
+			where user_no = #{userNo }
+		   	and find_stu_title like '%' || #{keyword} || '%'
+			or find_stu_content like  '%' || #{keyword} || '%'
+	  		order by find_stu_no desc
+		) c
+	) findStu 
+	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+  </select>
+  
+  <select id="findStuSearchPaging" parameterType="map" resultType="int">
+  	select count(*) from find_student
+  	where user_no = #{userNo }
+  	
+    and find_stu_title like '%' || #{keyword} || '%'
+  	or find_stu_content like  '%' || #{keyword} || '%'
+  </select>
+  
+  <delete id="deleteFindStu" parameterType="int">
+  	delete from find_student
+	where find_stu_no = #{findStuNo}
+  </delete>
+  
+  <insert id="insertFindStu" parameterType="FINDSTUDENT">
+	  INSERT INTO find_student (find_stu_no, find_stu_title, find_stu_content, user_no, find_stu_loc, find_stu_subject) 
+	  VALUES (find_student_SEQ.nextval, #{findStuTitle}, #{findStuContent},#{userNo} , #{findStuLoc}, #{findStuSubject})
+  </insert>
+  
+  </mapper>
