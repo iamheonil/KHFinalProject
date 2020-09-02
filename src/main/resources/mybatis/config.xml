@@ -63,7 +63,6 @@
 
 	<!-- mapper 연결 -->
 	<mappers>
-
 		<mapper resource="/mybatis/mapper/member/MessageMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/>
@@ -87,9 +86,9 @@
 		<mapper resource="/mybatis/mapper/student/StudentWebshare.xml"/>
 		<mapper resource="/mybatis/mapper/student/StudentMarketMapper.xml"/>
 		<mapper resource="/mybatis/mapper/student/StuProfileMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/FindStuMapper.xml"/>
 		<mapper resource="/mybatis/mapper/user/UserMarketMapper.xml"/>
 		<mapper resource="/mybatis/mapper/student/StudentQuestionMapper.xml"/>
-
 	</mappers>
 
 </configuration>
