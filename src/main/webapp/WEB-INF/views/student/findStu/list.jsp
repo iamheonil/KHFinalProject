@@ -65,7 +65,7 @@
 }
 
 .txt_line_content { 
-	width:300px; 
+	width:270px; 
 	padding:0 5px; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
