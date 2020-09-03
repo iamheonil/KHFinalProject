@@ -29,4 +29,7 @@ public interface FindStuService {
 	//글쓰기
 	public int insertFindStu(FindStudent findStudent);
 
+	//글 상태 변경
+	public int updateState(FindStudent findStudent);
+
 }

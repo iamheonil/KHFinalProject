@@ -57,4 +57,18 @@
 	  VALUES (find_student_SEQ.nextval, #{findStuTitle}, #{findStuContent},#{userNo} , #{findStuLoc}, #{findStuSubject})
   </insert>
   
+  <update id="updateState" parameterType="FINDSTUDENT">
+  	update find_student
+  	
+  	<if test="findStuState.equals(0)">
+	set find_stu_state = 1
+	</if>
+	<if test="findStuState.equals(1)">
+	set find_stu_state = 0
+	</if>
+	
+	where user_no = #{userNo}
+	and find_stu_no = #{findStuNo}
+  </update>
+  
   </mapper>
