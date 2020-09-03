@@ -295,7 +295,7 @@
 									<li><a href="#">jQuery</a></li>
 								</ul> -->
 								</li>
-							<li><a href="/ss/teacher/caution">커뮤니티</a></li>
+							<li><a href="/ss/board/main">커뮤니티</a></li>
 							<li><a href="/ss/teacher/caution">마이페이지</a></li>
 						</ul>
 					</div>
