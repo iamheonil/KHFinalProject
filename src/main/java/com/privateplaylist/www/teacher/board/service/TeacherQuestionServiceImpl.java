@@ -82,8 +82,8 @@ public class TeacherQuestionServiceImpl implements TeacherQuestionService{
 
 	@Override
 	public List<Question> selectSearchQuestion(Map<String, Object> searchMap) {
-		List<Question> qustionList = teacherQuestionDao.selectSearchQuestion(searchMap);
-		return qustionList;
+		List<Question> questionList = teacherQuestionDao.selectSearchQuestion(searchMap);
+		return questionList;
 	}
 
 	@Override
