@@ -353,7 +353,7 @@ function getInfiniteBox(){
           </div>
 
            <div class="menu-item">
-            <h4><a href="${pageContext.request.contextPath }/teacher/blackList">신고 내역</a></h4>
+            <h4><a href="${pageContext.request.contextPath }/teacher/blacklist">신고 내역</a></h4>
           </div>
 
           <div class="menu-item">

@@ -125,7 +125,6 @@ public class TeacherQuestionController {
 				searchMap.put("paging", paging);
 				//글 검색하기
 				List<Question> questionSearchList = teacherQuestionService.selectSearchQuestion(searchMap);
-				System.out.println("questrionList 효진"+questionSearchList);
 				
 				if(keyword.equals("")) {
 					model.addAttribute("alertMsg", "검색어를 입력해주세요");
@@ -143,10 +142,6 @@ public class TeacherQuestionController {
 				model.addAttribute("paging", paging);
 				
 				
-				System.out.println(paging);
-				System.out.println(keyword);
-				
-				System.out.println(searchMap);
 				//검색 완료
 				return "/teacher/question/search";
 			}

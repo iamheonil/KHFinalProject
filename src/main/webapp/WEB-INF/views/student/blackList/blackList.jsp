@@ -27,10 +27,63 @@
 </style>
 
 
+<!-- 신고 처리 상태 -->
+<style type="text/css">
+
+.StateTurndown{
+	font-size: 13px;
+	border-radius: 5px;
+	color: white;
+	background-color: #aaa;
+	font-weight: bold; 
+	padding: 3px;
+}
+.StateReport{
+	font-size: 13px;
+	border-radius: 5px;
+	color: white;
+	background-color: #1E90FF;
+	font-weight: bold; 
+	padding: 3px;
+}
+.StateDelete{
+	font-size: 13px;
+	border-radius: 5px;
+	color: white;
+	background-color: #B90000;
+	font-weight: bold; 
+	padding: 3px;
+}
+
+</style>
+
+
+<!-- contents -->
+<style type="text/css">
+
+.table {
+	text-align: center;
+	margin-top: 2px;
+	color: #262626;
+}
+
+.table thead { background: #f3f3f3; }
+
+
+#paging-box { text-align: center; }
+
+.text-right > span { 
+	font-weight: bold; 
+	color: black;
+	padding: 3px;
+}
+
+</style>
+
 
 <div id="title">
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="#">신고 내역</a>
+	<a href="">신고 내역</a>
 </div>
 
 
@@ -44,19 +97,19 @@
 				<div class="card-body">
 					<div class="table-responsive project-list">
 					
-						<div class="text-left">
-							<span style="font-weight: bold">신고 수 : ${blackCnt } 개</span>
+						<div class="text-right" style="margin: 0 18px;">
+							<span>전체 : ${blackCnt } 건</span>
 						</div>
 						
 						<form method="post" id="tableForm">
 						
-							<table class="table project-table table-centered table-nowrap table-hover" style="text-align: center;">
+							<table class="table project-table table-centered table-nowrap table-hover">
 							
 								<thead>
 									<tr>
-										<th  style="text-align: center" scope="col">#</th>
+										<th  style="text-align: center" scope="col">번호</th>
 										<th  style="text-align: center" scope="col">게시판</th>
-										<th  style="text-align: center" scope="col">신고글</th>
+										<th  style="text-align: center" scope="col">글제목</th>
 										<th  style="text-align: center" scope="col">신고 사유</th>
 										<th  style="text-align: center" scope="col">신고 날짜</th>
 										<th  style="text-align: center" scope="col">처리 상태</th>
@@ -74,6 +127,9 @@
 												</c:if>
 												<c:if test="${i.BLACKLIST_BOARD == '장터' }" >
 													${i.MK_TITLE }
+												</c:if>
+												<c:if test="${i.BLACKLIST_BOARD == '질문' }" >
+													${i.QUESTION_TITLE }
 												</c:if>
 											</td>
 											<td>${i.BLACKLIST_CONTENT }</td>
@@ -101,7 +157,9 @@
 					
 					<!-- end project-list -->
 					<c:if test="${not empty list}" >
-						<c:import url="/WEB-INF/paging/student/blacklistPaging.jsp" />
+						<div id="paging-box">
+							<c:import url="/WEB-INF/paging/student/blackList/blacklistPaging.jsp" />
+						</div>
 					</c:if>
 					
 				</div>

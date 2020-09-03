@@ -15,6 +15,8 @@
 				ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
 				left join market k
 				ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
+				left join question q
+				ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
 				INNER JOIN membership m
 				ON(b.user_no = m.user_no)
 				WHERE 
@@ -34,6 +36,8 @@
 		ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
 		left join market k
 		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
+		left join question q
+		ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
 		INNER JOIN membership m
 		ON(b.user_no = m.user_no)
 		WHERE 
