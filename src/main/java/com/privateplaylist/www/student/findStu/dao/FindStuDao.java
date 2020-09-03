@@ -44,4 +44,8 @@ public class FindStuDao {
 	public int insertFindStu(FindStudent findStudent) {
 		return sqlSession.insert("FindStu.insertFindStu",findStudent);
 	}
+
+	public int updateState(FindStudent findStudent) {
+		return sqlSession.update("FindStu.updateState",findStudent);
+	}
 }
