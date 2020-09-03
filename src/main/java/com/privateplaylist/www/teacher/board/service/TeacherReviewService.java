@@ -1,6 +1,7 @@
 package com.privateplaylist.www.teacher.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,4 +16,11 @@ public interface TeacherReviewService {
 
 	//페이징
 	public Paging reviewListPaging(HttpServletRequest req);
+	
+	
+	//검색
+	public List<Review> selectSearchReview(Map<String, Object> searchMap);
+
+	//서칭페이징
+	public Paging reviewSearchPaging(HttpServletRequest req, String keyword);
 }

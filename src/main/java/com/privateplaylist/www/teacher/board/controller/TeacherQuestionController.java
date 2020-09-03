@@ -143,7 +143,7 @@ public class TeacherQuestionController {
 				
 				
 				//검색 완료
-				return "/teacher/question/search";
+				return "/teacher/board/question/search";
 			}
 	
 			
