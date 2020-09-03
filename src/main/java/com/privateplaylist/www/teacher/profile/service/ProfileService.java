@@ -5,6 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.vo.Member;
 
+//이인주 : 선생님 마이페이지  > 개인정보 수정 > service
+
 public interface ProfileService {
 
 	//비밀번호 일치 확인

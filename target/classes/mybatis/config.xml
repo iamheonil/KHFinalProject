@@ -91,6 +91,7 @@
 		<mapper resource="/mybatis/mapper/student/StudentQuestionMapper.xml"/>
 		<mapper resource="/mybatis/mapper/user/BoardMainMapper.xml"/>
 		<mapper resource="/mybatis/mapper/student/WishlistMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserFindStuMapper.xml"/>
 	</mappers>
 
 </configuration>

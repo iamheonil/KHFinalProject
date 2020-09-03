@@ -11,6 +11,8 @@ import com.privateplaylist.www.dto.Notice;
 
 import common.util.Paging;
 
+//이인주 : 관리자 공지사항 dao
+
 @Repository
 public class NoticeDao {
 	

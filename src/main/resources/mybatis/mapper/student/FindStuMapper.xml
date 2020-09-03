@@ -4,6 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+     <!-- 이인주 : 학생 > 학생 찾기 > mapper -->
+  
   <mapper namespace="FindStu">
   
   <select id="findStuList" parameterType="map" resultType="FINDSTUDENT">

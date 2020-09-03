@@ -9,6 +9,8 @@ import com.privateplaylist.www.dto.Notice;
 
 import common.util.Paging;
 
+//이인주 : 관리자 공지사항 service
+
 public interface NoticeService {
 
 	//공지사항 전체 조회
