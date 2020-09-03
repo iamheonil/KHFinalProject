@@ -256,11 +256,9 @@ public class MemberController {
 	@RequestMapping("/pwModify")
 	public ModelAndView modifyPw(Member member) {
 		
-		// System.out.println(member + "잘 바다따");
-		
 		ModelAndView mav = new ModelAndView();
 		
-		int res = memberDao.modifyPw(member);
+		int res = memberService.modifyPw(member);
 		
 		if (res < 0) {
 			System.out.println("비밀번호 수정 실패");

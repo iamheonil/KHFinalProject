@@ -6,28 +6,59 @@
 <%@ include file="/WEB-INF/layout/main/header.jsp" %>
 
 <style type="text/css">
- .displaynone {display: none !important;}
-body.eMobilePopup{overflow:hidden;position:fixed;}
-.ec-base-label{display:inline-block;margin-right:5px;}
-.ec-base-label img{vertical-align:middle;}
-.gridContainer .gridItem {min-width:0;}
-.xans-member-findid{border:1px solid #d7d5d5;padding:30px 0;color:#2e2e2e;width:770px;margin:120px auto;}.xans-member-findid .findId{width:340px;margin:0 auto;}.xans-member-findid .findId h3{margin:0 0 30px 0;font-size:20px;text-align:center;font-family:Noto Sans KR,sans-serif;font-size:14px;}.xans-member-findid .findId p{margin:7px 0 0;}.xans-member-findid .findId strong{display:inline-block;margin:0 0 5px;padding:0 0 0 10px;width:140px;font-weight:normal;background:url("http://img.echosting.cafe24.com/skin/base/common/ico_arrow.png") no-repeat 0 4px;}.xans-member-findid .findId .check{margin-bottom:30px;margin-left:155px;color:#353535;}.xans-member-findid .findId .member select{width:177px;}.xans-member-findid .findId .ipin,.xans-member-findid .findId .mobileauth{position:relative;margin:10px 0 0 0;}.xans-member-findid .findId .ipin strong,.xans-member-findid .findId .mobileauth strong{width:120px;}.xans-member-findid .findId .ipin span,.xans-member-findid .findId .mobileauth span{display:block;margin:0 0 5px;padding:0 0 0 10px;color:#757575;}.xans-member-findid .findId .ipin a,.xans-member-findid .findId .mobileauth a{position:absolute;bottom:0;right:0;}.xans-member-findid .findId #name,.xans-member-findid .findId #email{width:172px;}
-.xans-member-findid .findId #ssn1,.xans-member-findid .findId #ssn2{width:75px;}
-.xans-member-findid .findId #mobile1{width:36px;}
-.xans-member-findid .findId #mobile2,.xans-member-findid .findId #mobile3{width:45px;}html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img{margin:0;padding:0;}html{width:100%;height:100%;}body,code{font:12px Poppins,Lato,arial,Nanum Gothic,AppleGothic,sans-serif;font-weight:normal;color:#666;background:#fff;}body{min-width:1280px;}body#popup{min-width:0;}li{list-style:none;}img,fieldset{border:none;vertical-align:top;}table{width:100%;border:0;border-spacing:0;border-collapse:collapse;}caption{display:none;}th,td{border:0;vertical-align:top;}input,select,textarea{font-size:100%;color:#353535;vertical-align:middle;font-family:"돋움",Dotum;}input[type=radio],input[type=checkbox]{width:13px;height:13px;border:0;}input[type=text],input[type=password]{height:18px;line-height:20px;padding:2px 4px;border:1px solid #d5d5d5;color:#353535;font-size:12px;}input[type=radio] + label,input[type=checkbox] + label{margin:0 4px 0 2px;}select{height:24px;border:1px solid #d5d5d5;}textarea{padding:5px 6px;border:1px solid #d5d5d5;line-height:1.5;}legend{visibility:hidden;position:absolute;left:-9999px;top:-9999px;width:0;height:0;line-height:0;}button{overflow:visible;padding:0;margin:0;border:0;cursor:pointer;}hr.layout{display:none;}a{text-decoration:none;color:#000;}a:hover{text-decoration:underline;}a:active{text-decoration:none;}.objHidden{visibility:hidden;position:absolute;left:-1000px;top:-1000px;height:0;width:0;}table tr.radioType input,span.noBorder input{border:none !important;width:auto !important;height:auto !important;margin:0 3px 0 0 !important;vertical-align:middle !important;background:none !important;}#content_CONTAINER table,#bi_inquire_content_CONTAINER table{border:0;margin:0 0 -1px;}#content_CONTAINER table:before,#bi_inquire_content_CONTAINER table:before{display:none;}#content_CONTAINER td,#bi_inquire_content_CONTAINER td{width:auto !important;padding:0;}table.nneditor-table{width:auto !important;}.gLabel{display:inline-block;}.gLabel label{margin-right:20px;line-height:22px;}.fWidthFull input[type=text]{width:100%;height:24px;-webkit-box-sizing:border-box;-moz-webkit-box:border-box;box-sizing:border-box;}.fWidthFull textarea{width:100%;-webkit-box-sizing:border-box;-moz-webkit-box:border-box;box-sizing:border-box;}
-.titleArea{min-height:30px;margin:10px 0 20px;text-align:center;}.titleArea h2{display:inline-block;color:#2e2e2e;font:400 14px 'Poppins',sans-serif;letter-spacing:1.9px;padding:6px 25px;border-left:0;border-right:0;border-bottom:1px solid #c8c8c8;border-top:1px solid #c8c8c8;}.titleArea p{display:inline-block;margin:0 0 0 6px;padding:0 0 0 10px;color:#939393;background:url("http://img.echosting.cafe24.com/skin/base/layout/ico_bar.gif") no-repeat 0 0;*display:inline;*zoom:1;}.titleArea ul{padding:5px 0;color:#939393;line-height:18px;}.titleArea ul li{padding:0 0 0 9px;background:url("http://img.echosting.cafe24.com/skin/base/common/ico_square2.gif") no-repeat 4px 7px;}.boardMain{overflow:hidden;*zoom:1;}.boardMain td img{vertical-align:middle;margin:1px;}.boardMain .board{position:relative;margin:0 0 65px;}.boardMain .leftArea{float:left;width:50%;}.boardMain .leftArea .board{margin:0 23px 65px 0;}.boardMain .rightArea{float:right;width:50%;}.boardMain .rightArea .board{margin:0 0 65px 23px;}.boardMain .board h3{margin:0 0 13px;height:28px;font-size:16px;color:#2e2e2e;border-bottom:2px solid #626672;}.boardMain .board .more{position:absolute;top:0;right:0;padding:2px;}.boardMain .board .galleryList{overflow:hidden;}.boardMain .board .galleryList ul{overflow:hidden;margin:0 -10px;}.boardMain .board .galleryList li{float:left;position:relative;width:20%;padding:0 0 12px 0;word-break:break-all;}.boardMain .board .galleryList li span{display:block;margin:0 10px;font-size:11px;color:#a4a4a4;}.boardMain .board .galleryList li .imgLink,.boardMain .board .galleryList li .imgLink:hover{display:block;margin:0 10px 5px;font-size:12px;}.boardMain .board .galleryList li .imgLink img{width:100%;max-height:110px;border:1px solid #ededed;}
-.ec-base-button{padding:10px 0;text-align:center;}.ec-base-button.justify{position:relative;}.ec-base-button:after{display:block;content:"";clear:both;}.ec-base-button .gLeft{float:left;text-align:left;}.ec-base-button .gRight{float:right;text-align:right;}.ec-base-button.justify .gLeft{position:absolute;left:0;}.ec-base-button.justify .gRight{position:absolute;right:0;}.ec-base-button .text{margin:0 6px 0 10px;color:#353535;line-height:24px;}.ec-base-button.typeBorder{margin-top:-1px;padding:10px 0px;border:0px solid #d7d5d5;}.ec-base-button.typeBG{padding:10px 0px;border:0px solid #d7d5d5;background:#ffffff;}.btn_black_big a{line-height:100%;background:#464646;color:#ffffff;font-size:12px;font-family:Noto Sans KR,sans-serif;border:1px solid #363636;display:inline-block;margin-top:3px;line-height:14px;padding:10px 25px 10px;text-decoration:none;}.btn_black_big a:hover{border:1px solid #363636;background:#fff;color:#464646 !important;text-decoration:none;}.btn_gray_big a{line-height:100%;background:#7d7d7d;color:#ffffff;font-size:12px;font-family:Noto Sans KR,sans-serif;border:1px solid #7d7d7d;display:inline-block;margin-top:3px;line-height:14px;padding:10px 25px 10px;text-decoration:none;}.btn_gray_big a:hover{border:1px solid #7d7d7d;background:#fff;color:#464646 !important;text-decoration:none;}.btn_white_big a {line-height:100%;background:#ffffff;color:#464646;font-size:12px;font-family:Noto Sans KR,sans-serif;border:1px solid #c2c2c2;display:inline-block;margin-top:3px;line-height:14px;padding:10px 25px 10px;text-decoration:none;}.btn_white_big a:hover {background:#f5f5f5;color:#333!important;text-decoration:none;}.btn_white_big_input {line-height:120%;background:#ffffff;color:#464646;font-size:12px;font-family:Noto Sans KR,sans-serif;border:1px solid #c2c2c2;display:inline-block;margin-top:-4px;line-height:14px;padding:11px 25px 11px;text-decoration:none;}.btn_white_big_input:hover {background:#f5f5f5;color:#333!important;text-decoration:none;cursor:pointer;}
 
- #find_body {
-     background: rgba(61,205,188,1);
-     background: -moz-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
-     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(61,205,188,1)), color-stop(100%, rgba(51,161,189,1)));
-     background: -webkit-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
-     background: -o-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
-     background: -ms-linear-gradient(left, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
-     background: linear-gradient(to right, rgba(61,205,188,1) 0%, rgba(51,161,189,1) 100%);
-     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1 );
- }
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+.btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
+.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
+.btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+.btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
+.btn-primary.active { color: rgba(255, 255, 255, 0.75); }
+.btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
+.btn-block { width: 100%; display:block; }
+
+#wrap { 
+	background: #092756;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+
+#loginForm { 
+	position: relative;
+	width: 50%;
+	height: 50%;
+	margin: 0 auto;
+}
+
+.login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+input { 
+	width: 25%; 
+	margin: 0 auto;
+	background: rgba(0,0,0,0.3);
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+	-webkit-transition: box-shadow .5s ease;
+	-moz-transition: box-shadow .5s ease;
+	-o-transition: box-shadow .5s ease;
+	-ms-transition: box-shadow .5s ease;
+	transition: box-shadow .5s ease;
+}
+
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); } 
+
 </style>
 
 <script type="text/javascript">
@@ -66,37 +97,26 @@ function findId(){
 
 </script>
 
-<br><br><br>
-
-<body id="find_body">
-<div class="xans-element- xans-member xans-member-findid">
-	<div class="findId">
-		<form action="/ss/member/findidAjax" method="POST">
-	        <h3>아이디 찾기</h3>
-	     	   <fieldset>
-					<legend>아이디 찾기</legend>
-			            <p class="member">
-				            <strong>회원유형</strong>
-			    	    	<select id="userActor" name="userActor" >
-								<option id="userActor" name="userActor" value="2" selected="selected">학생</option>
-								<option id="userActor" name="userActor" value="1">선생님</option>
-							</select>
-						</p>
-				        <p id="name_view" class="name" ><strong id="name_lable">이름</strong> <input id="userName" name="userName" class="lostInput" type="text"></p>
-				        <p id="email_view" class="email" ><strong>이메일로 찾기</strong> <input id="userEmail" name="userEmail" class="lostInput" type="text"></p>
-				        <p class="ec-base-button ">
-			    		<input type="button" onclick="findId()" value="아이디찾기">
-			    		<br>
-			    		<span id="id-msg" class="id-msg" style="font-size: 14px; text-align: center;"></span>
-       					
-				</p>
-	        </fieldset>
-	    </form>
+	<div id="wrap" style="height: 750px;">
+		<div id="loginForm" style="margin-top: 6%;">
+		<br><br><br><br><br>
+			<form action="/ss/member/findidAjax" method="POST" class="form">
+		       	<h3 style="color: white;">아이디 찾기</h3>
+		       	<br>
+		       	<p style="color: white; font-size: 14px;">회원구분 &nbsp;
+			        <select id="userActor" name="userActor" style="color: black;" >
+						<option id="userActor" name="userActor" value="2" selected="selected">학생</option>
+						<option id="userActor" name="userActor" value="1">선생님</option>
+					</select></p>
+				   	<p style="color: white; font-size: 14px;">이름 &nbsp;&nbsp;&nbsp; <input id="userName" name="userName" class="lostInput" type="text"></p>
+				   	<p style="color: white; font-size: 14px;">이메일 <input id="userEmail" name="userEmail" class="lostInput" type="text"></p>
+			    	<input type="button" id="login-button" onclick="findId()" value="아이디찾기">
+			    	<br>
+			    	<span id="id-msg" class="id-msg" style="font-size: 14px; text-align: center;"></span>
+		    </form>
+		</div>
 	</div>
-</div>
-
-
 </body>
-<br><br><br><br><br><br>
+
 <!-- 푸터 -->
 <%@ include file="/WEB-INF/layout/main/footer.jsp" %>
