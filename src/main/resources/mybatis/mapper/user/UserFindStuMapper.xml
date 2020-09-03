@@ -4,6 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+  <!-- 20200904 이인주 : user > find_student > mapper -->
+  
   <mapper namespace="UserFindStu">
   
   

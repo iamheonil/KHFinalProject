@@ -13,6 +13,8 @@ import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.student.profile.service.StuProfileService;
 import com.privateplaylist.www.teacher.profile.service.ProfileService;
 
+//이인주 : 학생 마이페이지  > 개인정보 수정  Controller
+
 @Controller
 @RequestMapping("/student/profile")
 public class StuProfileController {

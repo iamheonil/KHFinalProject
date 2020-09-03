@@ -1,5 +1,7 @@
 package com.privateplaylist.www.admin.profit.service;
 
+//이인주 : 관리자 수익  service
+
 public interface ProfitService {
 
 	//월별 리스트
