@@ -79,5 +79,10 @@ public class FindStuServiceImpl implements FindStuService{
 	public int insertFindStu(FindStudent findStudent) {
 		return findStuDao.insertFindStu(findStudent);
 	}
+	
+	@Override
+	public int updateState(FindStudent findStudent) {
+		return findStuDao.updateState(findStudent);
+	}
 
 }
