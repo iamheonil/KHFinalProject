@@ -22,6 +22,8 @@ import com.privateplaylist.www.student.findStu.service.FindStuService;
 
 import common.util.Paging;
 
+//이인주  : 학생 마이페이지 >  학생 찾기 > 컨트롤러
+
 @Controller
 @RequestMapping("/student/findStu")
 public class FindStuController {

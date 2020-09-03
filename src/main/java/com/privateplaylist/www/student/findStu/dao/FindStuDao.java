@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.privateplaylist.www.dto.FindStudent;
 
+//이인주  : 학생 마이페이지 >  학생 찾기 > dao
+
 @Repository
 public class FindStuDao {
 

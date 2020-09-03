@@ -15,6 +15,8 @@ import com.privateplaylist.www.student.findStu.dao.FindStuDao;
 
 import common.util.Paging;
 
+//이인주  : 학생 마이페이지 >  학생 찾기 > serviceImpl
+
 @Service
 public class FindStuServiceImpl implements FindStuService{
 	

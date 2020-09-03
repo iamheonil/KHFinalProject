@@ -1,5 +1,5 @@
 <!-- 20200819 이인주 -->
-<!-- notice list paging -->
+<!-- notice search paging -->
 
 <!-- 페이징 복붙 예시  -->
 <!-- 1. 본인에게 맞는 url 작성 -->

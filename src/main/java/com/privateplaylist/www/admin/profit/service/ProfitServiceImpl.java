@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.privateplaylist.www.admin.profit.dao.ProfitDao;
 
+//이인주 : 관리자 수익  serviceImpl
+
 @Service
 public class ProfitServiceImpl implements ProfitService{
 	

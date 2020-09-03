@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.vo.Member;
 
+//이인주 : 선생님 마이페이지 > 개인정보 수정 >  dao
+
 @Repository
 public class ProfileDao {
 	

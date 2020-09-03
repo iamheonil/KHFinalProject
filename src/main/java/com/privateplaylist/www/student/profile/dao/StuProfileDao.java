@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+//이인주 : 학생 마이페이지  > 개인정보 수정  dao
+
 @Repository
 public class StuProfileDao {
 	

@@ -1,4 +1,4 @@
-<!-- 이인주 20200818 : 학생 마이페이지 body test  -->
+<!-- 이인주 20200903 : 학생 마이페이지  > 학생 찾기 list  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -65,7 +65,7 @@
 }
 
 .txt_line_content { 
-	width:300px; 
+	width:270px; 
 	padding:0 5px; 
 	overflow:hidden; 
 	text-overflow:ellipsis;

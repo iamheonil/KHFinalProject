@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 이인주 : 관리자 > 수익 > 수익 차트 jsp -->
+
 <!-- 관리자 페이지 header -->   
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 
