@@ -6,11 +6,39 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
 
+<script type="text/javascript">
+/* 체크박스 전체선택, 전체해제 */
+function checkAll(){
+      if( $("#th_checkAll").is(':checked') ){
+        $("input[name=checkRow]").prop("checked", true);
+      }else{
+        $("input[name=checkRow]").prop("checked", false);
+      }
+}
+</script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	//삭제버튼 동작
+	$("#deletebtn").click(function(){
+		
+		//실제 <form>의 submit 수행
+		$("#checkboxlist").submit();
+		
+	});
+	
+});
+
+</script> 
+
+
+
+
 <div id="title">게시판
 	<i class="glyphicon glyphicon-menu-right"></i>
 	<a href="${pageContext.request.contextPath}/teacher/review/list">후기 게시판</a>
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href=""></a>
+	<a href="${pageContext.request.contextPath}/teacher/reivew/search">검색</a>
 </div>
 
 
@@ -24,6 +52,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="input-group">
+<%-- 					<input type="hidden" value="${no}" id="no" name="no"/> --%>
 						<input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
 						<span class="input-group-btn">
 							<button class="button button1" type="submit">검색</button>
@@ -38,7 +67,7 @@
 	<input type="hidden" value="${cno}"id="no" />
  
  	<!-- 체크박스 리스트 전송 -->
- 	<form action="${pageContext.request.contextPath}/teacher/review/delete" method="post" id="checkboxlist">
+ 	<form action="${pageContext.request.contextPath}/teacher/review/idxdelete" method="post" id="checkboxlist">
  	
  	
 		<!-- 질문게시판 리스트 -->
@@ -48,15 +77,12 @@
 		<tr>
 		    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 			<th style="width: 15%">작성한 글번호</th>
-			<th style="width: 10%">작성자</th>
+			<th style="width: 25%">제목</th>
 			<th style="width: 45%">내용</th>
-			<th style="width: 10%">별점</th>
 			<th style="width: 15%">작성일</th>
 		</tr>
-		
 		<!-- 게시글이 없을 때  -->
-		<c:if test="${empty reviewList }" >
-		
+		<c:if test="${empty reviewSearchList }" >
 			<input type="hidden" value="${cno}"id="no" />
 			
 			<tr>
@@ -64,13 +90,12 @@
 			</tr>
 		
 		</c:if>
-		
 		<!--게시글이 있을 때 -->
-		<c:if test="${!empty reviewList }" >
+		<c:if test="${!empty reviewSearchList }" >
 		
 		
 			<!-- 값 출력 -->
-	<c:forEach items="${reviewList }" var="review" >
+	<c:forEach items="${reviewSearchList }" var="review" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${review.reviewNo}" id="checkRow"/></td>
 		<td>${review.reviewNo }</td>
@@ -102,6 +127,7 @@
 	<!-- 글작성/삭제 버튼 -->
 	<div id="footerbtn">
 		<div id="divbtn">
+		<!-- 수정부분은 유저페이지로 이동시켜야함 -->
 			<button type="button" class="button button2" id="updatebtn">수정</button>
 			<button type="button" class="button button3" id="deletebtn">삭제</button>
 		</div> 
@@ -111,20 +137,6 @@
 	
 	
 </div><!--end content -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaFooter2.jsp"></c:import>

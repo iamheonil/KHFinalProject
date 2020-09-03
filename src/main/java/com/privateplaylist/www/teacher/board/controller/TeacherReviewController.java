@@ -28,7 +28,7 @@ public class TeacherReviewController {
 	
 	//후기게시판 정보 전체 조회
 			@RequestMapping("/list")
-			public String questionList(Model model,HttpServletRequest req) {
+			public String reviewList(Model model,HttpServletRequest req) {
 				
 				//요청 파라미터를 전달하여 paging 객체 생성하기
 				Paging paging = teacherReviewService.reviewListPaging(req);
@@ -49,41 +49,41 @@ public class TeacherReviewController {
 			}
 			
 			
-//			//검색
-//			@RequestMapping(value="/search",method = RequestMethod.POST )
-//			public String questionSearch(Model model,@RequestParam String keyword,HttpServletRequest req) {
-//				
-//				//root context
-//				String root = req.getContextPath();
-//				
-//				//요청 파라미터를 전달하여 paging 객체 생성하기
-//				Paging paging = teacherQuestionService.questionSearchPaging(req,keyword);
-//				
-//				//키워드와 페이징을 넣어줄 map
-//				Map<String, Object> searchMap = new HashMap<String, Object>();
-//				
-//				searchMap.put("keyword", keyword);
-//				searchMap.put("paging", paging);
-//				//글 검색하기
-//				List<Question> questionSearchList = teacherQuestionService.selectSearchQuestion(searchMap);
-//				
-//				if(keyword.equals("")) {
-//					model.addAttribute("alertMsg", "검색어를 입력해주세요");
-//					model.addAttribute("url", root+"/teacher/question/list");
-//
-//					return "/teacher/question/error";
-//					
-//				}
-//				
-//				//모델값 전달
-//				model.addAttribute("keyword", keyword);
-//				model.addAttribute("questionSearchList", questionSearchList);
-//				
-//				//페이징 결과 전달
-//				model.addAttribute("paging", paging);
-//				
-//				
-//				//검색 완료
-//				return "/teacher/question/search";
-//			}
+			//검색
+			@RequestMapping(value="/search",method = RequestMethod.POST )
+			public String reviewSearch(Model model,@RequestParam String keyword,HttpServletRequest req) {
+				
+				//root context
+				String root = req.getContextPath();
+				
+				//요청 파라미터를 전달하여 paging 객체 생성하기
+				Paging paging = teacherReviewService.reviewSearchPaging(req,keyword);
+				
+				//키워드와 페이징을 넣어줄 map
+				Map<String, Object> searchMap = new HashMap<String, Object>();
+				
+				searchMap.put("keyword", keyword);
+				searchMap.put("paging", paging);
+				//글 검색하기
+				List<Review> reviewSearchList = teacherReviewService.selectSearchReview(searchMap);
+				
+				if(keyword.equals("")) {
+					model.addAttribute("alertMsg", "검색어를 입력해주세요");
+					model.addAttribute("url", root+"/teacher/review/list");
+
+					return "/teacher/board/review/error";
+					
+				}
+				
+				//모델값 전달
+				model.addAttribute("keyword", keyword);
+				model.addAttribute("reviewSearchList", reviewSearchList);
+				
+				//페이징 결과 전달
+				model.addAttribute("paging", paging);
+				
+				
+				//검색 완료
+				return "/teacher/board/review/search";
+			}
 }
