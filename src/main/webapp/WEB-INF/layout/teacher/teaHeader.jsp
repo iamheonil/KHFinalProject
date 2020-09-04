@@ -3,6 +3,9 @@
 <%@page import="com.privateplaylist.www.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -315,9 +318,15 @@ function getInfiniteBox(){
 
 <br>
 
-<img alt="선생님프로필사진" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg">
+<c:if test="${empty teacherFile.tchFileRename }">
+<img alt="선생님프로필사진" src="<%= request.getContextPath() %>/resources/images/profile.png" id="teaprofileimg">
+</c:if>
 
-<h4>userId 님</h4>
+<c:if test="${not empty teacherFile.tchFileRename}">
+<img alt="선생님프로필사진" src="<%= request.getContextPath() %>/resources/upload/${teacherFile.tchFileRename }" id="teaprofileimg">
+</c:if>
+
+<h4>${loginUser.userId } 님</h4>
 
 </div>
 
