@@ -32,8 +32,6 @@ public class ReviewController {
 	//후기 정보 전체 조회
 			@RequestMapping("/list")
 			public String  noticeList(Model model,HttpServletRequest req) {
-				System.out.println("/admin/review/list");
-				
 				//요청 파라미터를 전달하여 paging 객체 생성하기
 				Paging paging = reviewService.reviewListPaging(req);
 						
@@ -47,7 +45,6 @@ public class ReviewController {
 				//페이징 결과 전달
 				model.addAttribute("paging", paging);
 				
-				System.out.println(reviewList);
 				return "admin/review/list";
 		
 			}
@@ -56,7 +53,6 @@ public class ReviewController {
 			//질문게시판 글 삭제하기 (선택 삭제)
 			@RequestMapping("/idxdelete")
 			public String  reviewIdxDelete(Model model,HttpServletRequest req) {
-				System.out.println("/admin/review/idxdelete");
 				
 				//root context
 				String root = req.getContextPath();
@@ -108,19 +104,12 @@ public class ReviewController {
 					return "/admin/review/error";
 					
 				}
-				
 				//모델값 전달
 				model.addAttribute("keyword", keyword);
 				model.addAttribute("reviewSearchList", reviewSearchList);
 				
 				//페이징 결과 전달
 				model.addAttribute("paging", paging);
-				
-				
-				System.out.println(paging);
-				System.out.println(keyword);
-				
-				System.out.println(searchMap);
 				//검색 완료
 				return "/admin/review/search";
 			}

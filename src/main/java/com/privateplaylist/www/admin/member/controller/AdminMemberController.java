@@ -166,6 +166,8 @@ public class AdminMemberController {
 		Map<String, Object> info = adminMemberService.selectUserByNo(userNo);
 //		System.out.println("컨트롤러 commandMap : "+ commandMap);
 //		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
+		System.out.println(info);
+		
 		mav.addObject("tchData", commandMap);
 		mav.addObject("teacherinfo", info);
 		mav.setViewName("admin/member/tchDetail");

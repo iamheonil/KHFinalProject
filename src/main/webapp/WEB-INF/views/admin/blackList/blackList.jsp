@@ -144,8 +144,8 @@ main{
 	height: 100%;
     border: none;
     margin-bottom: 24px;
-    -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
-    box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+/*     -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44); */
+/*     box-shadow: 0 0 13px 0 rgba(236,236,241,.44); */
 }
 .avatar-xs {
     height: 2.3rem;
@@ -318,7 +318,7 @@ main{
 		                    <form method="post" id="tableForm">
 		                        <table class="table project-table table-centered table-nowrap table-hover">
 		                            <thead>
-		                                <tr>
+		                                <tr style="background: #eee;">
 		                                    <th  style="text-align: center" scope="col"><input type="checkbox" id="th_checkAll"  onclick="checkAll();" /></th>
 		                                    <th  style="text-align: center" scope="col">#</th>
 		                                    <th  style="text-align: center" scope="col">게시판</th>

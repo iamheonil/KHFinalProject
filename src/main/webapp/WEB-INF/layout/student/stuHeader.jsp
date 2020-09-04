@@ -358,7 +358,7 @@ function getInfiniteBox(){
           </div>
           
            <div class="menu-item">
-            <h4><a href="#">학생 찾기</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/student/findStu/list">학생 찾기</a></h4>
           </div>
           
           <div class="menu-item">
@@ -370,12 +370,12 @@ function getInfiniteBox(){
 	            <ul>
 	             <li><a href="#">질문 게시판</a></li>
 	             <li><a href="#">후기 게시판</a></li>
-	             <li><a href="#">중고장터</a></li>
+	             <li id="studentMK"><a href="${pageContext.request.contextPath}/student/market">중고장터</a></li>
 	            </ul>
           </div>
 
            <div class="menu-item">
-            <h4><a href="#">신고 내역</a></h4>
+            <h4><a href="${pageContext.request.contextPath }/student/blacklist">신고 내역</a></h4>
           </div>
 
           <div class="menu-item">

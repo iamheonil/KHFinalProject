@@ -22,7 +22,7 @@ public class TeacherBlackListController {
 	@Autowired
 	TeacherBlackListService blackListService;
 	
-	@RequestMapping("/teacher/blackList")
+	@RequestMapping("/teacher/blacklist")
 	public ModelAndView getTeacherBlacklist(HttpSession session,@RequestParam(required = false, defaultValue = "1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
 		ModelAndView mav = new ModelAndView();
 		Member mem=(Member) session.getAttribute("loginUser");

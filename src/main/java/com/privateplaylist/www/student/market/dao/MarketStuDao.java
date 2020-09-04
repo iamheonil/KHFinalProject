@@ -23,4 +23,12 @@ public class MarketStuDao {
 		return sqlSession.selectList(namespace + "selectMarketStu", map);
 	}
 
+	public int selectCntAllMKComm(int userNo) {
+		return sqlSession.selectOne(namespace + "selectCntAllMKComm", userNo);
+	}
+
+	public List<Map<String, Object>> selectMarketCommStu(Map<String, Object> map) {
+		return sqlSession.selectList(namespace + "selectMarketCommStu", map);
+	}
+
 }

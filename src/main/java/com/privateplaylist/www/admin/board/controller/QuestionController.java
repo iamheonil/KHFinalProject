@@ -55,27 +55,18 @@ public class QuestionController {
 			return "admin/question/list";
 	
 		}
-		
-		
-		
 		//질문게시판 세부정보 보기
 		@RequestMapping(value="/detail")
 		public String  questionDetail(Model model,@RequestParam int questionNo ) {
-			System.out.println("/admin/question/detail");
-//			System.out.println("questionNo"+questionNo);
 			
 			//질문게시판 정보 조회 one
 			Question questionone = questionService.selectQuestionone(questionNo);
 			List<QuestionComm> commList = questionService.getReplyList(questionNo);
-			
-			
-			
 			//모델값 전달
 			model.addAttribute("questionone", questionone);
 			model.addAttribute("commList",commList);
 			
 			for (QuestionComm questionComm : commList) {
-				System.out.println("questuonComm"+questionComm);
 			}
 			return "/admin/question/detail";
 		}	
@@ -133,7 +124,6 @@ public class QuestionController {
 					int questionNo = Integer.parseInt(checkRowArr[i]);
 					int res = questionService.deleteQuestion(questionNo);
 				}
-				
 				//삭제 완료
 				return "redirect:list";
 			}
@@ -156,7 +146,6 @@ public class QuestionController {
 			searchMap.put("paging", paging);
 			//글 검색하기
 			List<Question> questionSearchList = questionService.selectSearchQuestion(searchMap);
-			System.out.println("questrionList 효진"+questionSearchList);
 			
 			if(keyword.equals("")) {
 				model.addAttribute("alertMsg", "검색어를 입력해주세요");
@@ -169,15 +158,8 @@ public class QuestionController {
 			//모델값 전달
 			model.addAttribute("keyword", keyword);
 			model.addAttribute("questionSearchList", questionSearchList);
-			
 			//페이징 결과 전달
 			model.addAttribute("paging", paging);
-			
-			
-			System.out.println(paging);
-			System.out.println(keyword);
-			
-			System.out.println(searchMap);
 			//검색 완료
 			return "/admin/question/search";
 		}
