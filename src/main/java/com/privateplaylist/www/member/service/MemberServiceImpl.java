@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.dao.MemberDao;
 import com.privateplaylist.www.member.vo.Member;
 
@@ -50,8 +51,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo,
-			String root) throws FileException {
+	public void insertTeacherFile(@RequestParam("joinFiles") MultipartFile files, Map<String, String> fileInfo, String root) throws FileException {
 
 		memberDao.insertFile(files, fileInfo);
 
@@ -69,13 +69,27 @@ public class MemberServiceImpl implements MemberService {
 		if (member != null) {
 			// 사용자가 입력한 비밀번호와 DB에 인코딩되어 저장된 비밀번호가 같은지 확인
 			if (passwordEncoder.matches(password, member.getUserPw())) {
-				System.out.println("비밀번호 확인");
+				// System.out.println("비밀번호 확인");
 			} else {
 				return null;
 			}
 
 		}
 		return member;
+	}
+	
+	@Override
+	public TeacherFile selectTeacherFile(String userId) {
+		
+		// System.out.println("뭐여 " + teacherMap);
+		
+		TeacherFile teacherFile = memberDao.selectTeacherFile(userId);
+		
+		if(teacherFile != null) {
+			return teacherFile;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
