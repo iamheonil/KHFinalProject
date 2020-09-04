@@ -8,6 +8,25 @@
   
   <mapper namespace="UserFindStu">
   
+  <select id="selectCntUserFindStuAll" resultType="int">
+  	select count(*) from find_student
+  </select>
+  
+  <select id="userFindStuList" parameterType="map" resultType="map">
+	  select * from (
+			select rownum rnum, c.* from(
+				SELECT 
+						F.find_stu_no, F.find_stu_title, F.find_stu_content, F.user_no,M.user_id,
+						F.find_stu_date, F.find_stu_loc, F.find_stu_subject, f.find_stu_state
+				FROM find_student F                         
+       				 INNER JOIN membership M          
+        			 ON f.user_no = m.user_no 
+					order by F.find_stu_no desc
+			) c
+		) findStu 
+	where rnum BETWEEN #{startNo} AND #{endNo}
+	
+  </select>
   
   
   </mapper>
