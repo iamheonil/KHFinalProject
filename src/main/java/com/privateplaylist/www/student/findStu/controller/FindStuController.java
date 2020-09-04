@@ -12,13 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.privateplaylist.www.dto.FindStudent;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.student.findStu.service.FindStuService;
 
 import common.util.Paging;
+
+//이인주  : 학생 마이페이지 >  학생 찾기 > 컨트롤러
 
 @Controller
 @RequestMapping("/student/findStu")
@@ -191,4 +195,44 @@ public class FindStuController {
 		}
 		
 	}
+	
+	//글상태 변경 게시-> 마감 / 마감 -> 게시
+	//ajax
+	@ResponseBody
+	@RequestMapping(value = "/updatebtn", method=RequestMethod.POST)
+	public String updatebtn(Model model,@RequestParam int findStuNo, @RequestParam int findStuState,HttpSession session) {
+//		System.out.println("/student/findStu/updatebtn");
+//		System.out.println("findStuNo"+findStuNo);
+//		System.out.println("findStuState"+findStuState);
+
+		//결과
+		String result = null;
+		
+		//세션 
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		//userNo
+		int userNo = loginUser.getUserNo();
+		
+		//전달할 findStudent
+		FindStudent findStudent = new FindStudent();
+		
+		findStudent.setUserNo(userNo);
+		findStudent.setFindStuNo(findStuNo);
+		findStudent.setFindStuState(findStuState);
+		
+		//update findStuState
+		int res = findStuService.updateState(findStudent);
+		
+		if(res > 0) {
+			result = "";
+		}else {
+			result = "글 상태 변경 실패";
+		}
+		
+		//결과
+		return result;
+	}
+	
+	
 }

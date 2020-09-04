@@ -1,4 +1,4 @@
-<!-- 이인주 20200818 : 학생 마이페이지 body test  -->
+<!-- 이인주 20200903 : 학생 마이페이지  > 학생 찾기 list  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -65,7 +65,7 @@
 }
 
 .txt_line_content { 
-	width:300px; 
+	width:270px; 
 	padding:0 5px; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -93,7 +93,11 @@ $(document).ready(function(){
 		
 	});
 	
-
+	//게시 마감 변경 
+// 	$("#updatebtn").click(function(){
+// 		location.href='${pageContext.request.contextPath}/student/findStu/updatebtn?findStuNo=${findStu.findStuNo }&findStuState=${findStu.findStuState }';
+// 	});
+	
 });
 
 /* 체크박스 전체선택, 전체해제 */
@@ -103,6 +107,38 @@ function checkAll(){
       }else{
         $("input[name=checkRow]").prop("checked", false);
       }
+}
+</script>
+
+<!-- ajax -->
+<script type="text/javascript">
+function XMLSTATEClick(findStuNo,findStuState){
+	var chk = confirm("게시글 상태를 변경 하시겠습니까?");
+	
+	if(chk == true){
+		var url = "<%=request.getContextPath()%>/student/findStu/updatebtn";
+		
+		$.ajax({
+			type : "POST",
+			url: url,
+			data : {
+					findStuNo: findStuNo,
+					findStuState: findStuState,
+			},
+			success : function(result) {
+				if (result == "") {
+					alert("변경되었습니다");
+					location.reload();
+				}else if(result != ""){
+					alert(result);
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
 }
 </script>
 
@@ -171,7 +207,7 @@ function checkAll(){
 	<c:forEach items="${findStuList }" var="findStu" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${findStu.findStuNo}" id="checkRow"/></td>
-		<td>${findStu.findStuNo }</td>
+		<td id="findStuNo" >${findStu.findStuNo }</td>
 		<td>
 			<div class="txt_line_title">
 				<a href="${pageContext.request.contextPath}/student/findStu/detail?noticeNo=${findStu.findStuNo}" class="anone">${findStu.findStuTitle }</a>
@@ -183,10 +219,12 @@ function checkAll(){
 		<td>${findStu.findStuDate }</td>
 		
 		<c:if test="${findStu.findStuState eq 0}">
-			<td>게시</td>
+			<td>
+			<button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">게시</button>
+			</td>
 		</c:if>			
 		<c:if test="${findStu.findStuState eq 1}">
-			<td>마감</td>
+			<td><button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">마감</button></td>
 		</c:if>			
 	</tr>
 	</c:forEach>

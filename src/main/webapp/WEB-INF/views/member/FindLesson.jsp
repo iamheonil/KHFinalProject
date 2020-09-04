@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/layout/main/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include>    --%>
@@ -10,7 +11,7 @@
 	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css')
 	;
 
-.banner h1, .banner h2 {
+.banner h1, .banner h2 .banner form {
 	font-family: 'NanumSquareRound', sans-serif !important;
 	font-weight: bolder !important;
 }
@@ -26,11 +27,27 @@
 body {
 	margin-top: 20px;
 }
+
+label {
+	font-size: 11px;
+	font-weight: bolder;
+	white-space: nowrap;
+	margin-right: 40px;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+}
+
+.option {
+	display: inline-block;
+	width: 300px;
+	margin-left: 140px;
+}
 /* -------------------------------------------------------------- Box Product -------------------------------------------------------------- */
 .box-product-outer {
 	margin-bottom: 5px;
 	padding-top: 15px;
-	padding-bottom: 15px
+	padding-bottom: 15px;
+	height: 400px;
 }
 
 .box-product-outer:hover {
@@ -168,481 +185,512 @@ body {
 	border: 1px solid #e5e5e5
 }
 /* -------------------------------------------------------------- End of Box Product -------------------------------------------------------------- */
+* {
+	user-select: none;
+}
+
+*:focus {
+	outline: none;
+}
+
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	padding-bottom: 100px;
+	margin: 0;
+	background-color: #ebf3f3;
+}
+
+.brd {
+	border: 1px solid #e2eded;
+	border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
+}
+
+#info {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	color: #2d3667;
+	font-size: 16px;
+	text-align: center;
+	padding: 14px;
+	background-color: #f3f9f9;
+}
+
+#app-cover {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 300px;
+	height: 42px;
+	margin: 100px auto 0 auto;
+}
 
-*
-{
-    user-select: none;
-}
-
-*:focus
-{
-    outline: none;
-}
-
-html, body
-{
-    height: 100%;
-    min-height: 100%;
-}
-
-body
-{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-bottom: 100px;
-    margin: 0;
-    background-color: #ebf3f3;
+#select-button {
+	position: relative;
+	height: 16px;
+	padding: 12px 14px;
+	background-color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
-.brd
-{
-    border: 1px solid #e2eded;
-    border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
-}
+#options-view-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 3;
+}
 
-#info
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    color: #2d3667;
-    font-size: 16px;
-    text-align: center;
-    padding: 14px;
-    background-color: #f3f9f9;
-}
-
-#app-cover
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 300px;
-    height: 42px;
-    margin: 100px auto 0 auto;
-}
-
-#select-button
-{
-    position: relative;
-    height: 16px;
-    padding: 12px 14px;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
+#selected-value {
+	font-size: 16px;
+	line-height: 1;
+	margin-right: 26px;
+}
 
-#options-view-button
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
+.option i {
+	width: 16px;
+	height: 16px;
 }
 
-#selected-value
-{
-    font-size: 16px;
-    line-height: 1;
-    margin-right: 26px;
+.option, .label {
+	color: #2d3667;
+	font-size: 16px;
 }
 
-.option i
-{
-    width: 16px;
-    height: 16px;
+#chevrons {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 12px;
+	padding: 9px 14px;
 }
 
-.option, .label
-{
-    color: #2d3667;
-    font-size: 16px;
+#chevrons i {
+	display: block;
+	height: 50%;
+	color: #d1dede;
+	font-size: 12px;
+	text-align: right;
 }
 
-#chevrons
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 12px;
-    padding: 9px 14px;
+#options-view-button:checked+#select-button #chevrons i {
+	color: #2d3667;
 }
 
-#chevrons i
-{
-    display: block;
-    height: 50%;
-    color: #d1dede;
-    font-size: 12px;
-    text-align: right;
+.options {
+	position: absolute;
+	left: 0;
+	width: 250px;
 }
 
-#options-view-button:checked + #select-button #chevrons i
-{
-    color: #2d3667;
+#options {
+	position: absolute;
+	top: 42px;
+	right: 0;
+	left: 0;
+	width: 298px;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 4px;
 }
 
-.options
-{
-    position: absolute;
-    left: 0;
-    width: 250px;
+#options-view-button:checked ~ #options {
+	border: 1px solid #e2eded;
+	border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
 }
 
-#options
-{
-    position: absolute;
-    top: 42px;
-    right: 0;
-    left: 0;
-    width: 298px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 4px;
+.option {
+	position: relative;
+	line-height: 1;
+	transition: 0.3s ease all;
+	z-index: 2;
 }
 
-#options-view-button:checked ~ #options
-{
-    border: 1px solid #e2eded;
-    border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
+.option i {
+	position: absolute;
+	left: 14px;
+	padding: 0;
+	display: none;
 }
 
-.option
-{
-    position: relative;
-    line-height: 1;
-    transition: 0.3s ease all;
-    z-index: 2;
+#options-view-button:checked ~ #options .option i {
+	display: block;
+	padding: 12px 0;
 }
 
-.option i
-{
-    position: absolute;
-    left: 14px;
-    padding: 0;
-    display: none;
+.label {
+	display: none;
+	padding: 0;
+	margin-left: 27px;
 }
 
-#options-view-button:checked ~ #options .option i
-{
-    display: block;
-    padding: 12px 0;
+#options-view-button:checked ~ #options .label {
+	display: block;
+	padding: 12px 14px;
 }
 
-.label
-{
-    display: none;
-    padding: 0;
-    margin-left: 27px;
+.s-c {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 50%;
 }
 
-#options-view-button:checked ~ #options .label
-{
-    display: block;
-    padding: 12px 14px;    
+.s-c.top {
+	top: 0;
 }
 
-.s-c
-{
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50%;
+.s-c.bottom {
+	bottom: 0;
 }
 
-.s-c.top
-{
-    top: 0;
+input[type="radio"] {
+	position: absolute;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
 }
 
-.s-c.bottom
-{
-    bottom: 0;
+.s-c:hover ~ i {
+	color: #fff;
+	opacity: 0;
 }
 
-input[type="radio"]
-{
-    position: absolute;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
+.s-c:hover {
+	height: 100%;
+	z-index: 1;
 }
 
-.s-c:hover ~ i
-{
-    color: #fff;
-    opacity: 0;
+.s-c.bottom:hover+i {
+	bottom: -25px;
+	animation: moveup 0.3s ease 0.1s forwards;
 }
 
-.s-c:hover
-{
-    height: 100%;
-    z-index: 1;
+.s-c.top:hover ~ i {
+	top: -25px;
+	animation: movedown 0.3s ease 0.1s forwards;
 }
 
-.s-c.bottom:hover + i
-{
-    bottom: -25px;
-    animation: moveup 0.3s ease 0.1s forwards;
+@
+keyframes moveup { 0%{
+	bottom: -25px;
+	opacity: 0;
 }
+
+100%{
+bottom
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+0;
+opacity
+
+
+
+
+
 
-.s-c.top:hover ~ i
-{
-    top: -25px;
-    animation: movedown 0.3s ease 0.1s forwards;
+:
+
+
+
+ 
+
+
+
+1;
+}
+}
+@
+keyframes movedown { 0%{
+	top: -25px;
+	opacity: 0;
 }
+
+100%{
+top
+
+
+
+
+
+
+:
+
+
 
-@keyframes moveup
-{
-    0%{ bottom: -25px; opacity: 0;}
-    100%{ bottom: 0; opacity: 1;}
+ 
+
+
+
+0;
+opacity
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+1;
+}
+}
+.label {
+	transition: 0.3s ease all;
 }
 
-@keyframes movedown
-{
-    0%{ top: -25px; opacity: 0;}
-    100%{ top: 0; opacity: 1;}
+.opt-val {
+	position: absolute;
+	left: 14px;
+	width: 217px;
+	height: 21px;
+	opacity: 0;
+	background-color: #fff;
+	transform: scale(0);
 }
 
-.label
-{
-    transition: 0.3s ease all;
+.option input[type="radio"]:checked ~ .opt-val {
+	opacity: 1;
+	transform: scale(1);
 }
 
-.opt-val
-{
-    position: absolute;
-    left: 14px;
-    width: 217px;
-    height: 21px;
-    opacity: 0;
-    background-color: #fff;
-    transform: scale(0);
+.option input[type="radio"]:checked ~ i {
+	top: 0;
+	bottom: auto;
+	opacity: 1;
+	animation: unset;
 }
 
-.option input[type="radio"]:checked ~ .opt-val
-{
-    opacity: 1;
-    transform: scale(1);
+.option input[type="radio"]:checked ~ i, .option input[type="radio"]:checked 
+	 ~ .label {
+	color: #fff;
 }
 
-.option input[type="radio"]:checked ~ i
-{
-    top: 0;
-    bottom: auto;
-    opacity: 1;
-    animation: unset;
+element.style {
+	
 }
 
-.option input[type="radio"]:checked ~ i, .option input[type="radio"]:checked ~ .label
-{
-    color:#fff;
+.gtco-cover.gtco-cover-xs {
+	height: 600px;
 }
 
-.option input[type="radio"]:checked ~ .label:before
-{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
+.option input[type="radio"]:checked ~ .label:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
 }
 
-#options-view-button:not(:checked) ~ #options .option input[type="radio"]:checked ~ .opt-val
-{
-    top: -30px;
+#options-view-button:not (:checked ) ~ #options .option input[type="radio"]:checked 
+	 ~ .opt-val {
+	top: -30px;
 }
 
-.option:nth-child(1) input[type="radio"]:checked ~ .label:before
-{
-    background-color: #000;
-    border-radius: 4px 4px 0 0;
+.option:nth-child(1) input[type="radio"]:checked ~ .label:before {
+	background-color: #000;
+	border-radius: 4px 4px 0 0;
 }
 
-.option:nth-child(1) input[type="radio"]:checked ~ .opt-val
-{
-    top: -31px;
+.option:nth-child(1) input[type="radio"]:checked ~ .opt-val {
+	top: -31px;
 }
 
-.option:nth-child(2) input[type="radio"]:checked ~ .label:before
-{
-    background-color: #ea4c89;
+.option:nth-child(2) input[type="radio"]:checked ~ .label:before {
+	background-color: #ea4c89;
 }
 
-.option:nth-child(2) input[type="radio"]:checked ~ .opt-val
-{
-    top: -71px;
+.option:nth-child(2) input[type="radio"]:checked ~ .opt-val {
+	top: -71px;
 }
 
-.option:nth-child(3) input[type="radio"]:checked ~ .label:before
-{
-    background-color: #0057ff;
+.option:nth-child(3) input[type="radio"]:checked ~ .label:before {
+	background-color: #0057ff;
 }
 
-.option:nth-child(3) input[type="radio"]:checked ~ .opt-val
-{
-    top: -111px;
+.option:nth-child(3) input[type="radio"]:checked ~ .opt-val {
+	top: -111px;
 }
 
-.option:nth-child(4) input[type="radio"]:checked ~ .label:before
-{
-    background-color: #32c766;
+.option:nth-child(4) input[type="radio"]:checked ~ .label:before {
+	background-color: #32c766;
 }
 
-.option:nth-child(4) input[type="radio"]:checked ~ .opt-val
-{
-    top: -151px;
+.option:nth-child(4) input[type="radio"]:checked ~ .opt-val {
+	top: -151px;
 }
 
-.option:nth-child(5) input[type="radio"]:checked ~ .label:before
-{
-    background-color: #f48024;
+.option:nth-child(5) input[type="radio"]:checked ~ .label:before {
+	background-color: #f48024;
 }
 
-.option:nth-child(5) input[type="radio"]:checked ~ .opt-val
-{
-    top: -191px;
+.option:nth-child(5) input[type="radio"]:checked ~ .opt-val {
+	top: -191px;
 }
 
-.option:nth-child(6) input[type="radio"]:checked ~ .label:before
-{
-    background-color: #006400;
-    border-radius: 0 0 4px 4px;
+.option:nth-child(6) input[type="radio"]:checked ~ .label:before {
+	background-color: #006400;
+	border-radius: 0 0 4px 4px;
 }
 
-.option:nth-child(6) input[type="radio"]:checked ~ .opt-val
-{
-    top: -231px;
+.option:nth-child(6) input[type="radio"]:checked ~ .opt-val {
+	top: -231px;
 }
 
-.option .fa-codepen
-{
-    color: #000;
+.option .fa-codepen {
+	color: #000;
 }
 
-.option .fa-dribbble
-{
-    color: #ea4c89;
+.option .fa-dribbble {
+	color: #ea4c89;
 }
 
-.option .fa-behance
-{
-    color: #0057ff;
+.option .fa-behance {
+	color: #0057ff;
 }
 
-.option .fa-hackerrank
-{
-    color: #32c766;
+.option .fa-hackerrank {
+	color: #32c766;
 }
 
-.option .fa-stack-overflow
-{
-    color: #f48024;
+.option .fa-stack-overflow {
+	color: #f48024;
 }
 
-.option .fa-free-code-camp
-{
-    color: #006400;
+.option .fa-free-code-camp {
+	color: #006400;
 }
 
-#option-bg
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 40px;
-    transition: 0.3s ease all;
-    z-index: 1;
-    display: none;
+#option-bg {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 40px;
+	transition: 0.3s ease all;
+	z-index: 1;
+	display: none;
 }
 
-#options-view-button:checked ~ #options #option-bg
-{
-    display: block;
+#options-view-button:checked ~ #options #option-bg {
+	display: block;
 }
 
-.option:hover .label
-{
-    color: #fff;
+.option:hover .label {
+	color: #fff;
 }
 
-.option:nth-child(1):hover ~ #option-bg
-{
-    top: 0;
-    background-color: #000;
-    border-radius: 4px 4px 0 0;
+.option:nth-child(1):hover ~ #option-bg {
+	top: 0;
+	background-color: #000;
+	border-radius: 4px 4px 0 0;
 }
 
-.option:nth-child(2):hover ~ #option-bg
-{
-    top: 40px;
-    background-color: #ea4c89;
+.option:nth-child(2):hover ~ #option-bg {
+	top: 40px;
+	background-color: #ea4c89;
 }
 
-.option:nth-child(3):hover ~ #option-bg
-{
-    top: 80px;
-    background-color: #0057ff;
+.option:nth-child(3):hover ~ #option-bg {
+	top: 80px;
+	background-color: #0057ff;
 }
 
-.option:nth-child(4):hover ~ #option-bg
-{
-    top: 120px;
-    background-color: #32c766;
+.option:nth-child(4):hover ~ #option-bg {
+	top: 120px;
+	background-color: #32c766;
 }
 
-.option:nth-child(5):hover ~ #option-bg
-{
-    top: 160px;
-    background-color: #f48024;
+.option:nth-child(5):hover ~ #option-bg {
+	top: 160px;
+	background-color: #f48024;
 }
 
-.option:nth-child(6):hover ~ #option-bg
-{
-    top: 200px;
-    background-color: #006400;
-    border-radius: 0 0 4px 4px;
+.option:nth-child(6):hover ~ #option-bg {
+	top: 200px;
+	background-color: #006400;
+	border-radius: 0 0 4px 4px;
 }
 
 #ytd-url {
-  display: block;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  padding: 10px 14px;
-  margin: 20px;
-  color: #fff;
-  font-size: 14px;
-  text-decoration: none;
-  background-color: #143240;
-  border-radius: 4px;
-  box-shadow: 0 10px 20px -5px rgba(20, 50, 64, 0.76);
+	display: block;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 10px 14px;
+	margin: 20px;
+	color: #fff;
+	font-size: 14px;
+	text-decoration: none;
+	background-color: #143240;
+	border-radius: 4px;
+	box-shadow: 0 10px 20px -5px rgba(20, 50, 64, 0.76);
+}
+
+.form-horizontal .form-group {
+	margin-left: -15px;
+	margin-right: -90px;
 }
 </style>
-
+<!-- 
 <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ -->
+JS, Popper.js, and jQuery
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+-->
 
-<!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
 <body>
 
 	<div class="gtco-loader"></div>
@@ -653,7 +701,7 @@ input[type="radio"]
 			role="banner">
 			<div class="gtco-container">
 				<div class="row">
-					<div class="col-md-12 col-md-offset-0 text-center">
+					<div class="col-md-12 col-md-offset-0 text-left">
 						<div class="display-t">
 							<div class="display-tc">
 								<div class="row">
@@ -662,88 +710,151 @@ input[type="radio"]
 											href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 											rel="stylesheet">
 
-										<div class="row padding-horizontal-md  banner">
+										<div class="row padding-horizontal-md pull-left banner">
 											<div
 												class="row margin-top-xs text title title-xxl text-bold text-white">
 												<p>
-												<h2>원하는 선생님을 찾아보세요</h2>
+												<h1>과외 찾기</h1>
 												</p>
 											</div>
-											
+											<br>
+											<div
+												class="row margin-top-xl text title title-xl text-bold text-white pull-left">
+												<p>
+												<h2>조건에 맞는 과외를 검색할수 있습니다</h2>
+												</p>
+											</div>
 
 										</div>
-										
-										
-										
-										
+										<div class="container bootstrap snippets bootdey banner">
+											<div class="lc-block col-md-6  toggled pull-right"
+												id="l-login">
 
-<form id="app-cover">
-            <div id="select-box">
-                    <input type="checkbox" id="options-view-button">
-                    <div id="select-button" class="brd">
-                            <div id="selected-value">
-                                <span>선생님 성별</span>
-                            </div>
-                            <div id="chevrons">
-                                    <i class="fas fa-chevron-up"></i>
-                                    <i class="fas fa-chevron-down"></i>
-                            </div>
-                    </div>
-                    <div id="options">
-                            <div class="option">
-                                    <input class="s-c top" type="radio" name="platform" value="codepen">
-                                    <input class="s-c bottom" type="radio" name="platform" value="codepen">
-                                    <i class="fab fa-codepen"></i>
-                                    <span class="label">CodePen</span>
-                                    <span class="opt-val">CodePen</span>
-                            </div>
-                            <div class="option">
-                                    <input class="s-c top" type="radio" name="platform" value="dribbble">
-                                    <input class="s-c bottom" type="radio" name="platform" value="dribbble">
-                                    <i class="fab fa-dribbble"></i>
-                                    <span class="label">Dribbble</span>
-                                    <span class="opt-val">Dribbble</span>
-                            </div>
-                            <div class="option">
-                                    <input class="s-c top" type="radio" name="platform" value="behance">
-                                    <input class="s-c bottom" type="radio" name="platform" value="behance">
-                                    <i class="fab fa-behance"></i>
-                                    <span class="label">Behance</span>
-                                    <span class="opt-val">Behance</span>
-                            </div>
-                            <div class="option">
-                                    <input class="s-c top" type="radio" name="platform" value="hackerrank">
-                                    <input class="s-c bottom" type="radio" name="platform" value="hackerrank">
-                                    <i class="fab fa-hackerrank"></i>
-                                    <span class="label">HackerRank</span>
-                                    <span class="opt-val">HackerRank</span>
-                            </div>
-                            <div class="option">
-                                    <input class="s-c top" type="radio" name="platform" value="stackoverflow">
-                                    <input class="s-c bottom" type="radio" name="platform" value="stackoverflow">
-                                    <i class="fab fa-stack-overflow"></i>
-                                    <span class="label">StackOverflow</span>
-                                    <span class="opt-val">StackOverflow</span>
-                            </div>
-                            <div class="option">
-                                    <input class="s-c top" type="radio" name="platform" value="freecodecamp">
-                                    <input class="s-c bottom" type="radio" name="platform" value="freecodecamp">
-                                    <i class="fab fa-free-code-camp"></i>
-                                    <span class="label">FreeCodeCamp</span>
-                                    <span class="opt-val">FreeCodeCamp</span>
-                            </div>
-                            <div id="option-bg"></div>
-                    </div>
-            </div>
-    </form>
+												<div class="form-group">
+													<form
+														action="${pageContext.request.contextPath}/member/findLesson"
+														method="get" class="form-horizontal">
 
-<a href="https://www.youtube.com/channel/UC7hSS_eujjZOEQrjsda76gA/videos" target="_blank" id="ytd-url">My YouTube Channel</a>
-										
-										
-										
-										
-										
-										
+														<div class="form-group option">
+															<label class="col-sm-2 control-label">지역</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="Loc" id="Loc">
+																	<option selected value="무관">-전체-</option>
+																	<option value="서울">서울</option>
+																	<option value="부산">부산</option>
+																	<option value="대구">대구</option>
+																	<option value="인천">인천</option>
+																	<option value="대전">대전</option>
+																	<option value="울산">울산</option>
+																	<option value="광주">광주</option>
+																	<option value="세종">세종</option>
+																	<option value="경남">강원</option>
+																	<option value="경기">경기</option>
+																	<option value="경북">경북</option>
+																	<option value="전남">경남</option>
+																	<option value="전북">충북</option>
+																	<option value="광주">충남</option>
+																	<option value="부산">전북</option>
+																	<option value="제주">전남</option>
+																	<option value="제주">제주</option>
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group option" style="margin-left: 70px;">
+															<label class="col-sm-2 control-label">선생님 성별</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="Sex" id="findStuLoc">
+																	<option selected value="무관">-전체-</option>
+																	<option value="w">여자</option>
+																	<option value="m">남자</option>
+
+																</select>
+															</div>
+														</div>
+
+
+														<div class="form-group option">
+															<label class="col-sm-2 control-label">나이</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="Age" id="findStuLoc">
+																	<option selected value="무관">-전체-</option>
+																	<option value="초등">초등</option>
+																	<option value="중등">중등</option>
+																	<option value="고등">고등</option>
+																	<option value="20대">20대</option>
+																	<option value="30대">30대</option>
+																	<option value="40대">40대</option>
+
+
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group option" style="margin-left: 70px;">
+															<label class="col-sm-2 control-label">과목</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="Sub" id="findStuLoc">
+																	<option selected value="무관">-전체-</option>
+																	<option value="수학">수학</option>
+																	<option value="국어">국어</option>
+																	<option value="영어">영어</option>
+																	<option value="과학">과학</option>
+																	<option value="논술">논술</option>
+																	<option value="사회">사회</option>
+																	<option value="예체능">예체능</option>
+																	<option value="제2외국어">제2외국어</option>
+																	<option value="컴퓨터(IT)">컴퓨터(IT)</option>
+																	<option value="자격증">자격증</option>
+																	<option value="대학전공">대학전공</option>
+																	<option value="기타">기타</option>
+
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group option">
+															<label class="col-sm-2 control-label">금액</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="Pri" id="findStuLoc">
+																	<option selected value="무관">-전체-</option>
+																	<option value="20">20만원 이하</option>
+																	<option value="30">30만원 이하</option>
+																	<option value="40">40만원 이하</option>
+																	<option value="50">50만원 이하</option>
+																	<option value="60">60만원 이하</option>
+																	<option value="70">70만원 이하</option>
+																	<option value="80">80만원 이하</option>
+
+
+																</select>
+															</div>
+														</div>
+
+														<div class="form-group option" style="margin-left: 70px;">
+															<label class="col-sm-2 control-label">그룹과외 or
+																일대일과외</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="Cnt" id="findStuLoc">
+																	<option selected value="무관">-전체-</option>
+																	<option value="그룹">그룹</option>
+																	<option value="일대일">일대일</option>
+
+																</select>
+															</div>
+														</div>
+
+
+
+
+														<div class="clearfix"></div>
+														<button class="btn btn-block btn-primary btn-float m-t-25"
+															style="color: white;">조건 검색</button>
+													</form>
+												</div>
+
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -757,7 +868,7 @@ input[type="radio"]
 
 
 
-		
+
 
 
 
@@ -774,49 +885,55 @@ input[type="radio"]
 							<span>선생님 찾기</span>
 						</div>
 						<hr>
-						
+
 						<!-- 이미지 시작부분  -->
-						<div class="col-sm-4 col-md-3 box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper">
-									<a href="detail.html"> <img alt="Product"
-										src="https://bootdey.com/img/Content/avatar/avatar1.png">
-									</a>
-									
-									
-								</div>
-								<h6>
-									<a href="detail.html">IncultGeo Print Polo T-Shirt</a>
-								</h6>
-								<div class="price">
-									<div>
-										$16.59<span class="price-down">-10%</span>
+
+						<c:forEach items="${findLessonList }" var="find">
+							<div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
+								<div class="box-product">
+									<div class="img-wrapper">
+										<a href="detail.html"> <img alt="Teacher"
+											onerror="javascript:src='${pageContext.request.contextPath}/resources/images/profile.png'"
+											src="${pageContext.request.contextPath}/resources/upload/${find.TCH_FILE_RENAME}">
+										</a>
+
+
 									</div>
-									<span class="price-old">$15.00</span>
-								</div>
-								<div class="rating">
-									<i class="ace-icon fa fa-star"></i> <i
-										class="ace-icon fa fa-star"></i> <i
-										class="ace-icon fa fa-star"></i> <i
-										class="ace-icon fa fa-star"></i> <i
-										class="ace-icon fa fa-star-half-o"></i> <a href="#">(2
-										reviews)</a>
+									<h6>
+										<a href="detail.html">IncultGeo Print Polo T-Shirt</a>
+									</h6>
+									<div class="price">
+										<div>
+											$16.59<span class="price-down">-10%</span>
+										</div>
+										<span class="price-old">$15.00</span>
+									</div>
+									<div class="rating">
+										<i class="ace-icon fa fa-star"></i> <i
+											class="ace-icon fa fa-star"></i> <i
+											class="ace-icon fa fa-star"></i> <i
+											class="ace-icon fa fa-star"></i> <i
+											class="ace-icon fa fa-star-half-o"></i> <a href="#">(2
+											reviews)</a>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<!-- 이미지 끝부분  -->
-						
-						
 
-						
-						</div>
-						
-						
+							<!-- 이미지 끝부분  -->
+
+						</c:forEach>
+
+
+
 					</div>
-				
-			</div><!-- end container  -->
-		</div><!-- end section  -->
+
+
+				</div>
+
+			</div>
+			<!-- end container  -->
+		</div>
+		<!-- end section  -->
 
 
 		<%-- <!-- footer include  -->

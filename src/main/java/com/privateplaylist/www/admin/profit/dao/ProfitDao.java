@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+//이인주 : 관리자 수익  dao
+
 @Repository
 public class ProfitDao {
 	

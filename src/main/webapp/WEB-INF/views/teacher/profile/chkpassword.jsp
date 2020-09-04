@@ -3,6 +3,8 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
+<!-- 이인주 : 선생님 > 마이페이지 > 2차 비밀번호 확인 jsp -->
+
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 

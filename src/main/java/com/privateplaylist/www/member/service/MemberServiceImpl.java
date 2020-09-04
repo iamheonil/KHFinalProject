@@ -148,30 +148,26 @@ public class MemberServiceImpl implements MemberService {
 	public int modifyPw(Member member) {
 		
 		String password = member.getUserPw();
-		System.out.println(password + " 검증");
+		String secPw = "";
 		
-		int res = 0;
-
-		if (password.equals("")) {
+		if (password.equals(null)) {
 			// 개인정보 update
-			res = memberDao.modifyPw(member);
+			memberDao.modifyPw(member);
 		} else {
-			// 암호화할 password
-			String secPw = "";
+			// System.out.println(password + " 검증");
 
 			// 비밀번호 암호화
 			secPw = passwordEncoder.encode(password);
 
+			// System.out.println(secPw + "비밀번호 암호화 된 거 확인");
+			
 			// 비밀번호 set
 			member.setUserPw(secPw);
-
-			// 개인정보 update
-			res = memberDao.modifyPw(member);
 			
-			System.out.println(secPw + " 검증");
+			// System.out.println(secPw + " 검증");
 		}
 
-		return res;
+		return memberDao.modifyPw(member);
 	}
 
 }

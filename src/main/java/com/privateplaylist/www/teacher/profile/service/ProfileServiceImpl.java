@@ -13,6 +13,8 @@ import com.privateplaylist.www.teacher.profile.dao.ProfileDao;
 
 import common.util.FileUtilProfile;
 
+//이인주 : 선생님 마이페이지  > 개인정보 수정 > serviceImpl
+
 @Service
 public class ProfileServiceImpl implements ProfileService{
 	

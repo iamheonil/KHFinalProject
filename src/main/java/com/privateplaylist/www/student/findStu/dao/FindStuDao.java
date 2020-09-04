@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.privateplaylist.www.dto.FindStudent;
 
+//이인주  : 학생 마이페이지 >  학생 찾기 > dao
+
 @Repository
 public class FindStuDao {
 
@@ -43,5 +45,9 @@ public class FindStuDao {
 	//insert
 	public int insertFindStu(FindStudent findStudent) {
 		return sqlSession.insert("FindStu.insertFindStu",findStudent);
+	}
+
+	public int updateState(FindStudent findStudent) {
+		return sqlSession.update("FindStu.updateState",findStudent);
 	}
 }
