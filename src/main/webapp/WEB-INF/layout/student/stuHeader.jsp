@@ -342,7 +342,7 @@ function getInfiniteBox(){
 
 <img alt="학생프로필사진" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg">
 
-<h4>userId 님</h4>
+<h4>${loginUser.userId } 님</h4>
 
 </div>
 
