@@ -1,8 +1,8 @@
 package com.privateplaylist.www.member.service;
 
+import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.vo.Member;
 
-import com.privateplaylist.www.member.vo.TeacherFile;
 import common.exception.FileException;
 import common.exception.MailException;
 
@@ -25,6 +25,9 @@ public interface MemberService {
     // 멤버 정보 조회 메소드
     public Member selectMember(Map<String, Object> memberMap);
 
+    // 선생 파일 조회 메소드
+    public TeacherFile selectTeacherFile(String userId);
+    
     // 아이디 중복 검사
     public int selectId(String userId);
     
