@@ -64,6 +64,7 @@
 	<!-- mapper 연결 -->
 	<mappers>
 		<mapper resource="/mybatis/mapper/member/MessageMapper.xml"/>
+		<mapper resource="/mybatis/mapper/member/MemberFindLessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/AdminLoginMapper.xml"/>
