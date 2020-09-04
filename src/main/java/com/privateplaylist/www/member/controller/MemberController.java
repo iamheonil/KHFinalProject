@@ -3,10 +3,7 @@ package com.privateplaylist.www.member.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.Map;
 import java.util.UUID;
 
@@ -23,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.dao.MemberDao;
 import com.privateplaylist.www.member.service.MemberService;
 import com.privateplaylist.www.member.vo.Member;
@@ -51,16 +49,22 @@ public class MemberController {
 	public ModelAndView loginImpl(@RequestParam Map<String, Object> memberMap, HttpSession session, HttpServletRequest request) {
 		System.out.println("Login Post Call");
 		
-		System.out.println(memberMap);
+		// System.out.println(memberMap);
 
 		ModelAndView mav = new ModelAndView();
 		Member res = memberService.selectMember(memberMap);
+		String userId = (String) memberMap.get("userId");
+		
+		TeacherFile teacherFile = memberService.selectTeacherFile(userId);
 		
 		if (res != null) {
 			// 로그인 성공
 			session.setAttribute("loginUser", res);
+			session.setAttribute("teacherFile", teacherFile);
 			Member loginUser = (Member) session.getAttribute("loginUser");
+			TeacherFile loginTeacher = (TeacherFile) session.getAttribute("teacherFile");
 			System.out.println("담은거 : " + loginUser);
+			System.out.println("담은거 : " + loginTeacher);
 			mav.addObject("url", request.getContextPath() + "/main/index");
 			mav.setViewName("redirect:main");
 			System.out.println("로그인 성공");
@@ -134,6 +138,8 @@ public class MemberController {
 		fileInfo.put("tch_File_Org", tch_File_Org);
 		fileInfo.put("tch_File_Rename", tch_File_Rename);
 		fileInfo.put("save_Path", save_Path);
+		
+		memberService.insertTeacherFile(files, fileInfo, save_Path);
 		
 		File upFile = new File(save_Path, tch_File_Rename);
 		

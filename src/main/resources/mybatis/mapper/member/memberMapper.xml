@@ -19,6 +19,10 @@
     <select id="selectMember" resultType="MEMBER">
       SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userId} AND IS_LEAVE = 0
     </select>
+    
+    <select id="selectTeacherFile" resultType="TEACHERFILE">
+      SELECT * FROM TEACHERFILE WHERE USER_ID = #{userId}
+    </select>
 
     <select id="selectId" resultType="int">
       SELECT COUNT(*) FROM MEMBERSHIP WHERE USER_ID = #{userId}
