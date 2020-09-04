@@ -287,7 +287,7 @@
 									<li><a href="#">API</a></li>
 								</ul>-->
 								</li> 
-							<li ><a href="#">학생찾기</a>
+							<li ><a href="${pageContext.request.contextPath}/lesson/findStu/list">학생찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">HTML5</a></li>
 									<li><a href="#">CSS3</a></li>
