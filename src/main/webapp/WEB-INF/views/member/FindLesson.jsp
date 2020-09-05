@@ -47,7 +47,7 @@ label {
 	margin-bottom: 5px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	height: 400px;
+	height: 420px;
 }
 
 .box-product-outer:hover {
@@ -404,11 +404,15 @@ bottom
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -420,11 +424,15 @@ opacity
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -445,11 +453,15 @@ top
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -461,11 +473,15 @@ opacity
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -670,6 +686,25 @@ element.style {
 	margin-left: -15px;
 	margin-right: -90px;
 }
+
+#tutee_list .tutee .text-ellipsis, #tutor_list .tutor .text-ellipsis {
+	width: calc(100% - 24px);
+	height: 24px;
+	padding: 7px 0 6px 4px;
+	font-size: 14px !important;
+}
+
+.text-ellipsis {
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	max-width: 100%;
+	font-weight: 300;
+}
+
+.text-basic-black {
+	color: #4d4d4d !important;
+}
 </style>
 <!-- 
 <!-- CSS only -->
@@ -695,7 +730,7 @@ JS, Popper.js, and jQuery
 
 	<div class="gtco-loader"></div>
 
-	<div id="page">
+
 		<!-- nav include  -->
 		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
 			role="banner">
@@ -733,30 +768,48 @@ JS, Popper.js, and jQuery
 												<div class="form-group">
 													<form
 														action="${pageContext.request.contextPath}/member/findLesson"
-														method="get" class="form-horizontal">
+														method="post" class="form-horizontal">
 
 														<div class="form-group option">
 															<label class="col-sm-2 control-label">지역</label>
 															<div class="col-sm-10">
 																<select class="form-control" name="Loc" id="Loc">
-																	<option selected value="무관">-전체-</option>
-																	<option value="서울">서울</option>
-																	<option value="부산">부산</option>
-																	<option value="대구">대구</option>
-																	<option value="인천">인천</option>
-																	<option value="대전">대전</option>
-																	<option value="울산">울산</option>
-																	<option value="광주">광주</option>
-																	<option value="세종">세종</option>
-																	<option value="경남">강원</option>
-																	<option value="경기">경기</option>
-																	<option value="경북">경북</option>
-																	<option value="전남">경남</option>
-																	<option value="전북">충북</option>
-																	<option value="광주">충남</option>
-																	<option value="부산">전북</option>
-																	<option value="제주">전남</option>
-																	<option value="제주">제주</option>
+																	<option value="무관"
+																		<c:if test="${option.Loc eq '무관'} "> selected="selected"</c:if>>-전체-</option>
+																	<option value="서울"
+																		<c:if test="${option.Loc eq '서울' }"> selected="selected"</c:if>>서울</option>
+																	<option value="부산"
+																		<c:if test="${option.Loc eq '부산' }"> selected="selected"</c:if>>부산</option>
+																	<option value="대구"
+																		<c:if test="${option.Loc eq '대구' }"> selected="selected"</c:if>>대구</option>
+																	<option value="인천"
+																		<c:if test="${option.Loc eq '인천' }"> selected="selected"</c:if>>인천</option>
+																	<option value="대전"
+																		<c:if test="${option.Loc eq '대전' }"> selected="selected"</c:if>>대전</option>
+																	<option value="울산"
+																		<c:if test="${option.Loc eq '울산' }"> selected="selected"</c:if>>울산</option>
+																	<option value="광주"
+																		<c:if test="${option.Loc eq '광주' }"> selected="selected"</c:if>>광주</option>
+																	<option value="세종"
+																		<c:if test="${option.Loc eq '세종' }"> selected="selected"</c:if>>세종</option>
+																	<option value="강원"
+																		<c:if test="${option.Loc eq '경남' }"> selected="selected"</c:if>>강원</option>
+																	<option value="경기"
+																		<c:if test="${option.Loc eq '경기' }"> selected="selected"</c:if>>경기</option>
+																	<option value="경북"
+																		<c:if test="${option.Loc eq '경북' }"> selected="selected"</c:if>>경북</option>
+																	<option value="경남"
+																		<c:if test="${option.Loc eq '전남' }"> selected="selected"</c:if>>경남</option>
+																	<option value="충북"
+																		<c:if test="${option.Loc eq '충북' }"> selected="selected"</c:if>>충북</option>
+																	<option value="충남"
+																		<c:if test="${option.Loc eq '충남' }"> selected="selected"</c:if>>충남</option>
+																	<option value="전북"
+																		<c:if test="${option.Loc eq '전북' }"> selected="selected"</c:if>>전북</option>
+																	<option value="전남"
+																		<c:if test="${option.Loc eq '전남' }"> selected="selected"</c:if>>전남</option>
+																	<option value="제주"
+																		<c:if test="${option.Loc eq '제주' }"> selected="selected"</c:if>>제주</option>
 																</select>
 															</div>
 														</div>
@@ -765,9 +818,15 @@ JS, Popper.js, and jQuery
 															<label class="col-sm-2 control-label">선생님 성별</label>
 															<div class="col-sm-10">
 																<select class="form-control" name="Sex" id="findStuLoc">
-																	<option selected value="무관">-전체-</option>
-																	<option value="w">여자</option>
-																	<option value="m">남자</option>
+																	<option
+																		<c:if test="${option.Sex eq '무관' }"> selected="selected"</c:if>
+																		value="무관">-전체-</option>
+																	<option
+																		<c:if test="${option.Sex eq 'w' }"> selected="selected"</c:if>
+																		value="w">여자</option>
+																	<option
+																		<c:if test="${option.Sex eq 'm' }"> selected="selected"</c:if>
+																		value="m">남자</option>
 
 																</select>
 															</div>
@@ -778,13 +837,27 @@ JS, Popper.js, and jQuery
 															<label class="col-sm-2 control-label">나이</label>
 															<div class="col-sm-10">
 																<select class="form-control" name="Age" id="findStuLoc">
-																	<option selected value="무관">-전체-</option>
-																	<option value="초등">초등</option>
-																	<option value="중등">중등</option>
-																	<option value="고등">고등</option>
-																	<option value="20대">20대</option>
-																	<option value="30대">30대</option>
-																	<option value="40대">40대</option>
+																	<option
+																		<c:if test="${option.Age eq '무관' }"> selected="selected"</c:if>
+																		value="무관">-전체-</option>
+																	<option
+																		<c:if test="${option.Age eq '초등' }"> selected="selected"</c:if>
+																		value="초등">초등</option>
+																	<option
+																		<c:if test="${option.Age eq '중등' }"> selected="selected"</c:if>
+																		value="중등">중등</option>
+																	<option
+																		<c:if test="${option.Age eq '고등' }"> selected="selected"</c:if>
+																		value="고등">고등</option>
+																	<option
+																		<c:if test="${option.Age eq '20대' }"> selected="selected"</c:if>
+																		value="20대">20대</option>
+																	<option
+																		<c:if test="${option.Age eq '30대' }"> selected="selected"</c:if>
+																		value="30대">30대</option>
+																	<option
+																		<c:if test="${option.Age eq '40대' }"> selected="selected"</c:if>
+																		value="40대">40대</option>
 
 
 																</select>
@@ -795,19 +868,45 @@ JS, Popper.js, and jQuery
 															<label class="col-sm-2 control-label">과목</label>
 															<div class="col-sm-10">
 																<select class="form-control" name="Sub" id="findStuLoc">
-																	<option selected value="무관">-전체-</option>
-																	<option value="수학">수학</option>
-																	<option value="국어">국어</option>
-																	<option value="영어">영어</option>
-																	<option value="과학">과학</option>
-																	<option value="논술">논술</option>
-																	<option value="사회">사회</option>
-																	<option value="예체능">예체능</option>
-																	<option value="제2외국어">제2외국어</option>
-																	<option value="컴퓨터(IT)">컴퓨터(IT)</option>
-																	<option value="자격증">자격증</option>
-																	<option value="대학전공">대학전공</option>
-																	<option value="기타">기타</option>
+																	<option
+																		<c:if test="${option.Sub eq '무관' }"> selected="selected"</c:if>
+																		value="무관">-전체-</option>
+																	<option
+																		<c:if test="${option.Sub eq '수학' }"> selected="selected"</c:if>
+																		value="수학">수학</option>
+																	<option
+																		<c:if test="${option.Sub eq '국어' }"> selected="selected"</c:if>
+																		value="국어">국어</option>
+																	<option
+																		<c:if test="${option.Sub eq '영어' }"> selected="selected"</c:if>
+																		value="영어">영어</option>
+																	<option
+																		<c:if test="${option.Sub eq '과학' }"> selected="selected"</c:if>
+																		value="과학">과학</option>
+																	<option
+																		<c:if test="${option.Sub eq '논술' }"> selected="selected"</c:if>
+																		value="논술">논술</option>
+																	<option
+																		<c:if test="${option.Sub eq '사회' }"> selected="selected"</c:if>
+																		value="사회">사회</option>
+																	<option
+																		<c:if test="${option.Sub eq '예체능' }"> selected="selected"</c:if>
+																		value="예체능">예체능</option>
+																	<option
+																		<c:if test="${option.Sub eq '제2외국어' }"> selected="selected"</c:if>
+																		value="제2외국어">제2외국어</option>
+																	<option
+																		<c:if test="${option.Sub eq '컴퓨터(IT)' }"> selected="selected"</c:if>
+																		value="컴퓨터(IT)">컴퓨터(IT)</option>
+																	<option
+																		<c:if test="${option.Sub eq '자격증' }"> selected="selected"</c:if>
+																		value="자격증">자격증</option>
+																	<option
+																		<c:if test="${option.Sub eq '대학전공' }"> selected="selected"</c:if>
+																		value="대학전공">대학전공</option>
+																	<option
+																		<c:if test="${option.Sub eq '기타' }"> selected="selected"</c:if>
+																		value="기타">기타</option>
 
 																</select>
 															</div>
@@ -817,14 +916,30 @@ JS, Popper.js, and jQuery
 															<label class="col-sm-2 control-label">금액</label>
 															<div class="col-sm-10">
 																<select class="form-control" name="Pri" id="findStuLoc">
-																	<option selected value="무관">-전체-</option>
-																	<option value="20">20만원 이하</option>
-																	<option value="30">30만원 이하</option>
-																	<option value="40">40만원 이하</option>
-																	<option value="50">50만원 이하</option>
-																	<option value="60">60만원 이하</option>
-																	<option value="70">70만원 이하</option>
-																	<option value="80">80만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '무관' }"> selected="selected"</c:if>
+																		value="무관">-전체-</option>
+																	<option
+																		<c:if test="${option.Pri eq '200000' }"> selected="selected"</c:if>
+																		value="200000">20만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '300000' }"> selected="selected"</c:if>
+																		value="300000">30만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '400000' }"> selected="selected"</c:if>
+																		value="400000">40만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '500000' }"> selected="selected"</c:if>
+																		value="500000">50만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '600000' }"> selected="selected"</c:if>
+																		value="600000">60만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '700000' }"> selected="selected"</c:if>
+																		value="700000">70만원 이하</option>
+																	<option
+																		<c:if test="${option.Pri eq '800000' }"> selected="selected"</c:if>
+																		value="800000">80만원 이하</option>
 
 
 																</select>
@@ -836,9 +951,15 @@ JS, Popper.js, and jQuery
 																일대일과외</label>
 															<div class="col-sm-10">
 																<select class="form-control" name="Cnt" id="findStuLoc">
-																	<option selected value="무관">-전체-</option>
-																	<option value="그룹">그룹</option>
-																	<option value="일대일">일대일</option>
+																	<option
+																		<c:if test="${option.Cnt eq '무관' }"> selected="selected"</c:if>
+																		value="무관">-전체-</option>
+																	<option
+																		<c:if test="${option.Cnt eq '그룹' }"> selected="selected"</c:if>
+																		value="그룹">그룹</option>
+																	<option
+																		<c:if test="${option.Cnt eq '일대일' }"> selected="selected"</c:if>
+																		value="일대일">일대일</option>
 
 																</select>
 															</div>
@@ -872,10 +993,11 @@ JS, Popper.js, and jQuery
 
 
 
-		<div class="gtco-section gtco-testimonial gtco-gray">
+		<div class="gtco-services gtco-section">
 			<div class="gtco-container">
-
-
+			
+			
+			<!-- 검색결과  -->
 				<link
 					href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 					rel="stylesheet">
@@ -885,6 +1007,27 @@ JS, Popper.js, and jQuery
 							<span>선생님 찾기</span>
 						</div>
 						<hr>
+
+						<c:if test="${findLessonList[0] eq null}">
+							<div class="" style="text-align: center;">
+
+
+								<img alt="Teacher" align="middle"
+									style="width: 200px; margin-top: 50px;"
+									src="${pageContext.request.contextPath}/resources/images/no_result.png">
+
+
+
+							</div>
+
+
+
+
+
+
+
+
+						</c:if>
 
 						<!-- 이미지 시작부분  -->
 
@@ -899,23 +1042,84 @@ JS, Popper.js, and jQuery
 
 
 									</div>
-									<h6>
-										<a href="detail.html">IncultGeo Print Polo T-Shirt</a>
-									</h6>
-									<div class="price">
-										<div>
-											$16.59<span class="price-down">-10%</span>
-										</div>
-										<span class="price-old">$15.00</span>
+
+									<div class="text text-epllipsis text-basic-black text-sm">${find.USER_ID }</div>
+									<div class="text text-epllipsis text-basic-black text-sm">
+										<i class="fa fa-file-o"
+											style="margin-right: 8px; margin-left: 0;"></i>
+										${find.LESSON_SUBJECT }
 									</div>
-									<div class="rating">
-										<i class="ace-icon fa fa-star"></i> <i
-											class="ace-icon fa fa-star"></i> <i
-											class="ace-icon fa fa-star"></i> <i
-											class="ace-icon fa fa-star"></i> <i
-											class="ace-icon fa fa-star-half-o"></i> <a href="#">(2
-											reviews)</a>
+									<div class="text text-epllipsis text-basic-black text-sm">
+										<i class="fa fa-map-marker"
+											style="margin-right: 16px; margin-left: 0;"></i>${find.LESSON_LOC }</div>
+
+									<div class="text text-epllipsis text-basic-black text-sm">
+										<i class="fa fa-users" style="margin-right: 8px;"></i>
+										<c:if test="${find.MAX_PEOPLE eq 1 }">
+										일대일
+									</c:if>
+										<c:if test="${find.MAX_PEOPLE ne 1 }">
+										그룹
+									</c:if>
+
 									</div>
+
+									<c:forEach items="${star }" var="s">
+										<c:if test="${find.LESSON_NO eq s.LESSON_NO}">
+											<div class="rating">
+												<c:if test="${s.STAR eq 1 }">
+													<i class="ace-icon fa fa-star"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 1.5 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star-half-o"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 2 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 2.5 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star-half-o"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 3 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 3.5 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star-half-o"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 4 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 4.5 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star-half-o"></i>
+												</c:if>
+												<c:if test="${s.STAR eq 5 }">
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+													<i class="ace-icon fa fa-star"></i>
+												</c:if>
+
+												(${s.REVIEW } reviews)
+											</div>
+										</c:if>
+									</c:forEach>
+
 								</div>
 							</div>
 
@@ -925,15 +1129,13 @@ JS, Popper.js, and jQuery
 
 
 
+						<c:import url="/WEB-INF/paging/user/findLesson/listPaging.jsp" />
 					</div>
-
 
 				</div>
 
 			</div>
-			<!-- end container  -->
-		</div>
-		<!-- end section  -->
+		</div><!-- END .gtco-services -->
 
 
 		<%-- <!-- footer include  -->
@@ -943,7 +1145,7 @@ JS, Popper.js, and jQuery
 
 
 
-	</div>
+
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
@@ -978,4 +1180,3 @@ JS, Popper.js, and jQuery
 
 </body>
 </html>
-

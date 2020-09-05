@@ -88,16 +88,18 @@ public class FindLesson {
 		
 		
 		
-		List<Map<String,Object>> findLessonList=fls.selectFindLessonList(option);
 		
+		List<Map<String,Object>> findLessonList=fls.selectFindLessonList(option);
+		List<Map<String,Object>> starAndReview= fls.selectStarAndReview();
 
-		for (Map<String, Object> map : findLessonList) {
-			System.out.println(map);
-		}
+		System.out.println(starAndReview);
+		System.out.println(findLessonList);
 		
 		model.addAttribute("findLessonList",findLessonList);
 		model.addAttribute("paging", page);
 		model.addAttribute("option", option);
+		model.addAttribute("star", starAndReview);
+		
 		
 		
 		
