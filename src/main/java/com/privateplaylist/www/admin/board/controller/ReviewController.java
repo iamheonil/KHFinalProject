@@ -38,12 +38,26 @@ public class ReviewController {
 				//공지사항 정보 전체 조회 list
 				List<Review> reviewList = reviewService.selectReviewList(paging);
 				
-				
+//				System.out.println(reviewList);
 				//모델값 전달
 				model.addAttribute("reviewList", reviewList);
 				
 				//페이징 결과 전달
 				model.addAttribute("paging", paging);
+				
+				 // 평점 옵션
+			      Map<Integer, String> ratingOptions = new HashMap<>();
+			      ratingOptions.put(0, "☆☆☆☆☆");
+			      ratingOptions.put(1, "★☆☆☆☆");
+			      ratingOptions.put(2, "★★☆☆☆");
+			      ratingOptions.put(3, "★★★☆☆");
+			      ratingOptions.put(4, "★★★★☆");
+			      ratingOptions.put(5, "★★★★★");
+			      model.addAttribute("ratingOptions", ratingOptions);
+			      
+				
+				
+				
 				
 				return "admin/review/list";
 		
@@ -110,11 +124,55 @@ public class ReviewController {
 				
 				//페이징 결과 전달
 				model.addAttribute("paging", paging);
+				
+				
+				
+				// 평점 옵션
+			      Map<Integer, String> ratingOptions = new HashMap<>();
+			      ratingOptions.put(0, "☆☆☆☆☆");
+			      ratingOptions.put(1, "★☆☆☆☆");
+			      ratingOptions.put(2, "★★☆☆☆");
+			      ratingOptions.put(3, "★★★☆☆");
+			      ratingOptions.put(4, "★★★★☆");
+			      ratingOptions.put(5, "★★★★★");
+			      model.addAttribute("ratingOptions", ratingOptions);
 				//검색 완료
 				return "/admin/review/search";
 			}
 			
 			
+			
+			
+			
+//			 //선생님 작성 글 보기
+//		    @RequestMapping("/tchdetail")
+//		    public ModelAndView tchDetail(int userNo) {
+//		       
+//		      ModelAndView mav = new ModelAndView();
+//		      Map<String, Object> commandMap = adminMemberService.selectTchAllList(userNo);
+//		      
+//		      Map<String, Object> info = adminMemberService.selectUserByNo(userNo);
+////		      System.out.println("컨트롤러 commandMap : "+ commandMap);
+////		      System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
+//		      System.out.println(info);
+//		      
+//		      mav.addObject("tchData", commandMap);
+//		      mav.addObject("teacherinfo", info);
+//		      mav.setViewName("admin/member/tchDetail");
+//		      
+//		      // 평점 옵션
+//		      Map<Integer, String> ratingOptions = new HashMap<>();
+//		      ratingOptions.put(0, "☆☆☆☆☆");
+//		      ratingOptions.put(1, "★☆☆☆☆");
+//		      ratingOptions.put(2, "★★☆☆☆");
+//		      ratingOptions.put(3, "★★★☆☆");
+//		      ratingOptions.put(4, "★★★★☆");
+//		      ratingOptions.put(5, "★★★★★");
+//		      mav.addObject("ratingOptions", ratingOptions);
+//		      
+//		      return mav;
+//		    }
+
 			
 	
 }
