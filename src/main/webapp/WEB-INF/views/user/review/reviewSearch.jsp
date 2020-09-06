@@ -407,7 +407,7 @@ $(document).ready(function(){
 				</div>
 			
 			
-			<c:if test="${session.userActor eq 1 }">
+	    	<c:if test="${session.userActor eq 1 }">
 			    <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">  
 			        <li class="nav-item ml-auto" style="margin-top: 115px;">
 		            	<span class="d-none d-md-block font-14"></span>
@@ -429,7 +429,7 @@ $(document).ready(function(){
 	    
 	    	<c:if test="${empty review}">
 	    		<div style="text-align: center; margin: 100px 0 150px;">
-	    			<span >등록된 후기가 없습니다</span>
+	    			<span >검색 결과가 없습니다</span>
 	    		</div>
 	    	
 	    	</c:if>
@@ -580,7 +580,7 @@ $(document).ready(function(){
 <c:if test="${not empty review}">
 	<br>
 	<div class="pagingstyle">
-		<c:import url="/WEB-INF/paging/user/userReviewPaging.jsp"></c:import>
+		<c:import url="/WEB-INF/paging/user/userReviewSearchPaging.jsp"></c:import>
 	</div>
 	<br><br>
 </c:if>
