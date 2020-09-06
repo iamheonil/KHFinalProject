@@ -34,7 +34,6 @@
     position: absolute;
     right: -30%;
     top: -20%;
-}
 
 }
 
