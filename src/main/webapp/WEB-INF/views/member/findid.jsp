@@ -85,6 +85,7 @@ function findId(){
 	if(data != ''){
             document.querySelector('#id-msg').textContent = '회원님의 아이디는 ' + data + ' 입니다';
             document.querySelector('#id-msg').style.color = 'white';
+            document.querySelector('#id-msg-sec').style.display = 'block';
         } else {
             document.querySelector("#id-msg").textContent = '일치하는 정보가 없습니다';
             document.querySelector('#id-msg').style.color = 'white';
@@ -95,10 +96,16 @@ function findId(){
  
 }
 
+function findPw() {
+
+    location.href="/ss/member/findpw";
+
+}
+
 </script>
 
-	<div id="wrap" style="height: 750px;">
-		<div id="loginForm" style="margin-top: 6%;">
+	<div id="wrap" style="height: 900px;">
+		<div id="loginForm" style="margin-top: 5%;">
 		<br><br><br><br><br>
 			<form action="/ss/member/findidAjax" method="POST" class="form">
 		       	<h3 style="color: white;">아이디 찾기</h3>
@@ -113,6 +120,8 @@ function findId(){
 			    	<input type="button" id="login-button" onclick="findId()" value="아이디찾기">
 			    	<br>
 			    	<span id="id-msg" class="id-msg" style="font-size: 14px; text-align: center;"></span>
+			    	<br><br>
+			    	<span id="id-msg-sec" class="id-msg-sec" style="font-size: 14px; text-align: left; display: none; color: white;" onclick="findPw()">비밀번호 찾기로 이동</span>
 		    </form>
 		</div>
 	</div>

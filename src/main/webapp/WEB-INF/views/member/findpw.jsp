@@ -90,7 +90,7 @@ function emailCheck() {
 		document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
 		document.querySelector('#email-check-msg').style.color = 'white';
 		document.querySelector('#userPw').style.display = 'block';
-		document.querySelector('#userPwBtn').style.display = 'block';
+		document.querySelector('#userPw_check').style.display = 'block';
 		document.querySelector('#userPwBtn').style.display = 'block';
 		$("#userPwBtn").removeAttr("disabled");
 	} else {
@@ -120,7 +120,7 @@ function findPw(){
     var userActor = document.querySelector('#userActor').value;
     var userEmail = document.querySelector('#userEmail').value;
 
-	$.ajax({
+$.ajax({
    type:"POST",
    url:"/ss/member/findpwAjax",
    data:{
@@ -135,7 +135,7 @@ function findPw(){
             document.querySelector('#pw-msg').style.color = 'white';
 
         	$("#sendMail").html(
-            		'<label class="col-form-label col-4">인증번호</label>' +
+            		'<label class="col-form-label col-4" style="color: white;">인증번호</label>' +
         			'<div class="col-8 float">'+
                        ' <input type="text" id="inputCode" name="inputCode" required="required" size="18">' +
                        ' <input type="button" value="인증하기" onclick="emailCheck()"> ' +
@@ -160,10 +160,50 @@ function findPw(){
             }
  
 }
+
+
+$(document).ready(function() {
+
+	//정규식 시작
+
+	//모든 공백 체크 정규식
+		var empJ = /\s/g;
+		// 비밀번호 정규식
+		var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,14}$/;
+
+		$("#userPw").blur(function() {
+			if (pwJ.test($(this).val())) {
+					// console.log(pwJ.test($(this).val()));
+					console.log('Password Check');
+			} else {
+				$("#userPw").val('');
+				$("#userPw").focus();
+				$('#pw-check-msg').text('대소문자, 숫자와 특수문자를 하나 이상 넣어 7~14자 사이로 작성해야 합니다');
+				$('#pw-check-msg').css('color', 'red');
+			}
+		});
+
+	// 정규식 끝
+
+	// 비밀번호 일치여부
+	    $(function(){
+	        $('#userPw_check').blur(function(){
+	        	if($('#userPw').val() != $('#userPw_check').val()){
+	                $('#pw-check-msg').html('비밀번호가 일치하지 않습니다<br><br>');
+	                $('#pw-check-msg').css('color', '#f82a2aa3');
+	                $('#userPw_check').val('');
+	              } else {
+	                $('#pw-check-msg').html('비밀번호가 일치합니다!<br><br>');
+	                $('#pw-check-msg').css('color', '#199894b3');
+	              }
+	          });
+	    });
+	});
+
 </script>
 
-	<div id="wrap" style="height: 750px;">
-		<div id="loginForm" style="margin-top: 6%;">
+	<div id="wrap" style="height: 900px;">
+		<div id="loginForm" style="margin-top: 5%;">
 			<br><br><br><br><br>
 	        <h3 style="white">비밀번호 찾기</h3>
 					  <form action="/ss/member/pwModify" method="POST">
@@ -185,7 +225,11 @@ function findPw(){
         					<span id="email-check-msg" class="email-check-msg" style="font-size: 8px; text-align: center;"></span>
        					 </div>
 			    		
-			    		<input type="password" id="userPw" name="userPw" style="font-size: 13px; text-align: center; display:none;"> 
+			    		<p><input type="password" id="userPw" name="userPw" placeholder="비밀번호" style="font-size: 13px; color: white; text-align: center; display:none;"></p>
+			    		<p><input type="password" id="userPw_check" placeholder="비밀번호 확인" name="userPw_check" required="required" style="font-size: 13px; color: white; text-align: center; display: none;"></p>
+			    		<div class="form-group row" id="checking" style="font-size: 8px; text-align: center;">
+			    			<span id="pw-check-msg" class="pw-check-msg" style="font-size: 13px; text-align: center;"></span>
+			    		</div>
 	    				<input type="submit" id="userPwBtn" name="userPwBtn" style="display:none;" value="비밀번호 변경하기" disabled>	
 				 	</form>
 		    		
