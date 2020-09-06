@@ -279,7 +279,7 @@
 						<ul style="margin-top: 20px;">
 							<li class="active"><a href="/ss/member/login">로그인</a></li>
 							<li><a href="/ss/member/join">회원가입</a></li>
-							<li ><a href="services.html">과외찾기</a>
+							<li ><a href="${pageContext.request.contextPath}/member/findLesson">과외찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>
 									<li><a href="#">eCommerce</a></li>
@@ -287,7 +287,7 @@
 									<li><a href="#">API</a></li>
 								</ul>-->
 								</li> 
-							<li ><a href="#">학생찾기</a>
+							<li ><a href="${pageContext.request.contextPath}/lesson/findStu/list">학생찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">HTML5</a></li>
 									<li><a href="#">CSS3</a></li>

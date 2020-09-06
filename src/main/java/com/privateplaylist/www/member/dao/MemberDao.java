@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.vo.Member;
 
 @Repository
@@ -35,6 +36,12 @@ public class MemberDao {
     public Member selectMember(Map<String, Object> memberMap) {
 
         return session.selectOne("MEMBER.selectMember", memberMap);
+    }
+    
+    public TeacherFile selectTeacherFile(String userId) {
+    	
+    	return session.selectOne("MEMBER.selectTeacherFile", userId);
+    	
     }
 
     public int selectId(String userId) {
