@@ -8,6 +8,8 @@ import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.student.profile.dao.StuProfileDao;
 import com.privateplaylist.www.teacher.profile.dao.ProfileDao;
 
+//이인주 : 학생 마이페이지  > 개인정보 수정  serviceImpl
+
 @Service
 public class StuProfileServiceImpl implements StuProfileService{
 	

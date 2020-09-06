@@ -70,21 +70,21 @@
 		
 		
 			<!-- 값 출력 -->
-			<c:forEach items="${reviewList }" var="reviewList">
-			
-		 		<input type="hidden" value="${reviewList.reviewNo}" name="no" id="no" />
-		 		
-			<tr>
-			    <td><input type="checkbox" name="checkRow" value="${reviewList.reviewNo}" id="checkRow"/></td>
-				<td>${reviewList.reviewNo}</td>
-				<td>
-					<a href="#">${reviewList.reviewContent }
-					</a>
-				</td>
-				<td>${reviewList.starPoint }</td>
-				<td>${reviewList.reviewDate }</td>
-			</tr>
-			</c:forEach>
+	<c:forEach items="${reviewList }" var="review" >
+	<tr>
+	    <td><input type="checkbox" name="checkRow" value="${review.reviewNo}" id="checkRow"/></td>
+		<td>${review.reviewNo }</td>
+		<td><div class="txt_line_content">${review.userNo }</div></td>
+		<td>
+			<div class="txt_line_title">
+				<a href="${pageContext.request.contextPath}/admin/review/detail?reviewNo=${review.reviewNo}" class="anone">${review.reviewContent }</a>
+			</div>
+		</td>
+		<td><div class="txt_line_content">${review.starPoint}</div></td>
+		<td>${review.reviewDate }</td>
+<%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
+	</tr>
+	</c:forEach>
 	</c:if>
 		</table>
 		

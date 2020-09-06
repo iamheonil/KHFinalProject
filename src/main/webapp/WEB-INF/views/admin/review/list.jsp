@@ -144,7 +144,7 @@ $(document).ready(function(){
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll"  onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">작성자</th>
-		<th style="width: 30%">후기내용</th>
+		<th style="width: 20%">후기내용</th>
 		<th style="width: 20%">별점</th>
 		
 		<th style="width: 10%">날짜</th>
@@ -159,12 +159,15 @@ $(document).ready(function(){
 		<td><div class="txt_line_content">${review.userNo }</div></td>
 		<td>
 			<div class="txt_line_title">
-				<a href="${pageContext.request.contextPath}/admin/review/detail?reviewNo=${review.reviewNo}" class="anone">${review.reviewContent }</a>
+				${review.reviewContent }
 			</div>
 		</td>
-		<td><div class="txt_line_content">${review.starPoint}</div></td>
+<%-- 		<td><div class="txt_line_content">${review.starPoint}</div></td> --%>
+		
+		<td><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.starPoint }">★</c:forEach></div></td>
+		
+		
 		<td>${review.reviewDate }</td>
-<%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
 	</tr>
 	</c:forEach>
 	</table>

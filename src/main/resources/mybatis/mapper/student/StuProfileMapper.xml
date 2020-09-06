@@ -4,6 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+ <!-- 이인주 : 학생 > 개인정보 수정 > mapper -->
+  
   <mapper namespace="StuProfile">
   
   	<select id="countIsEnd" parameterType="int" resultType="int">

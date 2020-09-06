@@ -4,6 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+     <!-- 이인주 : 학생 > 학생 찾기 > mapper -->
+  
   <mapper namespace="FindStu">
   
   <select id="findStuList" parameterType="map" resultType="FINDSTUDENT">
@@ -56,5 +58,19 @@
 	  INSERT INTO find_student (find_stu_no, find_stu_title, find_stu_content, user_no, find_stu_loc, find_stu_subject) 
 	  VALUES (find_student_SEQ.nextval, #{findStuTitle}, #{findStuContent},#{userNo} , #{findStuLoc}, #{findStuSubject})
   </insert>
+  
+  <update id="updateState" parameterType="FINDSTUDENT">
+  	update find_student
+  	
+  	<if test="findStuState.equals(0)">
+	set find_stu_state = 1
+	</if>
+	<if test="findStuState.equals(1)">
+	set find_stu_state = 0
+	</if>
+	
+	where user_no = #{userNo}
+	and find_stu_no = #{findStuNo}
+  </update>
   
   </mapper>

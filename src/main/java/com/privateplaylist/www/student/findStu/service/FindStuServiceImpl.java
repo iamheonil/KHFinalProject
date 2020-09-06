@@ -15,6 +15,8 @@ import com.privateplaylist.www.student.findStu.dao.FindStuDao;
 
 import common.util.Paging;
 
+//이인주  : 학생 마이페이지 >  학생 찾기 > serviceImpl
+
 @Service
 public class FindStuServiceImpl implements FindStuService{
 	
@@ -78,6 +80,11 @@ public class FindStuServiceImpl implements FindStuService{
 	@Override
 	public int insertFindStu(FindStudent findStudent) {
 		return findStuDao.insertFindStu(findStudent);
+	}
+	
+	@Override
+	public int updateState(FindStudent findStudent) {
+		return findStuDao.updateState(findStudent);
 	}
 
 }

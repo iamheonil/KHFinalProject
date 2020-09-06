@@ -192,9 +192,9 @@ margin-top:20px;
 
 	</div>
 
-	<div class="gototop js-top">
+	 <span class="gototop js-tops">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
+	</span> 
 
 	<!-- jQuery -->
 	<script

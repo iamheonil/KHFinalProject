@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.dto.TeacherFile;
+import com.privateplaylist.www.member.service.MemberService;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.profile.service.ProfileService;
 
@@ -29,10 +30,25 @@ public class ProfileController {
 	@Autowired
 	ProfileService profileService;
 	
+	@Autowired
+	MemberService memberService;
+	
 	//마이페이지 비밀번호 확인 jsp 
 	@RequestMapping("/chkpassword")
 	public String  chkpassword(Model model,HttpSession session) {
 //		System.out.println("/teacher/profile/chkpassword");
+		
+//		//세션값 가지고 오기
+//		Member loginUser = (Member) session.getAttribute("loginUser");
+//		TeacherFile teacherFile = (TeacherFile) session.getAttribute("teacherFile");
+//		
+//		//모델값 전달
+//		model.addAttribute("loginUser", loginUser);
+//		model.addAttribute("teacherFile", teacherFile);
+		
+//		System.out.println(loginUser);
+//		System.out.println(teacherFile);
+		
 		return "/teacher/profile/chkpassword";
 	}	
 	
@@ -100,6 +116,9 @@ public class ProfileController {
 		//세션값 가지고 오기
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
+		//아이디값
+		String userId = loginUser.getUserId();
+		
 		//저장 경로
 		String root = session.getServletContext().getRealPath("/");
 		
@@ -113,21 +132,17 @@ public class ProfileController {
 		if(res > 0) {
 			//디비에서 값 가지고오기
 			Member newmember =  profileService.selectonenew(loginUser);
-			
-//			System.out.println("newmember"+newmember);
-			
 			newmember.setUserGender(member.getUserGender());
-			
 			String gender = member.getUserGender();
-			
-//			System.out.println(gender);
-			
-//			System.out.println(newmember);
 			
 			//세션값 변경
 			session.setAttribute("loginUser", newmember);
 			
-//			System.out.println(loginUser);
+			//사진 값 
+			TeacherFile newteacherFile = memberService.selectTeacherFile(userId);
+			
+			//사진 세션 변경
+			session.setAttribute("teacherFile", newteacherFile);
 			
 			return "teacher/profile/chkpassword";
 			

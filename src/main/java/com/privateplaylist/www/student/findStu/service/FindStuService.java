@@ -9,6 +9,8 @@ import com.privateplaylist.www.dto.FindStudent;
 
 import common.util.Paging;
 
+//이인주  : 학생 마이페이지 >  학생 찾기 > service
+
 public interface FindStuService {
 
 	//학생 찾기 list 
@@ -28,5 +30,8 @@ public interface FindStuService {
 
 	//글쓰기
 	public int insertFindStu(FindStudent findStudent);
+
+	//글 상태 변경
+	public int updateState(FindStudent findStudent);
 
 }

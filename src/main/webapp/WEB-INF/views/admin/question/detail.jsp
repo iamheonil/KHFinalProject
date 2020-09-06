@@ -7,6 +7,9 @@
 <!-- 관리자 페이지 header -->   
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 <style type="text/css">
+
+
+
 .captionstyle{
 	text-align: center;
 	caption-side: top;
@@ -36,17 +39,7 @@
 padding: 25px;
 }
 
-.commTable{
-width:260px;
-}
-.minusbtn{
-display: block;
-margin-left: 150px;
-}
 
-.commTable th tr td:hover{
-background: #ddd;
-}
 
 </style>
 
@@ -99,19 +92,19 @@ $(document).ready(function(){
 	</table>
 	
 <!-- 댓글 테이블 -->	
-<table class="commTable" >
+<table class="table-condensed" >
 	<tr>
-		<th colspan="3" style="background: #ddd;" >댓글</th>
+		<th colspan="3" style="background: #ddd;width:400px;" >댓글</th>
 	</tr>
 	<tr>
 		<c:forEach var="commList" items="${commList}" varStatus="status">
                     <tr  reply_type="<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>"><!-- 댓글의 commClass =0이면 부모댓글 -->
-                        <td width="230px">
+                        <td>
                             <c:if test="${commList.commClass == '1'}"> → </c:if>${commList.commContent}<!--자식 댓글 : →붙임 -->
                         </td>
                        	
                         <td  >
-                            <a href="${pageContext.request.contextPath}/admin/question/deleteComm?questionNo=${commList.questionNo }"><button class="minusbtn" name="reply_del" r_type = "<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>" comm_No = "${commList.commNo}">-</button></a>
+                            <a href="${pageContext.request.contextPath}/admin/question/deleteComm?questionNo=${commList.questionNo }"><button class="btn btn-danger" name="reply_del" r_type = "<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>" comm_No = "${commList.commNo}">-</button></a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -3,7 +3,6 @@ package com.privateplaylist.www.admin.board.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import com.privateplaylist.www.admin.board.dao.NoticeDao;
 import com.privateplaylist.www.dto.Notice;
 
 import common.util.Paging;
+
+//이인주 : 관리자 공지사항 NoticeServiceImpl
 
 @Service
 public class NoticeServiceImpl implements NoticeService{

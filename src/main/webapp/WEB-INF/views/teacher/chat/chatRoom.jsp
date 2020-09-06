@@ -299,7 +299,7 @@ else
 
 	<script type="text/javascript">
 	
-	$(document).ready(function() {
+	$(document).ready(function() { //채팅창이 빈칸이면 보낼수없음
 	   
 	    	$('#submit').attr('disabled', true);
 	    

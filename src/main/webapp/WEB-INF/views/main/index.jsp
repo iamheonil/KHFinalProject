@@ -5,6 +5,12 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
 <%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 
+<script type="text/javascript">
+function findstu() {
+	location.href="${pageContext.request.contextPath}/lesson/findStu/list";
+}
+</script>
+
 <body>
 
     <div class="gtco-loader"></div>
@@ -26,7 +32,7 @@
                     <img src="https://t1.daumcdn.net/cfile/tistory/2207573D58CFDE2704" />
                 </div>
                 <div id="main_img_button" style="width: 450px; margin: -3% 0px 0px 44%; position: relative;">
-                    <button class="btn btn-primary">과외찾기</button> <button class="btn btn-primary">학생찾기</button>
+                    <button class="btn btn-primary">과외찾기</button> <button class="btn btn-primary" onclick="findstu();">학생찾기</button>
                 </div>
             </div>
             <br><br><br><br><br><br><br>

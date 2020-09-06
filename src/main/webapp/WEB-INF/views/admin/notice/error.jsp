@@ -3,6 +3,8 @@
     
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
+    <!-- 이인주 : error 사용 -->
+    
 <!DOCTYPE html>
 <html>
 <head>
