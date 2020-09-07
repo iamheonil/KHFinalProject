@@ -8,17 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.MkFile;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.user.board.market.service.UserMarketService;
 
-import common.exception.FileException;
 import common.util.Paging;
 
 @Controller
@@ -75,32 +71,13 @@ public class UserMarketController {
 	}
 	
 
-	@RequestMapping(value = "/market/write", method = RequestMethod.GET)
+	@RequestMapping("/market/write")
 	public ModelAndView marketWrite(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) session.getAttribute("loginUser");
 		
 		mav.addObject("m", m);
 		mav.setViewName("user/market/marketWrite");
-		return mav;
-	}
-
-	@RequestMapping(value = "/market/write", method = RequestMethod.POST)
-	public ModelAndView marketInsert(@RequestParam List<MultipartFile> files, @RequestParam List<MultipartFile> thumb
-			, HttpSession session, Market market) throws FileException {
-		ModelAndView mav = new ModelAndView();
-		Member m = (Member) session.getAttribute("loginUser");
-
-//		int userNo = m.getUserNo();
-		int userNo = 1;
-		
-		String root = session.getServletContext().getRealPath("/");
-		
-		market.setMkWriter(userNo);
-		
-		int res = userMarketService.insertMarket(market, thumb, files, root);
-		
-		mav.setViewName("redirect:/board/market");
 		return mav;
 	}
 

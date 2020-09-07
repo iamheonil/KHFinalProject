@@ -73,4 +73,28 @@
 	and find_stu_no = #{findStuNo}
   </update>
   
+  <update id="updateFindStu" parameterType="FINDSTUDENT">
+  	update find_student
+  	
+  	<trim prefix="set" prefixOverrides="," >
+	  	<if test='findStuTitle != null and !findStuTitle.equals("")'>
+	  		, find_stu_title = #{findStuTitle }
+		</if>
+		<if test='findStuContent != null and !findStuContent.equals("")'>
+		, find_stu_content = #{findStuContent }
+		</if>
+		<if test='findStuLoc != null and !findStuLoc.equals("")'>
+		, find_stu_loc = #{findStuLoc }
+		</if>
+		<if test='findStuSubject != null and !findStuSubject.equals("")'>
+		, find_stu_subject = #{findStuSubject }
+		</if>
+	</trim>
+	
+	where user_no = #{userNo}
+	and find_stu_no = #{findStuNo}
+	
+  </update>
+  
+  
   </mapper>

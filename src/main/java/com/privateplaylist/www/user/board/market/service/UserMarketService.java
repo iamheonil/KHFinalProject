@@ -3,8 +3,12 @@ package com.privateplaylist.www.user.board.market.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.MkFile;
 
+import common.exception.FileException;
 import common.util.Paging;
 
 public interface UserMarketService {
@@ -37,5 +41,15 @@ public interface UserMarketService {
 	 * @return
 	 */
 	public Paging getPagingMkList(int curPage, String search);
+
+	/**
+	 * 중고마켓 글쓰기
+	 * @param market
+	 * @param files
+	 * @param root
+	 * @return
+	 * @throws FileException 
+	 */
+	public int insertMarket(Market market, List<MultipartFile> thumb, List<MultipartFile> files, String root) throws FileException;
 
 }

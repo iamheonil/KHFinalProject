@@ -44,4 +44,23 @@
 	WHERE m.mk_state != 2
 	AND MK_TITLE LIKE '%' || #{search} || '%'
   </select>
+  
+  <insert id="insertMarket" parameterType="MARKET">
+	insert into market(mk_no ,mk_title,mk_content, mk_writer, mk_price) 
+	values (#{mkNo}, #{mkTitle}, #{mkContent}, #{mkWriter}, #{mkPrice})
+  </insert>
+
+  <insert id="insertThumb" parameterType="map">
+	insert into mk_thumb(mk_thumb_no, mk_no ,mk_thumb_org, mk_thumb_rename) 
+	values (mk_thumb_SEQ.nextval, #{mkNo}, #{originFileName}, #{renameFileName})
+  </insert>
+  
+  <insert id="insertFile" parameterType="map">
+	insert into mk_file(mk_file_no, mk_no ,mk_file_org, mk_file_rename) 
+	values (mk_file_SEQ.nextval, #{mkNo}, #{originFileName}, #{renameFileName})
+  </insert>
+  
+  <select id="getNextNo" resultType="int">
+  	SELECT market_SEQ.nextval FROM dual
+  </select>
   </mapper>

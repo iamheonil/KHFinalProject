@@ -112,7 +112,7 @@ $(document).ready(function(){
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
+	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="submit">Search</button>
 	      </span>

@@ -109,7 +109,7 @@ function findurl() {
 $(document).ready(function(){
 	
 	//작성버튼 동작
-	$("#btnWrite").click(function(){
+	$("#modibtn").click(function(){
 		
 		//스마트 에이터의 내용을 <textarea>에 적용하는 함수를 호출한다
 		submitContents($("#btnWrite"));
@@ -152,6 +152,20 @@ $(document).ready(function(){
 	
 });
 </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* select value 값 따라 변경 >> 지역 */
+	 var findStuLocRes = '${findStudentOne.FIND_STU_LOC }';
+	 $("#findStuLoc").val(findStuLocRes).prop("selected", true);
+
+	 /* select value 값 따라 변경 >> 과목 */
+	 var findStuSubjectRes = '${findStudentOne.FIND_STU_SUBJECT }';
+	 $("#findStuSubject").val(findStuSubjectRes).prop("selected", true);
+
+});
+</script>
              
 <div class="container bootstrap snippets bootdeys">
 
@@ -165,7 +179,7 @@ $(document).ready(function(){
 <div class="row">
 
   <div class="col-xs-12 col-sm-9">
-    <form id="findStuForm" class="form-horizontal" action="${pageContext.request.contextPath}/student/findStu/insert" method="post">
+    <form id="findStuForm" class="form-horizontal" action="${pageContext.request.contextPath}/student/findStu/updateModi" method="post">
     <div class="panel panel-default">
     
 		 <div class="panel-heading">
@@ -174,10 +188,17 @@ $(document).ready(function(){
 		 
 		 <div class="panel-body">
 		 
+		 	<div class="form-group" style="display: none;">
+		    	<label class="col-sm-2 control-label">NO.</label>
+			     <div class="col-sm-10">
+			       <input type="text" class="form-control" name="findStuNo" id="findStuNo" value="${findStudentOne.FIND_STU_NO }" readonly="readonly">
+			     </div>
+		    </div>
+		 
 		    <div class="form-group">
 		    	<label class="col-sm-2 control-label">제목</label>
 			     <div class="col-sm-10">
-			       <input type="text" class="form-control" name="findStuTitle" id="findStuTitle" required="required">
+			       <input type="text" class="form-control" name="findStuTitle" id="findStuTitle" value="${findStudentOne.FIND_STU_TITLE }" required="required">
 			     </div>
 		    </div>
 		 
@@ -232,7 +253,7 @@ $(document).ready(function(){
 		     <div class="form-group">
 		       <label class="col-sm-2 control-label">본문</label>
 		       <div class="col-sm-10">
-		         <textarea rows="4" class="form-control" name="findStuContent" id="findStuContent" required="required"></textarea>
+		         <textarea rows="4" class="form-control" name="findStuContent" id="findStuContent" required="required">${findStudentOne.FIND_STU_CONTENT }</textarea>
 		       </div>
 		     </div>
 		     
@@ -243,7 +264,7 @@ $(document).ready(function(){
 		    <div id="btnboard">  
 				<div class="form-group">
 				  <div class="col-sm-10 col-sm-offset-2">
-					  <button type="button" class="btn btn-default" id="btnWrite">등록</button>
+					  <button type="button" class="btn btn-default" id="modibtn">수정</button>
 					  <button type="button" class="btn btn-default" onclick="findurl();">취소</button>
 				  </div>
 				</div>
