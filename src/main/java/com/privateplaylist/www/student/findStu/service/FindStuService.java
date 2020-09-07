@@ -34,4 +34,7 @@ public interface FindStuService {
 	//글 상태 변경
 	public int updateState(FindStudent findStudent);
 
+	//글 수정
+	public int updateFindStu(FindStudent findStudent);
+
 }
