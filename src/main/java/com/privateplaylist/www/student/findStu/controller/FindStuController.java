@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.privateplaylist.www.dto.FindStudent;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.student.findStu.service.FindStuService;
+import com.privateplaylist.www.user.lesson.findStudent.dao.UserFindStuDao;
+import com.privateplaylist.www.user.lesson.findStudent.service.UserFindStuService;
 
 import common.util.Paging;
 
@@ -30,6 +32,9 @@ public class FindStuController {
 	
 	@Autowired
 	FindStuService findStuService;
+	
+	@Autowired
+	UserFindStuService userFindStuService;
 	
 	//학생 찾기 
 	@RequestMapping("/list")
@@ -201,10 +206,6 @@ public class FindStuController {
 	@ResponseBody
 	@RequestMapping(value = "/updatebtn", method=RequestMethod.POST)
 	public String updatebtn(Model model,@RequestParam int findStuNo, @RequestParam int findStuState,HttpSession session) {
-//		System.out.println("/student/findStu/updatebtn");
-//		System.out.println("findStuNo"+findStuNo);
-//		System.out.println("findStuState"+findStuState);
-
 		//결과
 		String result = null;
 		
@@ -234,5 +235,62 @@ public class FindStuController {
 		return result;
 	}
 	
+	//디테일페이지 ajax
+	@ResponseBody
+	@RequestMapping(value = "/detail", method=RequestMethod.POST)
+	public Map<String, Object> detail(Model model,@RequestParam int findStuNo,HttpSession session) {
+		
+		//디테일 가지고 오기 
+		Map<String, Object> findStudentOne = new HashMap<String, Object>();
+		findStudentOne = userFindStuService.detailFindStu(findStuNo);
+		
+//		System.out.println(findStudentOne);
+		
+		//결과
+		return findStudentOne;
+	}
+	
+	//수정 jsp 
+	@RequestMapping(value = "/modi")
+	public String modi(Model model,@RequestParam int findStuNo,HttpSession session) {
+		
+		//수정 jsp 
+		Map<String, Object> findStudentOne = new HashMap<String, Object>();
+		findStudentOne = userFindStuService.detailFindStu(findStuNo);
+		
+		model.addAttribute("findStudentOne", findStudentOne);
+		
+		//결과
+		return "/student/findStu/modi";
+	}
+	
+	//수정 update  updateModi
+	@RequestMapping(value = "/updateModi")
+	public String updateModi(Model model,@ModelAttribute FindStudent findStudent,HttpSession session,HttpServletRequest req) {
+		
+		//root context
+		String root = req.getContextPath();
+		
+		//세션 
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		//userNo
+		int userNo = loginUser.getUserNo();
+		findStudent.setUserNo(userNo);
+		
+		//학생찾기 게시글 수정
+		int res = findStuService.updateFindStu(findStudent);
+		
+		if(res < 0) {
+			model.addAttribute("alertMsg", "수정에 실패했습니다. 다시 작성바랍니다");
+			model.addAttribute("url", root+"/student/findStu/modi");
+	
+			return "/admin/notice/error";
+		}else {
+			//성공 결과
+			return "redirect:/student/findStu/list";
+		}
+		
+	}
 	
 }

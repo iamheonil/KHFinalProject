@@ -50,4 +50,8 @@ public class FindStuDao {
 	public int updateState(FindStudent findStudent) {
 		return sqlSession.update("FindStu.updateState",findStudent);
 	}
+
+	public int updateFindStu(FindStudent findStudent) {
+		return sqlSession.update("FindStu.updateFindStu",findStudent);
+	}
 }
