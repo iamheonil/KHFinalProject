@@ -24,14 +24,10 @@
 }
 
 #marketBox{
-	width: 1000px;
+	width: 970px;
 	margin: 0 auto;
-}
-
-#marketBox{
-	width: 1000px;
 	margin-top: 20px;
-    border: 1px solid #ccc;
+/*     border: 1px solid #ccc; */
 	border-radius: 5px;
 
 }
@@ -198,6 +194,29 @@
 	display: block;
 	margin: 5px auto;
 }
+.finishImg{
+	background-color: rgba(200, 200, 200, 0.5);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.finishText{
+	width: 100px;
+	line-height: 30px;
+	background-color: rgba(200, 200, 200, 1);
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	margin: 103px auto;
+}
+
+.btn-finish{
+	background-color: #ccc;
+}
+	
+
 
 </style>
 
@@ -265,7 +284,7 @@ function deleteMK(mkno){
 	                  <img src="${pageContext.request.contextPath }/resources/upload/${market.TCH_FILE_RENAME }" title="" alt="">
                		</c:if>
                		<c:if test="${empty market.TCH_FILE_RENAME }" >
-	                  <img src="${pageContext.request.contextPath }/resources/upload/rename1.png" title="" alt="">
+	                  <img src="${pageContext.request.contextPath }/resources/images/rename1.png" title="" alt="">
                		</c:if>
             	  <div class="userInfo">
             	  	<div class="userId">${market.USER_ID }</div>
@@ -277,14 +296,27 @@ function deleteMK(mkno){
             	  		<a href="javascript:void(0);" onclick="update(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
             	  	</c:if>
             	  	<c:if test="${!chkWriter }">
-            	  		신고
+            	  		<a href="">신고</a>
             	  	</c:if>
 		          </div>
                <div class="clearfix" ></div>	
                <hr>
                <div>
                <div class="article-img">
-                   <img src="${pageContext.request.contextPath }/resources/upload/${market.MK_THUMB_RENAME }" title="" alt="메인 이미지">
+               <c:if test="${empty market.MK_THUMB_RENAME }">
+                   <img src="${pageContext.request.contextPath }/resources/images/noimage.gif" title="" alt="메인 이미지">
+               </c:if>
+               <c:if test="${!empty market.MK_THUMB_RENAME }">
+	           	   	<c:if test="${market.MK_STATE eq 0 }">
+	                   <img src="${pageContext.request.contextPath }/resources/upload/${market.MK_THUMB_RENAME }" title="" alt="">
+	               	</c:if>
+	                <c:if test="${market.MK_STATE eq 1 }">
+	                	<div class="finishImg">
+	                   		<img src="${pageContext.request.contextPath }/resources/upload/${market.MK_THUMB_RENAME }" title="" alt="">
+	               			<div class="finishText">판매 완료</div>
+	               		</div>
+	                </c:if>
+                </c:if>
                </div>
                <div class="article-title">
                		<div class="mkTitle">
@@ -298,7 +330,22 @@ function deleteMK(mkno){
 	                   <div>
 	                   	<h4>${market.MK_PRICE }원</h4>
 	                   </div>
-	                   <button type="button" class="btn btn-info" id="BtncommWrite">채팅하기</button>
+	                   <c:if test="${chkWriter }">
+	                   		<c:if test="${market.MK_STATE eq 0 }">
+			                  	 <button type="button" class="btn btn-success" id="BtnFinishSales">판매 끝내기</button>
+	                   		</c:if>
+	                   		<c:if test="${market.MK_STATE eq 1 }">
+			                  	 <button type="button" class="btn btn-finish" disabled="disabled">판매완료</button>
+	                   		</c:if>
+                   		</c:if>
+	                   <c:if test="${!chkWriter }">
+	                   		<c:if test="${market.MK_STATE eq 0 }">
+		                  		<button type="button" class="btn btn-info" id="BtnChat">채팅하기</button>
+	                   		</c:if>
+	                   		<c:if test="${market.MK_STATE eq 1 }">
+			                  	 <button type="button" class="btn btn-finish" disabled="disabled">판매완료</button>
+	                   		</c:if>
+                   		</c:if>
                    </div>
                </div>
                </div>

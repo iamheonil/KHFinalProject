@@ -19,7 +19,7 @@ import common.util.Paging;
 
 @Controller
 @RequestMapping("board")
-public class userMarketController {
+public class UserMarketController {
 	
 	@Autowired
 	private UserMarketService userMarketService;
@@ -39,14 +39,6 @@ public class userMarketController {
 		return mav;
 	}
 
-	@RequestMapping("/market/write")
-	public ModelAndView marketWrite(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		Member m = (Member) session.getAttribute("loginUser");
-		
-		mav.setViewName("user/market/marketWrite");
-		return mav;
-	}
 
 	@RequestMapping("/market/detail")
 	public ModelAndView marketDetail(HttpSession session, @RequestParam int mkno) {
@@ -75,6 +67,17 @@ public class userMarketController {
 		mav.addObject("chkWriter", chkWriter);
 		mav.addObject("market", market);
 		mav.setViewName("user/market/marketDetail");
+		return mav;
+	}
+	
+
+	@RequestMapping("/market/write")
+	public ModelAndView marketWrite(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		mav.addObject("m", m);
+		mav.setViewName("user/market/marketWrite");
 		return mav;
 	}
 
