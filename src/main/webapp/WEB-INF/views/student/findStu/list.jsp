@@ -93,11 +93,6 @@ $(document).ready(function(){
 		
 	});
 	
-	//게시 마감 변경 
-// 	$("#updatebtn").click(function(){
-// 		location.href='${pageContext.request.contextPath}/student/findStu/updatebtn?findStuNo=${findStu.findStuNo }&findStuState=${findStu.findStuState }';
-// 	});
-	
 });
 
 /* 체크박스 전체선택, 전체해제 */
@@ -220,7 +215,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 		
 		<c:if test="${findStu.findStuState eq 0}">
 			<td>
-			<button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">게시</button>
+			<button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">모집</button>
 			</td>
 		</c:if>			
 		<c:if test="${findStu.findStuState eq 1}">
