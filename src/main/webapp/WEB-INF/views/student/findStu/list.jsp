@@ -204,7 +204,7 @@ function XMLMODALClick(findStuNo) {
 			var res = result;
 			console.log(res);
 			
-			$("#FIND_STU_TITLE").text(result.FIND_STU_TITLE);
+			$("#FIND_STU_TITLE").html(result.FIND_STU_TITLE);
 			$("#FIND_STU_CONTENT").html(result.FIND_STU_CONTENT);
 			$("#FIND_STU_LOC").text("지역 :"+result.FIND_STU_LOC);
 			$("#FIND_STU_SUBJECT").text("과목 :"+result.FIND_STU_SUBJECT);
@@ -241,7 +241,7 @@ function XMLMODALClick(findStuNo) {
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword" id="keyword">
+	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword" id="keyword">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="submit" id="Search">Search</button>
 	      </span>
