@@ -5,6 +5,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
+<script type="text/javascript"
+src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <!-- nav include  -->
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 
