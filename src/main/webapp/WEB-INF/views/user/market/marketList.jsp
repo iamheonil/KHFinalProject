@@ -29,9 +29,9 @@ margin-top:20px;
    height: 93px; 
 }
 #marketlist{
-	width: 1000px;
+	width: 970px;
 	margin: 0 auto;
-	  	color: black;
+	color: black;
 }
 #studentMK{
   background: #eee;
@@ -46,13 +46,7 @@ margin-top:20px;
 	color: #17B794; /* 청록색 */
 }
 
-#marketContent{
-	width: 97%;
-	margin: 0 auto;
-}
-
 #marketBoard{
-	width: 90%;
 	margin: 0 auto;
 }
 
@@ -97,29 +91,46 @@ margin-top:20px;
     margin-left: 10px;
     margin-top: 20px;
 	overflow: hidden;
-	width: 450px;
+	max-width: 450px;
   	text-overflow: ellipsis;
   	white-space: nowrap;
   	float: left;
-	  	color: black;
+	color: black;
+}
+
+.user-list tbody td .sale, .user-list tbody td .finish {
+	margin-top: 21px;
+    margin-left: 3px;
+	font-size: 10px;
+	color: #00C60F;
+	display: inline-block;
+}
+
+.user-list tbody td .sale{
+	color: #00C60F;
+}
+.user-list tbody td .finish {
+	color: #aaa;
 }
 
 a {
     outline: none!important;
 }
-.user-list tbody td img {
-    position: relative;
-    max-width: 60px;
-    height: 60px;
-    float: left;
-}
+
 .user-list tbody td .mkThumb{
-	border: 1px solid #ccc;
-	border-radius: 5px;
+/* 	border: 1px solid #ccc; */
 	width: 60px;
 	height: 60px;
   	float: left;
   	margin: 0 10px; 
+  	overflow: hidden;
+}
+
+.user-list tbody td .mkThumb img{
+    position: relative;
+	height: 60px;
+    width: 60px;
+    float: left;
 }
 .table thead tr th {
     text-transform: uppercase;
@@ -151,6 +162,17 @@ a {
 	background: #eee;
 }
 
+.marketAct{
+	margin-top: 40px;
+}
+
+.marketAct button{
+	border: none;
+	padding: 10px;
+	background-color: #17B794;
+	font-weight: bold;
+	color: white;
+}
 </style>
 		
 <script>
@@ -192,6 +214,12 @@ function marketCommPaging(curPage){
 	});
 	
 }
+
+function marketWrite(){
+	
+	location.href="${pageContext.request.contextPath }/board/market/write";
+	
+}
 </script>
 <body>
 	
@@ -214,6 +242,20 @@ function marketCommPaging(curPage){
 												<p><h2>자유롭게 물건들을 팔아보아요</h2></p>
 											</div>
 										</div>
+										<div class="container bootstrap snippets bootdey banner">
+											<div class="lc-block col-md-4  toggled pull-right" id="l-login">
+												<div class="lcb-float">
+													<i class="fa fa-shopping-cart fa-3x mar-top"></i>
+												</div>
+												<div class="form-group">
+													<form action="${pageContext.request.contextPath}/lesson/findStu/search" method="post">
+															<input type="text" class="form-control" id="keyword" name="keyword" placeholder="키워드를 작성해주세요">
+													</form>
+												</div>
+												<div class="clearfix"></div>
+												<button type="button" class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">검색</button>
+											</div>
+										</div>
 									</div>	
 								</div>
 							</div>
@@ -228,13 +270,11 @@ function marketCommPaging(curPage){
 
 				
 <div id="marketlist">
-		 <div class>
-             <div>
-               <input type="text" id="" name="" class="form-control"/>
-              <button type="button" class="btn waves-effect waves-light btn-custom"><i class="fa fa-search mr-1"></i> Search</button>
-         	</div>
-         </div>
 <div id="marketBoard">
+    <div class="clearfix"></div>
+	<div class="marketAct">
+		<button type="button" id="BtnWrite" onclick="marketWrite();">글쓰기</button>
+	</div>
     <div class="row">
         <div class="col-lg-12 marketTable">
             <div class="main-box no-header clearfix">
@@ -255,16 +295,24 @@ function marketCommPaging(curPage){
                                     <td class="text-center"><span>${m.MK_NO }</span></td>
                                     <td>
                                     	<div class="mkThumb">
-                                       <img src="<%= request.getContextPath() %>/resources/upload/${m.MK_THUMB_RENAME }" alt="메인 사진">
+                                    		<c:if test="${empty m.MK_THUMB_RENAME }">
+							                   <img src="${pageContext.request.contextPath }/resources/images/noimage.gif" title="" alt="">
+							            	</c:if>
+                                    		<c:if test="${!empty m.MK_THUMB_RENAME }">
+	                                      		<img src="<%= request.getContextPath() %>/resources/upload/${m.MK_THUMB_RENAME }" alt="">
+							            	</c:if>
                                        </div>
                                        <a href="<%= request.getContextPath() %>/board/market/detail?mkno=${m.MK_NO }" class="user-link">${m.MK_TITLE }</a>
+                                       <c:if test="${m.MK_STATE eq 0}">
+	                                       <span class="sale">판매</span>
+                                       </c:if>
+                                       <c:if test="${m.MK_STATE eq 1}">
+	                                       <span class="finish">완료</span>
+                                       </c:if>
                                     </td>
                                     <td class="text-center"><span>${m.USER_ID }</span></td>
                                     <td  class="text-center">
-                                        <span>
-                               		    <fmt:parseDate value="${m.MK_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                   		</span>
+                                        <span>${m.MK_DATE }</span>
                                     </td>
                                 </tr>
                                 </c:forEach>
