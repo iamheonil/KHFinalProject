@@ -226,8 +226,8 @@ nav {
 #teaprofileimg{
 /*    border: 1px solid red; */
    border-radius: 50%;
-   width: 100px;
-   height: 100px; 
+   width: 120px;
+   height: 110px; 
 }
 
 .anone{
@@ -340,7 +340,7 @@ function getInfiniteBox(){
 
 <br>
 
-<img alt="학생프로필사진" src="${pageContext.request.contextPath}/resources/images/profile.png" id="teaprofileimg">
+<img alt="학생프로필사진" src="${pageContext.request.contextPath}/resources/images/stamp.PNG" id="teaprofileimg">
 
 <h4>${loginUser.userId } 님</h4>
 

@@ -17,4 +17,7 @@ public interface UserFindStuService {
 	//검색전 전체 리스트
 	public List<Map<String, Object>> userFindStuList(Paging paging);
 
+	//상세페이지
+	public Map<String, Object> detailFindStu(int findStuNo);
+
 }

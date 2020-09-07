@@ -43,10 +43,10 @@ public class BoardMainController {
 			List<Map<String, Object>> market = boardMainService.selectMarket();
 			
 			
-			System.out.println(notice);
-			System.out.println(review);
-			System.out.println(question);
-			System.out.println(market);
+//			System.out.println(notice);
+//			System.out.println(review);
+//			System.out.println(question);
+//			System.out.println(market);
 			
 			model.addAttribute("notice", notice);
 			model.addAttribute("review", review);

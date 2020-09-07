@@ -35,6 +35,40 @@ public class FindLessonService {
 	public List<Map<String,Object>> selectStarAndReview(){
 		return fld.selectStarAndReview();
 	}
+
+	//과외 상세 정보 가져오기
+	public Map<String,Object> selectLessonByLessonNo(int lessonNo) {
+		// TODO Auto-generated method stub
+		return fld.selectLessonByLessonNo(lessonNo);
+	}
+
+	public List<Map<String, Object>> selectlessonFile(int lessonNo) {
+		// TODO Auto-generated method stub
+		return fld.selectlessonFile(lessonNo);
+	}
+
+	public Map<String, Object> selectTeacherFile(int userNo) {
+		// TODO Auto-generated method stub
+		return fld.selectTeacherFile(userNo);
+	}
+
+	//과외에 대한 별점 가져오기
+	public List<Map<String, Object>> selectReviewByLessonNo(int lessonNo) {
+		// TODO Auto-generated method stub
+		return fld.selectReviewByLessonNo(lessonNo);
+	}
+
+	public int selectCntWish(Map<String, Object> comm) {
+		// TODO Auto-generated method stub
+		return fld.selectCntWish(comm);
+	}
+
+	public void insertWishList(Map<String, Object> comm) {
+		// TODO Auto-generated method stub
+		fld.insertWishList(comm);
+	}
+
+	
 	
 	
 

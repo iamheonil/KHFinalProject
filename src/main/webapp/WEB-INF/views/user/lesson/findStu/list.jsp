@@ -78,7 +78,7 @@ body{
 	margin-right : 5px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	height: 230px;
+	height: 250px;
 	width: 520px;
 }
 
@@ -213,16 +213,14 @@ function XMLDeleteClick(findStuNo){
 											
 										<div class="row padding-horizontal-md pull-left banner">
 											<div class="row margin-top-xs text title title-xxl text-bold text-white">
-												<p><h1>FIND STUDENT</h1></p>
+												<p><h1>학생 찾기</h1></p>
 											</div>
 											<br>
 											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
 												<p><h2>과외 조건에 맞는 학생을 검색할 수 있습니다.</h2></p><br>
 												<c:if test="${loginUser.userActor eq 2 }">
-													<p><h2>학생이라면?<a id="writebtn" href="${pageContext.request.contextPath}/student/findStu/write">글쓰기</a>
+													<p><h2>학생이라면?<a id="writebtn" href="${pageContext.request.contextPath}/student/findStu/write">글쓰기</a></h2></p>
 												</c:if>
-												
-												</h2></p>
 											</div>
 											
 										
@@ -238,6 +236,7 @@ function XMLDeleteClick(findStuNo){
 														        <select class="form-control" name="findStuLoc" id="findStuLoc">
 																		<option selected value="무관">- 지역 선택 -</option>
 																		<option value="서울">서울</option>
+																		<option value="경기">경기</option>
 																		<option value="부산">부산</option>
 																		<option value="대구">대구</option>
 																		<option value="인천">인천</option>
@@ -325,11 +324,19 @@ function XMLDeleteClick(findStuNo){
 		                        </div>
 		                        
 		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Message"><i class="fa fa-envelope-o"></i></a>&nbsp;ID.${findstu.USER_ID }</h4>
+		                            <p class="text-muted txt_line_title"><a href="${pageContext.request.contextPath}/lesson/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
 		                            <p class="text-muted">${findstu.FIND_STU_LOC } | ${findstu.FIND_STU_SUBJECT }</p>
-		                            <p class="text-muted">${findstu.FIND_STU_DATE } </p>
-		                            <p class="text-muted txt_line_title"><a href="${pageContext.request.contextPath}/student/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
-		                            <div class="text-muted txt_line_content">${findstu.FIND_STU_CONTENT }</div>
 		                            
+		                            <c:if test="${findstu.FIND_STU_STATE eq 0}">
+		                           		<p class="text-muted">모집</p>
+		                            </c:if>
+		                            
+		                            <c:if test="${findstu.FIND_STU_STATE eq 1}">
+		                           		<p class="text-muted">마감</p>
+		                            </c:if>
+		                            
+		                            <div class="text-muted txt_line_content">${findstu.FIND_STU_CONTENT }</div>
+		                            <p class="text-muted">${findstu.FIND_STU_DATE } </p>
 		                    </div>
 		                    
 		                </div>
