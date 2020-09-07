@@ -1,3 +1,6 @@
+<!-- 20200902 김성은 -->
+<!-- 학생 마이페이지 질문게시판 paging -->
+<!-- /student/questionlist -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -75,7 +78,9 @@ body{
 	background: #d66;
 	color: white;
 }
-
+.container a{
+	text-decoration: none;
+}
 
 </style>
 
@@ -142,53 +147,6 @@ body{
 	    </div>
 	</div>
   </div>
-  
- <%--   <div class="tab-pane fade" id="second">
-    	<div class="container" style="width: 960px; height: 100%;">
-	    <div class="row">
-	        <div class="col-xl-12">
-	            <div class="card">
-	                <div class="card-body">
-	                    <div class="table-responsive">
-	                    
-	                        <table class="table table-hover mb-0">
-	                        
-	                            <thead>
-	                                <tr class="align-self-center">
-	                                    <th style="width: 10%">번호</th>
-	                                    <th style="width: 70%">댓글</th>
-	                                    <th style="width: 20%">작성일</th>
-	                                </tr>
-	                            </thead>
-	                            
-	                            <tbody>
-	                            <c:if test="${empty Qcommlist}" >
-	                            	<td colspan="3">게시글이 존재하지 않습니다.</td>
-								</c:if>
-	                               	<c:forEach items="${Qcommlist }" var="list" >
-										<tr>
-											<td>${list.COMM_NO}</td>
-<!-- 											<td> -->
-												<a href="#" title="과외 정보 보기" onclick="lessonModal(${lesson.LESSON_NO });">${lesson.LESSON_TITLE }</a>
-<!-- 											</td> -->
-											<td>${list.COMM_CONTENT}</td>
-											<td>${list.COMM_DATE}</td>
-										</tr>
-									</c:forEach>
-	                            </tbody>
-	                            
-	                        </table>
-	                        
-			    <c:if test="${not empty Qlist}" >
-					<c:import url="/WEB-INF/paging/student/board/questionCommListPaging.jsp" />
-				</c:if>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-  </div>  --%>
   
   
 </div>
