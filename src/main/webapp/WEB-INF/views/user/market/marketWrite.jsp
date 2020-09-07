@@ -5,9 +5,18 @@
 
 <!-- nav include  -->
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
+	
 <style type="text/css">
 @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
@@ -199,6 +208,11 @@
 	margin: 5px auto;
 }
 
+.form-control{
+	color: black;
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -258,28 +272,18 @@ function deleteMK(mkno){
 		<!-- END #gtco-header -->
      <div class="clearfix" ></div>	
     <div id="marketBox">
+    <form>
            <div class="article">
-				<h2>${market.MK_TITLE }</h2>
+           	<div class="form-group">
+			    <input type="text" placeholder="제목" class="form-control" value="${market.MK_TITLE }" />
+			</div>
                <div class="userImg">
-               		<c:if test="${!empty market.TCH_FILE_RENAME }" >
-	                  <img src="${pageContext.request.contextPath }/resources/upload/${market.TCH_FILE_RENAME }" title="" alt="">
-               		</c:if>
-               		<c:if test="${empty market.TCH_FILE_RENAME }" >
-	                  <img src="${pageContext.request.contextPath }/resources/upload/rename1.png" title="" alt="">
-               		</c:if>
+                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
             	  <div class="userInfo">
             	  	<div class="userId">${market.USER_ID }</div>
             	  	<div class="date"><fmt:parseDate value="${market.MK_DATE }" pattern="yyyyMMdd" var="date"/><fmt:formatDate value="${date }" pattern="yyyy.MM.dd."/></div>
             	  </div>
                </div>
-            	  <div class="text-muted pull-right userAct">
-            	  	<c:if test="${chkWriter }">
-            	  		<a href="javascript:void(0);" onclick="update(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
-            	  	</c:if>
-            	  	<c:if test="${!chkWriter }">
-            	  		신고
-            	  	</c:if>
-		          </div>
                <div class="clearfix" ></div>	
                <hr>
                <div>
@@ -288,24 +292,16 @@ function deleteMK(mkno){
                </div>
                <div class="article-title">
                		<div class="mkTitle">
-               			<c:if test="${market.MK_STATE eq 0 }" >
-		                   <h6 class="sale">판매중</h6>
-               			</c:if>
-               			<c:if test="${market.MK_STATE eq 1 }" >
-		                   <h6 class="finish">판매완료</h6>
-               			</c:if>
-						<h2>${market.MK_TITLE }</h2>
 	                   <div>
-	                   	<h4>${market.MK_PRICE }원</h4>
+	                   	<input type="number" value="${market.MK_PRICE }" /></h4>
 	                   </div>
-	                   <button type="button" class="btn btn-info" id="BtncommWrite">채팅하기</button>
                    </div>
                </div>
                </div>
                <div class="clearfix" ></div>
                <hr>
                <div class="article-content">
-                   <p>${market.MK_CONTENT }</p>
+               		<textarea class="form-control" rows="5">${market.MK_CONTENT }</textarea>
                    <div class="mkFiles">
                    <c:if test="${!empty files }">
                    <c:forEach items="${files }" var="file">
@@ -317,40 +313,9 @@ function deleteMK(mkno){
                </div>
                <br><br>
                
-               <div style="font-size: 14px; font-weight: bold;">
-               	댓글 <i class="fa fa-comment-o" aria-hidden="true"></i>
-               </div>
-               <hr style="margin: 5px 0;">
-               
-		        <div class="comment-wrapper">
-		                <div class="panel-body">
-		                	<div>
-			                    <textarea class="form-control" placeholder="댓글 내용을 입력하세요" rows="3"></textarea>
-			                    <button type="button" class="btn btn-info pull-right" id="BtncommWrite">댓글 달기</button>
-		                    </div>
-		                    <div class="clearfix"></div>
-		                    <hr>
-		                    <ul class="media-list">
-		                        <li class="media">
-		                            <a href="#" class="pull-left">
-		                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-		                            </a>
-		                            <div class="media-body">
-		                                <span class="text-muted pull-right">
-		                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-		                                </span>
-		                                <strong class="text-success">@MartinoMont</strong>
-		                                <p>
-		                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-		                                </p>
-		                            </div>
-		                        </li>
-		                    </ul>
-		                </div>
-		            </div>
-               
            </div>
+           
+           </form>
         </div>
 
 	<!-- footer include  -->
