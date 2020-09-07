@@ -1,4 +1,4 @@
-<!-- 이인주 : 사용자 > 학생 찾기 > 목록 jsp -->
+<!-- 20200907 이인주 : user > find_student > datail -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +7,9 @@
 
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+
+<!-- 지도 api -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb3ded0da7c6502b3c00a1cd11c62c07"></script>
 
 <style type="text/css">
 @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
@@ -78,7 +81,7 @@ body{
 	margin-right : 5px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	height: 250px;
+	height: 230px;
 	width: 520px;
 }
 
@@ -138,11 +141,6 @@ body{
 	font-weight: bold;
 }
 
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 15%;
-}
-
 #writebtn{
 	color: white;
 	text-decoration: none;
@@ -151,6 +149,30 @@ body{
 #writebtn:hover{
 	color: tomato;
 	text-decoration: none;
+}
+
+#detailboard{
+	width: 1140px;
+	height: auto;
+	margin: 0 auto;
+}
+
+.floating { 
+	position: fixed;
+	right: 60%;
+	top: 600px;
+	margin-right: -720px;
+	text-align: center;
+	width: 300px;
+	height :auto;
+	
+	border: 1px solid #ccc;
+	border-radius: 10%;
+	padding: 10px;
+}
+
+#MessageSt{
+	font-size: 27px;
 }
 </style>
 
@@ -188,6 +210,115 @@ function XMLDeleteClick(findStuNo){
 	}
 	
 }
+</script>
+
+<!-- 지도 api -->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	
+// 	var options = { //지도를 생성할 때 필요한 기본 옵션
+// 			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도 중심 좌표
+// 		level: 3 //지도의 레벨(확대, 축소 정도)
+// 	};
+	
+	if(${findStudentOne.FIND_STU_LOC == '무관' }){
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.49918068071734, 127.03453719246758), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};	
+	}else if (${findStudentOne.FIND_STU_LOC == '서울' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.56682420267543, 126.978652258823), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '경기' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.74758417314842, 127.07161930245083), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '부산' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.17973973483032, 129.0750678885004), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '대구' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng( 35.87138338827759, 128.60180776829148), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '인천' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.45602927841067, 126.7052721005639), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '대전' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.3614132220919, 127.38501929723603 ), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '울산' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.53948464172323, 129.31146521625075), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '광주' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.16010874369142, 126.8516491542269), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '세종' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.480078831893714, 127.28921490454427 ), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '강원' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.885320852157896, 127.72982555144148), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '경북' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.576001575294924, 128.50576807876243), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '경남' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.237677583297774,  128.69194321409773), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '충북' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.63532357728611, 127.49143921673218), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '충남' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.65883058654879, 126.67276947738326), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '전북' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.82018869322392, 127.10898776739516), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '전남' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(34.81606814290444, 126.46278077345552), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '제주' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(33.488906590123094, 126.49821844632523), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}
+	
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+});
+
 </script>
 
 <!-- css 끝------------------------ -->
@@ -290,70 +421,60 @@ function XMLDeleteClick(findStuNo){
 		
 		<!-- 검색창 끝------------------------ -->
 		<!-- ---- ------------------------ -->
-		<!-- 결과 list 시작 ------------------------ -->
+		<!-- 결과 시작 ------------------------ -->
 
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-		<h4 id="findtitle">FIND STUDENT BOARD</h4>
+		<h4 id="findtitle">FIND STUDENT No.${findStudentOne.FIND_STU_NO } DETAIL</h4>
+		
+		<div id="detailboard">
+		
+		<h3>${findStudentOne.FIND_STU_TITLE }</h3><br>
 		
 		
-		<div class="container bootstrap snippets bootdey">
+		<p>${findStudentOne.FIND_STU_CONTENT }</p><br>
 		
-			<!-- 게시글이 없을 때  -->
-			<c:if  var="findstu" test="${empty userFindStuList }">
-				<div id="noneboarder">게시글이 없습니다</div>
+		
+		지역 : ${findStudentOne.FIND_STU_LOC }
+		<!-- 지도영역 -->
+		<div id="map" style="width:500px;height:400px;"></div><br>
+		<h6>※상세한 과외위치는 글 작성자와 채팅을 통하여 결정하세요</h6>
+		
+		<!-- 리모콘 -->
+		<div class="floating">
+		작성자 : ${findStudentOne.USER_ID }<br>
+		과목 : ${findStudentOne.FIND_STU_SUBJECT }<br>
+		날짜 : ${findStudentOne.FIND_STU_DATE }<br>
+		
+		<c:if test="${findStudentOne.FIND_STU_STATE eq 0}">
+       		<p class="text-muted">상태 : 모집</p>
+        </c:if>
+        
+        <c:if test="${findStudentOne.FIND_STU_STATE eq 1}">
+       		<p class="text-muted">상태 : 마감</p>
+        </c:if>
+		                            
+		<div class="pull-right btn-group-sm">
+			<c:if test="${loginUser.userNo ne  findStudentOne.USER_NO}">
+				<a href="#" id="MessageSt" data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Message">
+					<i class="fa fa-envelope-o"></i>
+				</a>
 			</c:if>
-		
-		    <div class="row">
-		    <!--게시글이 있을 때 -->
-			<c:if  var="findstu" test="${!empty userFindStuList }">
-			<!-- 값 출력 -->
-			<c:forEach items="${userFindStuList }" var="findstu" >
-		    
-		        <div class="col-sm-6">
-		            <div class="panel">
-		                <div class="panel-body p-t-10">
-		                    <div class="media-main">
-		                       
-		                        <div class="pull-right btn-group-sm">
-		                        	<c:if test="${loginUser.userNo eq  findstu.USER_NO}">
-		                            <a onclick=" XMLDeleteClick(${findstu.FIND_STU_NO})" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-		                                <i class="fa fa-close"></i>
-		                            </a>
-		                            </c:if>
-		                        </div>
-		                        
-		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Message"><i class="fa fa-envelope-o"></i></a>&nbsp;ID.${findstu.USER_ID }</h4>
-		                            <p class="text-muted txt_line_title"><a href="${pageContext.request.contextPath}/lesson/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
-		                            <p class="text-muted">${findstu.FIND_STU_LOC } | ${findstu.FIND_STU_SUBJECT }</p>
-		                            
-		                            <c:if test="${findstu.FIND_STU_STATE eq 0}">
-		                           		<p class="text-muted">모집</p>
-		                            </c:if>
-		                            
-		                            <c:if test="${findstu.FIND_STU_STATE eq 1}">
-		                           		<p class="text-muted">마감</p>
-		                            </c:if>
-		                            
-		                            <div class="text-muted txt_line_content">${findstu.FIND_STU_CONTENT }</div>
-		                            <p class="text-muted">${findstu.FIND_STU_DATE } </p>
-		                    </div>
-		                    
-		                </div>
-		            </div>
-		        </div>
 			
-		</c:forEach>
-		</c:if>
-		<div class="clearfix"></div>
-        <!-- 페이징 -->
-		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/user/lesson/findStu/listPaging.jsp"></c:import>
+       		<c:if test="${loginUser.userNo eq  findStudentOne.USER_NO}">
+    		   <a href="<%=request.getContextPath()%>/" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                   <i class="fa fa-pencil"></i>
+	           </a>
+	           <a onclick=" XMLDeleteClick(${findstu.FIND_STU_NO})" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+	               <i class="fa fa-close"></i>
+	           </a>
+           </c:if>
+       </div>
+		 
+		 
+		 
 		</div>
-	
-	
-	</div>
-	</div>
+
+		</div>
+		
 </div>
 	
 	<!-- jQuery -->

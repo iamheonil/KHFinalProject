@@ -44,4 +44,9 @@ public class UserFindStuServiceImpl implements UserFindStuService{
 	public List<Map<String, Object>> userFindStuList(Paging paging) {
 		return userFindStuDao.userFindStuList(paging);
 	}
+	
+	@Override
+	public Map<String, Object> detailFindStu(int findStuNo) {
+		return userFindStuDao.detailFindStu(findStuNo);
+	}
 }
