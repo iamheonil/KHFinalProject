@@ -1,9 +1,6 @@
-<!-- 20200819 이인주 -->
-<!-- notice list paging -->
-
-<!-- 페이징 복붙 예시  -->
-<!-- 1. 본인에게 맞는 url 작성 -->
-<!-- 2. url에 쿼리스트링이 들어가야하는 경우 맞게 작성 필요 -->
+<!-- 20200902 김성은 -->
+<!-- 학생 마이페이지 질문게시판 paging -->
+<!-- /student/questioncommlist -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<div class="pt-3">
+<div class="pt-3 text-center">
     <ul class="pagination justify-content-end mb-0">
           <!-- 첫 페이지로 가기 -->
 <%-- 	   <c:if test="${paging.curPage ne 1 }"> --%>

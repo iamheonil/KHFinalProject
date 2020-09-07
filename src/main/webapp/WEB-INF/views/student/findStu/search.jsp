@@ -149,7 +149,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
+	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="submit">Search</button>
 	      </span>
@@ -175,10 +175,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<!-- 학생찾기 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
 	
-	<c:if test="${not empty keyword}">
 	<caption  class="captionstyle">공지사항</caption>  
-	<caption  class="captionstyle">검색어 >> ${keyword }</caption>  
-	</c:if>
 	
 	<!-- 테이블 th -->
 	<tr>
