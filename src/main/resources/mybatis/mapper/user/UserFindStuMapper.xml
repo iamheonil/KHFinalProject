@@ -10,6 +10,7 @@
   
   <select id="selectCntUserFindStuAll" resultType="int">
   	select count(*) from find_student
+  	where find_stu_state = 0
   </select>
   
   <select id="userFindStuList" parameterType="map" resultType="map">
@@ -21,11 +22,23 @@
 				FROM find_student F                         
        				 INNER JOIN membership M          
         			 ON f.user_no = m.user_no 
-					order by F.find_stu_no desc
+       			where f.find_stu_state = 0
+				order by F.find_stu_no desc
 			) c
 		) findStu 
 	where rnum BETWEEN #{startNo} AND #{endNo}
 	
+  </select>
+  
+  <select id="detailFindStu" parameterType="int" resultType="map">
+	 SELECT 
+			F.find_stu_no, F.find_stu_title, F.find_stu_content, F.user_no,
+			F.find_stu_date, F.find_stu_loc, F.find_stu_subject, F.find_stu_state,
+			M.user_id
+	FROM find_student F                         
+			INNER JOIN membership M          
+  			ON f.user_no = m.user_no 
+	where find_stu_no = #{findStuNo}
   </select>
   
   
