@@ -28,8 +28,6 @@
 	margin: 0 auto;
 	margin-top: 20px;
 /*     border: 1px solid #ccc; */
-	border-radius: 5px;
-
 }
 
 .marketBan{
@@ -216,7 +214,6 @@
 	background-color: #ccc;
 }
 	
-
 
 </style>
 

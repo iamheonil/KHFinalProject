@@ -101,13 +101,18 @@ form label {
 <script>
 var lessonLocDetail0 = new Array("-선택-","");
 var lessonLocDetail1 = new Array("강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구");
-var lessonLocDetail2 = new Array("헹글라이딩","패러글라이딩","스카이다이빙","스쿠버다이빙","수상스키","카누/카약","래프팅(급류타기)","하이킹","사냥","번지점프","캠핑","등산","승마","스키","스노우보드","연날리기","R/C","낚시","서바이벌게임","드라이브");
-var lessonLocDetail3 = new Array("독서","영화/연극","사진","미술","악기연주","음악감상");
-var lessonLocDetail4 = new Array("골프", "농구", "댄스", "무예", "배구", "수영", "스노우보드", "승마", "스쿼시", "스키", "야구", "에어로빅","조깅","족구","테니스","헬스","카누/카약","축구");
-var lessonLocDetail5 = new Array("공예","사진","그림","문예","모형/프라모델","인형만들기");
-var lessonLocDetail6 = new Array("바둑","장기","체스","오델로","오목","컴퓨터 게임","서바이벌게임","카드");
-var lessonLocDetail7 = new Array("서예","수예/자수","꽃꽂이","요리","인형만들기","다도(차)","수족관","모형/프라모델","댄스","인터넷서핑");
-var lessonLocDetail8 = new Array("애완동물","분재","유머","천체관측","댄스","마술","아마추어 무선","로켓","운세/심리","원예","R/C","쇼핑","단전호흡","요요","요가","헬스");
+var lessonLocDetail2 = new Array("중구","서구","동구","영도구","부산진구","동래구","남구","북구","강서구","해운대구","사하구","금정구","연제구","수영구","사상구","기장군");
+var lessonLocDetail3 = new Array("중구","동구","서구","남구","수성구","달서구","달성군");
+var lessonLocDetail4 = new Array("중구", "동구", "미추홀구", "연수구", "남동구", "부평구", "계양구", "서구", "강화군", "옹진군");
+var lessonLocDetail5 = new Array("동구","서구","남구","북구","광산구"); //광주광역시
+var lessonLocDetail6 = new Array("세종특별자치시");
+var lessonLocDetail7 = new Array("강릉시","동해시","삼척시","양구군","양양군","원주시","인제군","칠원군","춘천시","평창군", "홍천군", "횡성군"); //강원
+var lessonLocDetail8 = new Array("경산시","고령군","구미시","김천시","문경시","상주시","성주군","영덕군","영양군","영천시","예천군","울진군","의성군","청송군","칠곡군","포항시 남구","포항시 북구"); //경북
+var lessonLocDetail8 = new Array("거제시", "고성군", "김해시", "밀양시", "사천시", "양산시", "의령군", "창년군", "창원시", "창원시 마산회원구", "창원시 성산구", "창원시 의창구", "창원시 진해구", "통영시", "함안군", "함양군"); //경남
+var lessonLocDetail8 = new Array("괴산군", "보은군", "영동군", "음성군", "제천시", "진천군", "청원군", "청주시 상당구", "청주시 서원구", "청주시 흥덕구", "충주시"); //충북
+var lessonLocDetail8 = new Array("계룡시", "금산군", "논산시", "보령시", "부여군", "서천군", "아산시", "예산군", "천안시", "천안시 서북구", "청양군", "홍성군"); //충남
+var lessonLocDetail8 = new Array("고창군", "김제시", "남원시", "부안군", "순창군", "익산시", "임실군", "전주시", "전주시 덕진구", "진안군"); //전북
+var lessonLocDetail8 = new Array("강진군", "목포시", "여수시", "순천시", "나주시", "광양시", "담양군", "곡성군", "구례군", "고흥군", "보성군", "화순군", "해남군", "무안군", "신안군", "진도군", "완도군", "장흥군"); //전남
 
 function lessonLocDetailchange(item){
     var temp, i=0, j=0;
@@ -152,13 +157,13 @@ function addlocation(){
 				'<option value=울산>울산</option>' +
 				'<option value=광주>광주</option>' +
 				'<option value=세종>세종</option>' +
-				'<option value=경남>강원</option>' +
+				'<option value=강원>강원</option>' +
 				'<option value=경북>경북</option>' +
-				'<option value=전남>경남</option>' +
-				'<option value=전북>충북</option>' +
-				'<option value=광주>충남</option>' +
-				'<option value=부산>전북</option>' +
-				'<option value=제주>전남</option>' +
+				'<option value=경남>경남</option>' +
+				'<option value=충북>충북</option>' +
+				'<option value=충남>충남</option>' +
+				'<option value=전북>전북</option>' +
+				'<option value=전남>전남</option>' +
 				'<option value=제주>제주</option>' +
               '</select>' +
             '<select class="form-control" name=lessonLocDetail size=1 style="margin-top: 10px;" required>' +
@@ -189,7 +194,13 @@ function addlocation(){
         <div class="panel panel-default">
           <div class="panel-body text-center">
 <%--            <img src="<spring:url value='/upload/${TCH_FILE_RENAME }'/>" class="img-circle profile-avatar" alt="User avatar"/> --%>
-<img class="img-circle profile-avatar" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${file.tchFileRename }">
+	        <c:if test="${not empty file.tchFileRename }">
+	        	<img class="img-circle profile-avatar" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${file.tchFileRename }">
+			</c:if>
+			<c:if test="${empty file.tchFileRename }">
+				<img src="${pageContext.request.contextPath}/resources/images/profile.png"/>
+			</c:if>
+
           </div>
         </div>
         
@@ -275,13 +286,13 @@ function addlocation(){
 				<option value=울산>울산</option>
 				<option value=광주>광주</option>
 				<option value=세종>세종</option>
-				<option value=경남>강원</option>
+				<option value=강원>강원</option>
 				<option value=경북>경북</option>
-				<option value=전남>경남</option>
-				<option value=전북>충북</option>
-				<option value=광주>충남</option>
-				<option value=부산>전북</option>
-				<option value=제주>전남</option>
+				<option value=경남>경남</option>
+				<option value=충북>충북</option>
+				<option value=충남>충남</option>
+				<option value=전북>전북</option>
+				<option value=전남>전남</option>
 				<option value=제주>제주</option>
               </select>
             <select class="form-control" name=lessonLocDetail size=1 style="margin-top: 10px;" required>
