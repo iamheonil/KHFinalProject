@@ -91,11 +91,26 @@ margin-top:20px;
     margin-left: 10px;
     margin-top: 20px;
 	overflow: hidden;
-	width: 450px;
+	max-width: 450px;
   	text-overflow: ellipsis;
   	white-space: nowrap;
   	float: left;
 	color: black;
+}
+
+.user-list tbody td .sale, .user-list tbody td .finish {
+	margin-top: 21px;
+    margin-left: 3px;
+	font-size: 10px;
+	color: #00C60F;
+	display: inline-block;
+}
+
+.user-list tbody td .sale{
+	color: #00C60F;
+}
+.user-list tbody td .finish {
+	color: #aaa;
 }
 
 a {
@@ -288,13 +303,16 @@ function marketWrite(){
 							            	</c:if>
                                        </div>
                                        <a href="<%= request.getContextPath() %>/board/market/detail?mkno=${m.MK_NO }" class="user-link">${m.MK_TITLE }</a>
+                                       <c:if test="${m.MK_STATE eq 0}">
+	                                       <span class="sale">판매</span>
+                                       </c:if>
+                                       <c:if test="${m.MK_STATE eq 1}">
+	                                       <span class="finish">완료</span>
+                                       </c:if>
                                     </td>
                                     <td class="text-center"><span>${m.USER_ID }</span></td>
                                     <td  class="text-center">
-                                        <span>
-                               		    <fmt:parseDate value="${m.MK_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                   		</span>
+                                        <span>${m.MK_DATE }</span>
                                     </td>
                                 </tr>
                                 </c:forEach>

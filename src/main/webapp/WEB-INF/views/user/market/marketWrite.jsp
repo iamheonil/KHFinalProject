@@ -52,11 +52,11 @@
 
 function submitContents(elClickedObj) {
 	 // 에디터의 내용이 textarea에 적용된다.
-	 oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	 oEditors.getById["mkContent"].exec("UPDATE_CONTENTS_FIELD", []);
 
 	 // 에디터의 내용에 대한 값 검증은 이곳에서
 	 // document.getElementById("ir1").value를 이용해서 처리한다.
-
+	console.log(elClickedObj);
 	 try {
 	     elClickedObj.form.submit();
 	 } catch(e) {}
@@ -101,15 +101,15 @@ function submitContents(elClickedObj) {
   </div>
   <div class="form-group">
     <label>제목</label>
-    <input class="form-control" type="text" name="title" placeholder="제목" required="required">
+    <input class="form-control" maxlength="50" type="text" name="mkTitle" placeholder="제목" required="required">
   </div>
   <div class="form-group">
     <label>가격</label>
-    <input class="form-control" type="number" name="price" id="price">
+    <input class="form-control" type="number" min="0" name="mkPrice" id="mkPrice" required="required">
   </div>
     <div class="form-group">
       <label>내용</label>
-      <textarea required="required" class="form-control" id="content" name="content" rows="10" placeholder="물품에 대한 설명을 작성하세요"></textarea>
+      <textarea required="required" class="form-control" id="mkContent" name="mkContent" rows="10" placeholder="물품에 대한 설명을 작성하세요"></textarea>
     </div>
     <div class="form-group">
       <label>썸네일 사진</label>
@@ -120,13 +120,9 @@ function submitContents(elClickedObj) {
     </div>
     <div class="form-group">
       <label>상세 사진</label>
-	    <input type="file" multiple="multiple" name="thumb" />
+	    <input type="file" multiple="multiple" name="files" />
     </div>
-    <div class="form-group">
-    <button class="btn btn-primary" type="button">
-	   <span>글 올리기</span>
-	</button>
-    </div>
+    <button class="btn btn-primary" onclick="submitContents();"><span>글 올리기</span></button>
 </form>
 </div>
 
@@ -166,7 +162,7 @@ function submitContents(elClickedObj) {
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
- elPlaceHolder: "content",
+ elPlaceHolder: "mkContent",
  sSkinURI: "${pageContext.request.contextPath }/resources/se2/SmartEditor2Skin.html",
  fCreator: "createSEditor2"
 });

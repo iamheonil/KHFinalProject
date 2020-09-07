@@ -70,7 +70,7 @@
   margin: 0 auto;
 }
 .article .article-title {
-  width: 30%;
+  width: 40%;
   float: left;
   height: 300px;
 }
@@ -98,9 +98,12 @@
 }
 
 
-.article .article-title h2 {
+.article .article-title p {
 /*   color: #20247b; */
   font-weight: 600;
+  font-size: 25px;
+  word-wrap: break-word;
+  width: inherit;
 }
 .article .article-title .media {
   padding-top: 10px;
@@ -143,9 +146,10 @@
     width: 60%;
     height: 300px;
     vertical-align: middle;
-    border: 1px solid #ccc;
+/*     border: 1px solid #ccc; */
     float: left;
     text-align: center;
+    position: relative;
 }
 .article-img img{
 	height: 99%;
@@ -198,16 +202,18 @@
 	height: 100%;
 	text-align: center;
 	vertical-align: middle;
+	position: absolute;
+	top: 0px;
 }
 
 .finishText{
 	width: 100px;
 	line-height: 30px;
-	background-color: rgba(200, 200, 200, 1);
+	background-color: rgba(150, 150, 150, 1);
 	color: white;
 	font-weight: bold;
 	border-radius: 5px;
-	margin: 103px auto;
+	margin: 139px auto;
 }
 
 .btn-finish{
@@ -285,7 +291,7 @@ function deleteMK(mkno){
                		</c:if>
             	  <div class="userInfo">
             	  	<div class="userId">${market.USER_ID }</div>
-            	  	<div class="date"><fmt:parseDate value="${market.MK_DATE }" pattern="yyyyMMdd" var="date"/><fmt:formatDate value="${date }" pattern="yyyy.MM.dd."/></div>
+            	  	<div class="date">${market.MK_DATE }</div>
             	  </div>
                </div>
             	  <div class="text-muted pull-right userAct">
@@ -304,15 +310,12 @@ function deleteMK(mkno){
                    <img src="${pageContext.request.contextPath }/resources/images/noimage.gif" title="" alt="메인 이미지">
                </c:if>
                <c:if test="${!empty market.MK_THUMB_RENAME }">
-	           	   	<c:if test="${market.MK_STATE eq 0 }">
-	                   <img src="${pageContext.request.contextPath }/resources/upload/${market.MK_THUMB_RENAME }" title="" alt="">
-	               	</c:if>
-	                <c:if test="${market.MK_STATE eq 1 }">
-	                	<div class="finishImg">
-	                   		<img src="${pageContext.request.contextPath }/resources/upload/${market.MK_THUMB_RENAME }" title="" alt="">
-	               			<div class="finishText">판매 완료</div>
-	               		</div>
-	                </c:if>
+                   <img src="${pageContext.request.contextPath }/resources/upload/${market.MK_THUMB_RENAME }" title="" alt="">
+                </c:if>
+                <c:if test="${market.MK_STATE eq 1 }">
+                	<div class="finishImg">
+               			<div class="finishText">판매 완료</div>
+               		</div>
                 </c:if>
                </div>
                <div class="article-title">
@@ -323,7 +326,7 @@ function deleteMK(mkno){
                			<c:if test="${market.MK_STATE eq 1 }" >
 		                   <h6 class="finish">판매완료</h6>
                			</c:if>
-						<h2>${market.MK_TITLE }</h2>
+						<div><p>${market.MK_TITLE }</p></div>
 	                   <div>
 	                   	<h4>${market.MK_PRICE }원</h4>
 	                   </div>

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.MkFile;
 
 import common.util.Paging;
@@ -33,6 +34,22 @@ public class UserMarketDao {
 
 	public int selectCntAllMK(String search) {
 		return sqlSession.selectOne(namespace + "selectCntAllMK", search);
+	}
+
+	public int insertMarket(Market market) {
+		return sqlSession.insert(namespace + "insertMarket", market);
+	}
+
+	public int getNextNo() {
+		return sqlSession.selectOne(namespace + "getNextNo");
+	}
+
+	public void insertThumb(Map<String, String> f) {
+		sqlSession.insert(namespace + "insertThumb", f);
+	}
+
+	public void insertFile(Map<String, String> f) {
+		sqlSession.insert(namespace + "insertFile", f);
 	}
 
 }
