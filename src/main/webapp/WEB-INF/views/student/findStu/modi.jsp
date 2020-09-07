@@ -198,7 +198,7 @@ $(document).ready(function(){
 		    <div class="form-group">
 		    	<label class="col-sm-2 control-label">제목</label>
 			     <div class="col-sm-10">
-			       <input type="text" class="form-control" name="findStuTitle" id="findStuTitle" value="${findStudentOne.FIND_STU_CONTENT }" required="required">
+			       <input type="text" class="form-control" name="findStuTitle" id="findStuTitle" value="${findStudentOne.FIND_STU_TITLE }" required="required">
 			     </div>
 		    </div>
 		 
