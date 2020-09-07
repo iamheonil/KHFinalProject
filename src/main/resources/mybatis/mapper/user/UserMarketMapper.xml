@@ -6,8 +6,42 @@
   
   <mapper namespace="dao.UserMarketDao">
   
-  <select id="getMarketInfo" parameterType="int" resultType="MARKET">
- 	SELECT * FROM market
-	WHERE mk_no = #{mkno}
+  <select id="getMarketInfo" parameterType="int" resultType="map">
+ 	select m.*, s.user_id, t.*, c.tch_file_rename from market m
+	left outer join membership s
+	on(m.mk_writer = s.user_no)
+    left outer join mk_thumb t
+	on(m.mk_no = t.mk_no)
+    left outer join teacherfile c
+    on(m.mk_writer = c.user_no)
+	where m.mk_no = #{mkno}
+  </select>
+  
+  <select id="getMarketFile" parameterType="int" resultType="MKFILE">
+  	SELECT * FROM mk_file
+  	WHERE mk_no = #{mkno}
+  </select>
+
+  <select id="getMarketlist" parameterType="PAGING" resultType="map">
+	SELECT * FROM (
+  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * from MARKET m
+				LEFT JOIN MK_THUMB f
+				ON(m.mk_no = f.mk_no)
+				LEFT JOIN membership s
+				ON(m.mk_writer = s.user_no)
+				WHERE m.mk_state != 2
+				AND MK_TITLE LIKE '%' || #{search} || '%'
+				ORDER BY m.MK_NO desc
+			) t
+		) x
+	WHERE no between #{startNo} AND #{endNo}
+  </select>
+
+  <select id="selectCntAllMK" parameterType="map" resultType="int">
+	SELECT count(*) from MARKET m
+	WHERE m.mk_state != 2
+	AND MK_TITLE LIKE '%' || #{search} || '%'
   </select>
   </mapper>

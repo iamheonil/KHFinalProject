@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="StuApply">
+
+	<select id="selectApplyListCnt" resultType="int">
+		select count(*) from (
+			select * from connected_lesson
+			where student = #{userNo}
+			and is_connected = 0
+			or is_connected = 2
+		)
+	</select>
+	
+	
+	<select id="selectApplyList" resultType="map">
+		SELECT * FROM (
+		    SELECT rownum no, t.*
+		    FROM (
+		        SELECT c.*, m.user_name, f.lesson_title, f.max_people, f.lesson_content, f.lesson_subject FROM connected_lesson c, membership m, find_lesson f
+		        where m.user_no = c.teacher
+		        and f.lesson_no = c.lesson_no
+		        and (is_connected = 0
+		        or is_connected = 2)
+		        and student = #{user.userNo}
+		    ) t
+		    ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+		
+	</select>
+	
+	<select id="selectTeacherByNo" resultType="map">
+<!-- 		select user_name, user_id, user_birth, user_email, user_gender from membership -->
+<!-- 		where user_no = #{teacherNo} -->
+		select m.user_name, m.user_id, m.user_birth, m.user_email, m.user_gender, a.tch_file_no, a.tch_file_rename, a.save_path
+	    from membership m, (select f.tch_file_no, f.user_no fuser_no, f.tch_file_rename, f.save_path from teacherfile f
+	    where tch_file_rename like 'profile%') a
+	    where m.user_no = a.fuser_no(+)
+	    and m.user_no = #{teacherNo}
+	</select>
+	
+	<delete id="cancelApplyByNo">
+		delete from connected_lesson
+		where conn_lesson_no = #{connLessonNo}
+	</delete>
+	
+	
+	
+</mapper>  
