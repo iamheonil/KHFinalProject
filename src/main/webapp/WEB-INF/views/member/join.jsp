@@ -184,6 +184,19 @@ function emailChk(){
 	
 	}
 
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+		
+			var reader = new FileReader();
+			reader.onload = function (e) {
+			$('#fakeAddr').attr('src', e.target.result);
+		}
+		
+		reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	
 
 $(document).ready(function() {
 
@@ -280,9 +293,10 @@ $(document).ready(function() {
 // 증빙서류
 $("#1").click(function(){
     $("#resume").html(
-    		'<label class="col-form-label col-4">증빙서류</label>' +
+    		'<label class="col-form-label col-4">프로필사진 <br><h6>학생들에게 보여지는 사진입니다!</h6></label>' +
 			'<div class="col-8 float">'+
-               ' <input type="file" id="joinFiles" name="joinFiles" required="required">' +
+			   ' <img id="fakeAddr" src="#" alt="프로필사진 미리보기" style="width:300px; height:300px;"/>' +
+               ' <input type="file" id="joinFiles" name="joinFiles" accept="image/*" required="required" onchange="readURL(this);">' +
             '</div>'		
     )
 
@@ -462,7 +476,7 @@ function finalChecked() {
 <!-- 카카오 지도 API 마무리 -->
 
 <body>
-     <div class="container">
+    <div class="container">
     <div class="row">
     <div class="col-sm-12 " >
     <div class="col-sm-3"></div>

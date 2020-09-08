@@ -257,11 +257,11 @@ body {
 	        	
 					<ul class="gtco-list-link footerMenu" id="short">
 						<p>SUPPORT</p>
-						<li><a href="#">문의하기</a></li>
+						<li><a href="/ss/contact">문의하기</a></li>
 					</ul>
 					<ul class="gtco-list-link footerMenu" id="short">
 						<p>ABOUT US</p>
-						<li><a href="#">제작자 소개</a></li>
+						<li><a href="/ss/introduce">제작자 소개</a></li>
 						<li><a href="#">사이트 소개</a></li>
 					</ul>
 					<ul class="gtco-list-link footerMenu" id="short">
