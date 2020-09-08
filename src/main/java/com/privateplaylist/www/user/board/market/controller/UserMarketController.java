@@ -28,6 +28,7 @@ public class UserMarketController {
 	@Autowired
 	private UserMarketService userMarketService;
 	
+	// 중고장터 메인
 	@RequestMapping("/market")
 	public ModelAndView userMarket(HttpSession session, @RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "") String search) {
 		ModelAndView mav = new ModelAndView();
@@ -43,7 +44,7 @@ public class UserMarketController {
 		return mav;
 	}
 
-
+	// 중고장터 상세보기
 	@RequestMapping("/market/detail")
 	public ModelAndView marketDetail(HttpSession session, @RequestParam int mkno) {
 		ModelAndView mav = new ModelAndView();
@@ -74,7 +75,7 @@ public class UserMarketController {
 		return mav;
 	}
 	
-
+	// 중고장터 글쓰기
 	@RequestMapping(value = "/market/write", method = RequestMethod.GET)
 	public ModelAndView marketWrite(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -84,7 +85,7 @@ public class UserMarketController {
 		mav.setViewName("user/market/marketWrite");
 		return mav;
 	}
-
+	// 중고장터 글쓰기
 	@RequestMapping(value = "/market/write", method = RequestMethod.POST)
 	public ModelAndView marketInsert(@RequestParam List<MultipartFile> files, @RequestParam List<MultipartFile> thumb
 			, HttpSession session, Market market) throws FileException {
@@ -104,6 +105,7 @@ public class UserMarketController {
 		return mav;
 	}
 
+	// 중고장터 수정
 	@RequestMapping("/market/update")
 	public ModelAndView marketUpdate(HttpSession session, @RequestParam int mkno) {
 		ModelAndView mav = new ModelAndView();
@@ -134,6 +136,25 @@ public class UserMarketController {
 		return mav;
 	}
 	
+	// 중고장터 판매 완료
+	@RequestMapping(value = "/market/finish", method = RequestMethod.GET)
+	public ModelAndView marketFinish(HttpSession session, @RequestParam int mkno) {
+		ModelAndView mav = new ModelAndView();
+		
+		int res = userMarketService.marketFinish(mkno);
+		mav.setViewName("redirect:/board/market/detail?mkno="+mkno);
+		return mav;
+	}
+	
+	// 글 삭제
+	@RequestMapping(value = "/market/delete", method = RequestMethod.GET)
+	public ModelAndView marketDelete(HttpSession session, @RequestParam int mkno) {
+		ModelAndView mav = new ModelAndView();
+		
+		int res = userMarketService.marketDelete(mkno);
+		mav.setViewName("redirect:/board/market");
+		return mav;
+	}
 	
 	
 	

@@ -63,4 +63,24 @@
   <select id="getNextNo" resultType="int">
   	SELECT market_SEQ.nextval FROM dual
   </select>
+  
+  <update id="marketFinish">
+  	UPDATE market SET mk_state = 1
+  	WHERE mk_no = #{mkno}  
+  </update>
+
+  <update id="marketDelete">
+  	UPDATE market SET mk_state = 2
+  	WHERE mk_no = #{mkno}  
+  </update>
+  
+  <delete id="marketFileDelete">
+  	DELETE mk_file
+  	WHERE mk_no = #{mkno}  
+  </delete>
+
+  <delete id="marketThumbDelete">
+  	DELETE mk_thumb
+  	WHERE mk_no = #{mkno}  
+  </delete>
   </mapper>

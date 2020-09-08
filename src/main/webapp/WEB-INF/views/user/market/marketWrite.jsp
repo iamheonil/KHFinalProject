@@ -101,7 +101,7 @@ function submitContents(elClickedObj) {
   </div>
   <div class="form-group">
     <label>제목</label>
-    <input class="form-control" maxlength="50" type="text" name="mkTitle" placeholder="제목" required="required">
+    <input class="form-control" maxlength="100" type="text" name="mkTitle" placeholder="제목" required="required">
   </div>
   <div class="form-group">
     <label>가격</label>

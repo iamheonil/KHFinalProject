@@ -100,10 +100,11 @@
 
 .article .article-title p {
 /*   color: #20247b; */
-  font-weight: 600;
-  font-size: 25px;
+  font-size: 18px;
   word-wrap: break-word;
   width: inherit;
+  height: 164px;
+  line-height: 28px;
 }
 .article .article-title .media {
   padding-top: 10px;
@@ -239,6 +240,16 @@ function deleteMK(mkno){
 	}
 }
 
+function finishSales(mkno){
+	
+	var chk = confirm("판매를 완료하시겠습니까?");
+	
+	if( chk == true){
+		location.href = "${pageContext.request.contextPath}/board/market/finish?mkno=" + mkno;
+	}
+	
+	
+}
 
 
 
@@ -332,7 +343,7 @@ function deleteMK(mkno){
 	                   </div>
 	                   <c:if test="${chkWriter }">
 	                   		<c:if test="${market.MK_STATE eq 0 }">
-			                  	 <button type="button" class="btn btn-success" id="BtnFinishSales">판매 끝내기</button>
+			                  	 <button type="button" class="btn btn-success" onclick="finishSales(${market.MK_NO });">판매 끝내기</button>
 	                   		</c:if>
 	                   		<c:if test="${market.MK_STATE eq 1 }">
 			                  	 <button type="button" class="btn btn-finish" disabled="disabled">판매완료</button>

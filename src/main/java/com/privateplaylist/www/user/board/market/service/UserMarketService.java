@@ -52,4 +52,14 @@ public interface UserMarketService {
 	 */
 	public int insertMarket(Market market, List<MultipartFile> thumb, List<MultipartFile> files, String root) throws FileException;
 
+	/**
+	 * 중고마켓 판매종료
+	 * @param mkno
+	 * @return
+	 */
+	public int marketFinish(int mkno);
+
+	// 중고장터 글 삭제
+	public int marketDelete(int mkno);
+
 }

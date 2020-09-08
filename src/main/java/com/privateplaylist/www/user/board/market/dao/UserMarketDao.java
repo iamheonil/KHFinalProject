@@ -52,4 +52,20 @@ public class UserMarketDao {
 		sqlSession.insert(namespace + "insertFile", f);
 	}
 
+	public int marketFinish(int mkno) {
+		return sqlSession.update(namespace + "marketFinish", mkno);
+	}
+
+	public int marketDelete(int mkno) {
+		return sqlSession.update(namespace + "marketDelete", mkno);
+	}
+
+	public void marketFileDelete(int mkno) {
+		sqlSession.delete(namespace + "marketFileDelete", mkno);
+	}
+
+	public void marketThumbDelete(int mkno) {
+		sqlSession.delete(namespace + "marketThumbDelete", mkno);
+	}
+
 }

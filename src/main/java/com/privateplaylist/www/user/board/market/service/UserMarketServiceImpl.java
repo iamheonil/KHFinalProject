@@ -87,4 +87,22 @@ public class UserMarketServiceImpl implements UserMarketService{
 		return result;
 	}
 
+	@Override
+	public int marketFinish(int mkno) {
+		int res = userMarketDao.marketFinish(mkno);
+		return res;
+	}
+
+	@Override
+	public int marketDelete(int mkno) {
+		
+		// 글 삭제
+		int res = userMarketDao.marketDelete(mkno);
+		
+		// 파일 삭제
+		userMarketDao.marketThumbDelete(mkno);
+		userMarketDao.marketFileDelete(mkno);
+		return res;
+	}
+
 }
