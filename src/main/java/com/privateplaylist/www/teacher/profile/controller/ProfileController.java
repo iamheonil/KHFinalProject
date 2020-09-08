@@ -36,18 +36,17 @@ public class ProfileController {
 	//마이페이지 비밀번호 확인 jsp 
 	@RequestMapping("/chkpassword")
 	public String  chkpassword(Model model,HttpSession session) {
-//		System.out.println("/teacher/profile/chkpassword");
+		//세션값 가지고 오기
+		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-//		//세션값 가지고 오기
-//		Member loginUser = (Member) session.getAttribute("loginUser");
-//		TeacherFile teacherFile = (TeacherFile) session.getAttribute("teacherFile");
-//		
-//		//모델값 전달
-//		model.addAttribute("loginUser", loginUser);
-//		model.addAttribute("teacherFile", teacherFile);
+		//사진 가지고 오기
+		TeacherFile teacherFile = profileService.selectFile(loginUser);
 		
-//		System.out.println(loginUser);
-//		System.out.println(teacherFile);
+		//모델값 전달
+		model.addAttribute("loginUser", loginUser);
+		
+		//jsp 전달
+		model.addAttribute("teacherFile", teacherFile);
 		
 		return "/teacher/profile/chkpassword";
 	}	

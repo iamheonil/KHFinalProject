@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.privateplaylist.www.dto.Question;
 import com.privateplaylist.www.dto.QuestionComm;
+import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.teacher.board.service.TeacherQuestionService;
 
 import common.util.Paging;
@@ -28,9 +30,11 @@ public class TeacherQuestionController {
 	
 	//질문게시판 정보 전체 조회
 			@RequestMapping("/list")
-			public String questionList(Model model,HttpServletRequest req) {
+			public String questionList(Model model,HttpServletRequest req,HttpSession session) {
 				System.out.println("/admin/question/list");
 				
+				//세션값 가지고 오기
+				Member loginUser = (Member) session.getAttribute("loginUser");
 				//요청 파라미터를 전달하여 paging 객체 생성하기
 				Paging paging = teacherQuestionService.questionListPaging(req);
 						
@@ -42,6 +46,8 @@ public class TeacherQuestionController {
 				
 				//페이징 결과 전달
 				model.addAttribute("paging", paging);
+				//
+				model.addAttribute("loginUser",loginUser);
 				System.out.println(questionList);
 				
 //				System.out.println(questionList);
@@ -52,8 +58,9 @@ public class TeacherQuestionController {
 			
 			//질문게시판 글 삭제하기 (상세보기 페이지에서 삭제)
 			@RequestMapping(value="/delete")
-			public String  questionDelete(Model model,@RequestParam int questionNo) {
-				
+			public String  questionDelete(Model model,@RequestParam int questionNo,HttpSession session) {
+				//세션값 가지고 오기
+				Member loginUser = (Member) session.getAttribute("loginUser");
 				//글 삭제하기
 				int res = teacherQuestionService.deleteQuestion(questionNo);
 				
@@ -66,8 +73,9 @@ public class TeacherQuestionController {
 				//삭제 완료
 			}
 			@RequestMapping(value="/deleteComm")
-			public String  questionCommDelete(Model model,@RequestParam int questionNo) {
-				
+			public String  questionCommDelete(Model model,@RequestParam int questionNo,HttpSession session) {
+				//세션값 가지고 오기
+				Member loginUser = (Member) session.getAttribute("loginUser");
 				//글 삭제하기
 				int res = teacherQuestionService.deleteQuestionComm(questionNo);
 				
@@ -81,9 +89,10 @@ public class TeacherQuestionController {
 			
 			//질문게시판 글 삭제하기 (선택 삭제)
 			@RequestMapping(value="/idxdelete")
-			public String  questionIdxDelete(Model model,HttpServletRequest req) {
+			public String  questionIdxDelete(Model model,HttpServletRequest req,HttpSession session) {
 				System.out.println("/teacher/question/idxdelete");
-				
+				//세션값 가지고 오기
+				Member loginUser = (Member) session.getAttribute("loginUser");
 				//root context
 				String root = req.getContextPath();
 				
@@ -110,11 +119,12 @@ public class TeacherQuestionController {
 			
 			//검색
 			@RequestMapping(value="/search",method = RequestMethod.POST )
-			public String questionSearch(Model model,@RequestParam String keyword,HttpServletRequest req) {
+			public String questionSearch(Model model,@RequestParam String keyword,HttpServletRequest req,HttpSession session) {
 				
 				//root context
 				String root = req.getContextPath();
-				
+				//세션값 가지고 오기
+				Member loginUser = (Member) session.getAttribute("loginUser");
 				//요청 파라미터를 전달하여 paging 객체 생성하기
 				Paging paging = teacherQuestionService.questionSearchPaging(req,keyword);
 				
@@ -149,10 +159,11 @@ public class TeacherQuestionController {
 			
 			//질문게시판 세부정보 보기
 			@RequestMapping(value="/detail")
-			public String  questionDetail(Model model,@RequestParam int questionNo ) {
+			public String  questionDetail(Model model,@RequestParam int questionNo,HttpSession session ) {
 				System.out.println("/admin/question/detail");
 //				System.out.println("questionNo"+questionNo);
-				
+				//세션값 가지고 오기
+				Member loginUser = (Member) session.getAttribute("loginUser");
 				//질문게시판 정보 조회 one
 				Question questionone = teacherQuestionService.selectQuestionone(questionNo);
 				List<QuestionComm> commList = teacherQuestionService.getReplyList(questionNo);
@@ -162,7 +173,7 @@ public class TeacherQuestionController {
 				//모델값 전달
 				model.addAttribute("questionone", questionone);
 				model.addAttribute("commList",commList);
-				
+				model.addAttribute("loginUser",loginUser);
 				for (QuestionComm questionComm : commList) {
 					System.out.println("questuonComm"+questionComm);
 				}

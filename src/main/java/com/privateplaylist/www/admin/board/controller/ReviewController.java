@@ -36,9 +36,9 @@ public class ReviewController {
 				Paging paging = reviewService.reviewListPaging(req);
 						
 				//공지사항 정보 전체 조회 list
-				List<Review> reviewList = reviewService.selectReviewList(paging);
+				List<Map<String,Object>> reviewList = reviewService.selectReviewList(paging);
 				
-//				System.out.println(reviewList);
+				System.out.println(reviewList);
 				//모델값 전달
 				model.addAttribute("reviewList", reviewList);
 				

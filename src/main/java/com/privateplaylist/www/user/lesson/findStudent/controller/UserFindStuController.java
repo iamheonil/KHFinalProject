@@ -20,7 +20,7 @@ import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.student.findStu.service.FindStuService;
 import com.privateplaylist.www.user.lesson.findStudent.service.UserFindStuService;
 
-import common.util.Paging;
+import common.util.Paging12;
 
 //이인주 : user > find_student > Controller
 
@@ -50,7 +50,7 @@ public class UserFindStuController {
 //		}
 		
 		//요청 파라미터를 전달하여 paging 객체 생성하기
-		Paging paging = userFindStuService.userFindStuListPaging(req);
+		Paging12 paging = userFindStuService.userFindStuListPaging(req);
 		
 		//학생 찾기 selectList()
 		List<Map<String, Object>> userFindStuList = userFindStuService.userFindStuList(paging);

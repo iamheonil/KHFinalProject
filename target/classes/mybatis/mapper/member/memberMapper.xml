@@ -23,7 +23,6 @@
     <select id="selectTeacherFile" resultType="TEACHERFILE">
       SELECT * FROM TEACHERFILE 
       WHERE USER_ID = #{userId}
-      and tch_file_rename like '%' || 'profile' || '%'
     </select>
 
     <select id="selectId" resultType="int">

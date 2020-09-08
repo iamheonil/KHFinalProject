@@ -8,6 +8,15 @@
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
@@ -78,15 +87,21 @@ body{
 	margin-right : 5px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	height: 250px;
-	width: 520px;
+	height: 180px;
+	width: 279px;
+	display: inline-block;
 }
 
 #findtitle{
-	width: auto;
-	text-align: center;
-	line-height: 4;
-	font-weight: bold;
+	text-align: left;
+	margin: 0;
+	line-height: 3;
+}
+
+#titlebox{
+	height : 600px;
+	width: 1150px;
+	margin: 0 auto;
 }
 
 #noneboard{
@@ -111,7 +126,7 @@ body{
 .txt_line_content { 
 	/* 한 줄 자르기 */
 	display: inline-block;
-	width: 470px; 
+	width: 270px; 
 	white-space: nowrap; 
 	overflow: hidden; 
 	text-overflow: ellipsis;
@@ -129,7 +144,7 @@ body{
 }
 
 .txt_line_title { 
-	width:470px; 
+	width: 270px; 
 	padding:0; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -143,14 +158,18 @@ body{
  	padding-left: 15%;
 }
 
-#writebtn{
-	color: white;
+.anone{
+	color: black;
 	text-decoration: none;
 }
 
-#writebtn:hover{
-	color: tomato;
+.anone:hover{
+	color: black;
 	text-decoration: none;
+}
+
+.message{
+	color: black;
 }
 </style>
 
@@ -262,10 +281,11 @@ $(function(){
 
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-		<h4 id="findtitle">FIND STUDENT BOARD</h4>
-		
-		
 		<div class="container bootstrap snippets bootdey">
+			<div id="titlebox">
+				<h4 id="findtitle">학생찾기</h4>
+				<hr>
+			</div>
 		
 			<!-- 게시글이 없을 때  -->
 			<c:if  var="findstu" test="${empty userFindStuList }">
@@ -277,26 +297,19 @@ $(function(){
 			<c:if  var="findstu" test="${!empty userFindStuList }">
 			<!-- 값 출력 -->
 			<c:forEach items="${userFindStuList }" var="findstu" >
-		    
+		    <div class="panel">
 		        <div class="col-sm-6">
-		            <div class="panel">
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
 		                       
-		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Message"><i class="fa fa-envelope-o"></i></a>&nbsp;ID.${findstu.USER_ID }</h4>
-		                            <p class="text-muted txt_line_title"><a href="${pageContext.request.contextPath}/lesson/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
-		                            <p class="text-muted">${findstu.FIND_STU_LOC } | ${findstu.FIND_STU_SUBJECT }</p>
-		                            
-		                            <c:if test="${findstu.FIND_STU_STATE eq 0}">
-		                           		<p class="text-muted">모집</p>
-		                            </c:if>
-		                            
-		                            <c:if test="${findstu.FIND_STU_STATE eq 1}">
-		                           		<p class="text-muted">마감</p>
-		                            </c:if>
-		                            
-		                            <div class="text-muted txt_line_content">${findstu.FIND_STU_CONTENT }</div>
-		                            <p class="text-muted">${findstu.FIND_STU_DATE } </p>
+		                            <p class="text-muted txt_line_title"><a class="anone" href="${pageContext.request.contextPath}/lesson/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
+		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Message"><i class="fa fa-envelope-o" id="message"></i></a>&nbsp;${findstu.USER_ID }</h4>
+		                            <p class="text-muted">
+		                           	 <i class="fa fa-map-marker"style="margin-right: 16px; margin-left: 0;">&nbsp;&nbsp;${findstu.FIND_STU_LOC }</i><br>
+								     <i class="fa fa-file-o" style="margin-right: 16px; margin-left: 0;
+								     ">&nbsp;&nbsp;${findstu.FIND_STU_SUBJECT }</i><br> 
+		                             <i class="glyphicon glyphicon-ok" style="margin-right: 16px; margin-left: 0;">&nbsp;${findstu.FIND_STU_DATE }</i>
+		                           </p>
 		                    </div>
 		                    
 		                </div>
