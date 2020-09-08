@@ -17,7 +17,7 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<Review> selectReviewList(Paging paging) {
+	public List<Map<String, Object>> selectReviewList(Paging paging) {
 		return sqlSession.selectList("Review.selectReviewList",paging);
 	}
 

@@ -96,7 +96,7 @@ $(document).ready(function(){
 		
 			<!-- 값 출력 -->
 			<c:forEach items="${questionList }" var="questionList">
-			
+			<c:if test="${loginUser.userNo eq questionList.userNo }">
 		 		<input type="hidden" value="${questionList.questionNo}" name="no" id="no" />
 		 		
 			<tr>
@@ -109,6 +109,8 @@ $(document).ready(function(){
 				<td>${questionList.questionContent }</td>
 				<td>${questionList.questionDate }</td>
 			</tr>
+			
+			</c:if>
 			</c:forEach>
 	</c:if>
 		</table>
