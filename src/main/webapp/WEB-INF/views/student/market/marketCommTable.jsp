@@ -24,11 +24,7 @@
                                         <a href="#" class="commContent">${m.MK_COMM_CONTENT }</a>
                                     </td>
                                     <td  class="text-center">
-                                        <span>
-                                        <fmt:parseDate value="${m.MK_COMM_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                        
-                                        </span>
+                                        <span>${m.MK_COMM_DATE }</span>
                                     </td>
                                     <td>
                                         <a href="#" class="table-link danger">

@@ -8,13 +8,17 @@ public class Review {
 	private int connLessonNo;
 	private String reviewDate;
 	private int starPoint;
+	private int reviewState;
+	
+	
+	
 	
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", reviewContent=" + reviewContent + ", userNo=" + userNo
-				+ ", connLessonNo=" + connLessonNo + ", reviewDate=" + reviewDate + ", starPoint=" + starPoint + "]";
+				+ ", connLessonNo=" + connLessonNo + ", reviewDate=" + reviewDate + ", starPoint=" + starPoint
+				+ ", reviewState=" + reviewState + "]";
 	}
-	
 	public int getReviewNo() {
 		return reviewNo;
 	}
@@ -52,6 +56,11 @@ public class Review {
 		this.starPoint = starPoint;
 	}
 	
-	
+	public int getReviewState() {
+		return reviewState;
+	}
+	public void setReviewState(int reviewState) {
+		this.reviewState = reviewState;
+	}
 	
 }

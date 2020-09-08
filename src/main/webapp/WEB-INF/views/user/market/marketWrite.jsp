@@ -62,6 +62,10 @@ function submitContents(elClickedObj) {
 	 } catch(e) {}
 
 }
+
+function goback(){
+	history.go(-1);	
+}
 </script>
 
 <body>
@@ -101,28 +105,29 @@ function submitContents(elClickedObj) {
   </div>
   <div class="form-group">
     <label>제목</label>
-    <input class="form-control" maxlength="50" type="text" name="mkTitle" placeholder="제목" required="required">
+    <input class="form-control" maxlength="100" type="text" name="mkTitle" placeholder="제목" required="required">
   </div>
   <div class="form-group">
     <label>가격</label>
-    <input class="form-control" type="number" min="0" name="mkPrice" id="mkPrice" required="required">
+    <input style="width: 200px;" class="form-control" type="number" min="0" name="mkPrice" id="mkPrice" required="required">
   </div>
     <div class="form-group">
       <label>내용</label>
-      <textarea required="required" class="form-control" id="mkContent" name="mkContent" rows="10" placeholder="물품에 대한 설명을 작성하세요"></textarea>
+      <textarea maxlength="2000" required="required" class="form-control" id="mkContent" name="mkContent" rows="10" placeholder="물품에 대한 설명을 작성하세요"></textarea>
     </div>
     <div class="form-group">
       <label>썸네일 사진</label>
 	    <input type="file" name="thumb" />
-	    <div id="thumbImg">
-	    
-	    </div>
+<!-- 	    <div id="thumbImg"></div> -->
     </div>
     <div class="form-group">
       <label>상세 사진</label>
 	    <input type="file" multiple="multiple" name="files" />
     </div>
-    <button class="btn btn-primary" onclick="submitContents();"><span>글 올리기</span></button>
+    <div style="text-align: center;">
+	    <button class="btn btn-primary" onclick="submitContents();"><span>글 올리기</span></button>
+	    <button class="btn btn-disable" type="button" onclick="goback();"><span>취소</span></button>
+	</div>
 </form>
 </div>
 

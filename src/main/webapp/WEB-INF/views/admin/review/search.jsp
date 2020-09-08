@@ -161,20 +161,20 @@ $(document).ready(function(){
 	<!-- 값 출력 -->
 	<c:forEach items="${reviewSearchList }" var="review" >
 	<tr>
-	    <td><input type="checkbox" name="checkRow" value="${review.reviewNo}" id="checkRow"/></td>
-		<td>${review.reviewNo }</td>
-		<td><div class="txt_line_content">${review.userNo }</div></td>
+	    <td><input type="checkbox" name="checkRow" value="${review.REVIEW_NO}" id="checkRow"/></td>
+		<td>${review.REVIEW_NO }</td>
+		<td><div class="txt_line_content">${review.USER_ID }</div></td>
 		<td>
 			<div class="txt_line_title">
-				${review.reviewContent }
+				${review.REVIEW_CONTENT }
 			</div>
 		</td>
 <%-- 		<td><div class="txt_line_content">${review.starPoint}</div></td> --%>
 		
-		<td><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.starPoint }">★</c:forEach></div></td>
+		<td><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.STAR_POINT }">★</c:forEach></div></td>
 		
 		
-		<td>${review.reviewDate }</td>
+		<td>${review.REVIEW_DATE }</td>
 	</tr>
 	</c:forEach>
 	</table>

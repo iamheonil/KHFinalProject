@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MemberFindLesson">
-	<select id="selectTotalCnt" resultType="int">
+	<select id="selectTotalCnt" resultType="int"><!-- 페이징을 위한 옵션에 따른 과외 리스트의 
+			수 검색 -->
 		select count(*) from
 		(select * from find_lesson f
 		inner join membership
@@ -44,7 +45,7 @@
 		)
 	</select>
 
-	<select id="selectByOption" resultType="map">
+	<select id="selectByOption" resultType="map"><!-- 옵션에 따른 과외 리스트 가져오기 -->
 		select * from (
 		select
 		rownum rnum, c.* from(
@@ -89,13 +90,57 @@
 		#{endNo}
 	</select>
 
-	<select id="selectStarAndReview" resultType="map"><!-- 과외목록에 따른 별점과 리뷰의 수 가져오기  -->
+	<select id="selectStarAndReview" resultType="map"><!-- 과외목록에 따른 별점과 리뷰의 
+			수 가져오기 -->
 		select c.lesson_no,avg(r.star_point) star,count(*)review from review r
 		inner join connected_lesson c
 		on r.conn_lesson_no=c.conn_lesson_no
-		GROUP BY c.lesson_no 
+		GROUP BY c.lesson_no
 
 	</select>
+
+	<select id="selectLessonByLessonNo" resultType="map"><!-- 상세 페이지를 위한 과외번호에 
+			대한 과외 정보와 선생님 정보 select -->
+
+		SELECT f.*,m.*, NVL(TRUNC(MONTHS_BETWEEN(SYSDATE,
+		TO_DATE(SUBSTR(user_birth, 1, 4), 'YYYY'))/12), 0) AS AGE
+		from find_lesson f
+		inner join membership m
+		on
+		f.user_no=m.user_no
+		where
+		f.lesson_no=#{lessonNo}
+	</select>
+
+	<select id="selectlessonFile" resultType="map"><!-- 과외 사진 가져오기 -->
+		select * from
+		findlesson_file
+		where lesson_no=#{lessonNo}
+	</select>
+
+	<select id="selectTeacherFile" resultType="map"><!-- 선생님 프로필 가져오기 -->
+		select * from
+		teacherfile where user_no=#{userNo}
+	</select>
+
+	<select id="selectReviewByLessonNo" resultType="map"> <!-- 리뷰 가져오기 -->
+		 select r.*,m.user_id from review r
+		inner join connected_lesson c
+		on
+		r.conn_lesson_no=c.conn_lesson_no
+        inner join membership m
+        on
+        m.user_no=r.user_no
+		where c.lesson_no=#{lessonNo}
+	</select>
+	
+	<select id="selectCntWish" resultType="int">
+		select count(*) from wishlist where user_no=#{userNo} and lesson_no=#{lessonNo}
+	</select>
+	
+	<insert id="insertWishList">
+		insert into wishlist values(wishlist_seq.nextval,#{lessonNo},#{userNo},sysdate)
+	</insert>
 
 
 

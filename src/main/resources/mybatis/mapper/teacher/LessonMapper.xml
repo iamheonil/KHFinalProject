@@ -15,10 +15,9 @@
 		<result column="tch_file_rename" property="tchFileRename"/>
 		<result column="SAVE_PATH" property="savePath"/>
 	</resultMap>
+	
 	<select id="selectTeacherFile" resultMap="fileData">
-		select
-		*
-		from teacherfile
+		select * from teacherfile
 		where user_no = #{userNo}
 	</select>
 

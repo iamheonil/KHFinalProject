@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import common.util.Paging;
+import common.util.Paging12;
 
 //20200904 이인주 : user > find_student > Dao
 
@@ -23,7 +24,7 @@ public class UserFindStuDao {
 	}
 
 	//검색 전 리스트
-	public List<Map<String, Object>> userFindStuList(Paging paging) {
+	public List<Map<String, Object>> userFindStuList(Paging12 paging) {
 		return sqlSession.selectList("UserFindStu.userFindStuList",paging);
 	}
 
