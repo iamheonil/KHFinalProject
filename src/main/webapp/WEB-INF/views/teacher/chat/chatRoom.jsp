@@ -1,21 +1,7 @@
 <%@page import="com.privateplaylist.www.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style type="text/css">
-</style>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<%@ include file="/WEB-INF/layout/main/header.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/chat.css">
 
@@ -53,6 +39,11 @@ function submitFunction(){//메시지를 전달받아 db에넣고 결과값출�
 var userID='<%=userID%>'
 var toID=searchParam('toID')
 var chatContent=$('#chatContent').val();
+
+if(chatContent==null || chatContent==''){
+	alert("문자를 입력하지 않았습니다")
+	return
+}
 var url="${pageContext.request.contextPath}/chat/submit";
 $.ajax({
 	type:"POST",
@@ -182,8 +173,7 @@ function getInfinateChat(){//채팅리스트를 가져오는 함수를 계속 �
 	},500)
 }
 </script>
-</head>
-<body>
+
 
 <%
 			String messageContent = null;
@@ -233,15 +223,16 @@ else
 		}
 		%>
 
-
+<div class="gtco-services gtco-section">
+		<div class="gtco-container">
 
 	<!-- 실시간 채팅창  -->
 
 	<link
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 		rel="stylesheet">
-	<div class="container bootstrap snippet">
-		<div class="col-xs-12">
+	<div class="container bootstrap snippet col-xs-9" style=" margin-left: 10%;">
+		
 			<div class="panel">
 				<!--Heading-->
 				<div class="panel-heading">
@@ -251,7 +242,7 @@ else
 
 				<!--Widget body-->
 				<div id="demo-chat-body" class="collapse in">
-					<div class="nano has-scrollbar"  style="height: 480px">
+					<div class="nano has-scrollbar"   style="height: 380px;">
 						<div class="nano-content pad-all" tabindex="0"
 							style="right: -17px;" id="chatListBox">
 							<ul class="list-unstyled media-block" id="chatList">
@@ -273,13 +264,16 @@ else
 								<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="Enter message..."></textarea>
 							</div>
 							<div class="col-xs-3">
-								<button type="button" class="btn btn-primary btn-block" style="margin-top: 20px;" id="submit"  onclick="submitFunction();">Send</button>
+								<button type="button" class="btn btn-primary btn-block" style="margin-top: 15px; height:50px;" id="submit"  onclick="submitFunction();">Send</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		
+	</div>
+	
+	</div>
 	</div>
 
 
@@ -334,6 +328,12 @@ $(document).ready(function(){
             
 })
 </script>
+<%@ include file="/WEB-INF/layout/main/footer.jsp"%>
 
-</body>
-</html> 
+
+
+
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>

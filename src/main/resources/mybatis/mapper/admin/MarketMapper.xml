@@ -30,7 +30,7 @@
 		select
 		rownum rnum,n1.*
 		from(select
-		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_file_rename
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_thumb_rename
 		from market m
 		left join mk_thumb t
 		on m.mk_no=t.mk_no
@@ -50,7 +50,7 @@
 		select
 		rownum rnum,n1.*
 		from(select
-		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_file_rename
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_thumb_rename
 		from market m
 		left join mk_thumb t
 		on m.mk_no=t.mk_no
@@ -70,7 +70,7 @@
 		select
 		rownum rnum,n1.*
 		from(select
-		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_file_rename
+		m.mk_no,m.mk_title,m.mk_content,m.mk_date,m.mk_price,m.mk_state,t.mk_thumb_rename
 		from market m
 		left join mk_thumb t
 		on m.mk_no=t.mk_no

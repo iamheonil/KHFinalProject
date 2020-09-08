@@ -91,6 +91,7 @@ public class ChatController {
 		
 		List<Message> chatList=chatService.getChatListByRecent(fromID, toID, 50);
 		
+		
 //		System.out.println("getten:"+chatList);
 		if(chatList.size()==0)return "";
 		for (int i = 0; i <chatList.size(); i++) {
