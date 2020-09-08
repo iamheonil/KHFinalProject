@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.privateplaylist.www.dto.Market;
+import com.privateplaylist.www.dto.MkComm;
 import com.privateplaylist.www.dto.MkFile;
 
 import common.util.Paging;
@@ -51,5 +52,43 @@ public class UserMarketDao {
 	public void insertFile(Map<String, String> f) {
 		sqlSession.insert(namespace + "insertFile", f);
 	}
+
+	public int marketFinish(int mkno) {
+		return sqlSession.update(namespace + "marketFinish", mkno);
+	}
+
+	public int marketDelete(int mkno) {
+		return sqlSession.update(namespace + "marketDelete", mkno);
+	}
+
+	public void marketFileDelete(int mkno) {
+		sqlSession.delete(namespace + "marketFileDelete", mkno);
+	}
+
+	public void marketThumbDelete(int mkno) {
+		sqlSession.delete(namespace + "marketThumbDelete", mkno);
+	}
+
+	public List<Map<String, Object>> getMarketComm(int mkno) {
+		return sqlSession.selectList(namespace + "getMarketComm", mkno);
+	}
+
+	public void marketCommDelete(int mkno) {
+		sqlSession.delete(namespace + "marketCommDelete", mkno);
+	}
+
+	public int deleteThumb(int mkThumbNo) {
+		return sqlSession.delete(namespace + "deleteThumb", mkThumbNo);
+	}
+
+	public int deleteFile(int mkFileNo) {
+		return sqlSession.delete(namespace + "deleteFile", mkFileNo);
+	}
+
+	public int updateMarket(Market market) {
+		return sqlSession.update(namespace + "updateMarket", market);
+	}
+
+
 
 }
