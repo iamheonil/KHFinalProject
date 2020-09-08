@@ -1,6 +1,6 @@
 package com.privateplaylist.www.user.board.market.service;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.dto.Market;
+import com.privateplaylist.www.dto.MkComm;
 import com.privateplaylist.www.dto.MkFile;
 import com.privateplaylist.www.user.board.market.dao.UserMarketDao;
 
@@ -49,15 +50,97 @@ public class UserMarketServiceImpl implements UserMarketService{
 	}
 
 	@Override
-	public int insertMarket(Market market, List<MultipartFile> thumb, List<MultipartFile> files, String root) throws FileException  {
+	public int insertMarket(Market market){
 		
 		// market nextval 얻기
 		int mkno = userMarketDao.getNextNo();
-		
 		market.setMkNo(mkno);
 		
 		int result = userMarketDao.insertMarket(market);
 		
+		return mkno;
+	}
+	
+	@Override
+	public int updateMarket(Market market)  {
+		
+		userMarketDao.updateMarket(market);
+		return market.getMkNo();
+	}
+
+	@Override
+	public int marketFinish(int mkno) {
+		int res = userMarketDao.marketFinish(mkno);
+		return res;
+	}
+
+	@Override
+	public int marketDelete(int mkno) {
+		
+		// 글 삭제
+		int res = userMarketDao.marketDelete(mkno);
+		
+		// 파일 삭제
+		userMarketDao.marketThumbDelete(mkno);
+		userMarketDao.marketFileDelete(mkno);
+		
+		// 댓글 삭제
+		userMarketDao.marketCommDelete(mkno);
+		return res;
+	}
+
+	@Override
+	public List<Map<String, Object>> getMarketComm(int mkno) {
+		List<Map<String, Object>> comms = userMarketDao.getMarketComm(mkno);
+		
+		if( comms != null ) {
+			//부모
+			List<Map<String, Object>> boardReplyListParent = new ArrayList<>();
+			//자식
+			List<Map<String, Object>> boardReplyListChild = new ArrayList<>();
+			//통합
+			List<Map<String, Object>> newBoardReplyList = new ArrayList<>();
+			
+			//1.부모와 자식 분리
+			for(Map<String, Object> boardReply: comms){
+				if( Integer.parseInt(String.valueOf(boardReply.get("MK_COMM_CLASS"))) == 1){
+					boardReplyListParent.add(boardReply);
+				}else{
+					boardReplyListChild.add(boardReply);
+				}
+			}
+			
+			//2.부모를 돌린다.
+			for(Map<String, Object> boardReplyParent: boardReplyListParent){
+				//2-1. 부모는 무조건 넣는다.
+				newBoardReplyList.add(boardReplyParent);
+				//3.자식을 돌린다.
+				for(Map<String, Object> boardReplyChild: boardReplyListChild){
+					//3-1. 부모의 자식인 것들만 넣는다.
+					if(boardReplyParent.get("MK_COMM_NO").equals(boardReplyChild.get("MK_PARENT_COMM_NO"))){
+						newBoardReplyList.add(boardReplyChild);
+					}
+				}
+			}
+			//정리한 list return
+			return newBoardReplyList;
+		}
+		return comms;
+	}
+
+	@Override
+	public int deleteThumb(int mkThumbNo) {
+		return userMarketDao.deleteThumb(mkThumbNo);
+	}
+
+	@Override
+	public int deleteFile(int mkFileNo) {
+		return userMarketDao.deleteFile(mkFileNo);
+	}
+
+	@Override
+	public int insertMarketFiles(int mkno, List<MultipartFile> thumb, List<MultipartFile> files, String root)
+			throws FileException {
 		if(!(thumb.size() == 1 
 				&& thumb.get(0).getOriginalFilename().equals(""))) {
 			
@@ -66,7 +149,7 @@ public class UserMarketServiceImpl implements UserMarketService{
 			= new FileUtil().fileUpload(thumb, root);
 			
 			for(Map<String,String> f : filedata) {
-				f.put("mkNo",  Integer.toString(market.getMkNo()));
+				f.put("mkNo",  Integer.toString(mkno));
 				userMarketDao.insertThumb(f);
 			}
 		}
@@ -79,12 +162,12 @@ public class UserMarketServiceImpl implements UserMarketService{
 					= new FileUtil().fileUpload(files, root);
 				
 				for(Map<String,String> f : filedata) {
-					f.put("mkNo",  Integer.toString(market.getMkNo()));
+					f.put("mkNo", Integer.toString(mkno));
 					userMarketDao.insertFile(f);
 				}
 			}
+		return 0;
 		
-		return result;
 	}
 
 }

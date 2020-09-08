@@ -192,11 +192,10 @@ function marketCommPaging(curPage){
                             <thead>
                                 <tr class="tableHeader">
                                 <th class="text-center" style="width: 5%;"><span>No</span></th>
-                                <th class="text-center" style="width: 55%;"><span>글제목</span></th>
+                                <th class="text-center" style="width: 60%;"><span>글제목</span></th>
                                 <th class="text-center"  style="width: 15%;"><span>가격</span></th>
                                 <th class="text-center"  style="width: 10%;"><span>판매 상태</span></th>
                                 <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
-                                <th style="width: 5%;">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -204,7 +203,7 @@ function marketCommPaging(curPage){
                                 <tr>
                                     <td class="text-center"><span>${m.NO }</span></td>
                                     <td>
-                                        <img src="<%= request.getContextPath() %>/resources/upload/${m.MK_FILE_RENAME }" alt="메인 사진">
+                                        <img src="<%= request.getContextPath() %>/resources/upload/${m.MK_THUMB_RENAME }" alt="메인 사진">
                                         <a href="<%= request.getContextPath() %>/board/market/detail?mkno=${m.MK_NO }" class="user-link">${m.MK_TITLE }</a>
                                     </td>
                                     <td  class="text-center">
@@ -221,18 +220,7 @@ function marketCommPaging(curPage){
                                     </c:if>
                                     </td>
                                     <td  class="text-center">
-                                        <span>
-                               		    <fmt:parseDate value="${m.MK_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                   		</span>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
+                                        <span>${m.MK_DATE }</span>
                                     </td>
                                 </tr>
                                 </c:forEach>
@@ -271,7 +259,6 @@ function marketCommPaging(curPage){
 	                                <th class="text-center" style="width: 5%;"><span>No</span></th>
 	                                <th class="text-center"><span>댓글 내용</span></th>
 	                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
-	                                <th style="width: 5%;">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -282,18 +269,7 @@ function marketCommPaging(curPage){
                                         <a href="#" class="commContent">${m.MK_COMM_CONTENT }</a>
                                     </td>
                                     <td  class="text-center">
-                                        <span>
-                                        <fmt:parseDate value="${m.MK_COMM_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
+                                        <span>${m.MK_COMM_DATE }</span>
                                     </td>
                                 </tr>
                                 </c:forEach>
