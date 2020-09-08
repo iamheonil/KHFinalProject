@@ -37,7 +37,7 @@ public class UserFindStuController {
 	//학생 찾기 
 	@RequestMapping("/list")
 	public String  userFindStuList(Model model,HttpServletRequest req,HttpSession session) {
-		System.out.println("/lesson/findStu/list");
+//		System.out.println("/lesson/findStu/list");
 		
 		//세션 
 		Member loginUser = (Member) session.getAttribute("loginUser");
