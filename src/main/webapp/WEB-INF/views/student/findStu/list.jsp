@@ -11,6 +11,12 @@
 <!-- 학생 마이페이지 헤더 -->
 <c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
 
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<style type="text/css">
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
 <!-- 기본 css -->
 <style type="text/css">
 #main {
@@ -330,12 +336,13 @@ function XMLMODALClick(findStuNo) {
 	<div id="modal">
 	   
 	    <div class="modal_content">
-	       <h5 id="FIND_STU_TITLE"></h5>
+	       <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
 	       <hr>
-				<p id="FIND_STU_CONTENT"></p>
-				<h6 id="FIND_STU_LOC"></h6>
-				<h6 id="FIND_STU_SUBJECT"></h6>
-				<h6 id="FIND_STU_DATE"></h6>
+				<i class="glyphicon glyphicon-map-marker" style="margin-right: 16px; margin-left: 0;"></i><h6 id="FIND_STU_LOC" style="display: inline-block;"></h6><br>
+				<i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0;"></i><h6 id="FIND_STU_SUBJECT" style="display: inline-block;"></h6><br>
+				<i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0;"></i><h6 id ="FIND_STU_DATE" style="display: inline-block;"></h6><br>
+				
+				<i class="glyphicon glyphicon-list" style="margin-right: 16px; margin-left: 0;"></i><p id="FIND_STU_CONTENT" style="display: inline-block;"></p>
 	       <hr>
 	        <button type="button" class="btn btn-default btn-xs" id="modal_modi_btn">수정</button>
 	        <button type="button" id="modal_close_btn" class="btn btn-default btn-xs" data-dismiss="modal">취소</button>
