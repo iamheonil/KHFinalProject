@@ -101,7 +101,7 @@
           padding:20px 10px;
           background:#fff;
           border:2px solid #666;
-          top : -700px;
+          top : -500px;
           left : 100px;
           position: absolute;
           border-radius: 10px;
@@ -213,6 +213,8 @@ function XMLMODALClick(findStuNo) {
 			$("#modal_modi_btn").val(result.FIND_STU_NO);
 			
 			document.getElementById("modal").style.display="block";
+			
+// 			$("#FIND_STU_LOC").css("font-size","16px");
 			
 // 			document.getElementById("paging_import").style.display="none";
 // 			document.getElementById("keyword").style.display="none";
