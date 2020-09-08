@@ -55,4 +55,14 @@ public class ChatDao {
 		return sqlSession.selectOne("Message.geUnreadChat",map);
 	}
 	
+	public String getProfile(String userid) {
+		String profile=sqlSession.selectOne("Message.getProfile",userid);
+		if(profile==null || profile=="") {
+			return "/resources/images/icon.png";
+					
+		}else {
+			return "/resources/upload/"+profile;
+		}
+	}
+	
 }
