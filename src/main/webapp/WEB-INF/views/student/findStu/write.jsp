@@ -187,7 +187,7 @@ $(document).ready(function(){
 			        <select class="form-control" name="findStuLoc" id="findStuLoc">
 							<option selected value="무관">-선택-</option>
 							<option value="서울">서울</option>
-							<option value="경기">경기/option>
+							<option value="경기">경기</option>
 							<option value="부산">부산</option>
 							<option value="대구">대구</option>
 							<option value="인천">인천</option>

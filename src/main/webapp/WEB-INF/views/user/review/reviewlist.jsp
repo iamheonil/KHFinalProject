@@ -357,6 +357,23 @@ $(document).ready(function(){
 </script>
 
 
+<!-- 신고 -->
+<script type="text/javascript">
+
+function singo(REVIEW_NO, REVIEW_CONTENT){
+	
+	var no = REVIEW_NO;
+	var content = REVIEW_CONTENT;
+	
+    document.getElementById('singoNo').value = no;
+	document.getElementById('singoTitle').value = content;
+	
+	$("#singoInfo").submit();
+
+}
+
+</script>
+
 
 
 <header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
@@ -443,7 +460,7 @@ $(document).ready(function(){
 			        <div id="note-full-container" class="note-has-grid row">
 			        
 			        	<c:forEach items="${review}" var="r">
-			        
+
 				            <div class="col-md-3 single-note-item all-category">
 				                <div class="card card-body">
 				                
@@ -487,9 +504,15 @@ $(document).ready(function(){
 					                    <span>${r.USER_ID}</span><br>
 					                    <span>${r.REVIEW_DATE}</span> 
 					                </div>
-				                    <span id="singo"><a href="">신고</a></span>
+				                    <span id="singo"><a href="javascript:void(0);" onclick="singo('${r.REVIEW_NO}','${r.REVIEW_CONTENT}');">신고</a></span>
 				                </div>
 				            </div>
+				            			        	
+		        		   <form action="${pageContext.request.contextPath}/board/blacklist" method="post" id="singoInfo">
+						    	<input type="hidden" name="no" id="singoNo" value=""/>
+						    	<input type="hidden" name="title" id="singoTitle" value=""/>
+						    	<input type="hidden" name="board" value="후기"/>
+						   </form>
 			            
 			            </c:forEach>
 			            
@@ -574,6 +597,7 @@ $(document).ready(function(){
 		        </div>
 		    </div> <!-- end modal -->
 		    
+		    
 		</div>
 	</div>
 </div> <!-- end .container -->
@@ -583,7 +607,7 @@ $(document).ready(function(){
 <c:if test="${not empty review}">
 	<br>
 	<div class="pagingstyle">
-		<c:import url="/WEB-INF/paging/user/userReviewPaging.jsp"></c:import>
+		<c:import url="/WEB-INF/paging/user/review/userReviewPaging.jsp"></c:import>
 	</div>
 	<br><br>
 </c:if>

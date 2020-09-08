@@ -161,35 +161,6 @@ $(function(){
 
 </script>
 
-<!-- ajax -->
-<script type="text/javascript">
-function XMLDeleteClick(findStuNo){
-	var chk = confirm("삭제 하시겠습니까?");
-	
-	if(chk == true){
-		var url = "<%=request.getContextPath()%>/lesson/findStu/delete";
-		
-		$.ajax({
-			type : "POST",
-			url: url,
-			data : { findStuNo: findStuNo },
-			success : function(result) {
-				if (result == "") {
-					alert("삭제되었습니다");
-					location.reload();
-				}else if(result != ""){
-					alert(result);
-				}
-			},
-			error : function(){
-				alert("ajax 실패")
-			}
-		});
-	}
-	
-}
-</script>
-
 <!-- css 끝------------------------ -->
 <!-- ---- ------------------------ -->
 <!-- 검색창 시작 ------------------------ -->
@@ -218,9 +189,6 @@ function XMLDeleteClick(findStuNo){
 											<br>
 											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
 												<p><h2>과외 조건에 맞는 학생을 검색할 수 있습니다.</h2></p><br>
-												<c:if test="${loginUser.userActor eq 2 }">
-													<p><h2>학생이라면?<a id="writebtn" href="${pageContext.request.contextPath}/student/findStu/write">글쓰기</a></h2></p>
-												</c:if>
 											</div>
 											
 										
@@ -315,14 +283,6 @@ function XMLDeleteClick(findStuNo){
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
 		                       
-		                        <div class="pull-right btn-group-sm">
-		                        	<c:if test="${loginUser.userNo eq  findstu.USER_NO}">
-		                            <a onclick=" XMLDeleteClick(${findstu.FIND_STU_NO})" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-		                                <i class="fa fa-close"></i>
-		                            </a>
-		                            </c:if>
-		                        </div>
-		                        
 		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Message"><i class="fa fa-envelope-o"></i></a>&nbsp;ID.${findstu.USER_ID }</h4>
 		                            <p class="text-muted txt_line_title"><a href="${pageContext.request.contextPath}/lesson/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
 		                            <p class="text-muted">${findstu.FIND_STU_LOC } | ${findstu.FIND_STU_SUBJECT }</p>
