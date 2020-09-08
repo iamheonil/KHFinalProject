@@ -55,13 +55,11 @@
 	 <select id="selectFile" parameterType="MEMBER" resultType="TEACHERFILE">
 		select * from teacherFile
 		where user_no = #{userNo}
-		and tch_file_rename like '%' || 'profile' || '%'
 	 </select>
 	 
 	 <delete id="deleteFile" parameterType="int">
 		delete teacherfile
 		where user_No = #{userNo}
-		and tch_file_rename like '%' || 'profile' || '%'
 	</delete>
 	
 	<select id="countIsEnd" parameterType="int" resultType="int">

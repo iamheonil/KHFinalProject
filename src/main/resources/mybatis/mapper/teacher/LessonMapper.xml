@@ -19,7 +19,6 @@
 	<select id="selectTeacherFile" resultMap="fileData">
 		select * from teacherfile
 		where user_no = #{userNo}
-		and tch_file_rename like '%' || 'profile' || '%'
 	</select>
 
 	<insert id="insertLesson">
