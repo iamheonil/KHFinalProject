@@ -57,6 +57,7 @@
 }
 .userImg .userInfo .userId{
 	font-weight: bold;
+	color: black;
 }
 .userImg .userInfo .date{
 	font-size: 14px;
@@ -105,6 +106,7 @@
   width: inherit;
   height: 164px;
   line-height: 28px;
+  color: black;
 }
 .article .article-title .media {
   padding-top: 10px;
@@ -122,24 +124,11 @@
   font-weight: 600;
   margin-bottom: 15px;
 }
-.article .article-content blockquote {
-  max-width: 600px;
-  padding: 15px 0 30px 0;
-  margin: 0;
+.article .article-content p {
+	font-size: 16px;
+	color: black;
 }
-.article .article-content blockquote p {
-  font-size: 20px;
-  font-weight: 500;
-  color: #fc5356;
-  margin: 0;
-}
-.article .article-content blockquote .blockquote-footer {
-  color: #20247b;
-  font-size: 16px;
-}
-.article .article-content blockquote .blockquote-footer cite {
-  font-weight: 600;
-}
+
 .article .tag-cloud {
   padding-top: 10px;
 }
@@ -155,6 +144,9 @@
 .article-img img{
 	height: 99%;
 	
+}
+.media {
+    margin-top: 10px;
 }
 
 .comment-wrapper .panel-body {
@@ -176,11 +168,12 @@
 
 .comment-wrapper .media-list .media {
     border-bottom:1px dashed #efefef;
-    margin-bottom:25px;
+/*     margin-bottom: 25px; */
 }
 
 #BtncommWrite{
 	margin: 0;
+	height: 67px;
 }
 .userAct{
 	margin-top: 27px;
@@ -212,7 +205,7 @@
 	line-height: 30px;
 	background-color: rgba(150, 150, 150, 1);
 	color: white;
-	font-weight: bold;
+/* 	font-weight: bold; */
 	border-radius: 5px;
 	margin: 139px auto;
 }
@@ -220,7 +213,30 @@
 .btn-finish{
 	background-color: #ccc;
 }
-	
+
+.media-body{
+	margin-bottom: 5px;
+
+}
+
+.media-body strong{
+	font-size: 15px;
+	color: black;
+}
+
+.media-body p{
+	font-size: 15px;
+	color: black;
+}
+.media-body small{
+	font-size: 12px;
+}
+
+.userCommAct a{
+	color: #999;
+	font-size: 12px;
+}
+
 
 </style>
 
@@ -229,6 +245,15 @@ function update(mkno){
 	
 	location.href = "${pageContext.request.contextPath}/board/market/update?mkno=" + mkno;
 	
+}
+
+function updateMK(mkno){
+	
+	var chk = confirm("게시글을 수정하시겠습니까?");
+	
+	if( chk == true){
+		location.href = "${pageContext.request.contextPath}/board/market/update?mkno=" + mkno;
+	}
 }
 
 function deleteMK(mkno){
@@ -249,6 +274,9 @@ function finishSales(mkno){
 	}
 	
 	
+}
+function goList(){
+	location.href="${pageContext.request.contextPath}/board/market";
 }
 
 
@@ -291,6 +319,7 @@ function finishSales(mkno){
 		<!-- END #gtco-header -->
      <div class="clearfix" ></div>	
     <div id="marketBox">
+    <div><button type="button" onclick="goList();">글 목록</button></div>
            <div class="article">
 				<h2>${market.MK_TITLE }</h2>
                <div class="userImg">
@@ -307,7 +336,7 @@ function finishSales(mkno){
                </div>
             	  <div class="text-muted pull-right userAct">
             	  	<c:if test="${chkWriter }">
-            	  		<a href="javascript:void(0);" onclick="update(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
+            	  		<a href="javascript:void(0);" onclick="updateMK(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
             	  	</c:if>
             	  	<c:if test="${!chkWriter }">
             	  		<a href="">신고</a>
@@ -380,34 +409,48 @@ function finishSales(mkno){
                </div>
                <hr style="margin: 5px 0;">
                
-		        <div class="comment-wrapper">
-		                <div class="panel-body">
-		                	<div>
-			                    <textarea class="form-control" placeholder="댓글 내용을 입력하세요" rows="3"></textarea>
-			                    <button type="button" class="btn btn-info pull-right" id="BtncommWrite">댓글 달기</button>
-		                    </div>
-		                    <div class="clearfix"></div>
-		                    <hr>
-		                    <ul class="media-list">
-		                        <li class="media">
-		                            <a href="#" class="pull-left">
-		                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-		                            </a>
-		                            <div class="media-body">
-		                                <span class="text-muted pull-right">
-		                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-		                                </span>
-		                                <strong class="text-success">@MartinoMont</strong>
-		                                <p>
-		                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-		                                </p>
-		                            </div>
-		                        </li>
-		                    </ul>
-		                </div>
-		            </div>
-               
+        <div class="comment-wrapper">
+                <div class="panel-body">
+                	<div>
+	                    <textarea class="form-control" placeholder="댓글 내용을 입력하세요" rows="3"></textarea>
+	                    <button type="button" class="btn btn-info pull-right" id="BtncommWrite">댓글 달기</button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                   	 <c:if test="${empty comms }">
+                   	 	<div>댓글이 없습니다.</div>
+                   	 </c:if>
+                   	 <c:if test="${!empty comms }">
+                   	 	<c:forEach items="${comms }" var="comm">
+                        <li class="media">
+                        	<c:if test="${comm.MK_COMM_CLASS eq 2 }">
+                        		<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>
+                            </c:if>
+                            <div class="text-muted pull-right userCommAct">
+			            	  	<c:if test="${comm.MK_USER_NO eq commWriter }">
+			            	  		<a href="javascript:void(0);" onclick="commUpdate(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${market.MK_NO });">삭제</a>
+			            	  	</c:if>
+					         </div>
+                            <a href="#" class="pull-left">
+                            	<c:if test="${empty comm.TCH_FILE_RENAME }">
+	                                <img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">
+                            	</c:if>
+                            	<c:if test="${!empty comm.TCH_FILE_RENAME }">
+	                                <img src="${pageContext.request.contextPath}/resources/upload/${comm.TCH_FILE_RENAME }" alt="" class="img-circle">
+                            	</c:if>
+                            </a>
+                            <div class="media-body">
+                                <strong class="text">${comm.USER_ID }</strong>
+                                <p>${comm.MK_COMM_CONTENT }</p>
+                                <small>${comm.MK_COMM_DATE }</small>
+                            </div>
+                        </li>
+                   	 	</c:forEach>
+                       </c:if>
+                    </ul>
+                </div>
+            </div>
            </div>
         </div>
 

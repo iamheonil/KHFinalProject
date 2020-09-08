@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.privateplaylist.www.dto.Market;
+import com.privateplaylist.www.dto.MkComm;
 import com.privateplaylist.www.dto.MkFile;
 
 import common.util.Paging;
@@ -67,5 +68,27 @@ public class UserMarketDao {
 	public void marketThumbDelete(int mkno) {
 		sqlSession.delete(namespace + "marketThumbDelete", mkno);
 	}
+
+	public List<Map<String, Object>> getMarketComm(int mkno) {
+		return sqlSession.selectList(namespace + "getMarketComm", mkno);
+	}
+
+	public void marketCommDelete(int mkno) {
+		sqlSession.delete(namespace + "marketCommDelete", mkno);
+	}
+
+	public int deleteThumb(int mkThumbNo) {
+		return sqlSession.delete(namespace + "deleteThumb", mkThumbNo);
+	}
+
+	public int deleteFile(int mkFileNo) {
+		return sqlSession.delete(namespace + "deleteFile", mkFileNo);
+	}
+
+	public int updateMarket(Market market) {
+		return sqlSession.update(namespace + "updateMarket", market);
+	}
+
+
 
 }

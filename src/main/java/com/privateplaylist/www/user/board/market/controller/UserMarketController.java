@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,6 +39,7 @@ public class UserMarketController {
 		
 		List<Map<String, Object>> list = userMarketService.getMarketlist(paging);
 		
+		mav.addObject("search", search);
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		mav.setViewName("user/market/marketList");
@@ -69,6 +71,14 @@ public class UserMarketController {
 		if( files != null ) {
 			mav.addObject("files", files);
 		}
+		
+		// 댓글
+		List<Map<String, Object>> comms = userMarketService.getMarketComm(mkno);
+		if( comms != null ) {
+			mav.addObject("comms", comms);
+			mav.addObject("commWriter", userNo);
+		}
+		
 		mav.addObject("chkWriter", chkWriter);
 		mav.addObject("market", market);
 		mav.setViewName("user/market/marketDetail");
@@ -99,14 +109,15 @@ public class UserMarketController {
 		
 		market.setMkWriter(userNo);
 		
-		int res = userMarketService.insertMarket(market, thumb, files, root);
+		int mkno = userMarketService.insertMarket(market);
+		int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
 		
 		mav.setViewName("redirect:/board/market");
 		return mav;
 	}
 
 	// 중고장터 수정
-	@RequestMapping("/market/update")
+	@RequestMapping(value = "/market/update", method = RequestMethod.GET)
 	public ModelAndView marketUpdate(HttpSession session, @RequestParam int mkno) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -120,20 +131,50 @@ public class UserMarketController {
 		List<MkFile> files = userMarketService.getMarketFile(mkno);
 //		System.out.println(market);
 		
-		// 로그인한 유저가 작성자인지 확인
-		boolean chkWriter = false;
-		if( userNo == Integer.parseInt(String.valueOf(market.get("MK_WRITER")))) {
-			chkWriter = true;
-		}
 		
 		// 상세 파일이 있는 경우
 		if( files != null ) {
 			mav.addObject("files", files);
 		}
-		mav.addObject("chkWriter", chkWriter);
 		mav.addObject("market", market);
 		mav.setViewName("user/market/marketUpdate");
 		return mav;
+	}
+
+	// 중고장터 수정
+	@RequestMapping(value = "/market/update", method = RequestMethod.POST)
+	public ModelAndView marketUpdate2(@RequestParam List<MultipartFile> files, @RequestParam List<MultipartFile> thumb
+			, HttpSession session, Market market) throws FileException {
+		ModelAndView mav = new ModelAndView();
+		
+		Member m = (Member) session.getAttribute("loginUser");
+//		int userNo = m.getUserNo();
+		int userNo = 1;
+		String root = session.getServletContext().getRealPath("/");
+		
+		market.setMkWriter(userNo);
+		int mkno = userMarketService.updateMarket(market);
+		int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
+		mav.setViewName("redirect:/board/market/detail?mkno=" + market.getMkNo());
+		return mav;
+	}
+
+	@RequestMapping(value = "/market/deletethumb", method = RequestMethod.POST)
+	@ResponseBody
+	public int marketDeleteThumb(@RequestParam int mkThumbNo) {
+		
+		int res = userMarketService.deleteThumb(mkThumbNo);
+		
+		return res;
+	}
+	
+	@RequestMapping(value = "/market/deletefile", method = RequestMethod.POST)
+	@ResponseBody
+	public int marketDeleteFile(@RequestParam int mkFileNo) {
+		
+		int res = userMarketService.deleteFile(mkFileNo);
+		
+		return res;
 	}
 	
 	// 중고장터 판매 완료

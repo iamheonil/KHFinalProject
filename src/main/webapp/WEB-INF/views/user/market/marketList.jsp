@@ -172,6 +172,13 @@ a {
 	background-color: #17B794;
 	font-weight: bold;
 	color: white;
+	margin: 0;
+	line-height: 15px;
+}
+
+#search{
+	width: 300px;
+	display: inline-block;
 }
 </style>
 		
@@ -242,20 +249,6 @@ function marketWrite(){
 												<p><h2>자유롭게 물건들을 팔아보아요</h2></p>
 											</div>
 										</div>
-										<div class="container bootstrap snippets bootdey banner">
-											<div class="lc-block col-md-4  toggled pull-right" id="l-login">
-												<div class="lcb-float">
-													<i class="fa fa-shopping-cart fa-3x mar-top"></i>
-												</div>
-												<div class="form-group">
-													<form action="${pageContext.request.contextPath}/lesson/findStu/search" method="post">
-															<input type="text" class="form-control" id="keyword" name="keyword" placeholder="키워드를 작성해주세요">
-													</form>
-												</div>
-												<div class="clearfix"></div>
-												<button type="button" class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">검색</button>
-											</div>
-										</div>
 									</div>	
 								</div>
 							</div>
@@ -273,7 +266,13 @@ function marketWrite(){
 <div id="marketBoard">
     <div class="clearfix"></div>
 	<div class="marketAct">
+		<div class="form-group pull-right">
+		<form action="${pageContext.request.contextPath }/board/market" method="post">
+			<input class="form-control" type="text" name="search" value="${search }" id="search"/><button class="form-group" type="submit">검색</button>
+		</form>
+		</div>
 		<button type="button" id="BtnWrite" onclick="marketWrite();">글쓰기</button>
+		
 	</div>
     <div class="row">
         <div class="col-lg-12 marketTable">

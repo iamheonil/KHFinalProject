@@ -40,10 +40,7 @@
                                     </c:if>
                                     </td>
                                     <td  class="text-center">
-                                        <span>
-                                        <fmt:parseDate value="${m.MK_DATE }" pattern="yyyyMMdd" var="date"/>
-                                        <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                        </span>
+                                        <span>${m.MK_DATE }</span>
                                     </td>
                                     <td>
                                         <a href="#" class="table-link danger">

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.privateplaylist.www.dto.Market;
+import com.privateplaylist.www.dto.MkComm;
 import com.privateplaylist.www.dto.MkFile;
 
 import common.exception.FileException;
@@ -50,7 +51,7 @@ public interface UserMarketService {
 	 * @return
 	 * @throws FileException 
 	 */
-	public int insertMarket(Market market, List<MultipartFile> thumb, List<MultipartFile> files, String root) throws FileException;
+	public int insertMarket(Market market);
 
 	/**
 	 * 중고마켓 판매종료
@@ -61,5 +62,18 @@ public interface UserMarketService {
 
 	// 중고장터 글 삭제
 	public int marketDelete(int mkno);
+
+	// 중고장터 댓글
+	public List<Map<String, Object>> getMarketComm(int mkno);
+
+	// 썸네일 수정
+	public int deleteThumb(int mkThumbNo);
+
+	// 파일 수정
+	public int deleteFile(int mkFileNo);
+
+	public int updateMarket(Market market);
+
+	public int insertMarketFiles(int mkno, List<MultipartFile> thumb, List<MultipartFile> files, String root)  throws FileException;
 
 }

@@ -64,23 +64,52 @@
   	SELECT market_SEQ.nextval FROM dual
   </select>
   
-  <update id="marketFinish">
+  <update id="marketFinish"  parameterType="int">
   	UPDATE market SET mk_state = 1
   	WHERE mk_no = #{mkno}  
   </update>
 
-  <update id="marketDelete">
+  <update id="marketDelete"  parameterType="int">
   	UPDATE market SET mk_state = 2
   	WHERE mk_no = #{mkno}  
   </update>
   
-  <delete id="marketFileDelete">
+  <delete id="marketFileDelete"  parameterType="int">
   	DELETE mk_file
   	WHERE mk_no = #{mkno}  
   </delete>
 
-  <delete id="marketThumbDelete">
+  <delete id="marketThumbDelete" parameterType="int">
   	DELETE mk_thumb
   	WHERE mk_no = #{mkno}  
   </delete>
+
+  <delete id="marketCommDelete" parameterType="int">
+  	DELETE mk_comm
+  	WHERE mk_no = #{mkno}  
+  </delete>
+
+  <delete id="deleteThumb" parameterType="int">
+  	DELETE mk_thumb
+  	WHERE mk_thumb_no = #{mkThumbNo}  
+  </delete>
+
+  <delete id="deleteFile" parameterType="int">
+  	DELETE mk_file
+  	WHERE mk_file_no = #{mkFileNo}  
+  </delete>
+
+  <select id="getMarketComm"  parameterType="int" resultType="map">
+	SELECT c.*, m.user_id, t.tch_file_rename FROM mk_comm c
+	INNER JOIN membership m
+	ON(m.user_no = c.mk_user_no)
+	LEFT OUTER JOIN teacherfile t
+	ON(m.user_no = t.user_no)
+  	WHERE mk_no = #{mkno}
+  </select>
+  
+  <update id="updateMarket" parameterType="MARKET">
+  	UPDATE market SET mk_title = #{mkTitle}, mk_content = #{mkContent}, mk_price = #{mkPrice}
+  	WHERE mk_no = #{mkNo}
+  </update>
   </mapper>
