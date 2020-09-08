@@ -13,7 +13,7 @@ import common.util.Paging;
 public interface ReviewService {
 
 	// 리뷰게시판 전체 조회
-	public List<Review> selectReviewList(Paging paging);
+	public List<Map<String, Object>> selectReviewList(Paging paging);
 	// 리뷰게시판 페이징
 	public Paging reviewListPaging(HttpServletRequest req);
 	

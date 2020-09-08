@@ -94,6 +94,7 @@ public class ChatController {
 		String toProfile=chatdao.getProfile(toID);
 		
 		
+		
 //		System.out.println("getten:"+chatList);
 		if(chatList.size()==0)return "";
 		for (int i = 0; i <chatList.size(); i++) {
