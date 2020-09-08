@@ -45,7 +45,7 @@ public class FileUtilProfile {
 			= new SimpleDateFormat("yyyyMMddHHmmss");
 		//현재시각을 밀리세컨드까지 반환 받은 다음 뒤에 확장자를 붙인다.
 		String renameFileName = 
-		   "profile" + sdf.format(new Date(System.currentTimeMillis()))
+		    sdf.format(new Date(System.currentTimeMillis()))
 			+ "." + originFileName.substring(originFileName.lastIndexOf(".") + 1);
 		
 		return renameFileName;
