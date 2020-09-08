@@ -21,7 +21,7 @@ public class FindLessonService {
 		int totalCount=fld.selectTotalCnt(option);
 		
 		
-		Paging paging=new Paging(totalCount,curp,8);
+		Paging paging=new Paging(totalCount,curp,24);
 		return paging;
 	}
 
