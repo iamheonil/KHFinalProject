@@ -465,6 +465,7 @@ $(document).ready(function(){
 <!-- 	           </a> -->
 <%-- 	           <a onclick=" XMLDeleteClick(${findstu.FIND_STU_NO})" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"> --%>
 <!-- 	               <i class="fa fa-close"></i> -->
+
 <!-- 	           </a> -->
 <%--            </c:if> --%>
        </div>
