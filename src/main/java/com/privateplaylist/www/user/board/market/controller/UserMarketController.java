@@ -19,7 +19,7 @@ import common.util.Paging;
 
 @Controller
 @RequestMapping("board")
-public class userMarketController {
+public class UserMarketController {
 	
 	@Autowired
 	private UserMarketService userMarketService;
