@@ -21,8 +21,8 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDao reviewDao;
 
 	@Override
-	public List<Review> selectReviewList(Paging paging) {
-		List<Review> reviewList = reviewDao.selectReviewList(paging);
+	public List<Map<String, Object>> selectReviewList(Paging paging) {
+		List<Map<String, Object>> reviewList = reviewDao.selectReviewList(paging);
 		return reviewList;
 	}
 

@@ -9,13 +9,13 @@
 <mapper namespace="Review">
 
 <!-- 전체 리스트 출력 -->
-	<select id="selectReviewList" resultType="REVIEW">
-
-	select R.review_no, R.user_no, M.user_no, R.review_date,R.star_point, M.user_id, R.review_content from review R
-	LEFT JOIN membership M
+	<select id="selectReviewList" parameterType="map" resultType="map">
+	
+	select R.review_no, R.user_no, R.review_date,R.star_point, R.review_content,R.conn_lesson_no,R.review_state, M.user_id from review R
+	INNER JOIN membership M
 	ON R.user_no = M.user_no 
 	 order by R.review_no desc
-	 
+	
   </select>
 	
 	<!-- 질문게시판 컨텐츠갯수 cnt -->
