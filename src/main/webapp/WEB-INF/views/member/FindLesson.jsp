@@ -406,12 +406,16 @@ bottom
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -426,12 +430,16 @@ opacity
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -455,12 +463,16 @@ top
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -475,12 +487,16 @@ opacity
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -731,250 +747,249 @@ JS, Popper.js, and jQuery
 	<div class="gtco-loader"></div>
 
 
-		<!-- nav include  -->
-		<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
-			role="banner">
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-md-12 col-md-offset-0 text-left">
-						<div class="display-t">
-							<div class="display-tc">
-								<div class="row">
-									<div class="col-md-8 animate-box">
-										<link
-											href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-											rel="stylesheet">
+	<!-- nav include  -->
+	<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner"
+		role="banner">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-left">
+					<div class="display-t">
+						<div class="display-tc">
+							<div class="row">
+								<div class="col-md-8 animate-box">
+									<link
+										href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+										rel="stylesheet">
 
-										<div class="row padding-horizontal-md pull-left banner">
-											<div
-												class="row margin-top-xs text title title-xxl text-bold text-white">
-												<p>
-												<h1>과외 찾기</h1>
-												</p>
-											</div>
-											<br>
-											<div
-												class="row margin-top-xl text title title-xl text-bold text-white pull-left">
-												<p>
-												<h2>조건에 맞는 과외를 검색할수 있습니다</h2>
-												</p>
-											</div>
-
+									<div class="row padding-horizontal-md pull-left banner">
+										<div
+											class="row margin-top-xs text title title-xxl text-bold text-white">
+											<p>
+											<h1>과외 찾기</h1>
+											</p>
 										</div>
-										<div class="container bootstrap snippets bootdey banner">
-											<div class="lc-block col-md-6  toggled pull-right"
-												id="l-login">
+										<br>
+										<div
+											class="row margin-top-xl text title title-xl text-bold text-white pull-left">
+											<p>
+											<h2>조건에 맞는 과외를 검색할수 있습니다</h2>
+											</p>
+										</div>
 
-												<div class="form-group">
-													<form
-														action="${pageContext.request.contextPath}/member/findLesson"
-														method="post" class="form-horizontal">
+									</div>
+									<div class="container bootstrap snippets bootdey banner">
+										<div class="lc-block col-md-6  toggled pull-right"
+											id="l-login">
 
-														<div class="form-group option">
-															<label class="col-sm-2 control-label">지역</label>
-															<div class="col-sm-10">
-																<select class="form-control" name="Loc" id="Loc">
-																	<option value="무관"
-																		<c:if test="${option.Loc eq '무관'} "> selected="selected"</c:if>>-전체-</option>
-																	<option value="서울"
-																		<c:if test="${option.Loc eq '서울' }"> selected="selected"</c:if>>서울</option>
-																	<option value="부산"
-																		<c:if test="${option.Loc eq '부산' }"> selected="selected"</c:if>>부산</option>
-																	<option value="대구"
-																		<c:if test="${option.Loc eq '대구' }"> selected="selected"</c:if>>대구</option>
-																	<option value="인천"
-																		<c:if test="${option.Loc eq '인천' }"> selected="selected"</c:if>>인천</option>
-																	<option value="대전"
-																		<c:if test="${option.Loc eq '대전' }"> selected="selected"</c:if>>대전</option>
-																	<option value="울산"
-																		<c:if test="${option.Loc eq '울산' }"> selected="selected"</c:if>>울산</option>
-																	<option value="광주"
-																		<c:if test="${option.Loc eq '광주' }"> selected="selected"</c:if>>광주</option>
-																	<option value="세종"
-																		<c:if test="${option.Loc eq '세종' }"> selected="selected"</c:if>>세종</option>
-																	<option value="강원"
-																		<c:if test="${option.Loc eq '경남' }"> selected="selected"</c:if>>강원</option>
-																	<option value="경기"
-																		<c:if test="${option.Loc eq '경기' }"> selected="selected"</c:if>>경기</option>
-																	<option value="경북"
-																		<c:if test="${option.Loc eq '경북' }"> selected="selected"</c:if>>경북</option>
-																	<option value="경남"
-																		<c:if test="${option.Loc eq '전남' }"> selected="selected"</c:if>>경남</option>
-																	<option value="충북"
-																		<c:if test="${option.Loc eq '충북' }"> selected="selected"</c:if>>충북</option>
-																	<option value="충남"
-																		<c:if test="${option.Loc eq '충남' }"> selected="selected"</c:if>>충남</option>
-																	<option value="전북"
-																		<c:if test="${option.Loc eq '전북' }"> selected="selected"</c:if>>전북</option>
-																	<option value="전남"
-																		<c:if test="${option.Loc eq '전남' }"> selected="selected"</c:if>>전남</option>
-																	<option value="제주"
-																		<c:if test="${option.Loc eq '제주' }"> selected="selected"</c:if>>제주</option>
-																</select>
-															</div>
+											<div class="form-group">
+												<form
+													action="${pageContext.request.contextPath}/member/findLesson"
+													method="post" class="form-horizontal">
+
+													<div class="form-group option">
+														<label class="col-sm-2 control-label">지역</label>
+														<div class="col-sm-10">
+															<select class="form-control" name="Loc" id="Loc">
+																<option value="무관"
+																	<c:if test="${option.Loc eq '무관'} "> selected="selected"</c:if>>-전체-</option>
+																<option value="서울"
+																	<c:if test="${option.Loc eq '서울' }"> selected="selected"</c:if>>서울</option>
+																<option value="부산"
+																	<c:if test="${option.Loc eq '부산' }"> selected="selected"</c:if>>부산</option>
+																<option value="대구"
+																	<c:if test="${option.Loc eq '대구' }"> selected="selected"</c:if>>대구</option>
+																<option value="인천"
+																	<c:if test="${option.Loc eq '인천' }"> selected="selected"</c:if>>인천</option>
+																<option value="대전"
+																	<c:if test="${option.Loc eq '대전' }"> selected="selected"</c:if>>대전</option>
+																<option value="울산"
+																	<c:if test="${option.Loc eq '울산' }"> selected="selected"</c:if>>울산</option>
+																<option value="광주"
+																	<c:if test="${option.Loc eq '광주' }"> selected="selected"</c:if>>광주</option>
+																<option value="세종"
+																	<c:if test="${option.Loc eq '세종' }"> selected="selected"</c:if>>세종</option>
+																<option value="강원"
+																	<c:if test="${option.Loc eq '경남' }"> selected="selected"</c:if>>강원</option>
+																<option value="경기"
+																	<c:if test="${option.Loc eq '경기' }"> selected="selected"</c:if>>경기</option>
+																<option value="경북"
+																	<c:if test="${option.Loc eq '경북' }"> selected="selected"</c:if>>경북</option>
+																<option value="경남"
+																	<c:if test="${option.Loc eq '전남' }"> selected="selected"</c:if>>경남</option>
+																<option value="충북"
+																	<c:if test="${option.Loc eq '충북' }"> selected="selected"</c:if>>충북</option>
+																<option value="충남"
+																	<c:if test="${option.Loc eq '충남' }"> selected="selected"</c:if>>충남</option>
+																<option value="전북"
+																	<c:if test="${option.Loc eq '전북' }"> selected="selected"</c:if>>전북</option>
+																<option value="전남"
+																	<c:if test="${option.Loc eq '전남' }"> selected="selected"</c:if>>전남</option>
+																<option value="제주"
+																	<c:if test="${option.Loc eq '제주' }"> selected="selected"</c:if>>제주</option>
+															</select>
 														</div>
+													</div>
 
-														<div class="form-group option" style="margin-left: 70px;">
-															<label class="col-sm-2 control-label">선생님 성별</label>
-															<div class="col-sm-10">
-																<select class="form-control" name="Sex" id="findStuLoc">
-																	<option
-																		<c:if test="${option.Sex eq '무관' }"> selected="selected"</c:if>
-																		value="무관">-전체-</option>
-																	<option
-																		<c:if test="${option.Sex eq 'w' }"> selected="selected"</c:if>
-																		value="w">여자</option>
-																	<option
-																		<c:if test="${option.Sex eq 'm' }"> selected="selected"</c:if>
-																		value="m">남자</option>
+													<div class="form-group option" style="margin-left: 70px;">
+														<label class="col-sm-2 control-label">선생님 성별</label>
+														<div class="col-sm-10">
+															<select class="form-control" name="Sex" id="findStuLoc">
+																<option
+																	<c:if test="${option.Sex eq '무관' }"> selected="selected"</c:if>
+																	value="무관">-전체-</option>
+																<option
+																	<c:if test="${option.Sex eq 'w' }"> selected="selected"</c:if>
+																	value="w">여자</option>
+																<option
+																	<c:if test="${option.Sex eq 'm' }"> selected="selected"</c:if>
+																	value="m">남자</option>
 
-																</select>
-															</div>
+															</select>
 														</div>
+													</div>
 
 
-														<div class="form-group option">
-															<label class="col-sm-2 control-label">나이</label>
-															<div class="col-sm-10">
-																<select class="form-control" name="Age" id="findStuLoc">
-																	<option
-																		<c:if test="${option.Age eq '무관' }"> selected="selected"</c:if>
-																		value="무관">-전체-</option>
-																	<option
-																		<c:if test="${option.Age eq '초등' }"> selected="selected"</c:if>
-																		value="초등">초등</option>
-																	<option
-																		<c:if test="${option.Age eq '중등' }"> selected="selected"</c:if>
-																		value="중등">중등</option>
-																	<option
-																		<c:if test="${option.Age eq '고등' }"> selected="selected"</c:if>
-																		value="고등">고등</option>
-																	<option
-																		<c:if test="${option.Age eq '20대' }"> selected="selected"</c:if>
-																		value="20대">20대</option>
-																	<option
-																		<c:if test="${option.Age eq '30대' }"> selected="selected"</c:if>
-																		value="30대">30대</option>
-																	<option
-																		<c:if test="${option.Age eq '40대' }"> selected="selected"</c:if>
-																		value="40대">40대</option>
+													<div class="form-group option">
+														<label class="col-sm-2 control-label">나이</label>
+														<div class="col-sm-10">
+															<select class="form-control" name="Age" id="findStuLoc">
+																<option
+																	<c:if test="${option.Age eq '무관' }"> selected="selected"</c:if>
+																	value="무관">-전체-</option>
+																<option
+																	<c:if test="${option.Age eq '초등' }"> selected="selected"</c:if>
+																	value="초등">초등</option>
+																<option
+																	<c:if test="${option.Age eq '중등' }"> selected="selected"</c:if>
+																	value="중등">중등</option>
+																<option
+																	<c:if test="${option.Age eq '고등' }"> selected="selected"</c:if>
+																	value="고등">고등</option>
+																<option
+																	<c:if test="${option.Age eq '20대' }"> selected="selected"</c:if>
+																	value="20대">20대</option>
+																<option
+																	<c:if test="${option.Age eq '30대' }"> selected="selected"</c:if>
+																	value="30대">30대</option>
+																<option
+																	<c:if test="${option.Age eq '40대' }"> selected="selected"</c:if>
+																	value="40대">40대</option>
 
 
-																</select>
-															</div>
+															</select>
 														</div>
+													</div>
 
-														<div class="form-group option" style="margin-left: 70px;">
-															<label class="col-sm-2 control-label">과목</label>
-															<div class="col-sm-10">
-																<select class="form-control" name="Sub" id="findStuLoc">
-																	<option
-																		<c:if test="${option.Sub eq '무관' }"> selected="selected"</c:if>
-																		value="무관">-전체-</option>
-																	<option
-																		<c:if test="${option.Sub eq '수학' }"> selected="selected"</c:if>
-																		value="수학">수학</option>
-																	<option
-																		<c:if test="${option.Sub eq '국어' }"> selected="selected"</c:if>
-																		value="국어">국어</option>
-																	<option
-																		<c:if test="${option.Sub eq '영어' }"> selected="selected"</c:if>
-																		value="영어">영어</option>
-																	<option
-																		<c:if test="${option.Sub eq '과학' }"> selected="selected"</c:if>
-																		value="과학">과학</option>
-																	<option
-																		<c:if test="${option.Sub eq '논술' }"> selected="selected"</c:if>
-																		value="논술">논술</option>
-																	<option
-																		<c:if test="${option.Sub eq '사회' }"> selected="selected"</c:if>
-																		value="사회">사회</option>
-																	<option
-																		<c:if test="${option.Sub eq '예체능' }"> selected="selected"</c:if>
-																		value="예체능">예체능</option>
-																	<option
-																		<c:if test="${option.Sub eq '제2외국어' }"> selected="selected"</c:if>
-																		value="제2외국어">제2외국어</option>
-																	<option
-																		<c:if test="${option.Sub eq '컴퓨터(IT)' }"> selected="selected"</c:if>
-																		value="컴퓨터(IT)">컴퓨터(IT)</option>
-																	<option
-																		<c:if test="${option.Sub eq '자격증' }"> selected="selected"</c:if>
-																		value="자격증">자격증</option>
-																	<option
-																		<c:if test="${option.Sub eq '대학전공' }"> selected="selected"</c:if>
-																		value="대학전공">대학전공</option>
-																	<option
-																		<c:if test="${option.Sub eq '기타' }"> selected="selected"</c:if>
-																		value="기타">기타</option>
+													<div class="form-group option" style="margin-left: 70px;">
+														<label class="col-sm-2 control-label">과목</label>
+														<div class="col-sm-10">
+															<select class="form-control" name="Sub" id="findStuLoc">
+																<option
+																	<c:if test="${option.Sub eq '무관' }"> selected="selected"</c:if>
+																	value="무관">-전체-</option>
+																<option
+																	<c:if test="${option.Sub eq '수학' }"> selected="selected"</c:if>
+																	value="수학">수학</option>
+																<option
+																	<c:if test="${option.Sub eq '국어' }"> selected="selected"</c:if>
+																	value="국어">국어</option>
+																<option
+																	<c:if test="${option.Sub eq '영어' }"> selected="selected"</c:if>
+																	value="영어">영어</option>
+																<option
+																	<c:if test="${option.Sub eq '과학' }"> selected="selected"</c:if>
+																	value="과학">과학</option>
+																<option
+																	<c:if test="${option.Sub eq '논술' }"> selected="selected"</c:if>
+																	value="논술">논술</option>
+																<option
+																	<c:if test="${option.Sub eq '사회' }"> selected="selected"</c:if>
+																	value="사회">사회</option>
+																<option
+																	<c:if test="${option.Sub eq '예체능' }"> selected="selected"</c:if>
+																	value="예체능">예체능</option>
+																<option
+																	<c:if test="${option.Sub eq '제2외국어' }"> selected="selected"</c:if>
+																	value="제2외국어">제2외국어</option>
+																<option
+																	<c:if test="${option.Sub eq '컴퓨터(IT)' }"> selected="selected"</c:if>
+																	value="컴퓨터(IT)">컴퓨터(IT)</option>
+																<option
+																	<c:if test="${option.Sub eq '자격증' }"> selected="selected"</c:if>
+																	value="자격증">자격증</option>
+																<option
+																	<c:if test="${option.Sub eq '대학전공' }"> selected="selected"</c:if>
+																	value="대학전공">대학전공</option>
+																<option
+																	<c:if test="${option.Sub eq '기타' }"> selected="selected"</c:if>
+																	value="기타">기타</option>
 
-																</select>
-															</div>
+															</select>
 														</div>
+													</div>
 
-														<div class="form-group option">
-															<label class="col-sm-2 control-label">금액</label>
-															<div class="col-sm-10">
-																<select class="form-control" name="Pri" id="findStuLoc">
-																	<option
-																		<c:if test="${option.Pri eq '무관' }"> selected="selected"</c:if>
-																		value="무관">-전체-</option>
-																	<option
-																		<c:if test="${option.Pri eq '200000' }"> selected="selected"</c:if>
-																		value="200000">20만원 이하</option>
-																	<option
-																		<c:if test="${option.Pri eq '300000' }"> selected="selected"</c:if>
-																		value="300000">30만원 이하</option>
-																	<option
-																		<c:if test="${option.Pri eq '400000' }"> selected="selected"</c:if>
-																		value="400000">40만원 이하</option>
-																	<option
-																		<c:if test="${option.Pri eq '500000' }"> selected="selected"</c:if>
-																		value="500000">50만원 이하</option>
-																	<option
-																		<c:if test="${option.Pri eq '600000' }"> selected="selected"</c:if>
-																		value="600000">60만원 이하</option>
-																	<option
-																		<c:if test="${option.Pri eq '700000' }"> selected="selected"</c:if>
-																		value="700000">70만원 이하</option>
-																	<option
-																		<c:if test="${option.Pri eq '800000' }"> selected="selected"</c:if>
-																		value="800000">80만원 이하</option>
+													<div class="form-group option">
+														<label class="col-sm-2 control-label">금액</label>
+														<div class="col-sm-10">
+															<select class="form-control" name="Pri" id="findStuLoc">
+																<option
+																	<c:if test="${option.Pri eq '무관' }"> selected="selected"</c:if>
+																	value="무관">-전체-</option>
+																<option
+																	<c:if test="${option.Pri eq '200000' }"> selected="selected"</c:if>
+																	value="200000">20만원 이하</option>
+																<option
+																	<c:if test="${option.Pri eq '300000' }"> selected="selected"</c:if>
+																	value="300000">30만원 이하</option>
+																<option
+																	<c:if test="${option.Pri eq '400000' }"> selected="selected"</c:if>
+																	value="400000">40만원 이하</option>
+																<option
+																	<c:if test="${option.Pri eq '500000' }"> selected="selected"</c:if>
+																	value="500000">50만원 이하</option>
+																<option
+																	<c:if test="${option.Pri eq '600000' }"> selected="selected"</c:if>
+																	value="600000">60만원 이하</option>
+																<option
+																	<c:if test="${option.Pri eq '700000' }"> selected="selected"</c:if>
+																	value="700000">70만원 이하</option>
+																<option
+																	<c:if test="${option.Pri eq '800000' }"> selected="selected"</c:if>
+																	value="800000">80만원 이하</option>
 
 
-																</select>
-															</div>
+															</select>
 														</div>
+													</div>
 
-														<div class="form-group option" style="margin-left: 70px;">
-															<label class="col-sm-2 control-label">그룹과외 or
-																일대일과외</label>
-															<div class="col-sm-10">
-																<select class="form-control" name="Cnt" id="findStuLoc">
-																	<option
-																		<c:if test="${option.Cnt eq '무관' }"> selected="selected"</c:if>
-																		value="무관">-전체-</option>
-																	<option
-																		<c:if test="${option.Cnt eq '그룹' }"> selected="selected"</c:if>
-																		value="그룹">그룹</option>
-																	<option
-																		<c:if test="${option.Cnt eq '일대일' }"> selected="selected"</c:if>
-																		value="일대일">일대일</option>
+													<div class="form-group option" style="margin-left: 70px;">
+														<label class="col-sm-2 control-label">그룹과외 or
+															일대일과외</label>
+														<div class="col-sm-10">
+															<select class="form-control" name="Cnt" id="findStuLoc">
+																<option
+																	<c:if test="${option.Cnt eq '무관' }"> selected="selected"</c:if>
+																	value="무관">-전체-</option>
+																<option
+																	<c:if test="${option.Cnt eq '그룹' }"> selected="selected"</c:if>
+																	value="그룹">그룹</option>
+																<option
+																	<c:if test="${option.Cnt eq '일대일' }"> selected="selected"</c:if>
+																	value="일대일">일대일</option>
 
-																</select>
-															</div>
+															</select>
 														</div>
+													</div>
 
 
 
 
-														<div class="clearfix"></div>
-														<button class="btn btn-block btn-primary btn-float m-t-25"
-															style="color: white;">조건 검색</button>
-													</form>
-												</div>
-
+													<div class="clearfix"></div>
+													<button class="btn btn-block btn-primary btn-float m-t-25"
+														style="color: white;">조건 검색</button>
+												</form>
 											</div>
+
 										</div>
 									</div>
 								</div>
@@ -983,8 +998,9 @@ JS, Popper.js, and jQuery
 					</div>
 				</div>
 			</div>
-		</header>
-		<!-- END #gtco-header -->
+		</div>
+	</header>
+	<!-- END #gtco-header -->
 
 
 
@@ -993,155 +1009,155 @@ JS, Popper.js, and jQuery
 
 
 
-		<div class="gtco-services gtco-section">
-			<div class="gtco-container">
-			
-			
+	<div class="gtco-services gtco-section">
+		<div class="gtco-container">
+
+
 			<!-- 검색결과  -->
-				<link
-					href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-					rel="stylesheet">
-				<div class="container bootdey">
-					<div class="col-md-12">
-						<div class="title">
-							<span>선생님 찾기</span>
-						</div>
-						<hr>
+			<link
+				href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+				rel="stylesheet">
+			<div class="container bootdey">
+				<div class="col-md-12">
+					<div class="title">
+						<span>선생님 찾기</span>
+					</div>
+					<hr>
 
-						<c:if test="${findLessonList[0] eq null}">
-							<div class="" style="text-align: center;">
-
-
-								<img alt="Teacher" align="middle"
-									style="width: 200px; margin-top: 50px;"
-									src="${pageContext.request.contextPath}/resources/images/no_result.png">
+					<!-- 검색 결과가 없을 경우  -->
+					<c:if test="${findLessonList[0] eq null}">
+						<div class="" style="text-align: center;">
 
 
+							<img alt="Teacher" align="middle"
+								style="width: 200px; margin-top: 50px;"
+								src="${pageContext.request.contextPath}/resources/images/no_result.png">
 
-							</div>
-
+						</div><!-- 검색결과 x end  -->
 
 
 
+					</c:if>
+
+					<!-- 이미지 시작부분  -->
+
+					<c:forEach items="${findLessonList }" var="find">
+
+						<div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
+						
+							<div class="box-product">
+								<div class="img-wrapper">
+									<a href="${pageContext.request.contextPath}//member/detailLesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
+										<img alt="Teacher"
+										onerror="javascript:src='${pageContext.request.contextPath}/resources/images/profile.png'"
+										src="${pageContext.request.contextPath}/resources/upload/${find.TCH_FILE_RENAME}">
+									</a>
 
 
+								</div>
 
+								<div class="text text-epllipsis text-basic-black text-sm"><B>${find.USER_ID }</B></div>
+								<div class="text text-epllipsis text-basic-black text-sm">
+									<i class="fa fa-file-o"
+										style="margin-right: 8px; margin-left: 0;"></i>
+									${find.LESSON_SUBJECT }
+								</div>
+								<div class="text text-epllipsis text-basic-black text-sm">
+									<i class="fa fa-map-marker"
+										style="margin-right: 16px; margin-left: 0;"></i>${find.LESSON_LOC }</div>
 
-						</c:if>
-
-						<!-- 이미지 시작부분  -->
-
-						<c:forEach items="${findLessonList }" var="find">
-							<div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-								<div class="box-product">
-									<div class="img-wrapper">
-										<a href="detail.html"> <img alt="Teacher"
-											onerror="javascript:src='${pageContext.request.contextPath}/resources/images/profile.png'"
-											src="${pageContext.request.contextPath}/resources/upload/${find.TCH_FILE_RENAME}">
-										</a>
-
-
-									</div>
-
-									<div class="text text-epllipsis text-basic-black text-sm">${find.USER_ID }</div>
-									<div class="text text-epllipsis text-basic-black text-sm">
-										<i class="fa fa-file-o"
-											style="margin-right: 8px; margin-left: 0;"></i>
-										${find.LESSON_SUBJECT }
-									</div>
-									<div class="text text-epllipsis text-basic-black text-sm">
-										<i class="fa fa-map-marker"
-											style="margin-right: 16px; margin-left: 0;"></i>${find.LESSON_LOC }</div>
-
-									<div class="text text-epllipsis text-basic-black text-sm">
-										<i class="fa fa-users" style="margin-right: 8px;"></i>
-										<c:if test="${find.MAX_PEOPLE eq 1 }">
+								<div class="text text-epllipsis text-basic-black text-sm">
+									<i class="fa fa-users" style="margin-right: 8px;"></i>
+									<c:if test="${find.MAX_PEOPLE eq 1 }">
 										일대일
 									</c:if>
-										<c:if test="${find.MAX_PEOPLE ne 1 }">
+									<c:if test="${find.MAX_PEOPLE ne 1 }">
 										그룹
 									</c:if>
 
-									</div>
-
-									<c:forEach items="${star }" var="s">
-										<c:if test="${find.LESSON_NO eq s.LESSON_NO}">
-											<div class="rating">
-												<c:if test="${s.STAR eq 1 }">
-													<i class="ace-icon fa fa-star"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 1.5 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star-half-o"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 2 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 2.5 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star-half-o"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 3 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 3.5 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star-half-o"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 4 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 4.5 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star-half-o"></i>
-												</c:if>
-												<c:if test="${s.STAR eq 5 }">
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-													<i class="ace-icon fa fa-star"></i>
-												</c:if>
-
-												(${s.REVIEW } reviews)
-											</div>
-										</c:if>
-									</c:forEach>
-
 								</div>
+
+								<c:forEach items="${star }" var="s">
+									<c:if test="${find.LESSON_NO eq s.LESSON_NO}">
+										<div class="rating">
+											<c:if test="${s.STAR eq 1 }">
+												<i class="ace-icon fa fa-star"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 1.5 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star-half-o"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 2 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 2.5 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star-half-o"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 3 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 3.5 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star-half-o"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 4 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 4.5 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star-half-o"></i>
+											</c:if>
+											<c:if test="${s.STAR eq 5 }">
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+												<i class="ace-icon fa fa-star"></i>
+											</c:if>
+
+											(${s.REVIEW } reviews)
+										</div>
+									</c:if>
+								</c:forEach>
+
 							</div>
+							
+							</a>
+						</div>
 
-							<!-- 이미지 끝부분  -->
+						<!-- 이미지 끝부분  -->
 
-						</c:forEach>
+					</c:forEach>
 
 
-
-						<c:import url="/WEB-INF/paging/user/findLesson/listPaging.jsp" />
-					</div>
 
 				</div>
+					<c:import url="/WEB-INF/paging/user/findLesson/listPaging.jsp" />
 
 			</div>
-		</div><!-- END .gtco-services -->
+
+		</div>
+	</div>
+	<!-- END .gtco-services -->
 
 
-		<%-- <!-- footer include  -->
+	<%-- <!-- footer include  -->
 		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include>  --%>
 
-		<%@ include file="/WEB-INF/layout/main/footer.jsp"%>
+	<%@ include file="/WEB-INF/layout/main/footer.jsp"%>
 
 
 
