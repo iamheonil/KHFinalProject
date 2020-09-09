@@ -88,4 +88,7 @@ public interface UserMarketService {
 	// 대댓글 달기
 	public int insertRecomm(int mkno, int mkParentCommNo, String recommContent, int userNo);
 
+	// 댓글 수정
+	public int updateComm(int mkCommNo, String commContent);
+
 }

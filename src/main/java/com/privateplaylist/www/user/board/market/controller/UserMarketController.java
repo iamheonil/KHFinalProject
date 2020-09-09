@@ -218,11 +218,7 @@ public class UserMarketController {
 	// 댓글 삭제
 	@RequestMapping(value = "/market/deletecomm", method = RequestMethod.POST)
 	@ResponseBody
-	public int marketDeleteComm(HttpSession session, @RequestParam int mkCommNo) {
-		Member m = (Member) session.getAttribute("loginUser");
-		
-//		int userNo = m.getUserNo();
-		int userNo = 1;
+	public int marketDeleteComm(@RequestParam int mkCommNo) {
 		
 		// 댓글 삭제
 		int res = userMarketService.deleteComm(mkCommNo);
@@ -246,6 +242,17 @@ public class UserMarketController {
 		Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
 		
 		return comm;
+	}
+	
+	// 대댓글 수정
+	@RequestMapping(value = "/market/updatecomm", method = RequestMethod.POST)
+	@ResponseBody
+	public int marketUpdateComm(HttpSession session, @RequestParam int mkCommNo, @RequestParam String commContent) {
+		
+		// 댓글 수정
+		int res = userMarketService.updateComm(mkCommNo, commContent);
+		
+		return res;
 	}
 	
 	

@@ -251,6 +251,13 @@
 	padding-left: 10px;
 	padding-right: 10px;
 }
+.comm-body{
+    padding-left: 10px;
+}
+
+.comment-wrapper .panel-body textarea.updateTextarea{
+	width: 700px;
+}
 
 </style>
 
@@ -306,7 +313,8 @@ function addComm(mkno){
 			data: {mkno : mkno, commContent : commContent },
 			success : function(result) {
 				var li = '';
-				li += '<li class="media" id="comm' + mkno + '">';
+				li += '<li class="media comm0">';
+				li += '<div class="commExist">';
 				li += '<div class="text-muted pull-right userCommAct">';
 				li += '<a href="javascript:void(0);" onclick="commUpdate(';
 				li += result.MK_COMM_NO;
@@ -321,13 +329,14 @@ function addComm(mkno){
 					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
 				}
 				li += '</a>';
-				li += '<div class="media-body">';
+				li += '<div class="media-body comm-body">';
 				li += '<strong class="text">' + result.USER_ID + '</strong>';
 				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
 				li += '<small>' + result.MK_COMM_DATE + '</small>';
 				li += '&nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(';
 				li +=  mkno + ', ' +  result.MK_COMM_NO
 				li += ', this );">답글달기</a></small>';
+				li += '</div>';
 				li += '</div>';
 				li += '</li>';
         
@@ -346,32 +355,75 @@ function addComm(mkno){
 	}
 	
 }
+
+
 function commUpdate(mkCommNo, target){
 	
-	var el = '';
-	el += '<textarea class="form-control" required="required" placeholder="댓글 내용을 입력하세요" rows="3">';
-	el += $(target).parents("li[class='media']").find("p[class='pCommContent']").html();
-	el += '</textarea>';
-    el += '<button type="button" class="btn btn-disable btn-update pull-right" onclick="commUpdateCancle(';
-//     el += org + ', this';		
-    el += ');">취소</button>';   
-	el += '<button type="button" class="btn btn-info btn-update pull-right" onclick="updateCommSub(';
-	el += mkCommNo;
-	el += ' );" class="BtncommUpdate">수정</button>';	
+	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+		alert("답글을 다는 중에는 댓글을 수정할 수 없습니다.")
+	}else{
+		
+		var org = $(target).parents("li.media").find("p").text();
+		
+		var el = '';
+		el += '<div class="updateBox"><textarea class="form-control updateTextarea" placeholder="댓글 내용을 입력하세요" rows="3">';
+		el += $(target).parents("li.media").find("p").html();
+		el += '</textarea>';
+	    el += '<button type="button" class="btn btn-disable btn-update pull-right" onclick="commUpdateCancel(this);">취소</button>';   
+		el += '<button type="button" class="btn btn-info btn-update pull-right" onclick="updateCommSub(';
+		el += mkCommNo;
+		el += ', this );" class="BtncommUpdate">수정</button>';
+		el += '<input type="hidden" class="inputCancel" value="' + org + '"/>';
+		el += '</div>';	
+		$(target).parents("div.commExist").find("p").replaceWith(el);
+	}
 	
-	$(target).parents("li[class='media']").html(el);
 	
 }
 
-function commUpdateCancle(org, target){
-// 	console.log(org);
-// 	$(target).parents("li[class='media']").replaceWith(org);
+function commUpdateCancel(target){
+	
+	var org = $(target).next().next("input.inputCancel").val();
+	
+	var p = '';
+	p += '<p class="pCommContent">';
+	p += org;
+	p += '</p>';
+	$(target).parents("li.media").find("div.updateBox").replaceWith(p);
+}
+
+function updateCommSub(mkCommNo, target){
+	var commContent = $(target).prev().prev("textarea.updateTextarea").val();
+	if( commContent != null && commContent != ''){
+		var url = "<%=request.getContextPath() %>/board/market/updatecomm";
+		// 비동기 처리
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {mkCommNo : mkCommNo,  commContent : commContent },
+			success : function(result) {
+				if(result > 0){
+					
+					var p = '';
+					p += '<p class="pCommContent">';
+					p += commContent;
+					p += '</p>';
+					$(target).parents("li.media").find("div.updateBox").replaceWith(p);
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+	
 }
 
 
 function addRecomm(mkno, mkCommNo, target){
-	if(	$(target).parents("li[class='media']").next().hasClass('reComm') === true ){
-		$(target).parents("li[class='media']").next().remove();
+	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+		$(target).parents("li.media").next().remove();
 	}else{
 		var el = '';
 		el += '<li class="media reComm">';
@@ -382,7 +434,7 @@ function addRecomm(mkno, mkCommNo, target){
 		el += ' );">등록</button>';	
 		el += '</li>';
 		
-		$(target).parents("li[class='media']").after(el);	
+		$(target).parents("li.media").after(el);	
 	}
 	
 }
@@ -399,8 +451,9 @@ var recommContent = $(target).prev('textarea').val();
 			data: {mkno : mkno, mkParentCommNo : mkParentCommNo,  recommContent : recommContent },
 			success : function(result) {
 				var li = '';
-				li += '<li class="media" id="comm' + mkno + '">';
+				li += '<li class="media comm' + mkParentCommNo + '">';
 				li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
+				li += '<div class="commExist">';
 				li += '<div class="text-muted pull-right userCommAct">';
 				li += '<a href="javascript:void(0);" onclick="commUpdate(';
 				li += result.MK_COMM_NO;
@@ -415,17 +468,23 @@ var recommContent = $(target).prev('textarea').val();
 					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
 				}
 				li += '</a>';
-				li += '<div class="media-body">';
+				li += '<div class="media-body comm-body">';
 				li += '<strong class="text">' + result.USER_ID + '</strong>';
 				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
 				li += '<small>' + result.MK_COMM_DATE + '</small>';
 				li += '</div>';
+				li += '</div>';
 				li += '</li>';
         
-				$(target).parents("li").remove();
-				
-				$("#comm"+mkno).last().after(li);
-				
+				var offset;
+// 				console.log(result.MK_PARENT_COMM_NO);
+				if( !$("li.comm" + result.MK_PARENT_COMM_NO).length){
+					$(target).parents("li.reComm").replaceWith(li);
+				}else{
+					$(target).parents("li.reComm").remove();
+					$(".comm"+mkParentCommNo).last().after(li);
+				}
+			
 			},
 			error : function(){
 				alert("ajax 실패")
@@ -437,25 +496,29 @@ var recommContent = $(target).prev('textarea').val();
 
 function commDelete(mkCommNo, target){
 	
-	var chk = confirm("댓글을 삭제하시겠습니까?");
+	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+		alert("답글을 다는 중에는 댓글을 삭제할 수 없습니다.")
 	
-	if( chk == true){
-		var url = "<%=request.getContextPath() %>/board/market/deletecomm";
-		// 비동기 처리
-		$.ajax({
-			type : "POST",
-			url: url,
-			data: {mkCommNo : mkCommNo },
-			success : function(result) {
-				
-				$(target).parents("li[class='media']").html('<div class="deletedComm">삭제된 댓글입니다.</div>');
-			},
-			error : function(){
-				alert("ajax 실패")
-			}
-		});
+	}else{
+		var chk = confirm("댓글을 삭제하시겠습니까?");
+		
+		if( chk == true){
+			var url = "<%=request.getContextPath() %>/board/market/deletecomm";
+			// 비동기 처리
+			$.ajax({
+				type : "POST",
+				url: url,
+				data: {mkCommNo : mkCommNo },
+				success : function(result) {
+					
+					$(target).parents("div.commExist").html('<div class="deletedComm">삭제된 댓글입니다.</div>');
+				},
+				error : function(){
+					alert("ajax 실패")
+				}
+			});
+		}
 	}
-	
 }
 
 </script>
@@ -596,15 +659,18 @@ function commDelete(mkCommNo, target){
                     <hr>
                     <ul class="media-list" id="commList">
                    	 	<c:forEach items="${comms }" var="comm">
-                        <li class="media" id="comm${comm.MK_PARENT_COMM_NO }">
+                        <li class="media comm${comm.MK_PARENT_COMM_NO }">
                         <c:if test="${comm.MK_COMM_STATE eq 1 }">
+                       		<c:if test="${comm.MK_COMM_CLASS eq 2 }">
+                        		<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>
+                            </c:if>
                         	<div class="deletedComm">삭제된 댓글입니다.</div>
                         </c:if>
                         <c:if test="${comm.MK_COMM_STATE eq 0 }">
                         	<c:if test="${comm.MK_COMM_CLASS eq 2 }">
                         		<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>
                             </c:if>
-
+							<div class="commExist">
 	                            <div class="text-muted pull-right userCommAct">
 				            	  	<c:if test="${comm.MK_USER_NO eq commWriter }">
 				            	  		<a href="javascript:void(0);" onclick="commUpdate(${comm.MK_COMM_NO }, this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${comm.MK_COMM_NO }, this);">삭제</a>
@@ -618,7 +684,7 @@ function commDelete(mkCommNo, target){
 		                                <img src="${pageContext.request.contextPath}/resources/upload/${comm.TCH_FILE_RENAME }" alt="" class="img-circle">
 	                            	</c:if>
 	                            </a>
-	                            <div class="media-body">
+	                            <div class="media-body comm-body">
 	                                <strong class="text">${comm.USER_ID }</strong>
 	                                <p class="pCommContent">${comm.MK_COMM_CONTENT }</p>
 	                                <small>${comm.MK_COMM_DATE }</small>
@@ -626,6 +692,7 @@ function commDelete(mkCommNo, target){
 		                                &nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(${market.MK_NO }, ${comm.MK_COMM_NO }, this );">답글달기</a></small>
 		                            </c:if>
 	                            </div>
+	                         </div>
 						</c:if>
                         </li>
                    	 	</c:forEach>

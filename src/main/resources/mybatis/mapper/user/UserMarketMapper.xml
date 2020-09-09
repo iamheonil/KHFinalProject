@@ -141,4 +141,9 @@
     INSERT INTO mk_comm(mk_comm_no, mk_no, mk_comm_content, mk_user_no, mk_comm_class, mk_parent_comm_no)
   	VALUES(#{mkCommNo}, #{mkNo}, #{mkCommContent}, #{mkUserNo}, #{mkCommClass}, #{mkParentCommNo})
   </insert>
+  
+  <update id="updateComm" parameterType="map">
+  	UPDATE mk_comm SET mk_comm_content = #{commContent}
+  	WHERE mk_comm_no = #{mkCommNo}
+  </update>
   </mapper>

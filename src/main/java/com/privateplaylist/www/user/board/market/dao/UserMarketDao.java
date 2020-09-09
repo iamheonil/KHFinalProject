@@ -109,6 +109,10 @@ public class UserMarketDao {
 		return sqlSession.insert(namespace + "insertRecomm", mkComm);
 	}
 
+	public int updateComm(Map<String, Object> map) {
+		return sqlSession.update(namespace + "updateComm", map);
+	}
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.privateplaylist.www.user.board.market.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -211,6 +212,15 @@ public class UserMarketServiceImpl implements UserMarketService{
 		int res = userMarketDao.insertRecomm(mkComm);
 		
 		return commNo;
+	}
+
+	@Override
+	public int updateComm(int mkCommNo, String commContent) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mkCommNo", mkCommNo);
+		map.put("commContent", commContent);
+		
+		return userMarketDao.updateComm(map);
 	}
 
 }
