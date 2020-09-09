@@ -18,12 +18,12 @@
 	<select id="selectCntQuestionAll" resultType="int">
   		select count(*) from question
     </select>  
-	
-	<!-- 상세 페이지 출력 -->
+<!-- 		상세 페이지 출력  -->
 	<select id="selectQuestionone" resultType="QUESTION" parameterType="int">
   	select * from question
   	where question_no = #{questionNo}
-  </select>
+ 	</select>
+
 	
 	<!-- 댓글,대댓글 출력 -->
   <select id="selectQuestionComm" resultType="QUESTIONCOMM" parameterType="int">
@@ -46,6 +46,9 @@
 		delete from question_comm where comm_No=#{comm_No}
 	</delete>
 
+	<delete id="deleteQuestionReComm">
+		delete from question_comm where comm_No=#{comm_No} AND parent_No=1
+	</delete>
 
 
 	<select id="selectSearchQuestion" resultType="QUESTION" parameterType="map">
@@ -68,7 +71,13 @@
   	or question_content like  '%' || #{keyword} || '%'
   </select>
 
-
+<!-- 	<select id="selectDetailQuestion" resultMap="map" parameterType="map"> -->
+<!-- 	select Q.*,R.* from question Q -->
+<!-- 	INNER JOIN review R -->
+<!-- 	ON Q.user_no = R.user_no  -->
+<!-- 	WHERE question_no = #{questionNo} -->
+	
+<!-- 	</select> -->
 
 
 

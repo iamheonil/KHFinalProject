@@ -43,15 +43,15 @@ public class QuestionDao {
 		return sqlSession.delete("Question.deleteQuestionFile", questionNo);
 	}
 	//게시물 댓글 삭제
-	public int deleteQuestionComm(int questionNo) {
-		return sqlSession.delete("Question.deleteQuestionComm", questionNo);
+	public int deleteQuestionComm(int commNo) {
+		return sqlSession.delete("Question.deleteQuestionComm", commNo);
 	}
 
 
 	
 	//게시물 댓글
-	public List<QuestionComm> getReplyList(int questionNo) {
-		return sqlSession.selectList("Question.selectQuestionComm",questionNo);
+	public List<QuestionComm> getReplyList(int commNo) {
+		return sqlSession.selectList("Question.selectQuestionComm",commNo);
 	}
 
 	//검색
@@ -63,6 +63,10 @@ public class QuestionDao {
 	public int selectCntQuestionSearchAll(String keyword) {
 		return sqlSession.selectOne("Question.selectCntQuestionSearchAll",keyword);
 	}
+
+//	public List<Map<String, Object>> detailQuestion(int questionNo, int commNo) {
+//		return sqlSession.selectList("Question.selectDetailQuestion",questionNo);
+//	}
 	
 	
 }

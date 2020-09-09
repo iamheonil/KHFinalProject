@@ -57,14 +57,18 @@ public class QuestionController {
 		}
 		//질문게시판 세부정보 보기
 		@RequestMapping(value="/detail")
-		public String  questionDetail(Model model,@RequestParam int questionNo ) {
+		public String  questionDetail(Model model,@RequestParam int questionNo,int commNo ) {
 			
 			//질문게시판 정보 조회 one
 			Question questionone = questionService.selectQuestionone(questionNo);
-			List<QuestionComm> commList = questionService.getReplyList(questionNo);
+			List<QuestionComm> commList = questionService.getReplyList(commNo);
+			
+//			List<Map<String,Object>> detailList = questionService.detailQuestion(questionNo,commNo);
+			
 			//모델값 전달
 			model.addAttribute("questionone", questionone);
 			model.addAttribute("commList",commList);
+//			model.addAttribute("detailList",detailList);
 			
 			for (QuestionComm questionComm : commList) {
 			}
@@ -88,18 +92,21 @@ public class QuestionController {
 			//삭제 완료
 		}
 		@RequestMapping(value="/deleteComm")
-		public String  questionCommDelete(Model model,@RequestParam int questionNo) {
+		public String  questionCommDelete(Model model,@RequestParam int commNo) {
 			
-			//글 삭제하기
-			int res = questionService.deleteQuestionComm(questionNo);
+			//댓글 삭제하기
+			int res = questionService.deleteQuestionComm(commNo);
 			
 			if(res>0) {//삭제처리에성공
-				return "redirect:/admin/question/detail?questionNo="+questionNo;
+				return "redirect:/admin/question/detail?commNo="+commNo;
 			}else {//삭제에 실패했을때
 				return "0";
 			}
 			
 		}
+		
+		
+		
 		
 		//질문게시판 글 삭제하기 (선택 삭제)
 		@RequestMapping(value="/idxdelete")

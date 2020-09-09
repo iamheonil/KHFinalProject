@@ -125,7 +125,7 @@ $(document).ready(function(){
 
 <div id="content"> 
  
- 
+<c:if test="${loginUser.userNo eq questionone.userNo }"> 
  	<table class="table">
 	
 		<tr>
@@ -148,7 +148,7 @@ $(document).ready(function(){
 		
 		
 	</table>
- 
+ </c:if>
  
  <!-- 댓글 테이블 -->	
 <table class="commTable" >
