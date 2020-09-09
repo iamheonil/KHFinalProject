@@ -71,6 +71,7 @@
 		
 			<!-- 값 출력 -->
 	<c:forEach items="${reviewList }" var="review" >
+		<c:if test="${loginUser.userNo eq review.userNo }">
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${review.reviewNo}" id="checkRow"/></td>
 		<td>${review.reviewNo }</td>
@@ -84,6 +85,7 @@
 		<td>${review.reviewDate }</td>
 <%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
 	</tr>
+	</c:if>
 	</c:forEach>
 	</c:if>
 		</table>
