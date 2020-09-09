@@ -90,6 +90,9 @@ public class ChatController {
 		result.append("{\"result\":[");
 		
 		List<Message> chatList=chatService.getChatListByRecent(fromID, toID, 50);
+		String fromProfile=chatdao.getProfile(fromID);
+		String toProfile=chatdao.getProfile(toID);
+		
 		
 		
 //		System.out.println("getten:"+chatList);
@@ -104,7 +107,9 @@ public class ChatController {
 				result.append(",");
 			}
 		}
-		result.append("], \"last\":\"" + chatList.get(chatList.size()-1).getChatID()+"\"}");
+		result.append("], \"last\":\"" + chatList.get(chatList.size()-1).getChatID()+"\"");
+		result.append(", \"fromprofile\":\"" + fromProfile+"\"");
+		result.append(", \"toprofile\":\"" + toProfile+"\"}");
 		chatService.readChat(fromID, toID);//채팅을 읽었음을 표시
 		return result.toString();
 		
@@ -112,6 +117,8 @@ public class ChatController {
 	
 	//id에 따른 채팅내용을 검색
 	public String getId(String fromID,String toID,String chatID) {
+		String fromProfile=chatdao.getProfile(fromID);
+		String toProfile=chatdao.getProfile(toID);
 		String result="";
 		result="{\"result\":[";
 		/* System.out.println(chatID); */
@@ -128,7 +135,9 @@ public class ChatController {
 				result+=",";
 			}
 		}
-		result+="], \"last\":\"" + chatList.get(chatList.size()-1).getChatID()+"\"}";
+		result+="], \"last\":\"" + chatList.get(chatList.size()-1).getChatID()+"\"";
+		result+=", \"fromprofile\":\"" +fromProfile+"\"";
+		result+=", \"toprofile\":\"" +toProfile+"\"}";
 //		System.out.println(result);
 		chatService.readChat(fromID, toID);//채팅을 읽었음을 표시
 		return result.toString();
@@ -185,6 +194,8 @@ public class ChatController {
 			result+="{\"value\": \""+chatList.get(i).getToID()+"\"},";
 			result+="{\"value\": \""+chatList.get(i).getChatContent()+"\"},";
 			result+="{\"value\": \""+chatList.get(i).getChatTime()+"\"},";
+			result+="{\"value\": \""+chatdao.getProfile(chatList.get(i).getFromID())+"\"},";//fromid의 프로필사진 가져오기
+			result+="{\"value\": \""+chatdao.getProfile(chatList.get(i).getToID())+"\"},";//toid의 프로필사진 가져오기
 			result+="{\"value\": \""+unread+"\"}]";
 			
 			if(i != 0) {
