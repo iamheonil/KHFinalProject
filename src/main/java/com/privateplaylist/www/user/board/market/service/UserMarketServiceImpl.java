@@ -170,4 +170,47 @@ public class UserMarketServiceImpl implements UserMarketService{
 		
 	}
 
+	@Override
+	public int insertComm(int mkno, String commContent, int userno) {
+		
+		// 댓글 nextval 가져오기
+		int commNo = userMarketDao.selectNextMkCommNo();
+		
+		MkComm mkComm = new MkComm();
+		mkComm.setMkCommNo(commNo);
+		mkComm.setMkNo(mkno);
+		mkComm.setMkCommContent(commContent);
+		mkComm.setMkUserNo(userno);
+		int res = userMarketDao.insertComm(mkComm);
+		
+		return commNo;
+	}
+
+	@Override
+	public Map<String, Object> selectCommByCommNo(int commno) {
+		return userMarketDao.selectCommByCommNo(commno);
+	}
+
+	@Override
+	public int deleteComm(int mkCommNo) {
+		return userMarketDao.deleteComm(mkCommNo);
+	}
+
+	@Override
+	public int insertRecomm(int mkno, int mkParentCommNo, String recommContent, int userNo) {
+		// TODO Auto-generated me		// 댓글 nextval 가져오기
+		int commNo = userMarketDao.selectNextMkCommNo();
+		
+		MkComm mkComm = new MkComm();
+		mkComm.setMkCommNo(commNo);
+		mkComm.setMkNo(mkno);
+		mkComm.setMkCommContent(recommContent);
+		mkComm.setMkUserNo(userNo);
+		mkComm.setMkCommClass(2);
+		mkComm.setMkParentCommNo(mkParentCommNo);
+		int res = userMarketDao.insertRecomm(mkComm);
+		
+		return commNo;
+	}
+
 }

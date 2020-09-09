@@ -15,6 +15,7 @@
   <select id="selectCntAllMKComm" parameterType="int" resultType="int">
  	SELECT COUNT(*) FROM mk_comm
 	WHERE mk_user_no=#{userNo}
+	AND mk_comm_state = 0
   </select>
   
   <select id="selectMarketStu" parameterType="map" resultType="map">
@@ -38,6 +39,7 @@
 	  		FROM (
 				SELECT * FROM mk_comm
 				WHERE mk_user_no = #{userNo}
+				AND mk_comm_state = 0
 				ORDER BY mk_comm_no DESC
 			) t
 			ORDER BY no ) x

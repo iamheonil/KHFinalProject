@@ -197,6 +197,56 @@ public class UserMarketController {
 		return mav;
 	}
 	
+	// 댓글 달기
+	@RequestMapping(value = "/market/addcomm", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> marketAddComm(HttpSession session, @RequestParam int mkno, @RequestParam String commContent) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+//		int userNo = m.getUserNo();
+		int userNo = 1;
+		
+		// 댓글 입력
+		int commno = userMarketService.insertComm(mkno, commContent, userNo);
+		
+		// 댓글 정보 가져오기
+		Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
+		
+		return comm;
+	}
+
+	// 댓글 삭제
+	@RequestMapping(value = "/market/deletecomm", method = RequestMethod.POST)
+	@ResponseBody
+	public int marketDeleteComm(HttpSession session, @RequestParam int mkCommNo) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+//		int userNo = m.getUserNo();
+		int userNo = 1;
+		
+		// 댓글 삭제
+		int res = userMarketService.deleteComm(mkCommNo);
+		
+		return res;
+	}
+	
+	// 대댓글 달기
+	@RequestMapping(value = "/market/addrecomm", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> marketAddRecomm(HttpSession session, @RequestParam int mkno, @RequestParam int mkParentCommNo, @RequestParam String recommContent) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+//		int userNo = m.getUserNo();
+		int userNo = 1;
+		
+		// 댓글 입력
+		int commno = userMarketService.insertRecomm(mkno, mkParentCommNo, recommContent, userNo);
+		
+		// 댓글 정보 가져오기
+		Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
+		
+		return comm;
+	}
 	
 	
 

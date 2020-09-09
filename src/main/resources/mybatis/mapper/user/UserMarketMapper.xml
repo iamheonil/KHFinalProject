@@ -106,10 +106,39 @@
 	LEFT OUTER JOIN teacherfile t
 	ON(m.user_no = t.user_no)
   	WHERE mk_no = #{mkno}
+  	ORDER BY c.mk_comm_no
   </select>
   
   <update id="updateMarket" parameterType="MARKET">
   	UPDATE market SET mk_title = #{mkTitle}, mk_content = #{mkContent}, mk_price = #{mkPrice}
   	WHERE mk_no = #{mkNo}
   </update>
+  
+  <insert id="insertComm" parameterType="MKCOMM">
+  	INSERT INTO mk_comm(mk_comm_no, mk_no, mk_comm_content, mk_user_no)
+  	VALUES(#{mkCommNo}, #{mkNo}, #{mkCommContent}, #{mkUserNo})
+  </insert>
+  
+  <select id="selectNextMkCommNo" resultType="int">
+  	SELECT mk_comm_SEQ.nextval FROM dual
+  </select>
+
+  <select id="selectCommByCommNo" parameterType="int" resultType="map">
+	select c.*, m.user_id, t.tch_file_rename from mk_comm c
+	LEFT OUTER JOIN membership m
+	ON(c.mk_user_no = m.user_no)
+	LEFT OUTER JOIN teacherfile t
+	ON(c.mk_user_no = t.user_no)
+	WHERE c.mk_comm_no = #{commno}
+  </select>
+  
+  <update id="deleteComm">
+  	UPDATE mk_comm SET mk_comm_state = 1
+  	WHERE mk_comm_no = #{mkCommNo}
+  </update>
+  
+  <insert id="insertRecomm">
+    INSERT INTO mk_comm(mk_comm_no, mk_no, mk_comm_content, mk_user_no, mk_comm_class, mk_parent_comm_no)
+  	VALUES(#{mkCommNo}, #{mkNo}, #{mkCommContent}, #{mkUserNo}, #{mkCommClass}, #{mkParentCommNo})
+  </insert>
   </mapper>
