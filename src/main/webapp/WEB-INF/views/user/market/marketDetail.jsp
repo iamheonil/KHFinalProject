@@ -256,7 +256,7 @@
 }
 
 .comment-wrapper .panel-body textarea.updateTextarea{
-	width: 700px;
+	width: 650px;
 }
 
 </style>
