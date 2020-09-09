@@ -58,9 +58,9 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	// 댓글 대댓글
-	 public List<QuestionComm> getReplyList(int questionNo) {
+	 public List<QuestionComm> getReplyList(int commNo) {
 		 
-	        List<QuestionComm> questionReplyList = questionDao.getReplyList(questionNo);
+	        List<QuestionComm> questionReplyList = questionDao.getReplyList(commNo);
 	 
 	        //msyql 에서 계층적 쿼리가 어려우니 여기서 그냥 해결하자
 	        
@@ -116,11 +116,11 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	//댓글삭제
-	public int deleteQuestionComm(int questionNo) {
+	public int deleteQuestionComm(int commNo) {
 		
 		
 		
-		return questionDao.deleteQuestionComm(questionNo);
+		return questionDao.deleteQuestionComm(commNo);
 	}
 
 	@Override
@@ -148,4 +148,10 @@ public class QuestionServiceImpl implements QuestionService{
 		return qustionList;
 	
 	}
+
+//	@Override
+//	public List<Map<String, Object>> detailQuestion(int questionNo, int commNo) {
+//		 List<Map<String, Object>> detailList= questionDao.detailQuestion(questionNo,commNo);
+//		return detailList;
+//	}
 }

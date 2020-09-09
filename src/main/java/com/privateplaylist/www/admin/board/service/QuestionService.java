@@ -19,22 +19,25 @@ public interface QuestionService {
 	//질문목록 전체 페이징
 	public Paging questionListPaging(HttpServletRequest req);
 	
-	// 질문목록 상세 조회
+//	// 질문목록 상세 조회
 	public Question selectQuestionone(int questionNo);
 
 	//디테일뷰 댓글 대댓글 불러오기
-	public List<QuestionComm> getReplyList(int questionNo);
+	public List<QuestionComm> getReplyList(int commNo);
 	//질문게시판 글 삭제하기 (상세보기 페이지에서 삭제)
 	public int deleteQuestion(int questionNo);
 	
 	//댓글삭제
-	public int deleteQuestionComm(int questionNo);
+	public int deleteQuestionComm(int commNo);
 	
 	//페이징 객체
 	public Paging questionSearchPaging(HttpServletRequest req, String keyword);
 	
 	//검색
 	public List<Question> selectSearchQuestion(Map<String, Object> searchMap);
+	
+	//디테일뷰
+//	public List<Map<String, Object>> detailQuestion(int questionNo, int commNo);
 	
 
 }
