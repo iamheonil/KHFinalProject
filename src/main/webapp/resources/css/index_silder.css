@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+$slider-length: 4;
+$radioBtn-size: 12px;
+$btn-color: #ccc;
+$active-color: #333;
+//---------------------------------------------------
+
+*, *:before, *:after { box-sizing: border-box;}
+
+html,body { height: 100%;}
+
+body {
+	color: #444;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+.slider {
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: flex-end;
+	justify-content: center;
+	
+	&__nav {
+		width: $radioBtn-size;
+		height: $radioBtn-size;
+		margin: 2rem $radioBtn-size;
+		border-radius: 50%;
+		z-index: 10;
+		outline: $radioBtn-size / 2 solid $btn-color;
+		outline-offset: $radioBtn-size / -2;
+		box-shadow: 
+			0 0 0 0 $active-color, 
+			0 0 0 0 rgba($active-color,0);
+		cursor: pointer;
+		appearance: none;
+		backface-visibility: hidden;
+
+		&:checked {
+			animation: check 0.5s linear forwards;
+
+			@for $i from 0 to $slider-length {
+				&:nth-of-type(#{$i+1}) {
+				~ .slider__inner {
+					transform: translateX((-100% * $i) / $slider-length);
+					}
+				}
+			}
+		}
+	}
+	
+	&__inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100% * $slider-length;
+		height: 100%;
+		transition: all 1s ease-out;
+		display: flex;
+		flex-flow: row nowrap;
+	}
+	
+	&__contents {
+		height: 100%;
+		padding: 2rem;
+		text-align: center;
+		display: flex;
+		flex: 1;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	&__image {
+		font-size: 2.7rem;
+	}
+
+	&__caption {
+		font-weight: 700;
+		margin: 2rem 0 1rem;
+		text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+		text-transform: uppercase;
+	}
+
+	&__txt {
+		color: #999;
+		margin-bottom: 3rem;
+		max-width: 300px;
+	}
+}
+
+
+
+// animation ---------------------------
+
+@keyframes check {
+	50% {
+		outline-color: $active-color;
+		box-shadow: 
+			0 0 0 $radioBtn-size $active-color, 
+			0 0 0 $radioBtn-size*3 rgba($active-color,0.2);
+	}
+	100% {
+		outline-color: $active-color;
+		box-shadow: 
+			0 0 0 0 $active-color, 
+			0 0 0 0 rgba($active-color,0);
+	}
+}

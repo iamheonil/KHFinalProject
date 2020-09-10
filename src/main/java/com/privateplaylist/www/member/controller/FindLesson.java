@@ -119,17 +119,17 @@ public class FindLesson {
 		Map<String,Object> teacherFile=fls.selectTeacherFile(userNo);//선생님 프로필 사진 가져오기
 		List<Map<String,Object>> reviewAndStar =fls.selectReviewByLessonNo(lessonNo);//과외 리뷰 가져오기
 		
-		/*
-		 * System.out.println("findlessonAndTeacherList"+findLessonAndTeacherList);
-		 * System.out.println("lessonFile"+lessonFile);
-		 * System.out.println("teacherFile"+teacherFile);
-		 * System.out.println("revuewAndStar"+reviewAndStar);
-		 */
+//		
+//		  System.out.println("findlessonAndTeacherList"+findLessonAndTeacherList);
+		  System.out.println("lessonFile"+lessonFile);
+		  System.out.println("teacher"+teacherFile);
+//		  System.out.println("revuewAndStar"+reviewAndStar);
+		 
 		
 		
 		model.addAttribute("findlessonAndTeacherList", findLessonAndTeacherList);
 		model.addAttribute("lessonFile", lessonFile);
-		model.addAttribute("teacherFile", teacherFile);
+		model.addAttribute("teacher", teacherFile);
 		model.addAttribute("revuewAndStar", reviewAndStar);
 		
 		
