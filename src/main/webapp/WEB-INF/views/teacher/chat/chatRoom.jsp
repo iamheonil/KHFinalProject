@@ -31,14 +31,16 @@ function searchParam(key) {//파라미터 값을 가져오는 함수
 	  return new URLSearchParams(location.search).get(key);
 	};
 function autoCloseAlert(selector,delay){//메세지가 전달된 후의 결과메시지를 띄우는 함수
-	var alert=$(selector).alert();
-	alert.show();
-	window.setTimeout(function() {alert.hide()},delay)
+	
 }
 function submitFunction(){//메시지를 전달받아 db에넣고 결과값출력후 채팅창을 비움
 var userID='<%=userID%>'
 var toID=searchParam('toID')
 var chatContent=$('#chatContent').val();
+if(chatContent == null || chatContent ==''){
+	alert('내용을 입력하세요')
+	return
+}
 
 if(chatContent==null || chatContent==''){
 	alert("문자를 입력하지 않았습니다")
@@ -102,26 +104,34 @@ function chatListFunction(type){//채팅리스트를 ajax로 가져와서 파싱
 			
 			var parsed=JSON.parse(data);
 			var result=parsed.result;
+			var fromprofile=parsed.fromprofile;
+			var toprofile=parsed.toprofile;
+			
+			
 			
 			lastID=Number(parsed.last);
 			
 			for(var i=0;result.length;i++){
 				if(result[i][0].value==userID){
 					result[i][0].value='나';
+					profile=fromprofile;
+				addChat(result[i][0].value,result[i][2].value,result[i][3].value,fromprofile);//나일때 fromprofile프로필로
+				}else{
+				addChat(result[i][0].value,result[i][2].value,result[i][3].value,toprofile);//상대방일때 toprofile프로필로
 				}
-				addChat(result[i][0].value,result[i][2].value,result[i][3].value);
 			}
 			
 		}
 	});
 }
-function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메시지를 append해주는 함수
+function addChat(chatName,chatContent,chatTime,profile){//채팅창에 내가보낸 메시지를 append해주는 함수
+	
 	
 	if(chatName=='나'){
 		
 		$('#chatList').append('<li class="mar-btm">'+
 				'<div class="media-right">'+
-				'<img class="media-object img-circle"style="width:30px; height:30px;" src="${pageContext.request.contextPath}/resources/images/icon.png">'+
+				'<img class="media-object img-circle"style="width:30px; height:30px;" src="${pageContext.request.contextPath}'+profile+'">'+
 				'</div>'+
 				'<div class="media-body pad-hor speech-right">'+
 				'<div class="speech">'+
@@ -143,7 +153,7 @@ function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메�
 	
 	$('#chatList').append('<li class="mar-btm">'+
 			'<div class="media-left">'+
-			'<img class="media-object img-circle"style="width:30px; height:30px;" src="${pageContext.request.contextPath}/resources/images/icon.png">'+
+			'<img class="media-object img-circle"style="width:30px; height:30px;" src="${pageContext.request.contextPath}'+profile +' ">'+
 			'</div>'+
 			'<div class="media-body pad-hor">'+
 			'<div class="speech">'+
@@ -163,7 +173,7 @@ function addChat(chatName,chatContent,chatTime){//채팅창에 내가보낸 메�
 	}
 	
 var Div=document.getElementById("chatListBox");
-console.dir(Div)
+
 Div.scrollTop=Div.scrollHeight;
 }
 function getInfinateChat(){//채팅리스트를 가져오는 함수를 계속 하여 채팅방을 계속 업데이트한다
@@ -304,7 +314,7 @@ else
 	        var text_value = $('#chatContent').val();
 	        
 	        if(textarea_value != '' && text_value != ''  && text_value != null  && text_value != null) {
-	        	console.log(textarea_value);
+	        	
 	            $('#submit').attr('disabled', false);
 	            text_value='';
 	            textarea_value='';

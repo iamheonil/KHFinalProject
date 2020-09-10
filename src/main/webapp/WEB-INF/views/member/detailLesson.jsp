@@ -316,17 +316,31 @@
 							<div id="home" class="tab-pane in active">
 								<div class="row">
 									<div class="col-xs-12 col-sm-3 center">
-										<span class="profile-picture"> <img
-											class="editable img-responsive" alt=" Avatar" id="avatar2"
-											src="${pageContext.request.contextPath}/resources/upload/${teacherFile.TCH_FILE_RENAME}">
-										</span>
+										<c:if test="${teacher eq null }">
+											<!-- 프로필 사진이 없으면 기본사진  -->
+											<span class="profile-picture"> <img
+												class="editable img-responsive" alt=" Avatar" id="avatar2"
+												src="${pageContext.request.contextPath}/resources/images/profile.png">
+											</span>
+										</c:if>
+										<c:if test="${teacher ne null }">
+											<!-- 프로필 사진이 있으면 해당사진 보이기  -->
+											<span class="profile-picture"> <img
+												class="editable img-responsive" alt=" Avatar" id="avatar2"
+												src="${pageContext.request.contextPath}/resources/upload/${teacher.TCH_FILE_RENAME}">
+											</span>
+										</c:if>
+
 
 										<div class="space space-4"></div>
 
-										<a href="javascript:void(0);" onclick="insertWish(${findlessonAndTeacherList.LESSON_NO});" class="btn btn-sm btn-block btn-success"> <i
+										<a href="javascript:void(0);"
+											onclick="insertWish(${findlessonAndTeacherList.LESSON_NO});"
+											class="btn btn-sm btn-block btn-success"> <i
 											class="ace-icon fa fa-plus-circle bigger-120"></i> <span
 											class="bigger-110">찜하기</span>
-										</a> <a href="javascript:void(0);"  onclick="gochatRoom();"  class="btn btn-sm btn-block btn-primary"> <i
+										</a> <a href="javascript:void(0);" onclick="gochatRoom();"
+											class="btn btn-sm btn-block btn-primary"> <i
 											class="ace-icon fa fa-envelope-o bigger-110"></i> <span
 											class="bigger-110">문의하기</span>
 										</a>
@@ -524,8 +538,17 @@
 
 							<div id="friends" class="tab-pane">
 								<br>
+								<c:if test="${revuewAndStar[0] eq null}">
 
+									<div class="" style="text-align: center;">
+										<span style="font-size: 32px;"><i class="fa fa-file"></i></span><br>
 
+										<b style="font-size: 22px;">No Review</b><br> <b
+											style="font-size: 12px;">등록된 리뷰가 없습니다</b>
+
+									</div>
+									<!-- 검색결과 x end  -->
+								</c:if>
 								<c:forEach items="${revuewAndStar }" var="review">
 
 									<div class="comment-wrapper">
@@ -565,8 +588,7 @@
 															</c:if>
 														</span> <strong class="text-success">${review.USER_ID }</strong>
 														<p>${review.REVIEW_CONTENT }</p>
-													</div>
-													<br></li>
+													</div> <br></li>
 											</ul>
 										</div>
 									</div>
@@ -594,6 +616,18 @@
 
 											</a></li>
 										</c:forEach>
+									</c:if>
+
+									<c:if test="${lessonFile[0] eq null }">
+										<br>
+										<div class="" style="text-align: center;">
+											<span style="font-size: 32px;"><i class="fa fa-image"></i></span><br>
+
+											<b style="font-size: 22px;">No Review</b><br> <b
+												style="font-size: 12px;">등록된 이미지가 없습니다</b>
+
+										</div>
+
 									</c:if>
 
 
@@ -627,25 +661,25 @@
 		rel="stylesheet">
 
 
-	
+
 
 	<%
- int userNo=0;
-if(session.getAttribute("loginUser") !=null){
-	userNo=((Member)session.getAttribute("loginUser")).getUserNo();//사용자의 정보가져오기
-}
+		int userNo = 0;
+	if (session.getAttribute("loginUser") != null) {
+		userNo = ((Member) session.getAttribute("loginUser")).getUserNo();//사용자의 정보가져오기
+	}
 	%>
 
 
 
-	
-	
+
+
 
 	<script type="text/javascript">
 	
 	function gochatRoom(){
 		
-		var userNo=<%=userNo %>
+		var userNo=<%=userNo%>
 		
 		if(userNo==0){
     		alert('로그인 후 사용 가능합니다')
@@ -657,7 +691,7 @@ if(session.getAttribute("loginUser") !=null){
 	
     function insertWish(lessonNo){
     
-    	var userNo=<%=userNo %>
+    	var userNo=<%=userNo%>
     	if(userNo==0){
     		alert('로그인 후 사용 가능합니다')
     		return 

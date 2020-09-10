@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -173,7 +173,7 @@ function deleteFile(mkFileNo, target){
       	<c:if test="${!empty market.MK_THUMB_NO }">
 	   		<span>${market.MK_THUMB_ORG }&nbsp;<i class="fa fa-times" id="BtnThumbDelete" aria-hidden="true" onclick="deleteThumb(${market.MK_THUMB_NO }, this);"></i></span>
       	</c:if>
-	    <input type="file" name="thumb" id="thumbChange"/>
+	    <input type="file" accept="image/*" name="thumb" id="thumbChange"/>
 <!-- 	    <div id="thumbImg"></div> -->
     </div>
     <div class="form-group">
@@ -183,7 +183,7 @@ function deleteFile(mkFileNo, target){
 		    <span>${f.mkFileOrg }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.mkfileNo }, this);"></i>&nbsp;</span>
 	      </c:forEach>
       </c:if>
-	    <input type="file" multiple="multiple" name="files" />
+	    <input type="file" accept="image/*" multiple="multiple" name="files" />
     </div>
 <div style="text-align: center;">
     <button class="btn btn-primary" onclick="submitContents();"><span>수정</span></button>

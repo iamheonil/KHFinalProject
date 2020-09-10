@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -149,10 +149,10 @@
     margin-top: 10px;
 }
 
-.comment-wrapper .panel-body {
-    max-height:650px;
-    overflow:auto;
-}
+/* .comment-wrapper .panel-body { */
+/*     max-height:650px; */
+/*     overflow:auto; */
+/* } */
 
 .comment-wrapper .panel-body textarea{
 	width: 750px;
@@ -237,6 +237,27 @@
 	font-size: 12px;
 }
 
+#BtnGoList{
+	border: none;
+	line-height: 35px;
+	background: #ddd;
+}
+
+.deletedComm{
+	margin: 10px;
+}
+
+.btn-update{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.comm-body{
+    padding-left: 10px;
+}
+
+.comment-wrapper .panel-body textarea.updateTextarea{
+	width: 650px;
+}
 
 </style>
 
@@ -279,8 +300,231 @@ function goList(){
 	location.href="${pageContext.request.contextPath}/board/market";
 }
 
+function addComm(mkno){
+	
+	var commContent = $("#commContent").val();
+	
+	if( commContent != null && commContent != ''){
+		var url = "<%=request.getContextPath() %>/board/market/addcomm";
+		// 비동기 처리
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {mkno : mkno, commContent : commContent },
+			success : function(result) {
+				var li = '';
+				li += '<li class="media comm0">';
+				li += '<div class="commExist">';
+				li += '<div class="text-muted pull-right userCommAct">';
+				li += '<a href="javascript:void(0);" onclick="commUpdate(';
+				li += result.MK_COMM_NO;
+				li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
+				li += result.MK_COMM_NO;
+				li += ', this);">삭제</a>';
+				li += '</div>';
+				li += '<a href="#" class="pull-left">';
+				if(result.TCH_FILE_RENAME == null ){
+					li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+				}else{
+					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+				}
+				li += '</a>';
+				li += '<div class="media-body comm-body">';
+				li += '<strong class="text">' + result.USER_ID + '</strong>';
+				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
+				li += '<small>' + result.MK_COMM_DATE + '</small>';
+				li += '&nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(';
+				li +=  mkno + ', ' +  result.MK_COMM_NO
+				li += ', this );">답글달기</a></small>';
+				li += '</div>';
+				li += '</div>';
+				li += '</li>';
+        
+				$("#commList").append(li);
+				$("#commContent").val("");
+				
+			    var offset = $("#commList li:last-child").offset();
+		        $('html, body').animate({scrollTop : offset.top}, 400);
+		        
+				
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+}
 
 
+function commUpdate(mkCommNo, target){
+	
+	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+		alert("답글을 다는 중에는 댓글을 수정할 수 없습니다.")
+	}else{
+		
+		var org = $(target).parents("li.media").find("p").text();
+		
+		var el = '';
+		el += '<div class="updateBox"><textarea class="form-control updateTextarea" placeholder="댓글 내용을 입력하세요" rows="3">';
+		el += $(target).parents("li.media").find("p").html();
+		el += '</textarea>';
+	    el += '<button type="button" class="btn btn-disable btn-update pull-right" onclick="commUpdateCancel(this);">취소</button>';   
+		el += '<button type="button" class="btn btn-info btn-update pull-right" onclick="updateCommSub(';
+		el += mkCommNo;
+		el += ', this );" class="BtncommUpdate">수정</button>';
+		el += '<input type="hidden" class="inputCancel" value="' + org + '"/>';
+		el += '</div>';	
+		$(target).parents("div.commExist").find("p").replaceWith(el);
+	}
+	
+	
+}
+
+function commUpdateCancel(target){
+	
+	var org = $(target).next().next("input.inputCancel").val();
+	
+	var p = '';
+	p += '<p class="pCommContent">';
+	p += org;
+	p += '</p>';
+	$(target).parents("li.media").find("div.updateBox").replaceWith(p);
+}
+
+function updateCommSub(mkCommNo, target){
+	var commContent = $(target).prev().prev("textarea.updateTextarea").val();
+	if( commContent != null && commContent != ''){
+		var url = "<%=request.getContextPath() %>/board/market/updatecomm";
+		// 비동기 처리
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {mkCommNo : mkCommNo,  commContent : commContent },
+			success : function(result) {
+				if(result > 0){
+					
+					var p = '';
+					p += '<p class="pCommContent">';
+					p += commContent;
+					p += '</p>';
+					$(target).parents("li.media").find("div.updateBox").replaceWith(p);
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+	
+}
+
+
+function addRecomm(mkno, mkCommNo, target){
+	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+		$(target).parents("li.media").next().remove();
+	}else{
+		var el = '';
+		el += '<li class="media reComm">';
+		el += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
+		el += '<textarea class="form-control" required="required" placeholder="댓글 내용을 입력하세요" class="recommContent" rows="3"></textarea>';
+		el += '<button type="button" class="btn btn-info btn-update pull-right" onclick="recommAddSub(';
+		el += mkno + ', ' + mkCommNo + ', this';
+		el += ' );">등록</button>';	
+		el += '</li>';
+		
+		$(target).parents("li.media").after(el);	
+	}
+	
+}
+
+function recommAddSub(mkno, mkParentCommNo, target){
+var recommContent = $(target).prev('textarea').val();
+	
+	if( recommContent != null && recommContent != ''){
+		var url = "<%=request.getContextPath() %>/board/market/addrecomm";
+		// 비동기 처리
+		$.ajax({
+			type : "POST",
+			url: url,
+			data: {mkno : mkno, mkParentCommNo : mkParentCommNo,  recommContent : recommContent },
+			success : function(result) {
+				var li = '';
+				li += '<li class="media comm' + mkParentCommNo + '">';
+				li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
+				li += '<div class="commExist">';
+				li += '<div class="text-muted pull-right userCommAct">';
+				li += '<a href="javascript:void(0);" onclick="commUpdate(';
+				li += result.MK_COMM_NO;
+				li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
+				li += result.MK_COMM_NO;
+				li += ', this);">삭제</a>';
+				li += '</div>';
+				li += '<a href="#" class="pull-left">';
+				if(result.TCH_FILE_RENAME == null ){
+					li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+				}else{
+					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+				}
+				li += '</a>';
+				li += '<div class="media-body comm-body">';
+				li += '<strong class="text">' + result.USER_ID + '</strong>';
+				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
+				li += '<small>' + result.MK_COMM_DATE + '</small>';
+				li += '</div>';
+				li += '</div>';
+				li += '</li>';
+        
+				var offset;
+// 				console.log(result.MK_PARENT_COMM_NO);
+				if( !$("li.comm" + result.MK_PARENT_COMM_NO).length){
+					$(target).parents("li.reComm").replaceWith(li);
+				}else{
+					$(target).parents("li.reComm").remove();
+					$(".comm"+mkParentCommNo).last().after(li);
+				}
+			
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	}
+	
+}
+
+function commDelete(mkCommNo, target){
+	
+	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+		alert("답글을 다는 중에는 댓글을 삭제할 수 없습니다.")
+	
+	}else{
+		var chk = confirm("댓글을 삭제하시겠습니까?");
+		
+		if( chk == true){
+			var url = "<%=request.getContextPath() %>/board/market/deletecomm";
+			// 비동기 처리
+			$.ajax({
+				type : "POST",
+				url: url,
+				data: {mkCommNo : mkCommNo },
+				success : function(result) {
+					
+					$(target).parents("div.commExist").html('<div class="deletedComm">삭제된 댓글입니다.</div>');
+				},
+				error : function(){
+					alert("ajax 실패")
+				}
+			});
+		}
+	}
+}
+
+function singo(){
+	
+	$("#singoInfo").submit();
+}
 </script>
 
 <body>
@@ -319,7 +563,7 @@ function goList(){
 		<!-- END #gtco-header -->
      <div class="clearfix" ></div>	
     <div id="marketBox">
-    <div><button type="button" onclick="goList();">글 목록</button></div>
+    <div style="text-align: right;"><button type="button" id="BtnGoList" onclick="goList();">글 목록</button></div>
            <div class="article">
 				<h2>${market.MK_TITLE }</h2>
                <div class="userImg">
@@ -339,11 +583,17 @@ function goList(){
             	  		<a href="javascript:void(0);" onclick="updateMK(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
             	  	</c:if>
             	  	<c:if test="${!chkWriter }">
-            	  		<a href="">신고</a>
+            	  		<a href="javascript:void(0);"  onclick="singo();">신고</a>
+            	  		<form action="${pageContext.request.contextPath }/board/blacklist" id="singoInfo" method="post">
+            	  			<input type="hidden" name="no" value="${market.MK_NO }" />
+            	  			<input type="hidden" name="title" value="${market.MK_TITLE }" />
+            	  			<input type="hidden" name="board" value="장터" />
+            	  		</form>
             	  	</c:if>
 		          </div>
                <div class="clearfix" ></div>	
                <hr>
+             
                <div>
                <div class="article-img">
                <c:if test="${empty market.MK_THUMB_RENAME }">
@@ -412,42 +662,50 @@ function goList(){
         <div class="comment-wrapper">
                 <div class="panel-body">
                 	<div>
-	                    <textarea class="form-control" placeholder="댓글 내용을 입력하세요" rows="3"></textarea>
-	                    <button type="button" class="btn btn-info pull-right" id="BtncommWrite">댓글 달기</button>
+	                    <textarea class="form-control" required="required" placeholder="댓글 내용을 입력하세요" id="commContent" rows="3"></textarea>
+	                    <button type="button" class="btn btn-info pull-right" onclick="addComm(${market.MK_NO } );" id="BtncommWrite">댓글 달기</button>
                     </div>
                     <div class="clearfix"></div>
                     <hr>
-                    <ul class="media-list">
-                   	 <c:if test="${empty comms }">
-                   	 	<div>댓글이 없습니다.</div>
-                   	 </c:if>
-                   	 <c:if test="${!empty comms }">
+                    <ul class="media-list" id="commList">
                    	 	<c:forEach items="${comms }" var="comm">
-                        <li class="media">
+                        <li class="media comm${comm.MK_PARENT_COMM_NO }">
+                        <c:if test="${comm.MK_COMM_STATE eq 1 }">
+                       		<c:if test="${comm.MK_COMM_CLASS eq 2 }">
+                        		<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>
+                            </c:if>
+                        	<div class="deletedComm">삭제된 댓글입니다.</div>
+                        </c:if>
+                        <c:if test="${comm.MK_COMM_STATE eq 0 }">
                         	<c:if test="${comm.MK_COMM_CLASS eq 2 }">
                         		<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>
                             </c:if>
-                            <div class="text-muted pull-right userCommAct">
-			            	  	<c:if test="${comm.MK_USER_NO eq commWriter }">
-			            	  		<a href="javascript:void(0);" onclick="commUpdate(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${market.MK_NO });">삭제</a>
-			            	  	</c:if>
-					         </div>
-                            <a href="#" class="pull-left">
-                            	<c:if test="${empty comm.TCH_FILE_RENAME }">
-	                                <img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">
-                            	</c:if>
-                            	<c:if test="${!empty comm.TCH_FILE_RENAME }">
-	                                <img src="${pageContext.request.contextPath}/resources/upload/${comm.TCH_FILE_RENAME }" alt="" class="img-circle">
-                            	</c:if>
-                            </a>
-                            <div class="media-body">
-                                <strong class="text">${comm.USER_ID }</strong>
-                                <p>${comm.MK_COMM_CONTENT }</p>
-                                <small>${comm.MK_COMM_DATE }</small>
-                            </div>
+							<div class="commExist">
+	                            <div class="text-muted pull-right userCommAct">
+				            	  	<c:if test="${comm.MK_USER_NO eq commWriter }">
+				            	  		<a href="javascript:void(0);" onclick="commUpdate(${comm.MK_COMM_NO }, this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${comm.MK_COMM_NO }, this);">삭제</a>
+				            	  	</c:if>
+						         </div>
+	                            <a href="#" class="pull-left">
+	                            	<c:if test="${empty comm.TCH_FILE_RENAME }">
+		                                <img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">
+	                            	</c:if>
+	                            	<c:if test="${!empty comm.TCH_FILE_RENAME }">
+		                                <img src="${pageContext.request.contextPath}/resources/upload/${comm.TCH_FILE_RENAME }" alt="" class="img-circle">
+	                            	</c:if>
+	                            </a>
+	                            <div class="media-body comm-body">
+	                                <strong class="text">${comm.USER_ID }</strong>
+	                                <p class="pCommContent">${comm.MK_COMM_CONTENT }</p>
+	                                <small>${comm.MK_COMM_DATE }</small>
+	                                 <c:if test="${comm.MK_COMM_CLASS eq 1 }">
+		                                &nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(${market.MK_NO }, ${comm.MK_COMM_NO }, this );">답글달기</a></small>
+		                            </c:if>
+	                            </div>
+	                         </div>
+						</c:if>
                         </li>
                    	 	</c:forEach>
-                       </c:if>
                     </ul>
                 </div>
             </div>
@@ -489,4 +747,3 @@ function goList(){
 
 </body>
 </html>
-

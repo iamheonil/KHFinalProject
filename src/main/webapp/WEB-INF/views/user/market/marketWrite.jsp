@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -117,12 +117,12 @@ function goback(){
     </div>
     <div class="form-group">
       <label>썸네일 사진</label>
-	    <input type="file" name="thumb" />
+	    <input type="file" accept="image/*" name="thumb" />
 <!-- 	    <div id="thumbImg"></div> -->
     </div>
     <div class="form-group">
       <label>상세 사진</label>
-	    <input type="file" multiple="multiple" name="files" />
+	    <input type="file" accept="image/*" multiple="multiple" name="files" />
     </div>
     <div style="text-align: center;">
 	    <button class="btn btn-primary" onclick="submitContents();"><span>글 올리기</span></button>

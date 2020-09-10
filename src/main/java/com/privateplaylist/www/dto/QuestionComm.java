@@ -9,12 +9,23 @@ public class QuestionComm {
 	private int parentCommNo;
 	private int commClass;
 	private String commDate;
+	private int qCommState;
+
+	
 
 	@Override
 	public String toString() {
 		return "QuestionComm [commNo=" + commNo + ", questionNo=" + questionNo + ", commContent=" + commContent
 				+ ", userNo=" + userNo + ", parentCommNo=" + parentCommNo + ", commClass=" + commClass + ", commDate="
-				+ commDate + "]";
+				+ commDate + ", qCommState=" + qCommState + "]";
+	}
+
+	public int getqCommState() {
+		return qCommState;
+	}
+
+	public void setqCommState(int qCommState) {
+		this.qCommState = qCommState;
 	}
 
 	public int getCommNo() {

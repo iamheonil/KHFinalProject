@@ -6,7 +6,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:if test="${paging.curPage ne 0  }">
+
+<c:if test="${paging.curPage ne 0 and paging.totalCount ne 0}"><!--검색결과 있을때만 페이징 보이기  -->
 <div class="text-center">
 
 <ul class="pagination">
@@ -50,7 +51,7 @@
 
 
    <!-- 다음 페이지로 가기 -->
-   <c:if test="${paging.curPage ne paging.totalPage}">
+   <c:if test="${paging.curPage ne paging.totalPage }">
    <li><a href="${pageContext.request.contextPath}/member/findLesson?Loc=${option.Loc }&Sex=${option.Sex }&Age=${option.Age }&Sub=${option.Sub }&Pri=${option.Pri }&Cnt=${option.Cnt }&curPage=${paging.curPage + 1 }">&gt;</a>
    </c:if>
    

@@ -70,12 +70,9 @@ public class LessonController {
 		String root = session.getServletContext().getRealPath("/");
 		
 		findLesson.setLessonLoc(findLesson.getLessonLoc()+","+lessonLocDetail +","+dong);
-
 		//세션값 가지고 오기
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		findLesson.setUserNo(loginUser.getUserNo());
-		
-		System.out.println(findLesson);
 		
 		int res = lessonService.insertLesson(findLesson, files, root);
 		

@@ -1,4 +1,4 @@
-<!-- 20200907 이인주 : user > find_student > datail -->
+<!-- 이인주 : 사용자 > 학생 찾기 > 검색 jsp -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +7,9 @@
 
 <!-- 메인 헤더 -->   
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 지도 api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb3ded0da7c6502b3c00a1cd11c62c07"></script>
@@ -79,17 +82,30 @@ body{
 .panel{
 	margin-left : 5px;
 	margin-right : 5px;
-	border: 1px solid #ccc;
+ 	border: 1px solid #ccc;
 	border-radius: 10px;
-	height: 230px;
-	width: 520px;
+	height: 180px;
+	width: 279px;
+	display: inline-block;
 }
 
-#findtitle{
-	width: auto;
-	text-align: center;
-	line-height: 4;
-	font-weight: bold;
+.panel:hover{
+		border: 1px solid black;
+}
+
+.findtitle{
+	text-align: left;
+	margin: 0;
+	line-height: 3;
+	position: absolute;
+	top: 566px;
+}
+
+#titlebox{
+	height : 600px;
+	width: 1150px;
+	margin: 0 auto;
+	position: relative;
 }
 
 #noneboard{
@@ -100,11 +116,8 @@ body{
 
 #noneboarder{
 	height: 250px;
-	border: 2px solid #999;
-	border-radius: 10px;
 	vertical-align: middle;
 	
-	color: #17B794;
 	font-weight: bold;
 	text-align: center;
 	font-size: large;
@@ -114,7 +127,7 @@ body{
 .txt_line_content { 
 	/* 한 줄 자르기 */
 	display: inline-block;
-	width: 470px; 
+	width: 270px; 
 	white-space: nowrap; 
 	overflow: hidden; 
 	text-overflow: ellipsis;
@@ -132,7 +145,7 @@ body{
 }
 
 .txt_line_title { 
-	width:470px; 
+	width: 270px; 
 	padding:0; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -141,74 +154,205 @@ body{
 	font-weight: bold;
 }
 
-#writebtn{
-	color: white;
+.pagingstyle{
+ 	width: 100%; 
+ 	padding-left: 15%;
+}
+
+.anone{
+	color: black;
 	text-decoration: none;
 }
 
-#writebtn:hover{
-	color: tomato;
+.anone:hover{
+	color: black;
 	text-decoration: none;
 }
 
-#detailboard{
-	width: 1140px;
-	height: auto;
-	margin: 0 auto;
-}
-
-.floating { 
-	position: fixed;
-	right: 60%;
-	top: 600px;
-	margin-right: -720px;
-	text-align: center;
-	width: 300px;
-	height :auto;
-	
-	border: 1px solid #ccc;
-	border-radius: 10%;
-	padding: 10px;
-}
-
-#MessageSt{
-	font-size: 27px;
+.message{
+	color: black;
 }
 </style>
 
-<script type="text/javascript">
-$(function(){
-	 $("a[data-toggle='tooltip']").tooltip();
-});
+<!-- 모달 -->
+<style>
+        #modal {
+          display: none;
+          position:relative;
+          width:100%;
+          height:100%;
+          z-index: 12;
+        }
+        
+        #modal button {
+      	  float: right;
+        }
+        
+        #modal .modal_content {
+          width:500px;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          border:2px solid #666;
+          top : -965px;
+          left : 350px;
+          position: absolute;
+          border-radius: 10px;
+        }
+        
+        #modal .modal_layer {
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }   
+</style> 
 
-</script>
+<!-- 모달 -->
+<script>
+$(document).ready(function() {
+//     document.getElementById("modal_opne_btn").onclick = function XMLMODALClick(findStuNo) {}
+   
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }   
+});    
+</script> 
 
 <!-- ajax -->
 <script type="text/javascript">
-function XMLDeleteClick(findStuNo){
-	var chk = confirm("삭제 하시겠습니까?");
+function XMLMODALClick(findStuNo) {
+
+	var url = "<%=request.getContextPath()%>/student/findStu/detail";
 	
-	if(chk == true){
-		var url = "<%=request.getContextPath()%>/lesson/findStu/delete";
-		
-		$.ajax({
-			type : "POST",
-			url: url,
-			data : { findStuNo: findStuNo },
-			success : function(result) {
-				if (result == "") {
-					alert("삭제되었습니다");
-					location.reload();
-				}else if(result != ""){
-					alert(result);
-				}
-			},
-			error : function(){
-				alert("ajax 실패")
+	$.ajax({
+		type : "POST",
+		url: url,
+		data : {findStuNo: findStuNo},
+		success : function(result) {
+			var res = result;
+			console.log(res);
+			
+			$("#FIND_STU_TITLE").html(result.FIND_STU_TITLE);
+			$("#FIND_STU_CONTENT").html(result.FIND_STU_CONTENT);
+			$("#FIND_STU_LOC").text(result.FIND_STU_LOC);
+			$("#FIND_STU_SUBJECT").text(result.FIND_STU_SUBJECT);
+			$("#FIND_STU_DATE").text(result.FIND_STU_DATE);
+			
+			$("#modal_modi_btn").val(result.FIND_STU_NO);
+			
+			$("#USER_ID").text(result.USER_ID);
+			
+			
+			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+			
+			if((result.FIND_STU_LOC) == '무관'){
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.49918068071734, 127.03453719246758), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};	
+			}else if ((result.FIND_STU_LOC) == '서울') {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.56682420267543, 126.978652258823), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '경기' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.74758417314842, 127.07161930245083), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '부산' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.17973973483032, 129.0750678885004), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '대구' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng( 35.87138338827759, 128.60180776829148), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '인천' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.45602927841067, 126.7052721005639), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '대전' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.3614132220919, 127.38501929723603 ), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '울산' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.53948464172323, 129.31146521625075), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '광주') {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.16010874369142, 126.8516491542269), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '세종' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.480078831893714, 127.28921490454427 ), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '강원' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.885320852157896, 127.72982555144148), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '경북' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.576001575294924, 128.50576807876243), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '경남' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.237677583297774,  128.69194321409773), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '충북' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.63532357728611, 127.49143921673218), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '충남' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.65883058654879, 126.67276947738326), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '전북' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.82018869322392, 127.10898776739516), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '전남' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(34.81606814290444, 126.46278077345552), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '제주' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(33.488906590123094, 126.49821844632523), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
 			}
-		});
-	}
-	
+			
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			
+			document.getElementById("modal").style.display="block";
+			
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+	});
+		
+// 	document.getElementById("modal").style.display="block";
+
 }
 </script>
 
@@ -217,11 +361,6 @@ function XMLDeleteClick(findStuNo){
 $(document).ready(function(){
 	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	
-// 	var options = { //지도를 생성할 때 필요한 기본 옵션
-// 			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도 중심 좌표
-// 		level: 3 //지도의 레벨(확대, 축소 정도)
-// 	};
 	
 	if(${findStudentOne.FIND_STU_LOC == '무관' }){
 		var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -321,6 +460,13 @@ $(document).ready(function(){
 
 </script>
 
+<script type="text/javascript">
+$(function(){
+	 $("a[data-toggle='tooltip']").tooltip();
+});
+
+</script>
+
 <!-- css 끝------------------------ -->
 <!-- ---- ------------------------ -->
 <!-- 검색창 시작 ------------------------ -->
@@ -349,9 +495,6 @@ $(document).ready(function(){
 											<br>
 											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
 												<p><h2>과외 조건에 맞는 학생을 검색할 수 있습니다.</h2></p><br>
-												<c:if test="${loginUser.userActor eq 2 }">
-													<p><h2>학생이라면?<a id="writebtn" href="${pageContext.request.contextPath}/student/findStu/write">글쓰기</a></h2></p>
-												</c:if>
 											</div>
 											
 										
@@ -377,11 +520,11 @@ $(document).ready(function(){
 																		<option value="세종">세종</option>
 																		<option value="경남">강원</option>
 																		<option value="경북">경북</option>
-																		<option value="전남">경남</option>
-																		<option value="전북">충북</option>
-																		<option value="광주">충남</option>
-																		<option value="부산">전북</option>
-																		<option value="제주">전남</option>
+																		<option value="경남">경남</option>
+																		<option value="충북">충북</option>
+																		<option value="충남">충남</option>
+																		<option value="전북">전북</option>
+																		<option value="전남">전남</option>
 																		<option value="제주">제주</option>
 														        </select>
 													
@@ -402,11 +545,14 @@ $(document).ready(function(){
 													       	</select>
 													
 															<input type="text" class="form-control" id="keyword" name="keyword" placeholder="키워드를 작성해주세요">
+														
+															<button type="submit" class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">검색</button>
+														
 														</form>
 													</div>
 															<div class="clearfix"></div>
 															
-														<button type="button" class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">검색</button>
+														
 													
 											</div>
 										</div>
@@ -421,61 +567,95 @@ $(document).ready(function(){
 		
 		<!-- 검색창 끝------------------------ -->
 		<!-- ---- ------------------------ -->
-		<!-- 결과 시작 ------------------------ -->
+		<!-- 결과 list 시작 ------------------------ -->
 
-		<h4 id="findtitle">FIND STUDENT No.${findStudentOne.FIND_STU_NO } DETAIL</h4>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<div class="container bootstrap snippets bootdey">
 		
-		<div id="detailboard">
+			<div id="titlebox">
+				<h4 class="findtitle">학생찾기</h4>
+			</div>
+			<hr>
+				<i class="glyphicon glyphicon-map-marker">&nbsp;${searchParam.findStuLoc }</i>&nbsp;|&nbsp;
+				<i class="glyphicon glyphicon-tags">&nbsp;${searchParam.findStuSubject }</i>&nbsp;|&nbsp;
+				
+				<c:if test="${searchParam.keyword  eq '' }">
+					<i class="glyphicon glyphicon-check">&nbsp;무관</i>
+				</c:if>
+				<c:if test="${searchParam.keyword  ne '' }">
+					<i class="glyphicon glyphicon-check">&nbsp;${searchParam.keyword }</i>
+				</c:if>
+				
 		
-		<h3>${findStudentOne.FIND_STU_TITLE }</h3><br>
-		
-		
-		<p>${findStudentOne.FIND_STU_CONTENT }</p><br>
-		
-		
-		지역 : ${findStudentOne.FIND_STU_LOC }
-		<!-- 지도영역 -->
-		<div id="map" style="width:500px;height:400px;"></div><br>
-		<h6>※상세한 과외위치는 글 작성자와 채팅을 통하여 결정하세요</h6>
-		
-		<!-- 리모콘 -->
-		<div class="floating">
-		작성자 : ${findStudentOne.USER_ID }<br>
-		과목 : ${findStudentOne.FIND_STU_SUBJECT }<br>
-		날짜 : ${findStudentOne.FIND_STU_DATE }<br>
-		
-		<c:if test="${findStudentOne.FIND_STU_STATE eq 0}">
-       		<p class="text-muted">상태 : 모집</p>
-        </c:if>
-        
-        <c:if test="${findStudentOne.FIND_STU_STATE eq 1}">
-       		<p class="text-muted">상태 : 마감</p>
-        </c:if>
-		                            
-		<div class="pull-right btn-group-sm">
-			<c:if test="${loginUser.userNo ne  findStudentOne.USER_NO}">
-				<a href="#" id="MessageSt" data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Message">
-					<i class="fa fa-envelope-o"></i>
-				</a>
+			<!-- 게시글이 없을 때  -->
+			<c:if  var="findstu" test="${empty searchList }">
+				<div id="noneboarder">조건에 맞는 게시글이 없습니다</div>
 			</c:if>
+		
+		    <div class="row">
+		    <br>
+		    <!--게시글이 있을 때 -->
+			<c:if  var="findstu" test="${!empty searchList }">
+			<!-- 값 출력 -->
+			<c:forEach items="${searchList }" var="findstu" >
+		    <div class="panel" id="ho">
+		        <div class="col-sm-6">
+		                <div class="panel-body p-t-10">
+		                    <div class="media-main">
+		                            <p class="text-muted txt_line_title"><a class="anone" id="modal_opne_btn" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">${findstu.FIND_STU_TITLE }</a></p>
+		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message"><i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i></a>&nbsp;${findstu.USER_ID }</h4>
+		                            <p class="text-muted">
+		                           	 <i class="glyphicon glyphicon-map-marker" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;&nbsp;${findstu.FIND_STU_LOC }</i><br>
+								     <i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;&nbsp;${findstu.FIND_STU_SUBJECT }</i><br> 
+		                             <i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;${findstu.FIND_STU_DATE }</i>
+		                           </p>
+		                    </div>
+		                    
+		                </div>
+		            </div>
+		        </div>
 			
-<%--        		<c:if test="${loginUser.userNo eq  findStudentOne.USER_NO}"> --%>
-<%--     		   <a href="<%=request.getContextPath()%>/" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"> --%>
-<!--                    <i class="fa fa-pencil"></i> -->
-<!-- 	           </a> -->
-<%-- 	           <a onclick=" XMLDeleteClick(${findstu.FIND_STU_NO})" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"> --%>
-<!-- 	               <i class="fa fa-close"></i> -->
-
-<!-- 	           </a> -->
-<%--            </c:if> --%>
-       </div>
-		 
-		 
-		 
-		</div>
-
+		</c:forEach>
+		</c:if>
+		<div class="clearfix"></div>
+        <!-- 페이징 -->
+		<div class="pagingstyle">
+			<c:import url="/WEB-INF/paging/user/lesson/findStu/searchPaging.jsp"></c:import>
 		</div>
 		
+		
+		<!-- modal -->
+		<div id="modal">
+		   
+		    <div class="modal_content">
+		       <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
+		       <hr>
+		       		 <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message">
+		       			<i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i>
+		       		 </a>
+		       		 <h4 id="USER_ID" style="display: inline-block;"></h4><br>
+		       
+					<i class="glyphicon glyphicon-map-marker"style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_LOC" style="display: inline-block;"></h5><br>
+					<i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_SUBJECT" style="display: inline-block;"></h5><br>
+					<i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0;"></i><h5 id ="FIND_STU_DATE" style="display: inline-block;"></h5><br>
+					
+					<i class="glyphicon glyphicon-list" style="margin-right: 16px; margin-left: 0;"></i><p id="FIND_STU_CONTENT" style="display: inline-block;"></p>
+					
+					<!-- 지도영역 -->
+					<div id="map" style="width:250px;height:200px;"></div><br>
+					<h6>※상세한 과외위치는 글 작성자와 채팅을 통하여 결정하세요</h6>
+					
+		       <hr>
+		        <button type="button" id="modal_close_btn" class="btn btn-default btn-xs" data-dismiss="modal">취소</button>
+		    </div>
+		   
+		    <div class="modal_layer"></div>
+		</div>
+	
+	
+	</div>
+	</div>
 </div>
 	
 	<!-- jQuery -->

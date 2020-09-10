@@ -45,12 +45,16 @@
 	<!-- 채팅한 사람들 내역 불러오기 :채팅박스  -->
 	<select id="getBox"
 		resultType="MASSAGE">
-		select * from Message where chatID in(select Max(chatID) from Message where toID=#{userID} or fromID=#{userID} group by fromID,toID)
+		select * from Message where chatID in(select Max(chatID) from Message where toID=#{userID} or fromID=#{userID} group by fromID,toID) order by chatID
 	</select>
 	
 	<!-- 각 채팅박스에서 읽지않는 메시지 가져오기  -->
 	<select id="geUnreadChat" resultType="int">
 		select count(chatID) from Message where fromID=#{fromId} and toID=#{toId} and chatRead=0
+	</select>
+	
+	<select id="getProfile" resultType="String">
+		select tch_file_rename from teacherfile where user_id=#{userid}
 	</select>
 	
 </mapper>

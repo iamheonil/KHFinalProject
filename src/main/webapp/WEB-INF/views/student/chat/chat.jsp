@@ -109,20 +109,24 @@ function getChatBox(){
 		$("#boxList").html('');
 		var parsed=JSON.parse(data);
 		var result=parsed.result;
+		var profile=null;
 		for(var i=0;result.length;i++){
-			if(result[i][0].value==userID){
+			if(result[i][0].value==userID){//fromid가 자기자신일때
 				result[i][0].value = result[i][1].value;
-			}else{
-				result[i][1].value =result[i][0].value
+				profile = result[i][5].value;
+			}else{//자신이 아닐때
+				result[i][1].value = result[i][0].value;
+				profile = result[i][4].value;
 			}
-			addBox(result[i][0].value,result[i][1].value,result[i][2].value,result[i][3].value,result[i][4].value);
+			addBox(result[i][0].value,result[i][1].value,result[i][2].value,result[i][3].value,result[i][6].value,profile);
 		}
 	}
 	});
 	
+	
 }
 
-function addBox(lastID,toID,chatContent,chatTime,unread){
+function addBox(lastID,toID,chatContent,chatTime,unread,profile){
 	$("#boxList").append(
 			'<div class="chat_list" onclick="location.href= \'${pageContext.request.contextPath}/chat/chatRoom?toID=' +encodeURIComponent(toID)+ '\' ">' +
 			'<div class="chat_people">'+		

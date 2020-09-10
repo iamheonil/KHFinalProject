@@ -31,7 +31,7 @@
   </select>
   
   <select id="detailFindStu" parameterType="int" resultType="map">
-	 SELECT 
+	SELECT 
 			F.find_stu_no, F.find_stu_title, F.find_stu_content, F.user_no,
 			F.find_stu_date, F.find_stu_loc, F.find_stu_subject, F.find_stu_state,
 			M.user_id
@@ -39,6 +39,56 @@
 			INNER JOIN membership M          
   			ON f.user_no = m.user_no 
 	where find_stu_no = #{findStuNo}
+  </select>
+  
+  <select id="selectCntUserFindStuSearch" parameterType="map" resultType="int">
+    select count(*) from find_student
+  	where find_stu_state = 0
+  	
+  	<if test='findStuLoc != null and !findStuLoc.equals("") '>
+  		and find_stu_loc = #{findStuLoc} 
+  	</if>
+  	<if test='findStuSubject != null and !findStuSubject.equals("") '>
+  		and find_stu_subject = #{findStuSubject} 
+  	</if>
+  	<if test='keyword != null and !keyword.equals("") '>
+  		and find_stu_title like '%' || #{keyword} || '%'  
+  	</if>
+  	<if test='keyword != null and !keyword.equals("") '>
+  	    or find_stu_content like '%' || #{keyword} || '%'  
+  	</if>
+  
+  </select>
+  
+  <select id="SearchFindStu" parameterType="map" resultType="map">
+   select * from (
+			select rownum rnum, c.* from(
+				SELECT 
+						F.find_stu_no, F.find_stu_title, F.find_stu_content, F.user_no,M.user_id,
+						F.find_stu_date, F.find_stu_loc, F.find_stu_subject, f.find_stu_state
+				FROM find_student F                         
+       				 INNER JOIN membership M          
+        			 ON f.user_no = m.user_no 
+       			where f.find_stu_state = 0
+       			
+			  	<if test='findStuLoc != null and !findStuLoc.equals("") '>
+			  		and F.find_stu_loc = #{findStuLoc} 
+			  	</if>
+			  	<if test='findStuSubject != null and !findStuSubject.equals("") '>
+			  		and F.find_stu_subject = #{findStuSubject} 
+			  	</if>
+			  	<if test='keyword != null and !keyword.equals("") '>
+			  		and F.find_stu_title like '%' || #{keyword} || '%'   
+			  	</if>
+			  	<if test='keyword != null and !keyword.equals("") '>
+			  		or F.find_stu_content like '%' || #{keyword} || '%'  
+			  	</if>
+       			
+				order by F.find_stu_no desc
+			) c
+		) findStu 
+	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+  
   </select>
   
   

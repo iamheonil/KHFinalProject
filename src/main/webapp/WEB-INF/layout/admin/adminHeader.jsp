@@ -1,3 +1,4 @@
+<%@page import="com.privateplaylist.www.dto.Admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,19 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
+    
+    <% Admin admin=(Admin)session.getAttribute("loginAdmin");
+    	if(admin==null){
+    		
+    	
+    %>
+    
+    <script type="text/javascript">
+    alert('관리자 로그인이 되어있지 않습니다');
+    location.href="${pageContext.request.contextPath}/admin/login";
+    </script>
+    
+    <%} %>
     
     <body class="sb-nav-fixed">
     

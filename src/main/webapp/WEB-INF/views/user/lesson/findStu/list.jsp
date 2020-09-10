@@ -11,6 +11,9 @@
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+<!-- 지도 api -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb3ded0da7c6502b3c00a1cd11c62c07"></script>
+
 <style type="text/css">
 @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
@@ -79,11 +82,15 @@ body{
 .panel{
 	margin-left : 5px;
 	margin-right : 5px;
-	border: 1px solid #ccc;
+ 	border: 1px solid #ccc;
 	border-radius: 10px;
 	height: 180px;
 	width: 279px;
 	display: inline-block;
+}
+
+.panel:hover{
+		border: 1px solid black;
 }
 
 .findtitle{
@@ -109,11 +116,8 @@ body{
 
 #noneboarder{
 	height: 250px;
-	border: 2px solid #999;
-	border-radius: 10px;
 	vertical-align: middle;
 	
-	color: #17B794;
 	font-weight: bold;
 	text-align: center;
 	font-size: large;
@@ -169,6 +173,292 @@ body{
 	color: black;
 }
 </style>
+
+<!-- 모달 -->
+<style>
+        #modal {
+          display: none;
+          position:relative;
+          width:100%;
+          height:100%;
+          z-index: 12;
+        }
+        
+        #modal button {
+      	  float: right;
+        }
+        
+        #modal .modal_content {
+          width:500px;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          border:2px solid #666;
+          top : -1130px;
+          left : 350px;
+          position: absolute;
+          border-radius: 10px;
+        }
+        
+        #modal .modal_layer {
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }   
+</style> 
+
+<!-- 모달 -->
+<script>
+$(document).ready(function() {
+//     document.getElementById("modal_opne_btn").onclick = function XMLMODALClick(findStuNo) {}
+   
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }   
+});    
+</script> 
+
+<!-- ajax -->
+<script type="text/javascript">
+function XMLMODALClick(findStuNo) {
+
+	var url = "<%=request.getContextPath()%>/student/findStu/detail";
+	
+	$.ajax({
+		type : "POST",
+		url: url,
+		data : {findStuNo: findStuNo},
+		success : function(result) {
+			var res = result;
+			console.log(res);
+			
+			$("#FIND_STU_TITLE").html(result.FIND_STU_TITLE);
+			$("#FIND_STU_CONTENT").html(result.FIND_STU_CONTENT);
+			$("#FIND_STU_LOC").text(result.FIND_STU_LOC);
+			$("#FIND_STU_SUBJECT").text(result.FIND_STU_SUBJECT);
+			$("#FIND_STU_DATE").text(result.FIND_STU_DATE);
+			
+			$("#modal_modi_btn").val(result.FIND_STU_NO);
+			
+			$("#USER_ID").text(result.USER_ID);
+			
+			
+			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+			
+			if((result.FIND_STU_LOC) == '무관'){
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.49918068071734, 127.03453719246758), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};	
+			}else if ((result.FIND_STU_LOC) == '서울') {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.56682420267543, 126.978652258823), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '경기' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.74758417314842, 127.07161930245083), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '부산' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.17973973483032, 129.0750678885004), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '대구' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng( 35.87138338827759, 128.60180776829148), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '인천' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.45602927841067, 126.7052721005639), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '대전' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.3614132220919, 127.38501929723603 ), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '울산' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.53948464172323, 129.31146521625075), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '광주') {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.16010874369142, 126.8516491542269), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '세종' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.480078831893714, 127.28921490454427 ), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '강원' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(37.885320852157896, 127.72982555144148), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '경북' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.576001575294924, 128.50576807876243), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '경남' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.237677583297774,  128.69194321409773), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '충북' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.63532357728611, 127.49143921673218), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '충남' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(36.65883058654879, 126.67276947738326), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '전북' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(35.82018869322392, 127.10898776739516), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '전남' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(34.81606814290444, 126.46278077345552), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}else if ((result.FIND_STU_LOC) == '제주' ) {
+				var options = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(33.488906590123094, 126.49821844632523), //지도 중심 좌표
+						level: 6 //지도의 레벨(확대, 축소 정도)
+					};
+			}
+			
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			
+			document.getElementById("modal").style.display="block";
+			
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+	});
+		
+// 	document.getElementById("modal").style.display="block";
+
+}
+</script>
+
+<!-- 지도 api -->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	
+	if(${findStudentOne.FIND_STU_LOC == '무관' }){
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.49918068071734, 127.03453719246758), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};	
+	}else if (${findStudentOne.FIND_STU_LOC == '서울' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.56682420267543, 126.978652258823), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '경기' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.74758417314842, 127.07161930245083), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '부산' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.17973973483032, 129.0750678885004), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '대구' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng( 35.87138338827759, 128.60180776829148), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '인천' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.45602927841067, 126.7052721005639), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '대전' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.3614132220919, 127.38501929723603 ), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '울산' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.53948464172323, 129.31146521625075), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '광주' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.16010874369142, 126.8516491542269), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '세종' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.480078831893714, 127.28921490454427 ), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '강원' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.885320852157896, 127.72982555144148), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '경북' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.576001575294924, 128.50576807876243), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '경남' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.237677583297774,  128.69194321409773), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '충북' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.63532357728611, 127.49143921673218), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '충남' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(36.65883058654879, 126.67276947738326), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '전북' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(35.82018869322392, 127.10898776739516), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '전남' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(34.81606814290444, 126.46278077345552), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}else if (${findStudentOne.FIND_STU_LOC == '제주' }) {
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(33.488906590123094, 126.49821844632523), //지도 중심 좌표
+				level: 4 //지도의 레벨(확대, 축소 정도)
+			};
+	}
+	
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+});
+
+</script>
 
 <script type="text/javascript">
 $(function(){
@@ -228,13 +518,13 @@ $(function(){
 																		<option value="울산">울산</option>
 																		<option value="광주">광주</option>
 																		<option value="세종">세종</option>
-																		<option value="경남">강원</option>
+																		<option value="강원">강원</option>
 																		<option value="경북">경북</option>
-																		<option value="전남">경남</option>
-																		<option value="전북">충북</option>
-																		<option value="광주">충남</option>
-																		<option value="부산">전북</option>
-																		<option value="제주">전남</option>
+																		<option value="경남">경남</option>
+																		<option value="충북">충북</option>
+																		<option value="충남">충남</option>
+																		<option value="전북">전북</option>
+																		<option value="전남">전남</option>
 																		<option value="제주">제주</option>
 														        </select>
 													
@@ -255,11 +545,14 @@ $(function(){
 													       	</select>
 													
 															<input type="text" class="form-control" id="keyword" name="keyword" placeholder="키워드를 작성해주세요">
+														
+															<button type="submit" class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">검색</button>
+														
 														</form>
 													</div>
 															<div class="clearfix"></div>
 															
-														<button type="button" class="btn btn-block btn-primary btn-float m-t-25" style="color: white;">검색</button>
+														
 													
 											</div>
 										</div>
@@ -295,18 +588,16 @@ $(function(){
 			<c:if  var="findstu" test="${!empty userFindStuList }">
 			<!-- 값 출력 -->
 			<c:forEach items="${userFindStuList }" var="findstu" >
-		    <div class="panel">
+		    <div class="panel" id="ho">
 		        <div class="col-sm-6">
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
-		                       
-		                            <p class="text-muted txt_line_title"><a class="anone" href="${pageContext.request.contextPath}/lesson/findStu/detail?findStuNo=${findstu.FIND_STU_NO}">${findstu.FIND_STU_TITLE }</a></p>
-		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Message"><i class="fa fa-envelope-o" id="message"></i></a>&nbsp;${findstu.USER_ID }</h4>
+		                            <p class="text-muted txt_line_title"><a class="anone" id="modal_opne_btn" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">${findstu.FIND_STU_TITLE }</a></p>
+		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message"><i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i></a>&nbsp;${findstu.USER_ID }</h4>
 		                            <p class="text-muted">
-		                           	 <i class="fa fa-map-marker"style="margin-right: 16px; margin-left: 0;">&nbsp;&nbsp;${findstu.FIND_STU_LOC }</i><br>
-								     <i class="fa fa-file-o" style="margin-right: 16px; margin-left: 0;
-								     ">&nbsp;&nbsp;${findstu.FIND_STU_SUBJECT }</i><br> 
-		                             <i class="glyphicon glyphicon-ok" style="margin-right: 16px; margin-left: 0;">&nbsp;${findstu.FIND_STU_DATE }</i>
+		                           	 <i class="glyphicon glyphicon-map-marker" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;&nbsp;${findstu.FIND_STU_LOC }</i><br>
+								     <i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;&nbsp;${findstu.FIND_STU_SUBJECT }</i><br> 
+		                             <i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;${findstu.FIND_STU_DATE }</i>
 		                           </p>
 		                    </div>
 		                    
@@ -320,6 +611,35 @@ $(function(){
         <!-- 페이징 -->
 		<div class="pagingstyle">
 			<c:import url="/WEB-INF/paging/user/lesson/findStu/listPaging.jsp"></c:import>
+		</div>
+		
+		
+		<!-- modal -->
+		<div id="modal">
+		   
+		    <div class="modal_content">
+		       <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
+		       <hr>
+		       		 <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message">
+		       			<i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i>
+		       		 </a>
+		       		 <h4 id="USER_ID" style="display: inline-block;"></h4><br>
+		       
+					<i class="glyphicon glyphicon-map-marker"style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_LOC" style="display: inline-block;"></h5><br>
+					<i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_SUBJECT" style="display: inline-block;"></h5><br>
+					<i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0;"></i><h5 id ="FIND_STU_DATE" style="display: inline-block;"></h5><br>
+					
+					<i class="glyphicon glyphicon-list" style="margin-right: 16px; margin-left: 0;"></i><p id="FIND_STU_CONTENT" style="display: inline-block;"></p>
+					
+					<!-- 지도영역 -->
+					<div id="map" style="width:250px;height:200px;"></div><br>
+					<h6>※상세한 과외위치는 글 작성자와 채팅을 통하여 결정하세요</h6>
+					
+		       <hr>
+		        <button type="button" id="modal_close_btn" class="btn btn-default btn-xs" data-dismiss="modal">취소</button>
+		    </div>
+		   
+		    <div class="modal_layer"></div>
 		</div>
 	
 	
