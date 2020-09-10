@@ -76,4 +76,19 @@ public interface UserMarketService {
 
 	public int insertMarketFiles(int mkno, List<MultipartFile> thumb, List<MultipartFile> files, String root)  throws FileException;
 
+	// 댓글 추가
+	public int insertComm(int mkno, String commContent, int userNo);
+
+	// 댓글 정보
+	public Map<String, Object> selectCommByCommNo(int commno);
+
+	// 댓글 삭제
+	public int deleteComm(int mkCommNo);
+
+	// 대댓글 달기
+	public int insertRecomm(int mkno, int mkParentCommNo, String recommContent, int userNo);
+
+	// 댓글 수정
+	public int updateComm(int mkCommNo, String commContent);
+
 }

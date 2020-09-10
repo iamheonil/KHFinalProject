@@ -89,6 +89,30 @@ public class UserMarketDao {
 		return sqlSession.update(namespace + "updateMarket", market);
 	}
 
+	public int insertComm(MkComm mkComm) {
+		return sqlSession.insert(namespace + "insertComm", mkComm);
+	}
+
+	public int selectNextMkCommNo() {
+		return sqlSession.selectOne(namespace + "selectNextMkCommNo");
+	}
+
+	public Map<String, Object> selectCommByCommNo(int commno) {
+		return sqlSession.selectOne(namespace + "selectCommByCommNo", commno);
+	}
+
+	public int deleteComm(int mkCommNo) {
+		return sqlSession.update(namespace + "deleteComm", mkCommNo);
+	}
+
+	public int insertRecomm(MkComm mkComm) {
+		return sqlSession.insert(namespace + "insertRecomm", mkComm);
+	}
+
+	public int updateComm(Map<String, Object> map) {
+		return sqlSession.update(namespace + "updateComm", map);
+	}
+
 
 
 }
