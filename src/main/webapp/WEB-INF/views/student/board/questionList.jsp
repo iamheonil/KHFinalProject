@@ -128,7 +128,7 @@ body{
 										<tr>
 											<td>${list.QUESTION_NO}</td>
 											<td>
-												<a href="#">${list.QUESTION_TITLE}</a>
+												<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${list.QUESTION_NO}">${list.QUESTION_TITLE}</a>
 											</td>
 											<td>${list.QUESTION_DATE}</td>
 										</tr>
