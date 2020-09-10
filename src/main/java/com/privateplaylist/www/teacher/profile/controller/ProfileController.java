@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +36,23 @@ public class ProfileController {
 	
 	//마이페이지 비밀번호 확인 jsp 
 	@RequestMapping("/chkpassword")
-	public String  chkpassword(Model model,HttpSession session) {
-		//세션값 가지고 오기
+	public String  chkpassword(Model model,HttpSession session,HttpServletRequest req) {
+		
+		//root context
+		String root = req.getContextPath();
+		
+		//세션 
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(loginUser == null){
+			return "/member/login";
+			
+		}else if (loginUser.getUserActor() == 2) {
+			model.addAttribute("alertMsg", "선생님 마이페이지 입니다");
+			model.addAttribute("url", root);
+
+			return "/admin/notice/error";
+		}
 		
 		//사진 가지고 오기
 		TeacherFile teacherFile = profileService.selectFile(loginUser);
@@ -85,8 +100,21 @@ public class ProfileController {
 	public String selectProfile(Model model, HttpServletRequest req,HttpSession session ) {
 //		System.out.println("/teacher/profile/select");
 	
-		//세션값 가지고 오기
+		//root context
+		String root = req.getContextPath();
+		
+		//세션 
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(loginUser == null){
+			return "/member/login";
+			
+		}else if (loginUser.getUserActor() == 2) {
+			model.addAttribute("alertMsg", "선생님 마이페이지 입니다");
+			model.addAttribute("url", root);
+
+			return "/admin/notice/error";
+		}
 		
 		//사진 가지고 오기
 		TeacherFile teacherFile = profileService.selectFile(loginUser);

@@ -273,7 +273,7 @@
 				<div class="row">
 					<div class="col-sm-2 col-xs-12">
 						<div id="gtco-logo">
-							<a href="/ss">
+							<a href="/ss/member/main">
                 <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="슬기로운 과외생활"></a>
 						</div>
 					</div>
@@ -293,7 +293,7 @@
 							</c:choose>
 							
 							</li>
-							<li ><a href="services.html">과외찾기</a>
+							<li ><a href="/ss/member/findLesson">과외찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>
 									<li><a href="#">eCommerce</a></li>
@@ -301,7 +301,7 @@
 									<li><a href="#">API</a></li>
 								</ul>-->
 								</li> 
-							<li ><a href="#">학생찾기</a>
+							<li ><a href="/ss/lesson/findStu/list">학생찾기</a>
 								<!-- <ul class="dropdown">
 									<li><a href="#">HTML5</a></li>
 									<li><a href="#">CSS3</a></li>
