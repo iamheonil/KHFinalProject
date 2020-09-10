@@ -24,7 +24,6 @@ public class LessonDao {
 	
 	//파일 테이블에 파일정보 추가
 	public int insertFile(Map<String,String> fileInfo) {
-		System.out.println(fileInfo);
 		return sqlSession.insert("findLesson.insertFile",fileInfo);
 	}
 
@@ -34,7 +33,6 @@ public class LessonDao {
 
 
 	public List<Map<String, Object>> selectLessonList(Map<String, Object> map) {
-		System.out.println(map);
 		return sqlSession.selectList("findLesson.selectLessonList", map);
 	}
 

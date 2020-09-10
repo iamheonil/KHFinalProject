@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="UserQuestion">
+
+	<select id="selectCntAllQuestion" resultType="int">
+		select count(*) from question
+		WHERE QUESTION_TITLE LIKE '%' || #{search} || '%'
+	</select>
+	
+	<select id="selectQuestionList" resultType="map">
+		SELECT * FROM (
+  		SELECT rownum no, t.*
+	  		FROM (
+<!-- 					select q.*, m.user_id, f.Q_FILE_RENAME from question q, membership m, question_file f -->
+<!-- 					WHERE m.user_no = q.user_no -->
+<!-- 					AND f.question_no = q.question_no -->
+					select q.*, m.user_id from question q, membership m
+					where m.user_no = q.user_no
+					AND QUESTION_TITLE LIKE '%' || #{search} || '%'
+					ORDER BY q.question_no desc
+				) t
+		) x
+		WHERE no between #{startNo} AND #{endNo}
+	</select>
+	
+<!-- 	<select id="getQuestionInfo">
+	 	select q.*, s.user_id, t.*, c.tch_file_rename from question q
+		left outer join membership s
+		on(q.user_no = s.user_no)
+	    left outer join teacherfile c
+	    on(q.user_no = c.user_no)
+		where q.question_no = #{questionNo}
+	</select> -->
+	
+	<select id="selectQuestionDetail" resultType="map">
+		select q.*, s.user_id, a.tch_file_rename from question q
+		left outer join membership s
+		on(q.user_no = s.user_no)
+		left outer join (select f.tch_file_no, f.user_no fuser_no, f.tch_file_rename, f.save_path from teacherfile f
+		where tch_file_rename like 'profile%')a
+		on(q.user_no = a.fuser_no)
+		where q.question_no = #{questionNo}
+	</select>
+	
+	<select id="selectQuestionFile" resultType="map">
+		select * from question_file
+		where question_no = #{questionNo}
+	</select>
+	
+	<insert id="insertQuestion">
+		insert into question(question_no, user_no, question_title, question_content, question_date)
+		values(question_no_seq.nextval, #{userNo}, #{questionTitle}, #{questionContent}, sysdate )		
+	</insert>
+	   
+	<insert id="insertFile"> 
+		insert into question_file(question_file_no, question_no, q_file_original, q_file_rename)
+		values(QUESTION_FILE_NO_SEQ.nextval, #{questionNo}, #{originFileName}, #{renameFileName})
+	</insert>
+	
+	<insert id="insertComment">
+		insert into question_comm(comm_no, question_no, comm_content, user_no, parent_comm_no, comm_class, comm_date, q_comm_state)
+		values(QUESTION_COMM_NO_SEQ.nextval, #{questionNo}, #{commContent}, #{userNo}, 0, 0, sysdate, 0)
+	</insert> 
+	
+	<insert id="insertReComment">
+		insert into question_comm(comm_no, question_no, comm_content, user_no, parent_comm_no, comm_class, comm_date, q_comm_state)
+		values(QUESTION_COMM_NO_SEQ.nextval, #{questionNo}, #{commContent}, #{userNo}, #{parentCommNo}, 1, sysdate, 0)
+	</insert>
+	
+	<select id="selectQuestionCommentByNo" resultType="map">
+		select c.*, t.tch_file_rename, m.user_id from question_comm c, teacherfile t, membership m
+			where t.user_no(+) = c.user_no
+			and m.user_no = c.user_no
+			and c.question_no = #{questionNo}
+<!-- 			AND C.comm_class = 0 -->
+	</select>
+	
+<!-- 	<select id="selectQuestionReCommentByNo" resultType="map">  -->
+<!-- 		select c.*, t.tch_file_rename, m.user_id from question_comm c, teacherfile t, membership m -->
+<!-- 			where t.user_no(+) = c.user_no -->
+<!-- 			and m.user_no = c.user_no -->
+<!-- 			and c.question_no = #{questionNo} -->
+<!-- 			AND C.comm_class = 1 -->
+<!-- 	</select> -->
+	<select id="getQuestionComm" resultType="map">
+		SELECT c.*, m.user_id, t.tch_file_rename FROM question_comm c
+		INNER JOIN membership m
+		ON(m.user_no = c.user_no)
+		LEFT OUTER JOIN teacherfile t
+		ON(m.user_no = t.user_no)
+	  	WHERE question_no = #{questionNo}
+	  	ORDER BY comm_no 
+	</select>
+	
+	<update id="updateQuestion">
+		update question set question_title=#{questionTitle}, question_content=#{questionContent}, question_date=sysdate
+		where question_no=#{questionNo}
+	</update>
+	
+	<delete id="deleteFile">
+		delete from question_file
+		where question_file_no = #{questionFileNo}
+	</delete>
+
+	<select id="getNextQuesstionNo" resultType="int">
+		SELECT question_no_SEQ.currval FROM dual
+	</select>
+	
+	<update id="updateComment">
+		update question_comm set comm_content=#{commContent}
+		where comm_no = #{commNo}
+	</update>
+	
+	<delete id="deleteComment">
+		update question_comm set q_comm_state=1
+		where comm_no = #{commNo}
+	</delete>
+	
+	<delete id="deleteQuestion">
+		delete from question
+		where question_no = #{questionNo}
+	</delete>
+	
+	<select id="selectCntQuestionComm" resultType="int">
+		select count(*) from question_comm
+		where question_no = #{questionNo}
+	</select>
+</mapper>
+  
