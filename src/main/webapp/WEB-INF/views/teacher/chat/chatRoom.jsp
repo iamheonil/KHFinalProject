@@ -37,6 +37,10 @@ function submitFunction(){//메시지를 전달받아 db에넣고 결과값출�
 var userID='<%=userID%>'
 var toID=searchParam('toID')
 var chatContent=$('#chatContent').val();
+if(chatContent == null || chatContent ==''){
+	alert('내용을 입력하세요')
+	return
+}
 
 if(chatContent==null || chatContent==''){
 	alert("문자를 입력하지 않았습니다")
