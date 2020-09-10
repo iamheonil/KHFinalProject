@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 메인 헤더 -->   
-<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 
 <!-- 학생 마이페이지 헤더 -->
 <c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
@@ -266,7 +266,7 @@ function marketCommPaging(curPage){
                                 <tr>
                                     <td class="text-center"><span>${m.NO }</span></td>
                                     <td>
-                                        <a href="#" class="commContent">${m.MK_COMM_CONTENT }</a>
+                                        <a href="${pageContext.request.contextPath }/board/market/detail?mkno=${m.MK_NO }"  class="commContent">${m.MK_COMM_CONTENT }</a>
                                     </td>
                                     <td  class="text-center">
                                         <span>${m.MK_COMM_DATE }</span>
