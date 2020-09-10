@@ -38,7 +38,7 @@
 	  		order by find_stu_no desc
 		) c
 	) findStu 
-	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	where rnum BETWEEN #{startNo} AND #{endNo}
   </select>
   
   <select id="findStuSearchPaging" parameterType="map" resultType="int">

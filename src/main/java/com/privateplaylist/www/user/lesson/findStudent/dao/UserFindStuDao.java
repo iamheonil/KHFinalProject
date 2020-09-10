@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import common.util.Paging;
 import common.util.Paging12;
 
 //20200904 이인주 : user > find_student > Dao
@@ -32,6 +31,18 @@ public class UserFindStuDao {
 	public Map<String, Object> detailFindStu(int findStuNo) {
 		return sqlSession.selectOne("UserFindStu.detailFindStu",findStuNo);
 	}
+
+	//검색 페이징 (글 개수)
+	public int selectCntUserFindStuSearch(Map<Object, Object> pagingParam) {
+		return sqlSession.selectOne("UserFindStu.selectCntUserFindStuSearch",pagingParam);
+	}
+	
+	//검색 결과
+	public List<Map<String, Object>> SearchFindStu(Map<Object, Object> searchParam) {
+		return sqlSession.selectList("UserFindStu.SearchFindStu",searchParam);
+	}
+
+	
 	
 	
 
