@@ -105,4 +105,21 @@ public class BlackListServiceImpl implements BlackListService {
 		}		
 	}
 
+	@Override
+	public void turndownQuestion(List<Integer> qList) {
+
+		for( int no : qList ) {
+			blackListDao.updateBlacklistTurndown(no);
+		}
+	}
+
+	@Override
+	public void deleteQuestion(List<Integer> qList) {
+		for( int no : qList ) {
+			int qNo = blackListDao.selectQuesionByBN(no);
+			blackListDao.updateBlackQuesionDelete(qNo);
+			blackListDao.deleteQestion(qNo);
+		}		
+	}
+
 }

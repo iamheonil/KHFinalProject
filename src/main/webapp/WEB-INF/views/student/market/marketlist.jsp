@@ -99,6 +99,7 @@ a {
 .user-list tbody td>img {
     position: relative;
     max-width: 50px;
+    max-height: 50px;
     float: left;
     margin-right: 15px;
 }
