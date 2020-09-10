@@ -104,7 +104,7 @@ $(document).ready(function(){
                         </td>
                        	
                         <td  >
-                            <a href="${pageContext.request.contextPath}/admin/question/deleteComm?questionNo=${commList.questionNo }"><button class="btn btn-danger" name="reply_del" r_type = "<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>" comm_No = "${commList.commNo}">-</button></a>
+                            <a href="${pageContext.request.contextPath}/admin/question/deleteComm?commNo=${commList.commNo }"><button class="btn btn-danger" name="reply_del" r_type = "<c:if test="${commList.commClass == '0'}">main</c:if><c:if test="${commList.commClass == '1'}">sub</c:if>" comm_No = "${commList.commNo}">-</button></a>
                         </td>
                     </tr>
                 </c:forEach>
