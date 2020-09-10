@@ -4,7 +4,7 @@
 
 <%-- <!-- nav include  -->
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
-<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/index_silder.js" ></script>
 <link href="${pageContext.request.contextPath}/resources/css/index_silder.css" rel="stylesheet" type="text/css">
