@@ -125,7 +125,7 @@ body{
 <!-- 											<td> -->
 <%-- 												<a href="#" title="과외 정보 보기" onclick="lessonModal(${lesson.LESSON_NO });">${lesson.LESSON_TITLE }</a> --%>
 <!-- 											</td> -->
-											<td>${list.COMM_CONTENT}</td>
+											<td><a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${list.QUESTION_NO}">${list.COMM_CONTENT}</a></td>
 											<td>${list.COMM_DATE}</td>
 										</tr>
 									</c:forEach>
