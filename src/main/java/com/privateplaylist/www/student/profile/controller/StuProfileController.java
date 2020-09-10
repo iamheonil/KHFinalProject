@@ -27,8 +27,25 @@ public class StuProfileController {
 	
 	//마이페이지 비밀번호 확인 jsp 
 	@RequestMapping("/chkpassword")
-	public String  chkpassword(Model model,HttpSession session) {
+	public String  chkpassword(Model model,HttpSession session, HttpServletRequest req) {
 //		System.out.println("/student/profile/chkpassword");
+		
+		//root context
+		String root = req.getContextPath();
+		
+		//세션 
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(loginUser == null){
+			return "/member/login";
+			
+		}else if (loginUser.getUserActor() == 1) {
+			model.addAttribute("alertMsg", "학생 마이페이지 입니다");
+			model.addAttribute("url", root);
+
+			return "/admin/notice/error";
+		}
+		
 		return "/student/profile/chkpassword";
 	}	
 	
@@ -43,8 +60,21 @@ public class StuProfileController {
 	public String selectProfile(Model model, HttpServletRequest req,HttpSession session ) {
 //			System.out.println("/student/profile/select");
 	
-		//세션값 가지고 오기
+		//root context
+		String root = req.getContextPath();
+		
+		//세션 
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(loginUser == null){
+			return "/member/login";
+			
+		}else if (loginUser.getUserActor() == 1) {
+			model.addAttribute("alertMsg", "학생 마이페이지 입니다");
+			model.addAttribute("url", root);
+
+			return "/admin/notice/error";
+		}
 		
 		//모델값 전달
 		model.addAttribute("loginUser", loginUser);

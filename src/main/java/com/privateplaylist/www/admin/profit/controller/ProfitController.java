@@ -9,12 +9,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.privateplaylist.www.admin.profit.service.ProfitService;
+import com.privateplaylist.www.dto.Admin;
 
 @Controller
 @RequestMapping("/admin/profit")
@@ -25,8 +29,8 @@ public class ProfitController {
 	
 	//수익 페이지 list
 	@RequestMapping("/list")
-	public String  profitList(Model model) {
-		System.out.println("/admin/profit/list");
+	public String  profitList(Model model,HttpSession session) {
+//		System.out.println("/admin/profit/list");
 		
 //		//2020  수익금
 		int profit01 = profitService.selectprofit01();

@@ -194,7 +194,7 @@ body{
           padding:20px 10px;
           background:#fff;
           border:2px solid #666;
-          top : -897px;
+          top : -965px;
           left : 350px;
           position: absolute;
           border-radius: 10px;

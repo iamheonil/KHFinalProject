@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.privateplaylist.www.dto.FindStudent;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.student.findStu.service.FindStuService;
-import com.privateplaylist.www.user.lesson.findStudent.dao.UserFindStuDao;
 import com.privateplaylist.www.user.lesson.findStudent.service.UserFindStuService;
 
 import common.util.Paging;
@@ -41,8 +40,21 @@ public class FindStuController {
 	public String  findStuList(Model model,HttpSession session,HttpServletRequest req) {
 //		System.out.println("/student/findStu/list");
 			
+		//root context
+		String root = req.getContextPath();
+		
 		//세션 
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(loginUser == null){
+			return "/member/login";
+			
+		}else if (loginUser.getUserActor() == 1) {
+			model.addAttribute("alertMsg", "학생 마이페이지 입니다");
+			model.addAttribute("url", root);
+
+			return "/admin/notice/error";
+		}
 		
 		//userNo
 		int userNo = loginUser.getUserNo();

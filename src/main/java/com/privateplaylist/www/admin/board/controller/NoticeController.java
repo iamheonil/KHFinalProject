@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.privateplaylist.www.admin.board.service.NoticeService;
+import com.privateplaylist.www.dto.Admin;
 import com.privateplaylist.www.dto.Notice;
+import com.privateplaylist.www.member.vo.Member;
 
 import common.util.Paging;
 
@@ -36,7 +39,7 @@ public class NoticeController {
 	
 	//공지사항 정보 전체 조회
 	@RequestMapping("/list")
-	public String  noticeList(Model model,HttpServletRequest req) {
+	public String  noticeList(Model model,HttpServletRequest req,HttpSession session) {
 //		System.out.println("/admin/notice/list");
 		
 		//요청 파라미터를 전달하여 paging 객체 생성하기
