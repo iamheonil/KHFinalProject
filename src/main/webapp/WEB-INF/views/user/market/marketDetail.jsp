@@ -593,6 +593,7 @@ function singo(){
 		          </div>
                <div class="clearfix" ></div>	
                <hr>
+             
                <div>
                <div class="article-img">
                <c:if test="${empty market.MK_THUMB_RENAME }">
