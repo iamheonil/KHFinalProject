@@ -312,41 +312,45 @@ function addComm(mkno){
 			url: url,
 			data: {mkno : mkno, commContent : commContent },
 			success : function(result) {
-				var li = '';
-				li += '<li class="media comm0">';
-				li += '<div class="commExist">';
-				li += '<div class="text-muted pull-right userCommAct">';
-				li += '<a href="javascript:void(0);" onclick="commUpdate(';
-				li += result.MK_COMM_NO;
-				li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
-				li += result.MK_COMM_NO;
-				li += ', this);">삭제</a>';
-				li += '</div>';
-				li += '<a href="#" class="pull-left">';
-				if(result.TCH_FILE_RENAME == null ){
-					li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+				
+				if( result != null){
+					var li = '';
+					li += '<li class="media comm0">';
+					li += '<div class="commExist">';
+					li += '<div class="text-muted pull-right userCommAct">';
+					li += '<a href="javascript:void(0);" onclick="commUpdate(';
+					li += result.MK_COMM_NO;
+					li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
+					li += result.MK_COMM_NO;
+					li += ', this);">삭제</a>';
+					li += '</div>';
+					li += '<a href="#" class="pull-left">';
+					if(result.TCH_FILE_RENAME == null ){
+						li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+					}else{
+						li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					}
+					li += '</a>';
+					li += '<div class="media-body comm-body">';
+					li += '<strong class="text">' + result.USER_ID + '</strong>';
+					li += '<p>' + result.MK_COMM_CONTENT + '</p>';
+					li += '<small>' + result.MK_COMM_DATE + '</small>';
+					li += '&nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(';
+					li +=  mkno + ', ' +  result.MK_COMM_NO
+					li += ', this );">답글달기</a></small>';
+					li += '</div>';
+					li += '</div>';
+					li += '</li>';
+	        
+					$("#commList").append(li);
+					$("#commContent").val("");
+					
+				    var offset = $("#commList li:last-child").offset();
+			        $('html, body').animate({scrollTop : offset.top}, 400);
 				}else{
-					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					alert("로그인이 필요합니다.");
+					location.href="<%=request.getContextPath() %>/main/login";
 				}
-				li += '</a>';
-				li += '<div class="media-body comm-body">';
-				li += '<strong class="text">' + result.USER_ID + '</strong>';
-				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
-				li += '<small>' + result.MK_COMM_DATE + '</small>';
-				li += '&nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(';
-				li +=  mkno + ', ' +  result.MK_COMM_NO
-				li += ', this );">답글달기</a></small>';
-				li += '</div>';
-				li += '</div>';
-				li += '</li>';
-        
-				$("#commList").append(li);
-				$("#commContent").val("");
-				
-			    var offset = $("#commList li:last-child").offset();
-		        $('html, body').animate({scrollTop : offset.top}, 400);
-		        
-				
 			},
 			error : function(){
 				alert("ajax 실패")
@@ -450,41 +454,46 @@ var recommContent = $(target).prev('textarea').val();
 			url: url,
 			data: {mkno : mkno, mkParentCommNo : mkParentCommNo,  recommContent : recommContent },
 			success : function(result) {
-				var li = '';
-				li += '<li class="media comm' + mkParentCommNo + '">';
-				li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
-				li += '<div class="commExist">';
-				li += '<div class="text-muted pull-right userCommAct">';
-				li += '<a href="javascript:void(0);" onclick="commUpdate(';
-				li += result.MK_COMM_NO;
-				li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
-				li += result.MK_COMM_NO;
-				li += ', this);">삭제</a>';
-				li += '</div>';
-				li += '<a href="#" class="pull-left">';
-				if(result.TCH_FILE_RENAME == null ){
-					li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+				if( result != null){
+					var li = '';
+					li += '<li class="media comm' + mkParentCommNo + '">';
+					li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
+					li += '<div class="commExist">';
+					li += '<div class="text-muted pull-right userCommAct">';
+					li += '<a href="javascript:void(0);" onclick="commUpdate(';
+					li += result.MK_COMM_NO;
+					li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
+					li += result.MK_COMM_NO;
+					li += ', this);">삭제</a>';
+					li += '</div>';
+					li += '<a href="#" class="pull-left">';
+					if(result.TCH_FILE_RENAME == null ){
+						li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+					}else{
+						li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					}
+					li += '</a>';
+					li += '<div class="media-body comm-body">';
+					li += '<strong class="text">' + result.USER_ID + '</strong>';
+					li += '<p>' + result.MK_COMM_CONTENT + '</p>';
+					li += '<small>' + result.MK_COMM_DATE + '</small>';
+					li += '</div>';
+					li += '</div>';
+					li += '</li>';
+	        
+					var offset;
+	// 				console.log(result.MK_PARENT_COMM_NO);
+					if( !$("li.comm" + result.MK_PARENT_COMM_NO).length){
+						$(target).parents("li.reComm").replaceWith(li);
+					}else{
+						$(target).parents("li.reComm").remove();
+						$(".comm"+mkParentCommNo).last().after(li);
+					}
 				}else{
-					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					alert("로그인이 필요합니다.");
+					location.href="<%=request.getContextPath() %>/main/login";
 				}
-				li += '</a>';
-				li += '<div class="media-body comm-body">';
-				li += '<strong class="text">' + result.USER_ID + '</strong>';
-				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
-				li += '<small>' + result.MK_COMM_DATE + '</small>';
-				li += '</div>';
-				li += '</div>';
-				li += '</li>';
-        
-				var offset;
-// 				console.log(result.MK_PARENT_COMM_NO);
-				if( !$("li.comm" + result.MK_PARENT_COMM_NO).length){
-					$(target).parents("li.reComm").replaceWith(li);
-				}else{
-					$(target).parents("li.reComm").remove();
-					$(".comm"+mkParentCommNo).last().after(li);
-				}
-			
+				
 			},
 			error : function(){
 				alert("ajax 실패")
