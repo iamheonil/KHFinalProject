@@ -157,7 +157,7 @@ $(function(){
 			<div class="col-sm-12 mb-3">
 		      	  <i class="fa fa-edit"></i> 신고 사유
 			    <div class="form-group">
-			        <textarea class="form-control" id="blContent" name="blContent" rows="4" 
+			        <textarea class="form-control" id="blContent" name="blContent" rows="4" required="required"
 			        placeholder="※ 신고 사유를 작성해주세요.&#13;&#10;※ 무분별한 신고는 제재 대상이 될 수 있습니다."></textarea>
 			    </div>
 			</div>

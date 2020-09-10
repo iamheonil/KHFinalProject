@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- nav include  -->
-<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 	
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 

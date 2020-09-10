@@ -11,6 +11,8 @@
 	  		SELECT rownum no, t.*
 	  		FROM (
 			  	SELECT * FROM blacklist b
+				left join question q 
+				ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
 				left join review r
 				ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
 				left join market k
@@ -19,6 +21,10 @@
 				ON(b.user_no = m.user_no)
 				WHERE 1= 1
 		        <choose>
+		        	<when test="category == '질문'">
+		        		AND b.blacklist_board = '질문'
+					    AND r.review_content LIKE '%' || #{paging.search} || '%'
+		        	</when>
 		        	<when test="category == '후기'">
 		        		AND b.blacklist_board = '후기'
 					    AND r.review_content LIKE '%' || #{paging.search} || '%'

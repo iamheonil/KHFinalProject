@@ -99,6 +99,7 @@
 		<mapper resource="/mybatis/mapper/user/BoardBlackListMapper.xml"/>
 		<mapper resource="/mybatis/mapper/user/UserNoticeMapper.xml"/>
 		<mapper resource="/mybatis/mapper/student/StudentReviewMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserQuestionMapper.xml"/>
 	</mappers>
 
 </configuration>
