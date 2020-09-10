@@ -82,7 +82,7 @@ text-align: center;
 
 <body>
 
-<br><br><br><br><br>
+<br><br><br>
 	<div id="gtco_header" class="gtco-cover gtco-cover-xl" role="banner">
 		<div class="gtco-container">
 			<div class="gtco-section gtco-products">
@@ -188,8 +188,8 @@ text-align: center;
 							<h2 style="color: white;">학생 수 &nbsp;&nbsp; | &nbsp;&nbsp; 선생님 수 &nbsp;&nbsp; | &nbsp;&nbsp; 연성장</h2> <br>
 							<div style="display: flex; justify-content: center;">
 								<div class="listCountCon" style="color: white; font-size: 23px;"></div>
-								<div class="memberCountCon" style="color: white; font-size: 23px; margin-left: 20%"></div>
-								<div class="monthCountCon" style="color: white; font-size: 23px; margin-left: 20%"></div> <div style="color: white">%</div>
+								<div class="memberCountCon" style="color: white; font-size: 23px; margin-left: 23%"></div>
+								<div class="monthCountCon" style="color: white; font-size: 23px; margin-left: 25%"></div> <div style="color: white">%</div>
 						</div>
 						<br><br>
 						<p style="color: white;">슬기로운 과외생활은 여러분과 함께 매일 성장 중입니다!</p>
