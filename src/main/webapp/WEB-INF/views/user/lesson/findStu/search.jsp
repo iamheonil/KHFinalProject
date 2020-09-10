@@ -1,4 +1,4 @@
-<!-- 이인주 : 사용자 > 학생 찾기 > 목록 jsp -->
+<!-- 이인주 : 사용자 > 학생 찾기 > 검색 jsp -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -194,7 +194,7 @@ body{
           padding:20px 10px;
           background:#fff;
           border:2px solid #666;
-          top : -1130px;
+          top : -897px;
           left : 350px;
           position: absolute;
           border-radius: 10px;
@@ -518,7 +518,7 @@ $(function(){
 																		<option value="울산">울산</option>
 																		<option value="광주">광주</option>
 																		<option value="세종">세종</option>
-																		<option value="강원">강원</option>
+																		<option value="경남">강원</option>
 																		<option value="경북">경북</option>
 																		<option value="경남">경남</option>
 																		<option value="충북">충북</option>
@@ -577,17 +577,28 @@ $(function(){
 				<h4 class="findtitle">학생찾기</h4>
 			</div>
 			<hr>
+				<i class="glyphicon glyphicon-map-marker">&nbsp;${searchParam.findStuLoc }</i>&nbsp;|&nbsp;
+				<i class="glyphicon glyphicon-tags">&nbsp;${searchParam.findStuSubject }</i>&nbsp;|&nbsp;
+				
+				<c:if test="${searchParam.keyword  eq '' }">
+					<i class="glyphicon glyphicon-check">&nbsp;무관</i>
+				</c:if>
+				<c:if test="${searchParam.keyword  ne '' }">
+					<i class="glyphicon glyphicon-check">&nbsp;${searchParam.keyword }</i>
+				</c:if>
+				
 		
 			<!-- 게시글이 없을 때  -->
-			<c:if  var="findstu" test="${empty userFindStuList }">
-				<div id="noneboarder">게시글이 없습니다</div>
+			<c:if  var="findstu" test="${empty searchList }">
+				<div id="noneboarder">조건에 맞는 게시글이 없습니다</div>
 			</c:if>
 		
 		    <div class="row">
+		    <br>
 		    <!--게시글이 있을 때 -->
-			<c:if  var="findstu" test="${!empty userFindStuList }">
+			<c:if  var="findstu" test="${!empty searchList }">
 			<!-- 값 출력 -->
-			<c:forEach items="${userFindStuList }" var="findstu" >
+			<c:forEach items="${searchList }" var="findstu" >
 		    <div class="panel" id="ho">
 		        <div class="col-sm-6">
 		                <div class="panel-body p-t-10">
@@ -610,7 +621,7 @@ $(function(){
 		<div class="clearfix"></div>
         <!-- 페이징 -->
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/user/lesson/findStu/listPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/user/lesson/findStu/searchPaging.jsp"></c:import>
 		</div>
 		
 		
