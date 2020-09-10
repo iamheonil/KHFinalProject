@@ -123,6 +123,56 @@ public class UserFindStuController {
 		return "user/lesson/findStu/detail";
 	}
 	
-	
+	//검색 search
+	@RequestMapping("/search")
+	public String userFindStuSearch(@RequestParam String findStuLoc,@RequestParam String findStuSubject, @RequestParam(required = false) String keyword,HttpServletRequest req, Model model) {
+		
+		System.out.println("findStuLoc"+findStuLoc);
+		System.out.println("findStuSubject"+findStuSubject);
+		System.out.println("keyword"+keyword);
+		
+		//페이징 조건
+		Map<Object,Object> pagingParam = new HashMap<Object, Object>();
+		
+		pagingParam.put("findStuLoc", findStuLoc);
+		pagingParam.put("findStuSubject", findStuSubject);
+		pagingParam.put("keyword", keyword);
+		
+		//요청 파라미터를 전달하여 paging 객체 생성하기
+		Paging12 paging = userFindStuService.searchPaging(pagingParam,req);
+		
+		System.out.println(paging);
+		
+		//페이징 결과 전달
+		model.addAttribute("paging", paging);
+		
+		//전달할 검색 조건
+		Map<Object,Object> searchParam = new HashMap<Object, Object>();
+		
+		searchParam.put("findStuLoc", findStuLoc);
+		searchParam.put("findStuSubject", findStuSubject);
+		searchParam.put("keyword", keyword);
+		searchParam.put("paging", paging);
+		
+		System.out.println("searchParam"+searchParam);
+		
+		//검색 findstu
+		List<Map<String,Object>> searchList = userFindStuService.SearchFindStu(searchParam);
+		
+		System.out.println("searchList"+searchList);
+		
+		//리스트 jsp 전달
+		model.addAttribute("searchList", searchList);
+		
+		//페이징 결과 전달
+		model.addAttribute("paging", paging);
+		
+		//검색조건 전달
+		model.addAttribute("searchParam",searchParam);
+		
+		//결과
+		return "user/lesson/findStu/search";
+	}
 	
 }
+
