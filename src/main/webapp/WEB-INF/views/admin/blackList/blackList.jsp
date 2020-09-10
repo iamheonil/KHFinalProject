@@ -25,6 +25,10 @@ function turndown(){
 // 반려하기 버튼 클릭
 	
 	// check값넣을 리스트
+	
+	// 질문
+	var qList = []
+	
 	// 후기
 	var rList = []
 	
@@ -34,7 +38,9 @@ function turndown(){
 	$("input[name='checkRow']:checked").each(function(){
 		
 		// 보드가 후기면 rList 에
-		if( $(this).parent().siblings(".board").text() == '후기'){
+		if( $(this).parent().siblings(".board").text() == '질문'){
+			qList.push($(this).val());
+		}else if($(this).parent().siblings(".board").text() == '후기' ){
 			rList.push($(this).val());
 		}else if($(this).parent().siblings(".board").text() == '장터' ){
 			mList.push($(this).val());
@@ -43,7 +49,7 @@ function turndown(){
 	
 	// 제출할 url  지정
 	var url = "<%=request.getContextPath() %>/admin/blacklist/turndown";
-	var allData = { "rList" : rList, "mList" : mList };
+	var allData = { "qList" : qList, "rList" : rList, "mList" : mList };
 	
 	// 비동기 처리
 	$.ajax({
@@ -73,6 +79,10 @@ function deleteReview(){
 	// 삭제 버튼 클릭
 	
 	// check값넣을 리스트
+		
+	// 질문
+	var qList = []
+	
 	// 후기
 	var rList = []
 	
@@ -81,17 +91,17 @@ function deleteReview(){
 	
 	$("input[name='checkRow']:checked").each(function(){
 		
-		// 보드가 후기면 rList 에
-		if( $(this).parent().siblings(".board").text() == '후기'){
+		if( $(this).parent().siblings(".board").text() == '질문'){
+			qList.push($(this).val());
+		}else if($(this).parent().siblings(".board").text() == '후기' ){
 			rList.push($(this).val());
 		}else if($(this).parent().siblings(".board").text() == '장터' ){
 			mList.push($(this).val());
 		}
 	})
-	
 	// 제출할 url  지정
 	var url = "<%=request.getContextPath() %>/admin/blacklist/deletereview";
-	var allData = { "rList" : rList, "mList" : mList };
+	var allData = { "qList" : qList, "rList" : rList, "mList" : mList };
 	
 	// 비동기 처리
 	$.ajax({
@@ -223,7 +233,7 @@ main{
 </style>
 
             
-<div id="title">후기 게시판 
+<div id="title">신고 내역 
 	<i class="fas fa-angle-right"></i>
 	<a href="#">신고 내역 관리</a>
 </div>
@@ -261,18 +271,27 @@ main{
 					<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 						<select class="form-control" name="category">
 							<c:choose>
+								<c:when test="${category eq '질문' }">
+									<option  value="전체">전체</option>
+									<option  value="질문" selected="selected">질문</option>
+									<option  value="후기">후기</option>
+									<option value="장터" >장터</option>
+								</c:when>
 								<c:when test="${category eq '후기' }">
 									<option  value="전체">전체</option>
+									<option  value="질문">질문</option>
 									<option  value="후기" selected="selected">후기</option>
 									<option value="장터" >장터</option>
 								</c:when>
 								<c:when test="${category eq '장터' }">
 									<option value="전체">전체</option>
+									<option  value="질문">질문</option>
 									<option value="후기">후기</option>
 									<option value="장터" selected="selected">장터</option>
 								</c:when>
 								<c:otherwise>
 									<option value="전체" selected="selected">전체</option>
+									<option  value="질문">질문</option>
 									<option value="후기">후기</option>
 									<option value="장터">장터</option>
 								</c:otherwise>
@@ -346,6 +365,9 @@ main{
 		                                    <th style="text-align: center" scope="row">${i.NO }</th>
 		                                    <td class="board">${i.BLACKLIST_BOARD }</td>
 		                                    <td>
+		                                    	<c:if test="${i.BLACKLIST_BOARD == '질문' }" >
+		                                   		 	${i.REVIEW_CONTENT }
+		                                   		 </c:if>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '후기' }" >
 		                                   		 	${i.REVIEW_CONTENT }
 		                                   		 </c:if>

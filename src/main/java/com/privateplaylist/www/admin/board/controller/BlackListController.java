@@ -41,6 +41,7 @@ public class BlackListController {
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
 		mav.setViewName("admin/blackList/blackList");
+		
 		return mav;
 	}
 	
@@ -49,8 +50,8 @@ public class BlackListController {
 	@ResponseBody
 	public String turndown(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
 		
-		System.out.println(rList);
-		System.out.println(mList);
+//		System.out.println(rList);
+//		System.out.println(mList);
 		
 		if( rList == null && mList == null ) {
 			return "0";

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
+<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -521,6 +521,10 @@ function commDelete(mkCommNo, target){
 	}
 }
 
+function singo(){
+	
+	$("#singoInfo").submit();
+}
 </script>
 
 <body>
@@ -579,7 +583,12 @@ function commDelete(mkCommNo, target){
             	  		<a href="javascript:void(0);" onclick="updateMK(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
             	  	</c:if>
             	  	<c:if test="${!chkWriter }">
-            	  		<a href="">신고</a>
+            	  		<a href="javascript:void(0);"  onclick="singo();">신고</a>
+            	  		<form action="${pageContext.request.contextPath }/board/blacklist" id="singoInfo" method="post">
+            	  			<input type="hidden" name="no" value="${market.MK_NO }" />
+            	  			<input type="hidden" name="title" value="${market.MK_TITLE }" />
+            	  			<input type="hidden" name="board" value="장터" />
+            	  		</form>
             	  	</c:if>
 		          </div>
                <div class="clearfix" ></div>	
