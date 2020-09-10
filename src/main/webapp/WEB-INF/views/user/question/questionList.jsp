@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- nav include  -->
-<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
+<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 	
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
@@ -28,10 +28,10 @@ margin-top:20px;
 .menu-item#three ul {
    height: 93px; 
 }
-#marketlist{
-	width: 970px;
+#questionlist{
+	width: 1000px;
 	margin: 0 auto;
-	color: black;
+	  	color: black;
 }
 #studentMK{
   background: #eee;
@@ -46,7 +46,13 @@ margin-top:20px;
 	color: #17B794; /* 청록색 */
 }
 
+#marketContent{
+	width: 97%;
+	margin: 0 auto;
+}
+
 #marketBoard{
+	width: 90%;
 	margin: 0 auto;
 }
 
@@ -89,48 +95,32 @@ margin-top:20px;
 .user-list tbody td .user-link {
     display: block;
     margin-left: 10px;
-    margin-top: 20px;
+/*     margin-top: 20px; */
+	margin: 10px;
 	overflow: hidden;
-	max-width: 450px;
+	width: 450px;
   	text-overflow: ellipsis;
   	white-space: nowrap;
   	float: left;
-	color: black;
-}
-
-.user-list tbody td .sale, .user-list tbody td .finish {
-	margin-top: 21px;
-    margin-left: 3px;
-	font-size: 10px;
-	color: #00C60F;
-	display: inline-block;
-}
-
-.user-list tbody td .sale{
-	color: #00C60F;
-}
-.user-list tbody td .finish {
-	color: #aaa;
+	  	color: black;
 }
 
 a {
     outline: none!important;
 }
-
+.user-list tbody td img {
+    position: relative;
+    max-width: 60px;
+    height: 60px;
+    float: left;
+}
 .user-list tbody td .mkThumb{
-/* 	border: 1px solid #ccc; */
+	border: 1px solid #ccc;
+	border-radius: 5px;
 	width: 60px;
 	height: 60px;
   	float: left;
   	margin: 0 10px; 
-  	overflow: hidden;
-}
-
-.user-list tbody td .mkThumb img{
-    position: relative;
-	height: 60px;
-    width: 60px;
-    float: left;
 }
 .table thead tr th {
     text-transform: uppercase;
@@ -155,7 +145,7 @@ a {
 	overflow: hidden;
   	text-overflow: ellipsis;
   	white-space: nowrap;
-  	 display: inline-block;
+/*   	 display: inline-block; */
 }
 
 .tableHeader{
@@ -180,6 +170,7 @@ a {
 	width: 300px;
 	display: inline-block;
 }
+
 </style>
 		
 <script>
@@ -221,16 +212,9 @@ function marketCommPaging(curPage){
 	});
 	
 }
-
-function marketWrite(){
-	
-	location.href="${pageContext.request.contextPath }/board/market/write";
-	
-}
 </script>
 <body>
 	
-	<!-- 김헌일 : 중고장터 프론트 초안작성중 0817 ~ ing -->
 
 	<header id="gtco_header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
 			<div class="gtco-container">
@@ -242,11 +226,11 @@ function marketWrite(){
 									<div class="col-md-8 animate-box">
 										<div class="row padding-horizontal-md pull-left banner">
 											<div class="row margin-top-xs text title title-xxl text-bold text-white">
-												<p><h1>중고장터</h1></p>
+												<p><h1>질문게시판</h1></p>
 											</div>
 											<br>
 											<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
-												<p><h2>자유롭게 물건들을 팔아보아요</h2></p>
+												<p><h2>선생님과 친구들에게 물어보세요.</h2></p>
 											</div>
 										</div>
 									</div>	
@@ -262,16 +246,16 @@ function marketWrite(){
 	<br>
 
 				
-<div id="marketlist">
+<div id="questionlist">
 <div id="marketBoard">
     <div class="clearfix"></div>
 	<div class="marketAct">
 		<div class="form-group pull-right">
-		<form action="${pageContext.request.contextPath }/board/market" method="post">
-			<input class="form-control" type="text" name="search" value="${search }" id="search"/><button class="form-group" type="submit">검색</button>
+		<form action="${pageContext.request.contextPath }/board/question" method="post">
+			<input class="form-control" type="text" name="search" value="${search }" id="search" placeholder="제목을 입력하세요"/><button class="form-group" type="submit">검색</button>
 		</form>
 		</div>
-		<button type="button" id="BtnWrite" onclick="marketWrite();">글쓰기</button>
+		<button type="button" id="BtnWrite" onclick="location.href='${pageContext.request.contextPath }/board/question/write'">글쓰기</button>
 		
 	</div>
     <div class="row">
@@ -282,36 +266,26 @@ function marketWrite(){
                         <table class="table user-list table-hover">
                             <thead>
                                 <tr class="tableHeader">
-                                <th class="text-center" style="width: 5%;"><span>No</span></th>
-                                <th class="text-center" style="width: 55%;"><span>제목</span></th>
-                                <th class="text-center"  style="width: 10%;"><span>작성자</span></th>
-                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
+                                <th class="text-center" style="width: 10%;"><span>No</span></th>
+                                <th class="text-center" style="width: 60%;"><span>제목</span></th>
+                                <th class="text-center"  style="width: 15%;"><span>작성자</span></th>
+                                <th class="text-center"  style="width: 15%;"><span>작성일</span></th>
                                 </tr>
                             </thead>
                             <tbody>
                             	<c:forEach items="${list }" var="m">
                                 <tr>
-                                    <td class="text-center"><span>${m.MK_NO }</span></td>
+                                    <td class="text-center"><span>${m.QUESTION_NO }</span></td>
                                     <td>
-                                    	<div class="mkThumb">
-                                    		<c:if test="${empty m.MK_THUMB_RENAME }">
-							                   <img src="${pageContext.request.contextPath }/resources/images/noimage.gif" title="" alt="">
-							            	</c:if>
-                                    		<c:if test="${!empty m.MK_THUMB_RENAME }">
-	                                      		<img src="<%= request.getContextPath() %>/resources/upload/${m.MK_THUMB_RENAME }" alt="">
-							            	</c:if>
-                                       </div>
-                                       <a href="<%= request.getContextPath() %>/board/market/detail?mkno=${m.MK_NO }" class="user-link">${m.MK_TITLE }</a>
-                                       <c:if test="${m.MK_STATE eq 0}">
-	                                       <span class="sale">판매</span>
-                                       </c:if>
-                                       <c:if test="${m.MK_STATE eq 1}">
-	                                       <span class="finish">완료</span>
-                                       </c:if>
+                                       <a href="<%= request.getContextPath() %>/board/question/detail?questionNo=${m.QUESTION_NO }" class="user-link text-center">${m.QUESTION_TITLE }</a>
                                     </td>
                                     <td class="text-center"><span>${m.USER_ID }</span></td>
                                     <td  class="text-center">
-                                        <span>${m.MK_DATE }</span>
+                                        <span>
+                                        	${m.QUESTION_DATE }
+<%--                                		    <fmt:parseDate value="${m.QUESTION_DATE }" pattern="yyyyMMdd" var="date"/> --%>
+<%--                                		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/> --%>
+                                   		</span>
                                     </td>
                                 </tr>
                                 </c:forEach>
@@ -324,7 +298,7 @@ function marketWrite(){
 	</div>
 	  <div style="text-align: center;">
 <%--    <c:if test="${not empty list}" > --%>
-		<c:import url="/WEB-INF/paging/user/market/marketPaging.jsp" />
+		<c:import url="/WEB-INF/paging/user/question/questionPaging.jsp" />
 <%-- 	</c:if> --%>
 	</div>
 	

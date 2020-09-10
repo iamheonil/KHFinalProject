@@ -32,7 +32,8 @@ public class marketStuController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 1;
+		int userNo = m.getUserNo();
+		
 		Paging paging1 = marketStuService.getPagingMarketStu(curPage1, userNo);
 		Paging paging2 = marketStuService.getPagingMarketCommStu(curPage2, userNo);
 		
@@ -58,7 +59,7 @@ public class marketStuController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = m.getUserNo();
 		
 		Paging paging1 = marketStuService.getPagingMarketStu(curPage, userNo);
 		List<Map<String, Object>> list1 = marketStuService.selectMarketStu(paging1, userNo);
@@ -78,7 +79,7 @@ public class marketStuController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = m.getUserNo();
 		
 		Paging paging2 = marketStuService.getPagingMarketCommStu(curPage, userNo);
 		List<Map<String, Object>> list2 = marketStuService.selectMarketCommStu(paging2, userNo);

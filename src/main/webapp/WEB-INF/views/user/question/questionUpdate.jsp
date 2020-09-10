@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
+<c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -83,16 +83,16 @@ function goback(){
 	history.go(-1);	
 }
 
-function deleteThumb(mkThumbNo, target){
-	
-	var url = "<%=request.getContextPath() %>/board/market/deletethumb";
+function deleteFile(questionFileNo, target){
+	var url = "<%=request.getContextPath() %>/board/question/deletefile";
 	// 비동기 처리
 	$.ajax({
 		type : "POST",
 		url: url,
-		data: {mkThumbNo : mkThumbNo},
+		data: {questionFileNo : questionFileNo},
 		success : function(result) {
 			$(target).parent("span").remove();
+			location.reload();
 		},
 		error : function(){
 			alert("ajax 실패")
@@ -101,23 +101,53 @@ function deleteThumb(mkThumbNo, target){
 	
 }
 
-function deleteFile(mkFileNo, target){
-	var url = "<%=request.getContextPath() %>/board/market/deletefile";
-	// 비동기 처리
-	$.ajax({
-		type : "POST",
-		url: url,
-		data: {mkFileNo : mkFileNo},
-		success : function(result) {
-			$(target).parent("span").remove();
-		},
-		error : function(){
-			alert("ajax 실패")
-		}
-	});
-	
-}
 
+//사진 프리뷰
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$(document).ready(
+	    function() {
+	        // 태그에 onchange를 부여한다.
+	        $('#file').change(function() {
+	                addPreview($(this)); //preview form 추가하기
+	        });
+	    });
+	 
+	    // image preview 기능 구현
+	    // input = file object[]
+	    function addPreview(input) {
+	        if (input[0].files) {
+	            //파일 선택이 여러개였을 시의 대응
+	            for (var fileIndex = 0 ; fileIndex < input[0].files.length ; fileIndex++) {
+	                var file = input[0].files[fileIndex];
+	                var reader = new FileReader();
+	 
+	                reader.onload = function (img) {
+	                    //div id="preview" 내에 동적코드추가.
+	                    //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+	                    $("#preview").append(
+	                        "<img src=\"" + img.target.result + "\"\ style='width: 100%;'/>"
+	                    );
+	                };
+	                
+	                reader.readAsDataURL(file);
+	            }
+	        } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+	    }
+	    
+//파일선택 클릭 시 이미 선택된 이미지 삭제
+  $(function() {
+  	$("#file").click(function() {
+  		$("#preview").html("");
+  	});
+  });	    
 </script>
 
 <body>
@@ -132,7 +162,7 @@ function deleteFile(mkFileNo, target){
 							<div class="col-md-8 animate-box">
 								<div class="row padding-horizontal-md pull-left banner">
 									<div class="row margin-top-xs text title title-xxl text-bold text-white">
-										<p><h1>중고장터</h1></p>
+										<p><h1>질문게시판</h1></p>
 									</div>
 									<br>
 									<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
@@ -150,40 +180,35 @@ function deleteFile(mkFileNo, target){
 	<!-- END #gtco-header -->
 <div class="clearfix" ></div>	
 <div id="marketWrite">
-<form class="form" method="post" action="${pageContext.request.contextPath}/board/market/update" enctype="multipart/form-data">
-  <input type="hidden" name="mkNo" value="${market.MK_NO }" />
+<form class="form" method="post" action="${pageContext.request.contextPath}/board/question/update" enctype="multipart/form-data">
+  <input type="hidden" name="questionNo" value="${detail.question.QUESTION_NO }" />
   <div class="form-group" style="font-weight: bold; font-size: 16px;">
-	중고장터 글쓰기
+	질문게시판 글쓰기
 	<hr>
   </div>
   <div class="form-group">
     <label>제목</label>
-    <input class="form-control" maxlength="100" type="text" name="mkTitle" placeholder="제목" required="required" value="${market.MK_TITLE }">
+    <input class="form-control" maxlength="100" type="text" name="questionTitle" placeholder="제목" required="required" value="${detail.question.QUESTION_TITLE }">
   </div>
-  <div class="form-group">
-    <label>가격</label>
-    <input style="width: 200px;" class="form-control" type="number" min="0" name="mkPrice" id="mkPrice" required="required" value="${market.MK_PRICE }">
-  </div>
+<!--   <div class="form-group"> -->
+<!--     <label>가격</label> -->
+<%--     <input style="width: 200px;" class="form-control" type="number" min="0" name="mkPrice" id="mkPrice" required="required" value="${question.QUESTION_PRICE }"> --%>
+<!--   </div> -->
     <div class="form-group">
       <label>내용</label>
-      <textarea maxlength="2000" required="required" class="form-control" id="mkContent" name="mkContent" rows="10" placeholder="물품에 대한 설명을 작성하세요">${market.MK_CONTENT }</textarea>
+      <textarea maxlength="2000" required="required" class="form-control" id="questionContent" name="questionContent" rows="10" placeholder="질문 내용을 작성하세요">${detail.question.QUESTION_CONTENT }</textarea>
     </div>
     <div class="form-group">
-      <label>썸네일 사진&nbsp;&nbsp;&nbsp;</label>
-      	<c:if test="${!empty market.MK_THUMB_NO }">
-	   		<span>${market.MK_THUMB_ORG }&nbsp;<i class="fa fa-times" id="BtnThumbDelete" aria-hidden="true" onclick="deleteThumb(${market.MK_THUMB_NO }, this);"></i></span>
-      	</c:if>
-	    <input type="file" accept="image/*" name="thumb" id="thumbChange"/>
-<!-- 	    <div id="thumbImg"></div> -->
-    </div>
-    <div class="form-group">
-      <label>상세 사진&nbsp;&nbsp;&nbsp;</label>
-      <c:if test="${!empty files }">
-	      <c:forEach items="${files }" var="f" >
-		    <span>${f.mkFileOrg }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.mkfileNo }, this);"></i>&nbsp;</span>
+      <label>상세 사진&nbsp;&nbsp;&nbsp;</label><br>
+		<input id="file" type="file" name="files" multiple/>
+		<div id="preview" style="width: 600px;"></div>
+      <c:if test="${not empty detail.flist }">
+	      <c:forEach items="${detail.flist }" var="f" >
+		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;</span>
+		    <br><img src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
 	      </c:forEach>
       </c:if>
-	    <input type="file" accept="image/*" multiple="multiple" name="files" />
+  	  
     </div>
 <div style="text-align: center;">
     <button class="btn btn-primary" onclick="submitContents();"><span>수정</span></button>
