@@ -38,6 +38,12 @@ public class MemberDao {
         return session.selectOne("MEMBER.selectMember", memberMap);
     }
     
+    public Member selectNaverMember(String id) {
+
+        return session.selectOne("MEMBER.selectNaverMember", id);
+    }
+
+    
     public TeacherFile selectTeacherFile(String userId) {
     	
     	return session.selectOne("MEMBER.selectTeacherFile", userId);

@@ -65,4 +65,5 @@
 	
 	</body>
 	<br>
+	
 <%@ include file="/WEB-INF/layout/main/footer.jsp" %>
