@@ -68,6 +68,16 @@ public class FindLessonService {
 		fld.insertWishList(comm);
 	}
 
+	public int selectCntConn(Map<String, Object> comm) {
+		// TODO Auto-generated method stub
+		return fld.selectCntConn(comm);
+	}
+
+	public void insertConn(Map<String, Object> comm) {
+		// TODO Auto-generated method stub
+		fld.insertConn(comm);
+	}
+
 	
 	
 	

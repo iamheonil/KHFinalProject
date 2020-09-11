@@ -1,6 +1,7 @@
 package com.privateplaylist.www.admin.board.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class QuestionServiceImpl implements QuestionService{
 	@Autowired
 	private QuestionDao questionDao;
 	
-	// 질문게시판 전체 출력
+//	 질문게시판 전체 출력
 	@Override
 	public List<Question> selectQuestionList(Paging paging) {
 		List<Question> questionList = questionDao.selectQuestionList(paging);
@@ -117,9 +118,6 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	//댓글삭제
 	public int deleteQuestionComm(int commNo) {
-		
-		
-		
 		return questionDao.deleteQuestionComm(commNo);
 	}
 
@@ -149,9 +147,72 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	}
 
-//	@Override
-//	public List<Map<String, Object>> detailQuestion(int questionNo, int commNo) {
-//		 List<Map<String, Object>> detailList= questionDao.detailQuestion(questionNo,commNo);
-//		return detailList;
-//	}
+	@Override
+	public List<Map<String, Object>> detailQuestion(int questionNo) {
+		 List<Map<String, Object>> detailList= questionDao.detailQuestion(questionNo);
+		return detailList;
+	}
+
+	@Override
+	public Map<String, Object> selectQuestionDetail(int questionNo) {
+		Map<String,Object> commandMap = new HashMap<String, Object>();
+		
+		Map<String, Object> question = questionDao.selectQuestionDetail(questionNo);
+		List<Map<String,String>> flist = questionDao.selectQuestionFile(questionNo);
+		
+		// 상세 파일이 있는 경우
+		if( flist != null ) {
+			commandMap.put("flist",flist);
+		}
+		
+		commandMap.put("question",question);
+		return commandMap;
+	}
+
+	@Override
+	public List<Map<String, Object>> getQuestionComm(int questionNo) {
+		List<Map<String, Object>> comms = questionDao.getQuestionComm(questionNo);
+		
+		if( comms != null ) {
+			//부모
+			List<Map<String, Object>> boardReplyListParent = new ArrayList<>();
+			//자식
+			List<Map<String, Object>> boardReplyListChild = new ArrayList<>();
+			//통합
+			List<Map<String, Object>> newBoardReplyList = new ArrayList<>();
+			
+			//1.부모와 자식 분리
+			for(Map<String, Object> boardReply: comms){
+				if( Integer.parseInt(String.valueOf(boardReply.get("COMM_CLASS"))) == 0){
+					boardReplyListParent.add(boardReply);
+				}else{
+					boardReplyListChild.add(boardReply);
+				}
+			}
+			
+			//2.부모를 돌린다.
+			for(Map<String, Object> boardReplyParent: boardReplyListParent){
+				//2-1. 부모는 무조건 넣는다.
+				newBoardReplyList.add(boardReplyParent);
+				//3.자식을 돌린다.
+				for(Map<String, Object> boardReplyChild: boardReplyListChild){
+					//3-1. 부모의 자식인 것들만 넣는다.
+					if(boardReplyParent.get("COMM_NO").equals(boardReplyChild.get("PARENT_COMM_NO"))){
+						newBoardReplyList.add(boardReplyChild);
+					}
+				}
+			}
+			//정리한 list return
+			return newBoardReplyList;
+		}
+		return comms;
+	}
+
+	@Override
+	public int getQuestionCommCnt(int questionNo) {
+		return questionDao.selectCntQuestionComm(questionNo);
+	}
+
+
+	
 }

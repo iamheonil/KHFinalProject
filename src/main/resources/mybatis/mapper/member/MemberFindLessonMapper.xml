@@ -14,6 +14,9 @@
 		left join teacherfile t
 		on t.user_no=f.user_no
 		where 1=1
+		and f.lesson_state=1
+        and f.lesson_chk=1
+        and f.pay_state=1
 		<if test="!Loc.equals('무관')">
 			and f.lesson_loc LIKE '%' || #{Loc} ||'%'
 		</if>
@@ -55,6 +58,9 @@
 		left join teacherfile t
 		on t.user_no=f.user_no
 		where 1=1
+		and f.lesson_state=1
+        and f.lesson_chk=1
+        and f.pay_state=1
 		<if test="!Loc.equals('무관')">
 			and f.lesson_loc LIKE '%' || #{Loc} ||'%'
 		</if>
@@ -141,6 +147,14 @@
 	<insert id="insertWishList">
 		insert into wishlist values(wishlist_seq.nextval,#{lessonNo},#{userNo},sysdate)
 	</insert>
+	
+	<insert id="insertConn">
+		insert into connected_lesson values(CONNECTED_LESSON_SEQ.nextval,#{lessonNo},#{stuNo},#{teaNo},sysdate,0,0,0)
+	</insert>
+	
+	<select id="selectCntConn" resultType="int">
+		select count(*) from connected_lesson  where student=#{stuNo} and lesson_no=#{lessonNo} and teacher=#{teaNo} and is_connected=0
+	</select>
 
 
 
