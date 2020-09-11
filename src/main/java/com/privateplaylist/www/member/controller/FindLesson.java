@@ -153,5 +153,27 @@ public class FindLesson {
 			return "0";
 		}
 	}
+	
+	
+	@RequestMapping("/connect/insert")
+	@ResponseBody
+	public String insertConnect(@RequestParam int lessonNo,@RequestParam int stuNo,@RequestParam int teacherNo) {
+		
+		Map<String,Object> comm=new HashMap<String, Object>();
+		comm.put("lessonNo", lessonNo);
+		comm.put("stuNo", stuNo);
+		comm.put("teaNo",teacherNo);
+		System.out.println(comm);
+		
+		int cnt=fls.selectCntConn(comm);//과외 테이블 시청 여부 검사
+		 System.out.println(cnt); 
+		
+		if(cnt>0) {//이미 신청이 되었을때
+			return "1";
+		}else {//신청이 안되어있을때
+			fls.insertConn(comm);//연결 테이블에 해당정보 삽입
+			return "0";
+		}
+	}
 
 }
