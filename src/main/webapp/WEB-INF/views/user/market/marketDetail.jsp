@@ -638,7 +638,7 @@ function singo(){
                    		</c:if>
 	                   <c:if test="${!chkWriter }">
 	                   		<c:if test="${market.MK_STATE eq 0 }">
-		                  		<button type="button" class="btn btn-info" id="BtnChat">채팅하기</button>
+		                  		<a href="${pageContext.request.contextPath}/chat/chatRoom?toID=${market.USER_ID }"><button type="button" class="btn btn-info" id="BtnChat">채팅하기</button></a>
 	                   		</c:if>
 	                   		<c:if test="${market.MK_STATE eq 1 }">
 			                  	 <button type="button" class="btn btn-finish" disabled="disabled">판매완료</button>
