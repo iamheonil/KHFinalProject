@@ -28,25 +28,24 @@
     where user_no = #{userNo }
   </select>
   
+  <select id="findStuSearchPaging" parameterType="map" resultType="int">
+  	select count(*) from find_student
+  	where user_no = #{userNo }
+  	and find_stu_title like '%' || #{keyword} || '%'
+	or find_stu_content like '%' || #{keyword} || '%'
+  </select>
+  
   <select id="findStuSearch" parameterType="map" resultType="FINDSTUDENT">
   select * from (
 		select rownum rnum, c.* from(
 	    	select * from find_student
 			where user_no = #{userNo }
 		   	and find_stu_title like '%' || #{keyword} || '%'
-			or find_stu_content like  '%' || #{keyword} || '%'
+			or find_stu_content like '%' || #{keyword} || '%'
 	  		order by find_stu_no desc
 		) c
 	) findStu 
-	where rnum BETWEEN #{startNo} AND #{endNo}
-  </select>
-  
-  <select id="findStuSearchPaging" parameterType="map" resultType="int">
-  	select count(*) from find_student
-  	where user_no = #{userNo }
-  	
-    and find_stu_title like '%' || #{keyword} || '%'
-  	or find_stu_content like  '%' || #{keyword} || '%'
+	where rnum BETWEEN #{paging.startNo } AND #{paging.endNo }
   </select>
   
   <delete id="deleteFindStu" parameterType="int">
