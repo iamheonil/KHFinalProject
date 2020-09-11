@@ -147,6 +147,14 @@
 	<insert id="insertWishList">
 		insert into wishlist values(wishlist_seq.nextval,#{lessonNo},#{userNo},sysdate)
 	</insert>
+	
+	<insert id="insertConn">
+		insert into connected_lesson values(CONNECTED_LESSON_SEQ.nextval,#{lessonNo},#{stuNo},#{teaNo},sysdate,0,0,0)
+	</insert>
+	
+	<select id="selectCntConn" resultType="int">
+		select count(*) from connected_lesson  where student=#{stuNo} and lesson_no=#{lessonNo} and teacher=#{teaNo} and is_connected=0
+	</select>
 
 
 

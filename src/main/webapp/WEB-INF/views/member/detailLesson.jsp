@@ -343,6 +343,10 @@
 											class="btn btn-sm btn-block btn-primary"> <i
 											class="ace-icon fa fa-envelope-o bigger-110"></i> <span
 											class="bigger-110">문의하기</span>
+										</a> <a href="javascript:void(0);" onclick="insertConnect(${findlessonAndTeacherList.LESSON_NO},${findlessonAndTeacherList.USER_NO});"
+											class="btn btn-sm btn-block btn-info"> <i
+											class="ace-icon fa  fa-paper-plane-o bigger-110"></i> <span
+											class="bigger-110">신청하기</span>
 										</a>
 									</div>
 									<!-- /.col -->
@@ -713,7 +717,33 @@
     
     	
     }
+    
+    function insertConnect(lessonNo,teacherNo){
+    	var student=<%=userNo%>;
     	
+    	if(student==0){
+    		alert('로그인 후 사용 가능합니다')
+    		return 
+    	}else{
+    		
+        	$.ajax({
+        		type:"POST",
+        		url:"${pageContext.request.contextPath}/member/connect/insert",
+        		data:{lessonNo:lessonNo, stuNo:student, teacherNo:teacherNo},
+        		success:function(data){
+        			if(data==1){//이미 찜이 되어있을때
+        				alert('이미 신청이 되어있습니다')
+        			}else{
+        				alert('신청이 완료되었습니다')
+        			}
+        		}
+        });
+        	}
+    	
+    	
+    }
+    	
+    
     
     
     
