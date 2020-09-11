@@ -30,7 +30,7 @@ public class AdminMemberController {
 	@Autowired
 	AdminMemberService adminMemberService;
 
-    @RequestMapping("/stuList")
+    @RequestMapping("/stulist")
     public ModelAndView stuList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
         
     	ModelAndView mav = new ModelAndView();
@@ -60,8 +60,6 @@ public class AdminMemberController {
 		
 		Map<String, Object> info = adminMemberService.selectUserByNo(userNo);
 		
-//		System.out.println("컨트롤러 commandMap : "+ commandMap);
-//		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
 		mav.addObject("stuData", commandMap);
 		mav.addObject("studentinfo", info);
 		mav.setViewName("admin/member/stuDetail");
@@ -79,28 +77,9 @@ public class AdminMemberController {
 		return mav;
 	}
 	
-//	//회원(선생님) 조회
-//    @RequestMapping("/tchList")
-//    public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int curPage, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
-//        
-//    	ModelAndView mav = new ModelAndView();
-//    	
-//    	Paging paging = adminMemberService.getPagingAdminTch(curPage, category ,search);
-//    	
-//    	List<Map<String, Object>> commandMap = adminMemberService.selectTchList(paging, category);
-//		
-////		int stuCnt = adminMemberService.selectStuCnt();
-//		
-//		mav.addObject("search", search);
-////		mav.addObject("blackCnt", stuCnt);
-//		mav.addObject("tchData", commandMap);
-//		mav.addObject("paging", paging);
-//		mav.setViewName("admin/member/tchList");
-//		return mav;
-//    }
 
 	//회원(선생님) 조회
-    @RequestMapping("/tchList")
+    @RequestMapping("/tchlist")
     public ModelAndView tchList(@RequestParam(required=false, defaultValue="1") int curPage, HttpServletResponse res, @RequestParam(required = false, defaultValue="전체") String category, @RequestParam(required = false, defaultValue="") String search) {
         
     	ModelAndView mav = new ModelAndView();

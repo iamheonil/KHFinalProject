@@ -139,17 +139,17 @@ body{
 	
 	
 <div class="container">
-    <button type="button" class="btn btn-info" onclick="location.href='tchList'" style="margin-left: 88%">목록</button>
+<br>
+<input onclick="location.href='stuList'" type="button" value="목록">
+<br>
     <div class="main-body">
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">회원 개인 정보</li>
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
-    
+<!--           Breadcrumb -->
+<!--           <nav aria-label="breadcrumb" class="main-breadcrumb"> -->
+<!--             <ol class="breadcrumb"> -->
+<!--               <li class="breadcrumb-item active" aria-current="page">회원 개인 정보</li> -->
+<!--             </ol> -->
+<!--           </nav> -->
+<!--           /Breadcrumb -->
     
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
@@ -266,7 +266,7 @@ body{
 						                    <c:forEach items="${tchData.tchQuestion }" var="question" >
 												<tr>
 													<td>${question.questionNo}</td>
-													<td><a href="">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/question">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${question.userNo}</td>
 													<td>${question.questionDate}</td>
 												</tr>
@@ -334,7 +334,7 @@ body{
 						                    <c:forEach items="${tchData.tchMarket }" var="market" >
 												<tr>
 													<td>${market.mkNo}</td>
-													<td><a href="">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/market">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${market.mkWriter}</td>
 													<td>${market.mkDate}</td>
 													<c:if test="${market.mkState == 0}">

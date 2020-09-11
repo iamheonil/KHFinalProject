@@ -262,7 +262,7 @@ function deleteMK(mkno){
         	                    //div id="preview" 내에 동적코드추가.
         	                    //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
         	                    $("#preview").append(
-        	                        "<img src=\"" + img.target.result + "\"\ style='width: 100%;'/>"
+        	                        "<img src=\"" + img.target.result + "\"\ style='width: 400px; height: auto;'/>"
         	                    );
         	                };
         	                
@@ -279,15 +279,25 @@ $(function() {
 });
 
 function submitContents(elClickedObj) {
+	 var elClickedObj = $("#form");
 	 // 에디터의 내용이 textarea에 적용된다.
 	 oEditors.getById["questionContent"].exec("UPDATE_CONTENTS_FIELD", []);
-
-	 // 에디터의 내용에 대한 값 검증은 이곳에서
-	 // document.getElementById("ir1").value를 이용해서 처리한다.
-	console.log(elClickedObj);
-	 try {
-	     elClickedObj.form.submit();
-	 } catch(e) {}
+	 var ir1 = $("#questionContent").val();
+	 
+	 if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>')  {
+          alert("내용을 입력하세요.");
+          oEditors.getById["questionContent"].exec("FOCUS"); //포커싱
+          return;
+     }else{
+		 
+		 // 에디터의 내용에 대한 값 검증은 이곳에서
+		 // document.getElementById("ir1").value를 이용해서 처리한다.
+		console.log(elClickedObj); 
+		 try {
+		     elClickedObj.form.submit();
+		 } catch(e) {}
+		 
+	 }
 
 }
 
@@ -326,7 +336,7 @@ function submitContents(elClickedObj) {
 		<!-- END #gtco-header -->
      <div class="clearfix" ></div>	
     <div id="marketWrite">
-    <form action="${pageContext.request.contextPath}/board/question/insertquestion" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/board/question/insertquestion" method="post" enctype="multipart/form-data" id="form">
       <div class="form-group" style="font-weight: bold; font-size: 16px;">
 		질문게시판 글쓰기
 		<hr>
@@ -334,12 +344,12 @@ function submitContents(elClickedObj) {
 <!--            <div class="article"> -->
            	<div class="form-group">
 			    <label>제목</label>
-			    <input type="text" placeholder="제목" class="form-control" name="questionTitle"/>
+			    <input type="text" placeholder="제목" class="form-control" name="questionTitle" required="required"/>
 			</div>
                <div class="userImg">
                   <img src="${pageContext.request.contextPath }/resources/upload/${detail.question.TCH_FILE_RENAME }" title="" alt="">
             	  <div class="userInfo">
-            	  	<div class="userId">${market.USER_ID }</div>
+            	  	<div class="userId">${detail.question.USER_ID }</div>
             	  </div>
                </div>
                <hr>
@@ -362,7 +372,7 @@ function submitContents(elClickedObj) {
                <hr>
                <div class="article-content">
 <!--                		<textarea class="form-control" rows="5" style="height: 400px;" name="questionContent"></textarea> -->
-					<textarea maxlength="2000" required="required" class="form-control" id="questionContent" name="questionContent" rows="5" placeholder="질문을 작성하세요"></textarea>
+					<textarea maxlength="2000" required class="form-control" id="questionContent" name="questionContent" rows="5"></textarea>
 						<!-- SmartEditor2 --> 
 <!-- 						<textarea id="content" name="content"></textarea> -->
 					
