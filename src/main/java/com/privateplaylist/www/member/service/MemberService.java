@@ -24,6 +24,9 @@ public interface MemberService {
 
     // 멤버 정보 조회 메소드
     public Member selectMember(Map<String, Object> memberMap);
+    
+    // 네이버 멤버 정보 조회 메소드
+    public Member selectNaverMember(String id);
 
     // 선생 파일 조회 메소드
     public TeacherFile selectTeacherFile(String userId);
