@@ -196,7 +196,6 @@
 
 
 .files{
-	width: 400px;
 	display: block;
 	margin: 5px auto;
 }
@@ -498,7 +497,7 @@ function singo(){
                    <div class="mkFiles">
                    <c:if test="${not empty detail.flist }">
 	                   <c:forEach items="${detail.flist }" var="file">
-		               			<img class="files" alt="" src="${pageContext.request.contextPath }/resources/upload/${file.Q_FILE_RENAME }"/>
+		               			<img class="files" alt="" style="width: 400px; height: auto;" src="${pageContext.request.contextPath }/resources/upload/${file.Q_FILE_RENAME }"/>
 	                   </c:forEach>
                    </c:if>
                    </div>
