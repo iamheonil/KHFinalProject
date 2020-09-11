@@ -69,7 +69,7 @@ function denyClick(LESSON_NO){
 		text-align: center;
 		text-decoration: none;
 		display: inline-block;
-		font-size: 12px;
+		font-size: 15px;
 		border-radius: 4px;
 		cursor: pointer;
 	}
@@ -80,7 +80,7 @@ function denyClick(LESSON_NO){
 	    text-align: center;
 	    text-decoration: none;
 	    display: inline-block;
-	    font-size: 12px;
+	    font-size: 15px;
 	    border-radius: 4px;
 	    cursor: pointer;
 	}
