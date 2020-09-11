@@ -703,7 +703,7 @@
     		
     	$.ajax({
     		type:"POST",
-    		url:"${pageContext.request.contextPath}/member/wish/insert",
+    		url:"${pageContext.request.contextPath}/lesson/wish/insert",
     		data:{lessonNo:lessonNo, userNo:userNo},
     		success:function(data){
     			if(data==1){//이미 찜이 되어있을때
@@ -728,7 +728,7 @@
     		
         	$.ajax({
         		type:"POST",
-        		url:"${pageContext.request.contextPath}/member/connect/insert",
+        		url:"${pageContext.request.contextPath}/lesson/connect/insert",
         		data:{lessonNo:lessonNo, stuNo:student, teacherNo:teacherNo},
         		success:function(data){
         			if(data==1){//이미 찜이 되어있을때
