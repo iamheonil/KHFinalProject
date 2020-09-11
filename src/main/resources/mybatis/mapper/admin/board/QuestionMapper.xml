@@ -43,7 +43,7 @@
 
 	<!-- 게시물 댓글삭제 -->
 	<delete id="deleteQuestionComm">
-		delete from question_comm where comm_No=#{comm_No}
+		delete from question_comm where question_no=#{questionNo} AND comm_No=#{comm_No} 
 	</delete>
 
 	<delete id="deleteQuestionReComm">
@@ -71,15 +71,30 @@
   	or question_content like  '%' || #{keyword} || '%'
   </select>
 
-<!-- 	<select id="selectDetailQuestion" resultMap="map" parameterType="map"> -->
-<!-- 	select Q.*,R.* from question Q -->
-<!-- 	INNER JOIN review R -->
-<!-- 	ON Q.user_no = R.user_no  -->
-<!-- 	WHERE question_no = #{questionNo} -->
+
+
+	<select id="selectDetailQuestion" >
+	select Q.*,R.* from question Q
+	INNER JOIN question_comm R
+	ON Q.question_no = R.question_no
+	WHERE question_no = #{questionNo}
 	
-<!-- 	</select> -->
+	</select>
 
-
-
-
+	<select id="selectQuestionDetail" resultType="map">
+		select * from question
+		where question_no = #{questionNo}
+	</select>
+	<select id="selectQuestionFile" resultType="map">
+		select * from question_file
+		where question_no = #{questionNo}
+	</select>
+	<select id="getQuestionComm" resultType="map">
+		select * from question_comm
+  		where question_no = #{questionNo}
+	</select>
+	<select id="selectCntQuestionComm" resultType="int">
+		select count(*) from question_comm
+		where question_no = #{questionNo}
+	</select>
 </mapper>
