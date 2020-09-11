@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,12 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.privateplaylist.www.admin.board.dao.QuestionDao;
 import com.privateplaylist.www.admin.board.service.QuestionService;
 import com.privateplaylist.www.dto.Notice;
 import com.privateplaylist.www.dto.Question;
 import com.privateplaylist.www.dto.QuestionComm;
+import com.privateplaylist.www.member.vo.Member;
 
 import common.util.Paging;
 
@@ -31,8 +34,7 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
-	@Autowired
-	private QuestionDao questionDao;
+
 	
 	//질문게시판 정보 전체 조회
 		@RequestMapping(value="/list")
@@ -57,24 +59,56 @@ public class QuestionController {
 		}
 		//질문게시판 세부정보 보기
 		@RequestMapping(value="/detail")
-		public String  questionDetail(Model model,@RequestParam int questionNo,int commNo ) {
+		public String  questionDetail(Model model,@RequestParam int questionNo ) {
 			
 			//질문게시판 정보 조회 one
 			Question questionone = questionService.selectQuestionone(questionNo);
-			List<QuestionComm> commList = questionService.getReplyList(commNo);
+			List<QuestionComm> commList = questionService.getReplyList(questionNo);
 			
-//			List<Map<String,Object>> detailList = questionService.detailQuestion(questionNo,commNo);
-			
+//			List<Map<String,Object>> detailList = questionService.detailQuestion(questionNo);
+//			System.out.println(detailList);
 			//모델값 전달
 			model.addAttribute("questionone", questionone);
-			model.addAttribute("commList",commList);
 //			model.addAttribute("detailList",detailList);
+			model.addAttribute("commList",commList);
 			
 			for (QuestionComm questionComm : commList) {
 			}
-			return "/admin/question/detail";
+			return "admin/question/detail";
 		}	
 			
+		
+//		@RequestMapping("/detail2")
+//		public ModelAndView questionDetail(HttpSession session, @RequestParam int questionNo) {
+//			ModelAndView mav = new ModelAndView();
+//			
+////			Member m = (Member) session.getAttribute("loginUser");
+//			
+////			int userNo = m.getUserNo();
+////			int userNo = 1;
+//			
+//			// 게시글 정보
+//			Map<String,Object> question = questionService.selectQuestionDetail(questionNo);
+//			
+//			
+//			// 댓글
+//			List<Map<String, Object>> comms = questionService.getQuestionComm(questionNo);
+//			int count = questionService.getQuestionCommCnt(questionNo);
+//			
+//			if( comms != null ) {
+//				mav.addObject("comms", comms);
+////				mav.addObject("commWriter", userNo);
+//				mav.addObject("cnt", count);
+//			}
+//			
+//			mav.addObject("detail", question);
+//			mav.setViewName("admin/question/detail");
+//			return mav;
+//		}
+		
+		
+		
+		
 		
 		//질문제시판 글 삭제하기 (상세보기 페이지에서 삭제)
 		@RequestMapping(value="/delete")
@@ -91,6 +125,68 @@ public class QuestionController {
 			
 			//삭제 완료
 		}
+		
+		
+		
+//		@RequestMapping("/list")
+//		public ModelAndView userQuestion(HttpSession session, @RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "") String search) {
+//			ModelAndView mav = new ModelAndView();
+//			
+//			Paging paging = questionService.getPagingQuestionList(curPage, search);
+//			
+//			List<Map<String, Object>> list = questionService.getQuestionlist(paging);
+//			
+//			mav.addObject("paging", paging);
+//			mav.addObject("list", list);
+//			mav.setViewName("admin/question/list");
+//			return mav;
+//		}
+//		
+//		@RequestMapping("/detail")
+//		public ModelAndView questionDetail(HttpSession session, @RequestParam int questionNo) {
+//			ModelAndView mav = new ModelAndView();
+//			
+//			
+//			// 게시글 정보
+//			Map<String,Object> question = questionService.selectQuestionDetail(questionNo);
+//			
+//			
+//			// 댓글
+//			List<Map<String, Object>> comms = questionService.getQuestionComm(questionNo);
+//			int count = questionService.getQuestionCommCnt(questionNo);
+//			
+//			if( comms != null ) {
+//				mav.addObject("comms", comms);
+////				mav.addObject("commWriter", userNo);
+//				mav.addObject("cnt", count);
+//			}
+//			
+//			mav.addObject("detail", question);
+//			mav.setViewName("admin/question/detail");
+//			return mav;
+//		}
+//		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		@RequestMapping(value="/deleteComm")
 		public String  questionCommDelete(Model model,@RequestParam int commNo) {
 			

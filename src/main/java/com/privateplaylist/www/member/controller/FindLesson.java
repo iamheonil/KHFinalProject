@@ -18,14 +18,14 @@ import com.privateplaylist.www.member.service.FindLessonService;
 import common.util.Paging;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/lesson")
 public class FindLesson {
 	
 	@Autowired
 	private FindLessonService fls;
 	
 	//과외찾기페이지
-	@RequestMapping("/findLesson")
+	@RequestMapping("/findlesson")
 	public String FindLessonPage(Model model,@RequestParam(defaultValue = "1")String curPage,HttpServletRequest req) {
 		
 		//필터링 처리하기
@@ -109,7 +109,7 @@ public class FindLesson {
 	}
 	
 	//과외 찾기 상세 페이지
-	@RequestMapping("/detailLesson")
+	@RequestMapping("/detaillesson")
 	public String detailLesson(@RequestParam int lessonNo,@RequestParam int userNo,Model model) {
 		
 		Map<String,Object> findLessonAndTeacherList=fls.selectLessonByLessonNo(lessonNo);//과외번호를 이용해 선생님정보와 과외정보join리스트 불러오기
@@ -150,6 +150,28 @@ public class FindLesson {
 			return "1";
 		}else {//찜이 안되어있을때
 			fls.insertWishList(comm);//위시리스트 테이블에 해당정보 삽입
+			return "0";
+		}
+	}
+	
+	
+	@RequestMapping("/connect/insert")
+	@ResponseBody
+	public String insertConnect(@RequestParam int lessonNo,@RequestParam int stuNo,@RequestParam int teacherNo) {
+		
+		Map<String,Object> comm=new HashMap<String, Object>();
+		comm.put("lessonNo", lessonNo);
+		comm.put("stuNo", stuNo);
+		comm.put("teaNo",teacherNo);
+		System.out.println(comm);
+		
+		int cnt=fls.selectCntConn(comm);//과외 테이블 시청 여부 검사
+		 System.out.println(cnt); 
+		
+		if(cnt>0) {//이미 신청이 되었을때
+			return "1";
+		}else {//신청이 안되어있을때
+			fls.insertConn(comm);//연결 테이블에 해당정보 삽입
 			return "0";
 		}
 	}
