@@ -1048,7 +1048,7 @@ JS, Popper.js, and jQuery
 						
 							<div class="box-product" >
 								<div class="img-wrapper" style="margin: 0 auto;">
-									<a href="${pageContext.request.contextPath}//member/detailLesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
+									<a href="${pageContext.request.contextPath}/member/detailLesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
 										<img alt="Teacher" style="width: 230px; height:200px; "
 										onerror="javascript:src='${pageContext.request.contextPath}/resources/images/profile.png'"
 										src="${pageContext.request.contextPath}/resources/upload/${find.TCH_FILE_RENAME}">
