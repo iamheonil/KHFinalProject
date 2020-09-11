@@ -47,7 +47,7 @@ label {
 	margin-bottom: 5px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	height: 420px;
+	height: 380px;
 }
 
 .box-product-outer:hover {
@@ -66,7 +66,8 @@ label {
 
 .box-product .img-wrapper {
 	position: relative;
-	overflow: hidden
+	overflow: hidden;
+	width:230px;
 }
 
 .box-product .img-wrapper>:first-child {
@@ -1030,7 +1031,7 @@ JS, Popper.js, and jQuery
 
 
 							<img alt="Teacher" align="middle"
-								style="width: 200px; margin-top: 50px;"
+								style="width: 200px; height:200px; margin-top: 50px;"
 								src="${pageContext.request.contextPath}/resources/images/no_result.png">
 
 						</div><!-- 검색결과 x end  -->
@@ -1045,10 +1046,10 @@ JS, Popper.js, and jQuery
 
 						<div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
 						
-							<div class="box-product">
-								<div class="img-wrapper">
-									<a href="${pageContext.request.contextPath}//member/detailLesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
-										<img alt="Teacher"
+							<div class="box-product" >
+								<div class="img-wrapper" style="margin: 0 auto;">
+									<a href="${pageContext.request.contextPath}/member/detailLesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
+										<img alt="Teacher" style="width: 230px; height:200px; "
 										onerror="javascript:src='${pageContext.request.contextPath}/resources/images/profile.png'"
 										src="${pageContext.request.contextPath}/resources/upload/${find.TCH_FILE_RENAME}">
 									</a>
@@ -1056,17 +1057,17 @@ JS, Popper.js, and jQuery
 
 								</div>
 
-								<div class="text text-epllipsis text-basic-black text-sm"><B>${find.USER_ID }</B></div>
-								<div class="text text-epllipsis text-basic-black text-sm">
+								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;"><B>${find.USER_ID }</B></div>
+								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;">
 									<i class="fa fa-file-o"
 										style="margin-right: 8px; margin-left: 0;"></i>
 									${find.LESSON_SUBJECT }
 								</div>
-								<div class="text text-epllipsis text-basic-black text-sm">
+								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;">
 									<i class="fa fa-map-marker"
 										style="margin-right: 16px; margin-left: 0;"></i>${find.LESSON_LOC }</div>
 
-								<div class="text text-epllipsis text-basic-black text-sm">
+								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;">
 									<i class="fa fa-users" style="margin-right: 8px;"></i>
 									<c:if test="${find.MAX_PEOPLE eq 1 }">
 										일대일
@@ -1079,7 +1080,7 @@ JS, Popper.js, and jQuery
 
 								<c:forEach items="${star }" var="s">
 									<c:if test="${find.LESSON_NO eq s.LESSON_NO}">
-										<div class="rating">
+										<div class="rating" style="margin-left: 10px;">
 											<c:if test="${s.STAR eq 1 }">
 												<i class="ace-icon fa fa-star"></i>
 											</c:if>

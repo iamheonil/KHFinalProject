@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -602,6 +602,7 @@ function singo(){
 		          </div>
                <div class="clearfix" ></div>	
                <hr>
+             
                <div>
                <div class="article-img">
                <c:if test="${empty market.MK_THUMB_RENAME }">

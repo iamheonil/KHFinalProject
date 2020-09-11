@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -119,17 +117,17 @@ public class FindLesson {
 		Map<String,Object> teacherFile=fls.selectTeacherFile(userNo);//선생님 프로필 사진 가져오기
 		List<Map<String,Object>> reviewAndStar =fls.selectReviewByLessonNo(lessonNo);//과외 리뷰 가져오기
 		
-		/*
-		 * System.out.println("findlessonAndTeacherList"+findLessonAndTeacherList);
-		 * System.out.println("lessonFile"+lessonFile);
-		 * System.out.println("teacherFile"+teacherFile);
-		 * System.out.println("revuewAndStar"+reviewAndStar);
-		 */
+//		
+//		  System.out.println("findlessonAndTeacherList"+findLessonAndTeacherList);
+		  System.out.println("lessonFile"+lessonFile);
+		  System.out.println("teacher"+teacherFile);
+//		  System.out.println("revuewAndStar"+reviewAndStar);
+		 
 		
 		
 		model.addAttribute("findlessonAndTeacherList", findLessonAndTeacherList);
 		model.addAttribute("lessonFile", lessonFile);
-		model.addAttribute("teacherFile", teacherFile);
+		model.addAttribute("teacher", teacherFile);
 		model.addAttribute("revuewAndStar", reviewAndStar);
 		
 		
@@ -152,6 +150,28 @@ public class FindLesson {
 			return "1";
 		}else {//찜이 안되어있을때
 			fls.insertWishList(comm);//위시리스트 테이블에 해당정보 삽입
+			return "0";
+		}
+	}
+	
+	
+	@RequestMapping("/connect/insert")
+	@ResponseBody
+	public String insertConnect(@RequestParam int lessonNo,@RequestParam int stuNo,@RequestParam int teacherNo) {
+		
+		Map<String,Object> comm=new HashMap<String, Object>();
+		comm.put("lessonNo", lessonNo);
+		comm.put("stuNo", stuNo);
+		comm.put("teaNo",teacherNo);
+		System.out.println(comm);
+		
+		int cnt=fls.selectCntConn(comm);//과외 테이블 시청 여부 검사
+		 System.out.println(cnt); 
+		
+		if(cnt>0) {//이미 신청이 되었을때
+			return "1";
+		}else {//신청이 안되어있을때
+			fls.insertConn(comm);//연결 테이블에 해당정보 삽입
 			return "0";
 		}
 	}

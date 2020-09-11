@@ -63,10 +63,43 @@ public class QuestionDao {
 	public int selectCntQuestionSearchAll(String keyword) {
 		return sqlSession.selectOne("Question.selectCntQuestionSearchAll",keyword);
 	}
+	public List<Map<String, Object>> detailQuestion(int questionNo) {
+		return sqlSession.selectList("Question.selectDetailQuestion",questionNo);
+	}
 
-//	public List<Map<String, Object>> detailQuestion(int questionNo, int commNo) {
-//		return sqlSession.selectList("Question.selectDetailQuestion",questionNo);
-//	}
+	
+	
+	
+	public Map<String, Object> selectQuestionDetail(int questionNo) {
+		return sqlSession.selectOne("Question.selectQuestionDetail",questionNo);
+	}
+
+	public List<Map<String, String>> selectQuestionFile(int questionNo) {
+		return sqlSession.selectList("Question.selectQuestionFile",questionNo);
+	}
+
+	public List<Map<String, Object>> getQuestionComm(int questionNo) {
+		return sqlSession.selectList("Question.getQuestionComm",questionNo);
+	}
+
+	public int selectCntQuestionComm(int questionNo) {
+		return sqlSession.selectOne("Question.selectCntQuestionComm", questionNo);
+	}
+	
+
+
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
 	
 	
 }

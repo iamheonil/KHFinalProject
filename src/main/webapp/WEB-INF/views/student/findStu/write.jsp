@@ -197,11 +197,11 @@ $(document).ready(function(){
 							<option value="세종">세종</option>
 							<option value="경남">강원</option>
 							<option value="경북">경북</option>
-							<option value="전남">경남</option>
-							<option value="전북">충북</option>
-							<option value="광주">충남</option>
-							<option value="부산">전북</option>
-							<option value="제주">전남</option>
+							<option value="경남">경남</option>
+							<option value="충북">충북</option>
+							<option value="충남">충남</option>
+							<option value="전북">전북</option>
+							<option value="전남">전남</option>
 							<option value="제주">제주</option>
 			        </select>
 		     	</div>
