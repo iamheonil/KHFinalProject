@@ -357,7 +357,7 @@ function getInfiniteBox(){
               <li id="studentWL"><a href="${pageContext.request.contextPath}/student/wishlist">찜한 과외</a></li>
               <li><a href="${pageContext.request.contextPath}/student/applylist">과외 신청 내역</a></li>
               <li><a href="${pageContext.request.contextPath}/student/connectedlesson">수강 중인 과외 </a></li>
-              <li><a href="#">수강 완료 과외</a></li>
+              <li><a href="${pageContext.request.contextPath}/student/endlesson">수강 완료 과외</a></li>
             </ul>
           </div>
           
