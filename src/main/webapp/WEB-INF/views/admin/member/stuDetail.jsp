@@ -71,6 +71,10 @@ $(document).ready(function(){
 	#table3_info { float: left; }
 	#table3 a:hover  { text-decoration: none; color: black; }
 	#table3 td:nth-child(2):hover { background: #f3f3f3cc; }
+
+/* #back{ */
+/* 	width: 70px; */
+/* } */
 </style>
 <body>	
 	<div id="title">회원 
@@ -81,15 +85,10 @@ $(document).ready(function(){
 	
 	
 <div class="container">
-    <button type="button" class="btn btn-info" onclick="location.href='stuList'" style="margin-left: 88%">목록</button>
+<br>
+<input onclick="location.href='stulist'" type="button" value="목록">
     <div class="main-body">
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">회원 개인 정보</li>
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
+<br>
     
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
@@ -202,7 +201,7 @@ $(document).ready(function(){
 						                    <c:forEach items="${stuData.stuQuestion }" var="question" >
 												<tr>
 													<td>${question.questionNo}</td>
-													<td><a href="">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/question">${question.questionTitle}</a></td> <!-- 추후추가 : 질문페이지로 연결 -->
 													<td>${question.userNo}</td>
 													<td>${question.questionDate}</td>
 												</tr>
@@ -272,7 +271,7 @@ $(document).ready(function(){
 						                    <c:forEach items="${stuData.stuMarket }" var="market" >
 												<tr>
 													<td>${market.mkNo}</td>
-													<td><a href="">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/market">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${market.mkWriter}</td>
 													<td>${market.mkDate}</td>
 													<c:if test="${market.mkState == 0}">
