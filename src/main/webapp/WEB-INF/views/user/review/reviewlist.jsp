@@ -59,10 +59,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .card-body {
     flex: 1 1 auto;
     padding: 1.3rem;
-    
     background: #f0f0f087;
     border: 1px solid #eee;
-   	
     height: 350px;
     position: relative;
 }
@@ -185,7 +183,7 @@ span#singo:hover a {
 	text-decoration: underline;
 }
 
-div.col-md-12 { margin-bottom: 15px; }
+div.col-md-12 { margin-bottom: 15px; } 
 
 .star_on { color: #ffeb00; }
 
@@ -241,7 +239,7 @@ div.col-md-12 { margin-bottom: 15px; }
  	margin: 0 auto;
 }
 
-#serchbox{
+#searchbox{
     float: right;
     width: 270px;
     margin: 0 auto;
@@ -264,7 +262,6 @@ div.col-md-12 { margin-bottom: 15px; }
 	position: absolute;
     right: 25%;
 }
-
 
 </style>
 
@@ -393,9 +390,6 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 										<p><h2>과외 후기를 작성하거나 볼 수 있어요</h2></p>
 									</div>
 								</div>
-<!-- 								<div class="row padding-horizontal-md pull-right banner" id="bannerImg"> -->
-<%-- 									<img alt="" src="${pageContext.request.contextPath}/resources/images/people.png" style="height: 350px;"> --%>
-<!-- 								</div> -->
 							</div>	
 						</div>
 					</div>
@@ -405,7 +399,6 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 	</div>
 </header>
 
-<!-- <div class="clearfix"></div>   -->
 
 
 
@@ -415,9 +408,9 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 	    <div class="page-content container note-has-grid">
 	    
 				<!--  검색 -->
-				<div id="serchbox" >
+				<div id="searchbox" >
 					<form action="${pageContext.request.contextPath}/board/review/search" method="get">
-						<div class="row" id="row">
+						<div id="row">
 							<input type="text" id="form-control" placeholder="과외명을 입력하세요" name="keyword">
 							<span class="input-group-btn">
 								<button class="buttonC" type="submit">검색</button>
@@ -427,7 +420,7 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 				</div>
 			
 			
-			<c:if test="${session.userActor eq 1 }">
+			<c:if test="${session.userActor != 2 }">
 			    <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">  
 			        <li class="nav-item ml-auto" style="margin-top: 115px;">
 		            	<span class="d-none d-md-block font-14"></span>
@@ -451,7 +444,6 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 	    		<div style="text-align: center; margin: 100px 0 150px;">
 	    			<span >등록된 후기가 없습니다</span>
 	    		</div>
-	    	
 	    	</c:if>
 	    
 	    	<c:if test="${not empty review}">
@@ -467,7 +459,11 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 				                    <p class="note-title">${r.LESSON_TITLE}</p>
 				                    <h5 class="note-title">${r.USER_NAME} 선생님</h5>
 				                    <c:if test="${r.STAR_POINT eq 1}">
-					                    <span class="note-title star"><i class="fa fa-star"></i></span>
+					                    <span class="note-title star">
+				                    		<c:forEach begin="0" end="0">
+					                  			<i class="fa fa-star"></i>
+						                    </c:forEach>
+					                    </span>
 				                    </c:if>
 				                    <c:if test="${r.STAR_POINT eq 2}">
 				                    	<span class="note-title star">
@@ -504,15 +500,18 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 					                    <span>${r.USER_ID}</span><br>
 					                    <span>${r.REVIEW_DATE}</span> 
 					                </div>
+					                
+		          		           <form action="${pageContext.request.contextPath}/board/blacklist" method="post" id="singoInfo">
+								    	<input type="hidden" name="no" id="singoNo" value=""/>
+								    	<input type="hidden" name="title" id="singoTitle" value=""/>
+								    	<input type="hidden" name="board" value="후기"/>
+								   </form>
+					                
 				                    <span id="singo"><a href="javascript:void(0);" onclick="singo('${r.REVIEW_NO}','${r.REVIEW_CONTENT}');">신고</a></span>
 				                </div>
 				            </div>
 				            			        	
-		        		   <form action="${pageContext.request.contextPath}/board/blacklist" method="post" id="singoInfo">
-						    	<input type="hidden" name="no" id="singoNo" value=""/>
-						    	<input type="hidden" name="title" id="singoTitle" value=""/>
-						    	<input type="hidden" name="board" value="후기"/>
-						   </form>
+
 			            
 			            </c:forEach>
 			            

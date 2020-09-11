@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Built-By: win
-Built-By: LEE HYO JIN
 Build-Jdk: 1.8.0_242
 Created-By: Maven Integration for Eclipse
 

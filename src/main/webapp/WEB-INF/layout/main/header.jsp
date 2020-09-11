@@ -1,4 +1,6 @@
 <%@page import="com.privateplaylist.www.member.vo.Member"%>
+<%@page import="com.privateplaylist.www.dto.Admin"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -305,9 +307,14 @@
 }
 </style>
 </head>
+
+
+
 <%
 	Member loginUser = (Member) session.getAttribute("loginUser");
 %>
+
+
 
 <nav class="gtco-nav" role="navigation">
 	<div class="gtco-container">
