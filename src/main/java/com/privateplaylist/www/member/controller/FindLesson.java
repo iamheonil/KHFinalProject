@@ -18,14 +18,14 @@ import com.privateplaylist.www.member.service.FindLessonService;
 import common.util.Paging;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/lesson")
 public class FindLesson {
 	
 	@Autowired
 	private FindLessonService fls;
 	
 	//과외찾기페이지
-	@RequestMapping("/findLesson")
+	@RequestMapping("/findlesson")
 	public String FindLessonPage(Model model,@RequestParam(defaultValue = "1")String curPage,HttpServletRequest req) {
 		
 		//필터링 처리하기
@@ -109,7 +109,7 @@ public class FindLesson {
 	}
 	
 	//과외 찾기 상세 페이지
-	@RequestMapping("/detailLesson")
+	@RequestMapping("/detaillesson")
 	public String detailLesson(@RequestParam int lessonNo,@RequestParam int userNo,Model model) {
 		
 		Map<String,Object> findLessonAndTeacherList=fls.selectLessonByLessonNo(lessonNo);//과외번호를 이용해 선생님정보와 과외정보join리스트 불러오기

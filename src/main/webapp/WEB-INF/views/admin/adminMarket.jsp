@@ -508,6 +508,15 @@ select.form-control:not([size]):not([multiple]) {
 
 </style>
 
+<style type="text/css">
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: black; text-decoration: underline;}
+</style>
+
+
+
+
 <script type="text/javascript">
 
 function delchk(num){
@@ -671,6 +680,7 @@ document.ready(function(){
 					</div>
 				</div>
 				<br> <br>
+				
 
 				<!-- 게시물 리스트  -->
 				<div class="row">
@@ -680,6 +690,7 @@ document.ready(function(){
 								<table class="table user-list table-hover">
 									<thead>
 										<tr>
+											<th><span>writer</span></th>
 											<th><span>title</span></th>
 											<th><span>Created</span></th>
 											<th class="text-center"><span>Status</span></th>
@@ -692,9 +703,10 @@ document.ready(function(){
 										<c:forEach items="${marketList.mList}" var="market">
 											<a href="#" class="user-link">
 												<tr>
-													<td><img
+												<td>${market.USER_ID }</td>
+													<td><a href="${pageContext.request.contextPath}/board/market/detail?mkno=${market.mkNo}" ><img
 														src="${pageContext.request.contextPath}/resources/upload/${market.mkFileRename}"
-														alt=""> ${market.mkTitle }</td>
+														alt=""> ${market.mkTitle }</a></td>
 													<td>${market.mkDate }</td>
 													<td class="text-center"><span
 														class="label label-default"> <c:if

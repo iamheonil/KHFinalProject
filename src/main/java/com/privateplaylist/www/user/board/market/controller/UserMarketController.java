@@ -53,10 +53,12 @@ public class UserMarketController {
 	public ModelAndView marketDetail(HttpSession session, @RequestParam int mkno) {
 		
 		ModelAndView mav = new ModelAndView();
+		int userNo=0;
 		
 		Member m = (Member) session.getAttribute("loginUser");
-		
-		int userNo = m.getUserNo();
+		if(m != null) {//user가 null이 아닐때
+			userNo = m.getUserNo();
+		}
 //		int userNo = 1;
 		
 		// 게시글 정보

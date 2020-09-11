@@ -14,21 +14,22 @@
 
 	
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/box1.css">
+
 <style>
 
 .container {
     max-width: 900px;
     margin: auto;
 }
-img{
-border-radius: 200px;
-width: 100px;
-height: 100px;
+.chat_img1{
+	width:50px;
+	height:50px;
+	border-radius: 100px;
 }
-</style>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/box.css">
+</style>
 
 <%
  String userID=null;
@@ -119,7 +120,7 @@ function addBox(lastID,toID,chatContent,chatTime,unread,profile){
 	$("#boxList").append(
 			'<div class="chat_list" onclick="location.href= \'${pageContext.request.contextPath}/chat/chatRoom?toID=' +encodeURIComponent(toID)+ '\' ">' +
 			'<div class="chat_people">'+		
-			'<div class="chat_img"> <img src="${pageContext.request.contextPath}'+profile+'" alt="sunil"> </div>'+		
+			'<div class="chat_img"> <img src="${pageContext.request.contextPath}'+profile+'" alt="sunil" class="chat_img1"> </div>'+		
 			'<div class="chat_ib">'+		
 			'<h5>'+lastID+'<span class="chat_date pull-right">'+chatTime+'</span></h5>'+
 			'<p>'+chatContent+

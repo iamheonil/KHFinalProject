@@ -343,7 +343,7 @@
 						</c:if>
 
 					<li><a
-						href="${pageContext.request.contextPath}/member/findLesson">과외찾기</a>
+						href="${pageContext.request.contextPath}/lesson/findlesson">과외찾기</a>
 						<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>
 									<li><a href="#">eCommerce</a></li>
