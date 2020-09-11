@@ -212,7 +212,7 @@ public class ProfileController {
 			//탈퇴 성공
 			if(resDelete > 0) {
 				model.addAttribute("alertMsg", "회원탈퇴를 성공했습니다.");
-				model.addAttribute("url", root+"/");
+				model.addAttribute("url", root+"/member/logout");
 
 				return "/admin/notice/error";
 			}else {

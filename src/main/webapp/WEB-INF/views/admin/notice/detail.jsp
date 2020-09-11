@@ -17,22 +17,9 @@
 	font-size: large;
 }
 
-#writebtn{
-/* 	color: #17B794; */
-}
-
-#deletebtn{
-/* 	color: red; */
-}
-
- #divbtn{ 
+#divbtn{ 
     padding: 10px; 
 } 
-
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 40%;
-}
 
 #footerbtn{
     position: absolute;
