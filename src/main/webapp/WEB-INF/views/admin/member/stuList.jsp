@@ -423,6 +423,14 @@ p{
 	top: 30px;
 }
 
+#userIdhref:hover { 
+	color: blue;
+	text-decoration: none;
+}
+#userIdhref{
+	color: black;
+}
+
 </style>
 
 
@@ -441,31 +449,31 @@ p{
 						<div class="card search-form">
 							<div class="card-body p-0">
 				<form id="search-form"
-					action="${pageContext.request.contextPath}/admin/stuList"
+					action="${pageContext.request.contextPath}/admin/stulist"
 					method="get">
 					<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 						<select class="form-control" name="category">
 							<c:choose>
 								<c:when test="${category eq 'UserNo' }">
-									<option  value="전체">전체</option>
+									<option  value="전체">UserNo | 아이디 | 이름</option>
 									<option  value="UserNo" selected="selected">UserNo</option>
 									<option  value="아이디">아이디</option>
 									<option value="이름" >이름</option>
 								</c:when>
 								<c:when test="${category eq '아이디' }">
-									<option  value="전체">전체</option>
+									<option  value="전체">UserNo | 아이디 | 이름</option>
 									<option value="UserNo" >UserNo</option>
 									<option  value="아이디" selected="selected">아이디</option>
 									<option value="이름" >이름</option>
 								</c:when>
 								<c:when test="${category eq '이름' }">
-									<option value="전체">전체</option>
+									<option value="전체">UserNo | 아이디 | 이름</option>
 									<option value="UserNo" >UserNo</option>
 									<option value="아이디">아이디</option>
 									<option value="이름" selected="selected">이름</option>
 								</c:when>
 								<c:otherwise>
-									<option value="전체" selected="selected">전체</option>
+									<option value="전체" selected="selected">UserNo | 아이디 | 이름</option>
 									<option value="UserNo" >UserNo</option>
 									<option value="아이디">아이디</option>
 									<option value="이름">이름</option>
@@ -519,7 +527,7 @@ p{
 										<c:forEach items="${stuData}" var="user">
 											<tr>
 												<td>${user.USER_NO }</td>
-												<td><p><a href="<%= request.getContextPath() %>/admin/studetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
+												<td><p><a id="userIdhref" href="<%= request.getContextPath() %>/admin/studetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
 												<td>${user.USER_NAME }</td>
 												<td>
 <%-- 												<fmt:formatDate value="${user.userBirth }" pattern="yyyy-MM-dd" /> --%>

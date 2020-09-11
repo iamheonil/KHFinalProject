@@ -75,7 +75,7 @@ public class UserQuestionDao {
 	}
 
 	public List<Map<String, Object>> getQuestionComm(int questionNo) {
-		return sqlSession.selectList("getQuestionComm", questionNo);
+		return sqlSession.selectList("UserQuestion.getQuestionComm", questionNo);
 	}
 
 	public void insertReComment(QuestionComm qcomm) {
