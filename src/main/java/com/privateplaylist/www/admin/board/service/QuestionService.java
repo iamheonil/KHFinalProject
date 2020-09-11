@@ -36,8 +36,19 @@ public interface QuestionService {
 	//검색
 	public List<Question> selectSearchQuestion(Map<String, Object> searchMap);
 	
-	//디테일뷰
-//	public List<Map<String, Object>> detailQuestion(int questionNo, int commNo);
-	
+	//디테일페이지
+	public List<Map<String, Object>> detailQuestion(int questionNo);
 
+	//디테일
+	public Map<String, Object> selectQuestionDetail(int questionNo);
+	
+	//댓글
+	public List<Map<String, Object>> getQuestionComm(int questionNo);
+	
+	//댓글cnt
+	public int getQuestionCommCnt(int questionNo);
+
+	
+	
+	
 }
