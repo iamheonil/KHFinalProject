@@ -64,6 +64,17 @@ public class FindLessonDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	//과외 신청
+	public int selectCntConn(Map<String, Object> comm) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("MemberFindLesson.selectCntConn",comm);
+	}
+
+	public void insertConn(Map<String, Object> comm) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("MemberFindLesson.insertConn",comm);
+	}
 	
 
 
