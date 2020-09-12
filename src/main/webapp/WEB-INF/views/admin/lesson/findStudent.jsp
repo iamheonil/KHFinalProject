@@ -1,10 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
+<!-- 관리자 페이지 header -->   
+<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
+
   
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+<script type="text/javascript">
+
+function findStuDetail(FIND_STU_NO){                   
+
+	var no = FIND_STU_NO; 
+		
+//  	console.log("클릭됨: "+ no); 
+ 	
+	var url = "${pageContext.request.contextPath}/admin/lesson/findstudent/detail?no="+no;
+	var name = "findStuDetail";
+	var option = "width=800, height=600, top=100, left=100";
+	
+	window.open(url, name, option);
+}
+
+</script>
+
+
 
 <style type="text/css">
 
@@ -19,9 +42,6 @@
 
 
 
-<!-- 관리자 페이지 header -->   
-<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
-
 
 
 	<div id="title">과외 
@@ -35,7 +55,7 @@
 	    
 		
 			<c:if test="${empty findStudent }">
-				<div>학새찾기 게시글이 없습니다</div>
+				<div>학생찾기 게시글이 없습니다</div>
 			</c:if>
 
 
@@ -54,7 +74,7 @@
 	                                    <tr>
 	                           				<th style="width: 10%">번호</th>
 											<th style="width: 40%">제목</th>
-											<th style="width: 10%">작성자</th>
+											<th style="width: 10%">학생ID</th>
 											<th style="width: 10%">작성일</th>
 											<th style="width: 10%">게시상태</th>
 	                                    </tr>
@@ -66,7 +86,7 @@
 					                	<c:forEach items="${findStudent }" var="findStu" >
 											<tr>
 												<td>${findStu.FIND_STU_NO}</td>
-												<td><a href="">${findStu.FIND_STU_TITLE}</a></td> 
+												<td onclick="findStuDetail(${findStu.FIND_STU_NO});"><a>${findStu.FIND_STU_TITLE}</a></td> 
 												<td>${findStu.USER_ID}</td>
 												<td>${findStu.FIND_STU_DATE}</td>
 												<c:if test="${findStu.FIND_STU_STATE eq 0}">

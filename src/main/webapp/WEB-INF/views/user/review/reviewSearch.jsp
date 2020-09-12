@@ -503,15 +503,18 @@ function singo(REVIEW_NO, REVIEW_CONTENT){
 					                    <span>${r.USER_ID}</span><br>
 					                    <span>${r.REVIEW_DATE}</span> 
 					                </div>
+					                
+					                 <form action="${pageContext.request.contextPath}/board/blacklist" method="post" id="singoInfo">
+								    	<input type="hidden" name="no" id="singoNo" value=""/>
+								    	<input type="hidden" name="title" id="singoTitle" value=""/>
+								    	<input type="hidden" name="board" value="후기"/>
+								   </form>
+								   
 				                      <span id="singo"><a href="javascript:void(0);" onclick="singo('${r.REVIEW_NO}','${r.REVIEW_CONTENT}');">신고</a></span>
 				                </div>
 				            </div>
 				            
-				            <form action="${pageContext.request.contextPath}/board/blacklist" method="post" id="singoInfo">
-						    	<input type="hidden" name="no" id="singoNo" value=""/>
-						    	<input type="hidden" name="title" id="singoTitle" value=""/>
-						    	<input type="hidden" name="board" value="후기"/>
-						   </form>
+				           
 			            
 			            </c:forEach>
 			            
