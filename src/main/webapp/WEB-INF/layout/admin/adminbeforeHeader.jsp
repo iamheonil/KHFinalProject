@@ -26,16 +26,14 @@
     
     <body class="sb-nav-fixed">
     	<br><br><br>
-    	<div style="margin-top: 350px;"></div>
+    	<div style="margin-top: 150px;"></div>
     	<!-- 상단바 -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         	<!-- 로고 -->
             <a class="navbar-brand" href="#">슬기로운<span style="color: #17B794;"> 과외생활</span></a>
-            <!-- 메뉴 여닫기 버튼 -->
-            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-            <!-- 로그아웃 -->
+            <!-- 로그인 -->
             <div class="navbar-nav">
-				<a href="/ss/admin/logout">관리자 로그아웃</a>
+				<a href="/ss/admin/login">관리자 로그인</a>
             </div>
             
         </nav>

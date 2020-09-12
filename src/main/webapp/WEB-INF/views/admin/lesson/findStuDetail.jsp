@@ -20,9 +20,28 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
+<script type="text/javascript">
+
+function findStuDelete(FIND_STU_NO){                   
+
+	var no = FIND_STU_NO; 
+	
+	alert('삭제하시겠습니까?')
+	
+	$(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/findstudent/delete?no="+no);
+	
+	opener.parent.location.reload();
+	close();
+	
+}
+
+</script>
+
+
+
 <style type="text/css">
 
- .row, table tbody tr th { 
+ .row, table tr th { 
  	margin: 20px; 
  	text-align: center;	
 }
@@ -44,6 +63,23 @@
 	margin-bottom: 5px;
 }
  
+.buttonD { /* 삭제버튼 */
+		background-color: #777777;
+	    border: none;
+	    color: white;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 18px;
+	    border-radius: 4px;
+	    cursor: pointer;
+	    padding: 5px;
+	    width: 70px;
+	    margin-top: 20px;
+}
+
+.buttonD:hover { background-color: #888888; }
+
 </style>
 
 
@@ -55,43 +91,35 @@
     
     
 	<table class="table table-bordered">
-		<caption>과외 신청 정보</caption>
+		<caption>학생 찾기 상세</caption>
 	
 		<tr>
 			<th class="info" style="width: 25%">번호</th>
-			<td style="width: 25%">${lessonDetail.LESSON_NO }</td>
-			<th class="info" style="width: 25%">과외명</th>
-			<td style="width: 25%">${lessonDetail.LESSON_TITLE }</td>
+			<td style="width: 25%">${findStu.FIND_STU_NO}</td>
+			<th class="info" style="width: 25%">작성일</th>
+			<td style="width: 25%">${findStu.FIND_STU_DATE}</td>
 		</tr>
 		
 		<tr>
-			  <th class="info" style="width: 25%">작성자</th>
-	          <td style="width: 25%">${lessonDetail.USER_ID }</td>
-	          <th class="info" style="width: 25%">작성일</th>
-	          <td style="width: 25%">${lessonDetail.LESSON_DATE }</td>
+			  <th class="info" style="width: 25%">지역</th>
+	          <td style="width: 25%">${findStu.FIND_STU_LOC}</td>
+	          <th class="info" style="width: 25%">과목</th>
+	          <td style="width: 25%">${findStu.FIND_STU_SUBJECT}</td>
 		</tr>
 		
 		<tr>
-			<th class="info" style="width: 25%">지역</th>
-	        <td style="width: 25%">${lessonDetail.LESSON_LOC }</td>
-	        <th class="info" style="width: 25%">과목</th>
-	        <td style="width: 25%">${lessonDetail.LESSON_SUBJECT }</td>
-		</tr>
-		
-		<tr>
-			<th class="info" style="width: 25%">대상</th>
-	        <td style="width: 25%">${lessonDetail.LESSON_AGE }</td>
-	        <th class="info" style="width: 25%">금액</th>
-	        <td style="width: 25%">${lessonDetail.LESSON_PRICE }</td>
+			<th class="info">제목</th>
+			<td colspan="4" id="content">${findStu.FIND_STU_TITLE}</td>
 		</tr>
 		
 		<tr>
 			<th class="info">내용</th>
-			<td colspan="4" id="content" rowspan="3">${lessonDetail.LESSON_CONTENT }</td>
+			<td colspan="4" id="content">${findStu.FIND_STU_CONTENT}</td>
 		</tr>
 
-	
 	</table>
+	
+	<button onclick="findStuDelete(${findStu.FIND_STU_NO})" class="buttonD">삭제</button>
 	
 </div>
  
