@@ -187,7 +187,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<!-- 게시글이 없을 때  -->
 	<c:if  var="noticernone" test="${empty finStuSearchList }">
 	<tr>
-	<td colspan="8" style="color:  #17B794; font-weight: bold; text-align: center;">게시글이  없습니다</td>
+	<td colspan="8" style="font-weight: bold; text-align: center;">게시글이  없습니다</td>
 	</tr>
 	</table>
 	</c:if>
