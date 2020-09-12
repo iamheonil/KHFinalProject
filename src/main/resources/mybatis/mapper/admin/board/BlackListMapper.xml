@@ -7,23 +7,23 @@
   <mapper namespace="BlackListDao">
   
   	<select id="selectAllBlackList" parameterType="map" resultType="map">
-  		SELECT * FROM (
+  		SELECT x.no, x.blacklist_no, x.blacklist_date, x.blacklist_content, x.blacklist_state, x.blacklist_board, x.blacklist_post_no, x.user_id, x.mk_state, x.review_state, x.question_title, x.review_content, x.mk_title FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
 			  	SELECT * FROM blacklist b
 				left join question q 
 				ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
 				left join review r
-				ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
+				ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기' and r.review_state != 1)
 				left join market k
-				ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
+				ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터' and k.mk_state != 2)
 				INNER JOIN membership m
 				ON(b.user_no = m.user_no)
-				WHERE 1= 1
+				WHERE b.blacklist_state != 1
 		        <choose>
 		        	<when test="category == '질문'">
 		        		AND b.blacklist_board = '질문'
-					    AND r.review_content LIKE '%' || #{paging.search} || '%'
+					    AND q.question_content LIKE '%' || #{paging.search} || '%'
 		        	</when>
 		        	<when test="category == '후기'">
 		        		AND b.blacklist_board = '후기'
@@ -38,7 +38,7 @@
 				        OR k.mk_title LIKE '%' || #{paging.search} || '%'
 		        	</otherwise>
 		        </choose>
-				ORDER BY blacklist_no DESC
+				ORDER BY b.blacklist_no DESC
 			) t
 			ORDER BY no ) x
 		WHERE no between #{paging.startNo} AND #{paging.endNo}
@@ -46,15 +46,20 @@
   	
   	<select id="selectAllCntBlack" parameterType="map" resultType="int">
 		SELECT count(*) FROM (SELECT * FROM blacklist b
+		left join question q 
+		ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
 		left join review r
-		ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
+		ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기'  and r.review_state != 1)
 		left join market k
-		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
+		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터' and k.mk_state != 2)
 		INNER JOIN membership m
 		ON(b.user_no = m.user_no)
 		WHERE 1= 1
-        
         <choose>
+        	<when test="category == '질문'">
+        		AND b.blacklist_board = '질문'
+		        AND q.question_content LIKE '%' || #{search} || '%'
+        	</when>
         	<when test="category == '후기'">
         		AND b.blacklist_board = '후기'
 		        AND r.review_content LIKE '%' || #{search} || '%'
@@ -82,7 +87,7 @@
   		UPDATE blacklist
   		SET blacklist_state = 1
   		WHERE blacklist_board = '후기'
-  		AND blacklist_post_no = #{blacklistNo}
+  		AND blacklist_post_no = #{reviewNo}
   	</update>
   	
   	<update id="updateBlackMarketDelete" parameterType="int">
@@ -91,6 +96,13 @@
   		WHERE blacklist_board = '장터'
   		AND blacklist_post_no = #{marketNo}
   	</update>
+
+  	<update id="updateBlackQuesionDelete" parameterType="int">
+  		UPDATE blacklist
+  		SET blacklist_state = 1
+  		WHERE blacklist_board = '질문'
+  		AND blacklist_post_no = #{qNo}
+  	</update>
   	
   	<select id="selectReviewByBN" resultType="int">
   		SELECT blacklist_post_no FROM blacklist
@@ -98,6 +110,11 @@
   	</select>
 
   	<select id="selectMarketByBN" resultType="int">
+  		SELECT blacklist_post_no FROM blacklist
+  		WHERE blacklist_no = #{blacklistNo}
+  	</select>
+
+  	<select id="selectQuesionByBN" resultType="int">
   		SELECT blacklist_post_no FROM blacklist
   		WHERE blacklist_no = #{blacklistNo}
   	</select>
@@ -113,14 +130,19 @@
   		WHERE mk_no = #{marketNo}
   	</update>
   	
+  	<delete id="deleteQestion">
+  		DELETE question
+  		WHERE question_no = #{qNo}
+  	</delete>
+
   	<select id="selectReportCnt" resultType="int">
 		SELECT count(*) FROM (SELECT * FROM blacklist b
+		left join question q 
+		ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
 		left join review r
-		ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
+		ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기'  and r.review_state != 1)
 		left join market k
-		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
-		INNER JOIN membership m
-		ON(b.user_no = m.user_no)
+		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터' and k.mk_state != 2)
 		WHERE b.blacklist_state = 0)
   	</select>
   	

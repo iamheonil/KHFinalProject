@@ -29,7 +29,7 @@ public class WishlistController {
 		ModelAndView mav = new ModelAndView();
 
 		Member m = (Member) session.getAttribute("loginUser");
-		int userNo = 1;
+		int userNo = m.getUserNo();
 		
 		Paging paging = wishlistService.getPagingWishStu(curPage, userNo);
 		List<Map<String, Object>> list = wishlistService.selectWishStu(paging, userNo);
@@ -55,7 +55,7 @@ public class WishlistController {
 	public int signLesson(@RequestParam int lessonNo, @RequestParam int teacherNo, @RequestParam int wishNo, HttpSession session) {
 		
 		Member m = (Member) session.getAttribute("loginUser");
-		int userNo = 1;
+		int userNo = m.getUserNo();
 		
 		// 이미 신청된 내역이 있는지 확인하기
 		int chk = wishlistService.checkalreadysign(lessonNo, userNo, teacherNo);

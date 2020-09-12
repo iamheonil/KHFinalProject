@@ -32,24 +32,30 @@ public class marketStuController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = m.getUserNo();
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
 		
-		Paging paging1 = marketStuService.getPagingMarketStu(curPage1, userNo);
-		Paging paging2 = marketStuService.getPagingMarketCommStu(curPage2, userNo);
-		
-		List<Map<String, Object>> list1 = marketStuService.selectMarketStu(paging1, userNo);
-		List<Map<String, Object>> list2 = marketStuService.selectMarketCommStu(paging2, userNo);
-		
-		mav.addObject("paging1", paging1);
-		mav.addObject("list1", list1);
-		
-		mav.addObject("paging2", paging2);
-		mav.addObject("list2", list2);
-		mav.setViewName("student/market/marketlist");
+			int userNo = m.getUserNo();
 			
-//		System.out.println(list);
-		
-		return mav;
+			Paging paging1 = marketStuService.getPagingMarketStu(curPage1, userNo);
+			Paging paging2 = marketStuService.getPagingMarketCommStu(curPage2, userNo);
+			
+			List<Map<String, Object>> list1 = marketStuService.selectMarketStu(paging1, userNo);
+			List<Map<String, Object>> list2 = marketStuService.selectMarketCommStu(paging2, userNo);
+			
+			mav.addObject("paging1", paging1);
+			mav.addObject("list1", list1);
+			
+			mav.addObject("paging2", paging2);
+			mav.addObject("list2", list2);
+			mav.setViewName("student/market/marketlist");
+				
+	//		System.out.println(list);
+			
+			return mav;
+		}
 	}
 
 	@RequestMapping(value = "/marketpage", method = RequestMethod.POST)
