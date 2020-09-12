@@ -694,6 +694,12 @@ function singo(){
 				            	  	<c:if test="${comm.MK_USER_NO eq commWriter }">
 				            	  		<a href="javascript:void(0);" onclick="commUpdate(${comm.MK_COMM_NO }, this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${comm.MK_COMM_NO }, this);">삭제</a>
 				            	  	</c:if>
+				            	  	<c:if test="${loginAdmin ne null }">
+				            	  	<span class="fa-stack" onclick="commDelete(${comm.MK_COMM_NO }, this);">
+																<i class="fa fa-square fa-stack-2x"></i> <i
+																class="fa fa-trash fa-stack-1x fa-inverse "></i>
+														</span>
+				            	  	</c:if>
 						         </div>
 	                            <a href="#" class="pull-left">
 	                            	<c:if test="${empty comm.TCH_FILE_RENAME }">

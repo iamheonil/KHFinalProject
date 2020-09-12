@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.privateplaylist.www.dto.Admin;
 import com.privateplaylist.www.member.vo.Member;
 import com.privateplaylist.www.user.board.boardMain.service.BoardMainService;
 
@@ -27,8 +28,9 @@ public class BoardMainController {
 //		System.out.println("게시판 메인");
 		
 		Member mem = (Member) session.getAttribute("loginUser");
+		Admin admin=(Admin)session.getAttribute("loginAdmin");
 		
-		if(mem != null) {//로그인이 되어있을때만 실행
+		if(mem != null ||admin !=null) {//로그인이 되어있을때만 실행
 			
 			//공지사항
 			List<Map<String, Object>> notice = boardMainService.selectNotice();

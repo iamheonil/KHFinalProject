@@ -424,6 +424,14 @@ p{
 	top: 30px;
 }
 
+#userIdhref:hover { 
+	color: blue;
+	text-decoration: none;
+}
+#userIdhref{
+	color: black;
+}
+
 </style>
 
 
@@ -446,31 +454,31 @@ p{
 						<div class="card search-form">
 							<div class="card-body p-0">
 								<form id="search-form"
-								action="${pageContext.request.contextPath}/admin/tchList"
+								action="${pageContext.request.contextPath}/admin/tchlist"
 								method="get">
 								<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 									<select class="form-control" name="category">
 										<c:choose>
 											<c:when test="${category eq 'UserNo' }">
-												<option  value="전체">전체</option>
+												<option  value="전체">UserNo | 아이디 | 이름</option>
 												<option  value="UserNo" selected="selected">UserNo</option>
 												<option  value="아이디">아이디</option>
 												<option value="이름" >이름</option>
 											</c:when>
 											<c:when test="${category eq '아이디' }">
-												<option  value="전체">전체</option>
+												<option  value="전체">UserNo | 아이디 | 이름</option>
 												<option value="UserNo" >UserNo</option>
 												<option  value="아이디" selected="selected">아이디</option>
 												<option value="이름" >이름</option>
 											</c:when>
 											<c:when test="${category eq '이름' }">
-												<option value="전체">전체</option>
+												<option value="전체">UserNo | 아이디 | 이름</option>
 												<option value="UserNo" >UserNo</option>
 												<option value="아이디">아이디</option>
 												<option value="이름" selected="selected">이름</option>
 											</c:when>
 											<c:otherwise>
-												<option value="전체" selected="selected">전체</option>
+												<option value="전체" selected="selected">UserNo | 아이디 | 이름</option>
 												<option value="UserNo" >UserNo</option>
 												<option value="아이디">아이디</option>
 												<option value="이름">이름</option>
@@ -530,10 +538,10 @@ p{
 		<img class="imgsize" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${user.TCH_FILE_RENAME }">
 												</c:if>
 												<c:if test="${empty user.TCH_FILE_RENAME }">
-												<img src="https://bootdey.com/img/Content/avatar/avatar1.png"/>
+												<img src="${pageContext.request.contextPath}/resources/images/profile.png">
 												</c:if>
 												
-												<p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.USER_NO}">${user.USER_ID }</a></p></td>
+												<p><a href="<%= request.getContextPath() %>/admin/tchdetail?userNo=${user.USER_NO}" id="userIdhref">${user.USER_ID }</a></p></td>
 <%-- 												<p><a href="#" title="학생 정보 보기" onclick="teacherModal(${user.USER_NO });">${user.USER_ID }</a></p></td> --%>
 												<td>${user.USER_NAME }</td>
 												<td>

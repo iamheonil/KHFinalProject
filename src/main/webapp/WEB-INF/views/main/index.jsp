@@ -108,7 +108,7 @@ text-align: center;
 						
 						<div class="col-md-12 text-center">
 							<p>
-								<a href="/ss/member/findLesson" class="btn btn-special">과외찾기</a>
+								<a href="/ss/lesson/findlesson" class="btn btn-special">과외찾기</a>
 								<a href="/ss/lesson/findStu/list" class="btn btn-special">학생찾기</a>
 							</p>
 						</div>
