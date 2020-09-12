@@ -366,13 +366,13 @@ main{
 		                                    <td class="board">${i.BLACKLIST_BOARD }</td>
 		                                    <td>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '질문' }" >
-		                                   		 	${i.REVIEW_CONTENT }
+		                                   		 	<a href="">${i.QUESTION_TITLE }</a>
 		                                   		 </c:if>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '후기' }" >
-		                                   		 	${i.REVIEW_CONTENT }
+		                                   		 	<a href="">${i.REVIEW_CONTENT }</a>
 		                                   		 </c:if>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '장터' }" >
-		                                   		 	${i.MK_TITLE }
+		                                   		 	<a href="">${i.MK_TITLE }</a>
 		                                   		 </c:if>
 		                                    </td>
 		                                    <td>${i.BLACKLIST_CONTENT }</td>

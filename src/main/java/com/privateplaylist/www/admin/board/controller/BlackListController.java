@@ -48,17 +48,19 @@ public class BlackListController {
 
 	@RequestMapping("/blacklist/turndown")
 	@ResponseBody
-	public String turndown(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
+	public String turndown(@RequestParam(value="mList[]", required = false) List<Integer> qList, @RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
 		
 //		System.out.println(rList);
 //		System.out.println(mList);
 		
-		if( rList == null && mList == null ) {
+		if( rList == null && mList == null && qList == null) {
 			return "0";
 		}else if(rList != null ) {
 			blackListService.turndownReview(rList);
 		}else if(mList != null) {
 			blackListService.turndownMarket(mList);
+		}else if(qList != null) {
+			blackListService.turndownQuestion(qList);
 		}
 		
 		return "1";
@@ -66,14 +68,16 @@ public class BlackListController {
 
 	@RequestMapping("/blacklist/deletereview")
 	@ResponseBody
-	public String deleteReview(@RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
+	public String deleteReview(@RequestParam(value="mList[]", required = false) List<Integer> qList, @RequestParam(value="mList[]", required = false) List<Integer> mList, @RequestParam(value="rList[]", required = false) List<Integer> rList) {
 		
-		if( rList == null && mList == null ) {
+		if( rList == null && mList == null && qList == null) {
 			return "0";
 		}else if(rList != null ) {
 			blackListService.deleteReview(rList);
 		}else if(mList != null) {
 			blackListService.deleteMarket(mList);
+		}else if(qList != null) {
+			blackListService.deleteQuestion(qList);
 		}
 		return "1";
 		

@@ -38,8 +38,8 @@ public class BlackListDao {
 	 * 후기게시판 신고 삭제
 	 * @param blacklistNo
 	 */
-	public void updateBlackReivewDelete(int blacklistNo) {
-		sqlSession.update(namespace + "updateBlackReivewDelete", blacklistNo);
+	public void updateBlackReivewDelete(int reviewNo) {
+		sqlSession.update(namespace + "updateBlackReivewDelete", reviewNo);
 	}
 
 	/**
@@ -74,6 +74,18 @@ public class BlackListDao {
 	public void updateBlackMarketDelete(int marketNo) {
 		sqlSession.update(namespace + "updateBlackMarketDelete", marketNo);
 		
+	}
+
+	public int selectQuesionByBN(int no) {
+		return sqlSession.selectOne(namespace + "selectQuesionByBN", no);
+	}
+
+	public void deleteQestion(int qNo) {
+		sqlSession.delete(namespace + "deleteQestion", qNo);
+	}
+
+	public void updateBlackQuesionDelete(int qNo) {
+		sqlSession.update(namespace + "updateBlackQuesionDelete", qNo);
 	}
 
 

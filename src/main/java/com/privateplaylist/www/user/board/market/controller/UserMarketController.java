@@ -37,15 +37,20 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		Paging paging = userMarketService.getPagingMkList(curPage, search);
-		
-		List<Map<String, Object>> list = userMarketService.getMarketlist(paging);
-		
-		mav.addObject("search", search);
-		mav.addObject("paging", paging);
-		mav.addObject("list", list);
-		mav.setViewName("user/market/marketList");
-		return mav;
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			Paging paging = userMarketService.getPagingMkList(curPage, search);
+			
+			List<Map<String, Object>> list = userMarketService.getMarketlist(paging);
+			
+			mav.addObject("search", search);
+			mav.addObject("paging", paging);
+			mav.addObject("list", list);
+			mav.setViewName("user/market/marketList");
+			return mav;
+		}
 	}
 
 	// 중고장터 상세보기
@@ -56,6 +61,7 @@ public class UserMarketController {
 		int userNo=0;
 		
 		Member m = (Member) session.getAttribute("loginUser");
+		
 		if(m != null) {//user가 null이 아닐때
 			userNo = m.getUserNo();
 		}
@@ -89,6 +95,7 @@ public class UserMarketController {
 		mav.setViewName("user/market/marketDetail");
 		
 		return mav;
+		
 	}
 	
 	// 중고장터 글쓰기
@@ -99,10 +106,15 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		mav.addObject("m", m);
-		mav.setViewName("user/market/marketWrite");
-		
-		return mav;
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			mav.addObject("m", m);
+			mav.setViewName("user/market/marketWrite");
+			
+			return mav;
+		}
 	}
 	
 	// 중고장터 글쓰기
@@ -114,19 +126,24 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 
-		int userNo = m.getUserNo();
-//		int userNo = 1;
-		
-		String root = session.getServletContext().getRealPath("/");
-		
-		market.setMkWriter(userNo);
-		
-		int mkno = userMarketService.insertMarket(market);
-		int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
-		
-		mav.setViewName("redirect:/board/market");
-		
-		return mav;
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			int userNo = m.getUserNo();
+	//		int userNo = 1;
+			
+			String root = session.getServletContext().getRealPath("/");
+			
+			market.setMkWriter(userNo);
+			
+			int mkno = userMarketService.insertMarket(market);
+			int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
+			
+			mav.setViewName("redirect:/board/market");
+			
+			return mav;
+		}
 	}
 
 	// 중고장터 수정
@@ -137,23 +154,28 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = m.getUserNo();
-//		int userNo = 1;
-		
-		// 게시글 정보
-		Map<String, Object> market  = userMarketService.getMarketInfo(mkno);
-		List<MkFile> files = userMarketService.getMarketFile(mkno);
-//		System.out.println(market);
-		
-		// 상세 파일이 있는 경우
-		if( files != null ) {
-			mav.addObject("files", files);
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			int userNo = m.getUserNo();
+	//		int userNo = 1;
+			
+			// 게시글 정보
+			Map<String, Object> market  = userMarketService.getMarketInfo(mkno);
+			List<MkFile> files = userMarketService.getMarketFile(mkno);
+	//		System.out.println(market);
+			
+			// 상세 파일이 있는 경우
+			if( files != null ) {
+				mav.addObject("files", files);
+			}
+			
+			mav.addObject("market", market);
+			mav.setViewName("user/market/marketUpdate");
+			
+			return mav;
 		}
-		
-		mav.addObject("market", market);
-		mav.setViewName("user/market/marketUpdate");
-		
-		return mav;
 	}
 
 	// 중고장터 수정
@@ -165,20 +187,24 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 
-		int userNo = m.getUserNo();
-//		int userNo = 1;
-		String root = session.getServletContext().getRealPath("/");
-		
-		market.setMkWriter(userNo);
-		
-		int mkno = userMarketService.updateMarket(market);
-		int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
-		
-		mav.setViewName("redirect:/board/market/detail?mkno=" + market.getMkNo());
-		
-		return mav;
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			int userNo = m.getUserNo();
+	//		int userNo = 1;
+			String root = session.getServletContext().getRealPath("/");
+			
+			market.setMkWriter(userNo);
+			
+			int mkno = userMarketService.updateMarket(market);
+			int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
+			
+			mav.setViewName("redirect:/board/market/detail?mkno=" + market.getMkNo());
+			
+			return mav;
+		}
 	}
-
 	@RequestMapping(value = "/market/deletethumb", method = RequestMethod.POST)
 	@ResponseBody
 	public int marketDeleteThumb(@RequestParam int mkThumbNo) {
@@ -230,16 +256,21 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = m.getUserNo();
-//		int userNo = 1;
+		if( m == null ) {
+			return null;
+		}else {
 		
-		// 댓글 입력
-		int commno = userMarketService.insertComm(mkno, commContent, userNo);
-		
-		// 댓글 정보 가져오기
-		Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
-		
-		return comm;
+			int userNo = m.getUserNo();
+	//		int userNo = 1;
+			
+			// 댓글 입력
+			int commno = userMarketService.insertComm(mkno, commContent, userNo);
+			
+			// 댓글 정보 가져오기
+			Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
+			
+			return comm;
+		}
 	}
 
 	// 댓글 삭제
@@ -260,16 +291,21 @@ public class UserMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = m.getUserNo();
-//		int userNo = 1;
+		if( m == null ) {
+			return null;
+		}else {
 		
-		// 댓글 입력
-		int commno = userMarketService.insertRecomm(mkno, mkParentCommNo, recommContent, userNo);
-		
-		// 댓글 정보 가져오기
-		Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
-		
-		return comm;
+			int userNo = m.getUserNo();
+	//		int userNo = 1;
+			
+			// 댓글 입력
+			int commno = userMarketService.insertRecomm(mkno, mkParentCommNo, recommContent, userNo);
+			
+			// 댓글 정보 가져오기
+			Map<String, Object> comm = userMarketService.selectCommByCommNo(commno);
+			
+			return comm;
+		}
 	}
 	
 	// 대댓글 수정
