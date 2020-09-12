@@ -33,19 +33,24 @@ public class ConnectLessonController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = m.getUserNo();
-		
-		Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
-		
-		List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, userNo);
-		
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			int userNo = m.getUserNo();
+			
+			Paging paging = connectLessonService.getPagingCntLesson(curPage, userNo);
+			
+			List<Map<String, Object>> list = connectLessonService.selectConnectStu(paging, userNo);
+			
 //		System.out.println(list);
-		
-		mav.addObject("paging", paging);
-		mav.addObject("list", list);
-		mav.setViewName("teacher/connectedLesson/signStudent");
-		
-		return mav;
+			
+			mav.addObject("paging", paging);
+			mav.addObject("list", list);
+			mav.setViewName("teacher/connectedLesson/signStudent");
+			
+			return mav;
+		}
 	}
 
 	@RequestMapping(value = "/signstu", method = RequestMethod.POST)

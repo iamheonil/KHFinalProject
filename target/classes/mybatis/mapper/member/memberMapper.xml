@@ -20,6 +20,10 @@
       SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userId} AND IS_LEAVE = 0
     </select>
     
+    <select id="selectNaverMember" resultType="MEMBER">
+      SELECT * FROM MEMBERSHIP WHERE USER_ID = #{id} AND IS_LEAVE = 0
+    </select>
+    
     <select id="selectTeacherFile" resultType="TEACHERFILE">
       SELECT * FROM TEACHERFILE 
       WHERE USER_ID = #{userId}

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- nav include  -->
-<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet">		
@@ -312,41 +312,45 @@ function addComm(mkno){
 			url: url,
 			data: {mkno : mkno, commContent : commContent },
 			success : function(result) {
-				var li = '';
-				li += '<li class="media comm0">';
-				li += '<div class="commExist">';
-				li += '<div class="text-muted pull-right userCommAct">';
-				li += '<a href="javascript:void(0);" onclick="commUpdate(';
-				li += result.MK_COMM_NO;
-				li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
-				li += result.MK_COMM_NO;
-				li += ', this);">삭제</a>';
-				li += '</div>';
-				li += '<a href="#" class="pull-left">';
-				if(result.TCH_FILE_RENAME == null ){
-					li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+				
+				if( result != null){
+					var li = '';
+					li += '<li class="media comm0">';
+					li += '<div class="commExist">';
+					li += '<div class="text-muted pull-right userCommAct">';
+					li += '<a href="javascript:void(0);" onclick="commUpdate(';
+					li += result.MK_COMM_NO;
+					li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
+					li += result.MK_COMM_NO;
+					li += ', this);">삭제</a>';
+					li += '</div>';
+					li += '<a href="#" class="pull-left">';
+					if(result.TCH_FILE_RENAME == null ){
+						li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+					}else{
+						li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					}
+					li += '</a>';
+					li += '<div class="media-body comm-body">';
+					li += '<strong class="text">' + result.USER_ID + '</strong>';
+					li += '<p>' + result.MK_COMM_CONTENT + '</p>';
+					li += '<small>' + result.MK_COMM_DATE + '</small>';
+					li += '&nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(';
+					li +=  mkno + ', ' +  result.MK_COMM_NO
+					li += ', this );">답글달기</a></small>';
+					li += '</div>';
+					li += '</div>';
+					li += '</li>';
+	        
+					$("#commList").append(li);
+					$("#commContent").val("");
+					
+				    var offset = $("#commList li:last-child").offset();
+			        $('html, body').animate({scrollTop : offset.top}, 400);
 				}else{
-					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					alert("로그인이 필요합니다.");
+					location.href="<%=request.getContextPath() %>/main/login";
 				}
-				li += '</a>';
-				li += '<div class="media-body comm-body">';
-				li += '<strong class="text">' + result.USER_ID + '</strong>';
-				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
-				li += '<small>' + result.MK_COMM_DATE + '</small>';
-				li += '&nbsp;&nbsp;&nbsp;<small><a href="javascript:void(0);" onclick="addRecomm(';
-				li +=  mkno + ', ' +  result.MK_COMM_NO
-				li += ', this );">답글달기</a></small>';
-				li += '</div>';
-				li += '</div>';
-				li += '</li>';
-        
-				$("#commList").append(li);
-				$("#commContent").val("");
-				
-			    var offset = $("#commList li:last-child").offset();
-		        $('html, body').animate({scrollTop : offset.top}, 400);
-		        
-				
 			},
 			error : function(){
 				alert("ajax 실패")
@@ -450,41 +454,46 @@ var recommContent = $(target).prev('textarea').val();
 			url: url,
 			data: {mkno : mkno, mkParentCommNo : mkParentCommNo,  recommContent : recommContent },
 			success : function(result) {
-				var li = '';
-				li += '<li class="media comm' + mkParentCommNo + '">';
-				li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
-				li += '<div class="commExist">';
-				li += '<div class="text-muted pull-right userCommAct">';
-				li += '<a href="javascript:void(0);" onclick="commUpdate(';
-				li += result.MK_COMM_NO;
-				li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
-				li += result.MK_COMM_NO;
-				li += ', this);">삭제</a>';
-				li += '</div>';
-				li += '<a href="#" class="pull-left">';
-				if(result.TCH_FILE_RENAME == null ){
-					li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+				if( result != null){
+					var li = '';
+					li += '<li class="media comm' + mkParentCommNo + '">';
+					li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
+					li += '<div class="commExist">';
+					li += '<div class="text-muted pull-right userCommAct">';
+					li += '<a href="javascript:void(0);" onclick="commUpdate(';
+					li += result.MK_COMM_NO;
+					li += ', this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(';
+					li += result.MK_COMM_NO;
+					li += ', this);">삭제</a>';
+					li += '</div>';
+					li += '<a href="#" class="pull-left">';
+					if(result.TCH_FILE_RENAME == null ){
+						li += '<img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">';
+					}else{
+						li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					}
+					li += '</a>';
+					li += '<div class="media-body comm-body">';
+					li += '<strong class="text">' + result.USER_ID + '</strong>';
+					li += '<p>' + result.MK_COMM_CONTENT + '</p>';
+					li += '<small>' + result.MK_COMM_DATE + '</small>';
+					li += '</div>';
+					li += '</div>';
+					li += '</li>';
+	        
+					var offset;
+	// 				console.log(result.MK_PARENT_COMM_NO);
+					if( !$("li.comm" + result.MK_PARENT_COMM_NO).length){
+						$(target).parents("li.reComm").replaceWith(li);
+					}else{
+						$(target).parents("li.reComm").remove();
+						$(".comm"+mkParentCommNo).last().after(li);
+					}
 				}else{
-					li += '<img src="${pageContext.request.contextPath}/resources/upload/' + result.TCH_FILE_RENAME + '" alt="" class="img-circle">';
+					alert("로그인이 필요합니다.");
+					location.href="<%=request.getContextPath() %>/main/login";
 				}
-				li += '</a>';
-				li += '<div class="media-body comm-body">';
-				li += '<strong class="text">' + result.USER_ID + '</strong>';
-				li += '<p>' + result.MK_COMM_CONTENT + '</p>';
-				li += '<small>' + result.MK_COMM_DATE + '</small>';
-				li += '</div>';
-				li += '</div>';
-				li += '</li>';
-        
-				var offset;
-// 				console.log(result.MK_PARENT_COMM_NO);
-				if( !$("li.comm" + result.MK_PARENT_COMM_NO).length){
-					$(target).parents("li.reComm").replaceWith(li);
-				}else{
-					$(target).parents("li.reComm").remove();
-					$(".comm"+mkParentCommNo).last().after(li);
-				}
-			
+				
 			},
 			error : function(){
 				alert("ajax 실패")
@@ -630,7 +639,7 @@ function singo(){
                    		</c:if>
 	                   <c:if test="${!chkWriter }">
 	                   		<c:if test="${market.MK_STATE eq 0 }">
-		                  		<button type="button" class="btn btn-info" id="BtnChat">채팅하기</button>
+		                  		<a href="${pageContext.request.contextPath}/chat/chatRoom?toID=${market.USER_ID }"><button type="button" class="btn btn-info" id="BtnChat">채팅하기</button></a>
 	                   		</c:if>
 	                   		<c:if test="${market.MK_STATE eq 1 }">
 			                  	 <button type="button" class="btn btn-finish" disabled="disabled">판매완료</button>

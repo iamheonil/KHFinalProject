@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 메인 헤더 -->   
-<%@ include file="/WEB-INF/layout/main/log_header.jsp" %>
+<%@ include file="/WEB-INF/layout/main/header.jsp" %>
 
 <!-- 학생 마이페이지 헤더 -->
 <c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
@@ -99,6 +99,7 @@ a {
 .user-list tbody td>img {
     position: relative;
     max-width: 50px;
+    max-height: 50px;
     float: left;
     margin-right: 15px;
 }

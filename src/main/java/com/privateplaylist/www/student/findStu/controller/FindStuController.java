@@ -89,6 +89,14 @@ public class FindStuController {
 		//root context
 		String root = req.getContextPath();
 		
+		if(keyword.equals("")) {
+			model.addAttribute("alertMsg", "검색어를 입력해주세요");
+			model.addAttribute("url", root+"/student/findStu/list");
+
+			return "/admin/notice/error";
+			
+		}
+		
 		//세션 
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
@@ -102,8 +110,12 @@ public class FindStuController {
 		findStuPagingMap.put("keyword", keyword);
 		findStuPagingMap.put("userNo", userNo);
 		
+		System.out.println("findStuPagingMap"+findStuPagingMap);
+		
 		//요청 파라미터를 전달하여 paging 객체 생성하기
 		Paging paging = findStuService.findStuSearchPaging(findStuPagingMap);
+		
+		System.out.println("paging"+paging);
 		
 		//키워드와 페이징을 넣어줄 map
 		Map<Object, Object> findStuSearchMap = new HashMap<Object, Object>();
@@ -111,17 +123,13 @@ public class FindStuController {
 		findStuSearchMap.put("userNo", userNo);
 		findStuSearchMap.put("keyword", keyword);
 		findStuSearchMap.put("paging", paging);
+		
+		System.out.println("findStuSearchMap"+findStuSearchMap);
 				
 		//글 검색하기
 		List<FindStudent> finStuSearchList = findStuService.findStuSearch(findStuSearchMap);
 		
-		if(keyword.equals("")) {
-			model.addAttribute("alertMsg", "검색어를 입력해주세요");
-			model.addAttribute("url", root+"/student/findStu/list");
-
-			return "/admin/notice/error";
-			
-		}
+		System.out.println("finStuSearchList"+finStuSearchList);
 		
 		//모델값 전달
 		model.addAttribute("keyword", keyword);

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.privateplaylist.www.dto.TeacherFile;
 import com.privateplaylist.www.member.dao.MemberDao;
+import com.privateplaylist.www.member.service.KakaoLoginApi;
 import com.privateplaylist.www.member.service.MemberService;
 import com.privateplaylist.www.member.vo.Member;
 
@@ -39,10 +40,17 @@ public class MemberController {
 	public MemberDao memberDao;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public ModelAndView login(HttpSession session) {
 		System.out.println("Login Call");
-
-		return "/member/login";
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String kakaoUrl = KakaoLoginApi.getAuthorizationUrl(session);
+		
+		mav.addObject("kakao_url", kakaoUrl);
+		mav.setViewName("/member/login");
+		
+		return mav;
 	}
 
 	@RequestMapping(value = "/loginImpl", method = POST)
