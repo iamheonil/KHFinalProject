@@ -37,8 +37,6 @@ $(document).ready(function(){
 <div id="title">게시판
 	<i class="glyphicon glyphicon-menu-right"></i>
 	<a href="${pageContext.request.contextPath}/teacher/question/list">질문 게시판</a>
-	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href=""></a>
 </div>
 
 
@@ -54,9 +52,9 @@ $(document).ready(function(){
 					<div class="input-group">
 <%-- 					<input type="hidden" value="${no}" id="no" name="no"/> --%>
 						<input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
-						<span class="input-group-btn">
+<!-- 						<span class="input-group-btn"> -->
 							<button class="button button1" type="submit">검색</button>
-						</span>
+<!-- 						</span> -->
 					</div>
 				</div>
 			</div>

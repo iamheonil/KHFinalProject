@@ -28,7 +28,7 @@
    
    <!-- 이전 페이지로 가기 -->
    <c:if test="${paging.curPage ne 1 }">
-   <li><a href="${pageContext.request.contextPath}/teacher/question/list?no=${cno}&curPage=${paging.curPage - 1 }">&lt;</a>
+   <li><a href="${pageContext.request.contextPath}/teacher/review/list?no=${cno}&curPage=${paging.curPage - 1 }">&lt;</a>
    </c:if>
    
    
@@ -36,12 +36,12 @@
    
    <!-- 현재 페이지라면 강조(.active) -->
    <c:if test="${paging.curPage eq i }">
-   <li class="active"><a href="${pageContext.request.contextPath}/teacher/question/list?no=${cno}&curPage=${i }">${i }</a></li>
+   <li class="active"><a href="${pageContext.request.contextPath}/teacher/review/list?no=${cno}&curPage=${i }">${i }</a></li>
    </c:if>
    
    <!-- 현재 페이지가 아니라면 평소 모습-->
    <c:if test="${paging.curPage ne i }">
-   <li><a href="${pageContext.request.contextPath}/teacher/question/list?no=${cno}&curPage=${i }">${i }</a></li>
+   <li><a href="${pageContext.request.contextPath}/teacher/review/list?no=${cno}&curPage=${i }">${i }</a></li>
    </c:if>
 
    </c:forEach>
@@ -49,7 +49,7 @@
 
    <!-- 다음 페이지로 가기 -->
    <c:if test="${paging.curPage ne paging.totalPage}">
-   <li><a href="${pageContext.request.contextPath}/teacher/question/list?no=${cno}&curPage=${paging.curPage + 1 }">&gt;</a>
+   <li><a href="${pageContext.request.contextPath}/teacher/review/list?no=${cno}&curPage=${paging.curPage + 1 }">&gt;</a>
    </c:if>
    
 

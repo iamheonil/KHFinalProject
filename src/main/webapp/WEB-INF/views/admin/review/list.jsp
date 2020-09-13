@@ -15,31 +15,24 @@
 	font-size: large;
 }
 
-#writebtn{
-/* 	color: #17B794; */
-}
-
-#deletebtn{
-/* 	color: red; */
-}
-
- #divbtn{ 
-    padding: 10px; 
-} 
-
 .pagingstyle{
  	width: 100%; 
- 	padding-left: 40%;
+ 	padding-left: 45%;
 }
 
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 18%;
+    top: 15%;
 }
 
 #serchbox{
 	width: 500px;
+/* 	margin:0 ; */
+/* 	padding: 0; */
+    position: absolute;
+    top: 15%;
+    right: -4.5%;
 }
 
 .anone{
@@ -67,6 +60,9 @@
 	text-overflow:ellipsis;
 	white-space:nowrap; 
 }
+.liststyle{
+margin:0; 
+padding: 0; }
 
 </style>    
     
@@ -144,7 +140,7 @@ $(document).ready(function(){
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll"  onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">작성자</th>
-		<th style="width: 20%">후기내용</th>
+		<th style="width: 40%">후기내용</th>
 		<th style="width: 20%">별점</th>
 		
 		<th style="width: 10%">날짜</th>
