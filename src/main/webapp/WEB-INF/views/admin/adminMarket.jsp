@@ -513,6 +513,20 @@ select.form-control:not([size]):not([multiple]) {
  a:link { color: black; text-decoration: none;}
  .mya:visited { color: black; text-decoration: none;}
  a:hover { color: black; text-decoration: underline;}
+ 
+ 
+ .sb-topnav .navbar-brand {
+    width: 225px;
+    padding-left: 1.5rem;
+    padding-right: 1rem;
+    padding-top:1rem;
+    margin: 0;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+ 
+ 
 </style>
 
 
