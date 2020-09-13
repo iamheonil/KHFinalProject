@@ -33,7 +33,12 @@ public class TeacherMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 1;
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+		
+			int userNo = m.getUserNo();
 		Paging paging1 = teacherMarketService.getPagingMarketTea(curPage1, userNo);
 		Paging paging2 = teacherMarketService.getPagingMarketCommTea(curPage2, userNo);
 		
@@ -51,7 +56,7 @@ public class TeacherMarketController {
 		
 		return mav;
 	}
-	
+}	
 	@RequestMapping(value = "/marketpage", method = RequestMethod.POST)
 	public ModelAndView marketPaging(HttpSession session, @RequestParam int curPage) {
 		
@@ -59,7 +64,7 @@ public class TeacherMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = m.getUserNo();
 		
 		Paging paging1 = teacherMarketService.getPagingMarketTea(curPage, userNo);
 		List<Map<String, Object>> list1 = teacherMarketService.selectMarketTea(paging1, userNo);
@@ -79,7 +84,7 @@ public class TeacherMarketController {
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = 6;
+		int userNo = m.getUserNo();
 		
 		Paging paging2 = teacherMarketService.getPagingMarketCommTea(curPage, userNo);
 		List<Map<String, Object>> list2 = teacherMarketService.selectMarketCommTea(paging2, userNo);

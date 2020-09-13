@@ -14,7 +14,7 @@ import common.util.Paging;
 public interface QuestionService {
 
 	//질문목록 전체 조회
-	public List<Question> selectQuestionList(Paging paging);
+	public List<Map<String, Object>> selectQuestionList(Paging paging);
 
 	//질문목록 전체 페이징
 	public Paging questionListPaging(HttpServletRequest req);

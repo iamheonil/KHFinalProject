@@ -15,20 +15,13 @@
 	font-size: large;
 }
 
-#writebtn{
-/* 	color: #17B794; */
-}
-
-#deletebtn{
-/* 	color: red; */
-}
-
  #divbtn{ 
+    padding: 10px; 
 } 
 
 .pagingstyle{
- 	width: 100%; 
- 	padding-left: 40%;
+ 	width: 960px; 
+ 	padding-left: 830px;
 }
 
 #footerbtn{
@@ -66,7 +59,6 @@
 	text-overflow:ellipsis;
 	white-space:nowrap; 
 }
-
 </style>    
     
 <script type="text/javascript">
@@ -135,40 +127,43 @@ $(document).ready(function(){
 	<!-- 체크박스 리스트 전송 -->
  	<form action="${pageContext.request.contextPath}/admin/question/idxdelete" method="post" id="checkboxlist">
 
-
+	<div class="liststyle">
 	<!-- 질문게시판 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
 	<caption  class="captionstyle">질문게시판</caption>  
 	
-	<!-- 테이블 th -->
-	<tr>
-	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll"  onclick="checkAll();"/></th>
-		<th style="width: 5%">번호</th>
-		<th style="width: 20%">제목</th>
-		<th style="width: 50%">내용</th>
-		<th style="width: 10%">날짜</th>
-	</tr>
-	
+		<!-- 테이블 th -->
+		<tr>
+		    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll"  onclick="checkAll();"/></th>
+			<th style="width: 5%">번호</th>
+			<th style="width: 20%">제목</th>
+			<th style="width: 40%">내용</th>
+			<th style="width: 10%">작성자</th>
+			<th style="width: 10%">날짜</th>
+		</tr>
 	
 	<!-- 값 출력 -->
 	<c:forEach items="${questionList }" var="question" >
 	<tr>
-	    <td><input type="checkbox" name="checkRow" value="${question.questionNo}" id="checkRow"/></td>
-		<td>${question.questionNo }</td>
+	    <td><input type="checkbox" name="checkRow" value="${question.QUESTION_NO}" id="checkRow" /></td>
+		<td style="width:5%">${question.QUESTION_NO }</td>
 		<td>
 			<div class="txt_line_title">
-				<a href="${pageContext.request.contextPath}/admin/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
+				<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.QUESTION_NO}" class="anone"style="width:20%">${question.QUESTION_TITLE }</a>
 			</div>
 		</td>
-		<td><div class="txt_line_content">${question.questionContent }</div></td>
-		<td>${question.questionDate }</td>
+		<td><div class="txt_line_content" style="width:40%">${question.QUESTION_CONTENT }</div></td>
+		<td style="width:10%">${question.USER_ID }</td>
+		<td style="width:10%">${question.QUESTION_DATE }</td>
 <%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
 	</tr>
 	</c:forEach>
+	
 	</table>
+	</div>
 	</form>
 	<!-- 페이징 -->
-	<div class="pagingstyle">
+	<div class="pagingstyle" style="text-align: center">
 	<c:import url="/WEB-INF/paging/admin/question/questionlistPaging.jsp"></c:import>
 	</div>
 
