@@ -136,7 +136,7 @@ function addBox(lastID,toID,chatContent,chatTime,unread,profile){
 	$("#boxList").append(
 			'<div class="chat_list" onclick="location.href= \'${pageContext.request.contextPath}/chat/chatRoom?toID=' +encodeURIComponent(toID)+ '\' ">' +
 			'<div class="chat_people">'+		
-			'<div class="chat_img"> <img src="${pageContext.request.contextPath}/resources/images/icon.png" alt="sunil" class="chat_img1"> </div>'+		
+			'<div class="chat_img"> <img src="${pageContext.request.contextPath}'+profile+'" alt="sunil" class="chat_img1"> </div>'+		
 			'<div class="chat_ib">'+		
 			'<h5>'+lastID+'<span class="chat_date pull-right">'+chatTime+'</span></h5>'+
 			'<p>'+chatContent+
