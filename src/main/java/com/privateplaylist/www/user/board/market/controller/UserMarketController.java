@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.privateplaylist.www.dto.Admin;
 import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.MkFile;
 import com.privateplaylist.www.member.vo.Member;
@@ -36,8 +37,9 @@ public class UserMarketController {
 		ModelAndView mav = new ModelAndView();
 		
 		Member m = (Member) session.getAttribute("loginUser");
+		Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 		
-		if( m == null ) {
+		if( m == null && loginAdmin==null) {
 			mav.setViewName("redirect:/member/login");
 			return mav;
 		}else {
