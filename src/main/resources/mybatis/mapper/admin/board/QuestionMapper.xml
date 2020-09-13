@@ -9,10 +9,11 @@
 <mapper namespace="Question">
 
 	<!-- 전체 리스트 출력 -->
-	<select id="selectQuestionList" resultType="QUESTION">
+	<select id="selectQuestionList" resultType="map">
 
-	select * from question
-	 order by question_no desc
+	select q.*, m.user_id from question q, membership m
+					where m.user_no = q.user_no
+					order by question_no desc
   </select>
 	<!-- 질문게시판 컨텐츠갯수 cnt -->
 	<select id="selectCntQuestionAll" resultType="int">
