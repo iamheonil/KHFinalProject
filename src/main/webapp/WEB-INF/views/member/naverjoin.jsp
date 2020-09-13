@@ -494,7 +494,7 @@ function finalChecked() {
         <div class="form-group row">
 			<label class="col-form-label col-4">아이디</label>
 			<div class="col-8 float">
-                <input type="text" id="userId" name="userId" required="required" size="20" autofocus="autofocus"> <button type="button" id="idBtn" name="idBtn" onclick="xmlIdCheck()" disabled>중복확인</button>
+                <input type="text" id="userId" name="userId" required="required" size="20" autofocus="autofocus" readonly value="${naverUser.userId }">
             </div>
         </div>
         
@@ -528,8 +528,7 @@ function finalChecked() {
 			<label class="col-form-label col-4">Email</label>
                 <%-- <input class="btn-info btn-xs" type="button" value="인증"> --%>
 			<div class="col-8 float">
-                <input type="email" id="userEmail" name="userEmail" required="required" size="18" onkeydown="inputEmailChk()"/> <input type="button" id="emailBtn" name="emailBtn" onclick="javascript:emailChk(); emailSend();" value="인증번호전송" disabled>
-                <input type="hidden" id="emailAuth" name="emailAuth" value="emailUncheck">
+                <input type="email" id="userEmail" name="userEmail" required="required" size="18" readonly value="${naverUser.userEmail }"/>
             </div>
         </div>
         <div class="form-group row" id="sendMail"></div>
@@ -548,7 +547,7 @@ function finalChecked() {
         <div class="form-group row">
 			<label class="col-form-label col-4">이름</label>
 			<div class="col-8 float">
-                <input type="text" class="form-control" id="userName" name="userName" required="required">
+                <input type="text" class="form-control" id="userName" name="userName" required="required" readonly value="${naverUser.userName }">
             </div>        	
         </div>
         
@@ -635,33 +634,3 @@ function finalChecked() {
 
 <!-- 푸터 -->
 <%@ include file="/WEB-INF/layout/main/footer.jsp" %>
-
-<div class="gototop js-top">
-        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-    </div>
-
-    <!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
-	<!-- countTo -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.countTo.js"></script>
-	<!-- Carousel -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>

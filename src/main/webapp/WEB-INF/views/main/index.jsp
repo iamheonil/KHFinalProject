@@ -108,7 +108,7 @@ text-align: center;
 						
 						<div class="col-md-12 text-center">
 							<p>
-								<a href="/ss/member/findLesson" class="btn btn-special">과외찾기</a>
+								<a href="/ss/lesson/findlesson" class="btn btn-special">과외찾기</a>
 								<a href="/ss/lesson/findStu/list" class="btn btn-special">학생찾기</a>
 							</p>
 						</div>
@@ -125,9 +125,9 @@ text-align: center;
 						<h2>안전하고 실속 있게<br> 매칭할 수 있게 도와드립니다!</h2>
 						<p>업계최저 단 돈 '1000원' !<br>선생님께 드릴 부담을 최대한 줄여드립니다. (학생은 중개수수료 무료)</p>
 						<div class="col-md-12 text-center">
-							<p>
+							<!-- <p>
 								<a href="#" class="btn btn-special">더 알아보기</a>
-							</p>
+							</p> -->
 						</div>
 					</div>
 				</div>

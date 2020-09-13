@@ -20,13 +20,11 @@ src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 
 <script type="text/javascript">
+$(document).ready(function(){
 
-$(function(){
-	
-	 $('#singoBtn').on('click', function() {
-		 
-		 alert('신고가 접수되었습니다.')
-	 })
+	$("#singoForm").submit(function(){
+		 alert('신고가 접수되었습니다.');
+	})
 	
 })
 
@@ -122,7 +120,7 @@ $(function(){
 
 <div class="content">
 
-	<form action="${pageContext.request.contextPath}/board/blacklist/insert" method="post">
+	<form action="${pageContext.request.contextPath}/board/blacklist/insert" method="post" id="singoForm">
 		<div class="row formRow">
 		
 		

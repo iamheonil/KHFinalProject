@@ -155,47 +155,20 @@
 
 </style>
 
+<script type="text/javascript">
+
+	location.href="<c:out value='${url}' />";
+
+</script>
+
 <body id="login_body">
 
 <br><br>
 
 <div class="login-form">
-    <form action="/ss/member/loginImpl" method="post">
+    <form action="/ss/kakao/callback" method="post">
 		
-<!-- 			<img src="/examples/images/avatar.png" alt="Avatar"> -->
-<!-- 			
-			<div class="lcb-float">
-				<i class="fa fa-users fa-4x"></i>
-			</div>
--->
-		<br>
-        <h3 class="text-center">슬기로운 과외생활</h3>
-        <br>
-        <div class="form-group">
-        	<input type="text" class="form-control" id="userId" name="userId" placeholder="아이디 입력" required="required">
-        </div>
-		<div class="form-group">
-            <input type="password" class="form-control" id="userPw" name="userPw" placeholder="패스워드 입력" required="required">
-        </div>        
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
-        </div>
-		<div class="bottom-action clearfix" style="text-align: center;">
-<!--             <label class="float-left form-check-label"><input type="checkbox"> 아이디 저장</label> -->
-            <a href="/ss/member/findid" class="float-left">아이디 찾기</a> | <a href="/ss/member/findpw" class="float-right">비밀번호 찾기</a>
-        </div>
-        <div class="or-seperator"></div>
-        <div class="text-center social-btn" >
-			<a href="/ss/naver/login"><img src="${pageContext.request.contextPath}/resources/images/naver_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
-			<p></p>
-			<a href="${kakao_url }"><img src="${pageContext.request.contextPath}/resources/images/kakao_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
-<!--            <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> -->
-<!--            <a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
-<!-- 			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a> -->
-        </div>
-    </form>
-    <!-- <p class="text-center small">로그인정보가 기억나지 않으세요? <a href="#">여기</a> 를 눌러주세요!</p>  -->
-
+		
     <br><br>
 
 </div>
@@ -204,32 +177,5 @@
 <!-- 푸터 -->
 <%@ include file="/WEB-INF/layout/main/footer.jsp" %>
 
-<div class="gototop js-top">
-        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-    </div>
-
-    <!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
-	<!-- countTo -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.countTo.js"></script>
-	<!-- Carousel -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>

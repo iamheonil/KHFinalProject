@@ -41,14 +41,9 @@
 	font-size: large;
 }
 
- #divbtn{ 
+#divbtn{ 
     padding: 10px; 
 } 
-
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 15%;
-}
 
 #footerbtn{
     position: absolute;
@@ -212,9 +207,9 @@ function XMLMODALClick(findStuNo) {
 			
 			$("#FIND_STU_TITLE").html(result.FIND_STU_TITLE);
 			$("#FIND_STU_CONTENT").html(result.FIND_STU_CONTENT);
-			$("#FIND_STU_LOC").text("지역 :"+result.FIND_STU_LOC);
-			$("#FIND_STU_SUBJECT").text("과목 :"+result.FIND_STU_SUBJECT);
-			$("#FIND_STU_DATE").text("날짜:"+result.FIND_STU_DATE);
+			$("#FIND_STU_LOC").text(result.FIND_STU_LOC);
+			$("#FIND_STU_SUBJECT").text(result.FIND_STU_SUBJECT);
+			$("#FIND_STU_DATE").text(result.FIND_STU_DATE);
 			
 			$("#modal_modi_btn").val(result.FIND_STU_NO);
 			
@@ -251,7 +246,7 @@ function XMLMODALClick(findStuNo) {
 	    <div class="input-group">
 	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword" id="keyword">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default" type="submit" id="Search">Search</button>
+	        <button class="btn btn-default" type="submit" id="Search" style="margin-left: 4px;">Search</button>
 	      </span>
 	    </div><!-- /input-group -->
 	  </div><!-- /.col-lg-6 -->
@@ -291,7 +286,7 @@ function XMLMODALClick(findStuNo) {
 	<!-- 게시글이 없을 때  -->
 	<c:if  var="findStu" test="${empty findStuList }">
 	<tr>
-	<td colspan="8" style="color:  #17B794; font-weight: bold; text-align: center;">게시글이  없습니다</td>
+	<td colspan="8" style="font-weight: bold; text-align: center;">게시글이  없습니다</td>
 	</tr>
 	</table>
 	</c:if>
@@ -327,7 +322,7 @@ function XMLMODALClick(findStuNo) {
 	</form>
 	
 	<!-- 페이징 -->
-	<div class="pagingstyle" id="paging_import">
+	<div id="paging_import">
 	<c:import url="/WEB-INF/paging/student/findStu/listPaging.jsp"></c:import>
 	</div>
 	</c:if>

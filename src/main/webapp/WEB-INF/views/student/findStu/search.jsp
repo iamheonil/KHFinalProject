@@ -39,11 +39,6 @@
     padding: 10px; 
 } 
 
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 15%;
-}
-
 #footerbtn{
     position: absolute;
     right: 1.5%;
@@ -151,7 +146,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	    <div class="input-group">
 	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default" type="submit">Search</button>
+	        <button class="btn btn-default" type="submit" style="margin-left: 4px;">Search</button>
 	      </span>
 	    </div><!-- /input-group -->
 	  </div><!-- /.col-lg-6 -->
@@ -192,7 +187,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<!-- 게시글이 없을 때  -->
 	<c:if  var="noticernone" test="${empty finStuSearchList }">
 	<tr>
-	<td colspan="8" style="color:  #17B794; font-weight: bold; text-align: center;">게시글이  없습니다</td>
+	<td colspan="8" style="font-weight: bold; text-align: center;">게시글이  없습니다</td>
 	</tr>
 	</table>
 	</c:if>
@@ -230,7 +225,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	</form>
 	
 	<!-- 페이징 -->
-	<div class="pagingstyle">
+	<div>
 	<c:import url="/WEB-INF/paging/student/findStu/searchPaging.jsp"></c:import>
 	</div>
 	</c:if>

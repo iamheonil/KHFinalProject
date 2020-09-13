@@ -79,6 +79,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public Member selectNaverMember(String id) {
+		Member member = memberDao.selectNaverMember(id);
+
+		// 사용자 정보가 있으면
+		if (member != null) {
+			
+		} else {
+			// 없으면
+			return null;
+		}
+		return member;
+	}
+	
+	@Override
 	public TeacherFile selectTeacherFile(String userId) {
 		
 		// System.out.println("뭐여 " + teacherMap);

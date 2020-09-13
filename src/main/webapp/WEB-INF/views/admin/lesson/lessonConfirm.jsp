@@ -25,7 +25,7 @@ function lessonDetail(LESSON_NO){
  	
 	var url = "${pageContext.request.contextPath}/admin/lesson/confirm/detail?no="+no;
 	var name = "lessonDetail";
-	var option = "width=1000, height=600, top=100, left=100";
+	var option = "width=800, height=600, top=100, left=100";
 	
 	window.open(url, name, option);
 
@@ -69,7 +69,7 @@ function denyClick(LESSON_NO){
 		text-align: center;
 		text-decoration: none;
 		display: inline-block;
-		font-size: 12px;
+		font-size: 15px;
 		border-radius: 4px;
 		cursor: pointer;
 	}
@@ -80,7 +80,7 @@ function denyClick(LESSON_NO){
 	    text-align: center;
 	    text-decoration: none;
 	    display: inline-block;
-	    font-size: 12px;
+	    font-size: 15px;
 	    border-radius: 4px;
 	    cursor: pointer;
 	}
@@ -117,10 +117,11 @@ function denyClick(LESSON_NO){
 	                                <thead>
 	                                    <tr>
 	                           				<th style="width: 10%">번호</th>
-											<th style="width: 45%">과외명</th>
-											<th style="width: 15%">작성자</th>
-											<th style="width: 15%">작성일</th>
-											<th style="width: 15%">검토</th>
+											<th style="width: 40%">과외명</th>
+											<th style="width: 15%">선생님ID</th>
+											<th style="width: 15%">선생님이름</th>
+											<th style="width: 10%">작성일</th>
+											<th style="width: 10%">검토</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -129,6 +130,7 @@ function denyClick(LESSON_NO){
 												<td>${confirm.LESSON_NO}</td>
 												<td onclick="lessonDetail(${confirm.LESSON_NO});"><a>${confirm.LESSON_TITLE}</a></td> 
 												<td>${confirm.USER_ID}</td>
+												<td>${confirm.USER_NAME}</td>
 												<td>${confirm.LESSON_DATE}</td>
 												<td>
 													<button onclick="admitClick(${confirm.LESSON_NO});" id="admit" name="admit" class="button button2">승인</button>

@@ -77,11 +77,11 @@
                             </a>
                             
                             <div class="sb-sidenav-menu-heading">회원</div>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/stuList">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/stulist">
                               	 학생 관리
                         		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/tchList">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/tchlist">
                                	선생님 관리
                                	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-right"></i></div>
                             </a>

@@ -45,5 +45,11 @@ public interface BlackListService {
 
 	public void deleteMarket(List<Integer> mList);
 
+	// 질문 신고 반려
+	public void turndownQuestion(List<Integer> qList);
+
+	// 질문 신고 삭제
+	public void deleteQuestion(List<Integer> qList);
+
 
 }
