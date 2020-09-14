@@ -170,7 +170,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<!-- 학생찾기 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
 	
-	<caption  class="captionstyle">공지사항</caption>  
+	<caption  class="captionstyle">학생찾기</caption>  
 	
 	<!-- 테이블 th -->
 	<tr>
