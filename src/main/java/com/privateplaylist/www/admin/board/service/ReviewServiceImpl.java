@@ -74,8 +74,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Review> selectSearchReview(Map<String, Object> searchMap) {
-		List<Review> reviewList = reviewDao.selectSearchReview(searchMap);
+	public List<Map<String, Object>> selectSearchReview(Map<String, Object> searchMap) {
+		List<Map<String, Object>> reviewList = reviewDao.selectSearchReview(searchMap);
 		return reviewList;
 	}
 	

@@ -31,15 +31,8 @@ public class StudentReviewServiceImpl implements StudentReviewService{
 	}
 
 	@Override
-	public List<Review> selectReviewList(Paging paging, Member loginUser) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("paging", paging);
-		map.put("user", loginUser);
-		
-		List<Review> reviewList = studentReviewDao.selectReviewList(map);
-		
-		return reviewList;
+	public List<Map<String, Object>> selectReviewList(Paging paging) {
+		return studentReviewDao.selectReviewList(paging);
 	}
 
 	

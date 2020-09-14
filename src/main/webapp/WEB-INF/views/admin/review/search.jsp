@@ -41,6 +41,11 @@
 
 #serchbox{
 	width: 500px;
+/* 	margin:0 ; */
+/* 	padding: 0; */
+    position: absolute;
+    top: 18%;
+    right: -4.5%;
 }
 
 .anone{
