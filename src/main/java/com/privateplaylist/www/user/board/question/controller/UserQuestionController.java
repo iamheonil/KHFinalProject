@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.privateplaylist.www.dto.Admin;
 import com.privateplaylist.www.dto.FindLesson;
 import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.MkFile;
@@ -56,7 +57,7 @@ public class UserQuestionController {
 		ModelAndView mav = new ModelAndView();
 		int userNo=0;
 		Member m = (Member) session.getAttribute("loginUser");
-		
+		Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 		if(m != null) {//user가 null이 아닐때
 			userNo = m.getUserNo();
 		}
@@ -73,7 +74,7 @@ public class UserQuestionController {
 			mav.addObject("commWriter", userNo);
 			mav.addObject("cnt", count);
 		}
-		
+		mav.addObject("loginAdmin", loginAdmin);
 		mav.addObject("detail", question);
 		mav.setViewName("user/question/questionDetail");
 		return mav;
