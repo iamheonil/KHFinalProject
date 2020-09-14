@@ -122,4 +122,9 @@ public class BlackListServiceImpl implements BlackListService {
 		}		
 	}
 
+	@Override
+	public Map<String, Object> getReviewByNo(int no) {
+		return blackListDao.getReviewByNo(no);
+	}
+
 }
