@@ -185,11 +185,9 @@ public class WebShareController {
 	
 	//자료실 파일 다운로드
 	@RequestMapping("/webshare/download")
-	@ResponseBody															//파일경로 지정을 위한 session				//서버에 저장된 파일 이름
-	public FileSystemResource noticeDownload(HttpServletResponse response, HttpSession session, String ofname, String rfname) {
-											//response header 지정을 위한 response					//사용자가 올린 파일 이름
+	@ResponseBody															
+	public FileSystemResource webshareDownload(HttpServletResponse response, HttpSession session, String ofname, String rfname) {
 		
-//		System.out.println("다운로드 왔나?");
 		
 		String readFolder = session.getServletContext().getRealPath("/resources/upload");
 		
@@ -198,7 +196,6 @@ public class WebShareController {
 		
 		
 		try {
-			
 			response.setHeader("Content-Disposition", "attachment; filename="+URLEncoder.encode(ofname, "UTF-8"));
 			
 		} catch (UnsupportedEncodingException e) {
