@@ -1,5 +1,6 @@
 package com.privateplaylist.www.admin.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,6 +82,38 @@ public class BlackListController {
 		}
 		return "1";
 		
+	}
+	
+	@RequestMapping("/blacklist/review/detail")
+	public ModelAndView blackListReview(@RequestParam(required = false, defaultValue = "1") int no) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> map = blackListService.getReviewByNo(no);
+		
+		 // 평점 옵션
+		if(Integer.parseInt(String.valueOf(map.get("STAR_POINT"))) == 0) {
+			mav.addObject("ratingOptions", "☆☆☆☆☆");
+		}else if(Integer.parseInt(String.valueOf(map.get("STAR_POINT"))) == 1) {
+			mav.addObject("ratingOptions", "★☆☆☆☆");
+		}else if(Integer.parseInt(String.valueOf(map.get("STAR_POINT"))) == 2) {
+			mav.addObject("ratingOptions", "★★☆☆☆");
+			
+		}else if(Integer.parseInt(String.valueOf(map.get("STAR_POINT"))) == 3) {
+			mav.addObject("ratingOptions", "★★★☆☆");
+			
+		}else if(Integer.parseInt(String.valueOf(map.get("STAR_POINT"))) == 4) {
+			mav.addObject("ratingOptions", "★★★★☆");
+			
+		}else if(Integer.parseInt(String.valueOf(map.get("STAR_POINT"))) == 5) {
+			mav.addObject("ratingOptions", "★★★★★");
+			
+		}
+		
+		mav.addObject("r", map);
+		mav.setViewName("admin/blackList/reviewDetail");
+		
+		return mav;
 	}
 
 }
