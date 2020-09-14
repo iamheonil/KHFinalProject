@@ -63,7 +63,7 @@ public class UserMarketController {
 		int userNo=0;
 		
 		Member m = (Member) session.getAttribute("loginUser");
-		
+		Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 		if(m != null) {//user가 null이 아닐때
 			userNo = m.getUserNo();
 		}
@@ -92,6 +92,7 @@ public class UserMarketController {
 			mav.addObject("commWriter", userNo);
 		}
 		
+		mav.addObject("loginAdmin", loginAdmin);
 		mav.addObject("chkWriter", chkWriter);
 		mav.addObject("market", market);
 		mav.setViewName("user/market/marketDetail");
