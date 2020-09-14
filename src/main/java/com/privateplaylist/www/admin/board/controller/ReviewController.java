@@ -109,7 +109,7 @@ public class ReviewController {
 				searchMap.put("keyword", keyword);
 				searchMap.put("paging", paging);
 				//글 검색하기
-				List<Review> reviewSearchList = reviewService.selectSearchReview(searchMap);
+				List<Map<String,Object>> reviewSearchList = reviewService.selectSearchReview(searchMap);
 				
 				if(keyword.equals("")) {
 					model.addAttribute("alertMsg", "검색어를 입력해주세요");

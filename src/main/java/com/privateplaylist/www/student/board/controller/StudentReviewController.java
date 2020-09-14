@@ -1,6 +1,8 @@
 package com.privateplaylist.www.student.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -37,9 +39,21 @@ public class StudentReviewController {
 			Paging paging = studentReviewService.getPagingStuReview(curPage, loginUser);
 					
 			//본인이 작성한 후기 조회 list
-			List<Review> reviewList = studentReviewService.selectReviewList(paging, loginUser);
-			
+			List<Map<String, Object>> reviewList = studentReviewService.selectReviewList(paging);
+			System.out.println(reviewList);
 			// -------------------------------------------------------
+			
+			// 평점 옵션
+		      Map<Integer, String> ratingOptions = new HashMap<>();
+		      ratingOptions.put(0, "☆☆☆☆☆");
+		      ratingOptions.put(1, "★☆☆☆☆");
+		      ratingOptions.put(2, "★★☆☆☆");
+		      ratingOptions.put(3, "★★★☆☆");
+		      ratingOptions.put(4, "★★★★☆");
+		      ratingOptions.put(5, "★★★★★");
+		      mav.addObject("ratingOptions", ratingOptions);
+			
+			
 			mav.addObject("reviewList", reviewList);
 			mav.addObject("paging", paging);
 			mav.setViewName("student/board/reviewList");
