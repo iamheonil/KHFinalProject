@@ -15,6 +15,13 @@ function alert(){
 </script>
 
 <style>
+.menu-item#lessonM ul {
+   height: 93px;  
+}
+
+#writeLessonM{
+  background: #eee;
+}
 
 
 body{

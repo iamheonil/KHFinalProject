@@ -12,7 +12,13 @@
 
 
 <style type="text/css">
+.menu-item#lessonM ul {
+   height: 93px; 
+}
 
+#mylessonListM{
+  background: #eee;
+}
 #title{
 
 	width: 100%;

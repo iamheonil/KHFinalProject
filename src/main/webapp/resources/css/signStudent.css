@@ -59,12 +59,7 @@
 	margin: 0 auto;
 	text-align: left;
 }
-.menu-item.connectLesson #conLesson {
-   height: 62px; 
-}
-#signStu{
-  background: #eee;
-}
+
 .listBox{
 	width: 100%;
 	text-align: center;
