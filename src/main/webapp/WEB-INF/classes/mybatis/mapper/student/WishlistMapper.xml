@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="dao.WishlistDao">
+  
+  <select id="getPagingWishStu" parameterType="int" resultType="int">
+  	SELECT count(*) FROM wishlist
+  	WHERE user_no = #{userNo}
+  </select>
+  
+  <select id="selectWishStu" parameterType="map" resultType="map">
+		SELECT * 
+		FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+			  	SELECT w.wish_no, w.lesson_no, w.wish_date
+			  				, f.lesson_age, f.lesson_chk, f.lesson_date, f.lesson_loc
+			  				, f.lesson_price, f.lesson_state, f.lesson_subject, f.lesson_title
+			  				, f.max_people, f.user_no teacher
+			  	FROM wishlist w
+				LEFT OUTER JOIN find_lesson f
+				ON(w.lesson_no = f.lesson_no)
+				WHERE w.user_no = #{userNo}
+				ORDER BY w.wish_no desc
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+  </select>
+  
+  <delete id="deleteWishlist" parameterType="int">
+  	DELETE wishlist
+  	WHERE wish_no = #{wish_no}
+  </delete>
+  
+  <insert id="insertConnLesson">
+  	INSERT INTO connected_lesson(conn_lesson_no, lesson_no, student, teacher)
+  	VALUES(connected_lesson_SEQ.nextval, #{lessonNo}, #{studentNo}, #{teacherNo})  
+  </insert>
+  
+  <select id="checkalreadysign" parameterType="map" resultType="int">
+  	SELECT count(*) FROM connected_lesson
+  	WHERE lesson_no = #{lessonNo}
+  	AND student = #{studentNo}
+  	AND teacher = #{teacherNo}
+  </select>
+  
+ 
+  </mapper>

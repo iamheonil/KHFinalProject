@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="FindStudent">
+	
+	<!-- 학생찾기 게시글 조회 -->
+	<select id="selectFindStudent" resultType="map">
+	
+		select f.find_stu_no, f.find_stu_title, f.find_stu_date, f.find_stu_state, m.user_id
+		from find_student f, membership m
+		where f.user_no = m.user_no
+	
+	</select>
+
+</mapper>

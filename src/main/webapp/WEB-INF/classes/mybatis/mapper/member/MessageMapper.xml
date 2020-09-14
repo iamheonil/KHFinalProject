@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Message">
+
+
+	<!-- 대화 내용 업데이트 된것이 있으면 가져오기  -->
+	<select id="getChatListById"
+		resultType="MASSAGE">
+		SELECT * FROM Message WHERE (
+		((fromID=#{fromID} AND toID=#{toID})
+		OR (fromID=#{toID} AND toID=#{fromID})) AND chatID >
+		#{chatID})
+		ORDER BY chatID 
+	</select>
+
+	<!-- 최근 10개의 대화내용 불러오기  -->
+	<select id="getChatListByRecent"
+		resultType="MASSAGE">
+		SELECT * FROM Message WHERE ((fromID=#{fromID} AND
+		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID})) 
+		<!-- AND chatID  -->
+		<!-- >
+		(SELECT MAX(chatID)-10 from Message where (fromID=#{fromID} AND
+		toID=#{toID})OR(fromID=#{toID} AND toID=#{fromID})) -->
+		ORDER BY chatID 
+	</select>
+	
+	<!-- 채팅창에 입력한것 insert하기  -->
+	<insert id="submit">
+		INSERT INTO Message VALUES(message_SEQ.nextval,#{fromID},#{toID},#{chatContent},sysdate,0)
+	</insert>
+	
+	<!-- 메시지 읽었으면 읽었다고 업데이트하기  -->
+	<update id="readChat">
+		update Message set chatRead=1 where(fromID=#{toID} AND toID=#{fromID})
+	</update>
+	
+	<!-- 읽지 않은 메시지 불러오기: 메시지 읽음 처리  -->
+	<select id="getAllUnreadChat" resultType="int">
+		select count(chatID) from Message where toID=#{userID} and chatRead=0
+	</select>
+	
+	
+	<!-- 채팅한 사람들 내역 불러오기 :채팅박스  -->
+	<select id="getBox"
+		resultType="MASSAGE">
+		select * from Message where chatID in(select Max(chatID) from Message where toID=#{userID} or fromID=#{userID} group by fromID,toID) order by chatID
+	</select>
+	
+	<!-- 각 채팅박스에서 읽지않는 메시지 가져오기  -->
+	<select id="geUnreadChat" resultType="int">
+		select count(chatID) from Message where fromID=#{fromId} and toID=#{toId} and chatRead=0
+	</select>
+	
+	<select id="getProfile" resultType="String">
+		select tch_file_rename from teacherfile where user_id=#{userid}
+	</select>
+	
+</mapper>

@@ -19,9 +19,32 @@
     <select id="selectMember" resultType="MEMBER">
       SELECT * FROM MEMBERSHIP WHERE USER_ID = #{userId} AND IS_LEAVE = 0
     </select>
+    
+    <select id="selectNaverMember" resultType="MEMBER">
+      SELECT * FROM MEMBERSHIP WHERE USER_ID = #{id} AND IS_LEAVE = 0
+    </select>
+    
+    <select id="selectTeacherFile" resultType="TEACHERFILE">
+      SELECT * FROM TEACHERFILE 
+      WHERE USER_ID = #{userId}
+    </select>
 
     <select id="selectId" resultType="int">
       SELECT COUNT(*) FROM MEMBERSHIP WHERE USER_ID = #{userId}
     </select>
   
+  	<select id="findId" resultType="MEMBER">
+  		SELECT * FROM MEMBERSHIP
+  		WHERE USER_ACTOR = #{userActor} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+  	</select>
+  	
+  	<select id="findPw" resultType="MEMBER">
+  		SELECT * FROM MEMBERSHIP
+  		WHERE USER_ACTOR = #{userActor} AND USER_ID = #{userId} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+  	</select>
+  	
+  	<update id="modifyPw" parameterType="MEMBER">
+  		UPDATE MEMBERSHIP SET USER_PW = #{userPw} WHERE USER_ID = #{userId}
+  	</update>
+  	
   </mapper>
