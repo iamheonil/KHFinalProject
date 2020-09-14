@@ -486,6 +486,11 @@ function singo(){
             	  	<c:if test="${loginUser.userNo == detail.question.USER_NO}">
             	  		<a href="javascript:void(0);" onclick="updateQuestion(${detail.question.QUESTION_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteQuestion(${detail.question.QUESTION_NO });">삭제</a>
             	  	</c:if>
+            	  	<c:if test="${loginAdmin ne null }">
+                    <span class="fa-stack" onclick="deleteQuestion(${detail.question.QUESTION_NO });">
+                  <i class="fa fa-square fa-stack-2x"></i> <i class="fa fa-trash fa-stack-1x fa-inverse "></i></span>
+                    </c:if>
+                    
             	  	<c:if test="${loginUser.userNo != detail.question.USER_NO}">
             	  		<span id="singo"><a href="javascript:void(0);" onclick="singo();">신고</a></span>
             	  	</c:if>
