@@ -51,5 +51,8 @@ public interface BlackListService {
 	// 질문 신고 삭제
 	public void deleteQuestion(List<Integer> qList);
 
+	// 질문 상세
+	public Map<String, Object> getReviewByNo(int no);
+
 
 }
