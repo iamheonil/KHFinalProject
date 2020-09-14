@@ -6,6 +6,15 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 
 <style type="text/css">
+.menu-item#lessonM ul {
+   height: 93px;  
+}
+
+#writeLessonM{
+  background: #eee;
+}
+
+
 .border{
 	border: 1px solid #ccc;
 	text-align: center;

@@ -15,6 +15,13 @@
 
 <!-- 현위지 메뉴 -->
 <style type="text/css">
+.menu-item.connectLesson ul {
+   height: 62px; 
+}
+
+#connlessonMenu{
+  background: #eee;
+}
 
 #title{
 

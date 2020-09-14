@@ -20,6 +20,13 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <style>
+.menu-item#lessonM ul {
+   height: 93px; 
+}
+
+#paymentM{
+  background: #eee;
+}
 .container{
 	width: 800px;
 }

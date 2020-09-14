@@ -8,7 +8,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
 <style type="text/css">
 
-<style type="text/css">
+.menu-item#lessonM ul{
+   height: 93px; 
+}
+
+#paymentM{
+  background: #eee;
+}
 #StudentModal{
 	padding: 0;
 }

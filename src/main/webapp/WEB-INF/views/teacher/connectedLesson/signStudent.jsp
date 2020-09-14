@@ -6,6 +6,15 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
+<style>
+.menu-item.connectLesson #conLesson {
+   height: 62px; 
+}
+#signStu{
+  background: #eee;
+}
+</style>
+
 <script type="text/javascript">
 function connectStu(connNo){
 	var chk = confirm("학생을 승인하시겠습니까?");
