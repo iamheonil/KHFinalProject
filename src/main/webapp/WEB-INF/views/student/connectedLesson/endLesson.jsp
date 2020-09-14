@@ -842,7 +842,7 @@ function lessonModal(lessonNo){
 										<tr>
 											<td>${list.LESSON_NO}</td>
 											<td><a href="#"  onclick="lessonModal(${list.LESSON_NO});" title="과외 상세 보기">${list.LESSON_TITLE}</a></td>
-											<td><a href="#" onclick="StudentModal(${list.STUDENT });" title="학생 프로필 보기">${list.USER_ID}</a></td>
+											<td><a href="#" onclick="StudentModal(${list.TEACHER });" title="선생님 프로필 보기">${list.USER_ID}</a></td>
 											<td>${list.LESSON_SUBJECT}</td>
 											<td>${list.LESSON_LOC}</td>
 											<c:if test="${list.MAX_PEOPLE eq 1 }">

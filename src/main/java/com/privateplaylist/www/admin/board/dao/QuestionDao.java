@@ -19,7 +19,7 @@ public class QuestionDao {
 	private SqlSessionTemplate sqlSession;
 
 	//질문게시판 전체 조회
-	public List<Question> selectQuestionList(Paging paging) {
+	public List<Map<String, Object>> selectQuestionList(Paging paging) {
 		return sqlSession.selectList("Question.selectQuestionList",paging);
 	}
 	

@@ -25,8 +25,8 @@ public class QuestionServiceImpl implements QuestionService{
 	
 //	 질문게시판 전체 출력
 	@Override
-	public List<Question> selectQuestionList(Paging paging) {
-		List<Question> questionList = questionDao.selectQuestionList(paging);
+	public List<Map<String, Object>> selectQuestionList(Paging paging) {
+		List<Map<String, Object>> questionList = questionDao.selectQuestionList(paging);
 		return questionList;
 	}
 

@@ -54,12 +54,12 @@ public class UserQuestionController {
 	@RequestMapping("/question/detail")
 	public ModelAndView questionDetail(HttpSession session, @RequestParam int questionNo) {
 		ModelAndView mav = new ModelAndView();
-		
+		int userNo=0;
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		int userNo = m.getUserNo();
-//		int userNo = 1;
-		
+		if(m != null) {//user가 null이 아닐때
+			userNo = m.getUserNo();
+		}
 		// 게시글 정보
 		Map<String,Object> question = userQuestionService.selectQuestionDetail(questionNo);
 		

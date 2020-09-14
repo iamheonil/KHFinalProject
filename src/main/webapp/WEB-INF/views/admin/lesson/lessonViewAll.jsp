@@ -20,6 +20,18 @@
 
 </style>
 
+<style type="text/css">
+
+#okay { background: #fff; }
+
+#notyet { background: #95e0ff6b; }
+
+#denied { background: #ffb3c047; }
+
+</style>
+
+
+
 
 	<div id="title">과외 
 		<i class="fas fa-angle-right"></i>
@@ -64,30 +76,32 @@
 	                                <tbody>
 					                	<c:forEach items="${lessonList }" var="lessonList" >
 											<tr>
-												<td>${lessonList.LESSON_NO}</td>
-												<td><a href="">${lessonList.LESSON_TITLE}</a></td>
-												<td>${lessonList.USER_ID}</td>
-												<td>${lessonList.LESSON_DATE}</td>
+												<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">${lessonList.LESSON_NO}</td>
+												<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">
+													<a href="${pageContext.request.contextPath}/lesson/detaillesson?lessonNo=${lessonList.LESSON_NO}&userNo=${lessonList.USER_NO}" target="_blank">${lessonList.LESSON_TITLE}</a>
+												</td>
+												<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">${lessonList.USER_ID}</td>
+												<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">${lessonList.LESSON_DATE}</td>
 												<c:if test="${lessonList.LESSON_CHK eq 0}">
-													<td>미검토</td>
+													<td id="notyet">미검토</td>
 												</c:if>
 												<c:if test="${lessonList.LESSON_CHK eq 1}">
-													<td>승인</td>
+													<td id="okay">승인</td>
 												</c:if>
 												<c:if test="${lessonList.LESSON_CHK eq 2}">
-													<td>반려</td>
+													<td id="denied">반려</td>
 												</c:if>
 												<c:if test="${lessonList.PAY_STATE eq 0}">
-													<td>N</td>
+													<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">N</td>
 												</c:if>
 												<c:if test="${lessonList.PAY_STATE eq 1}">
-													<td>Y</td>
+													<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">Y</td>
 												</c:if>
 												<c:if test="${lessonList.LESSON_STATE eq 0}">
-													<td>N</td>
+													<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">N</td>
 												</c:if>
 												<c:if test="${lessonList.LESSON_STATE eq 1}">
-													<td>Y</td>
+													<td id="${lessonList.LESSON_CHK eq 0 ? 'notyet' : lessonList.LESSON_CHK eq 2 ? 'denied' : 'okay'}">Y</td>
 												</c:if>
 											</tr>
 										</c:forEach>

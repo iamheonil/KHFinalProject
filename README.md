@@ -46,6 +46,9 @@
        - 아이디 찾기
        - 비밀번호 찾기
        - 개인정보 관리(수정, 탈퇴 등)
+    - 로그인
+       - 일반 로그인
+       - 네이버 아이디 로그인 (회원가입 연동)
    - 커뮤니티
      - 게시글 쓰기
      - 게시글 수정
@@ -73,6 +76,9 @@
        - 비밀번호 찾기
        - 이력서, 학력증빙자료 등록
        - 개인정보 관리(수정, 탈퇴 등)
+     - 로그인
+       - 일반 로그인
+       - 네이버 아이디 로그인 (회원가입 연동)
    - 커뮤니티
      - 게시글 쓰기
      - 게시글 수정
@@ -118,15 +124,17 @@
 ### 개발환경
 
  - Mac OS / Windows7 / Windows 10
- - 이클립스 2019-12 (4.14.0)
- - JRE 1.8.0_231
+ - Eclipse 2019-12 (4.14)
+ - IntelliJ 2020.02
+ - Spring Tools 3 (Standalone Edition) 3.9
+ - JRE 1.8.0
  - JAVA - Spring Framework (5.2.7 Release)
  - MyBatis (3.5.5)
  - Oracle Database 11g
  - Apache Tomcat 9.0.35
  - Front FrameWork - Bootstrap
  - Spring Framework 5.2.7
- - 프로젝트 협업툴 - Github Desktop / SourceTree / Jira
+ - 프로젝트 협업툴 & 기타 작업툴 - Github Desktop / SourceTree / Jira / SQL Developer / DataGrip
  
 <br>
 
@@ -135,7 +143,7 @@
     - Spring Security / MyBatis / AspectJ / Logging / Inject / Servlet / JUnit Test / Mail Service / jackson-core / FileUpload / hamcrest / mockito
 
  - API
-    - Google / Kakao / NAVER / AJAX
+    - Kakao Maps / NAVER / AJAX
  
 <br>
 
@@ -148,13 +156,3 @@
 -------
 
 <br>
-
-공통부분<br>
-
-~~1. 깃허브 주소~~ <br>
-~~2. Maven Spring 과 ODJBC6 버전 추가해야 하는지 // 이외에 추가할 게 있는지 혹은 빼야 할 게 있는지 // 리포지토리 구성 상태 이대로 괜찮은지 다른 의견 있으시다면 말씀해주세요~~ <br>
-3. 기간 중 추가, 삭제되는 프레임워크, API 는 수시로 추가할 예정입니다 <br>
-4. 이 외에 또 추가해야 할 부분이 있다면 편하게 말씀해 주세요! <br>
-
-
-

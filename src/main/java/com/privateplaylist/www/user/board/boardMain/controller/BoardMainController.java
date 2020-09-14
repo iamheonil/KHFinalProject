@@ -28,9 +28,9 @@ public class BoardMainController {
 //		System.out.println("게시판 메인");
 		
 		Member mem = (Member) session.getAttribute("loginUser");
-		Admin admin=(Admin)session.getAttribute("loginAdmin");
+		Admin admin = (Admin)session.getAttribute("loginAdmin");
 		
-		if(mem != null ||admin !=null) {//로그인이 되어있을때만 실행
+		if(mem != null || admin != null) {//로그인이 되어있을때만 실행
 			
 			//공지사항
 			List<Map<String, Object>> notice = boardMainService.selectNotice();
