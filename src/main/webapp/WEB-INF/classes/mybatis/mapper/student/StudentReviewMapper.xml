@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+<mapper namespace="StuReview">
+
+	<select id="selectReviewListCnt" resultType="int">
+		SELECT count(*) FROM (
+			select * from REVIEW
+			where user_no = #{userNo}
+		)
+	</select>
+	
+	<select id="selectReviewList" resultType="map">
+		SELECT * FROM (
+	  		SELECT rownum no, r.*
+	  		FROM (
+				SELECT * FROM review
+				where user_no = #{user.userNo}
+				order by review_no
+			) r
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}	
+	</select>
+	
+	
+<!-- 	<update id="updateReview"> -->
+<!--   	update review -->
+  	
+<!--   	<if test="findStuState.equals(0)"> -->
+<!-- 	set find_stu_state = 1 -->
+<!-- 	</if> -->
+<!-- 	<if test="findStuState.equals(1)"> -->
+<!-- 	set find_stu_state = 0 -->
+<!-- 	</if> -->
+	
+<!-- 	where user_no = #{userNo} -->
+<!-- 	and find_stu_no = #{findStuNo} -->
+<!--   </update> -->
+	
+	
+<!-- 	</update> -->
+	
+	
+	
+	
+</mapper>
