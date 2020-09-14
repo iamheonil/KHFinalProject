@@ -587,11 +587,11 @@ $(function(){
 			<c:if  var="findstu" test="${!empty userFindStuList }">
 			<!-- 값 출력 -->
 			<c:forEach items="${userFindStuList }" var="findstu" >
-		    <div class="panel" id="ho">
+		    <div class="panel" id="ho" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">
 		        <div class="col-sm-6">
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
-		                            <p class="text-muted txt_line_title"><a class="anone" id="modal_opne_btn" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">${findstu.FIND_STU_TITLE }</a></p>
+		                            <p class="text-muted txt_line_title">${findstu.FIND_STU_TITLE }</p>
 		                            <h4>
 		                            	<a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="">
 		                            		<i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i>
