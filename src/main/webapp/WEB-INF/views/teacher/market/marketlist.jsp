@@ -13,11 +13,11 @@
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <style type="text/css">
-.menu-item#three ul {
+.menu-item#community ul {
    height: 93px; 
 }
 
-#studentMK{
+#teacherMK{
   background: #eee;
 }
 

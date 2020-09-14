@@ -355,9 +355,9 @@ function getInfiniteBox(){
             <h4><a href="#">과외</a></h4>
             <ul>
               <li id="studentWL"><a href="${pageContext.request.contextPath}/student/wishlist">찜한 과외</a></li>
-              <li><a href="${pageContext.request.contextPath}/student/applylist">과외 신청 내역</a></li>
-              <li><a href="${pageContext.request.contextPath}/student/connectedlesson">수강 중인 과외 </a></li>
-              <li><a href="${pageContext.request.contextPath}/student/endlesson">수강 완료 과외</a></li>
+              <li id="applylistM"><a href="${pageContext.request.contextPath}/student/applylist">과외 신청 내역</a></li>
+              <li id="connectedlessonM"><a href="${pageContext.request.contextPath}/student/connectedlesson">수강 중인 과외 </a></li>
+              <li id="endlessonM"><a href="${pageContext.request.contextPath}/student/endlesson">수강 완료 과외</a></li>
             </ul>
           </div>
           
@@ -372,8 +372,8 @@ function getInfiniteBox(){
           <div class="menu-item" id="three">
             <h4><a href="#">커뮤니티</a></h4>
 	            <ul>
-	             <li><a href="${pageContext.request.contextPath}/student/questionlist">질문 게시판</a></li>
-	             <li><a href="#">후기 게시판</a></li>
+	             <li id="questionM"><a href="${pageContext.request.contextPath}/student/questionlist">질문 게시판</a></li>
+	             <li id="reviewM"><a href="#">후기 게시판</a></li>
 	             <li id="studentMK"><a href="${pageContext.request.contextPath}/student/market">중고장터</a></li>
 	            </ul>
           </div>
