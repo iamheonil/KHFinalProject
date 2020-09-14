@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--  -->
+<mapper namespace="Question">
+
+	<!-- 전체 리스트 출력 -->
+	<select id="selectQuestionList" resultType="map">
+
+	select q.*, m.user_id from question q, membership m
+					where m.user_no = q.user_no
+					order by question_no desc
+  </select>
+	<!-- 질문게시판 컨텐츠갯수 cnt -->
+	<select id="selectCntQuestionAll" resultType="int">
+  		select count(*) from question
+    </select>  
+<!-- 		상세 페이지 출력  -->
+	<select id="selectQuestionone" resultType="QUESTION" parameterType="int">
+  	select * from question
+  	where question_no = #{questionNo}
+ 	</select>
+
+	
+	<!-- 댓글,대댓글 출력 -->
+  <select id="selectQuestionComm" resultType="QUESTIONCOMM" parameterType="int">
+  	select * from question_comm
+  	where question_no = #{questionNo}
+  </select>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteQuestion">
+	  	delete from question
+		where question_no = #{questionNo}
+    </delete>
+	<!-- 게시물파일삭제-->
+	<delete id="deleteQuestionFile">
+		delete from question_file where question_no=#{questionNo}
+	</delete>
+
+	<!-- 게시물 댓글삭제 -->
+	<delete id="deleteQuestionComm">
+		delete from question_comm where question_no=#{questionNo} AND comm_No=#{comm_No} 
+	</delete>
+
+	<delete id="deleteQuestionReComm">
+		delete from question_comm where comm_No=#{comm_No} AND parent_No=1
+	</delete>
+
+
+	<select id="selectSearchQuestion" resultType="QUESTION" parameterType="map">
+
+	select * from (
+		select rownum rnum, c.* from(
+			select * from question
+			where question_title like '%' || #{keyword} || '%'
+			or question_content like  '%' || #{keyword} || '%'
+			order by question_no desc
+		) c
+	) question 
+	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	
+  </select>
+  
+  <select id="selectCntQuestionSearchAll" resultType="int" parameterType="String">
+  	select count(*) from question
+  	where question_title like '%' || #{keyword} || '%'
+  	or question_content like  '%' || #{keyword} || '%'
+  </select>
+
+
+
+	<select id="selectDetailQuestion" >
+	select Q.*,R.* from question Q
+	INNER JOIN question_comm R
+	ON Q.question_no = R.question_no
+	WHERE question_no = #{questionNo}
+	
+	</select>
+
+	<select id="selectQuestionDetail" resultType="map">
+		select * from question
+		where question_no = #{questionNo}
+	</select>
+	<select id="selectQuestionFile" resultType="map">
+		select * from question_file
+		where question_no = #{questionNo}
+	</select>
+	<select id="getQuestionComm" resultType="map">
+		select * from question_comm
+  		where question_no = #{questionNo}
+	</select>
+	<select id="selectCntQuestionComm" resultType="int">
+		select count(*) from question_comm
+		where question_no = #{questionNo}
+	</select>
+</mapper>

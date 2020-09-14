@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="dao.UserMarketDao">
+  
+  <select id="getMarketInfo" parameterType="int" resultType="map">
+ 	select m.*, s.user_id, t.*, c.tch_file_rename from market m
+	left outer join membership s
+	on(m.mk_writer = s.user_no)
+    left outer join mk_thumb t
+	on(m.mk_no = t.mk_no)
+    left outer join teacherfile c
+    on(m.mk_writer = c.user_no)
+	where m.mk_no = #{mkno}
+  </select>
+  
+  <select id="getMarketFile" parameterType="int" resultType="MKFILE">
+  	SELECT * FROM mk_file
+  	WHERE mk_no = #{mkno}
+  </select>
+
+  <select id="getMarketlist" parameterType="PAGING" resultType="map">
+	SELECT * FROM (
+  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * from MARKET m
+				LEFT JOIN MK_THUMB f
+				ON(m.mk_no = f.mk_no)
+				LEFT JOIN membership s
+				ON(m.mk_writer = s.user_no)
+				WHERE m.mk_state != 2
+				AND MK_TITLE LIKE '%' || #{search} || '%'
+				ORDER BY m.MK_NO desc
+			) t
+		) x
+	WHERE no between #{startNo} AND #{endNo}
+  </select>
+
+  <select id="selectCntAllMK" parameterType="map" resultType="int">
+	SELECT count(*) from MARKET m
+	WHERE m.mk_state != 2
+	AND MK_TITLE LIKE '%' || #{search} || '%'
+  </select>
+  
+  <insert id="insertMarket" parameterType="MARKET">
+	insert into market(mk_no ,mk_title,mk_content, mk_writer, mk_price) 
+	values (#{mkNo}, #{mkTitle}, #{mkContent}, #{mkWriter}, #{mkPrice})
+  </insert>
+
+  <insert id="insertThumb" parameterType="map">
+	insert into mk_thumb(mk_thumb_no, mk_no ,mk_thumb_org, mk_thumb_rename) 
+	values (mk_thumb_SEQ.nextval, #{mkNo}, #{originFileName}, #{renameFileName})
+  </insert>
+  
+  <insert id="insertFile" parameterType="map">
+	insert into mk_file(mk_file_no, mk_no ,mk_file_org, mk_file_rename) 
+	values (mk_file_SEQ.nextval, #{mkNo}, #{originFileName}, #{renameFileName})
+  </insert>
+  
+  <select id="getNextNo" resultType="int">
+  	SELECT market_SEQ.nextval FROM dual
+  </select>
+  
+  <update id="marketFinish"  parameterType="int">
+  	UPDATE market SET mk_state = 1
+  	WHERE mk_no = #{mkno}  
+  </update>
+
+  <update id="marketDelete"  parameterType="int">
+  	UPDATE market SET mk_state = 2
+  	WHERE mk_no = #{mkno}  
+  </update>
+  
+  <delete id="marketFileDelete"  parameterType="int">
+  	DELETE mk_file
+  	WHERE mk_no = #{mkno}  
+  </delete>
+
+  <delete id="marketThumbDelete" parameterType="int">
+  	DELETE mk_thumb
+  	WHERE mk_no = #{mkno}  
+  </delete>
+
+  <delete id="marketCommDelete" parameterType="int">
+  	DELETE mk_comm
+  	WHERE mk_no = #{mkno}  
+  </delete>
+
+  <delete id="deleteThumb" parameterType="int">
+  	DELETE mk_thumb
+  	WHERE mk_thumb_no = #{mkThumbNo}  
+  </delete>
+
+  <delete id="deleteFile" parameterType="int">
+  	DELETE mk_file
+  	WHERE mk_file_no = #{mkFileNo}  
+  </delete>
+
+  <select id="getMarketComm"  parameterType="int" resultType="map">
+	SELECT c.*, m.user_id, t.tch_file_rename FROM mk_comm c
+	INNER JOIN membership m
+	ON(m.user_no = c.mk_user_no)
+	LEFT OUTER JOIN teacherfile t
+	ON(m.user_no = t.user_no)
+  	WHERE mk_no = #{mkno}
+  	ORDER BY c.mk_comm_no
+  </select>
+  
+  <update id="updateMarket" parameterType="MARKET">
+  	UPDATE market SET mk_title = #{mkTitle}, mk_content = #{mkContent}, mk_price = #{mkPrice}
+  	WHERE mk_no = #{mkNo}
+  </update>
+  
+  <insert id="insertComm" parameterType="MKCOMM">
+  	INSERT INTO mk_comm(mk_comm_no, mk_no, mk_comm_content, mk_user_no)
+  	VALUES(#{mkCommNo}, #{mkNo}, #{mkCommContent}, #{mkUserNo})
+  </insert>
+  
+  <select id="selectNextMkCommNo" resultType="int">
+  	SELECT mk_comm_SEQ.nextval FROM dual
+  </select>
+
+  <select id="selectCommByCommNo" parameterType="int" resultType="map">
+	select c.*, m.user_id, t.tch_file_rename from mk_comm c
+	LEFT OUTER JOIN membership m
+	ON(c.mk_user_no = m.user_no)
+	LEFT OUTER JOIN teacherfile t
+	ON(c.mk_user_no = t.user_no)
+	WHERE c.mk_comm_no = #{commno}
+  </select>
+  
+  <update id="deleteComm">
+  	UPDATE mk_comm SET mk_comm_state = 1
+  	WHERE mk_comm_no = #{mkCommNo}
+  </update>
+  
+  <insert id="insertRecomm">
+    INSERT INTO mk_comm(mk_comm_no, mk_no, mk_comm_content, mk_user_no, mk_comm_class, mk_parent_comm_no)
+  	VALUES(#{mkCommNo}, #{mkNo}, #{mkCommContent}, #{mkUserNo}, #{mkCommClass}, #{mkParentCommNo})
+  </insert>
+  
+  <update id="updateComm" parameterType="map">
+  	UPDATE mk_comm SET mk_comm_content = #{commContent}
+  	WHERE mk_comm_no = #{mkCommNo}
+  </update>
+  </mapper>

@@ -2,50 +2,105 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-  
+
 <configuration>
 
-<!-- 세부 설정 필요합니다옹 -->
+	<!-- 세부 설정 필요합니다옹 -->
 
 	<!-- DB컬럼명을 Java의 Camel 표기법으로 자동 매핑 -->
 	<settings>
-		<setting value="true" name="mapUnderscoreToCamelCase"/>
+		<setting value="true" name="mapUnderscoreToCamelCase" />
 	</settings>
 
 	<!-- 별칭 -->
 	<typeAliases>
-		<typeAlias alias="ADMIN" type="com.privateplaylist.www.dto.Admin"/>
-		<typeAlias alias="CONNECTEDLESSON" type="com.privateplaylist.www.dto.ConnectedLesson"/>
-		<typeAlias alias="FINDLESSON" type="com.privateplaylist.www.dto.FindLesson"/>
-		<typeAlias alias="FINDSTUDENT" type="com.privateplaylist.www.dto.FindStudent"/>
-		<typeAlias alias="MEMBERSHIP" type="com.privateplaylist.www.dto.Membership"/>
-		<typeAlias alias="MEMBER" type="com.privateplaylist.www.member.vo.Member"/>
-		<typeAlias alias="NOTICE" type="com.privateplaylist.www.dto.Notice"/>
-		<typeAlias alias="PAYMENT" type="com.privateplaylist.www.dto.Payment"/>
-		<typeAlias alias="QUESTION" type="com.privateplaylist.www.dto.Question"/>
-		<typeAlias alias="QUESTIONCOMM" type="com.privateplaylist.www.dto.QuestionComm"/>
-		<typeAlias alias="QUESTIONFILE" type="com.privateplaylist.www.dto.QuestionFile"/>
-		<typeAlias alias="REVIEW" type="com.privateplaylist.www.dto.Review"/>
-		<typeAlias alias="SCHEDULE" type="com.privateplaylist.www.dto.Schedule"/>
-		<typeAlias alias="TEACHERFILE" type="com.privateplaylist.www.dto.TeacherFile"/>
-		<typeAlias alias="WEBSHARE" type="com.privateplaylist.www.dto.Webshare"/>
-		<typeAlias alias="WEBSHAREFILE" type="com.privateplaylist.www.dto.WebshareFile"/>
-		<typeAlias alias="MARKET" type="com.privateplaylist.www.dto.Market"/>
-		<typeAlias alias="MKCOMM" type="com.privateplaylist.www.dto.MkComm"/>
-		<typeAlias alias="MKFILE" type="com.privateplaylist.www.dto.MkFile"/>
-		<typeAlias alias="BLACKLIST" type="com.privateplaylist.www.dto.BlackList"/>
-		<typeAlias alias="PAGING" type="common.util.Paging"/>
+		<typeAlias alias="ADMIN"
+			type="com.privateplaylist.www.dto.Admin" />
+		<typeAlias alias="CONNECTEDLESSON"
+			type="com.privateplaylist.www.dto.ConnectedLesson" />
+		<typeAlias alias="FINDLESSON"
+			type="com.privateplaylist.www.dto.FindLesson" />
+		<typeAlias alias="FINDSTUDENT"
+			type="com.privateplaylist.www.dto.FindStudent" />
+		<typeAlias alias="MEMBERSHIP"
+			type="com.privateplaylist.www.dto.Membership" />
+		<typeAlias alias="MEMBER"
+			type="com.privateplaylist.www.member.vo.Member" />
+		<typeAlias alias="NOTICE"
+			type="com.privateplaylist.www.dto.Notice" />
+		<typeAlias alias="PAYMENT"
+			type="com.privateplaylist.www.dto.Payment" />
+		<typeAlias alias="QUESTION"
+			type="com.privateplaylist.www.dto.Question" />
+		<typeAlias alias="MASSAGE"
+			type="com.privateplaylist.www.dto.Message" />
+		<typeAlias alias="QUESTIONCOMM"
+			type="com.privateplaylist.www.dto.QuestionComm" />
+		<typeAlias alias="QUESTIONFILE"
+			type="com.privateplaylist.www.dto.QuestionFile" />
+		<typeAlias alias="REVIEW"
+			type="com.privateplaylist.www.dto.Review" />
+		<typeAlias alias="SCHEDULE"
+			type="com.privateplaylist.www.dto.Schedule" />
+		<typeAlias alias="TEACHERFILE"
+			type="com.privateplaylist.www.dto.TeacherFile" />
+		<typeAlias alias="WEBSHARE"
+			type="com.privateplaylist.www.dto.Webshare" />
+		<typeAlias alias="WEBSHAREFILE"
+			type="com.privateplaylist.www.dto.WebshareFile" />
+		<typeAlias alias="MARKET"
+			type="com.privateplaylist.www.dto.Market" />
+		<typeAlias alias="MKCOMM"
+			type="com.privateplaylist.www.dto.MkComm" />
+		<typeAlias alias="MKFILE"
+			type="com.privateplaylist.www.dto.MkFile" />
+		<typeAlias alias="BLACKLIST"
+			type="com.privateplaylist.www.dto.BlackList" />
+		<typeAlias alias="FINDLESSONFILE"
+         type="com.privateplaylist.www.dto.FindLessonFile" />	
+		<typeAlias alias="PAGING" type="common.util.Paging" />
 	</typeAliases>
 
 	<!-- mapper 연결 -->
 	<mappers>
+		<mapper resource="/mybatis/mapper/member/MessageMapper.xml"/>
+		<mapper resource="/mybatis/mapper/member/MemberFindLessonMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/board/BlackListMapper.xml"/>
-<!--		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/> -->
+		<mapper resource="/mybatis/mapper/admin/member/AdminMemberMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/AdminLoginMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/board/NoticeMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/lesson/LessonMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/lesson/FindStudentMapper.xml"/>
  		<mapper resource="/mybatis/mapper/admin/MarketMapper.xml"/>
 		<mapper resource="/mybatis/mapper/member/memberMapper.xml"/>
 		<mapper resource="/mybatis/mapper/admin/ProfitMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/ConnectLessonMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/ProfileMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/board/QuestionMapper.xml"/>
+		<mapper resource="/mybatis/mapper/admin/board/ReviewMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/TeacherQuestionMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/WebShareMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/TeacherBlacklist.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/LessonMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/TeacherReviewMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/StudentBlacklist.xml"/>
+		<mapper resource="/mybatis/mapper/student/StudentWebshare.xml"/>
+		<mapper resource="/mybatis/mapper/student/StudentMarketMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/StuProfileMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/FindStuMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserMarketMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/StudentQuestionMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/BoardMainMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/WishlistMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserFindStuMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserReviewMapper.xml"/>
+		<mapper resource="/mybatis/mapper/teacher/TeacherMarketMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/StuApplyLessonMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/BoardBlackListMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserNoticeMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/StudentReviewMapper.xml"/>
+		<mapper resource="/mybatis/mapper/user/UserQuestionMapper.xml"/>
+		<mapper resource="/mybatis/mapper/student/StuConnectLessonMapper.xml"/>
 	</mappers>
 
 </configuration>

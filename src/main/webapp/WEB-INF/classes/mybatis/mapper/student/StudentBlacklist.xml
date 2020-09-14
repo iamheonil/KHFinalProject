@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="StudentBlackList">
+
+	
+	<!-- 신고 목록 -->
+	<select id="selectAllBlackList" parameterType="map" resultType="map">
+	
+		SELECT * 
+		FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+			  	SELECT * FROM blacklist b
+				left join review r
+					ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
+				left join market k
+					ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
+				left join question q
+					ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
+				INNER JOIN membership m
+					ON(b.user_no = m.user_no)
+				WHERE b.user_no=#{paging.search}
+				ORDER BY blacklist_no DESC
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}
+	
+	</select>
+	
+	
+	
+	<!-- 신고 목록 수 - 페이징 -->
+	<select id="selectCntAllBlack" parameterType="map" resultType="int">
+	
+		SELECT count(*) 
+		FROM (
+				SELECT * 
+				FROM blacklist b
+					left join review r
+						ON(b.blacklist_post_no = r.review_no and b.blacklist_board = '후기')
+					left join market k
+						ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터')
+					left join question q
+						ON(b.blacklist_post_no = q.question_no and b.blacklist_board = '질문')
+					INNER JOIN membership m
+						ON(b.user_no = m.user_no)
+				WHERE b.user_no = #{search}
+       		 )
+        
+  	</select>
+
+
+</mapper>

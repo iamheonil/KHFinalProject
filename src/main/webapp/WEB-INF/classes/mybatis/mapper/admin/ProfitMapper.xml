@@ -4,6 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+   <!-- 이인주 : 관리자 > 수익 > mapper -->
+  
   <mapper namespace="Profit">
   
   <select id="selectprofit01" resultType="int">

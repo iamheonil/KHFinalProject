@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+<mapper namespace="UserNotice">
+
+	<!-- 모든 공지사항 수 조회 - 페이징 -->
+	<select id="selectCntNotice" resultType="int">
+	
+		select count(*) from notice
+	
+	</select>
+
+	<!-- 모든 공지사항 -->
+	<select id="selectNotice" resultType="NOTICE">
+	
+		select * from (
+		select rownum rnum, c.* from(
+		
+			select * from notice
+			order by notice_no desc
+			
+			) c
+		) notice 
+		where rnum BETWEEN #{startNo} AND #{endNo}
+	
+	</select>
+	
+	<!-- 공지사항 상세 -->
+	<select id="selectNoticeDetail" parameterType="int" resultType="NOTICE">
+	
+		select * from notice
+		where notice_no = #{no}
+	
+	</select>
+	
+	<!-- 공지사항 검색결과 수 -->
+	<select id="selectCnNoticeSearch" parameterType="String" resultType="int">
+	
+		select count(*) from notice
+		where notice_title like '%' || #{keyword} || '%'
+	
+	</select>
+	
+	<!-- 공지사항 검색결과 -->
+	<select id="selectNoticeSearch" parameterType="map" resultType="NOTICE">
+	
+		select * from (
+		select rownum rnum, c.* from(
+		
+			select * from notice
+			where notice_title like '%' || #{keyword} || '%'
+			order by notice_no desc
+			
+			) c
+		) notice 
+		where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+	
+	</select>
+	
+
+</mapper>
