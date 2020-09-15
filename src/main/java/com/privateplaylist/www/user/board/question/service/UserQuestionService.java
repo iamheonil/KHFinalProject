@@ -29,7 +29,6 @@ public class UserQuestionService {
 		
 		Paging paging = new Paging(totalCount, curPage); 
 		paging.setSearch(search);
-		System.out.println("paging : "+ paging);
 		return paging;
 	}
 
@@ -100,7 +99,6 @@ public class UserQuestionService {
 	}
 	
 	public List<Map<String, Object>> selectQuestionReCommentByNo(int questionNo) {
-		System.out.println("대댓글 : "+ userQuestionDao.selectQuestionReCommentByNo(questionNo));
 		return userQuestionDao.selectQuestionReCommentByNo(questionNo);
 	}
 
@@ -112,7 +110,6 @@ public class UserQuestionService {
 //		int questionNo = userQuestionDao.getNextQuesstionNo();
 //		question.setQuestionNo(questionNo);
 		
-		System.out.println("업데이트 question "+question);
 		if(!(files.size() == 1
 				&& files.get(0).getOriginalFilename().equals(""))) {
 				
@@ -184,7 +181,6 @@ public class UserQuestionService {
 	}
 
 	public void deleteQuestion(int questionNo) {
-		System.out.println(questionNo);
 		userQuestionDao.deleteQuestion(questionNo);
 	}
 

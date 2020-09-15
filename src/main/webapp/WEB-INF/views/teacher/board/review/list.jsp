@@ -7,6 +7,12 @@
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <style type="text/css">
+.menu-item#community ul {
+   height: 93px; 
+}
+
+#reviewM{
+  background: #eee;
 
 #title{
 

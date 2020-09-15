@@ -262,7 +262,7 @@ body {
 					<ul class="gtco-list-link footerMenu" id="short">
 						<p>ABOUT US</p>
 						<li><a href="/ss/introduce">제작자 소개</a></li>
-						<li><a href="#">사이트 소개</a></li>
+						<!-- <li><a href="#">사이트 소개</a></li> -->
 					</ul>
 					<ul class="gtco-list-link footerMenu" id="short">
 						<p>POLICY</p>
