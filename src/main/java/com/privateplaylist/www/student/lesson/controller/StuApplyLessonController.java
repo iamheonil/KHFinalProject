@@ -38,7 +38,6 @@ public class StuApplyLessonController {
 		Paging paging = stuApplyLessonService.getPagingStuApply(curPage, loginUser);
 
 		List<Map<String, Object>> list = stuApplyLessonService.selectApplyList(paging, loginUser); 
-		System.out.println(list);
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		mav.setViewName("student/lesson/signToTch");
@@ -58,7 +57,6 @@ public class StuApplyLessonController {
 	public int deleteApply(@RequestParam int connLessonNo) {
 		
 		int deleteApply = stuApplyLessonService.cancelApplyByNo(connLessonNo);
-		System.out.println("controller : "+deleteApply);
 		return deleteApply;
 	}
 	
