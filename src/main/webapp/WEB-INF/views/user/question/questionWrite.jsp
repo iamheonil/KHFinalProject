@@ -301,6 +301,10 @@ function submitContents(elClickedObj) {
 
 }
 
+function goBack(){
+	window.history.back();
+}
+
 </script>
 
 
@@ -352,7 +356,23 @@ function submitContents(elClickedObj) {
             	  	<div class="userId">${detail.question.USER_ID }</div>
             	  </div>
                </div>
+<!--                <div class="clearfix" ></div> -->
                <hr>
+               <div class="article-content">
+               <label>내용</label>
+<!--                		<textarea class="form-control" rows="5" style="height: 400px;" name="questionContent"></textarea> -->
+					<textarea maxlength="2000" required class="form-control" id="questionContent" name="questionContent" rows="5" style="width: 99%"></textarea>
+						<!-- SmartEditor2 --> 
+<!-- 						<textarea id="content" name="content"></textarea> -->
+					
+                   <div class="mkFiles">
+                   <c:if test="${!empty files }">
+                   <c:forEach items="${files }" var="file">
+               			<img class="files" alt="" src="${pageContext.request.contextPath }/resources/upload/${file.mkFileRename }"/>
+                   </c:forEach>
+                   </c:if>
+                   </div>
+                   <hr>
                <div>
 <!--                <div class="article-img"> -->
 <!--                	<input type="file" multiple name="photo1" onchange="readURL(this);" /> -->
@@ -368,28 +388,13 @@ function submitContents(elClickedObj) {
 <!--                    </div> -->
 <!--                </div> -->
                </div>
-<!--                <div class="clearfix" ></div> -->
-               <hr>
-               <div class="article-content">
-<!--                		<textarea class="form-control" rows="5" style="height: 400px;" name="questionContent"></textarea> -->
-					<textarea maxlength="2000" required class="form-control" id="questionContent" name="questionContent" rows="5"></textarea>
-						<!-- SmartEditor2 --> 
-<!-- 						<textarea id="content" name="content"></textarea> -->
-					
-                   <div class="mkFiles">
-                   <c:if test="${!empty files }">
-                   <c:forEach items="${files }" var="file">
-               			<img class="files" alt="" src="${pageContext.request.contextPath }/resources/upload/${file.mkFileRename }"/>
-                   </c:forEach>
-                   </c:if>
-                   </div>
                    
                </div>
                <br><br>
                
            <div class="text-center">	
 				<button id="btnWrite" class="btn btn-info" onclick="submitContents();">작성</button>
-				<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+				<button type="button" id="btnCancel" class="btn btn-danger" onclick="goBack();">취소</button>
 			</div>
 			
 <!--            </div> -->
