@@ -94,10 +94,8 @@ margin-top:20px;
 
 				<div class="row row-pb-sm">
 					<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
-						<h2>People Love Us</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Phasellus placerat enim et urna sagittis, rhoncus euismod erat
-							tincidunt. Donec tincidunt volutpat erat.</p>
+						<h2>좋은 선생님을 원하는 곳에서</h2>
+						<p>우리는 과외를 받으려는 학생/학부모님과 과외선생님을 웹을 통해 연결합니다.</p>
 					</div>
 				</div>
 
@@ -111,10 +109,7 @@ margin-top:20px;
 							</div>
 							<blockquote>
 								<p>
-									&ldquo;Design must be functional and functionality must be
-									translated into visual aesthetics, without any reliance on
-									gimmicks that have to be explained.&rdquo; <cite class="author">&mdash;
-										Ferdinand A. Porsche</cite>
+									&ldquo;우리는 좋은 선생님을 검증하고, 그 선생님이 열과 성을 다해서 가르치도록 환경을 조성하고 있습니다.&rdquo; 
 								</p>
 							</blockquote>
 						</div>
@@ -129,12 +124,7 @@ margin-top:20px;
 							</div>
 							<blockquote>
 								<p>
-									&ldquo;Creativity is just connecting things. When you ask
-									creative people how they did something, they feel a little
-									guilty because they didn’t really do it, they just saw
-									something. It seemed obvious to them after a while.&rdquo; <cite
-										class="author">&mdash; Steve Jobs</cite>
-								</p>
+									&ldquo;학생은 선생님에 대한 추천 평가를 할수 있으며, 향후 투명한 과외 조성에 큰 역할을 합니다&rdquo; 
 							</blockquote>
 						</div>
 					</div>
@@ -151,11 +141,7 @@ margin-top:20px;
 							</div>
 							<blockquote>
 								<p>
-									&ldquo;I think design would be better if designers were much
-									more skeptical about its applications. If you believe in the
-									potency of your craft, where you choose to dole it out is not
-									something to take lightly.&rdquo; <cite class="author">&mdash;
-										Frank Chimero</cite>
+									&ldquo;자료실, 1대1 채팅기능을 통해 선생님이 더 과외를 많이 하게 되는 구조를 계속해서 강화해 나가고 있습니다.&rdquo; 
 								</p>
 							</blockquote>
 						</div>
@@ -170,10 +156,7 @@ margin-top:20px;
 							</div>
 							<blockquote>
 								<p>
-									&ldquo;Design must be functional and functionality must be
-									translated into visual aesthetics, without any reliance on
-									gimmicks that have to be explained.&rdquo; <cite class="author">&mdash;
-										Ferdinand A. Porsche</cite>
+									&ldquo;중고장터를 통해 사용하지 않는 도서나 학용품 등을 자유롭게 거래할수 있습니다.&rdquo; 
 								</p>
 							</blockquote>
 						</div>
