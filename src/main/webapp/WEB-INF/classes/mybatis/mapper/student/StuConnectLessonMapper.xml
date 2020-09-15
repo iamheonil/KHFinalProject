@@ -8,31 +8,37 @@
 <mapper namespace="StuConnectLesson">
 
 	<select id="selectEndLesson" parameterType="map" resultType="map">
-		SELECT * FROM (
-	  		SELECT rownum no, t.*
-	  		FROM (
-				SELECT c.conn_lesson_no, m.user_no, m.user_name, f.lesson_no, f.lesson_title, f.lesson_subject, f.max_people, c.leg_date, NVL(z.cnt, 0) cnt FROM connected_lesson c
-				INNER JOIN membership m
-				ON(c.student = m.user_no)
-				INNER JOIN find_lesson f
-				ON(c.lesson_no = f.lesson_no)
-                LEFT JOIN (select c.lesson_no, count(*) cnt from connected_lesson c
-                    where c.is_end = 0
-                    AND c.is_connected = 1
-                    GROUP BY c.lesson_no) z
-                ON(z.lesson_no = c.lesson_no)
-				WHERE student = #{userNo}
-				AND is_connected = 0
-				ORDER BY c.conn_lesson_no
-			) t
-			ORDER BY no ) x
-		WHERE no between #{paging.startNo} AND #{paging.endNo}
+<!-- 		SELECT * FROM ( -->
+<!-- 	  		SELECT rownum no, t.* -->
+<!-- 	  		FROM ( -->
+<!-- 				SELECT c.conn_lesson_no, m.user_no, m.user_name, f.lesson_no, f.lesson_title, f.lesson_subject, f.max_people, c.leg_date, NVL(z.cnt, 0) cnt FROM connected_lesson c -->
+<!-- 				INNER JOIN membership m -->
+<!-- 				ON(c.student = m.user_no) -->
+<!-- 				INNER JOIN find_lesson f -->
+<!-- 				ON(c.lesson_no = f.lesson_no) -->
+<!--                 LEFT JOIN (select c.lesson_no, count(*) cnt from connected_lesson c -->
+<!--                     where c.is_end = 1 -->
+<!--                     AND c.is_connected = 1 -->
+<!--                     GROUP BY c.lesson_no) z -->
+<!--                 ON(z.lesson_no = c.lesson_no) -->
+<!-- 				WHERE student = #{userNo} -->
+<!-- 				AND is_connected = 1 -->
+<!-- 				ORDER BY c.conn_lesson_no -->
+<!-- 			) t -->
+<!-- 			ORDER BY no ) x -->
+<!-- 		WHERE no between #{paging.startNo} AND #{paging.endNo} -->
+ select * from connected_lesson c
+    INNER JOIN membership m
+	ON(c.student = m.user_no)
+    INNER JOIN find_lesson f
+	ON(c.lesson_no = f.lesson_no)
+     where c.is_end = 1 and student = #{userNo}
   </select>
 
 	 <select id="selectCntEndLesson" parameterType="int" resultType="int">
   	SELECT count(*) FROM connected_lesson
   	WHERE student = #{userNo}
-  	AND is_connected = 0
+  	AND is_connected = 1
   </select>
 
 

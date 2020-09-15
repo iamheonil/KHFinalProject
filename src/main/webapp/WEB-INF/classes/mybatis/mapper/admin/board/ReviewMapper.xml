@@ -30,7 +30,7 @@
     </delete>
 
 
-	<select id="selectSearchReview" resultType="REVIEW" parameterType="map">
+	<select id="selectSearchReview"  parameterType="map" resultType="map">
 
 	select * from (
 		select rownum rnum, c.* from(
