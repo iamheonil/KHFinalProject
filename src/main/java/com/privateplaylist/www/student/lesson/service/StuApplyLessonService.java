@@ -22,7 +22,6 @@ public class StuApplyLessonService {
 	public Paging getPagingStuApply(int curPage, Member loginUser) {
 		
 		int totalCount = stuApplyLessonDao.selectApplyListCnt(loginUser.getUserNo());
-		System.out.println(totalCount);
 		// Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
 		
