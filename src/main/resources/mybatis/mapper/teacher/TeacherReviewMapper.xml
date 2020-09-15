@@ -7,10 +7,13 @@
   <mapper namespace="TeacherReview">
   
   <!-- 전체 리스트 출력 -->
-	<select id="selectReviewList" resultType="REVIEW">
+	<select id="selectReviewList" resultType="map">
 
-	select * from review
-	 order by review_no desc
+	 select r.review_no , r.review_content,r.star_point,r.review_date,m.user_no,m.user_name,f.lesson_title from review r
+        inner join membership m 
+        on (r.user_no = m.user_no)
+        inner join (select * from find_lesson) f
+        on (r.user_no-1 = f.user_no)
   </select>
   
   <!-- 질문게시판 컨텐츠갯수 cnt -->

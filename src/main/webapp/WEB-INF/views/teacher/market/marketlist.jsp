@@ -13,11 +13,11 @@
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <style type="text/css">
-.menu-item#three ul {
+.menu-item#community ul {
    height: 93px; 
 }
 
-#studentMK{
+#teacherMK{
   background: #eee;
 }
 
@@ -98,6 +98,7 @@ a {
 .user-list tbody td>img {
     position: relative;
     max-width: 50px;
+    max-height: 50px;
     float: left;
     margin-right: 15px;
 }
@@ -203,7 +204,7 @@ function marketCommPaging(curPage){
                                 <tr>
                                     <td class="text-center"><span>${m.NO }</span></td>
                                     <td>
-                                        <img src="<%= request.getContextPath() %>/resources/upload/${m.MK_FILE_RENAME }" alt="메인 사진">
+                                        <img src="<%= request.getContextPath() %>/resources/upload/${m.MK_THUMB_RENAME }" alt="메인 사진">
                                         <a href="<%= request.getContextPath() %>/board/market/detail?mkno=${m.MK_NO }" class="user-link">${m.MK_TITLE }</a>
                                     </td>
                                     <td  class="text-center">
@@ -220,19 +221,9 @@ function marketCommPaging(curPage){
                                     </c:if>
                                     </td>
                                     <td  class="text-center">
-                                        <span>
-                               		    <fmt:parseDate value="${m.MK_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                   		</span>
+                                         <span>${m.MK_DATE }</span>
                                     </td>
-                                    <td>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
+                                   
                                 </tr>
                                 </c:forEach>
                             </tbody>
@@ -244,7 +235,7 @@ function marketCommPaging(curPage){
 	</div>
         <div style="text-align: center;">
 <%--    <c:if test="${not empty list}" > --%>
-		<c:import url="/WEB-INF/paging/student/market/marketPaging.jsp" />
+		<c:import url="/WEB-INF/paging/teacher/market/marketPaging.jsp" />
 <%-- 	</c:if> --%>
 		</div>
 </div>
@@ -270,7 +261,6 @@ function marketCommPaging(curPage){
 	                                <th class="text-center" style="width: 5%;"><span>No</span></th>
 	                                <th class="text-center"><span>댓글 내용</span></th>
 	                                <th class="text-center"  style="width: 10%;"><span>작성일</span></th>
-	                                <th style="width: 5%;">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -278,21 +268,10 @@ function marketCommPaging(curPage){
                                 <tr>
                                     <td class="text-center"><span>${m.NO }</span></td>
                                     <td>
-                                        <a href="#" class="commContent">${m.MK_COMM_CONTENT }</a>
+                                        <a href="${pageContext.request.contextPath }/board/market/detail?mkno=${m.MK_NO }"  class="commContent">${m.MK_COMM_CONTENT }</a>
                                     </td>
                                     <td  class="text-center">
-                                        <span>
-                                        <fmt:parseDate value="${m.MK_COMM_DATE }" pattern="yyyyMMdd" var="date"/>
-                               		    <fmt:formatDate value="${date }" pattern="yyyy/MM/dd"/>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
+                                        <span>${m.MK_COMM_DATE }</span>
                                     </td>
                                 </tr>
                                 </c:forEach>
@@ -305,7 +284,7 @@ function marketCommPaging(curPage){
 	</div>
         <div style="text-align: center;">
 <%--    <c:if test="${not empty list}" > --%>
-		<c:import url="/WEB-INF/paging/student/market/marketCommPaging.jsp" />
+		<c:import url="/WEB-INF/paging/teacher/market/marketCommPaging.jsp" />
 <%-- 	</c:if> --%>
 		</div>
 </div>

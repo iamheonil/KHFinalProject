@@ -41,6 +41,11 @@
 
 #serchbox{
 	width: 500px;
+/* 	margin:0 ; */
+/* 	padding: 0; */
+    position: absolute;
+    top: 18%;
+    right: -4.5%;
 }
 
 .anone{
@@ -163,7 +168,7 @@ $(document).ready(function(){
 		<td>${question.questionNo }</td>
 		<td>
 			<div class="txt_line_title">
-				<a href="${pageContext.request.contextPath}/admin/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
+				<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
 			</div>
 		</td>
 		<td><div class="txt_line_content">${question.questionContent }</div></td>

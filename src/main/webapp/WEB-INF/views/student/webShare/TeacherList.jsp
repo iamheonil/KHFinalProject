@@ -38,6 +38,13 @@ if(userID==null){
 
 <!-- 현위지 메뉴 -->
 <style type="text/css">
+.menu-item#four ul {
+   height: 124px; 
+}
+
+#connectedlessonM{
+  background: #eee;
+}
 
 #title{
 

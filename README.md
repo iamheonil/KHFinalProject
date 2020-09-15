@@ -9,9 +9,18 @@
 
 ### 프로젝트 기간 2020.07.21 ~ 2020.09.21
 
+#### 구현파트 (Ctrl + F 를 사용하셔서 이름을 찾는게 빠릅니다.) 
+
 #### 이인주 (https://github.com/inju521)
 
-- 
+- 공지사항(관리자) : 글쓰기 (네이버 스마트 에디터 v.2.0 (API) 사용), 수정 , 삭제(check box 삭제) , 페이징
+- 수익관리(관리자) : 부트스트랩을 이용한 막대 그래프로 2020년 월별 수익현황을 보여줌
+- 회원정보 수정 (과외 선생님 & 학생)
+- 개인정보 보안을 위한 2차 인증 절차 : 입력한 비밀번호와 DB에 있는 비밀번호가 일치하는지 확인(Spring Security & js ajax)
+- 개인정보 확인 / 수정 / 회원 탈퇴 : 프로필 사진(FileUpload)  / 개인정보 확인& 수정 / 연결된 과외가 없으면 회원탈퇴진행
+- 학생찾기(학생) :  글쓰기&  글 수정 (네이버 스마트 에디터 v.2.0 (API) 사용), 삭제(check box 삭제),  
+- 개인 작성 목록 , 글 게시상태 변경(jquery  ajax) , 제목 & 내용 검색,글 상세보기 (모달) , 페이징
+- 학생 찾기(일반 사용자 ) : 목록 / 상세보기 (모달,  카카오 지도 api)  / 조건 검색 / 페이징
 
 #### 구동영 (https://github.com/GuDongyeong)
 
@@ -27,11 +36,26 @@
 
 #### 김헌일 (https://github.com/iamheonil)
 
-- 코드 형상관리 및 유지보수
+- Github 코드 형상관리 및 유지보수
+- 회원가입 (Spring Security, Naver API)
+    - 학생 회원가입
+    - 선생 회원가입
+    - 네이버 아이디 로그인
+- 로그인
+    - 선생 회원가입
+    - 네이버 아이디 로그인
+- 아이디/비밀번호 찾기
+
+- 프론트앤드 (Kakao Maps API)
+ - 로그인 후 페이지 구현, 중고장터, 문의하기, 제작자 소개 작성
 
 #### 이서연 (https://github.com/2seoyeon)
 
-- 
+- 공통 : 공지사항 목록 및 상세조회, 수강한 과외의 후기 작성 및 조회, 게시글 신고 기능 구현, 구현 페이지 내의 검색, 페이징 처리 구현
+- 학생 페이지 : 게시글 신고 내역 및 신고 처리 현황 조회
+- 선생님 페이지 : 파일 업로드 및 다운로드를 이용한 자료실 게시판 구현, 매칭 된 과외 목록 조회
+- 관리자 : 전체 과외 목록 조회, 과외 상세정보 조회, 과외 검토(승인 및 반려)기능 구현, 학생 찾기 게시판 목록 조회, 학생 찾기 게시글 상세 조회
+- Front : 메인 페이지 footer 구현, 관리자 페이지 header, footer 구현
 
 #### 이효진 (https://github.com/lhg0314)
 
@@ -46,6 +70,9 @@
        - 아이디 찾기
        - 비밀번호 찾기
        - 개인정보 관리(수정, 탈퇴 등)
+    - 로그인
+       - 일반 로그인
+       - 네이버 아이디 로그인 (회원가입 연동)
    - 커뮤니티
      - 게시글 쓰기
      - 게시글 수정
@@ -73,6 +100,9 @@
        - 비밀번호 찾기
        - 이력서, 학력증빙자료 등록
        - 개인정보 관리(수정, 탈퇴 등)
+     - 로그인
+       - 일반 로그인
+       - 네이버 아이디 로그인 (회원가입 연동)
    - 커뮤니티
      - 게시글 쓰기
      - 게시글 수정
@@ -118,15 +148,17 @@
 ### 개발환경
 
  - Mac OS / Windows7 / Windows 10
- - 이클립스 2019-12 (4.14.0)
- - JRE 1.8.0_231
+ - Eclipse 2019-12 (4.14)
+ - IntelliJ 2020.02
+ - Spring Tools 3 (Standalone Edition) 3.9
+ - JRE 1.8.0
  - JAVA - Spring Framework (5.2.7 Release)
  - MyBatis (3.5.5)
  - Oracle Database 11g
  - Apache Tomcat 9.0.35
  - Front FrameWork - Bootstrap
  - Spring Framework 5.2.7
- - 프로젝트 협업툴 - Github Desktop / SourceTree / Jira
+ - 프로젝트 협업툴 & 기타 작업툴 - Github Desktop / SourceTree / Jira / SQL Developer / DataGrip
  
 <br>
 
@@ -135,7 +167,7 @@
     - Spring Security / MyBatis / AspectJ / Logging / Inject / Servlet / JUnit Test / Mail Service / jackson-core / FileUpload / hamcrest / mockito
 
  - API
-    - Google / Kakao / NAVER / AJAX
+    - Kakao Maps / NAVER / AJAX
  
 <br>
 
@@ -148,13 +180,3 @@
 -------
 
 <br>
-
-공통부분<br>
-
-~~1. 깃허브 주소~~ <br>
-~~2. Maven Spring 과 ODJBC6 버전 추가해야 하는지 // 이외에 추가할 게 있는지 혹은 빼야 할 게 있는지 // 리포지토리 구성 상태 이대로 괜찮은지 다른 의견 있으시다면 말씀해주세요~~ <br>
-3. 기간 중 추가, 삭제되는 프레임워크, API 는 수시로 추가할 예정입니다 <br>
-4. 이 외에 또 추가해야 할 부분이 있다면 편하게 말씀해 주세요! <br>
-
-
-

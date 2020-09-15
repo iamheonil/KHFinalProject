@@ -88,6 +88,10 @@ public class BlackListDao {
 		sqlSession.update(namespace + "updateBlackQuesionDelete", qNo);
 	}
 
+	public Map<String, Object> getReviewByNo(int no) {
+		return sqlSession.selectOne(namespace + "getReviewByNo", no);
+	}
+
 
 
 	

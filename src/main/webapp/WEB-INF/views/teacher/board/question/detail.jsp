@@ -6,6 +6,14 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <!-- 현위지 메뉴 -->
 <style type="text/css">
+<style type="text/css">
+.menu-item#community ul {
+   height: 93px; 
+}
+
+#questionM{
+  background: #eee;
+}
 
 #title{
 	width: 100%;

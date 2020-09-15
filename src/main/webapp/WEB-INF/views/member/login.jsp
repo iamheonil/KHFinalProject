@@ -188,7 +188,7 @@
         <div class="text-center social-btn" >
 			<a href="/ss/naver/login"><img src="${pageContext.request.contextPath}/resources/images/naver_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
 			<p></p>
-			<a href="${kakao_url }"><img src="${pageContext.request.contextPath}/resources/images/kakao_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
+<%-- 			<a href="${kakao_url }"><img src="${pageContext.request.contextPath}/resources/images/kakao_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a> --%>
 <!--            <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> -->
 <!--            <a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
 <!-- 			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a> -->

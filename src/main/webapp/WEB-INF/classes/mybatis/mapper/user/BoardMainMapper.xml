@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  
+<mapper namespace="BoardMain">
+
+	<select id="selectNotice" resultType="Map">
+	
+		SELECT R.* 
+		FROM (SELECT notice_no, notice_title FROM notice ORDER BY notice_no DESC) R
+		WHERE rownum BETWEEN 1 AND 3
+	
+	</select>
+	
+	<select id="selectReview" resultType="Map">
+	
+		SELECT R.* 
+		FROM (SELECT review_no, review_content FROM review ORDER BY review_no DESC) R
+		WHERE rownum BETWEEN 1 AND 3
+	
+	</select>
+	
+	<select id="selectQuestion" resultType="Map">
+	
+		SELECT R.* 
+		FROM (SELECT question_no, question_title FROM question ORDER BY question_no DESC) R
+		WHERE rownum BETWEEN 1 AND 3
+	
+	</select>
+	
+	<select id="selectMarket" resultType="Map">
+	
+		SELECT R.* 
+		FROM (SELECT mk_no, mk_title FROM market ORDER BY mk_no DESC) R
+		WHERE rownum BETWEEN 1 AND 3
+	
+	</select>
+
+</mapper>

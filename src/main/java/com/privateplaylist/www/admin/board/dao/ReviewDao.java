@@ -30,7 +30,7 @@ public class ReviewDao {
 	}
 
 	
-	public List<Review> selectSearchReview(Map<String, Object> searchMap) {
+	public List<Map<String, Object>> selectSearchReview(Map<String, Object> searchMap) {
 		return sqlSession.selectList("Review.selectSearchReview",searchMap);
 	}
 

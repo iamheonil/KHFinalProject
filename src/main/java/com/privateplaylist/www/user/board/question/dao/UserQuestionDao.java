@@ -44,12 +44,10 @@ public class UserQuestionDao {
 	}
 
 	public void insertFile(Map<String, String> f) {
-		System.out.println("매퍼에 들어갈 파일 : "+f);
 		sqlSession.insert("UserQuestion.insertFile", f);
 	}
 
 	public void insertComment(QuestionComm qcomm) {
-		System.out.println(qcomm);
 		sqlSession.insert("UserQuestion.insertComment", qcomm);
 	}
 
@@ -58,7 +56,6 @@ public class UserQuestionDao {
 	}
 
 	public int updateQuestion(Question question) {
-		System.out.println(question);
 		return sqlSession.update("UserQuestion.updateQuestion", question);
 	}
 
@@ -79,7 +76,6 @@ public class UserQuestionDao {
 	}
 
 	public void insertReComment(QuestionComm qcomm) {
-		System.out.println("insertReComment에 넣을것들 : "+qcomm);
 		sqlSession.insert("UserQuestion.insertReComment", qcomm);
 	}
 

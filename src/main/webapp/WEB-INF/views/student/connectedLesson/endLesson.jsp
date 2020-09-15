@@ -15,7 +15,13 @@
 
 <!-- 현위지 메뉴 -->
 <style type="text/css">
+.menu-item#four ul {
+   height: 124px; 
+}
 
+#endlessonM{
+  background: #eee;
+}
 #title{
 
 	width: 100%;
@@ -810,7 +816,7 @@ function lessonModal(lessonNo){
 
 <div id="title">과외 연결
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">연결된 과외</a>
+	<a href="">수강완료 과외</a>
 </div>
 
 	<br>
@@ -828,12 +834,10 @@ function lessonModal(lessonNo){
 	                                <tr class="align-self-center">
 	                                    <th style="width: 10%">과외번호</th>
 	                                    <th style="width: 20%">과외명</th>
-	                                    <th style="width: 10%">선생님</th>
+	                                    <th style="width: 15%">선생님</th>
 	                                    <th style="width: 15%">과목</th>
 	                                    <th style="width: 15%">지역</th>
-	                                    <th style="width: 10%">구분</th>
-	                                    <th style="width: 10%">자료실</th>
-	                                    <th style="width: 10%">과외종료</th>
+	                                    <th style="width: 15%">후기작성</th>
 	                                </tr>
 	                            </thead>
 	                            
@@ -842,18 +846,11 @@ function lessonModal(lessonNo){
 										<tr>
 											<td>${list.LESSON_NO}</td>
 											<td><a href="#"  onclick="lessonModal(${list.LESSON_NO});" title="과외 상세 보기">${list.LESSON_TITLE}</a></td>
-											<td><a href="#" onclick="StudentModal(${list.STUDENT });" title="학생 프로필 보기">${list.USER_ID}</a></td>
+											<td><a href="#" onclick="StudentModal(${list.TEACHER });" title="선생님 프로필 보기">${list.USER_ID}</a></td>
 											<td>${list.LESSON_SUBJECT}</td>
 											<td>${list.LESSON_LOC}</td>
-											<c:if test="${list.MAX_PEOPLE eq 1 }">
-												<td>개인</td>
-											</c:if>
-											<c:if test="${list.MAX_PEOPLE > 1 }">
-												<td>그룹</td>
-											</c:if>
-											<td><button onclick="webshareClick(${list.CONN_LESSON_NO});" id="webshare" name="webshare" class="button button2">자료실</button></td>
-											<td><a id="xicon" href="javascript:void(0);" onclick="lessonEnd(${list.CONN_LESSON_NO});" class="glyphicon glyphicon-remove"></a></td>
-										</tr>
+											<td><a href="${pageContext.request.contextPath}/board/review"><button>작성하기</button></a></td>
+											</tr>
 									</c:forEach>
 	                            </tbody>
 	                            

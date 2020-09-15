@@ -7,7 +7,7 @@
   <mapper namespace="BlackListDao">
   
   	<select id="selectAllBlackList" parameterType="map" resultType="map">
-  		SELECT x.no, x.blacklist_no, x.blacklist_date, x.blacklist_content, x.blacklist_state, x.blacklist_board, x.blacklist_post_no, x.user_id, x.mk_state, x.review_state, x.question_title, x.review_content, x.mk_title FROM (
+  		SELECT x.no, x.blacklist_no, x.blacklist_date, x.blacklist_content, x.blacklist_state, x.blacklist_board, x.blacklist_post_no, x.user_id, x.mk_state, x.review_state, x.question_title, x.review_content, x.mk_title, x.mk_no, x.question_no, x.review_no FROM (
 	  		SELECT rownum no, t.*
 	  		FROM (
 			  	SELECT * FROM blacklist b
@@ -144,6 +144,15 @@
 		left join market k
 		ON(b.blacklist_post_no = k.mk_no and b.blacklist_board = '장터' and k.mk_state != 2)
 		WHERE b.blacklist_state = 0)
+  	</select>
+  	
+  	<select id="getReviewByNo" parameterType="int" resultType="map">
+  		select r.*, c.*, m.user_id from review r
+  		inner join membership m
+  		ON(r.user_no = m.user_no)
+  		INNER JOIN connected_lesson c
+  		on(r.conn_lesson_no = c.conn_lesson_no)
+  		WHERE r.review_no = #{no}
   	</select>
   	
   </mapper>

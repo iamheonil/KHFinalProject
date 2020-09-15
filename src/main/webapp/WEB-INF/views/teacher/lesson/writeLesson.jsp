@@ -15,7 +15,12 @@ function alert(){
 </script>
 
 <style>
-
+.menu-item#lessonM ul {
+   height: 93px;  
+}
+#writeLessonM{
+  background: #eee;
+}
 
 body{
     margin-top:20px;
@@ -80,10 +85,11 @@ form label {
 }
 .profile-avatar {
   width: 200px;
+  height: 200px;
   position: relative;
   margin: 0px auto;
   margin-top: 196px;
-  border: 4px solid #f3f3f3;
+/*   border: 4px solid #f3f3f3; */
 }
 #stumax{
 	width: 100px;
@@ -99,6 +105,11 @@ form label {
 .form-group #submitbutton{
 	text-align: center;
 	padding-left: 130px;
+}
+
+#maxmoney{
+	color: red;
+/* 	margin-left: 144px; */
 }
 </style>
              
@@ -149,6 +160,27 @@ function cancel(){
     }
 
 }
+
+// 엔터키로 submit 되는거 막기
+function prevent(e){
+	if(e.keyCode == 13 && e.srcElement.type != 'textarea')
+		return false;
+}
+
+$(document).ready(function(){
+$("#money").blur(function(){
+	console.log('blur');
+    if( $("#money").val() >5000000 ){
+    	console.log('500넘음');
+    	$("#maxmoney").html('5,000,000원 이상 입력 불가');
+    }else{
+    	$("#maxmoney").html('');
+    }
+
+});
+});
+
+
 </script>
 
  <script type="text/javascript">
@@ -200,6 +232,18 @@ function addlocation(){
             '</div>'
     )
 }    
+function checkIt(){
+	console.log('등록완료');
+	var res = confirm('과외를 등록하시겠습니까? \n관리자 검토 상태는 \'과외 > 과외검토\' 에서 확인하실 수 있습니다.');
+	if(res){
+		return true;
+	}else{
+		return false;
+	}
+}
+// $("#sugnfor").submit(function(){
+// 	alert('과외 등록이 완료되었습니다.'+<br>+'관리자 검토 상태는 \'과외 > 과외검토\' 에서 확인하실 수 있습니다.');
+// });
 </script>        
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -211,7 +255,7 @@ function addlocation(){
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <form name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data">
+    <form id="signform" name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data" onkeydown="return prevent(event)" onsubmit="return checkIt()">
         <div class="panel panel-default">
           <div class="panel-body text-center">
 <%--            <img src="<spring:url value='/upload/${TCH_FILE_RENAME }'/>" class="img-circle profile-avatar" alt="User avatar"/> --%>
@@ -373,9 +417,10 @@ function addlocation(){
           <div class="form-group">
             <label class="col-sm-2 control-label">과외비</label>
             <div class="col-sm-2">
-              <input type="number" max="500" min="0" class="form-control" name="lessonPrice" required />
+              <input id="money" type="number" max="5000000" min="0" class="form-control" name="lessonPrice" required />
             </div>
              원
+            &ensp;<span id="maxmoney"></span>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">학생 연령대</label>

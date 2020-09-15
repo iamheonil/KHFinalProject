@@ -23,8 +23,8 @@ public class TeacherReviewServiceImpl implements TeacherReviewService{
 	
 	
 	@Override
-	public List<Review> selectReviewList(Paging paging) {
-		List<Review> reviewList = teacherReviewDao.selectReviewList(paging);
+	public List<Map<String, Object>> selectReviewList(Paging paging) {
+		List<Map<String, Object>> reviewList = teacherReviewDao.selectReviewList(paging);
 		return reviewList;
 	
 	}

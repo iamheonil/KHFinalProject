@@ -16,6 +16,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <c:if test="${empty list2 }" >
+                            		<tr>
+                            			<td colspan="3" class="text-center">작성한 댓글이 없습니다.</td>
+                            		</tr>
+                                </c:if>
                             	<c:forEach items="${list2 }" var="m">
                                 <tr>
                                     <td class="text-center"><span>${m.NO }</span></td>
@@ -34,8 +39,10 @@
             </div>
         </div>
 	</div>
+<c:if test="${!empty list2 }" >
         <div style="text-align: center;">
 <%--    <c:if test="${not empty list}" > --%>
 		<c:import url="/WEB-INF/paging/student/market/marketCommPaging.jsp" />
 <%-- 	</c:if> --%>
 		</div>
+</c:if>
