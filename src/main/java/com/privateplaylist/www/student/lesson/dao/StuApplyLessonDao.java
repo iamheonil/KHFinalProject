@@ -19,7 +19,6 @@ public class StuApplyLessonDao {
 	}
 
 	public List<Map<String, Object>> selectApplyList(Map<String, Object> map) {
-		System.out.println(map);
 		return sqlSession.selectList("StuApply.selectApplyList", map);
 	}
 

@@ -71,7 +71,6 @@ public class StudentQuestionController {
 		Paging paging = studentQuestionService.getPagingStuQuestionComm(curPage, loginUser);
 		
 		List<QuestionComm> questionCommList = studentQuestionService.selectQuestionCommList(paging, loginUser);
-		System.out.println(questionCommList);
 		mav.addObject("Qcommlist", questionCommList);
 		mav.addObject("paging", paging);
 		mav.setViewName("student/board/questionCommList");

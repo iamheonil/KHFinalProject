@@ -88,7 +88,6 @@ public class AdminMemberController {
     	
     	List<Map<String, Object>> commandMap = adminMemberService.selectTchList(paging, category);
     	
-    	System.out.println("선생님 리스트: "+commandMap);
 //		int stuCnt = adminMemberService.selectStuCnt();
 		mav.addObject("search", search);
 //		mav.addObject("blackCnt", stuCnt);
@@ -106,9 +105,6 @@ public class AdminMemberController {
 		Map<String, Object> commandMap = adminMemberService.selectTchAllList(userNo);
 		
 		Map<String, Object> info = adminMemberService.selectUserByNo(userNo);
-//		System.out.println("컨트롤러 commandMap : "+ commandMap);
-//		System.out.println("컨트롤러 commandMap : "+ commandMap.get("stuReview"));
-		System.out.println(info);
 		
 		mav.addObject("tchData", commandMap);
 		mav.addObject("teacherinfo", info);
@@ -132,7 +128,6 @@ public class AdminMemberController {
 	public Map<String, Object> teacherInfo(@RequestParam int userNo) {
 		
 		Map<String, Object> info = adminMemberService.selectUserByNo(userNo);
-		System.out.println(info);
 		return info;
 	}
 
