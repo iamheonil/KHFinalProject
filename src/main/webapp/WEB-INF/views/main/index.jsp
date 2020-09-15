@@ -95,6 +95,9 @@ text-align: center;
 								<c:when test="${loginUser.userName != null}">
 									<p style="color: white; font-size: 22px;">안녕하세요! <br>${loginUser.userName }님!</p>
 								</c:when>
+								<c:when test="${loginAdmin != null}">
+									<p style="color: white; font-size: 22px;">안녕하세요! <br>관리자 님!</p>
+								</c:when>
 								
 								<c:otherwise>
 									<p style="color: white; font-size: 22px;">안녕하세요! <br>${loginUser.name }님!</p>
