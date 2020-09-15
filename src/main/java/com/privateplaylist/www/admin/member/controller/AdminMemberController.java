@@ -88,44 +88,7 @@ public class AdminMemberController {
     	
     	List<Map<String, Object>> commandMap = adminMemberService.selectTchList(paging, category);
     	
-//    	for (Map<String, Object> map : commandMap) {
-//    		String realFile = commandMap.get(0).get("SAVE_PATH").toString();
-//    		String fileNm = commandMap.get(0).get("TCH_FILE_RENAME").toString();
-////    	String ext = "파일의 확장자";
-//    		
-//    		BufferedOutputStream out = null;
-//    		InputStream in = null;
-//    		
-//    		try {
-//    			res.setContentType("image/");
-//    			res.setHeader("Content-Disposition", "inline;filename=" + fileNm);
-//    			File file = new File(realFile);
-//    			if(file.exists()){
-//    				in = new FileInputStream(file);
-//    				out = new BufferedOutputStream(res.getOutputStream());
-//    				int len;
-//    				byte[] buf = new byte[1024];
-//    				while ((len = in.read(buf)) > 0) {
-//    					out.write(buf, 0, len);
-//    				}
-//    			}
-//    		} catch (Exception e) {
-//    		} finally {
-//    			{ try {
-//    				if(out != null) out.flush();
-//    				if(out != null){ out.close(); }
-//    				if(in != null){ in.close(); }
-//    			} catch (IOException e) {
-//    				e.printStackTrace();
-//    			} }
-//    		}
-//			
-//		}
-    	
-    	
-    	
-    	
-    	System.out.println(commandMap);
+    	System.out.println("선생님 리스트: "+commandMap);
 //		int stuCnt = adminMemberService.selectStuCnt();
 		mav.addObject("search", search);
 //		mav.addObject("blackCnt", stuCnt);

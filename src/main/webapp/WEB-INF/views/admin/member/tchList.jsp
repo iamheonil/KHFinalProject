@@ -535,7 +535,7 @@ p{
 <%-- <%-- 												alt=""> <a href="/emp/detail?userno=${user.user_no}" class="user-link">${user.user_name }</a></td> --%>
 <!-- 												alt=""> -->
 												<c:if test="${not empty user.TCH_FILE_RENAME }">
-		<img class="imgsize" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${user.TCH_FILE_RENAME }">
+				<img class="imgsize" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${user.TCH_FILE_RENAME }">
 												</c:if>
 												<c:if test="${empty user.TCH_FILE_RENAME }">
 												<img src="${pageContext.request.contextPath}/resources/images/profile.png">
