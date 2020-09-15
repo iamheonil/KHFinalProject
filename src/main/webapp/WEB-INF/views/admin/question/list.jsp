@@ -32,6 +32,10 @@
 
 #serchbox{
 	width: 500px;
+	right: -4.5%;
+	position: absolute;
+	top:18%;
+	
 }
 
 .anone{

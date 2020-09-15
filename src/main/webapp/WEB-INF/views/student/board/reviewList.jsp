@@ -119,9 +119,10 @@ body{
 	                            <thead>
 	                                <tr class="align-self-center">
 	                                    <th style="width: 10%">번호</th>
-	                                    <th style="width: 20%">글제목</th>
+	                                    <th style="width: 15%">과외이름</th>
 	                                    <th style="width: 50%">내용</th>
-	                                    <th style="width: 20%">작성일</th>
+	                                    <th style="width: 10%">별점</th>
+	                                    <th style="width: 15%">작성일</th>
 	                                </tr>
 	                            </thead>
 	                            
@@ -133,9 +134,11 @@ body{
 										<tr>
 											<td>${reviewList.REVIEW_NO}</td>
 											<td>
-												<a href="#">${reviewList.REVIEW_TITLE}</a>
+												<a href="#">${reviewList.LESSON_TITLE}</a>
 											</td>
 											<td>${reviewList.REVIEW_CONTENT }</td>
+											<td style="width: 15%"><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ reviewList.STAR_POINT }">★</c:forEach></div></td>
+		
 											<td>${reviewList.REVIEW_DATE}</td>
 										</tr>
 									</c:forEach>

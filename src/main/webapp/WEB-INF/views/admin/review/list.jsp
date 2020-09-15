@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -46,7 +46,7 @@
 }
 
 .txt_line_content { 
-	width:600px; 
+/* 	width:600px;  */
 	padding:0 5px; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -103,7 +103,7 @@ $(document).ready(function(){
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="제목 검색" style="width: 180px;" name="keyword">
+	      <input type="text" class="form-control" placeholder="내용 검색" style="width: 180px;" name="keyword">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="submit">Search</button>
 	      
@@ -138,10 +138,10 @@ $(document).ready(function(){
 	<!-- 테이블 th -->
 	<tr>
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll"  onclick="checkAll();"/></th>
-		<th style="width: 5%">번호</th>
-		<th style="width: 20%">작성자</th>
-		<th style="width: 40%">후기내용</th>
-		<th style="width: 20%">별점</th>
+		<th style="width: 10%">번호</th>
+		<th style="width: 10%">작성자</th>
+		<th style="width: 50%;">후기내용</th>
+		<th style="width: 15%">별점</th>
 		
 		<th style="width: 10%">날짜</th>
 	</tr>
@@ -150,20 +150,20 @@ $(document).ready(function(){
 	<!-- 값 출력 -->
 	<c:forEach items="${reviewList }" var="review" >
 	<tr>
-	    <td><input type="checkbox" name="checkRow" value="${review.REVIEW_NO}" id="checkRow"/></td>
-		<td>${review.REVIEW_NO }</td>
-		<td><div class="txt_line_content">${review.USER_ID }</div></td>
-		<td>
-			<div class="txt_line_title">
+	    <td style="width: 5%"><input type="checkbox" name="checkRow" value="${review.REVIEW_NO}" id="checkRow"/></td>
+		<td style="width: 10%">${review.REVIEW_NO }</td>
+		<td style="width: 10%"><div class="txt_line_content">${review.USER_ID }</div></td>
+		<td style="width: 50%;">
+			<div class="txt_line_title" >
 				${review.REVIEW_CONTENT }
 			</div>
 		</td>
 <%-- 		<td><div class="txt_line_content">${review.starPoint}</div></td> --%>
 		
-		<td><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.STAR_POINT }">★</c:forEach></div></td>
+		<td style="width: 15%"><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.STAR_POINT }">★</c:forEach></div></td>
 		
 		
-		<td>${review.REVIEW_DATE }</td>
+		<td style="width: 10%">${review.REVIEW_DATE }</td>
 	</tr>
 	</c:forEach>
 	</table>

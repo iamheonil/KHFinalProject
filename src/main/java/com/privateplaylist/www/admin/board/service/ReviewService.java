@@ -23,6 +23,6 @@ public interface ReviewService {
 	//검색페이징
 	public Paging reviewSearchPaging(HttpServletRequest req, String keyword);
 	//검색
-	public List<Review> selectSearchReview(Map<String, Object> searchMap);
+	public List<Map<String, Object>> selectSearchReview(Map<String, Object> searchMap);
 
 }

@@ -373,7 +373,7 @@ function getInfiniteBox(){
             <h4><a href="#">커뮤니티</a></h4>
 	            <ul>
 	             <li id="questionM"><a href="${pageContext.request.contextPath}/student/questionlist">질문 게시판</a></li>
-	             <li id="reviewM"><a href="#">후기 게시판</a></li>
+	             <li  id="reviewM"><a href="${pageContext.request.contextPath}/student/reviewlist">후기 게시판</a></li>
 	             <li id="studentMK"><a href="${pageContext.request.contextPath}/student/market">중고장터</a></li>
 	            </ul>
           </div>

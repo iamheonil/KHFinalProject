@@ -37,8 +37,8 @@ public class StuConnectLessonController {
 		
 		List<Map<String, Object>> list = stuConnectLessonService.selectEndLesson(paging, userNo);
 		
-//		System.out.println(list);
-		
+		System.out.println(list);
+		System.out.println(paging);
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		mav.setViewName("student/connectedLesson/endLesson");
