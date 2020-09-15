@@ -598,11 +598,11 @@ $(function(){
 			<c:if  var="findstu" test="${!empty searchList }">
 			<!-- 값 출력 -->
 			<c:forEach items="${searchList }" var="findstu" >
-		    <div class="panel" id="ho">
+		    <div class="panel" id="ho" id="ho" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">
 		        <div class="col-sm-6">
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
-		                            <p class="text-muted txt_line_title"><a class="anone" id="modal_opne_btn" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">${findstu.FIND_STU_TITLE }</a></p>
+		                            <p class="text-muted txt_line_title">${findstu.FIND_STU_TITLE }</p>
 		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message"><i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i></a>&nbsp;${findstu.USER_ID }</h4>
 		                            <p class="text-muted">
 		                           	 <i class="glyphicon glyphicon-map-marker" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;&nbsp;${findstu.FIND_STU_LOC }</i><br>
