@@ -49,6 +49,7 @@ public class AdminLoginController {
 		
 		if (res != null) {
 			// 로그인 성공
+			session.removeAttribute("loginUser");//관라저 로그인 시 회원 로그아웃
 			session.setAttribute("loginAdmin", res);
 			Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 			System.out.println("담은거 : " + loginAdmin);
