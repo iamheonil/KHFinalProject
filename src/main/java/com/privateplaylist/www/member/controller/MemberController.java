@@ -67,6 +67,7 @@ public class MemberController {
 		
 		if (res != null) {
 			// 로그인 성공
+			session.removeAttribute("loginAdmin");//관리자 로그아웃
 			session.setAttribute("loginUser", res);
 			session.setAttribute("teacherFile", teacherFile);
 			Member loginUser = (Member) session.getAttribute("loginUser");
