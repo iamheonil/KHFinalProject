@@ -248,7 +248,7 @@ $(document).ready(function() {
 	$("#userEmail").blur(function() {
 		if (mailJ.test($(this).val())) {
 				// console.log(emailJ.test($(this).val()));
-				$('#email-check-msg').text('이메일 인증을 진행해주세요!');
+				$('#email-check-msg').text('네이버 회원가입자이므로 이메일 입력이 불필요합니다!');
 				$('#email-check-msg').css('color', '#199894b3');
 				$('#emailBtn').attr('disabled', false);
 		} else {

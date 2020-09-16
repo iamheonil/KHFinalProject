@@ -202,7 +202,7 @@ $(document).ready(function() {
 
 </script>
 
-	<div id="gtco_header" class="gtco-cover gtco-cover-xl">
+	<div id="gtco_header" class="gtco-cover gtco-cover-xl" style="text-align: center;">
 		<div id="loginForm" style="margin-top: 5%;">
 			<br><br><br><br><br>
 	        <h3 style="white">비밀번호 찾기</h3>
