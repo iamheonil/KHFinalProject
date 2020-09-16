@@ -66,6 +66,7 @@
 		select count(*) from connected_lesson
 		where teacher = #{userNo}
 		and is_end = 0
+		and is_connected = 1
 	</select>
 	
 	<update id="deleteProfile" parameterType="int">
