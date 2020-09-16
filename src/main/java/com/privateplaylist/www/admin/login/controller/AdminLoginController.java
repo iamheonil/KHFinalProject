@@ -42,6 +42,7 @@ public class AdminLoginController {
 		System.out.println("Login Post Call");
 		
 		System.out.println(adminMap);
+		session.removeAttribute("loginUser");
 
 		ModelAndView mav = new ModelAndView();
 		Admin res = adminLoginService.selectAdmin(adminMap);

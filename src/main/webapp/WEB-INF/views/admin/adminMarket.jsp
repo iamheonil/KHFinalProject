@@ -510,9 +510,9 @@ select.form-control:not([size]):not([multiple]) {
 </style>
 
 <style type="text/css">
- a:link { color: black; text-decoration: none;}
+ .mya:link { color: black; text-decoration: none;}
  .mya:visited { color: black; text-decoration: none;}
- a:hover { color: black; text-decoration: underline;}
+ .mya:hover { color: black; text-decoration: underline;}
  
  
  .sb-topnav .navbar-brand {
@@ -722,9 +722,9 @@ document.ready(function(){
 												<tr>
 												<td>${market.USER_ID }</td>
 												<td align="center" class="mytd"><img
-														src="${pageContext.request.contextPath}/resources/upload/${market.MK_THUMB_RENAME}"
+														src="${pageContext.request.contextPath}/resources/upload/${market.MK_THUMB_RENAME}" onerror="this.src='${pageContext.request.contextPath}/resources/images/noImage.png'"
 														alt="" style="width: 50px;height: 50px; margin-left: 32%"></td>
-													<td><a class="mya" href="${pageContext.request.contextPath}/board/market/detail?mkno=${market.mkNo}" > ${market.mkTitle }</a></td>
+													<td><a class="mya" href="${pageContext.request.contextPath}/board/adminMarket/detail?mkno=${market.mkNo}" > ${market.mkTitle }</a></td>
 													<td>${market.mkDate }</td>
 													<td class="text-center"><span
 														class="label label-default"> <c:if

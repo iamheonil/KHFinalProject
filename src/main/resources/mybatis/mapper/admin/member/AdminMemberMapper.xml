@@ -169,7 +169,7 @@
 	<select id="selectUserByNo" resultType="Map" >
 		select m.*, a.tch_file_no, a.tch_file_rename, a.save_path
 		    from membership m, (select f.tch_file_no, f.user_no fuser_no, f.tch_file_rename, f.save_path from teacherfile f
-		    where tch_file_rename like 'profile%') a
+		    where tch_file_rename IS NOT NULL) a
 		    where m.user_no = a.fuser_no(+)
 		    and m.user_no = #{userNo}
 	</select>
