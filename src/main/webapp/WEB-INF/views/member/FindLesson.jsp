@@ -1079,7 +1079,7 @@ JS, Popper.js, and jQuery
 								</div>
 
 								<c:forEach items="${star }" var="s">
-									<c:if test="${find.LESSON_NO eq s.LESSON_NO}">
+									<c:if test="${find.USER_NO eq s.TEACHER}">
 										<div class="rating" style="margin-left: 10px;">
 											<c:if test="${s.STAR eq 1 }">
 												<i class="ace-icon fa fa-star"></i>
