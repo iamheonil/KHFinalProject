@@ -292,7 +292,7 @@ function submitContents(elClickedObj) {
 		 
 		 // 에디터의 내용에 대한 값 검증은 이곳에서
 		 // document.getElementById("ir1").value를 이용해서 처리한다.
-		console.log(elClickedObj); 
+// 		console.log(elClickedObj); 
 		 try {
 		     elClickedObj.form.submit();
 		 } catch(e) {}
@@ -351,7 +351,7 @@ function goBack(){
 			    <input type="text" placeholder="제목" class="form-control" name="questionTitle" required="required"/>
 			</div>
                <div class="userImg">
-                  <img src="${pageContext.request.contextPath }/resources/upload/${detail.question.TCH_FILE_RENAME }" title="" alt="">
+<%--                   <img src="${pageContext.request.contextPath }/resources/upload/${detail.question.TCH_FILE_RENAME }" title="" alt=""> --%>
             	  <div class="userInfo">
             	  	<div class="userId">${detail.question.USER_ID }</div>
             	  </div>
@@ -377,7 +377,7 @@ function goBack(){
 <!--                <div class="article-img"> -->
 <!--                	<input type="file" multiple name="photo1" onchange="readURL(this);" /> -->
 <!-- 				<img id="blah" src="#" alt="your image" /> -->
-				<input id="file" type="file" name="files" multiple/>
+				<input id="file" type="file" name="files" accept="image/*" multiple/>
 				 <div id="preview" style="width: 600px;"></div>
 <!--                </div> -->
 <!--                <div class="article-title"> -->

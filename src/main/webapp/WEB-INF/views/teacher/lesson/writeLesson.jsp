@@ -7,10 +7,10 @@
 <c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <script type="text/javascript"> 
-function alert(){
-	var message = '${msg}'; 
-	alert(message); 
-}
+// function alert(){
+// 	var message = '${msg}'; 
+// 	alert(message); 
+// }
 
 </script>
 
@@ -236,11 +236,18 @@ function checkIt(){
 	console.log('등록완료');
 	var res = confirm('과외를 등록하시겠습니까? \n관리자 검토 상태는 \'과외 > 과외검토\' 에서 확인하실 수 있습니다.');
 	if(res){
+		alert('과외 등록이 완료되었습니다.');
 		return true;
 	}else{
 		return false;
 	}
 }
+
+// $('#signform').submit(function() {
+// 	alert('Handler for .submit() called.'); 
+// 	return false; 
+// });
+
 // $("#sugnfor").submit(function(){
 // 	alert('과외 등록이 완료되었습니다.'+<br>+'관리자 검토 상태는 \'과외 > 과외검토\' 에서 확인하실 수 있습니다.');
 // });
@@ -255,7 +262,7 @@ function checkIt(){
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <form id="signform" name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data" onkeydown="return prevent(event)" onsubmit="return checkIt()">
+    <form id="signform" name=signform class="form-horizontal" action="${pageContext.request.contextPath}/teacher/insertlesson" method="post" enctype="multipart/form-data" onkeydown="return prevent(event)" onsubmit="return checkIt()" >
         <div class="panel panel-default">
           <div class="panel-body text-center">
 <%--            <img src="<spring:url value='/upload/${TCH_FILE_RENAME }'/>" class="img-circle profile-avatar" alt="User avatar"/> --%>
@@ -445,6 +452,7 @@ function checkIt(){
       
           <div class="form-group">
             <div id="submitbutton" class="col-sm-10 col-sm-offset-2" style="margin: 0 auto;">
+<!--               <input type="none" class="btn" style="background: #17B794; color: white;" onclick="checkIt();"/> -->
               <button type="submit" class="btn" style="background: #17B794; color: white;" >등록</button>
               <button type="reset" class="btn" onclick="cancel();">취소</button>
             </div>
