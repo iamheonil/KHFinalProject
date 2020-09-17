@@ -1,5 +1,6 @@
 package com.privateplaylist.www.teacher.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +19,10 @@ public class TeacherReviewDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<Review> selectReviewList(Paging paging) {
-		return sqlSession.selectList("TeacherReview.selectReviewList",paging);
+	public List<Map<String, Object>> selectReviewList(Paging paging) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("paging", paging);
+		return sqlSession.selectList("TeacherReview.selectReviewList",map);
 	}
 
 	public int selectCntReviewAll() {

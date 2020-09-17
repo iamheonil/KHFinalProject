@@ -18,7 +18,6 @@ public class LessonDao {
 	private SqlSessionTemplate sqlSession;
 
 	public int insertLesson(FindLesson findLesson) {
-		System.out.println("dao - findLesson : " + findLesson);
 		return sqlSession.insert("findLesson.insertLesson", findLesson);
 	}
 	

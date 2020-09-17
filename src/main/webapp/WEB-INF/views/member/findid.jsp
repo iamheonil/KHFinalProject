@@ -104,7 +104,7 @@ function findPw() {
 
 </script>
 
-	<div id="wrap" style="height: 900px;">
+	<div id="gtco_header" class="gtco-cover gtco-cover-xl" style="text-align: center;">
 		<div id="loginForm" style="margin-top: 5%;">
 		<br><br><br><br><br>
 			<form action="/ss/member/findidAjax" method="POST" class="form">
@@ -129,3 +129,33 @@ function findPw() {
 
 <!-- 푸터 -->
 <%@ include file="/WEB-INF/layout/main/footer.jsp" %>
+
+<div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+
+    <!-- jQuery -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+	<!-- countTo -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.countTo.js"></script>
+	<!-- Carousel -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>

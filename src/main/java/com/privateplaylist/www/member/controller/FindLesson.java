@@ -115,7 +115,7 @@ public class FindLesson {
 		Map<String,Object> findLessonAndTeacherList=fls.selectLessonByLessonNo(lessonNo);//과외번호를 이용해 선생님정보와 과외정보join리스트 불러오기
 		List<Map<String,Object>> lessonFile=fls.selectlessonFile(lessonNo);//과외 사진이 있으면 가져오기
 		Map<String,Object> teacherFile=fls.selectTeacherFile(userNo);//선생님 프로필 사진 가져오기
-		List<Map<String,Object>> reviewAndStar =fls.selectReviewByLessonNo(lessonNo);//과외 리뷰 가져오기
+		List<Map<String,Object>> reviewAndStar =fls.selectReviewByLessonNo(userNo);//과외 리뷰 가져오기
 		
 //		
 //		  System.out.println("findlessonAndTeacherList"+findLessonAndTeacherList);

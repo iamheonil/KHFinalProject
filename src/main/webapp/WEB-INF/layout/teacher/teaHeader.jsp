@@ -94,7 +94,7 @@ nav {
 }
 
 /*ul Styles*/
-.menu-item#three ul {
+.menu-item.three ul {
   background: #fff;
   font-size: 13px;
   line-height: 30px;
@@ -129,7 +129,7 @@ nav {
           transition: height 1s ease;
 }
 
-.menu-item#three:hover ul {
+.menu-item.three:hover ul {
    height: 93px; 
 }
 .menu-item.two:hover ul {
@@ -331,19 +331,19 @@ function getInfiniteBox(){
 </div>
 
       <nav>
-          <div class="menu-item" id="three">
+          <div class="menu-item three" id="lessonM">
             <h4><a href="#">과외</a></h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath }/teacher/caution">과외 등록</a></li>
-              <li><a href="${pageContext.request.contextPath }/teacher/paymentlist">과외 검토</a></li>
-              <li><a href="${pageContext.request.contextPath }/teacher/lessonlist">내 과외 목록</a></li>
+              <li id="writeLessonM"><a href="${pageContext.request.contextPath }/teacher/caution">과외 등록</a></li>
+              <li id="paymentM"><a href="${pageContext.request.contextPath }/teacher/paymentlist">과외 검토</a></li>
+              <li id="mylessonListM"><a href="${pageContext.request.contextPath }/teacher/lessonlist">내 과외 목록</a></li>
             </ul>
           </div>
           
            <div class="menu-item two connectLesson">
             <h4><a href="#">과외 연결</a></h4>
 	            <ul id="conLesson">
-	              <li><a href="${pageContext.request.contextPath }/teacher/connectedlesson">연결된 과외</a></li>
+	              <li id="connlessonMenu"><a href="${pageContext.request.contextPath }/teacher/connectedlesson">연결된 과외</a></li>
 	              <li  id="signStu"><a href="${pageContext.request.contextPath }/teacher/signstu">학생 신청 내역</a></li>
 	            </ul>
           </div>
@@ -352,12 +352,12 @@ function getInfiniteBox(){
             <h4><a href="${pageContext.request.contextPath }/teacher/chatBox">1:1 문의<span class="label label-info" id="chkUnread"></span></a></h4>
           </div>
           
-           <div class="menu-item" id="three">
+           <div class="menu-item three" id="community">
             <h4><a href="#">커뮤니티</a></h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath }/teacher/question/list">질문 게시판</a></li>
-              <li><a href="${pageContext.request.contextPath }/teacher/review/list">후기 게시판</a></li>
-              <li><a href="${pageContext.request.contextPath }/teacher/market/marketlist">중고장터</a></li>
+              <li id="questionM"><a href="${pageContext.request.contextPath }/teacher/question/list">질문 게시판</a></li>
+              <li id="reviewM"><a href="${pageContext.request.contextPath }/teacher/review/list">후기 게시판</a></li>
+              <li id="teacherMK"><a href="${pageContext.request.contextPath }/teacher/market/marketlist">중고장터</a></li>
             </ul>
           </div>
 

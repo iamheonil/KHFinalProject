@@ -154,11 +154,6 @@ body{
 	font-weight: bold;
 }
 
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 15%;
-}
-
 .anone{
 	color: black;
 	text-decoration: none;
@@ -216,9 +211,17 @@ body{
 $(document).ready(function() {
 //     document.getElementById("modal_opne_btn").onclick = function XMLMODALClick(findStuNo) {}
    
+   //취소버튼 
     document.getElementById("modal_close_btn").onclick = function() {
         document.getElementById("modal").style.display="none";
     }   
+    
+  //모달 메세지 버튼 동작
+   document.getElementById("modi_message").onclick = function() {
+	   var userId = $("#USER_ID").text();
+	   location.href="<%=request.getContextPath()%>/chat/chatRoom?toID="+userId;
+    }
+  
 });    
 </script> 
 
@@ -462,9 +465,7 @@ $(document).ready(function(){
 $(function(){
 	 $("a[data-toggle='tooltip']").tooltip();
 });
-
 </script>
-
 <!-- css 끝------------------------ -->
 <!-- ---- ------------------------ -->
 <!-- 검색창 시작 ------------------------ -->
@@ -586,11 +587,11 @@ $(function(){
 			<c:if  var="findstu" test="${!empty userFindStuList }">
 			<!-- 값 출력 -->
 			<c:forEach items="${userFindStuList }" var="findstu" >
-		    <div class="panel" id="ho">
+		    <div class="panel" id="ho" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">
 		        <div class="col-sm-6">
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
-		                            <p class="text-muted txt_line_title"><a class="anone" id="modal_opne_btn" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">${findstu.FIND_STU_TITLE }</a></p>
+		                            <p class="text-muted txt_line_title">${findstu.FIND_STU_TITLE }</p>
 		                            <h4>
 		                            	<a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="">
 		                            		<i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i>
@@ -610,11 +611,11 @@ $(function(){
 			
 		</c:forEach>
 		</c:if>
+		
 		<div class="clearfix"></div>
+		
         <!-- 페이징 -->
-		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/user/lesson/findStu/listPaging.jsp"></c:import>
-		</div>
+		<c:import url="/WEB-INF/paging/user/lesson/findStu/listPaging.jsp"></c:import>
 		
 		
 		<!-- modal -->
@@ -623,9 +624,9 @@ $(function(){
 		        <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
 		        <hr>
 		       
-		       	<a href="<%=request.getContextPath()%>/chat/chatRoom?toID="+userId>
+<%-- 		       	<a href="<%=request.getContextPath()%>/chat/chatRoom?toID="+userId> --%>
 	       			<i class="glyphicon glyphicon-envelope" id="modi_message" style="color: #17B794;"></i>
-	       		</a>
+<!-- 	       		</a> -->
 	            <h4 id="USER_ID" style="display: inline-block;"></h4><br>
 	       		
 				<i class="glyphicon glyphicon-map-marker"style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_LOC" style="display: inline-block;"></h5><br>

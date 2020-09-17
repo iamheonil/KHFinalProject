@@ -132,6 +132,19 @@ function reload(){
 	location.reload();
 }
 
+function reviewDetail(REVIEW_NO){                   
+
+	var no = REVIEW_NO; 
+		
+//  	console.log("클릭됨: "+ no); 
+ 	
+	var url = "${pageContext.request.contextPath}/admin/blacklist/review/detail?no="+no;
+	var name = "reviewDetail";
+	var option = "width=800, height=600, top=100, left=100";
+	
+	window.open(url, name, option);
+}
+
 // 체크박스 하나라도 체크 해제하면 전체 선택 박스 해제
 $(document).ready(function(){
 	
@@ -326,7 +339,7 @@ main{
 		                <div class="card-body">
 		                    <div class="table-responsive project-list">
 		                    <div class="text-left">
-		                    <span style="font-weight: bold">처리 전 신고 수 : ${blackCnt } 개</span>
+<%-- 		                    <span style="font-weight: bold">처리 전 신고 수 : ${blackCnt } 개</span> --%>
 		                   	<div id="footerbtn">
 								<div id="divbtn">
 									<button onclick="turndown();" type="button" class="btn button-green" id="returnBtn">반려</button>
@@ -366,13 +379,13 @@ main{
 		                                    <td class="board">${i.BLACKLIST_BOARD }</td>
 		                                    <td>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '질문' }" >
-		                                   		 	<a href="">${i.QUESTION_TITLE }</a>
+		                                   		 	<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${i.QUESTION_NO }">${i.QUESTION_TITLE }</a>
 		                                   		 </c:if>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '후기' }" >
-		                                   		 	<a href="">${i.REVIEW_CONTENT }</a>
+		                                   		 	<a href="javascript:void(0);" onclick="reviewDetail(${i.REVIEW_NO});">${i.REVIEW_CONTENT }</a>
 		                                   		 </c:if>
 		                                    	<c:if test="${i.BLACKLIST_BOARD == '장터' }" >
-		                                   		 	<a href="">${i.MK_TITLE }</a>
+		                                   		 	<a href="${pageContext.request.contextPath}/board/market/detail?mkno=${i.MK_NO}">${i.MK_TITLE }</a>
 		                                   		 </c:if>
 		                                    </td>
 		                                    <td>${i.BLACKLIST_CONTENT }</td>

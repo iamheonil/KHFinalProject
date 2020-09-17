@@ -140,7 +140,7 @@ body{
 	
 <div class="container">
 <br>
-<input onclick="location.href='stuList'" type="button" value="목록">
+<input onclick="location.href='tchlist'" type="button" value="목록">
 <br>
     <div class="main-body">
 <!--           Breadcrumb -->
@@ -160,7 +160,7 @@ body{
                   	<img src="${pageContext.request.contextPath}/resources/images/profile.png">
                   </c:if>
                   <c:if test="${not empty teacherinfo.SAVE_PATH }">
-                    <img class="rounded-circle" width="150" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${teacherinfo.TCH_FILE_RENAME }">
+                    <img class="rounded-circle" width="200px;" height="200px;" alt="teacherFile" src="<%= request.getContextPath() %>/resources/upload/${teacherinfo.TCH_FILE_RENAME }">
                   </c:if>
 <!--                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
                     <div class="mt-3">
@@ -266,7 +266,7 @@ body{
 						                    <c:forEach items="${tchData.tchQuestion }" var="question" >
 												<tr>
 													<td>${question.questionNo}</td>
-													<td><a href="${pageContext.request.contextPath}/board/question">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${question.userNo}</td>
 													<td>${question.questionDate}</td>
 												</tr>
@@ -334,7 +334,7 @@ body{
 						                    <c:forEach items="${tchData.tchMarket }" var="market" >
 												<tr>
 													<td>${market.mkNo}</td>
-													<td><a href="${pageContext.request.contextPath}/board/market">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/market/detail?mkno=${market.mkNo}">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${market.mkWriter}</td>
 													<td>${market.mkDate}</td>
 													<c:if test="${market.mkState == 0}">

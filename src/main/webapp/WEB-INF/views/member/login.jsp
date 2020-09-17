@@ -188,7 +188,7 @@
         <div class="text-center social-btn" >
 			<a href="/ss/naver/login"><img src="${pageContext.request.contextPath}/resources/images/naver_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
 			<p></p>
-			<a href="${kakao_url }"><img src="${pageContext.request.contextPath}/resources/images/kakao_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a>
+<%-- 			<a href="${kakao_url }"><img src="${pageContext.request.contextPath}/resources/images/kakao_id.png" alt="슬기로운 과외생활" width="275px;" height="60px;"></a> --%>
 <!--            <a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> -->
 <!--            <a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
 <!-- 			<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a> -->
@@ -204,5 +204,32 @@
 <!-- 푸터 -->
 <%@ include file="/WEB-INF/layout/main/footer.jsp" %>
 
-<%--<%@ include file="/WEB-INF/layout/main/footer.jsp" %>--%>
-<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/footer.jsp"></jsp:include> --%>
+<div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+
+    <!-- jQuery -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+	<!-- countTo -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.countTo.js"></script>
+	<!-- Carousel -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>

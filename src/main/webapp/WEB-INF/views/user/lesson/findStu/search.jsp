@@ -154,11 +154,6 @@ body{
 	font-weight: bold;
 }
 
-.pagingstyle{
- 	width: 100%; 
- 	padding-left: 15%;
-}
-
 .anone{
 	color: black;
 	text-decoration: none;
@@ -216,8 +211,15 @@ body{
 $(document).ready(function() {
 //     document.getElementById("modal_opne_btn").onclick = function XMLMODALClick(findStuNo) {}
    
+    //취소버튼 
     document.getElementById("modal_close_btn").onclick = function() {
         document.getElementById("modal").style.display="none";
+    }   
+    
+  //모달 메세지 버튼 동작
+   document.getElementById("modi_message").onclick = function() {
+	   var userId = $("#USER_ID").text();
+	   location.href="<%=request.getContextPath()%>/chat/chatRoom?toID="+userId;
     }   
 });    
 </script> 
@@ -242,10 +244,7 @@ function XMLMODALClick(findStuNo) {
 			$("#FIND_STU_SUBJECT").text(result.FIND_STU_SUBJECT);
 			$("#FIND_STU_DATE").text(result.FIND_STU_DATE);
 			
-			$("#modal_modi_btn").val(result.FIND_STU_NO);
-			
 			$("#USER_ID").text(result.USER_ID);
-			
 			
 			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 			
@@ -599,11 +598,11 @@ $(function(){
 			<c:if  var="findstu" test="${!empty searchList }">
 			<!-- 값 출력 -->
 			<c:forEach items="${searchList }" var="findstu" >
-		    <div class="panel" id="ho">
+		    <div class="panel" id="ho" id="ho" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">
 		        <div class="col-sm-6">
 		                <div class="panel-body p-t-10">
 		                    <div class="media-main">
-		                            <p class="text-muted txt_line_title"><a class="anone" id="modal_opne_btn" onclick="XMLMODALClick(${findstu.FIND_STU_NO});">${findstu.FIND_STU_TITLE }</a></p>
+		                            <p class="text-muted txt_line_title">${findstu.FIND_STU_TITLE }</p>
 		                            <h4><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message"><i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i></a>&nbsp;${findstu.USER_ID }</h4>
 		                            <p class="text-muted">
 		                           	 <i class="glyphicon glyphicon-map-marker" style="margin-right: 16px; margin-left: 0; font-size: 12px;">&nbsp;&nbsp;${findstu.FIND_STU_LOC }</i><br>
@@ -617,34 +616,34 @@ $(function(){
 		        </div>
 			
 		</c:forEach>
+		
+		<!-- 페이징 -->
+		<c:import url="/WEB-INF/paging/user/lesson/findStu/searchPaging.jsp"></c:import>
+		
 		</c:if>
 		<div class="clearfix"></div>
-        <!-- 페이징 -->
-		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/user/lesson/findStu/searchPaging.jsp"></c:import>
-		</div>
-		
+        
 		
 		<!-- modal -->
 		<div id="modal">
-		   
 		    <div class="modal_content">
-		       <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
-		       <hr>
-		       		 <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="${pageContext.request.contextPath}/chat/chatRoom?toID=${findstu.USER_ID }" data-original-title="Message">
-		       			<i class="glyphicon glyphicon-envelope" id="message" style="color: #17B794;"></i>
-		       		 </a>
-		       		 <h4 id="USER_ID" style="display: inline-block;"></h4><br>
+		        <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
+		        <hr>
 		       
-					<i class="glyphicon glyphicon-map-marker"style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_LOC" style="display: inline-block;"></h5><br>
-					<i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_SUBJECT" style="display: inline-block;"></h5><br>
-					<i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0;"></i><h5 id ="FIND_STU_DATE" style="display: inline-block;"></h5><br>
-					
-					<i class="glyphicon glyphicon-list" style="margin-right: 16px; margin-left: 0;"></i><p id="FIND_STU_CONTENT" style="display: inline-block;"></p>
-					
-					<!-- 지도영역 -->
-					<div id="map" style="width:250px;height:200px;"></div><br>
-					<h6>※상세한 과외위치는 글 작성자와 채팅을 통하여 결정하세요</h6>
+<%-- 		       	<a href="<%=request.getContextPath()%>/chat/chatRoom?toID="+userId> --%>
+	       			<i class="glyphicon glyphicon-envelope" id="modi_message" style="color: #17B794;"></i>
+<!-- 	       		</a> -->
+	            <h4 id="USER_ID" style="display: inline-block;"></h4><br>
+	       		
+				<i class="glyphicon glyphicon-map-marker"style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_LOC" style="display: inline-block;"></h5><br>
+				<i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0;"></i><h5 id="FIND_STU_SUBJECT" style="display: inline-block;"></h5><br>
+				<i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0;"></i><h5 id ="FIND_STU_DATE" style="display: inline-block;"></h5><br>
+				
+				<i class="glyphicon glyphicon-list" style="margin-right: 16px; margin-left: 0;"></i><p id="FIND_STU_CONTENT" style="display: inline-block;"></p>
+				
+				<!-- 지도영역 -->
+				<div id="map" style="width:250px;height:200px;"></div><br>
+				<h6>※상세한 과외위치는 글 작성자와 채팅을 통하여 결정하세요</h6>
 					
 		       <hr>
 		        <button type="button" id="modal_close_btn" class="btn btn-default btn-xs" data-dismiss="modal">취소</button>

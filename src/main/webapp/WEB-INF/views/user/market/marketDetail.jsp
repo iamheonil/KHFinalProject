@@ -312,8 +312,7 @@ function addComm(mkno){
 			url: url,
 			data: {mkno : mkno, commContent : commContent },
 			success : function(result) {
-				
-				if( result != null){
+				if( result != ''){
 					var li = '';
 					li += '<li class="media comm0">';
 					li += '<div class="commExist">';
@@ -349,7 +348,7 @@ function addComm(mkno){
 			        $('html, body').animate({scrollTop : offset.top}, 400);
 				}else{
 					alert("로그인이 필요합니다.");
-					location.href="<%=request.getContextPath() %>/main/login";
+					location.href="<%=request.getContextPath() %>/member/login";
 				}
 			},
 			error : function(){
@@ -454,7 +453,7 @@ var recommContent = $(target).prev('textarea').val();
 			url: url,
 			data: {mkno : mkno, mkParentCommNo : mkParentCommNo,  recommContent : recommContent },
 			success : function(result) {
-				if( result != null){
+				if( result != ''){
 					var li = '';
 					li += '<li class="media comm' + mkParentCommNo + '">';
 					li += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
@@ -491,7 +490,7 @@ var recommContent = $(target).prev('textarea').val();
 					}
 				}else{
 					alert("로그인이 필요합니다.");
-					location.href="<%=request.getContextPath() %>/main/login";
+					location.href="<%=request.getContextPath() %>/member/login";
 				}
 				
 			},
@@ -588,10 +587,16 @@ function singo(){
             	  </div>
                </div>
             	  <div class="text-muted pull-right userAct">
+            	  	<c:if test="${loginAdmin ne null }">
+            	  	<span class="fa-stack" onclick="deleteMK(${market.MK_NO });">
+						<i class="fa fa-square fa-stack-2x"></i> <i
+						class="fa fa-trash fa-stack-1x fa-inverse "></i>
+					</span>
+            	  	</c:if>
             	  	<c:if test="${chkWriter }">
             	  		<a href="javascript:void(0);" onclick="updateMK(${market.MK_NO });">수정</a> | <a  href="javascript:void(0);" onclick="deleteMK(${market.MK_NO });">삭제</a>
             	  	</c:if>
-            	  	<c:if test="${!chkWriter }">
+            	  	<c:if test="${!chkWriter && empty loginAdmin }">
             	  		<a href="javascript:void(0);"  onclick="singo();">신고</a>
             	  		<form action="${pageContext.request.contextPath }/board/blacklist" id="singoInfo" method="post">
             	  			<input type="hidden" name="no" value="${market.MK_NO }" />

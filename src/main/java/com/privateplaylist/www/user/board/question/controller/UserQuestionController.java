@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.privateplaylist.www.dto.Admin;
 import com.privateplaylist.www.dto.FindLesson;
 import com.privateplaylist.www.dto.Market;
 import com.privateplaylist.www.dto.MkFile;
@@ -54,12 +55,12 @@ public class UserQuestionController {
 	@RequestMapping("/question/detail")
 	public ModelAndView questionDetail(HttpSession session, @RequestParam int questionNo) {
 		ModelAndView mav = new ModelAndView();
-		
+		int userNo=0;
 		Member m = (Member) session.getAttribute("loginUser");
-		
-		int userNo = m.getUserNo();
-//		int userNo = 1;
-		
+		Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
+		if(m != null) {//user가 null이 아닐때
+			userNo = m.getUserNo();
+		}
 		// 게시글 정보
 		Map<String,Object> question = userQuestionService.selectQuestionDetail(questionNo);
 		
@@ -73,7 +74,7 @@ public class UserQuestionController {
 			mav.addObject("commWriter", userNo);
 			mav.addObject("cnt", count);
 		}
-		
+		mav.addObject("loginAdmin", loginAdmin);
 		mav.addObject("detail", question);
 		mav.setViewName("user/question/questionDetail");
 		return mav;
@@ -106,7 +107,6 @@ public class UserQuestionController {
 		//세션값 가지고 오기
 		question.setUserNo(m.getUserNo());
 		
-		System.out.println("controller - question : "+question);
 		
 		int res = userQuestionService.insertQuestion(question, files, root);
 		
@@ -135,7 +135,6 @@ public class UserQuestionController {
     @ResponseBody
     public String ajax_addComment(HttpSession session, QuestionComm qcomm) throws Exception{
     	
-    	System.out.println(qcomm);
     	
     	Member m = (Member) session.getAttribute("loginUser");
         try{
@@ -155,7 +154,6 @@ public class UserQuestionController {
     @ResponseBody
     public String ajax_addReComment(HttpSession session, QuestionComm qcomm) throws Exception{
     	
-    	System.out.println("ajax에서 받은 대댓글 : "+qcomm);
     	
     	Member m = (Member) session.getAttribute("loginUser");
     	try{
@@ -175,7 +173,6 @@ public class UserQuestionController {
     @ResponseBody
     public String ajax_updateComment(HttpSession session, QuestionComm qcomm) throws Exception{
     	
-    	System.out.println("ajax에서 받은 댓글 : "+qcomm);
     	
     	Member m = (Member) session.getAttribute("loginUser");
     	try{
@@ -195,8 +192,6 @@ public class UserQuestionController {
     @RequestMapping(value="/question/deletecomment")
     @ResponseBody
     public String ajax_deleteComment(HttpSession session, QuestionComm qcomm) throws Exception{
-    	System.out.println("댓글 삭제 컨트롤러 실행");
-    	System.out.println("ajax에서 받은 삭제 댓글 번호 : "+qcomm);
     	
     	Member m = (Member) session.getAttribute("loginUser");
     	userQuestionService.deleteComment(qcomm);
@@ -246,7 +241,6 @@ public class UserQuestionController {
     @ResponseBody
     public List<Map<String, Object>> commentList(Model model, int questionNo){
     	List<Map<String, Object>> list = userQuestionService.selectQuestionCommentByNo(questionNo);
-    	System.out.println("댓글 : "+list);
     	return list;
     }
 //    @RequestMapping("/question/commentlist")
@@ -281,7 +275,6 @@ public class UserQuestionController {
 		// 게시글 정보
 		Map<String, Object> question  = userQuestionService.selectQuestionDetail(questionNo);
 
-		System.out.println("controller - question : "+question);
 		
 		mav.addObject("detail", question);
 		mav.setViewName("user/question/questionUpdate");
@@ -301,7 +294,6 @@ public class UserQuestionController {
 		
 		question.setUserNo(userNo);
 		
-		System.out.println("controller - 수정 받은 question" + files);
 		int qNo = userQuestionService.updateQuestion(question, files, root);
 //		int res = userQuestionService.insertQuestionFiles(mkno, files, root);
 		mav.setViewName("redirect:/board/question/detail?questionNo=" + question.getQuestionNo());

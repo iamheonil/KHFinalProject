@@ -51,7 +51,6 @@ public class LessonController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		Map<String, String> file = lessonService.selectTchFile(loginUser.getUserNo());
-		System.out.println(file);
 		mav.addObject("file", file);
 		mav.addObject("userInfo", loginUser);
 		mav.setViewName("teacher/lesson/writeLesson");

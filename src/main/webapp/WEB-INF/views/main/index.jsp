@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
- <!-- 김헌일 : 로그인 후 메인 페이지 작성 -->
+
+<!-- 김헌일 : 로그인 후 메인 페이지 작성 -->
 
 <%-- <!-- nav include  -->
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/layout/main/header.jsp"></jsp:include> --%>
@@ -68,6 +69,8 @@ function numberWithCommas(x) {
 
 <style type="text/css">
 
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
 .wrap {
 
 width: 100%;
@@ -78,7 +81,60 @@ text-align: center;
   	border-left: thick solid gray;
 }
 
+.nanum {
+	font-family: NanumSquareRound;
+}
+
+.bold {
+	font-weight: bold;
+}
+
 </style>
+
+<%
+String userID="test06";
+if(session.getAttribute("loginUser") !=null){
+	userID=((Member)session.getAttribute("loginUser")).getUserId();//사용자의 정보가져오기
+	
+}
+String toID=null;
+if(request.getAttribute("toID") !=null){
+	toID=(String)request.getAttribute("toID");//채팅하는 대상의 정보 가져오기
+}
+
+if(userID==null){
+	
+	String url=request.getContextPath()+"/member/login";
+	session.setAttribute("messageContent", "로그인이 되어있지 않습니다");
+	session.setAttribute("messageType", "오류메시지");
+	/* response.sendRedirect(url); */
+}
+%>
+
+<!-- 로그아웃이 되면 로그인 페이지로 이동시킴  -->
+
+<%
+	String messageContent = null;
+	if (session.getAttribute("messageContent") != null) {
+		messageContent = (String) session.getAttribute("messageContent");
+	}
+	String messageType = null;
+	if (session.getAttribute("messageType") != null) {
+		messageType = (String) session.getAttribute("messageType");
+	}
+	if (messageContent != null) {
+%>
+
+<script type="text/javascript">
+	/* $("#messageModal").modal("show"); */
+	alert("로그인이 되어있지 않습니다")
+	window.location.href = "${pageContext.request.contextPath}/member/login";
+</script>
+<%
+	session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
+	}
+%>
 
 <body>
 
@@ -88,16 +144,18 @@ text-align: center;
 			<div class="gtco-section gtco-products">
 				<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
 						<br><br><br><br>
-						<h2 style="color: black;" >슬기로운 과외생활입니다!</h2>
+						<img src="${pageContext.request.contextPath}/resources/images/index_welcome.png" alt="슬기로운 과외생활">
 						<p>
 							<br>
 							<c:choose>
 								<c:when test="${loginUser.userName != null}">
-									<p style="color: white; font-size: 22px;">안녕하세요! <br>${loginUser.userName }님!</p>
+									<p class="nanum" style="color: white; font-size: 22px;">안녕하세요! <br>${loginUser.userName }님!</p>
 								</c:when>
-								
+								<c:when test="${loginAdmin != null}">
+									<p class="nanum" style="color: white; font-size: 22px;">안녕하세요! <br>관리자 님!</p>
+								</c:when>
 								<c:otherwise>
-									<p style="color: white; font-size: 22px;">안녕하세요! <br>${loginUser.name }님!</p>
+									<p class="nanum" style="color: white; font-size: 22px;">안녕하세요! <br>${loginUser.name }님!</p>
 								</c:otherwise>
 								
 							</c:choose>
@@ -125,9 +183,9 @@ text-align: center;
 						<h2>안전하고 실속 있게<br> 매칭할 수 있게 도와드립니다!</h2>
 						<p>업계최저 단 돈 '1000원' !<br>선생님께 드릴 부담을 최대한 줄여드립니다. (학생은 중개수수료 무료)</p>
 						<div class="col-md-12 text-center">
-							<p>
+							<!-- <p>
 								<a href="#" class="btn btn-special">더 알아보기</a>
-							</p>
+							</p> -->
 						</div>
 					</div>
 				</div>

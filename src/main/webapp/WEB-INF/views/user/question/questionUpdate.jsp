@@ -80,7 +80,7 @@ function submitContents(elClickedObj) {
 }
 
 function goback(){
-	history.go(-1);	
+	window.history.back();
 }
 
 function deleteFile(questionFileNo, target){
@@ -92,7 +92,10 @@ function deleteFile(questionFileNo, target){
 		data: {questionFileNo : questionFileNo},
 		success : function(result) {
 			$(target).parent("span").remove();
-			location.reload();
+			$(target).parent("span").next().remove();
+			$(target).parent("span").children('br').remove();
+			$("#" + questionFileNo).remove();
+// 			location.reload();
 		},
 		error : function(){
 			alert("ajax 실패")
@@ -148,6 +151,31 @@ $(document).ready(
   		$("#preview").html("");
   	});
   });	    
+  
+  
+
+function submitContents(elClickedObj) {
+	 var elClickedObj = $("#form");
+	 // 에디터의 내용이 textarea에 적용된다.
+	 oEditors.getById["questionContent"].exec("UPDATE_CONTENTS_FIELD", []);
+	 var ir1 = $("#questionContent").val();
+	 
+	 if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>')  {
+          alert("내용을 입력하세요.");
+          oEditors.getById["questionContent"].exec("FOCUS"); //포커싱
+          return;
+     }else{
+		 
+		 // 에디터의 내용에 대한 값 검증은 이곳에서
+		 // document.getElementById("ir1").value를 이용해서 처리한다.
+		console.log(elClickedObj); 
+		 try {
+		     elClickedObj.form.submit();
+		 } catch(e) {}
+		 
+	 }
+
+}  
 </script>
 
 <body>
@@ -166,7 +194,7 @@ $(document).ready(
 									</div>
 									<br>
 									<div class="row margin-top-xl text title title-xl text-bold text-white pull-left">
-										<p><h2>자유롭게 물건들을 팔아보아요</h2></p>
+										<p><h2>궁금하신 점을 질문하시면 답변해드립니다.</h2></p>
 									</div>
 								</div>
 							</div>	
@@ -196,23 +224,23 @@ $(document).ready(
 <!--   </div> -->
     <div class="form-group">
       <label>내용</label>
-      <textarea maxlength="2000" required="required" class="form-control" id="questionContent" name="questionContent" rows="10" placeholder="질문 내용을 작성하세요">${detail.question.QUESTION_CONTENT }</textarea>
+      <textarea maxlength="2000" required="required" class="form-control" id="questionContent" name="questionContent" rows="10" style="width: 99%">${detail.question.QUESTION_CONTENT }</textarea>
     </div>
     <div class="form-group">
       <label>상세 사진&nbsp;&nbsp;&nbsp;</label><br>
-		<input id="file" type="file" name="files" multiple/>
+		<input id="file" type="file" name="files" accept="image/*" multiple/>
 		<div id="preview" style="width: 600px;"></div>
       <c:if test="${not empty detail.flist }">
 	      <c:forEach items="${detail.flist }" var="f" >
-		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;</span>
-		    <br><img src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
+		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;<br></span>
+		    <img id="${f.QUESTION_FILE_NO }" src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
 	      </c:forEach>
       </c:if>
   	  
     </div>
 <div style="text-align: center;">
     <button class="btn btn-primary" onclick="submitContents();"><span>수정</span></button>
-    <button class="btn btn-disable" type="button" onclick="goback();"><span>취소</span></button>
+    <button class="btn btn-disable" type="button" onclick="location.href='${pageContext.request.contextPath }/board/question/detail?questionNo=${detail.question.QUESTION_NO }'"><span>취소</span></button>
 </div>
 </form>
 </div>
@@ -253,7 +281,7 @@ $(document).ready(
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
- elPlaceHolder: "mkContent",
+ elPlaceHolder: "questionContent",
  sSkinURI: "${pageContext.request.contextPath }/resources/se2/SmartEditor2Skin.html",
  fCreator: "createSEditor2"
 });

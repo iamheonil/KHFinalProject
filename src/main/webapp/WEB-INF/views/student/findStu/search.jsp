@@ -75,7 +75,55 @@
 	white-space:nowrap; 
 }
 </style>
+
+<!-- 모달 -->
+<style>
+        #modal {
+          display: none;
+          position:relative;
+          width:100%;
+          height:100%;
+          z-index:3;
+        }
+        
+        #modal button {
+      	  float: right;
+        }
+        
+        #modal .modal_content {
+          width:500px;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          border:2px solid #666;
+          top : -500px;
+          left : 100px;
+          position: absolute;
+          border-radius: 10px;
+        }
+        
+        #modal .modal_layer {
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }   
+</style> 
  
+
+<!-- 모달 -->
+<script>
+$(document).ready(function() {
+//     document.getElementById("modal_opne_btn").onclick = function XMLMODALClick(findStuNo) {}
+   
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }   
+});    
+</script> 
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -86,6 +134,12 @@ $(document).ready(function(){
 		//실제 <form>의 submit 수행
 		$("#checkboxlist").submit();
 		
+	});
+	
+	//수정버튼 동작
+	$("#modal_modi_btn").click(function(){
+		var findStuNo = $("#modal_modi_btn").val();
+		location.href="<%=request.getContextPath()%>/student/findStu/modi?findStuNo="+findStuNo;
 	});
 	
 });
@@ -132,6 +186,47 @@ function XMLSTATEClick(findStuNo,findStuState){
 }
 </script>
 
+<!-- ajax -->
+<script type="text/javascript">
+function XMLMODALClick(findStuNo) {
+
+	var url = "<%=request.getContextPath()%>/student/findStu/detail";
+	
+	$.ajax({
+		type : "POST",
+		url: url,
+		data : {findStuNo: findStuNo},
+		success : function(result) {
+			var res = result;
+			console.log(res);
+			
+			$("#FIND_STU_TITLE").html(result.FIND_STU_TITLE);
+			$("#FIND_STU_CONTENT").html(result.FIND_STU_CONTENT);
+			$("#FIND_STU_LOC").text(result.FIND_STU_LOC);
+			$("#FIND_STU_SUBJECT").text(result.FIND_STU_SUBJECT);
+			$("#FIND_STU_DATE").text(result.FIND_STU_DATE);
+			
+			$("#modal_modi_btn").val(result.FIND_STU_NO);
+			
+			document.getElementById("modal").style.display="block";
+			
+// 			$("#FIND_STU_LOC").css("font-size","16px");
+			
+// 			document.getElementById("paging_import").style.display="none";
+// 			document.getElementById("keyword").style.display="none";
+// 			document.getElementById("Search").style.display="none";
+			
+		},
+		error : function(){
+			alert("ajax 실패")
+		}
+	});
+		
+// 	document.getElementById("modal").style.display="block";
+
+}
+</script>
+
 <div id="main">
 	<span id="boardtitle">학생 찾기</span>
 	<hr>
@@ -144,9 +239,9 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<div class="row">
 	  <div class="col-lg-6">
 	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword">
+	      <input type="text" class="form-control" placeholder="키워드검색" style="width: 180px;" name="keyword" id="keyword">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default" type="submit" style="margin-left: 4px;">Search</button>
+	        <button class="btn btn-default" type="submit" id="Search" style="margin-left: 4px;">Search</button>
 	      </span>
 	    </div><!-- /input-group -->
 	  </div><!-- /.col-lg-6 -->
@@ -170,7 +265,7 @@ function XMLSTATEClick(findStuNo,findStuState){
 	<!-- 학생찾기 리스트 -->
 	<table class="table table-striped table-hover table-condensed textcenter" >
 	
-	<caption  class="captionstyle">공지사항</caption>  
+	<caption  class="captionstyle">학생찾기</caption>  
 	
 	<!-- 테이블 th -->
 	<tr>
@@ -185,52 +280,67 @@ function XMLSTATEClick(findStuNo,findStuState){
 	</tr>
 	
 	<!-- 게시글이 없을 때  -->
-	<c:if  var="noticernone" test="${empty finStuSearchList }">
+	<c:if  var="findStu" test="${empty finStuSearchList }">
 	<tr>
-	<td colspan="8" style="color:  #17B794; font-weight: bold; text-align: center;">게시글이  없습니다</td>
+	<td colspan="8" style="font-weight: bold; text-align: center;">게시글이  없습니다</td>
 	</tr>
 	</table>
 	</c:if>
 	
 	<!--게시글이 있을 때 -->
-	<c:if  var="noticeok" test="${!empty finStuSearchList }">
+	<c:if  var="findStu" test="${!empty finStuSearchList }">
 	<!-- 값 출력 -->
 	<c:forEach items="${finStuSearchList }" var="findStu" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${findStu.findStuNo}" id="checkRow"/></td>
-		<td>${findStu.findStuNo }</td>
+		<td id="findStuNo">${findStu.findStuNo }</td>
 		<td>
 			<div class="txt_line_title">
-				<a href="${pageContext.request.contextPath}/student/findStu/detail?noticeNo=${findStu.findStuNo}" class="anone">${findStu.findStuTitle }</a>
+				<a href="#" id="modal_opne_btn" class="anone" onclick="XMLMODALClick(${findStu.findStuNo });">${findStu.findStuTitle }</a>
 			</div>
 		</td>
 		<td><div class="txt_line_content">${findStu.findStuContent }</div></td>
-		
 		<td>${findStu.findStuLoc }</td>
 		<td>${findStu.findStuSubject }</td>
 		<td>${findStu.findStuDate }</td>
 		
 		<c:if test="${findStu.findStuState eq 0}">
 			<td>
-			<button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">게시</button>
+			<button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">모집</button>
 			</td>
 		</c:if>			
 		<c:if test="${findStu.findStuState eq 1}">
 			<td><button type="button" class="btn btn-default" id="updatebtn" value="${findStu.findStuState }" onclick="XMLSTATEClick(${findStu.findStuNo},${findStu.findStuState });">마감</button></td>
-		</c:if>
-		
+		</c:if>			
 	</tr>
 	</c:forEach>
 	</table>
 	</form>
 	
 	<!-- 페이징 -->
-	<div>
+	<div id="paging_import">
 	<c:import url="/WEB-INF/paging/student/findStu/searchPaging.jsp"></c:import>
 	</div>
 	</c:if>
 	
-	
+	<!-- modal -->
+	<div id="modal">
+	   
+	    <div class="modal_content">
+	       <h5 id="FIND_STU_TITLE" style="font-weight: bold;"></h5>
+	       <hr>
+				<i class="glyphicon glyphicon-map-marker" style="margin-right: 16px; margin-left: 0;"></i><h6 id="FIND_STU_LOC" style="display: inline-block;"></h6><br>
+				<i class="glyphicon glyphicon-tags" style="margin-right: 16px; margin-left: 0;"></i><h6 id="FIND_STU_SUBJECT" style="display: inline-block;"></h6><br>
+				<i class="glyphicon glyphicon-check" style="margin-right: 16px; margin-left: 0;"></i><h6 id ="FIND_STU_DATE" style="display: inline-block;"></h6><br>
+				
+				<i class="glyphicon glyphicon-list" style="margin-right: 16px; margin-left: 0;"></i><p id="FIND_STU_CONTENT" style="display: inline-block;"></p>
+	       <hr>
+	        <button type="button" class="btn btn-default btn-xs" id="modal_modi_btn">수정</button>
+	        <button type="button" id="modal_close_btn" class="btn btn-default btn-xs" data-dismiss="modal">취소</button>
+	    </div>
+	   
+	    <div class="modal_layer"></div>
+	</div>
 	
 	
 

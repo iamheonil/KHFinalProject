@@ -15,6 +15,13 @@
 
 <!-- 현위지 메뉴 -->
 <style type="text/css">
+.menu-item#four ul {
+   height: 124px; 
+}
+
+#connectedlessonM{
+  background: #eee;
+}
 #title {
 	width: 100%;
 	font-weight: bold;

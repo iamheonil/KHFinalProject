@@ -12,7 +12,7 @@ import common.util.Paging;
 public interface TeacherReviewService {
 
 	//리스트 조회
-	public List<Review> selectReviewList(Paging paging);
+	public List<Map<String, Object>> selectReviewList(Paging paging);
 
 	//페이징
 	public Paging reviewListPaging(HttpServletRequest req);

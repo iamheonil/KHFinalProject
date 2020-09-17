@@ -118,6 +118,7 @@ body {
 	display: block;
 	font-size: 0.75em;
 	text-align: center;
+	align-items: center;
 }
 
 .table tbody tr td .first-line {
@@ -509,9 +510,23 @@ select.form-control:not([size]):not([multiple]) {
 </style>
 
 <style type="text/css">
- a:link { color: black; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: black; text-decoration: underline;}
+ .mya:link { color: black; text-decoration: none;}
+ .mya:visited { color: black; text-decoration: none;}
+ .mya:hover { color: black; text-decoration: underline;}
+ 
+ 
+ .sb-topnav .navbar-brand {
+    width: 225px;
+    padding-left: 1.5rem;
+    padding-right: 1rem;
+    padding-top:1rem;
+    margin: 0;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+ 
+ 
 </style>
 
 
@@ -691,6 +706,8 @@ document.ready(function(){
 									<thead>
 										<tr>
 											<th><span>writer</span></th>
+											<th><span>thumb</span></th>
+											
 											<th><span>title</span></th>
 											<th><span>Created</span></th>
 											<th class="text-center"><span>Status</span></th>
@@ -704,9 +721,10 @@ document.ready(function(){
 											<a href="#" class="user-link">
 												<tr>
 												<td>${market.USER_ID }</td>
-													<td><a href="${pageContext.request.contextPath}/board/market/detail?mkno=${market.mkNo}" ><img
-														src="${pageContext.request.contextPath}/resources/upload/${market.mkFileRename}"
-														alt=""> ${market.mkTitle }</a></td>
+												<td align="center" class="mytd"><img
+														src="${pageContext.request.contextPath}/resources/upload/${market.MK_THUMB_RENAME}" onerror="this.src='${pageContext.request.contextPath}/resources/images/noImage.png'"
+														alt="" style="width: 50px;height: 50px; margin-left: 32%"></td>
+													<td><a class="mya" href="${pageContext.request.contextPath}/board/adminMarket/detail?mkno=${market.mkNo}" > ${market.mkTitle }</a></td>
 													<td>${market.mkDate }</td>
 													<td class="text-center"><span
 														class="label label-default"> <c:if

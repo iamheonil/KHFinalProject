@@ -103,6 +103,8 @@ public class FindStuController {
 		//userNo
 		int userNo = loginUser.getUserNo();
 		
+		System.out.println("userNo"+userNo);
+		
 		//키워드와 페이징을 넣어줄 map
 		Map<Object, Object> findStuPagingMap = new HashMap<Object, Object>();
 		

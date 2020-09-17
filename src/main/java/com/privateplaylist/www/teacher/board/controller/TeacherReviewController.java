@@ -38,7 +38,18 @@ public class TeacherReviewController {
 				Paging paging = teacherReviewService.reviewListPaging(req);
 						
 				//공지사항 정보 전체 조회 list
-				List<Review> reviewList = teacherReviewService.selectReviewList(paging);
+				List<Map<String, Object>> reviewList = teacherReviewService.selectReviewList(paging);
+				
+				// 평점 옵션
+			      Map<Integer, String> ratingOptions = new HashMap<>();
+			      ratingOptions.put(0, "☆☆☆☆☆");
+			      ratingOptions.put(1, "★☆☆☆☆");
+			      ratingOptions.put(2, "★★☆☆☆");
+			      ratingOptions.put(3, "★★★☆☆");
+			      ratingOptions.put(4, "★★★★☆");
+			      ratingOptions.put(5, "★★★★★");
+			      model.addAttribute("ratingOptions", ratingOptions);
+				
 				
 				//모델값 전달
 				model.addAttribute("reviewList", reviewList);

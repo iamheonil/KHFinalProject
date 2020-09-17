@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 페이지::학생찾기 상세보기</title>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
