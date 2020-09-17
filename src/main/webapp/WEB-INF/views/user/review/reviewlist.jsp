@@ -335,21 +335,18 @@ $(function() {
 $(document).ready(function(){
 	
 	$('#mstar i').click(function (){
-		
-// 		console.log('clicked')
-		
-	    $(this).parent().children("i").removeClass("star_on");  /* 별점의 star_on 클래스 전부 제거 */ 
-	    $(this).addClass("star_on").prevAll("i").addClass("star_on"); /* 클릭한 별과, 그 앞 까지 별점에 star_on 클래스 추가 */
+
+		/* 별점의 star_on 클래스 전부 제거 */ 
+	    $(this).parent().children("i").removeClass("star_on"); 
+	    /* 클릭한 별과, 그 앞 까지 별점에 star_on 클래스 추가 */
+	    $(this).addClass("star_on").prevAll("i").addClass("star_on"); 
 	    
 	    var starpoint = this.id;
-		
-	    console.log(starpoint);
 	    
 	    $('#note-has-star').attr("value", starpoint)
 		    
 	    return false;
 	});
-	
 });
 </script>
 
