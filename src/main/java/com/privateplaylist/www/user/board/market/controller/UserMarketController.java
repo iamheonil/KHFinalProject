@@ -231,7 +231,7 @@ public class UserMarketController {
 	// 중고장터 수정
 	@RequestMapping(value = "/market/update", method = RequestMethod.POST)
 	public ModelAndView marketUpdate2(@RequestParam List<MultipartFile> files, @RequestParam List<MultipartFile> thumb
-			, HttpSession session, Market market) throws FileException {
+			, HttpSession session, Market market, @RequestParam(required = false) List<Integer> deleteFileNo, @RequestParam(defaultValue = "0") int deleteThumbNo) throws FileException {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -247,6 +247,14 @@ public class UserMarketController {
 			
 			market.setMkWriter(userNo);
 			
+			if( deleteFileNo != null ) {
+				userMarketService.deleteFile(deleteFileNo);
+			}
+			
+			if( deleteThumbNo != 0  ) {
+				userMarketService.deleteThumb(deleteThumbNo);
+			}
+			
 			int mkno = userMarketService.updateMarket(market);
 			int res = userMarketService.insertMarketFiles(mkno, thumb, files, root);
 			
@@ -254,23 +262,6 @@ public class UserMarketController {
 			
 			return mav;
 		}
-	}
-	@RequestMapping(value = "/market/deletethumb", method = RequestMethod.POST)
-	@ResponseBody
-	public int marketDeleteThumb(@RequestParam int mkThumbNo) {
-		
-		int res = userMarketService.deleteThumb(mkThumbNo);
-		
-		return res;
-	}
-	
-	@RequestMapping(value = "/market/deletefile", method = RequestMethod.POST)
-	@ResponseBody
-	public int marketDeleteFile(@RequestParam int mkFileNo) {
-		
-		int res = userMarketService.deleteFile(mkFileNo);
-		
-		return res;
 	}
 	
 	// 중고장터 판매 완료
