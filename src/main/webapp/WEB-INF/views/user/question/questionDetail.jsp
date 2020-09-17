@@ -161,12 +161,13 @@
 .comment-wrapper .panel-body {
     max-height:650px;
 /*     overflow:auto; */
-/* 	display: inline-block; */
+ 	display: inline-block; 
 }
 
 .comment-wrapper .panel-body textarea{
 	width: 750px;
 	display: inline-block;
+	margin-right: 10px;
 
 }
 
@@ -201,6 +202,21 @@
 }
 .article-content p{
 	font-size: 20px;
+}
+
+.media-body p{
+	font-size: 15px;
+	color: black;
+}
+.media-body small{
+	font-size: 12px;
+}
+
+.fa-mail-reply:before, .fa-reply:before{
+	margin-left: 15px;
+}
+.media-body strong{
+	color: black;
 }
 </style>
 
@@ -274,9 +290,9 @@ function recommQuestion(commNo){
 	
 	a += '<span class="pull-left"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></span>';
 	
-	a += '<div>'
+	a += '<div class="reComm">'
     	+'<textarea class="form-control" placeholder="댓글 내용을 입력하세요" name="recommContent" id="recommContent" rows="3"></textarea>'
-	    + '<button type="button" class="btn btn-info pull-right" id="BtncommWrite" onClick="fn_recomment('+commNo+')">댓글 달기</button>'
+	    + '<button type="button" class="btn btn-info pull-right" id="BtncommWrite" onClick="fn_recomment('+commNo+')">등록</button>'
 		+ '</div>';
 	
 	$("#recomment"+ commNo).html(a);
@@ -333,12 +349,16 @@ function fn_recomment(parentCommNo){
         
     });
 }
-function commUpdateOpen(commNo, commContent){
+function commUpdateOpen(commNo, commContent, target){
 	var a =''; 
 	console.log(commNo);
 	
-	a += '<p>'
-    	+'<textarea class="form-control" name="recommContent" id="recommContent" rows="3" style="width: 700px;">'+commContent+'</textarea>'
+// 	if(	$(target).parents("li.media").next().hasClass('reComm') === true ){
+// 		alert("답글을 다는 중에는 댓글을 수정할 수 없습니다.");
+// 	}
+	
+	a += '<p class="reComm">'
+    	+'<textarea class="form-control" name="recommContent" id="recommContent" rows="3" style="width: 670px;">'+commContent+'</textarea>'
 	    + '<button type="button" class="btn btn-info pull-right" id="BtncommWrite" onClick="commUpdate('+commNo+')">완료</button>'
 		+ '</p>';
 	
@@ -467,14 +487,14 @@ function singo(){
            </form>
            
            
-           <button onclick="history.go(-1);" style="float: right;">목록</button>
+           <button onclick="location.href='${pageContext.request.contextPath }/board/question'" style="float: right;">목록</button>
 				<h2>${detail.question.QUESTION_TITLE }</h2>
                <div class="userImg">
                		<c:if test="${not empty detail.question.TCH_FILE_RENAME }" >
 	                  <img src="${pageContext.request.contextPath }/resources/upload/${detail.question.TCH_FILE_RENAME }" title="" alt="">
                		</c:if>
                		<c:if test="${empty detail.question.TCH_FILE_RENAME }" >
-	                  <img src="${pageContext.request.contextPath }/resources/images/noimage.gif" title="" alt="">
+	                  <img src="${pageContext.request.contextPath }/resources/images/rename1.png" title="" alt="">
                		</c:if>
             	  <div class="userInfo">
             	  	<div class="userId">${detail.question.USER_ID }</div>
@@ -540,9 +560,10 @@ function singo(){
 			            	  		<c:if test="${comm.COMM_CLASS eq 0 }">
 			            	  			<a href="javascript:void(0);" onclick="recommQuestion(${comm.COMM_NO});" id="comment">댓글</a> |
 			            	  		</c:if>
-			            	  		<a href="javascript:void(0);" onclick="commUpdateOpen(${comm.COMM_NO }, '${comm.COMM_CONTENT }');">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${comm.COMM_NO });">삭제</a>
+			            	  		<a href="javascript:void(0);" onclick="commUpdateOpen(${comm.COMM_NO }, '${comm.COMM_CONTENT }',this);">수정</a> | <a  href="javascript:void(0);" onclick="commDelete(${comm.COMM_NO });">삭제</a>
 			            	  	</c:if>
 					         </div>
+                        <c:if test="${comm.Q_COMM_STATE == 0 }">
                             <a href="#" class="pull-left">
                             	<c:if test="${empty comm.TCH_FILE_RENAME }">
 	                                <img src="${pageContext.request.contextPath}/resources/images/rename1.png" alt="" class="img-circle">
@@ -551,15 +572,14 @@ function singo(){
 	                                <img src="${pageContext.request.contextPath}/resources/upload/${comm.TCH_FILE_RENAME }" alt="" class="img-circle">
                             	</c:if>
                             </a>
-                        <c:if test="${comm.Q_COMM_STATE == 0 }">
                             <div class="media-body" style="display: inline;" >
                                 <strong class="text">${comm.USER_ID }</strong>
                                 <p id="update${comm.COMM_NO }">${comm.COMM_CONTENT }</p>
                                 <c:if test="${comm.COMM_CLASS eq 1 }">
-                                	<small>&emsp;&emsp;${comm.COMM_DATE }</small>
+                                	<small>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;${comm.COMM_DATE }</small>
                                 </c:if>
                                 <c:if test="${comm.COMM_CLASS eq 0 }">
-                                	<small>${comm.COMM_DATE }</small>
+                                	<small>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;${comm.COMM_DATE }</small>
                                 </c:if>
                             </div>
                         </c:if>    
