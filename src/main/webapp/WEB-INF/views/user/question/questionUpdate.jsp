@@ -83,25 +83,37 @@ function goback(){
 	window.history.back();
 }
 
-function deleteFile(questionFileNo, target){
-	var url = "<%=request.getContextPath() %>/board/question/deletefile";
-	// 비동기 처리
-	$.ajax({
-		type : "POST",
-		url: url,
-		data: {questionFileNo : questionFileNo},
-		success : function(result) {
-			$(target).parent("span").remove();
-			$(target).parent("span").next().remove();
-			$(target).parent("span").children('br').remove();
-			$("#" + questionFileNo).remove();
-// 			location.reload();
-		},
-		error : function(){
-			alert("ajax 실패")
-		}
-	});
+// function deleteFile(questionFileNo, target){
+<%-- 	var url = "<%=request.getContextPath() %>/board/question/deletefile"; --%>
+// 	// 비동기 처리
+// 	$.ajax({
+// 		type : "POST",
+// 		url: url,
+// 		data: {questionFileNo : questionFileNo},
+// 		success : function(result) {
+// 			$(target).parent("span").remove();
+// 			$(target).parent("span").next().remove();
+// 			$(target).parent("span").children('br').remove();
+// 			$("#" + questionFileNo).remove();
+// // 			location.reload();
+// 		},
+// 		error : function(){
+// 			alert("ajax 실패")
+// 		}
+// 	});
 	
+// }
+
+function deleteFile(questionFileNo, target){
+	
+	var $input = "<input type='hidden' name='deleteFileNo' value='" + questionFileNo + "'/>";
+	
+	$("#questionUpdateForm").append($input);
+	
+	$(target).parent("span").remove();
+	$(target).parent("span").next().remove();
+	$(target).parent("span").children('br').remove();
+	$("#" + questionFileNo).remove();
 }
 
 
@@ -176,6 +188,8 @@ function submitContents(elClickedObj) {
 	 }
 
 }  
+
+
 </script>
 
 <body>
@@ -208,7 +222,7 @@ function submitContents(elClickedObj) {
 	<!-- END #gtco-header -->
 <div class="clearfix" ></div>	
 <div id="marketWrite">
-<form class="form" method="post" action="${pageContext.request.contextPath}/board/question/update" enctype="multipart/form-data">
+<form id="questionUpdateForm" class="form" method="post" action="${pageContext.request.contextPath}/board/question/update" enctype="multipart/form-data">
   <input type="hidden" name="questionNo" value="${detail.question.QUESTION_NO }" />
   <div class="form-group" style="font-weight: bold; font-size: 16px;">
 	질문게시판 글쓰기
