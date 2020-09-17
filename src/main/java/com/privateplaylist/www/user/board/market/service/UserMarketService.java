@@ -69,9 +69,6 @@ public interface UserMarketService {
 	// 썸네일 수정
 	public int deleteThumb(int mkThumbNo);
 
-	// 파일 수정
-	public int deleteFile(int mkFileNo);
-
 	public int updateMarket(Market market);
 
 	public int insertMarketFiles(int mkno, List<MultipartFile> thumb, List<MultipartFile> files, String root)  throws FileException;
@@ -90,5 +87,8 @@ public interface UserMarketService {
 
 	// 댓글 수정
 	public int updateComm(int mkCommNo, String commContent);
+
+	// 파일 수정
+	public void deleteFile(List<Integer> deleteFileNo);
 
 }

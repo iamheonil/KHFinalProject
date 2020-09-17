@@ -67,6 +67,7 @@ public class MemberController {
 		
 		if (res != null) {
 			// 로그인 성공
+			session.removeAttribute("loginAdmin");//관리자 로그아웃
 			session.setAttribute("loginUser", res);
 			session.setAttribute("teacherFile", teacherFile);
 			Member loginUser = (Member) session.getAttribute("loginUser");
@@ -110,10 +111,14 @@ public class MemberController {
 
 		if (res < 0) {
 			System.out.println("회원가입 실패");
-			mav.setViewName("redirect:join");
+			mav.addObject("alertMsg", "회원가입에 실패하였습니다.");
+			mav.addObject("url", root + "/member/join");
+			mav.setViewName("/member/result");
 		} else {
 			System.out.println("회원가입 성공");
-			mav.setViewName("redirect:login");
+			mav.addObject("alertMsg", "회원가입에 성공하였습니다.");
+			mav.addObject("url", root + "/member/login");
+			mav.setViewName("/member/result");
 		}
 		return mav;
 	}

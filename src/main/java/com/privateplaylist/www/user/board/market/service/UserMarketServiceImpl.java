@@ -134,10 +134,6 @@ public class UserMarketServiceImpl implements UserMarketService{
 		return userMarketDao.deleteThumb(mkThumbNo);
 	}
 
-	@Override
-	public int deleteFile(int mkFileNo) {
-		return userMarketDao.deleteFile(mkFileNo);
-	}
 
 	@Override
 	public int insertMarketFiles(int mkno, List<MultipartFile> thumb, List<MultipartFile> files, String root)
@@ -221,6 +217,15 @@ public class UserMarketServiceImpl implements UserMarketService{
 		map.put("commContent", commContent);
 		
 		return userMarketDao.updateComm(map);
+	}
+
+	@Override
+	public void deleteFile(List<Integer> deleteFileNo) {
+		
+		for( int fileNo : deleteFileNo ) {
+			userMarketDao.deleteFile(fileNo);
+		}
+		
 	}
 
 }
