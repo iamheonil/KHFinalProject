@@ -51,14 +51,14 @@ div.button input{
 </div>
 <br>
 <div class="border">
-<h2>과외 등록 시 주의사항</h2>
+<h2 style="font-weight: bolder !important">과외 등록 시 주의사항</h2><br>
 	<div class="caution">
 <!-- 		<span class="glyphicon glyphicon-check btn-lg"></span> <p>작성 후 관리자의 검토를 받아야 합니다.</p><br><br> -->
 		<span class="glyphicon glyphicon-check btn-lg"></span> <p>관리자 승인 후 등록하실 수 있습니다.</p><br><br>
 		<span class="glyphicon glyphicon-check btn-lg"></span> <p>과외 등록 시 1000원의 수수료가 부과됩니다.</p><br><br>
 		<span class="glyphicon glyphicon-check btn-lg"></span> <p>허위 사실 작성 시 법적 처벌을 받을 수 있습니다.</p><br><br>
 	</div>
-	<br><br>
+	<br>
 	<div class="button"> 
     	<input type="button" value="과외 등록하러 가기" onclick="location.href='writelesson'"/><br/>
 	</div>

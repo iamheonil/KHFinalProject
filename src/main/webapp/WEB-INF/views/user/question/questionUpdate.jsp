@@ -92,7 +92,10 @@ function deleteFile(questionFileNo, target){
 		data: {questionFileNo : questionFileNo},
 		success : function(result) {
 			$(target).parent("span").remove();
-			location.reload();
+			$(target).parent("span").next().remove();
+			$(target).parent("span").children('br').remove();
+			$("#" + questionFileNo).remove();
+// 			location.reload();
 		},
 		error : function(){
 			alert("ajax 실패")
@@ -225,19 +228,19 @@ function submitContents(elClickedObj) {
     </div>
     <div class="form-group">
       <label>상세 사진&nbsp;&nbsp;&nbsp;</label><br>
-		<input id="file" type="file" name="files" multiple/>
+		<input id="file" type="file" name="files" accept="image/*" multiple/>
 		<div id="preview" style="width: 600px;"></div>
       <c:if test="${not empty detail.flist }">
 	      <c:forEach items="${detail.flist }" var="f" >
-		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;</span>
-		    <br><img src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
+		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;<br></span>
+		    <img id="${f.QUESTION_FILE_NO }" src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
 	      </c:forEach>
       </c:if>
   	  
     </div>
 <div style="text-align: center;">
     <button class="btn btn-primary" onclick="submitContents();"><span>수정</span></button>
-    <button class="btn btn-disable" type="button" onclick="goback();"><span>취소</span></button>
+    <button class="btn btn-disable" type="button" onclick="location.href='${pageContext.request.contextPath }/board/question/detail?questionNo=${detail.question.QUESTION_NO }'"><span>취소</span></button>
 </div>
 </form>
 </div>
