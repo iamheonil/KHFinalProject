@@ -104,7 +104,7 @@ function findPw() {
 
 </script>
 
-	<div id="gtco_header" class="gtco-cover gtco-cover-xl">
+	<div id="gtco_header" class="gtco-cover gtco-cover-xl" style="text-align: center;">
 		<div id="loginForm" style="margin-top: 5%;">
 		<br><br><br><br><br>
 			<form action="/ss/member/findidAjax" method="POST" class="form">

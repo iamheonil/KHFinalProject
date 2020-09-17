@@ -42,12 +42,14 @@ public class AdminLoginController {
 		System.out.println("Login Post Call");
 		
 		System.out.println(adminMap);
+		session.removeAttribute("loginUser");
 
 		ModelAndView mav = new ModelAndView();
 		Admin res = adminLoginService.selectAdmin(adminMap);
 		
 		if (res != null) {
 			// 로그인 성공
+			session.removeAttribute("loginUser");//관라저 로그인 시 회원 로그아웃
 			session.setAttribute("loginAdmin", res);
 			Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 			System.out.println("담은거 : " + loginAdmin);

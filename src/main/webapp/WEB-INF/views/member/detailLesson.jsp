@@ -304,7 +304,7 @@
 
 
 							<li><a data-toggle="tab" href="#friends"> <i
-									class="blue ace-icon fa fa-users bigger-120"></i> 과외 후기
+									class="blue ace-icon fa fa-users bigger-120"></i>  선생님 후기
 							</a></li>
 
 							<li><a data-toggle="tab" href="#pictures"> <i

@@ -314,7 +314,7 @@
 	Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 
-
+<!--  -->
 
 <nav class="gtco-nav" role="navigation">
 	<div class="gtco-container">
@@ -322,24 +322,18 @@
 		<div class="row">
 			<div class="col-sm-2 col-xs-12">
 				<div id="gtco-logo">
-				<c:if test="${loginUser eq null }"><!-- 로그인 하지 않았을때  -->
-					
-					<a href="${pageContext.request.contextPath}"> 
+				<c:if test="${loginUser eq null and loginAdmin eq null}"><!-- 로그인 하지 않았을때  -->
+					<a href="${pageContext.request.contextPath}">
 				</c:if>
-				<c:if test="${loginUser ne null }"><!-- 로그인 했을때  -->
-					
-					<a href="${pageContext.request.contextPath}/member/main"> 
+				<c:if test="${loginUser ne null or loginAdmin ne null}"><!-- 로그인 했을때  -->
+					<a href="${pageContext.request.contextPath}/member/main">
 				</c:if>
-				
-					
-					<img
-						src="${pageContext.request.contextPath}/resources/images/logo.png"
-						alt="슬기로운 과외생활"></a>
+					<img src="${pageContext.request.contextPath}/resources/images/logo.png"	alt="슬기로운 과외생활">
 				</div>
 			</div>
 			<div class="col-xs-10 text-right menu-1">
 				<ul style="margin-top: 20px;">
-					<c:if test="${loginUser eq null }">
+					<c:if test="${loginUser eq null and loginAdmin eq null}">
 						<!-- 로그인이 되어있지 않을때  -->
 						<li class="active"><a href="/ss/member/login">로그인</a></li>
 						<li><a href="/ss/member/join">회원가입</a></li>
@@ -347,6 +341,10 @@
 					<c:if test="${loginUser ne null }">
 						<!-- 로그인이 되어있을때  -->
 							안녕하세요! ${loginUser.userName }님!
+						</c:if>
+					<c:if test="${loginAdmin ne null }">
+						<!-- 로그인이 되어있을때  -->
+							안녕하세요! 관리자님!
 						</c:if>
 
 					<li><a
@@ -366,7 +364,7 @@
 									<li><a href="#">jQuery</a></li>
 								</ul> --></li>
 					<li><a href="/ss/board/main">커뮤니티</a></li>
-					<c:if test="${loginUser ne null }">
+					<c:if test="${loginUser ne null or loginAdmin ne null}">
 						<!-- 로그인이 되어있을때  -->
 						 
 						<c:if test="${loginUser.userActor eq 2 }"><!-- 학생일때  -->
@@ -376,6 +374,10 @@
 						<c:if test="${loginUser.userActor eq 1 }"><!-- 선생일때  -->
 						
 						<li><a href="${pageContext.request.contextPath}/teacher/caution">마이페이지</a></li>
+						</c:if> 
+						<c:if test="${loginAdmin ne null }"><!-- 관리자 페이지로 이동 -->
+						
+						<li><a href="${pageContext.request.contextPath}/admin/lesson/view">관리자 페이지</a></li>
 						</c:if> 
 						<li><a href="/ss/member/logout">로그아웃</a></li>
 					</c:if>

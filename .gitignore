@@ -5,7 +5,8 @@ tmp/
 *.bak
 *.swp
 *~.nib
-.settings/
+*.settings
+/.settings
 .loadpath
 .recommenders
 # PDT-specific (PHP Development Tools)
