@@ -201,41 +201,6 @@ public class UserQuestionController {
     
     
     
-    /**
-     * 게시물 댓글 불러오기(Ajax)
-     * @param boardVO
-     * @param request
-     * @return
-     * @throws Exception
-     */ /*produces="application/json; charset=utf8"*/
-//    @RequestMapping(value="/question/commentlist")
-//    @ResponseBody
-//    public ModelAndView ajax_commentList(int questionNo) {
-//        
-//    	ModelAndView mav = new ModelAndView();
-//    	
-//        List<Map<String, Object>> hmlist = new ArrayList<Map<String, Object>>();
-//    	
-//    	List<QuestionComm> list = userQuestionService.selectQuestionCommentByNo(questionNo);
-//    	
-////    	HashMap hm = new HashMap();
-//        Map<String, Object> hm = new HashMap<String, Object>();
-//        
-//        if(list.size() > 0){
-//            for(int i=0; i<list.size(); i++){
-//                hm.put("c_code", list.get(i).getCommNo());
-//                hm.put("comment", list.get(i).getCommContent());
-//                hm.put("writer", list.get(i).getUserNo());
-//                
-//                hmlist.add(hm);
-//            }
-//            
-//        }
-//        System.out.println(list);
-//        
-//        mav.addObject("list",hmlist);
-//        return mav;
-//    }
 	
     @RequestMapping("/question/commentlist")
     @ResponseBody
@@ -243,24 +208,6 @@ public class UserQuestionController {
     	List<Map<String, Object>> list = userQuestionService.selectQuestionCommentByNo(questionNo);
     	return list;
     }
-//    @RequestMapping("/question/commentlist")
-//    @ResponseBody
-//    public List<QuestionComm> commentList(Model model, int questionNo){
-//    	List<QuestionComm> list = userQuestionService.selectQuestionCommentByNo(questionNo);
-//    	System.out.println(list);
-//    	return list;
-//    }
-    
-    
-//    @RequestMapping("/question/recommentlist")
-//    @ResponseBody
-//    public List<Map<String, Object>> recommentList(Model model, int questionNo){
-//    	List<Map<String, Object>> list = userQuestionService.selectQuestionReCommentByNo(questionNo);
-//    	System.out.println("댓글 : "+list);
-//    	return list;
-//    }
-    
-    
     
 	// 질문게시판 수정
 	@RequestMapping(value = "/question/update", method = RequestMethod.GET)
@@ -284,31 +231,39 @@ public class UserQuestionController {
 	// 질문게시판 수정
 	@RequestMapping(value = "/question/update", method = RequestMethod.POST)
 	public ModelAndView questionUpdate2(@RequestParam List<MultipartFile> files
-			, HttpSession session, Question question) throws FileException {
+			, HttpSession session, Question question, @RequestParam(required = false) List<Integer> deleteFileNo) throws FileException {
 		ModelAndView mav = new ModelAndView();
 		
 		Member m = (Member) session.getAttribute("loginUser");
-		int userNo = m.getUserNo();
-//		int userNo = 1;
-		String root = session.getServletContext().getRealPath("/");
-		
-		question.setUserNo(userNo);
-		
-		int qNo = userQuestionService.updateQuestion(question, files, root);
-//		int res = userQuestionService.insertQuestionFiles(mkno, files, root);
-		mav.setViewName("redirect:/board/question/detail?questionNo=" + question.getQuestionNo());
-		return mav;
-	}
+		if( m == null ) {
+			mav.setViewName("redirect:/member/login");
+			return mav;
+		}else {
+			int userNo = m.getUserNo();
+	//		int userNo = 1;
+			String root = session.getServletContext().getRealPath("/");
+			
+			question.setUserNo(userNo);
+			
+			if( deleteFileNo != null ) {
+				userQuestionService.deleteFile(deleteFileNo);
+			}
+			
+			int qNo = userQuestionService.updateQuestion(question, files, root);
+	//		int res = userQuestionService.insertQuestionFiles(mkno, files, root);
+			mav.setViewName("redirect:/board/question/detail?questionNo=" + question.getQuestionNo());
+			return mav;
+		}
 	
-	
-	@RequestMapping(value = "/question/deletefile", method = RequestMethod.POST)
-	@ResponseBody
-	public int questionDeleteFile(@RequestParam int questionFileNo) {
-		
-		int res = userQuestionService.deleteFile(questionFileNo);
-		
-		return res;
-	}
+	}	
+//	@RequestMapping(value = "/question/deletefile", method = RequestMethod.POST)
+//	@ResponseBody
+//	public int questionDeleteFile(@RequestParam int questionFileNo) {
+//		
+//		int res = userQuestionService.deleteFile(questionFileNo);
+//		
+//		return res;
+//	}
     
     public ModelAndView commlist(int questionNo){
     	

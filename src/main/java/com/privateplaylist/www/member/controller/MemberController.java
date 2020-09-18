@@ -62,6 +62,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		Member res = memberService.selectMember(memberMap);
 		String userId = (String) memberMap.get("userId");
+		String root = request.getContextPath();
 		
 		TeacherFile teacherFile = memberService.selectTeacherFile(userId);
 		
@@ -70,18 +71,18 @@ public class MemberController {
 			session.removeAttribute("loginAdmin");//관리자 로그아웃
 			session.setAttribute("loginUser", res);
 			session.setAttribute("teacherFile", teacherFile);
-			Member loginUser = (Member) session.getAttribute("loginUser");
-			TeacherFile loginTeacher = (TeacherFile) session.getAttribute("teacherFile");
-			System.out.println("담은거 : " + loginUser);
-			System.out.println("담은거 : " + loginTeacher);
-			mav.addObject("url", request.getContextPath() + "/main/index");
-			mav.setViewName("redirect:main");
-			System.out.println("로그인 성공");
+			// Member loginUser = (Member) session.getAttribute("loginUser");
+			// TeacherFile loginTeacher = (TeacherFile) session.getAttribute("teacherFile");
+			// mav.addObject("alertMsg", "회원가입에 실패하였습니다.");
+			mav.addObject("url", root + "/member/main");
+			mav.setViewName("/member/result");
+			// System.out.println("로그인 성공");
 		} else {
 			// 로그인 실패
-			mav.addObject("url", request.getContextPath() + "/member/login.do");
-			mav.setViewName("/member/login");
-			System.out.println("로그인 실패");
+			mav.addObject("alertMsg", "로그인에 실패했습니다. 아이디, 비밀번호를 확인해주세요");
+			mav.addObject("url", root + "/member/login");
+			mav.setViewName("/member/result");
+			// System.out.println("로그인 실패");
 		}
 
 		return mav;
@@ -102,9 +103,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/joinImpl", method = POST)
-	public ModelAndView joinEmail(@ModelAttribute Member member, HttpServletRequest req) {
+	public ModelAndView joinEmail(@ModelAttribute Member member, HttpServletRequest request) {
 
-		String root = req.getContextPath();
+		String root = request.getContextPath();
 		ModelAndView mav = new ModelAndView();
 
 		int res = memberService.insertMember(member);
