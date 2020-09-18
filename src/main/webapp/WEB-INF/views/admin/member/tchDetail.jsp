@@ -266,7 +266,7 @@ body{
 						                    <c:forEach items="${tchData.tchQuestion }" var="question" >
 												<tr>
 													<td>${question.questionNo}</td>
-													<td><a href="${pageContext.request.contextPath}/board/question">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}">${question.questionTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${question.userNo}</td>
 													<td>${question.questionDate}</td>
 												</tr>
@@ -334,7 +334,7 @@ body{
 						                    <c:forEach items="${tchData.tchMarket }" var="market" >
 												<tr>
 													<td>${market.mkNo}</td>
-													<td><a href="${pageContext.request.contextPath}/board/market">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
+													<td><a href="${pageContext.request.contextPath}/board/market/detail?mkno=${market.mkNo}">${market.mkTitle}</a></td> <!-- 추후추가 : 과외페이지로 연결 -->
 													<td>${market.mkWriter}</td>
 													<td>${market.mkDate}</td>
 													<c:if test="${market.mkState == 0}">

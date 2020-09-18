@@ -83,22 +83,37 @@ function goback(){
 	window.history.back();
 }
 
-function deleteFile(questionFileNo, target){
-	var url = "<%=request.getContextPath() %>/board/question/deletefile";
-	// 비동기 처리
-	$.ajax({
-		type : "POST",
-		url: url,
-		data: {questionFileNo : questionFileNo},
-		success : function(result) {
-			$(target).parent("span").remove();
-			location.reload();
-		},
-		error : function(){
-			alert("ajax 실패")
-		}
-	});
+// function deleteFile(questionFileNo, target){
+<%-- 	var url = "<%=request.getContextPath() %>/board/question/deletefile"; --%>
+// 	// 비동기 처리
+// 	$.ajax({
+// 		type : "POST",
+// 		url: url,
+// 		data: {questionFileNo : questionFileNo},
+// 		success : function(result) {
+// 			$(target).parent("span").remove();
+// 			$(target).parent("span").next().remove();
+// 			$(target).parent("span").children('br').remove();
+// 			$("#" + questionFileNo).remove();
+// // 			location.reload();
+// 		},
+// 		error : function(){
+// 			alert("ajax 실패")
+// 		}
+// 	});
 	
+// }
+
+function deleteFile(questionFileNo, target){
+	
+	var $input = "<input type='hidden' name='deleteFileNo' value='" + questionFileNo + "'/>";
+	
+	$("#questionUpdateForm").append($input);
+	
+	$(target).parent("span").remove();
+	$(target).parent("span").next().remove();
+	$(target).parent("span").children('br').remove();
+	$("#" + questionFileNo).remove();
 }
 
 
@@ -173,6 +188,8 @@ function submitContents(elClickedObj) {
 	 }
 
 }  
+
+
 </script>
 
 <body>
@@ -205,7 +222,7 @@ function submitContents(elClickedObj) {
 	<!-- END #gtco-header -->
 <div class="clearfix" ></div>	
 <div id="marketWrite">
-<form class="form" method="post" action="${pageContext.request.contextPath}/board/question/update" enctype="multipart/form-data">
+<form id="questionUpdateForm" class="form" method="post" action="${pageContext.request.contextPath}/board/question/update" enctype="multipart/form-data">
   <input type="hidden" name="questionNo" value="${detail.question.QUESTION_NO }" />
   <div class="form-group" style="font-weight: bold; font-size: 16px;">
 	질문게시판 글쓰기
@@ -225,19 +242,19 @@ function submitContents(elClickedObj) {
     </div>
     <div class="form-group">
       <label>상세 사진&nbsp;&nbsp;&nbsp;</label><br>
-		<input id="file" type="file" name="files" multiple/>
+		<input id="file" type="file" name="files" accept="image/*" multiple/>
 		<div id="preview" style="width: 600px;"></div>
       <c:if test="${not empty detail.flist }">
 	      <c:forEach items="${detail.flist }" var="f" >
-		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;</span>
-		    <br><img src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
+		    <span>${f.Q_FILE_ORIGINAL }&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="deleteFile(${f.QUESTION_FILE_NO }, this);"></i>&nbsp;<br></span>
+		    <img id="${f.QUESTION_FILE_NO }" src="${pageContext.request.contextPath }/resources/upload/${f.Q_FILE_RENAME }" title="" alt="" style="width: 600px;"><br>
 	      </c:forEach>
       </c:if>
   	  
     </div>
 <div style="text-align: center;">
     <button class="btn btn-primary" onclick="submitContents();"><span>수정</span></button>
-    <button class="btn btn-disable" type="button" onclick="goback();"><span>취소</span></button>
+    <button class="btn btn-disable" type="button" onclick="location.href='${pageContext.request.contextPath }/board/question/detail?questionNo=${detail.question.QUESTION_NO }'"><span>취소</span></button>
 </div>
 </form>
 </div>

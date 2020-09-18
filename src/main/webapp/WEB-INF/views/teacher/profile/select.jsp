@@ -182,7 +182,7 @@ $(document).ready(function() {
 		if (pwJ.test($(this).val())) {
 				// console.log(idJ.test($(this).val()));
 				console.log('Password Check');
-				$('#pw-check-msg').text('가입을 진행해주세요!');
+				$('#pw-check-msg').text('확인 감사합니다! :)');
 				$('#pw-check-msg').css('color', '#199894b3');
 		} else {
 // 			$("#userPw").val('');
@@ -198,7 +198,7 @@ $(document).ready(function() {
 // 				console.log(nameJ.test($(this).val()));
 				console.log('userName Check');
 				
-				$('#name-check-msg').text('가입을 진행해주세요!');
+				$('#name-check-msg').text('확인 감사합니다! :)');
 				$('#name-check-msg').css('color', '#199894b3');
 		} else {
 // 			$("#userName").val('');

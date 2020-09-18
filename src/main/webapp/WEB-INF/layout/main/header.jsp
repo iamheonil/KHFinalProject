@@ -314,7 +314,7 @@
 	Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 
-
+<!--  -->
 
 <nav class="gtco-nav" role="navigation">
 	<div class="gtco-container">
@@ -323,18 +323,12 @@
 			<div class="col-sm-2 col-xs-12">
 				<div id="gtco-logo">
 				<c:if test="${loginUser eq null and loginAdmin eq null}"><!-- 로그인 하지 않았을때  -->
-					
-					<a href="${pageContext.request.contextPath}"> 
+					<a href="${pageContext.request.contextPath}">
 				</c:if>
 				<c:if test="${loginUser ne null or loginAdmin ne null}"><!-- 로그인 했을때  -->
-					
-					<a href="${pageContext.request.contextPath}/member/main"> 
+					<a href="${pageContext.request.contextPath}/member/main">
 				</c:if>
-				
-					
-					<img
-						src="${pageContext.request.contextPath}/resources/images/logo.png"
-						alt="슬기로운 과외생활"></a>
+					<img src="${pageContext.request.contextPath}/resources/images/logo.png"	alt="슬기로운 과외생활">
 				</div>
 			</div>
 			<div class="col-xs-10 text-right menu-1">

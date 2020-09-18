@@ -26,7 +26,7 @@ public class LessonViewController {
 		//과외 전체 조회
 		List<Map<String, Object>> lessonList = lessonViewService.selectLessonAll();
 		
-		System.out.println(lessonList);
+//		System.out.println(lessonList);
 		
 		model.addAttribute("lessonList", lessonList);
 		

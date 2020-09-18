@@ -2,9 +2,13 @@
 <!-- 회원가입 페이지 -->
 <!-- 2020.08.19 김헌일 수정 + 헤더 푸터 Import 작업-->
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>    
 
 <%-- <c:import url="/WEB-INF/layout/login/joinHeader.jsp"/> --%>
 <%@ include file="/WEB-INF/layout/main/header.jsp" %>
@@ -118,6 +122,7 @@ body{
 
 <script type="text/javascript">
 
+var finalCheck = false;
 
 //이메일 인증
 
@@ -149,8 +154,8 @@ function emailChk(){
 		userEmail = document.getElementById('userEmail').value;
 		var param = "email=" + userEmail + "&code_check=" + code;
 		// console.log(param)
-		sendRequest("GET", "/ss/member/send", param, ajaxFromServer);
-		alert("이메일을 전송했습니다!")
+		sendRequest("POST", "/ss/member/send", param, ajaxFromServer);
+		alert("이메일을 전송했습니다! 메일을 확인해주세요!")
 	}
 	
 
@@ -159,9 +164,9 @@ function emailChk(){
 			if (httpRequest.status == 200) {//OK
 				var resultText = httpRequest.responseText;
 				if (resultText == 0) {
-					alert("이메일 전송 실패");
+					alert("이메일 전송에 실패했습니다. 다시 시도해주세요!");
 				} else if (resultText == 1) { //이메일 전송 완료
-					alert("이메일 전송완료")
+					alert("이메일 전송완료! 이메일을 확인해주세요")
 				}
 
 			} else {
@@ -175,11 +180,15 @@ function emailChk(){
 		console.log(usercode)
 		if (usercode == code) {
 			document.getElementById("email-check-msg").innerHTML = "이메일 인증 완료";
+			document.querySelector('#userEmail').readOnly = true;
+			document.querySelector('#inputCode').readOnly = true;
+			finalCheck = true;
 		} else {
 			document.querySelector('#userEmail').focus();
 			document.querySelector("#userEmail").value = "";
 			document.querySelector("#email-check-msg").innerHTML = "이메일 인증 실패";
 			document.querySelector('#email-check-msg').style.color = 'red';
+			finalCheck = false;
 		}
 	
 	}
@@ -250,7 +259,7 @@ $(document).ready(function() {
 				// console.log(emailJ.test($(this).val()));
 				$('#email-check-msg').text('이메일 인증을 진행해주세요!');
 				$('#email-check-msg').css('color', '#199894b3');
-				$('#emailBtn').attr('disabled', false);
+				$('#emailBtn').attr('disabled', false);		
 		} else {
 			$("#userEmail").val('');
 			$('#email-check-msg').text('올바른 이메일 양식이 아닙니다.');
@@ -423,7 +432,7 @@ function inputEmailChk(){
 
 function finalChecked() {
 	
-	if($('input:checkbox[id="finalcheck"]').is(":checked")) {
+	if($('input:checkbox[id="finalcheck"]').is(":checked") && finalCheck) {
 		$('#finalSub').attr('disabled', false);
 	} else {
 		$('#finalSub').attr('disabled', true);
@@ -532,7 +541,9 @@ function finalChecked() {
                 <input type="hidden" id="emailAuth" name="emailAuth" value="emailUncheck">
             </div>
         </div>
-        <div class="form-group row" id="sendMail"></div>
+        <div class="form-group row" id="sendMail">
+        	<input type="hidden" id="inputCode" name="inputCode" required="required" size="18">
+        </div>
         <div class="form-group row" id="email-check" style="font-size: 8px; text-align: center;" >
         	<span id="email-check-msg" class="email-check-msg" style="font-size: 8px; text-align: center;"></span>
         </div>
