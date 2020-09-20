@@ -1,12 +1,8 @@
-<!-- 20200902 김성은 -->
-<!-- 학생 마이페이지 질문게시판 paging -->
-<!-- /student/questionlist -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
 
 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
@@ -80,7 +76,6 @@ body{
     background-color: rgba(96,93,175,.2);
     color: #605daf;
 }
-
 #write{
 	background: #d66;
 	color: white;
@@ -88,7 +83,6 @@ body{
 .container a{
 	text-decoration: none;
 }
-
 </style>
 
 
@@ -102,14 +96,14 @@ body{
 <!-- 탭메뉴 -->
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a id="write" onclick="location.href='<%= request.getContextPath() %>/teacher/question/list'" class="nav-link active" data-toggle="tab" >작성글</a>
+    <a onclick="location.href='<%= request.getContextPath() %>/teacher/question/list'" class="nav-link active" data-toggle="tab" >작성글</a>
   </li>
   <li class="nav-item">
-    <a onclick="location.href='<%= request.getContextPath() %>/teacher/question/commlist'" class="nav-link" data-toggle="tab" >작성댓글</a>
+    <a id="write" onclick="location.href='<%= request.getContextPath() %>/teacher/question/commlist'" class="nav-link" data-toggle="tab" >작성댓글</a>
   </li>
 </ul>
-
-  <div class="tab-pane fade active in" id="first">
+  
+   <div class="" id="first">
     	<div class="container" style="width: 960px; height: 100%;">
 	    <div class="row">
 	        <div class="col-xl-12">
@@ -122,30 +116,31 @@ body{
 	                            <thead>
 	                                <tr class="align-self-center">
 	                                    <th style="width: 10%">번호</th>
-	                                    <th style="width: 70%">글제목</th>
+	                                    <th style="width: 70%">댓글</th>
 	                                    <th style="width: 20%">작성일</th>
 	                                </tr>
 	                            </thead>
 	                            
 	                            <tbody>
-	                            <c:if test="${empty Qlist}" >
+	                            <c:if test="${empty Qcommlist}" >
 	                            	<td colspan="3">게시글이 존재하지 않습니다.</td>
 								</c:if>
-	                               	<c:forEach items="${Qlist }" var="list" >
+	                               	<c:forEach items="${Qcommlist }" var="list" >
 										<tr>
-											<td>${list.QUESTION_NO}</td>
-											<td>
-												<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${list.QUESTION_NO}">${list.QUESTION_TITLE}</a>
-											</td>
-											<td>${list.QUESTION_DATE}</td>
+											<td>${list.COMM_NO}</td>
+<!-- 											<td> -->
+<%-- 												<a href="#" title="과외 정보 보기" onclick="lessonModal(${lesson.LESSON_NO });">${lesson.LESSON_TITLE }</a> --%>
+<!-- 											</td> -->
+											<td><a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${list.QUESTION_NO}">${list.COMM_CONTENT}</a></td>
+											<td>${list.COMM_DATE}</td>
 										</tr>
 									</c:forEach>
 	                            </tbody>
 	                            
 	                        </table>
 	                        
-			    <c:if test="${not empty Qlist}" >
-					<c:import url="/WEB-INF/paging/teacher/board/teacherlistPaging.jsp" />
+			    <c:if test="${not empty Qcommlist}" >
+					<c:import url="/WEB-INF/paging/teacher/board/teacherQuestionCommPaging.jsp" />
 				</c:if>
 	                    </div>
 	                </div>
@@ -153,7 +148,7 @@ body{
 	        </div>
 	    </div>
 	</div>
-  </div>
+  </div> 
   
   
 </div>
@@ -166,5 +161,4 @@ body{
 
 <c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
 <c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
-
 

@@ -180,7 +180,7 @@ $(document).ready(function(){
 	
 	<!-- 페이징 -->
 	<div class="pagingstyle">
-	<c:import url="/WEB-INF/paging/admin/question/questionlistPaging.jsp"></c:import>
+	<c:import url="/WEB-INF/paging/admin/question/questionSearchPaging.jsp"></c:import>
 	</div>
 	
 </div>  
