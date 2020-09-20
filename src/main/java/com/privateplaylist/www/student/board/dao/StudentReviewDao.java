@@ -27,11 +27,16 @@ public class StudentReviewDao {
 //		return sqlSession.selectList("StuReview.selectReviewList", map);
 //	}
 
-	public List<Map<String, Object>> selectReviewList(Paging paging) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("paging", paging);
-		return sqlSession.selectList("StuReview.selectReviewList", map);
+	public List<Map<String, Object>> selectReviewList(Paging paging, Member loginUser) {
+		Map<String, Object> comm=new HashMap<String,Object>();
+		comm.put("paging",paging);
+		comm.put("userNo",loginUser.getUserNo());
+		return sqlSession.selectList("StuReview.selectReviewList", comm);
 	}
+
+//	public List<Map<String, Object>> selectReviewList(Map<String, Object> paging) {
+//		return sqlSession.selectList("StuReview.selectReviewList", paging);
+//	}
 	
 	
 }
