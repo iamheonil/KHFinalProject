@@ -35,12 +35,12 @@
   
   	<select id="findId" resultType="MEMBER">
   		SELECT * FROM MEMBERSHIP
-  		WHERE USER_ACTOR = #{userActor} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+  		WHERE USER_ACTOR = #{userActor} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName} AND IS_LEAVE = 0
   	</select>
   	
   	<select id="findPw" resultType="MEMBER">
   		SELECT * FROM MEMBERSHIP
-  		WHERE USER_ACTOR = #{userActor} AND USER_ID = #{userId} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName}
+  		WHERE USER_ACTOR = #{userActor} AND USER_ID = #{userId} AND USER_EMAIL = #{userEmail} AND USER_NAME = #{userName} AND IS_LEAVE = 0
   	</select>
   	
   	<update id="modifyPw" parameterType="MEMBER">
