@@ -136,7 +136,7 @@ function deletelesson(lessonNo){
 				}
 			},
 			error : function(){
-				alert("ajax 실패")
+				alert("연결되어 있는 과외가 존재하여 삭제할 수 없습니다.")
 			}
 		});
 	}
@@ -189,7 +189,7 @@ function lessonModal(lessonNo){
 			
 		},
 		error : function(){
-			alert("ajax 실패")
+			alert("과외가 존재하지 않습니다.")
 		}
 		
 	})
