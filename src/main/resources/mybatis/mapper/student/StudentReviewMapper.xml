@@ -10,7 +10,7 @@
 	<select id="selectReviewListCnt" resultType="int">
 		SELECT count(*) FROM (
 			select * from REVIEW
-			where user_no = #{userNo}
+			  where review_no = {reviewNo}
 		)
 	</select>
 	
@@ -30,6 +30,7 @@
         on (r.user_no = m.user_no)
         inner join (select * from find_lesson) f
         on (r.user_no-1= f.user_no)
+      
         
 <!--         select * from ( -->
 <!-- 			select rownum rnum, c.* from( -->
