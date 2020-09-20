@@ -187,7 +187,7 @@ $(document).ready(function(){
 	
 	<!-- 페이징 -->
 	<div class="pagingstyle">
-	<c:import url="/WEB-INF/paging/admin/review/reviewlistPaging.jsp"></c:import>
+	<c:import url="/WEB-INF/paging/admin/review/reviewSearchPaging.jsp"></c:import>
 	</div>
 	
 </div>  

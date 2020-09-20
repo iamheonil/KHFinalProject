@@ -6,68 +6,48 @@
   
   <mapper namespace="TeacherQuestion">
   
-  <!-- 전체 리스트 출력 -->
-	<select id="selectQuestionList" resultType="QUESTION">
-
-	select * from question
-	 order by question_no desc
-  </select>
-  
-  <!-- 질문게시판 컨텐츠갯수 cnt -->
-	<select id="selectCntQuestionAll" resultType="int">
-  		select count(*) from question
-    </select>  
-  
-  <!-- 게시물 삭제 -->
-	<delete id="deleteQuestion">
-	  	delete from question
-		where question_no = #{questionNo}
-    </delete>
-  	<!-- 게시물파일삭제-->
-	<delete id="deleteQuestionFile">
-		delete from question_file where question_no=#{questionNo}
-	</delete>
-
-	<!-- 게시물 댓글삭제 -->
-	<delete id="deleteQuestionComm">
-		delete from question_comm where comm_No=#{comm_No}
-	</delete>
-  
-  	<!-- 검색 -->
-	<select id="selectSearchQuestion" resultType="QUESTION" parameterType="map">
-
-	select * from (
-		select rownum rnum, c.* from(
-			select * from question
-			where question_title like '%' || #{keyword} || '%'
-			or question_content like  '%' || #{keyword} || '%'
-			order by question_no desc
-		) c
-	) question 
-	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+  <select id="selectQuestionListCnt" resultType="int">
+		SELECT count(*) FROM (
+			select * from QUESTION
+			where user_no = #{userNo}
+		)
+	</select>
 	
-  </select>
-  
-  <select id="selectCntQuestionSearchAll" resultType="int" parameterType="String">
-  	select count(*) from question
-  	where question_title like '%' || #{keyword} || '%'
-  	or question_content like  '%' || #{keyword} || '%'
-  </select>  
-  
-  
-  
-  
-  <!-- 상세 페이지 출력 -->
-	<select id="selectQuestionone" resultType="QUESTION" parameterType="int">
-  	select * from question
-  	where question_no = #{questionNo}
-  </select>
+	<select id="selectQuestionList" resultType="map">
+		SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * FROM question
+				where user_no = #{user.userNo}
+				order by question_no
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}	
+	</select>
   
   
-  <!-- 댓글,대댓글 출력 -->
-  <select id="selectQuestionComm" resultType="QUESTIONCOMM" parameterType="int">
-  	select * from question_comm
-  	where question_no = #{questionNo}
-  </select>
+  <select id="selectQuestionCommListCnt" resultType="int">
+		SELECT count(*) FROM (
+			select * from QUESTION_COMM
+			where user_no = #{userNo}
+		)
+	</select>
+	
+	<select id="selectQuestionCommList" resultType="map">
+		SELECT * FROM (
+	  		SELECT rownum no, t.*
+	  		FROM (
+				SELECT * FROM question_comm
+				where user_no = #{user.userNo}
+				order by comm_no
+			) t
+			ORDER BY no ) x
+		WHERE no between #{paging.startNo} AND #{paging.endNo}			
+	</select>
+  
+  
+  
+  
+  
   
   </mapper>
