@@ -31,18 +31,20 @@ public class StudentReviewController {
 		public ModelAndView questionList(@RequestParam(required=false, defaultValue="1") int curPage, HttpSession session) {
 			
 			ModelAndView mav = new ModelAndView();
+			System.out.println(mav);
 			
 			//세션값 가지고 오기
 			Member loginUser = (Member) session.getAttribute("loginUser");
+			System.out.println("user"+loginUser);
 			
 			//요청 파라미터를 전달하여 paging 객체 생성하기
 			Paging paging = studentReviewService.getPagingStuReview(curPage, loginUser);
-					
+			System.out.println(paging);
 			//본인이 작성한 후기 조회 list
-			List<Map<String, Object>> reviewList = studentReviewService.selectReviewList(paging);
-			System.out.println(reviewList);
+			List<Map<String, Object>> reviewList = studentReviewService.selectReviewList(paging,loginUser);
+			System.out.println("list"+reviewList);
 			// -------------------------------------------------------
-			
+		
 			// 평점 옵션
 		      Map<Integer, String> ratingOptions = new HashMap<>();
 		      ratingOptions.put(0, "☆☆☆☆☆");
@@ -54,6 +56,7 @@ public class StudentReviewController {
 		      mav.addObject("ratingOptions", ratingOptions);
 			
 			
+		      mav.addObject("loginUser", loginUser);
 			mav.addObject("reviewList", reviewList);
 			mav.addObject("paging", paging);
 			mav.setViewName("student/board/reviewList");
