@@ -67,7 +67,7 @@ label {
 .box-product .img-wrapper {
 	position: relative;
 	overflow: hidden;
-	width:230px;
+	width: 230px;
 }
 
 .box-product .img-wrapper>:first-child {
@@ -409,13 +409,21 @@ bottom
 
 
 
+
+
+
+
 :
 
 
 
 
 
+
+
  
+
+
 
 
 
@@ -433,13 +441,21 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
 
+
+
  
+
+
 
 
 
@@ -466,13 +482,21 @@ top
 
 
 
+
+
+
+
 :
 
 
 
 
 
+
+
  
+
+
 
 
 
@@ -490,13 +514,21 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
 
+
+
  
+
+
 
 
 
@@ -1024,6 +1056,38 @@ JS, Popper.js, and jQuery
 						<span>선생님 찾기</span>
 					</div>
 					<hr>
+					<c:if test="${option.Loc ne '무관' }">
+						<i class="fa fa-check-square-o">&nbsp;${option.Loc }</i>&nbsp;|&nbsp;
+					</c:if>
+
+					<c:if test="${option.Sex ne '무관' }">
+						<c:if test="${option.Sex eq 'w' }">
+							<i class="fa fa-check-square-o">&nbsp;여자</i>&nbsp;|&nbsp;
+					</c:if>
+						<c:if test="${option.Sex eq 'm' }">
+							<i class="fa fa-check-square-o">&nbsp;남자</i>&nbsp;|&nbsp;
+					</c:if>
+					</c:if>
+
+					<c:if test="${option.Age ne '무관' }">
+						<i class="fa fa-check-square-o">&nbsp;${option.Age }</i>&nbsp;|&nbsp;
+					</c:if>
+
+					<c:if test="${option.Sub ne '무관' }">
+						<i class="fa fa-check-square-o">&nbsp;${option.Sub }</i>&nbsp;|&nbsp;
+					</c:if>
+
+					<c:if test="${option.Pri ne '무관' }">
+						<i class="fa fa-check-square-o">&nbsp;${option.Pri }원 이하</i>&nbsp;|&nbsp;
+					</c:if>
+
+					<c:if test="${option.Cnt ne '무관' }">
+						<i class="fa fa-check-square-o">&nbsp;${option.Cnt }</i>&nbsp;|&nbsp;
+					</c:if>
+
+
+
+					<br>
 
 					<!-- 검색 결과가 없을 경우  -->
 					<c:if test="${findLessonList[0] eq null}">
@@ -1031,10 +1095,11 @@ JS, Popper.js, and jQuery
 
 
 							<img alt="Teacher" align="middle"
-								style="width: 200px; height:200px; margin-top: 50px;"
+								style="width: 200px; height: 200px; margin-top: 50px;"
 								src="${pageContext.request.contextPath}/resources/images/no_result.png">
 
-						</div><!-- 검색결과 x end  -->
+						</div>
+						<!-- 검색결과 x end  -->
 
 
 
@@ -1045,11 +1110,12 @@ JS, Popper.js, and jQuery
 					<c:forEach items="${findLessonList }" var="find">
 
 						<div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-						
-							<div class="box-product" >
+
+							<div class="box-product">
 								<div class="img-wrapper" style="margin: 0 auto;">
-									<a href="${pageContext.request.contextPath}/lesson/detaillesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
-										<img alt="Teacher" style="width: 230px; height:200px; "
+									<a
+										href="${pageContext.request.contextPath}/lesson/detaillesson?lessonNo=${find.LESSON_NO}&userNo=${find.USER_NO}">
+										<img alt="Teacher" style="width: 230px; height: 200px;"
 										onerror="javascript:src='${pageContext.request.contextPath}/resources/images/profile.png'"
 										src="${pageContext.request.contextPath}/resources/upload/${find.TCH_FILE_RENAME}">
 									</a>
@@ -1057,17 +1123,23 @@ JS, Popper.js, and jQuery
 
 								</div>
 
-								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;"><B>${find.USER_ID }</B></div>
-								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;">
+								<div class="text text-epllipsis text-basic-black text-sm"
+									style="margin-left: 10px;">
+									<B>${find.USER_ID }</B>
+								</div>
+								<div class="text text-epllipsis text-basic-black text-sm"
+									style="margin-left: 10px;">
 									<i class="fa fa-file-o"
 										style="margin-right: 8px; margin-left: 0;"></i>
 									${find.LESSON_SUBJECT }
 								</div>
-								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;">
+								<div class="text text-epllipsis text-basic-black text-sm"
+									style="margin-left: 10px;">
 									<i class="fa fa-map-marker"
 										style="margin-right: 16px; margin-left: 0;"></i>${find.LESSON_LOC }</div>
 
-								<div class="text text-epllipsis text-basic-black text-sm" style="margin-left: 10px;">
+								<div class="text text-epllipsis text-basic-black text-sm"
+									style="margin-left: 10px;">
 									<i class="fa fa-users" style="margin-right: 8px;"></i>
 									<c:if test="${find.MAX_PEOPLE eq 1 }">
 										일대일
@@ -1135,7 +1207,7 @@ JS, Popper.js, and jQuery
 								</c:forEach>
 
 							</div>
-							
+
 							</a>
 						</div>
 
@@ -1146,7 +1218,7 @@ JS, Popper.js, and jQuery
 
 
 				</div>
-					<c:import url="/WEB-INF/paging/user/findLesson/listPaging.jsp" />
+				<c:import url="/WEB-INF/paging/user/findLesson/listPaging.jsp" />
 
 			</div>
 
