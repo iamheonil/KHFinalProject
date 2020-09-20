@@ -130,6 +130,8 @@ body{
 	                            <c:if test="${empty reviewList}" >
 	                            	<td colspan="3">게시글이 존재하지 않습니다.</td>
 								</c:if>
+								
+								<c:if  test="${not empty reviewList}" >
 	                               	<c:forEach items="${reviewList }" var="reviewList" >
 										<tr>
 											<td>${reviewList.REVIEW_NO}</td>
@@ -142,6 +144,7 @@ body{
 											<td>${reviewList.REVIEW_DATE}</td>
 										</tr>
 									</c:forEach>
+									</c:if>
 	                            </tbody>
 	                            
 	                        </table>
