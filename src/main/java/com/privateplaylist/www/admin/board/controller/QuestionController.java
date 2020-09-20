@@ -136,7 +136,7 @@ public class QuestionController {
 		}
 		
 		//검색
-		@RequestMapping(value="/search",method = RequestMethod.POST )
+		@RequestMapping(value="/search")
 		public String questionSearch(Model model,@RequestParam String keyword,HttpServletRequest req) {
 			
 			//root context
