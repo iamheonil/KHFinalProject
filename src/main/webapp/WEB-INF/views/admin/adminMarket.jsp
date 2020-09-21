@@ -728,10 +728,10 @@ document.ready(function(){
 													<td>${market.mkDate }</td>
 													<td class="text-center"><span
 														class="label label-default"> <c:if
-																test="${market.mkState eq 1}">
+																test="${market.mkState eq 0}">
 												게시중</span></td>
 													</c:if>
-													<c:if test="${market.mkState eq 0}">
+													<c:if test="${market.mkState eq 1}">
 												게시안함</span>
 														</td>
 													</c:if>
