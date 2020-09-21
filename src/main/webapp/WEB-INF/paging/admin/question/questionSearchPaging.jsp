@@ -45,7 +45,7 @@
    
    <!-- 현재 페이지가 아니라면 평소 모습-->
    <c:if test="${paging.curPage ne i }">
-   <li><a href="${pageContext.request.contextPath}/admin/questionsearch?curPage=${i }&keyword=${keyword}">${i }</a></li>
+   <li><a href="${pageContext.request.contextPath}/admin/question/search?curPage=${i }&keyword=${keyword}">${i }</a></li>
    </c:if>
 
    </c:forEach>
