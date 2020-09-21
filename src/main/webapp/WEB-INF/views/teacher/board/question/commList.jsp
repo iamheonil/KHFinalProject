@@ -1,6 +1,3 @@
-<!-- 20200902 김성은 -->
-<!-- 학생 마이페이지 질문게시판 paging -->
-<!-- /student/questionlist -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,7 +6,7 @@
 
 
 <c:import url="/WEB-INF/layout/main/header.jsp"></c:import>
-<c:import url="/WEB-INF/layout/student/stuHeader.jsp"></c:import>
+<c:import url="/WEB-INF/layout/teacher/teaHeader.jsp"></c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signStudent.css" type="text/css">
 
@@ -19,7 +16,7 @@
    height: 93px; 
 }
 
-#reviewM{
+#questionM{
   background: #eee;
 }
 #title{
@@ -79,7 +76,6 @@ body{
     background-color: rgba(96,93,175,.2);
     color: #605daf;
 }
-
 #write{
 	background: #d66;
 	color: white;
@@ -87,13 +83,12 @@ body{
 .container a{
 	text-decoration: none;
 }
-
 </style>
 
 
 <div id="title">커뮤니티
 	<i class="glyphicon glyphicon-menu-right"></i>
-	<a href="">후기 게시판</a>
+	<a href="">질문 게시판</a>
 </div>
 
 
@@ -101,12 +96,14 @@ body{
 <!-- 탭메뉴 -->
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a id="write" onclick="location.href='<%= request.getContextPath() %>/student/reviewlist'" class="nav-link active" data-toggle="tab" >작성한 후기</a>
+    <a onclick="location.href='<%= request.getContextPath() %>/teacher/question/list'" class="nav-link active" data-toggle="tab" >작성글</a>
   </li>
-  
+  <li class="nav-item">
+    <a id="write" onclick="location.href='<%= request.getContextPath() %>/teacher/question/commlist'" class="nav-link" data-toggle="tab" >작성댓글</a>
+  </li>
 </ul>
-
-  <div class="tab-pane fade active in" id="first">
+  
+   <div class="" id="first">
     	<div class="container" style="width: 960px; height: 100%;">
 	    <div class="row">
 	        <div class="col-xl-12">
@@ -119,38 +116,31 @@ body{
 	                            <thead>
 	                                <tr class="align-self-center">
 	                                    <th style="width: 10%">번호</th>
-	                                    <th style="width: 15%">과외이름</th>
-	                                    <th style="width: 50%">내용</th>
-	                                    <th style="width: 10%">별점</th>
-	                                    <th style="width: 15%">작성일</th>
+	                                    <th style="width: 70%">댓글</th>
+	                                    <th style="width: 20%">작성일</th>
 	                                </tr>
 	                            </thead>
 	                            
 	                            <tbody>
-	                            <c:if test="${empty reviewList}" >
+	                            <c:if test="${empty Qcommlist}" >
 	                            	<td colspan="3">게시글이 존재하지 않습니다.</td>
 								</c:if>
-								
-								<c:if  test="${not empty reviewList}" >
-	                               	<c:forEach items="${reviewList }" var="reviewList" >
+	                               	<c:forEach items="${Qcommlist }" var="list" >
 										<tr>
-											<td>${reviewList.REVIEW_NO}</td>
-											<td>
-												<a href="#">${reviewList.LESSON_TITLE}</a>
-											</td>
-											<td>${reviewList.REVIEW_CONTENT }</td>
-											<td style="width: 15%"><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ reviewList.STAR_POINT }">★</c:forEach></div></td>
-		
-											<td>${reviewList.REVIEW_DATE}</td>
+											<td>${list.COMM_NO}</td>
+<!-- 											<td> -->
+<%-- 												<a href="#" title="과외 정보 보기" onclick="lessonModal(${lesson.LESSON_NO });">${lesson.LESSON_TITLE }</a> --%>
+<!-- 											</td> -->
+											<td><a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${list.QUESTION_NO}">${list.COMM_CONTENT}</a></td>
+											<td>${list.COMM_DATE}</td>
 										</tr>
 									</c:forEach>
-									</c:if>
 	                            </tbody>
 	                            
 	                        </table>
 	                        
-			    <c:if test="${not empty reviewList}" >
-					<c:import url="/WEB-INF/paging/student/board/reviewListPaging.jsp" />
+			    <c:if test="${not empty Qcommlist}" >
+					<c:import url="/WEB-INF/paging/teacher/board/teacherQuestionCommPaging.jsp" />
 				</c:if>
 	                    </div>
 	                </div>
@@ -158,7 +148,7 @@ body{
 	        </div>
 	    </div>
 	</div>
-  </div>
+  </div> 
   
   
 </div>
@@ -169,8 +159,6 @@ body{
 
 
 
-<!-- 학생 마이페이지 푸터 -->
-<c:import url="/WEB-INF/layout/student/stuFooter.jsp"></c:import>
-<c:import url="/WEB-INF/layout/student/stuFooter2.jsp"></c:import>
-
+<c:import url="/WEB-INF/layout/teacher/teaFooter.jsp"></c:import>
+<c:import url="/WEB-INF/layout/main/footer.jsp"></c:import>
 

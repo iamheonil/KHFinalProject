@@ -1,10 +1,9 @@
-<!-- 20200824 김수현 -->
-<!-- question list paging -->
+<!-- 20200819 이인주 -->
+<!-- notice search paging -->
 
 <!-- 페이징 복붙 예시  -->
 <!-- 1. 본인에게 맞는 url 작성 -->
 <!-- 2. url에 쿼리스트링이 들어가야하는 경우 맞게 작성 필요 -->
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,8 +15,8 @@
    
    <!-- 첫 페이지로 가기 -->
 <%--    <c:if test="${paging.curPage ne 1 }"> --%>
-<%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-<%--    <li><a href="${pageContext.request.contextPath}/admin/review/list?curPage=1">&laquo;</a></li> --%>
+<%-- <%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%> 
+<%--    <li><a href="${pageContext.request.contextPath}/admin/question/search?curPage=1&keyword=${keyword}">&laquo;</a></li> --%>
 <%--    </c:if> --%>
    
    
@@ -33,7 +32,7 @@
    
    <!-- 이전 페이지로 가기 -->
    <c:if test="${paging.curPage ne 1 }">
-   <li><a href="${pageContext.request.contextPath}/admin/review/list?curPage=${paging.curPage - 1 }">&lt;</a>
+   <li><a href="${pageContext.request.contextPath}/admin/question/search?curPage=${paging.curPage - 1 }&keyword=${keyword}">&lt;</a>
    </c:if>
    
    
@@ -41,12 +40,12 @@
    
    <!-- 현재 페이지라면 강조(.active) -->
    <c:if test="${paging.curPage eq i }">
-   <li class="active"><a href="${pageContext.request.contextPath}/admin/review/list?curPage=${i }">${i }</a></li>
+   <li class="active"><a href="${pageContext.request.contextPath}/admin/question/search?curPage=${i }&keyword=${keyword}">${i }</a></li>
    </c:if>
    
    <!-- 현재 페이지가 아니라면 평소 모습-->
    <c:if test="${paging.curPage ne i }">
-   <li><a href="${pageContext.request.contextPath}/admin/review/list?curPage=${i }">${i }</a></li>
+   <li><a href="${pageContext.request.contextPath}/admin/questionsearch?curPage=${i }&keyword=${keyword}">${i }</a></li>
    </c:if>
 
    </c:forEach>
@@ -54,7 +53,7 @@
 
    <!-- 다음 페이지로 가기 -->
    <c:if test="${paging.curPage ne paging.totalPage}">
-   <li><a href="${pageContext.request.contextPath}/admin/review/list?curPage=${paging.curPage + 1 }">&gt;</a>
+   <li><a href="${pageContext.request.contextPath}/admin/question/search?curPage=${paging.curPage + 1 }&keyword=${keyword}">&gt;</a>
    </c:if>
    
 
@@ -70,7 +69,7 @@
 
     <!-- 마지막 페이지로 가기 -->
 <%--    <c:if test="${paging.curPage ne paging.totalPage }"> --%>
-<%--    <li><a href="${pageContext.request.contextPath}/admin/review/list?curPage=${paging.totalPage }">&raquo;</a></li> --%>
+<%--    <li><a href="${pageContext.request.contextPath}/admin/question/search?curPage=${paging.totalPage }&keyword=${keyword}">&raquo;</a></li> --%>
 <%--    </c:if> --%>
    
 </ul>

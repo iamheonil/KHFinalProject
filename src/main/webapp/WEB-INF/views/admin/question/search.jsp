@@ -15,8 +15,10 @@
 	font-weight: bold;
 	font-size: large;
 }
-
-#writebtn{
+#content {
+    margin: 0;
+    text-align: center;
+}
 /* 	color: #17B794; */
 }
 
@@ -36,7 +38,7 @@
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 18%;
+    top: 6%;
 }
 
 #serchbox{
@@ -44,7 +46,7 @@
 /* 	margin:0 ; */
 /* 	padding: 0; */
     position: absolute;
-    top: 18%;
+    top: 7%;
     right: -4.5%;
 }
 
@@ -150,7 +152,7 @@ $(document).ready(function(){
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">제목</th>
-		<th style="width: 50%">내용</th>
+		<th style="width: 60%;text-align: left;">내용</th>
 		<th style="width: 10%">날짜</th>
 	</tr>
 	
@@ -165,14 +167,12 @@ $(document).ready(function(){
 	<c:forEach items="${questionSearchList }" var="question" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${question.questionNo}" id="checkRow"/></td>
-		<td>${question.questionNo }</td>
-		<td>
-			<div class="txt_line_title">
-				<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
-			</div>
+		<td style="width: 5%">${question.questionNo }</td>
+		<td style="width: 20%">
+		<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
 		</td>
-		<td><div class="txt_line_content">${question.questionContent }</div></td>
-		<td>${question.questionDate }</td>
+		<td style="width: 60%;text-align: left;">${question.questionContent }</td>
+		<td style="width: 10%">${question.questionDate }</td>
 	</tr>
 	</c:forEach>
 	</table>
@@ -180,7 +180,7 @@ $(document).ready(function(){
 	
 	<!-- 페이징 -->
 	<div class="pagingstyle">
-	<c:import url="/WEB-INF/paging/admin/question/questionlistPaging.jsp"></c:import>
+	<c:import url="/WEB-INF/paging/admin/question/questionSearchPaging.jsp"></c:import>
 	</div>
 	
 </div>  

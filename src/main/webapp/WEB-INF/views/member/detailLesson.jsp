@@ -61,7 +61,7 @@
 
 											<div class="form-group">
 												<form
-													action="${pageContext.request.contextPath}/member/findLesson"
+													action="${pageContext.request.contextPath}/lesson/findlesson"
 													method="post" class="form-horizontal">
 
 													<div class="form-group option">

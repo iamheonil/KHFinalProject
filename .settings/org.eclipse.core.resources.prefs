@@ -2,5 +2,6 @@
 <<<<<<<=HEAD
 >>>>>>>=ce4961f5e65c2276217765aa641f75471c2c4a5f
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/student/findStu/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/teacher/teaBodyTest.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/user/findtch.jsp=UTF-8

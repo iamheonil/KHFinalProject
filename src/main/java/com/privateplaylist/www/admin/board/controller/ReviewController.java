@@ -34,7 +34,7 @@ public class ReviewController {
 			public String  noticeList(Model model,HttpServletRequest req) {
 				//요청 파라미터를 전달하여 paging 객체 생성하기
 				Paging paging = reviewService.reviewListPaging(req);
-						
+						System.out.println(paging);
 				//공지사항 정보 전체 조회 list
 				List<Map<String,Object>> reviewList = reviewService.selectReviewList(paging);
 				
@@ -94,7 +94,7 @@ public class ReviewController {
 	
 	
 			//검색
-			@RequestMapping(value="/search",method = RequestMethod.POST )
+			@RequestMapping(value="/search")
 			public String questionSearch(Model model,@RequestParam String keyword,HttpServletRequest req) {
 				
 				//root context

@@ -126,8 +126,12 @@ public class UserQuestionService {
 		return question.getQuestionNo();
 	}
 
-	public int deleteFile(int questionFileNo) {
-		return userQuestionDao.deleteFile(questionFileNo);
+	public void deleteFile(List<Integer> questionFileNo) {
+		
+		for( int fileNo : questionFileNo ) {
+			userQuestionDao.deleteFile(fileNo);
+		}
+		
 	}
 
 	public List<Map<String, Object>> getQuestionComm(int questionNo) {

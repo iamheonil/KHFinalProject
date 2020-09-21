@@ -83,39 +83,21 @@ function goback(){
 	history.go(-1);	
 }
 
-function deleteThumb(mkThumbNo, target){
+function deleteFile(mkFileNo, target){
 	
-	var url = "<%=request.getContextPath() %>/board/market/deletethumb";
-	// 비동기 처리
-	$.ajax({
-		type : "POST",
-		url: url,
-		data: {mkThumbNo : mkThumbNo},
-		success : function(result) {
-			$(target).parent("span").remove();
-		},
-		error : function(){
-			alert("ajax 실패")
-		}
-	});
+	var $input = "<input type='hidden' name='deleteFileNo' value='" + mkFileNo + "'/>";
 	
+	$("#marketUpdateForm").append($input);
+	
+	$(target).parent("span").remove();
 }
 
-function deleteFile(mkFileNo, target){
-	var url = "<%=request.getContextPath() %>/board/market/deletefile";
-	// 비동기 처리
-	$.ajax({
-		type : "POST",
-		url: url,
-		data: {mkFileNo : mkFileNo},
-		success : function(result) {
-			$(target).parent("span").remove();
-		},
-		error : function(){
-			alert("ajax 실패")
-		}
-	});
+function deleteThumb(mkThumbNo, target){
+	var $input = "<input type='hidden' name='deleteThumbNo' value='" + mkThumbNo + "'/>";
 	
+	$("#marketUpdateForm").append($input);
+	
+	$(target).parent("span").remove();
 }
 
 </script>
@@ -150,7 +132,7 @@ function deleteFile(mkFileNo, target){
 	<!-- END #gtco-header -->
 <div class="clearfix" ></div>	
 <div id="marketWrite">
-<form class="form" method="post" action="${pageContext.request.contextPath}/board/market/update" enctype="multipart/form-data">
+<form id="marketUpdateForm" class="form" method="post" action="${pageContext.request.contextPath}/board/market/update" enctype="multipart/form-data">
   <input type="hidden" name="mkNo" value="${market.MK_NO }" />
   <div class="form-group" style="font-weight: bold; font-size: 16px;">
 	중고장터 글쓰기
