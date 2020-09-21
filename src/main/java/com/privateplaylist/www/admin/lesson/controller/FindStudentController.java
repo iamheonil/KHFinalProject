@@ -64,13 +64,16 @@ public class FindStudentController {
 	@RequestMapping("/findstudent/delete")
 	public String findStudentDelete(Model model, int no) {
 		
-//		System.out.println("학생찾기 삭제 왔냐?"); 
+
+		System.out.println("학생찾기 삭제 왔냐?"); 
+		System.out.println("글번호:"+no);
+
 		
 		//학생찾기 게시글 상세 조회 - 삭제
 		int res = findStuService.deleteFindStu(no);
-//		System.out.println(no);
 		
-		return "/admin/lesson/findStudent";
+//		return "/admin/lesson/findStudent";
+		return "redirect:/admin/lesson/findsudent";
 	}
 
 }
