@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.privateplaylist.www.admin.lesson.service.FindStudentService;
 import com.privateplaylist.www.student.findStu.service.FindStuService;
@@ -61,6 +62,7 @@ public class FindStudentController {
 	
 	
 	//학생찾기글 상세 - 삭제
+	@ResponseBody
 	@RequestMapping("/findstudent/delete")
 	public String findStudentDelete(Model model, int no) {
 		
@@ -71,9 +73,11 @@ public class FindStudentController {
 		
 		//학생찾기 게시글 상세 조회 - 삭제
 		int res = findStuService.deleteFindStu(no);
+		System.out.println("no"+no);
 		
 //		return "/admin/lesson/findStudent";
-		return "redirect:/admin/lesson/findsudent";
+//		return "redirect:/admin/lesson/findsudent";
+		return "0";
 	}
 
 }
