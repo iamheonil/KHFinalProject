@@ -27,7 +27,7 @@
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 7%;
+    top: 6%;
 }
 
 #serchbox{
