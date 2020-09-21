@@ -10,10 +10,15 @@
 
 	<!-- 전체 리스트 출력 -->
 	<select id="selectQuestionList" resultType="map">
-
+	SELECT * FROM (
+  		SELECT rownum no, t.*
+  		FROM(
 	select q.*, m.user_id from question q, membership m
 					where m.user_no = q.user_no
 					order by question_no desc
+		)t
+	)x			
+	WHERE no between #{startNo} AND #{endNo}				
   </select>
 	<!-- 질문게시판 컨텐츠갯수 cnt -->
 	<select id="selectCntQuestionAll" resultType="int">

@@ -150,7 +150,7 @@ $(document).ready(function(){
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">제목</th>
-		<th style="width: 50%">내용</th>
+		<th style="width: 60%;text-align: left;">내용</th>
 		<th style="width: 10%">날짜</th>
 	</tr>
 	
@@ -165,14 +165,12 @@ $(document).ready(function(){
 	<c:forEach items="${questionSearchList }" var="question" >
 	<tr>
 	    <td><input type="checkbox" name="checkRow" value="${question.questionNo}" id="checkRow"/></td>
-		<td>${question.questionNo }</td>
-		<td>
-			<div class="txt_line_title">
-				<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
-			</div>
+		<td style="width: 5%">${question.questionNo }</td>
+		<td style="width: 20%">
+		<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
 		</td>
-		<td><div class="txt_line_content">${question.questionContent }</div></td>
-		<td>${question.questionDate }</td>
+		<td style="width: 60%;text-align: left;">${question.questionContent }</td>
+		<td style="width: 10%">${question.questionDate }</td>
 	</tr>
 	</c:forEach>
 	</table>
