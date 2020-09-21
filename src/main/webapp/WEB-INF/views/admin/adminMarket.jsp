@@ -728,11 +728,15 @@ document.ready(function(){
 													<td>${market.mkDate }</td>
 													<td class="text-center"><span
 														class="label label-default"> <c:if
-																test="${market.mkState eq 1}">
+																test="${market.mkState eq 0}">
 												게시중</span></td>
 													</c:if>
-													<c:if test="${market.mkState eq 0}">
-												게시안함</span>
+													<c:if test="${market.mkState eq 1}">
+												판매완료</span>
+														</td>
+													</c:if>
+													<c:if test="${market.mkState eq 2}">
+												삭제</span>
 														</td>
 													</c:if>
 													<td>${market.mkPrice }원</td>
