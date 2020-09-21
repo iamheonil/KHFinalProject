@@ -10,10 +10,10 @@
 <ul class="pagination">
    
    <!-- 첫 페이지로 가기 -->
-   <c:if test="${paging.curPage ne 1 }">
+<%--    <c:if test="${paging.curPage ne 1 }"> --%>
 <%--    <c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-   <li><a href="${pageContext.request.contextPath}/admin/review/search?keyword=${keyword}&curPage=1">&laquo;</a></li>
-   </c:if>
+<%--    <li><a href="${pageContext.request.contextPath}/admin/review/search?keyword=${keyword}&curPage=1">&laquo;</a></li> --%>
+<%--    </c:if> --%>
    
    
    <!-- 이전 페이징 리스트로 가기 -->
@@ -64,9 +64,9 @@
 
 
     <!-- 마지막 페이지로 가기 -->
-   <c:if test="${paging.curPage ne paging.totalPage }">
-   <li><a href="${pageContext.request.contextPath}/adminreview/search?keyword=${keyword}&curPage=${paging.totalPage }">&raquo;</a></li>
-   </c:if>
+<%--    <c:if test="${paging.curPage ne paging.totalPage }"> --%>
+<%--    <li><a href="${pageContext.request.contextPath}/adminreview/search?keyword=${keyword}&curPage=${paging.totalPage }">&raquo;</a></li> --%>
+<%--    </c:if> --%>
    
 </ul>
 </div>
