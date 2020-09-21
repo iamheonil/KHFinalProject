@@ -30,8 +30,8 @@ function findStuDelete(FIND_STU_NO){
 	
 	$(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/findstudent/delete?no="+no);
 	
-	opener.parent.location.reload();
 	close();
+	opener.parent.location.reload();
 	
 }
 
