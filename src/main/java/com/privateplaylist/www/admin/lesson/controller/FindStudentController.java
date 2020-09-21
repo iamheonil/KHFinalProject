@@ -68,7 +68,7 @@ public class FindStudentController {
 		
 		//학생찾기 게시글 상세 조회 - 삭제
 		int res = findStuService.deleteFindStu(no);
-
+//		System.out.println(no);
 		
 		return "/admin/lesson/findStudent";
 	}
