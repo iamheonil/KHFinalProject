@@ -36,7 +36,7 @@
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 7%;
+    top: 6%;
 }
 
 #serchbox{
@@ -73,7 +73,10 @@
 	text-overflow:ellipsis;
 	white-space:nowrap; 
 }
-
+#content {
+    margin: 0;
+    text-align: center;
+}
 </style>
 
 <script type="text/javascript">
