@@ -156,11 +156,11 @@ $(document).ready(function(){
 	    <td><input type="checkbox" name="checkRow" value="${notice.noticeNo}" id="checkRow"/></td>
 		<td>${notice.noticeNo }</td>
 		<td>
-			<div class="txt_line_title">
+			<div class="txt_line_title" style="margin: 0 auto;">
 				<a href="${pageContext.request.contextPath}/admin/notice/detail?noticeNo=${notice.noticeNo}" class="anone">${notice.noticeTitle }</a>
 			</div>
 		</td>
-		<td><div class="txt_line_content">${notice.noticeContent }</div></td>
+		<td><div class="txt_line_content" style="margin: 0 auto;">${notice.noticeContent }</div></td>
 		<td>${notice.noticeDate }</td>
 <%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
 	</tr>
