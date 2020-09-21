@@ -14,7 +14,10 @@
 	font-weight: bold;
 	font-size: large;
 }
-
+#content {
+    margin: 35px;
+    text-align: center;
+}
 .pagingstyle{
  	width: 100%; 
  	padding-left: 45%;
@@ -96,6 +99,7 @@ $(document).ready(function(){
     	<a href="<%=request.getContextPath()  %>/admin/review/list">후기게시판 </a>
    	</div>
 
+ <div id="content"> 
 <!-- 제목 검색 -->
 	<div id="serchbox" >
 	<form action="${pageContext.request.contextPath}/admin/review/search" method="post">
@@ -173,7 +177,7 @@ $(document).ready(function(){
 	<c:import url="/WEB-INF/paging/admin/review/reviewlistPaging.jsp"></c:import>
 	</div>
 
-
+</div>
 
 <!-- 관리자 페이지 footer --> 
 <c:import url="/WEB-INF/layout/admin/adminFooter.jsp"></c:import>
