@@ -27,12 +27,24 @@ function findStuDelete(FIND_STU_NO){
 	var no = FIND_STU_NO; 
 	
 	alert('삭제하시겠습니까?')
-	location.href="/ss/admin/lesson/findstudent/delete?no="+no;
 	
-	/* $(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/findstudent/delete?no="+no); */
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/lesson/findstudent/delete",
+		type:"POST",
+		data:{no:no},
+		success:function(data){
+			console.log(data)
+			close();
+			opener.parent.location.reload();
+		}
+		
+	})
+
+	
+	/* $(location).attr("href", "${pageContext.request.contextPath}/admin/lesson/findstudent/delete?no="+no); 
 	
 	close();
-	opener.parent.location.reload();
+	opener.parent.location.reload(); */
 	
 }
 
