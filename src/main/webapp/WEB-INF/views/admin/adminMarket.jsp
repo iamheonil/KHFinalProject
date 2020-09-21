@@ -732,7 +732,11 @@ document.ready(function(){
 												게시중</span></td>
 													</c:if>
 													<c:if test="${market.mkState eq 1}">
-												게시안함</span>
+												판매완료</span>
+														</td>
+													</c:if>
+													<c:if test="${market.mkState eq 2}">
+												삭제</span>
 														</td>
 													</c:if>
 													<td>${market.mkPrice }원</td>
