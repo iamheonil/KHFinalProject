@@ -15,8 +15,10 @@
 	font-weight: bold;
 	font-size: large;
 }
-
-#writebtn{
+#content {
+    margin: 0;
+    text-align: center;
+}
 /* 	color: #17B794; */
 }
 
@@ -36,7 +38,7 @@
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 7%;
+    top: 6%;
 }
 
 #serchbox{

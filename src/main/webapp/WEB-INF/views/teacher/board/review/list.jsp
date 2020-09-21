@@ -138,10 +138,11 @@ body{
 	                        </table>
 	
 		<!-- 페이징 -->
+		<c:if test="${not empty reviewList}" >
 		<div class="pagingstyle">
-			<c:import url="/WEB-INF/paging/teacher/board/teacherlistPaging.jsp"></c:import>
+			<c:import url="/WEB-INF/paging/teacher/board/teacherReviewPaging.jsp"></c:import>
 		</div>
-	
+		</c:if>
 	 </div>
 	                </div>
 	            </div>
