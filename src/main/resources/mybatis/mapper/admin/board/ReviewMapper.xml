@@ -34,11 +34,13 @@
 
 	select * from (
 		select rownum rnum, c.* from(
-			select * from review
-			where  review_content like  '%' || #{keyword} || '%'
-			order by review_no desc
-		) c
-	) review 
+				select  r.*, m.user_id
+				from review r, membership m
+			where r.user_no=m.user_no
+			and review_content like  '%' || #{keyword} || '%'
+		order by review_no desc
+		)c
+	)review	
 	where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
 	
   </select>

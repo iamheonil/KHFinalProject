@@ -23,7 +23,7 @@
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 15%;
+    top: 7%;
 }
 
 #serchbox{
@@ -31,7 +31,7 @@
 /* 	margin:0 ; */
 /* 	padding: 0; */
     position: absolute;
-    top: 15%;
+    top: 7%;
     right: -4.5%;
 }
 
