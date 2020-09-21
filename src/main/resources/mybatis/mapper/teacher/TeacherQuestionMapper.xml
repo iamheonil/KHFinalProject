@@ -41,7 +41,7 @@
 				where user_no = #{user.userNo}
 				order by comm_no
 			) t
-			ORDER BY no ) x
+			) x
 		WHERE no between #{paging.startNo} AND #{paging.endNo}			
 	</select>
   
