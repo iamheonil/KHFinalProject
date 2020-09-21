@@ -16,7 +16,7 @@
 	font-size: large;
 }
 #content {
-    margin: 0;
+    margin: 35px;
     text-align: center;
 }
 /* 	color: #17B794; */
