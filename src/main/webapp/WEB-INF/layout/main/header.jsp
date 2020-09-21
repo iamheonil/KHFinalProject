@@ -326,7 +326,7 @@
 					<a href="${pageContext.request.contextPath}">
 				</c:if>
 				<c:if test="${loginUser ne null or loginAdmin ne null}"><!-- 로그인 했을때  -->
-					<a href="${pageContext.request.contextPath}/member/main">
+					<a href="${pageContext.request.contextPath}/member/main" style="text-decoration: none; color: #17B794;">
 				</c:if>
 					<img src="${pageContext.request.contextPath}/resources/images/logo.png"	alt="슬기로운 과외생활">
 				</div>
@@ -348,7 +348,7 @@
 						</c:if>
 
 					<li><a
-						href="${pageContext.request.contextPath}/lesson/findlesson">과외찾기</a>
+						href="${pageContext.request.contextPath}/lesson/findlesson" style="text-decoration: none;">과외찾기</a>
 						<!-- <ul class="dropdown">
 									<li><a href="#">Web Design</a></li>
 									<li><a href="#">eCommerce</a></li>
@@ -356,30 +356,30 @@
 									<li><a href="#">API</a></li>
 								</ul>--></li>
 					<li><a
-						href="${pageContext.request.contextPath}/lesson/findStu/list">학생찾기</a>
+						href="${pageContext.request.contextPath}/lesson/findStu/list" style="text-decoration: none;">학생찾기</a>
 						<!-- <ul class="dropdown">
 									<li><a href="#">HTML5</a></li>
 									<li><a href="#">CSS3</a></li>
 									<li><a href="#">Sass</a></li>
 									<li><a href="#">jQuery</a></li>
 								</ul> --></li>
-					<li><a href="/ss/board/main">커뮤니티</a></li>
+					<li><a href="/ss/board/main" style="text-decoration: none;">커뮤니티</a></li>
 					<c:if test="${loginUser ne null or loginAdmin ne null}">
 						<!-- 로그인이 되어있을때  -->
 						 
 						<c:if test="${loginUser.userActor eq 2 }"><!-- 학생일때  -->
 						
-						<li><a href="${pageContext.request.contextPath}/student/connectedlesson">마이페이지</a></li>
+						<li><a href="${pageContext.request.contextPath}/student/connectedlesson" style="text-decoration: none;">마이페이지</a></li>
 						</c:if> 
 						<c:if test="${loginUser.userActor eq 1 }"><!-- 선생일때  -->
 						
-						<li><a href="${pageContext.request.contextPath}/teacher/caution">마이페이지</a></li>
+						<li><a href="${pageContext.request.contextPath}/teacher/caution" style="text-decoration: none;">마이페이지</a></li>
 						</c:if> 
 						<c:if test="${loginAdmin ne null }"><!-- 관리자 페이지로 이동 -->
 						
-						<li><a href="${pageContext.request.contextPath}/admin/lesson/view">관리자 페이지</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/lesson/view" style="text-decoration: none;">관리자 페이지</a></li>
 						</c:if> 
-						<li><a href="/ss/member/logout">로그아웃</a></li>
+						<li><a href="/ss/member/logout" style="text-decoration: none;">로그아웃</a></li>
 					</c:if>
 				</ul>
 			</div>
