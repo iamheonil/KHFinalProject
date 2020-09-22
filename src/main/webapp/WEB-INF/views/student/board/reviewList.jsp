@@ -89,23 +89,6 @@ body{
 }
 
 </style>
-<script type="text/javascript">
-function removeReview(reviewno){
-	
-	console.log(reviewno)
-	
-	$.ajax({
-		url:"${pageContext.request.contextPath}/student/removeReview",
-		type:"POST",
-		data:{reviewNo:reviewno},
-		success:function(){
-			alert("삭제 되었습니다");
-			location.reload();
-		}
-	})
-	
-}
-</script>
 
 
 <div id="title">커뮤니티
@@ -137,17 +120,15 @@ function removeReview(reviewno){
 	                                <tr class="align-self-center">
 	                                    <th style="width: 10%">번호</th>
 	                                    <th style="width: 15%">과외이름</th>
-	                                    <th style="width: 40%">내용</th>
+	                                    <th style="width: 50%">내용</th>
 	                                    <th style="width: 10%">별점</th>
 	                                    <th style="width: 15%">작성일</th>
-	                                    <th style="width: 10%">삭제</th>
-	                                    
 	                                </tr>
 	                            </thead>
 	                            
 	                            <tbody>
 	                            <c:if test="${empty reviewList}" >
-	                            	<td colspan="6">게시글이 존재하지 않습니다.</td>
+	                            	<td colspan="3">게시글이 존재하지 않습니다.</td>
 								</c:if>
 								
 								<c:if  test="${not empty reviewList}" >
@@ -161,7 +142,6 @@ function removeReview(reviewno){
 											<td style="width: 15%"><div><c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ reviewList.STAR_POINT }">★</c:forEach></div></td>
 		
 											<td>${reviewList.REVIEW_DATE}</td>
-											<td onclick="removeReview(${reviewList.REVIEW_NO})"><i class="fa fa-trash"></i></td>
 										</tr>
 									</c:forEach>
 									</c:if>
