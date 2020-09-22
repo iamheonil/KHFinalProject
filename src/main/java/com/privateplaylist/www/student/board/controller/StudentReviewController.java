@@ -6,10 +6,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.privateplaylist.www.admin.board.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.privateplaylist.www.dto.Question;
@@ -25,7 +27,11 @@ public class StudentReviewController {
 
 	@Autowired
 	private StudentReviewService studentReviewService;
-	
+
+	@Autowired
+	private ReviewService reviewService;
+
+
 	//후기게시판 정보 전체 조회
 		@RequestMapping("/reviewlist")
 		public ModelAndView questionList(@RequestParam(required=false, defaultValue="1") int curPage, HttpSession session) {
@@ -63,6 +69,20 @@ public class StudentReviewController {
 			return mav;
 
 		}
-	
-	
+
+
+	@ResponseBody
+	@RequestMapping("/removeReview")
+	public String removeReview(@RequestParam int reviewNo) {
+
+		System.out.println(reviewNo);
+		int res = reviewService.deleteReview(reviewNo);
+		if(res>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+
+
 }
