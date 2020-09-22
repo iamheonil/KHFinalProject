@@ -10,69 +10,24 @@
 	<select id="selectReviewListCnt" resultType="int">
 		SELECT count(*) FROM (
 			select * from REVIEW
-			where user_no = #{userNo}
+			  where user_no = #{userNo}
 		)
 	</select>
 	
 	<select id="selectReviewList" resultType="map">
-<!-- 		SELECT * FROM ( -->
-<!-- 	  		SELECT rownum no, r.* -->
-<!-- 	  		FROM ( -->
-<!-- 				SELECT * FROM review r , -->
-<!-- 				where user_no = #{user.userNo} -->
-<!-- 				order by review_no -->
-<!-- 			) r -->
-<!-- 			ORDER BY no ) x -->
-<!-- 		WHERE no between #{paging.startNo} AND #{paging.endNo}	 -->
-	
-		 select r.review_no , r.review_content,r.star_point,r.review_date,m.user_no,f.lesson_title from review r
-        inner join membership m 
-        on (r.user_no = m.user_no)
-        inner join (select * from find_lesson) f
-        on (r.user_no-1= f.user_no)
-        
-<!--         select * from ( -->
-<!-- 			select rownum rnum, c.* from( -->
-			
-<!-- 				select distinct r.*, m.user_id, f.lesson_title, tn.user_name -->
-<!-- 				from review r, membership m, connected_Lesson cl, find_lesson f, -->
-<!-- 				    (select m.* -->
-<!-- 				    from membership m, connected_lesson cl -->
-<!-- 				    where m.user_no = cl.teacher) tn -->
-<!-- 				where r.user_no = m.user_no  -->
-<!-- 					and cl.conn_lesson_no = r.conn_lesson_no -->
-<!-- 					and f.lesson_no = cl.lesson_no  -->
-<!-- 				    and cl.teacher = tn.user_no  -->
-<!-- 				    and cl.is_end = 1  -->
-<!-- 				    and r.review_state = 0 -->
-<!-- 				    and cl.review_reg = 1  -->
-<!-- 				order by review_no desc -->
 
-<!-- 				) c -->
-<!-- 			) review -->
-<!-- 		where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}  -->
-        
-	</select>
-	
-	
-<!-- 	<update id="updateReview"> -->
-<!--   	update review -->
-  	
-<!--   	<if test="findStuState.equals(0)"> -->
-<!-- 	set find_stu_state = 1 -->
-<!-- 	</if> -->
-<!-- 	<if test="findStuState.equals(1)"> -->
-<!-- 	set find_stu_state = 0 -->
-<!-- 	</if> -->
-	
-<!-- 	where user_no = #{userNo} -->
-<!-- 	and find_stu_no = #{findStuNo} -->
-<!--   </update> -->
-	
-	
-<!-- 	</update> -->
-	
-	
-	
-	
+	        select * from (
+      select rownum rnum, a.* from(
+          select r.review_no , r.review_content,r.star_point,r.review_date,m.user_no,f.lesson_title from review r
+        inner join membership m 
+        on r.user_no = m.user_no
+        inner join  connected_lesson c
+        on c.conn_lesson_no=r.conn_lesson_no
+        inner join find_lesson f
+        on c.lesson_no=f.lesson_no
+        where r.user_no=#{userNo}
+      ) a
+   ) review 
+   where rnum BETWEEN #{paging.startNo} AND #{paging.endNo}
+</select>
 </mapper>

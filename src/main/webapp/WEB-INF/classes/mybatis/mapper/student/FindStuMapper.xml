@@ -31,7 +31,7 @@
   <select id="findStuSearchPaging" parameterType="map" resultType="int">
   	select count(*) from find_student
   	where user_no = #{userNo }
-  	and find_stu_title like '%' || #{keyword} || '%'
+	and find_stu_title like '%' || #{keyword} || '%'
 	or find_stu_content like '%' || #{keyword} || '%'
   </select>
   
@@ -40,7 +40,7 @@
 		select rownum rnum, c.* from(
 	    	select * from find_student
 			where user_no = #{userNo }
-		   	and find_stu_title like '%' || #{keyword} || '%'
+			and find_stu_title like '%' || #{keyword} || '%'
 			or find_stu_content like '%' || #{keyword} || '%'
 	  		order by find_stu_no desc
 		) c

@@ -98,10 +98,10 @@
 
 	<select id="selectStarAndReview" resultType="map"><!-- 과외목록에 따른 별점과 리뷰의 
 			수 가져오기 -->
-		select c.lesson_no,avg(r.star_point) star,count(*)review from review r
+		select c.teacher,count(*)review,Round(avg(r.star_point),0) star from review r
 		inner join connected_lesson c
 		on r.conn_lesson_no=c.conn_lesson_no
-		GROUP BY c.lesson_no
+		GROUP BY c.teacher
 
 	</select>
 
@@ -137,7 +137,7 @@
         inner join membership m
         on
         m.user_no=r.user_no
-		where c.lesson_no=#{lessonNo}
+		where c.teacher=#{lessonNo}
 	</select>
 	
 	<select id="selectCntWish" resultType="int">
