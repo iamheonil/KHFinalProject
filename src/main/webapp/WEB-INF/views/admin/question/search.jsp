@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 이인주 : 관리자 > 공지사항 > 검색 jsp -->
+
 <!-- 관리자 페이지 header -->   
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 
@@ -15,39 +17,25 @@
 	font-weight: bold;
 	font-size: large;
 }
-#content {
-    margin: 35px;
-    text-align: center;
-}
-/* 	color: #17B794; */
-}
-
-#deletebtn{
-/* 	color: red; */
-}
 
  #divbtn{ 
     padding: 10px; 
 } 
-
 .pagingstyle{
- 	width: 100%; 
- 	padding-left: 40%;
+ 	width: 0px; 
+ 	/* padding-left: 830px; */
+ 	
+ 	margin: 0 auto;
 }
 
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 6%;
+    top: 18%;
 }
 
 #serchbox{
 	width: 500px;
-/* 	margin:0 ; */
-/* 	padding: 0; */
-    position: absolute;
-    top: 7%;
-    right: -4.5%;
 }
 
 .anone{
@@ -103,7 +91,7 @@ $(document).ready(function(){
 });
 </script>
 
-    <div id="title">게시판
+   <div id="title">게시판
     	<i class="fas fa-angle-right"></i>
     	<a href="<%=request.getContextPath()  %>/admin/question/list">질문게시판 </a>
    	</div>
@@ -152,7 +140,7 @@ $(document).ready(function(){
 	    <th style="width: 5%"><input type="checkbox" name="th_checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 		<th style="width: 5%">번호</th>
 		<th style="width: 20%">제목</th>
-		<th style="width: 60%;text-align: left;">내용</th>
+		<th style="width: 60%">내용</th>
 		<th style="width: 10%">날짜</th>
 	</tr>
 	
@@ -171,7 +159,7 @@ $(document).ready(function(){
 		<td style="width: 20%">
 		<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.questionNo}" class="anone">${question.questionTitle }</a>
 		</td>
-		<td style="width: 60%;text-align: left;">${question.questionContent }</td>
+		<td style="width: 60%">${question.questionContent }</td>
 		<td style="width: 10%">${question.questionDate }</td>
 	</tr>
 	</c:forEach>
@@ -183,7 +171,7 @@ $(document).ready(function(){
 	<c:import url="/WEB-INF/paging/admin/question/questionSearchPaging.jsp"></c:import>
 	</div>
 	
-</div>  
+</div>
 
      
 <!-- 관리자 페이지 footer --> 

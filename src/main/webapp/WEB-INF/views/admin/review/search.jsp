@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 이인주 : 관리자 > 공지사항 > 검색 jsp -->
+
 <!-- 관리자 페이지 header -->   
 <c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
 
@@ -16,36 +18,25 @@
 	font-size: large;
 }
 
-#writebtn{
-/* 	color: #17B794; */
-}
-
-#deletebtn{
-/* 	color: red; */
-}
-
  #divbtn{ 
     padding: 10px; 
 } 
 
 .pagingstyle{
- 	width: 100%; 
- 	padding-left: 40%;
+ 	width: 0px; 
+ 	/* padding-left: 830px; */
+ 	
+ 	margin: 0 auto;
 }
 
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 6%;
+    top: 18%;
 }
 
 #serchbox{
 	width: 500px;
-/* 	margin:0 ; */
-/* 	padding: 0; */
-    position: absolute;
-    top: 7%;
-    right: -4.5%;
 }
 
 .anone{
@@ -73,10 +64,7 @@
 	text-overflow:ellipsis;
 	white-space:nowrap; 
 }
-#content {
-    margin: 35px;
-    text-align: center;
-}
+
 </style>
 
 <script type="text/javascript">
@@ -104,7 +92,7 @@ $(document).ready(function(){
 });
 </script>
 
-    <div id="title">게시판
+ <div id="title">게시판
     	<i class="fas fa-angle-right"></i>
     	<a href="<%=request.getContextPath()  %>/admin/review/list">후기게시판 </a>
    	</div>
