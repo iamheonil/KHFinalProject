@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@page import="javax.naming.Context"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 이인주 : 관리자 > 공지사항 > 목록 jsp -->
+
 <!-- 관리자 페이지 header -->   
-<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>    
+<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
+
 <style type="text/css">
 .captionstyle{
 	text-align: center;
@@ -20,22 +23,20 @@
 } 
 
 .pagingstyle{
- 	width: 960px; 
- 	padding-left: 830px;
+ 	width: 0px; 
+ 	/* padding-left: 830px; */
+ 	
+ 	margin: 0 auto;
 }
 
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 6%;
+    top: 18%;
 }
 
 #serchbox{
 	width: 500px;
-	right: -4.5%;
-	position: absolute;
-	top:7%;
-	
 }
 
 .anone{
@@ -63,8 +64,9 @@
 	text-overflow:ellipsis;
 	white-space:nowrap; 
 }
-</style>    
-    
+
+</style>
+
 <script type="text/javascript">
 /* 체크박스 전체선택, 전체해제 */
 function checkAll(){
@@ -88,9 +90,9 @@ $(document).ready(function(){
 	});
 	
 });
-</script>    
+</script>
 
-<div id="title">게시판
+    <div id="title">게시판
     	<i class="fas fa-angle-right"></i>
     	<a href="<%=request.getContextPath()  %>/admin/question/list">질문게시판 </a>
    	</div>
@@ -133,7 +135,7 @@ $(document).ready(function(){
 
 	<div class="liststyle">
 	<!-- 질문게시판 리스트 -->
-	<table class="table table-striped table-hover table-condensed textcenter" >
+	<table class="table table-striped table-hover table-condensed textcenter">
 	<caption  class="captionstyle">질문게시판</caption>  
 	
 		<!-- 테이블 th -->
@@ -152,11 +154,11 @@ $(document).ready(function(){
 	    <td><input type="checkbox" name="checkRow" value="${question.QUESTION_NO}" id="checkRow" /></td>
 		<td style="width:5%">${question.QUESTION_NO }</td>
 		<td>
-			<div class="txt_line_title">
+			<div>
 				<a href="${pageContext.request.contextPath}/board/question/detail?questionNo=${question.QUESTION_NO}" class="anone"style="width:20%">${question.QUESTION_TITLE }</a>
 			</div>
 		</td>
-		<td><div class="txt_line_content" style="width:40%">${question.QUESTION_CONTENT }</div></td>
+		<td><div>${question.QUESTION_CONTENT }</div></td>
 		<td style="width:10%">${question.USER_ID }</td>
 		<td style="width:10%">${question.QUESTION_DATE }</td>
 <%-- 		<td><fmt:formatDate value="${notice.noticeDate }" pattern="yyyy-MM-dd"/></td> --%>
@@ -173,6 +175,7 @@ $(document).ready(function(){
 
 </div>
 
+     
 <!-- 관리자 페이지 footer --> 
 <c:import url="/WEB-INF/layout/admin/adminFooter.jsp"></c:import>
-
+  

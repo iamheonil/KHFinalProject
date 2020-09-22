@@ -1,12 +1,15 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@page import="javax.naming.Context"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 이인주 : 관리자 > 공지사항 > 목록 jsp -->
+
 <!-- 관리자 페이지 header -->   
-<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>    
+<c:import url="/WEB-INF/layout/admin/adminHeader.jsp"></c:import>
+
 <style type="text/css">
 .captionstyle{
 	text-align: center;
@@ -14,28 +17,26 @@
 	font-weight: bold;
 	font-size: large;
 }
-#content {
-    margin: 35px;
-    text-align: center;
-}
+
+ #divbtn{ 
+    padding: 10px; 
+} 
+
 .pagingstyle{
- 	width: 100%; 
- 	padding-left: 45%;
+ 	width: 0px; 
+ 	/* padding-left: 830px; */
+ 	
+ 	margin: 0 auto;
 }
 
 #footerbtn{
     position: absolute;
     right: 1.5%;
-    top: 7%;
+    top: 18%;
 }
 
 #serchbox{
 	width: 500px;
-/* 	margin:0 ; */
-/* 	padding: 0; */
-    position: absolute;
-    top: 7%;
-    right: -4.5%;
 }
 
 .anone{
@@ -49,7 +50,7 @@
 }
 
 .txt_line_content { 
-/* 	width:600px;  */
+	width:600px; 
 	padding:0 5px; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -63,12 +64,9 @@
 	text-overflow:ellipsis;
 	white-space:nowrap; 
 }
-.liststyle{
-margin:0; 
-padding: 0; }
 
-</style>    
-    
+</style>
+
 <script type="text/javascript">
 /* 체크박스 전체선택, 전체해제 */
 function checkAll(){
@@ -92,9 +90,9 @@ $(document).ready(function(){
 	});
 	
 });
-</script>    
+</script>
 
-<div id="title">게시판
+   <div id="title">게시판
     	<i class="fas fa-angle-right"></i>
     	<a href="<%=request.getContextPath()  %>/admin/review/list">후기게시판 </a>
    	</div>
@@ -158,9 +156,7 @@ $(document).ready(function(){
 		<td style="width: 10%">${review.REVIEW_NO }</td>
 		<td style="width: 10%"><div class="">${review.USER_ID }</div></td>
 		<td style="width: 50%;">
-			<div class="txt_line_title" >
 				${review.REVIEW_CONTENT }
-			</div>
 		</td>
 <%-- 		<td><div class="txt_line_content">${review.starPoint}</div></td> --%>
 		
@@ -178,7 +174,7 @@ $(document).ready(function(){
 	</div>
 
 </div>
-
+     
 <!-- 관리자 페이지 footer --> 
 <c:import url="/WEB-INF/layout/admin/adminFooter.jsp"></c:import>
-
+  
