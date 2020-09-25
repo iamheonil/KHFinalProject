@@ -9,6 +9,8 @@
 
 ### 프로젝트 기간 2020.07.21 ~ 2020.09.21
 
+#### 사진으로 간편하게 보시려면 (https://github.com/iamheonil/KHFinalProject/blob/master/images/images.md)
+
 #### 구현파트 (Ctrl + F 를 사용하셔서 이름을 찾는게 빠릅니다.) 
 
 #### 이인주 (https://github.com/inju521)
