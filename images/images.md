@@ -1,4 +1,4 @@
-![1](\images\1.png)
+![1](images\1.png)
 
 ![2](C:\KHFinalProject\images\2.png)
 
