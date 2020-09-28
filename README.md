@@ -2,6 +2,8 @@
 
 <br>
 
+![AppVeyor](https://img.shields.io/appveyor/build/iamheonil/KHFinalProject)
+
 ### 슬기로운 과외생활 (온라인 과외 매칭 플랫폼)
 
 <br>
