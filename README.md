@@ -2,7 +2,7 @@
 
 <br>
 
-![AppVeyor](https://img.shields.io/appveyor/build/iamheonil/KHFinalProject)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/iamheonil/KHFinalProject) &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/iamheonil/KHFinalProject) &nbsp; ![GitHub contributors](https://img.shields.io/github/contributors/iamheonil/KHFinalProject) &nbsp; ![GitHub top language](https://img.shields.io/github/languages/top/iamheonil/KHFinalProject)
 
 ### 슬기로운 과외생활 (온라인 과외 매칭 플랫폼)
 
