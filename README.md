@@ -219,7 +219,7 @@
 
 ### 릴리즈 정보
 
-링크 걸 예정
+https://github.com/iamheonil/KHFinalProject/releases
 
 <br>
 
